@@ -575,6 +575,16 @@ class Leerder:
             # te diep open stond (code tot 12, vóór de grens van 8 bestond)
             self.diepste_per = {f: min(d, wereld.meeste_diepte(f))
                                 for f, d in meegenomen["diepste_per"].items()}
+        # En de nieuwsgierigheid kan diezelfde te diepe onderwerpen nog kennen.
+        # Laat je ze staan, dan klopt ze af en toe aan bij een lege kamer:
+        # elke trekking daarheen is een overgeslagen stap. Gemeten op de run
+        # van 9 aug 2026: code 9–12 bleef meetrekken na het hek van 8.
+        dood = [(f, g) for f, g in self.nieuwsgierig.soorten
+                if g > wereld.meeste_diepte(f)]
+        for soort in dood:
+            self.nieuwsgierig.soorten.remove(soort)
+            self.nieuwsgierig.score.pop(soort, None)
+            self.nieuwsgierig.laatst.pop(soort, None)
 
 
 def _als_taak(ontcijferd):
