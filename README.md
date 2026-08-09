@@ -33,6 +33,29 @@ whether that works.
 | `kern/toets-*.py` | 151 tests, including real SIGKILL crash tests |
 | `brein/` | a live window into her brain: real activations, real wiring (green = positive weights, red = negative), her memories |
 
+## Hardware
+
+No datacenter — two second-hand machines on a home LAN:
+
+| role | machine |
+|---|---|
+| **training** | AMD Threadripper 1920X · 40 GB RAM · **RTX 3070 Ti 8 GB** · NVMe · Arch Linux · torch 2.12 / CUDA 13 |
+| **home base** | HP DL380 Gen9 · 56 threads · 472 GB RAM · **2× Tesla P100 16 GB** (Pascal) · Arch Linux · torch 2.4.1 / cu121 |
+
+The training box runs her 24/7 (~200 W, quiet). The DL380 is the home base:
+it holds the code, the backups and the frozen exams, runs the watchdog that
+guards the trainer, serves the live brain window, and does measurement
+side-experiments on the P100s while she trains.
+
+Checkpoints are hardware-independent by design and by test: a snapshot
+written on the 3070 Ti under torch 2.12 restores on a P100 under torch 2.4.1,
+bit-for-bit. A GPU upgrade is a move, not a restart.
+
+Incidental findings from this setup, measured not assumed: on Pascal, fp16
+gives **no** speedup (cuBLAS accumulates in fp32) and
+`torch.cuda.is_bf16_supported()` returns `True` while bf16 is emulated and
+*slower* than fp32. Determinism costs at most a few percent.
+
 ## Honest numbers so far
 
 - **Catastrophic forgetting is real on this setup:** without protection she
