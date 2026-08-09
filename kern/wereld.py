@@ -45,7 +45,12 @@ from taken import FAMILIES, Taak, Trekker, _meng
 WERELD_ZAAD = 0x5765_7265_6C64          # "Wereld"
 
 MINSTE_DIEPTE = 1
-MEESTE_DIEPTE = 12                      # geen echte grens, wel een verstandige
+# Gemeten 9 aug 2026, 400 opgaven per diepte: t/m 15 past 100% met uitwerking
+# binnen MEESTE_TEKENS, op 16 nog 97%, op 17 nog 93%, op 18 zakt het naar 66%
+# en vanaf 20 past niets meer. Zelfde maatstaf als bij code (hek op 85%):
+# het hek staat op 17. Dieper dan dit is geen keuze maar het venster zelf —
+# pas als het venster groeit (fase 2) kan het hek verder open.
+MEESTE_DIEPTE = 17
 
 # Per familie kan de grens lager liggen. Bij puzzels zijn de rijen vanaf diepte
 # 6 zo diep gevlochten dat er geen methode meer uitkomt die het antwoord

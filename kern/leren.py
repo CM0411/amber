@@ -92,9 +92,11 @@ def ruimte_voor(diepte, familie=None):
             return 24
         return min(320, 96 * (diepte - 3) + 48)
     # Rekenen. Langste uitwerking: 50 op diepte 3, 110 op 6, 180 op 9, 247 op
-    # 12. De oude grens van 128 kapte diepte 9+ dus al af — mild vergeleken met
-    # de andere families, maar zelfde fout.
-    return min(280, 20 * diepte + 24)
+    # 12, en gemeten op 9 aug 2026: 294 op 14, 356 op 16, 384 op 17. De oude
+    # grens van 280 kapte diepte 14+ dus af — zelfde fout als bij puzzel en
+    # code. 384 plus de langste opgave op 17 (102 tekens) blijft binnen het
+    # venster van 512.
+    return min(384, 20 * diepte + 24)
 
 
 class Leerder:
