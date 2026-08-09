@@ -33,6 +33,30 @@ whether that works.
 | `kern/toets-*.py` | 151 tests, including real SIGKILL crash tests |
 | `brein/` | a live window into her brain: real activations, real wiring (green = positive weights, red = negative), her memories |
 
+## How it fits together
+
+```mermaid
+flowchart LR
+    subgraph trainer["trainer — RTX 3070 Ti, 24/7"]
+        WORLD["her world<br/>composable tasks,<br/>difficulty is a dial"] --> LOOP["learning loop"]
+        CUR["curiosity<br/>picks her work"] --> LOOP
+        LOOP --> MEM[("replay memory<br/>20k experiences,<br/>through a bottleneck")]
+        MEM -->|37.5% of each batch| LOOP
+        LOOP --> SNAP[("snapshot + journal<br/>every 500 steps,<br/>her full state")]
+    end
+    subgraph base["home base — DL380, 2× P100"]
+        SNAP -->|pulled every 3 min| WIN["live brain window<br/>real activations & wiring"]
+        EXAM[("frozen exams<br/>never trained on")] --> SCORE["exam scores<br/>every 500 steps"]
+        DOG["watchdog"] -->|restarts on crash or stall| LOOP
+        BAK[("hourly backups<br/>to 3 destinations")]
+    end
+    SNAP -->|survives GPU & torch changes| SNAP
+```
+
+A crash costs at most 500 steps: the wrapper restarts her, she reloads her
+snapshot — weights, memory, curiosity and all — and continues as if nothing
+happened. Everything that matters is a systemd service that survives reboots.
+
 ## Hardware
 
 No datacenter — two second-hand machines on a home LAN:
