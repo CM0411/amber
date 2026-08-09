@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stuur naar Amber</title>
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { min-height: 100vh; display: grid; place-items: center;
+         background: #0b0e13; color: #d8dde5;
+         font-family: system-ui, "Segoe UI", sans-serif; }
+  #vak { width: min(560px, 88vw); border: 2px dashed #3a4c72;
+         border-radius: 10px; padding: 64px 32px; text-align: center;
+         transition: border-color .2s, background .2s; cursor: pointer; }
+  #vak.erboven { border-color: #5ca8ff; background: #131b2b; }
+  #vak h1 { font-size: 21px; font-weight: 600; margin-bottom: 10px; }
+  #vak p { color: #7b8494; font-size: 14.5px; line-height: 1.6; }
+  #uitslag { margin-top: 18px; font-size: 15px; min-height: 1.5em; }
+  .goed { color: #59c9a5; } .bezig { color: #5ca8ff; } .fout { color: #d98a70; }
+  input { display: none; }
+</style>
+</head>
+<body>
+<div id="vak">
+  <h1>Sleep je bestand hierheen</h1>
+  <p>Of klik om te kiezen. Het komt op de DL380 terecht,<br>en Claude ziet het meteen staan.</p>
+  <div id="uitslag"></div>
+  <input type="file" id="kiezer" multiple>
+</div>
+<script>
+const vak = document.getElementById("vak");
+const kiezer = document.getElementById("kiezer");
+const uitslag = document.getElementById("uitslag");
+vak.onclick = () => kiezer.click();
+vak.ondragover = e => { e.preventDefault(); vak.classList.add("erboven"); };
+vak.ondragleave = () => vak.classList.remove("erboven");
+vak.ondrop = e => { e.preventDefault(); vak.classList.remove("erboven");
+                   stuur(e.dataTransfer.files); };
+kiezer.onchange = () => stuur(kiezer.files);
+async function stuur(bestanden) {
+  for (const b of bestanden) {
+    uitslag.className = "bezig";
+    uitslag.textContent = `bezig: ${b.name} (${(b.size/1e6).toFixed(1)} MB)…`;
+    try {
+      const r = await fetch(`/upload?naam=${encodeURIComponent(b.name)}`,
+                            {method: "PUT", body: b});
+      const j = await r.json();
+      uitslag.className = j.ok ? "goed" : "fout";
+      uitslag.textContent = j.ok ? `✓ ${b.name} is binnen` : "mislukt";
+    } catch (e) {
+      uitslag.className = "fout"; uitslag.textContent = "mislukt: " + e;
+    }
+  }
+}
+</script>
+</body>
+</html>

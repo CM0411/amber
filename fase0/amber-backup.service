@@ -1,0 +1,12 @@
+[Unit]
+Description=Back-up van Amber — papierwerk en kern naar drie bestemmingen
+# Zonder netwerk is de NAS onbereikbaar. Het script slaat die bestemming dan
+# stilzwijgend over en schrijft naar de andere twee, dus dit is geen harde eis.
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=arch
+Group=arch
+ExecStart=/home/arch/.local/bin/amber-backup.sh

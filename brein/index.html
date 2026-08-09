@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amber</title>
+<style>
+  /* Naar Cley's filmpje (9 aug 2026): het volledige weefsel van haar
+     bedrading altijd zichtbaar — groen is werkelijk plus, rood is werkelijk
+     min in haar gewichten — met golven van activatie die erdoorheen trekken
+     en vonkjes die langs de draden reizen. Eén donker thema, bewust. */
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { background: #080b1e; color: #d8dde5; overflow: hidden;
+         font-family: system-ui, "Segoe UI", sans-serif; }
+  canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
+  .laag-tekst { position: fixed; z-index: 2; }
+  #status { top: 18px; right: 22px; text-align: right; font-size: 13px;
+            color: #8ea0c0; line-height: 1.8; font-variant-numeric: tabular-nums;
+            font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  #status b { color: #cfe2ff; font-weight: 600; }
+  #titel { top: 16px; left: 22px; font-size: 15px; letter-spacing: .35em;
+           color: #5f6f92; text-transform: uppercase; }
+  #titel a { color: #5f6f92; text-decoration: none; border-bottom: 1px dotted #2c3a5e; }
+  #werk { left: 22px; right: 22px; bottom: 18px;
+          font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+          font-size: 13.5px; line-height: 1.65; }
+  #opgave { color: #8ea0c0; white-space: pre-wrap; }
+  #antwoord { color: #cfe2ff; white-space: pre-wrap; min-height: 1.4em; }
+  #antwoord.goed { color: #7fe0c3; }
+  #antwoord.fout { color: #ffa385; }
+  #uitleg { font-size: 11.5px; color: #51608a; margin-top: 5px; }
+  #herinnert { margin-top: 8px; font-size: 12px; line-height: 1.7;
+               color: #5f6f92; }
+  #herinnert .kopje { font-size: 10.5px; letter-spacing: .16em;
+                      text-transform: uppercase; color: #47536f; }
+  #herinnert .h { opacity: .75; }
+  #wereld { top: 108px; right: 22px; text-align: right;
+            font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+            font-size: 12.5px; color: #8ea0c0; line-height: 2; }
+  #wereld .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+                 text-transform: uppercase; }
+  #wereld .rij { display: flex; justify-content: flex-end; gap: 10px;
+                 align-items: center; }
+  #wereld .balk { display: inline-flex; gap: 2.5px; }
+  #wereld .blokje { width: 7px; height: 10px; border-radius: 1.5px;
+                    background: #1d2b4d; }
+  #wereld .blokje.aan { background: #5ca8ff; }
+  #wereld .nieuw { color: #7fe0c3; animation: fonkel 1.2s ease-in-out infinite; }
+  #wereld .doorbraak { font-size: 11px; color: #51608a; }
+  @keyframes fonkel { 50% { opacity: .35; } }
+  #lijnvak { bottom: 118px; right: 22px; text-align: right; }
+  #lijnvak .kopje, #lijnvak #lijnwaarde {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: #47536f; }
+  #lijnvak #lijnwaarde { letter-spacing: 0; font-size: 12.5px; color: #7fe0c3;
+                         margin-top: 2px; }
+  #lijn { position: static; inset: auto; margin-top: 6px;
+          width: 240px; height: 48px; }
+</style>
+</head>
+<body>
+<canvas id="doek"></canvas>
+<div class="laag-tekst" id="titel"><a href="/rapport">Amber</a></div>
+<div class="laag-tekst" id="status">wachten op de kijker&hellip;</div>
+<div class="laag-tekst" id="wereld"></div>
+<div class="laag-tekst" id="lijnvak" style="display:none">
+  <div class="kopje">haar levenslijn — ladder-proefwerk deze run</div>
+  <canvas id="lijn" width="360" height="72"></canvas>
+  <div id="lijnwaarde"></div>
+</div>
+<div class="laag-tekst" id="werk">
+  <div id="opgave"></div>
+  <div id="antwoord"></div>
+  <div id="uitleg"></div>
+  <div id="herinnert"></div>
+</div>
+<script>
+const doek = document.getElementById("doek");
+const ctx = doek.getContext("2d");
+let B = 1, H = 1;
+let KOL = [32, 32,32,32,32,32,32,32,32, 1];
+let NAMEN = [];
+let stand = null, wachtrij = [], rijNu = null, rijStart = 0;
+let gloed = KOL.map(n => new Array(n).fill(0));
+let kolMax = KOL.map(() => 0.0001);
+let bedrading = null, bedradingUit = null, weefsel = [];
+let vonken = [];
+let antwoordDoel = "", antwoordNu = 0, laatstTonen = 0;
+const DUUR = 1300;
+
+const stof = Array.from({length: 45}, () => ({
+  x: Math.random(), y: Math.random(),
+  r: 0.4 + Math.random() * 1.3, s: 0.00002 + Math.random() * 0.00006,
+  tw: Math.random() * 6.28 }));
+
+function plaats(kol, i) {
+  const bx = B * 0.085, ex = B * 0.915;
+  const x = bx + (ex - bx) * kol / (KOL.length - 1);
+  const midden = H * 0.465, hoog = H * 0.62;
+  const n = KOL[kol];
+  const y = n === 1 ? midden : midden - hoog / 2 + hoog * i / (n - 1);
+  return [x, y];
+}
+function kromming(y1, y2) {
+  // draden bollen weg van het midden: samen vormen ze de lensvormen
+  const midden = H * 0.465;
+  const m = (y1 + y2) / 2;
+  return m + (m - midden) * 0.55 + (y2 - y1) * 0.08;
+}
+
+const DPR = Math.min(devicePixelRatio || 1, 1.5);
+let achtergrond = null;
+function maat() {
+  B = doek.width = innerWidth * DPR;
+  H = doek.height = innerHeight * DPR;
+  achtergrond = document.createElement("canvas");
+  achtergrond.width = B; achtergrond.height = H;
+  const q = achtergrond.getContext("2d");
+  const g = q.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, "#080b1e"); g.addColorStop(.5, "#0c1230");
+  g.addColorStop(1, "#070a1a");
+  q.fillStyle = g; q.fillRect(0, 0, B, H);
+  gloedSprite = document.createElement("canvas");
+  gloedSprite.width = gloedSprite.height = 64;
+  const qs = gloedSprite.getContext("2d");
+  const rg = qs.createRadialGradient(32, 32, 0, 32, 32, 32);
+  rg.addColorStop(0, "rgba(190,215,255,0.9)");
+  rg.addColorStop(1, "rgba(190,215,255,0)");
+  qs.fillStyle = rg; qs.beginPath(); qs.arc(32, 32, 32, 0, 7); qs.fill();
+  bouwWeefsel();
+}
+let gloedSprite = null;
+addEventListener("resize", maat);
+
+function bouwWeefsel() {
+  // Het vaste weefsel: per overgang haar sterkste verbindingen, één keer
+  // getekend op een eigen laag. Groen = plus, rood = min — echt uit haar
+  // gewichten. Per beeld schuift alleen de helderheid, dat houdt het licht.
+  weefsel = [];
+  if (!bedrading) return;
+  for (let k = 0; k < KOL.length - 1; k++) {
+    const [x1k] = plaats(k, 0), [x2k] = plaats(k + 1, 0);
+    const marge = B * 0.012;
+    const links = Math.max(0, x1k - marge);
+    const breed = Math.min(B - links, x2k - x1k + 2 * marge);
+    const c = document.createElement("canvas");
+    c.width = Math.max(2, Math.round(breed)); c.height = H;
+    c.dataset.links = links;
+    const q = c.getContext("2d");
+    q.translate(-links, 0);
+    q.globalCompositeOperation = "lighter";
+    let paren = [];
+    if (k < KOL.length - 2) {
+      const M = bedrading[k];            // [doel][bron], genormaliseerd
+      for (let b = 0; b < KOL[k]; b++)
+        for (let d = 0; d < KOL[k + 1]; d++) {
+          const w = M[d] ? (M[d][b] || 0) : 0;
+          if (Math.abs(w) > 0.04) paren.push([Math.abs(w), w > 0, b, d]);
+        }
+      paren.sort((a, z) => z[0] - a[0]);
+      paren = paren.slice(0, 240);
+    } else {
+      for (let b = 0; b < KOL[k]; b++)
+        paren.push([(bedradingUit ? bedradingUit[b] : 0.5), true, b, 0]);
+    }
+    for (const [w, plus, b, d] of paren) {
+      const [x1, y1] = plaats(k, b);
+      const [x2, y2] = plaats(k + 1, d);
+      q.strokeStyle = plus
+        ? `rgba(105,225,150,${(0.05 + w * 0.30).toFixed(3)})`
+        : `rgba(255,115,85,${(0.05 + w * 0.30).toFixed(3)})`;
+      q.lineWidth = Math.max(0.6, Math.min(B, H) * 0.0007);
+      q.beginPath();
+      q.moveTo(x1, y1);
+      q.quadraticCurveTo((x1 + x2) / 2, kromming(y1, y2), x2, y2);
+      q.stroke();
+    }
+    weefsel.push(c);
+  }
+}
+
+function bouwNamen() {
+  NAMEN = [["invoer", "inbedding"]];
+  for (let i = 1; i < KOL.length - 1; i++)
+    NAMEN.push(["laag " + i, "GELU"]);
+  NAMEN.push(["uitvoer", "zekerheid"]);
+}
+bouwNamen();
+
+async function haal() {
+  try {
+    const r = await fetch("/stand.json", {cache: "no-store"});
+    const s = await r.json();
+    if ((!stand || s.tijd !== stand.tijd) && s.lagen && s.lagen.length
+        && !Array.isArray(s.lagen[0])) {
+      const nieuweBedrading = JSON.stringify(s.checkpoint_stap)
+        !== JSON.stringify(stand && stand.checkpoint_stap);
+      stand = s;
+      wachtrij = s.lagen.map(rij => [rij.in, ...rij.b, [rij.uit]]);
+      KOL = wachtrij[0].map(kl => kl.length);
+      bouwNamen();
+      gloed = KOL.map(n => new Array(n).fill(0));
+      kolMax = KOL.map(() => 0.0001);
+      for (const rij of wachtrij)
+        rij.forEach((kol, i) => { for (const v of kol)
+          kolMax[i] = Math.max(kolMax[i], v); });
+      if (s.bedrading && (nieuweBedrading || !weefsel.length)) {
+        bedrading = s.bedrading; bedradingUit = s.bedrading_uit;
+        bouwWeefsel();
+      }
+      document.getElementById("opgave").textContent =
+        (s.opgave || "").replace(/\n/g, " ; ");
+      antwoordDoel = s.antwoord || ""; antwoordNu = 0;
+      const a = document.getElementById("antwoord");
+      a.textContent = "";
+      a.className = s.goed === true ? "goed" : (s.goed === false ? "fout" : "");
+      const hn = s.herinnert || [];
+      document.getElementById("herinnert").innerHTML = hn.length
+        ? '<div class="kopje">waar ze aan terugdenkt — uit haar '
+          + (s.geheugen_grootte || 0).toLocaleString("nl")
+          + ' herinneringen</div>'
+          + hn.map(h => `<div class="h">${h.opgave}</div>`).join("")
+        : "";
+      document.getElementById("uitleg").textContent = s.familie
+        ? `${s.familie} · moeilijkheid ${s.diepte} · groen is plus, rood is min in haar echte bedrading · brein van stap ${s.checkpoint_stap.toLocaleString("nl")}`
+        : "";
+    }
+    const run = s.run && s.run.regel ? s.run.regel : "";
+    const st = document.getElementById("status");
+    if (run) {
+      const m = run.match(/stap\s+(\d+)\/(\d+)\s+(\d+%)\s+(\d+) ms\/st\s+nog (\S+)/);
+      st.innerHTML = m
+        ? `training X399<br><b>${(+m[1]).toLocaleString("nl")}</b> / ${(+m[2]).toLocaleString("nl")} · ${m[3]}<br>${m[4]} ms · nog ${m[5]}`
+        : run;
+    } else { st.textContent = "geen training actief"; }
+    // haar wereld: per familie hoe diep hij openstaat — checkpoint eerst,
+    // logregels als aanvulling; een verse doorbraak fonkelt
+    const grens = {rekenen: 12, code: 12, puzzel: 5};
+    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2},
+                               (s.run && s.run.wereld) || {},
+                               s.wereldrand || {});
+    for (const f in rand) rand[f] = Math.max(rand[f],
+        ((s.run && s.run.wereld) || {})[f] || 0);
+    if (!window.vorigeRand) window.vorigeRand = {};
+    let html = '<div class="kop">haar wereld</div>';
+    for (const f of ["rekenen", "puzzel", "code"]) {
+      const d = rand[f], nieuw = window.vorigeRand[f] && d > window.vorigeRand[f];
+      if (nieuw) window.fonkelTot = Date.now() + 90000;
+      let blokjes = "";
+      for (let i = 1; i <= grens[f]; i++)
+        blokjes += `<span class="blokje${i <= d ? " aan" : ""}"></span>`;
+      const fonkelt = window.fonkelTot > Date.now()
+                      && d === Math.max(...Object.values(rand));
+      html += `<div class="rij"><span${nieuw || fonkelt && window.laatstNieuw === f
+        ? ' class="nieuw"' : ""}>${f}</span>
+        <span class="balk">${blokjes}</span>
+        <span>${d}/${grens[f]}</span></div>`;
+      if (nieuw) window.laatstNieuw = f;
+      window.vorigeRand[f] = d;
+    }
+    const db = (s.run && s.run.doorbraken) || [];
+    if (db.length) {
+      const l = db[db.length - 1];
+      html += `<div class="doorbraak">laatste doorbraak: ${l.familie} naar ${l.tot} · stap ${l.stap.toLocaleString("nl")}</div>`;
+    }
+    document.getElementById("wereld").innerHTML = html;
+    const curve = (s.run && s.run.curve) || [];
+    if (curve.length > 1) {
+      const vak = document.getElementById("lijnvak");
+      vak.style.display = "block";
+      const c = document.getElementById("lijn");
+      const q = c.getContext("2d");
+      q.clearRect(0, 0, c.width, c.height);
+      const maxS = curve[curve.length - 1][0] || 1;
+      const pad = 4;
+      q.strokeStyle = "rgba(92,168,255,0.9)";
+      q.lineWidth = 2; q.lineJoin = "round"; q.beginPath();
+      curve.forEach(([st, pct], i) => {
+        const x = pad + (c.width - 2 * pad) * st / maxS;
+        const y = c.height - pad - (c.height - 2 * pad) * pct / 100;
+        i ? q.lineTo(x, y) : q.moveTo(x, y);
+      });
+      q.stroke();
+      const [ls, lp] = curve[curve.length - 1];
+      q.fillStyle = "#7fe0c3";
+      q.beginPath();
+      q.arc(pad + (c.width - 2 * pad), c.height - pad - (c.height - 2 * pad) * lp / 100,
+            3, 0, 7);
+      q.fill();
+      document.getElementById("lijnwaarde").textContent =
+        `${lp}% bij stap ${ls.toLocaleString("nl")}`;
+    }
+    const w = s.wachter;
+    if (w && (w.melding || w.crashes_vandaag > 0)) {
+      st.innerHTML += "<br>" + (w.melding
+        ? "⚠ " + w.melding
+        : `X399 ${w.crashes_vandaag}× herstart — vanzelf hervat`);
+    }
+  } catch (e) {}
+}
+haal(); setInterval(haal, 2500);
+maat();
+
+function teken(t) {
+  ctx.globalCompositeOperation = "source-over";
+  ctx.globalAlpha = 1;
+  ctx.drawImage(achtergrond, 0, 0);
+
+  const mn = Math.min(B, H);
+  for (const p of stof) {
+    p.y -= p.s; if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
+    const tw = 0.3 + 0.3 * Math.sin(t / 900 + p.tw);
+    ctx.fillStyle = `rgba(190,210,255,${tw.toFixed(2)})`;
+    ctx.beginPath();
+    ctx.arc(p.x * B, p.y * H, p.r * devicePixelRatio, 0, 7); ctx.fill();
+  }
+
+  if (!rijNu && wachtrij.length) { rijNu = wachtrij.shift(); rijStart = t; }
+  let front = -1;
+  if (rijNu) {
+    front = (t - rijStart) / DUUR * KOL.length;
+    if (front >= KOL.length + 1.5) {
+      if (!wachtrij.length) wachtrij.push(rijNu);
+      rijNu = wachtrij.shift(); rijStart = t; front = 0;
+    }
+  }
+  for (let k = 0; k < KOL.length; k++) {
+    const raak = rijNu && front >= k && front < k + 1.7;
+    for (let i = 0; i < KOL[k]; i++) {
+      const doel = raak ? Math.min(1, (rijNu[k][i] || 0) / kolMax[k]) : 0;
+      gloed[k][i] = Math.max(doel, gloed[k][i] * 0.97);
+    }
+  }
+
+  // het weefsel: altijd zichtbaar, en de overgang waar de golf zit gloeit op
+  ctx.globalCompositeOperation = "lighter";
+  const adem = 0.5 + 0.5 * Math.sin(t / 4000 * 2 * Math.PI);
+  for (let k = 0; k < weefsel.length; k++) {
+    let a = 0.34 + 0.10 * adem;
+    if (rijNu && front >= k - 0.2 && front < k + 2.0) a = Math.min(1, a + 0.55);
+    ctx.globalAlpha = a;
+    ctx.drawImage(weefsel[k], +weefsel[k].dataset.links, 0);
+  }
+  ctx.globalAlpha = 1;
+
+  // vonkjes langs de draden waar de golf loopt
+  if (rijNu && vonken.length < 90 && Math.random() < 0.7) {
+    const k = Math.max(0, Math.min(KOL.length - 2, Math.floor(front)));
+    const sterk = rijNu[k].map((v, i) => [v / kolMax[k], i])
+      .sort((x, y) => y[0] - x[0]).slice(0, 10);
+    const doelK = rijNu[k + 1].map((v, i) => [v / kolMax[k + 1], i])
+      .sort((x, y) => y[0] - x[0]).slice(0, 10);
+    const [, b] = sterk[Math.floor(Math.random() * sterk.length)] || [0, 0];
+    const [, d] = doelK[Math.floor(Math.random() * doelK.length)] || [0, 0];
+    vonken.push({k, b, d, u: 0, sn: 0.014 + Math.random() * 0.02});
+  }
+  for (const v of vonken) {
+    v.u += v.sn;
+    const [x1, y1] = plaats(v.k, v.b);
+    const [x2, y2] = plaats(v.k + 1, v.d);
+    const cy = kromming(y1, y2), cx = (x1 + x2) / 2;
+    const u = v.u, w = 1 - u;
+    const x = w * w * x1 + 2 * w * u * cx + u * u * x2;
+    const y = w * w * y1 + 2 * w * u * cy + u * u * y2;
+    ctx.fillStyle = `rgba(235,244,255,${(0.85 * (1 - u * 0.4)).toFixed(2)})`;
+    ctx.beginPath(); ctx.arc(x, y, mn * 0.0016, 0, 7); ctx.fill();
+  }
+  vonken = vonken.filter(v => v.u < 1);
+
+  // de kolommen zelf, met een gloed aan de invoer als de golf daar begint
+  for (let k = 0; k < KOL.length; k++)
+    for (let i = 0; i < KOL[k]; i++) {
+      const [x, y] = plaats(k, i);
+      const gl = gloed[k][i];
+      const r = mn * (KOL[k] === 1 ? 0.008 : 0.0021) * (1 + 1.7 * gl);
+      ctx.fillStyle = `rgba(${205 + 50 * gl | 0},${220 + 35 * gl | 0},255,${(0.5 + 0.5 * gl).toFixed(2)})`;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+      if (gl > 0.4) {
+        ctx.globalAlpha = 0.4 * gl;
+        const d = r * 10;
+        ctx.drawImage(gloedSprite, x - d / 2, y - d / 2, d, d);
+        ctx.globalAlpha = 1;
+      }
+    }
+  if (rijNu && front < 1.6) {
+    const [x0] = plaats(0, 0);
+    ctx.globalAlpha = 0.3 * (1.6 - front) / 1.6;
+    const d = mn * 0.6;
+    ctx.drawImage(gloedSprite, x0 - d / 2, H * 0.465 - d / 2, d, d);
+    ctx.globalAlpha = 1;
+  }
+
+  ctx.globalCompositeOperation = "source-over";
+  ctx.textAlign = "left";
+  const fs = Math.max(10, mn * 0.0102);
+  ctx.font = `${fs}px ui-monospace, Consolas, monospace`;
+  for (let k = 0; k < KOL.length; k++) {
+    const [x] = plaats(k, 0);
+    const [, yb] = plaats(k, KOL[k] - 1);
+    const y = (KOL[k] === 1 ? H * 0.465 : yb) + fs * 2.2;
+    ctx.textAlign = k === KOL.length - 1 ? "right" : "left";
+    const lx = k === KOL.length - 1 ? x + fs : x - fs;
+    ctx.fillStyle = "rgba(225,235,255,0.85)";
+    ctx.fillText(NAMEN[k][0], lx, y);
+    ctx.fillStyle = "rgba(255,140,90,0.8)";
+    ctx.fillText(NAMEN[k][1], lx, y + fs * 1.35);
+  }
+  ctx.textAlign = "left";
+
+  if (antwoordNu < antwoordDoel.length && t - laatstTonen > DUUR / 4) {
+    antwoordNu += 1; laatstTonen = t;
+    document.getElementById("antwoord").textContent =
+      antwoordDoel.slice(0, antwoordNu);
+  }
+  requestAnimationFrame(teken);
+}
+requestAnimationFrame(teken);
+</script>
+</body>
+</html>

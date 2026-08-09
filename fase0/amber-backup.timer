@@ -1,0 +1,15 @@
+[Unit]
+Description=Elk uur een back-up van Amber
+
+[Timer]
+OnCalendar=hourly
+# De server gaat 's nachts soms uit vanwege warmte. Persistent zorgt dat een
+# gemiste beurt alsnog draait zodra hij weer opkomt, in plaats van over te slaan.
+# Zonder dit is de back-up juist afwezig op de dagen dat er iets misging.
+Persistent=true
+# Niet allemaal precies op het hele uur; scheelt een piek als er ooit meer
+# tijdgestuurde taken bij komen.
+RandomizedDelaySec=5m
+
+[Install]
+WantedBy=timers.target

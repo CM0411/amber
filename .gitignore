@@ -1,0 +1,8 @@
+venv/
+tmp/
+__pycache__/
+*.pt
+fase1/leven*/
+fase1/nulmeting/
+wachter/x399-*
+nohup.out

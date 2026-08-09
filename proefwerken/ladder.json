@@ -1,0 +1,2166 @@
+{
+ "naam": "ladder",
+ "beschrijving": "Uit de grammatica op diepte 1 t/m 6, twintig opgaven per familie per diepte. Fijnmaziger dan diepte2, zodat er op elke hoogte signaal is en niet twee derde van het blad alleen 'nog niet' meet.",
+ "opgaven": [
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 2\nprint(a)",
+   "oplossing": "2"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 14\nprint(a)",
+   "oplossing": "14"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 24\nprint(a)",
+   "oplossing": "24"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 34\nprint(a)",
+   "oplossing": "34"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 40\nprint(a)",
+   "oplossing": "40"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 19\nprint(a)",
+   "oplossing": "19"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 11\nprint(a)",
+   "oplossing": "11"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 28\nprint(a)",
+   "oplossing": "28"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 1\nprint(a)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 28\nprint(a)",
+   "oplossing": "28"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 6\nprint(a)",
+   "oplossing": "6"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 21\nprint(a)",
+   "oplossing": "21"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 17\nprint(a)",
+   "oplossing": "17"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 22\nprint(a)",
+   "oplossing": "22"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 3\nprint(a)",
+   "oplossing": "3"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 36\nprint(a)",
+   "oplossing": "36"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 21\nprint(a)",
+   "oplossing": "21"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 28\nprint(a)",
+   "oplossing": "28"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 10\nprint(a)",
+   "oplossing": "10"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 21\nprint(a)",
+   "oplossing": "21"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 13\nprint(a)",
+   "oplossing": "13"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 25\nprint(a)",
+   "oplossing": "25"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 7\nprint(a)",
+   "oplossing": "7"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 11\nprint(a)",
+   "oplossing": "11"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 35\nprint(a)",
+   "oplossing": "35"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 18\nprint(a)",
+   "oplossing": "18"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 18\nprint(a)",
+   "oplossing": "18"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 11\nprint(a)",
+   "oplossing": "11"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 39\nprint(a)",
+   "oplossing": "39"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 7\nprint(a)",
+   "oplossing": "7"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 15\nprint(a)",
+   "oplossing": "15"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 20\nprint(a)",
+   "oplossing": "20"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 11\nprint(a)",
+   "oplossing": "11"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 3\nprint(a)",
+   "oplossing": "3"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 18\nprint(a)",
+   "oplossing": "18"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 36\nprint(a)",
+   "oplossing": "36"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 18\nprint(a)",
+   "oplossing": "18"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 35\nprint(a)",
+   "oplossing": "35"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 39\nprint(a)",
+   "oplossing": "39"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 5\nprint(a)",
+   "oplossing": "5"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 24\nb = a * 7\nprint(b)",
+   "oplossing": "168"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 40\nb = a - 39\nprint(b)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 29\nb = 19 - 31\nprint(b)",
+   "oplossing": "-12"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 37\nb = 34 + a\nprint(b)",
+   "oplossing": "71"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 5\nb = 15 + a\nprint(b)",
+   "oplossing": "20"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 36\nb = 34 + 21\nprint(b)",
+   "oplossing": "55"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 30\nb = 28 + a\nprint(b)",
+   "oplossing": "58"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 4\nb = 25 * 6\nprint(b)",
+   "oplossing": "150"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 23\nb = 36 * 7\nprint(b)",
+   "oplossing": "252"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 3\nb = a - 40\nprint(b)",
+   "oplossing": "-37"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 38\nb = 37 + a\nprint(b)",
+   "oplossing": "75"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 1\nb = 36 * 9\nprint(b)",
+   "oplossing": "324"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 26\nb = 15 * 3\nprint(b)",
+   "oplossing": "45"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 6\nb = a - 37\nprint(b)",
+   "oplossing": "-31"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 4\nb = 19 - a\nprint(b)",
+   "oplossing": "15"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 37\nb = a * 3\nprint(b)",
+   "oplossing": "111"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 17\nb = 39 * 2\nprint(b)",
+   "oplossing": "78"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 39\nb = 14 + 11\nprint(b)",
+   "oplossing": "25"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 3\nb = a - 22\nprint(b)",
+   "oplossing": "-19"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "a = 9\nb = a - 31\nprint(b)",
+   "oplossing": "-22"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 8\nb = (33 + a) * 2\nfor i in range(2):\n    b = b + 17\nprint(b)",
+   "oplossing": "116"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 11\nb = (27 + 24) * 8\nfor i in range(3):\n    b = b + 8\nprint(b)",
+   "oplossing": "432"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 18\nb = a * 7 * 8\nfor i in range(6):\n    b = b + 14\nprint(b)",
+   "oplossing": "1092"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 17\nb = 37 + 16 - (a + 6)\nfor i in range(4):\n    b = b + 6\nprint(b)",
+   "oplossing": "54"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 34\nb = a * 6 + 25 * 6\nfor i in range(6):\n    b = b + 3\nprint(b)",
+   "oplossing": "372"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 18\nb = a + 14 + a * 7\nfor i in range(3):\n    b = b + 20\nprint(b)",
+   "oplossing": "218"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 35\nb = a - 20 - a * 5\nfor i in range(5):\n    b = b + 13\nprint(b)",
+   "oplossing": "-95"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 9\nb = a - 26 + a * 8\nfor i in range(5):\n    b = b + 3\nprint(b)",
+   "oplossing": "70"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 13\nb = (13 - a) * 4\nfor i in range(2):\n    b = b + 3\nprint(b)",
+   "oplossing": "6"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 40\nb = a - 8 + a - 22\nfor i in range(3):\n    b = b + 11\nprint(b)",
+   "oplossing": "83"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 22\nb = 7 * 7 - (10 + 40)\nfor i in range(6):\n    b = b + 18\nprint(b)",
+   "oplossing": "107"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 1\nb = (8 - a) * 5\nfor i in range(2):\n    b = b + 13\nprint(b)",
+   "oplossing": "61"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 14\nb = 21 * 9 - (23 + a)\nfor i in range(2):\n    b = b + 15\nprint(b)",
+   "oplossing": "182"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 26\nb = a - 9 + 31 + a\nfor i in range(6):\n    b = b + 2\nprint(b)",
+   "oplossing": "86"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 10\nb = 30 * 9 + a * 4\nfor i in range(3):\n    b = b + 17\nprint(b)",
+   "oplossing": "361"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 20\nb = 11 - 38 + 14 * 5\nfor i in range(6):\n    b = b + 19\nprint(b)",
+   "oplossing": "157"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 17\nb = 9 * 9 * 3\nfor i in range(2):\n    b = b + 5\nprint(b)",
+   "oplossing": "253"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 10\nb = 4 - a + a * 8\nfor i in range(6):\n    b = b + 3\nprint(b)",
+   "oplossing": "92"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 23\nb = 17 + a - (34 + 7)\nfor i in range(3):\n    b = b + 13\nprint(b)",
+   "oplossing": "38"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "a = 6\nb = 30 - 1 - (36 - a)\nfor i in range(2):\n    b = b + 15\nprint(b)",
+   "oplossing": "29"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 1\nb = (9 + 29) * 5 - (27 - 22 - (a - 13))\nfor i in range(2):\n    b = b + 20\nprint(b)",
+   "oplossing": "213"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 6\nb = 4 + 12 - 16 * 2 + (5 + 17) * 6\nfor i in range(4):\n    b = b + 5\nprint(b)",
+   "oplossing": "136"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 23\nb = (a - 17 - (33 - a)) * 9\nfor i in range(3):\n    b = b + 6\nprint(b)",
+   "oplossing": "-18"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 10\nb = a - 35 - (a + 38) + 19 * 9 * 6\nfor i in range(2):\n    b = b + 20\nprint(b)",
+   "oplossing": "993"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 3\nb = 28 - a - (24 + a) + a - 9 + a + 32\nfor i in range(2):\n    b = b + 12\nprint(b)",
+   "oplossing": "51"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 18\nb = 24 + a + 10 - a + 2 - 7 + a - 26\nfor i in range(4):\n    b = b + 5\nprint(b)",
+   "oplossing": "41"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 16\nb = (6 + 37 - a * 9) * 6\nfor i in range(3):\n    b = b + 1\nprint(b)",
+   "oplossing": "-603"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 19\nb = (2 + a) * 4 + (a - 10) * 3\nfor i in range(6):\n    b = b + 14\nprint(b)",
+   "oplossing": "195"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 26\nb = a + 19 - 7 * 7 + 4 + a - (a + 3)\nfor i in range(5):\n    b = b + 5\nprint(b)",
+   "oplossing": "22"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 14\nb = 12 + a - a * 7 + a - 4 - (11 + a)\nfor i in range(4):\n    b = b + 15\nprint(b)",
+   "oplossing": "-27"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 19\nb = (5 + 3 + 7 + a) * 5\nfor i in range(6):\n    b = b + 11\nprint(b)",
+   "oplossing": "236"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 17\nb = a + 34 - 24 * 9 + 21 * 5 + 39 - 28\nfor i in range(4):\n    b = b + 1\nprint(b)",
+   "oplossing": "-45"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 34\nb = (a - 33 + a + 12) * 2\nfor i in range(3):\n    b = b + 18\nprint(b)",
+   "oplossing": "148"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 19\nb = (a + 1 - 5 * 5) * 7\nfor i in range(4):\n    b = b + 18\nprint(b)",
+   "oplossing": "37"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 2\nb = 3 * 8 * 2 + a * 6 - (a - 15)\nfor i in range(5):\n    b = b + 18\nprint(b)",
+   "oplossing": "163"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 24\nb = (a - 14 + 18 - a) * 6\nfor i in range(5):\n    b = b + 17\nprint(b)",
+   "oplossing": "109"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 9\nb = (4 - a) * 2 + (38 + a) * 9\nfor i in range(6):\n    b = b + 20\nprint(b)",
+   "oplossing": "533"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 19\nb = a * 3 * 3 + a + 24 + 11 * 9\nfor i in range(4):\n    b = b + 15\nprint(b)",
+   "oplossing": "373"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 5\nb = 37 * 7 * 9 * 5\nfor i in range(6):\n    b = b + 17\nprint(b)",
+   "oplossing": "11757"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "a = 35\nb = a - 39 - (a - 35) + a * 9 - a * 3\nfor i in range(6):\n    b = b + 16\nprint(b)",
+   "oplossing": "302"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 30\nb = (17 - a - a * 5) * 2\nc = b * 2 - (14 + a) + 40 + 18 + b * 3\nfor i in range(5):\n    c = c + 5\nprint(c)",
+   "oplossing": "-1591"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 12\nb = 22 * 6 * 7 - (a - 35 - 13 * 5)\nc = (26 - a) * 3 * 2\nfor i in range(5):\n    c = c + 7\nprint(c)",
+   "oplossing": "119"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 38\nb = (a * 6 + 22 + a) * 4\nc = (37 * 9 + b + 21) * 7\nfor i in range(2):\n    c = c + 2\nprint(c)",
+   "oplossing": "10546"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 17\nb = 6 * 2 - a * 4 + (28 + 31) * 5\nc = (b * 4 + 39 - b) * 5\nfor i in range(4):\n    c = c + 10\nprint(c)",
+   "oplossing": "3820"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 17\nb = a + 34 - 25 * 2 + 12 * 6 - (2 - 15)\nc = 24 + 20 - b * 3 - (a - b - 11 * 3)\nfor i in range(5):\n    c = c + 8\nprint(c)",
+   "oplossing": "-72"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 31\nb = (a * 4 - (a + 8)) * 3\nc = (2 - 21) * 4 - (19 + b - a * 4)\nfor i in range(6):\n    c = c + 13\nprint(c)",
+   "oplossing": "-148"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 3\nb = (3 - a - a * 9) * 7\nc = a * 3 * 6 + 8 - 16 - (b + a)\nfor i in range(3):\n    c = c + 8\nprint(c)",
+   "oplossing": "256"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 21\nb = 1 + 29 + 25 + 10 - (a + 30 + 11 * 2)\nc = a - 7 + 9 - 29 + 6 * 3 * 7\nfor i in range(5):\n    c = c + 1\nprint(c)",
+   "oplossing": "125"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 19\nb = (29 - a) * 2 - (3 + a) * 3\nc = 27 * 4 * 3 * 2\nfor i in range(2):\n    c = c + 10\nprint(c)",
+   "oplossing": "668"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 11\nb = 40 - 14 + 2 - 27 + 13 - a - (10 + 35)\nc = 8 * 6 * 8 * 3\nfor i in range(4):\n    c = c + 14\nprint(c)",
+   "oplossing": "1208"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 33\nb = (31 * 4 + 25 + a) * 8\nc = 25 * 9 + a * 6 - (22 + a) * 4\nfor i in range(4):\n    c = c + 18\nprint(c)",
+   "oplossing": "275"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 23\nb = (a + 16) * 6 * 9\nc = (39 - b) * 8 + b * 8 - 7 * 4\nfor i in range(2):\n    c = c + 16\nprint(c)",
+   "oplossing": "316"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 6\nb = (5 + a) * 2 * 5\nc = a - 19 - b * 5 - (5 + 7 - (a - 20))\nfor i in range(3):\n    c = c + 20\nprint(c)",
+   "oplossing": "-529"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 28\nb = 26 - a + a * 4 - (a * 9 + a + 34)\nc = (31 + a) * 7 * 4\nfor i in range(6):\n    c = c + 3\nprint(c)",
+   "oplossing": "1670"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 39\nb = a - 5 - (a - 4) - a * 6 * 8\nc = 10 - b + a * 5 - 31 * 2 * 4\nfor i in range(5):\n    c = c + 19\nprint(c)",
+   "oplossing": "1925"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 20\nb = (8 * 2 - (33 + a)) * 6\nc = (21 + 22 + b * 9) * 3\nfor i in range(2):\n    c = c + 8\nprint(c)",
+   "oplossing": "-5849"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 17\nb = (5 + a) * 2 + 24 - a + 12 + 37\nc = 30 - 10 + a + 18 + (a + 13) * 7\nfor i in range(4):\n    c = c + 9\nprint(c)",
+   "oplossing": "301"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 9\nb = 11 * 6 + 23 * 5 - (a * 9 - (a - 24))\nc = (b + 27) * 5 + b + a + b * 5\nfor i in range(3):\n    c = c + 8\nprint(c)",
+   "oplossing": "1103"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 14\nb = (a + 30) * 7 + (38 + a) * 7\nc = (a - 1) * 2 + a + 15 + 29 - 5\nfor i in range(2):\n    c = c + 7\nprint(c)",
+   "oplossing": "93"
+  },
+  {
+   "familie": "code",
+   "graad": 6,
+   "opgave": "a = 23\nb = 1 + a - a * 9 + 14 * 4 * 8\nc = a + b - (8 + 3) + a - 16 - (33 + 24)\nfor i in range(5):\n    c = c + 20\nprint(c)",
+   "oplossing": "327"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "7 + 4",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "1 * 10",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "9 * 10",
+   "oplossing": "90"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "7 - 2",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "2 * 10",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "1 + 9",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "8 - 3",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "3 * 7",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "7 + 7",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "2 + 5",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "4 - 2",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "9 - 3",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "6 + 6",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "9 * 8",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "6 - 4",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "8 - 5",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "7 - 8",
+   "oplossing": "-1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "4 + 3",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "9 * 12",
+   "oplossing": "108"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "8 * 12",
+   "oplossing": "96"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "16 + 8 - 1",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "8 + 16 * 2",
+   "oplossing": "40"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "(12 - 18) * 8",
+   "oplossing": "-48"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "8 + 2 + 7",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "14 * 5 * 4",
+   "oplossing": "280"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "(8 + 1) * 2",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "3 - 4 * 5",
+   "oplossing": "-17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "2 * 8 * 11",
+   "oplossing": "176"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "3 + 7 + 15",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "8 - 2 + 16",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "13 * 2 - 12",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "(7 - 4) * 3",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "(11 - 15) * 6",
+   "oplossing": "-24"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "13 - 10 * 12",
+   "oplossing": "-107"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "(1 + 1) * 11",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "16 - (12 + 8)",
+   "oplossing": "-4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "6 + 18 * 12",
+   "oplossing": "222"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "5 - 10 * 8",
+   "oplossing": "-75"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "8 + 9 * 12",
+   "oplossing": "116"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "(1 - 14) * 8",
+   "oplossing": "-104"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "19 + 4 + 13 - 3",
+   "oplossing": "33"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "19 + 24 + 21 + 4",
+   "oplossing": "68"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "8 - 18 - (24 - 26)",
+   "oplossing": "-8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "(2 * 10 - 13) * 2",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "26 + 11 - 1 * 3",
+   "oplossing": "34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "14 + 14 + 18 + 10",
+   "oplossing": "56"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "3 - 24 - 2 - 2",
+   "oplossing": "-25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "4 + 24 * 9 - 11",
+   "oplossing": "209"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "(4 + 21) * 7 - 26",
+   "oplossing": "149"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "20 - 18 + 6 - 10",
+   "oplossing": "-2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "(9 + 22) * 11 * 8",
+   "oplossing": "2728"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "23 + 1 - 15 * 11",
+   "oplossing": "-141"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "(10 + 26) * 7 - 7",
+   "oplossing": "245"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "(12 + 20 + 21) * 11",
+   "oplossing": "583"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "3 - (18 + 27 + 10)",
+   "oplossing": "-52"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "(23 - (27 - 7)) * 7",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "(10 + 2) * 2 * 12",
+   "oplossing": "288"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "(6 - (11 - 23)) * 12",
+   "oplossing": "216"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "(6 - 5) * 2 - 7",
+   "oplossing": "-5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "11 + 12 + 10 * 7",
+   "oplossing": "93"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "30 + 13 - (30 + 17) * 5",
+   "oplossing": "-192"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "34 + 32 + 7 - 16 + 19",
+   "oplossing": "76"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "31 + 18 - (4 - (22 + 28))",
+   "oplossing": "95"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "25 * 2 - (13 - 16) + 9",
+   "oplossing": "62"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "22 + 31 - 25 + 29 - 1",
+   "oplossing": "56"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "31 * 3 + 21 * 8 * 6",
+   "oplossing": "1101"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "12 + 34 + 4 + 18 + 7",
+   "oplossing": "75"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "1 - 23 - 31 * 12 + 13",
+   "oplossing": "-381"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "11 + 33 - 21 * 3 * 6",
+   "oplossing": "-334"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "17 * 2 - (13 - (34 - 7))",
+   "oplossing": "48"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "36 * 8 * 10 * 12 * 4",
+   "oplossing": "138240"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "34 - (32 - (27 - 19) + 9)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "21 + 21 - (25 + 7) * 8",
+   "oplossing": "-214"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "(33 + 3 + 16) * 4 * 7",
+   "oplossing": "1456"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "27 - 15 + 25 * 6 * 2",
+   "oplossing": "312"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "13 - 36 * 4 - (31 - 13)",
+   "oplossing": "-149"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "(22 - 16 + 29 + 11) * 12",
+   "oplossing": "552"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "(5 - (6 - 6)) * 4 + 6",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "(11 - 27) * 10 - (29 - 18)",
+   "oplossing": "-171"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "11 + 1 + 7 + 10 - 26",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "24 + (19 + 40) * 11 - 30 + 15",
+   "oplossing": "658"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(2 + 15 + 2 + 9 - 3) * 8",
+   "oplossing": "200"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(15 + 24 + 6) * 2 * 2 + 11",
+   "oplossing": "191"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "27 + 7 * 9 + 6 - 6 - 3",
+   "oplossing": "87"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(14 + 15) * 12 * 10 - (39 + 15)",
+   "oplossing": "3426"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(25 - (36 - 15)) * 9 * 9 * 8",
+   "oplossing": "2592"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "9 * 7 - (4 * 11 * 5 + 21)",
+   "oplossing": "-178"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "12 - 28 * 5 - 23 - (39 + 11)",
+   "oplossing": "-201"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "9 - 38 + (40 + 2 - 35) * 7",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "18 * 9 + 16 * 5 + 28 + 25",
+   "oplossing": "295"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "12 - (3 - 30 - 15 + 32) * 12",
+   "oplossing": "132"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "1 * 8 + (9 + 38) * 4 * 9",
+   "oplossing": "1700"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "16 * 5 - (10 + 31) - (13 + 32)",
+   "oplossing": "-6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(24 - 15) * 10 * 4 + 13 - 10",
+   "oplossing": "363"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "14 - 31 - 12 + (11 + 7) * 11",
+   "oplossing": "169"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "28 + 19 - (29 - 30 + 1 * 12)",
+   "oplossing": "36"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(14 - 12 + 27 + 38 - 6) * 7",
+   "oplossing": "427"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "38 - (36 - (27 - 25)) - (15 + 27)",
+   "oplossing": "-38"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "38 - (25 + 4 - 37) + 28 - 39",
+   "oplossing": "35"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(28 - 35 + 32 - 23) * 6 * 12",
+   "oplossing": "144"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "27 + 1 + 38 - (18 - 30 - 21 * 4)",
+   "oplossing": "162"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(40 + 17) * 10 + 24 + 12 + 28 - 40",
+   "oplossing": "594"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "16 * 2 - 5 + 35 - 40 + 7 + 29",
+   "oplossing": "58"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(37 + 25 + 12 + 3 - 40 * 8) * 10",
+   "oplossing": "-2430"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "37 + 33 + 5 + 28 * 8 * 6 * 4",
+   "oplossing": "5451"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(4 * 2 + 19 + 26) * 10 + 38 + 39",
+   "oplossing": "607"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(33 + 37 + 32 + 9) * 4 * 8 * 11",
+   "oplossing": "39072"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "7 - (23 - 37 - (39 * 12 + 20)) * 4",
+   "oplossing": "2015"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(6 + 17 + (12 + 6) * 4 + 19) * 4",
+   "oplossing": "456"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "18 * 7 - (6 + 4 + 23) * 7 * 8",
+   "oplossing": "-1722"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(14 - 33 + 1 * 4 * 7) * 11 * 2",
+   "oplossing": "198"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(13 + 22 + 19 - 20) * 3 + 27 - 9",
+   "oplossing": "120"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(19 + 25 + 12 - (13 + 39) * 11) * 4",
+   "oplossing": "-2064"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "37 * 8 + 26 + 21 - (31 + 16 + 2)",
+   "oplossing": "294"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(9 + 23) * 7 - (22 + 14 + 1 - 16)",
+   "oplossing": "203"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "37 + (23 + 4) * 11 - 29 + 34 + 23",
+   "oplossing": "362"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(22 - 29) * 6 - (27 * 12 - (37 - 20))",
+   "oplossing": "-349"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "9 * 11 - (8 + 15 - (28 - 20)) * 6",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(31 - 34) * 3 - ((27 - 18) * 11 + 19)",
+   "oplossing": "-127"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "(37 * 10 + 27 - 27 - (2 - 35)) * 8",
+   "oplossing": "3224"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 23, 38, 53, 68, 83, 98, ?",
+   "oplossing": "113"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 13, 39, 117, 351, 1053, 3159, ?",
+   "oplossing": "9477"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 9, 18, 36, 72, 144, 288, ?",
+   "oplossing": "576"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 19, 38, 76, 152, 304, 608, ?",
+   "oplossing": "1216"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 2, 4, 8, 16, 32, 64, ?",
+   "oplossing": "128"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 13, 18, 23, 28, 33, 38, ?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 21, 63, 189, 567, 1701, 5103, ?",
+   "oplossing": "15309"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 8, -3, -14, -25, -36, -47, ?",
+   "oplossing": "-58"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 10, 30, 90, 270, 810, 2430, ?",
+   "oplossing": "7290"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 28, 56, 112, 224, 448, 896, ?",
+   "oplossing": "1792"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 12, 17, 22, 27, 32, 37, ?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 30, 90, 270, 810, 2430, 7290, ?",
+   "oplossing": "21870"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 15, 0, -15, -30, -45, -60, ?",
+   "oplossing": "-75"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 24, 20, 16, 12, 8, 4, ?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 17, 32, 47, 62, 77, 92, ?",
+   "oplossing": "107"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 20, 37, 54, 71, 88, 105, ?",
+   "oplossing": "122"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 28, 16, 4, -8, -20, -32, ?",
+   "oplossing": "-44"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 23, 36, 49, 62, 75, 88, ?",
+   "oplossing": "101"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 20, 39, 58, 77, 96, 115, ?",
+   "oplossing": "134"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 10, 21, 32, 43, 54, 65, ?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 28, 41, 54, 67, 80, 93, ?",
+   "oplossing": "106"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 24, 10, -4, -18, -32, -46, ?",
+   "oplossing": "-60"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 12, 19, 26, 33, 40, 47, ?",
+   "oplossing": "54"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 23, 69, 207, 621, 1863, 5589, ?",
+   "oplossing": "16767"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 23, 11, -1, -13, -25, -37, ?",
+   "oplossing": "-49"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 8, 24, 72, 216, 648, 1944, ?",
+   "oplossing": "5832"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 17, 2, -13, -28, -43, -58, ?",
+   "oplossing": "-73"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 28, 56, 112, 224, 448, 896, ?",
+   "oplossing": "1792"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 12, 31, 50, 69, 88, 107, ?",
+   "oplossing": "126"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 15, 26, 37, 48, 59, 70, ?",
+   "oplossing": "81"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 27, 81, 243, 729, 2187, 6561, ?",
+   "oplossing": "19683"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 15, -3, -21, -39, -57, -75, ?",
+   "oplossing": "-93"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 1, 6, 11, 16, 21, 26, ?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 29, 58, 116, 232, 464, 928, ?",
+   "oplossing": "1856"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 20, 30, 40, 50, 60, 70, ?",
+   "oplossing": "80"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 10, -7, -24, -41, -58, -75, ?",
+   "oplossing": "-92"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 13, 20, 27, 34, 41, 48, ?",
+   "oplossing": "55"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 9, 15, 21, 27, 33, 39, ?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 12, 24, 36, 48, 60, 72, ?",
+   "oplossing": "84"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 10, 21, 32, 43, 54, 65, ?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 30, 42, 52, 60, 66, 70, ?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 29, 30, 33, 42, 69, 150, ?",
+   "oplossing": "393"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 5, 22, 73, 226, 685, 2062, ?",
+   "oplossing": "6193"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 20, 39, 96, 267, 780, 2319, ?",
+   "oplossing": "6936"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 22, 18, 4, 36, -14, 72, ?",
+   "oplossing": "-32"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 18, 20, 29, 40, 40, 80, ?",
+   "oplossing": "51"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 26, 32, 50, 104, 266, 752, ?",
+   "oplossing": "2210"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 1, 18, 38, 61, 87, 116, ?",
+   "oplossing": "148"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 14, 8, 42, 24, 126, 72, ?",
+   "oplossing": "378"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 14, 10, 17, 14, 20, 18, ?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 24, 27, 36, 63, 144, 387, ?",
+   "oplossing": "1116"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 20, 23, 40, 26, 80, 29, ?",
+   "oplossing": "160"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 28, 40, 55, 73, 94, 118, ?",
+   "oplossing": "145"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 17, 37, 74, 128, 199, 287, ?",
+   "oplossing": "392"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 2, 15, 34, 59, 90, 127, ?",
+   "oplossing": "170"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 9, 29, 52, 78, 107, 139, ?",
+   "oplossing": "174"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 14, 34, 74, 154, 314, 634, ?",
+   "oplossing": "1274"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 27, 29, 42, 43, 57, 57, ?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 5, 30, 39, 32, 9, -30, ?",
+   "oplossing": "-85"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 17, 32, 62, 122, 242, 482, ?",
+   "oplossing": "962"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 13, 14, 41, 77, 105, 108, ?",
+   "oplossing": "69"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 8, 30, 55, 89, 150, 292, ?",
+   "oplossing": "677"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 4, 15, 20, 13, 42, 45, ?",
+   "oplossing": "70"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 16, 18, 39, 24, 56, 42, ?",
+   "oplossing": "67"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 26, 46, 53, 93, 114, 194, ?",
+   "oplossing": "257"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 11, 31, 74, 186, 505, 1445, ?",
+   "oplossing": "4248"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 6, 20, 27, 29, 65, 20, ?",
+   "oplossing": "120"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 5, 32, 33, 58, 61, 84, ?",
+   "oplossing": "93"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 22, 41, 89, 156, 232, 307, ?",
+   "oplossing": "371"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 24, 28, 41, 50, 61, 90, ?",
+   "oplossing": "84"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 23, 19, 29, 45, 33, 75, ?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 21, 22, 8, 21, 15, 26, ?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 20, 23, 29, 44, 86, 209, ?",
+   "oplossing": "575"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 3, 26, 71, 128, 187, 238, ?",
+   "oplossing": "271"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 2, 4, 28, 96, 252, 584, ?",
+   "oplossing": "1268"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 27, 30, 41, 76, 183, 506, ?",
+   "oplossing": "1477"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 8, 19, 35, 42, 26, -27, ?",
+   "oplossing": "-131"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 10, 17, 32, 71, 150, 285, ?",
+   "oplossing": "492"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 15, 21, 38, 70, 121, 195, ?",
+   "oplossing": "296"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 15, 35, 60, 120, 148, 328, ?",
+   "oplossing": "359"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 5, 8, 24, 44, 88, 104, ?",
+   "oplossing": "165"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 8, 11, 41, 101, 242, 429, ?",
+   "oplossing": "859"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 24, 10, 7, 39, 45, 95, ?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 26, 13, 54, 33, 59, 39, ?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 2, 12, 26, 42, 60, 98, ?",
+   "oplossing": "136"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 2, 23, 17, 6, 6, 42, ?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 28, 23, 17, 32, 42, 40, ?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 28, 30, 48, 21, 87, 27, ?",
+   "oplossing": "129"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 9, 15, 39, 87, 182, 364, ?",
+   "oplossing": "690"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 9, 12, 23, 20, 19, 54, ?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 4, 3, 25, 10, 48, 19, ?",
+   "oplossing": "85"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 12, 41, 94, 185, 337, 582, ?",
+   "oplossing": "961"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 20, 5, 50, 32, 104, 68, ?",
+   "oplossing": "199"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 10, 11, 35, 54, 87, 160, ?",
+   "oplossing": "213"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 8, 27, 17, 41, 34, 63, ?",
+   "oplossing": "67"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 29, 16, 59, 30, 100, 1, ?",
+   "oplossing": "140"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 15, 35, 60, 83, 110, 139, ?",
+   "oplossing": "174"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 23, 44, 48, 61, 70, 133, ?",
+   "oplossing": "157"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 19, 26, 39, 76, 173, 402, ?",
+   "oplossing": "907"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 25, 29, 33, 41, 48, 76, ?",
+   "oplossing": "89"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 22, 9, 52, 22, 95, 52, ?",
+   "oplossing": "165"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 24, 7, 19, 30, 44, 59, ?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 25, 13, 13, 16, 30, 42, ?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 21, 3, 50, 22, 67, 66, ?",
+   "oplossing": "120"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 10, 34, 81, 163, 297, 512, ?",
+   "oplossing": "842"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 13, 29, 19, 51, 50, 81, ?",
+   "oplossing": "135"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 19, 20, 47, 125, 303, 656, ?",
+   "oplossing": "1287"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 17, 34, 81, 179, 357, 656, ?",
+   "oplossing": "1133"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 25, 55, 60, 66, 93, 107, ?",
+   "oplossing": "158"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 1, 5, 27, 92, 217, 452, ?",
+   "oplossing": "818"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 27, 7, 31, 13, 60, 36, ?",
+   "oplossing": "119"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 15, 1, 28, 5, 1, 27, ?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 5, 27, 23, 29, 42, 44, ?",
+   "oplossing": "69"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 4, 7, 23, 3, 45, 8, ?",
+   "oplossing": "75"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 17, 38, 40, 70, 75, 115, ?",
+   "oplossing": "124"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 13, 17, 42, 85, 136, 190, ?",
+   "oplossing": "276"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 1, 6, 36, 77, 158, 272, ?",
+   "oplossing": "453"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 26, 29, 40, 60, 100, 156, ?",
+   "oplossing": "231"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 1, 14, 11, 41, 13, 95, ?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 29, 55, 99, 189, 326, 594, ?",
+   "oplossing": "988"
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+[Unit]
+# Zet de kaarten bij het opstarten in de stille werkstand.
+#
+# Dit is het stuk dat de afspraak waarmaakt. De instelling van nvidia-smi -ac
+# overleeft geen herstart, en de server gaat 's nachts soms uit vanwege warmte.
+# Zonder deze unit staat hij om drie uur 's nachts weer op vol vermogen terwijl
+# iedereen slaapt. Stil moet je krijgen zonder er iets voor te doen; hard moet
+# je zelf aanzetten.
+Description=Amber — kaarten in de stille werkstand (696 MHz)
+After=basic.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# Het script wacht zelf tot de driver reageert, tot 30 seconden. Daarom geen
+# Restart= hier: die mag niet bij Type=oneshot en systemd weigert de unit dan.
+ExecStart=/home/arch/gpu stil
+
+[Install]
+WantedBy=multi-user.target

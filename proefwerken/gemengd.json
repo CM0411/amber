@@ -1,0 +1,1806 @@
+{
+ "naam": "gemengd",
+ "beschrijving": "Alle families en graden door elkaar op één blad. Toetst ook of ze ziet welke soort ze voor zich heeft.",
+ "opgaven": [
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(38 + 22) * 9 - 17",
+   "oplossing": "523"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 67\nb = 8\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "59"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "68 + 55",
+   "oplossing": "123"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 8, 21, 13, 26, 18, 31, ?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "18 - 97",
+   "oplossing": "-79"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "7 * 5 + 47",
+   "oplossing": "82"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 11, 20, 31, 51, 82, 133, ?",
+   "oplossing": "215"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "63 - 46",
+   "oplossing": "17"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 8, 30, 14, 35, 20, 40, ?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 20 + 6\n\ntotaal = 0\nfor i in range(1, 9):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "768"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "1 - 7",
+   "oplossing": "-6"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 8 + 5\n\ntotaal = 0\nfor i in range(1, 11):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "490"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 19\nb = 44\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "25"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [35, 24, 15, 22, 29, 22, 10, 8]\nprint(sum([x for x in getallen if x > 17]))",
+   "oplossing": "132"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 19 + 7\n\ntotaal = 0\nfor i in range(1, 6):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "320"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "25 * 17",
+   "oplossing": "425"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 6\nfor i in range(1, 20):\n    totaal += i * 2\nprint(totaal)",
+   "oplossing": "386"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "58 - 28",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(18 + 19) * 8 - 38",
+   "oplossing": "258"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 2, 6, 18, 54, ?",
+   "oplossing": "162"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 10, 13, 24, 43, 70, ?",
+   "oplossing": "105"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [36, 35, 35, 18]\nprint(sum([x for x in getallen if x > 11]))",
+   "oplossing": "124"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 59\nb = 93\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "34"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 9, 6, 15, 21, 36, 57, ?",
+   "oplossing": "93"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "18 - 47",
+   "oplossing": "-29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "7 * 4 + 16",
+   "oplossing": "44"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "15 * 12 - 88",
+   "oplossing": "92"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 44\nb = 50\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "6"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [1, 35, 12, 1, 5, 38, 26]\nprint(sum([x for x in getallen if x > 7]))",
+   "oplossing": "111"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 5, 35, 11, 42, 17, 49, ?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "6 * 8",
+   "oplossing": "48"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 12, 16, 28, 44, 72, 116, ?",
+   "oplossing": "188"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "8 + 7 + 4",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "7 * 7 + 48",
+   "oplossing": "97"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 45\nb = 58\nprint(a + b)",
+   "oplossing": "103"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "98 - 67",
+   "oplossing": "31"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(13 + 2) * 5 - 30",
+   "oplossing": "45"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 7, -4, -15, -26, -37, ?",
+   "oplossing": "-48"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [40, 10, 13, 26, 32, 31]\nprint(sum([x for x in getallen if x > 6]))",
+   "oplossing": "152"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 24\nb = 25\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "21 * 14 + 19",
+   "oplossing": "313"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 6, 26, 8, 32, 10, 38, ?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 88\nb = 87\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "86 * 12",
+   "oplossing": "1032"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 58\nb = 63\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(37 + 32) * 10 - 47",
+   "oplossing": "643"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 36, 48, 61, 75, 90, ?",
+   "oplossing": "106"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 34, 27, 20, 13, 6, ?",
+   "oplossing": "-1"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 3 + 2\n\ntotaal = 0\nfor i in range(1, 6):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "55"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(39 + 37) * 4 - 24",
+   "oplossing": "280"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 26\nb = 61\nprint(a - b)",
+   "oplossing": "-35"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 30\nfor i in range(1, 20):\n    totaal += i\nprint(totaal)",
+   "oplossing": "220"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "45 * 4",
+   "oplossing": "180"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 36\nfor i in range(1, 13):\n    totaal += i\nprint(totaal)",
+   "oplossing": "114"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 17, 19, 22, 26, 31, ?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 91, 364, 1456, 5824, ?",
+   "oplossing": "23296"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 54, 40, 26, 12, -2, ?",
+   "oplossing": "-16"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 20 + 9\n\ntotaal = 0\nfor i in range(1, 11):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "1190"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 23\nb = 95\nprint(a + b)",
+   "oplossing": "118"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 115, 690, 4140, 24840, 149040, ?",
+   "oplossing": "894240"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 9 + 6\n\ntotaal = 0\nfor i in range(1, 16):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "1170"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 10 + 4\n\ntotaal = 0\nfor i in range(1, 15):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "1106"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "37 + 31",
+   "oplossing": "68"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [27, 29, 2, 30]\nprint(len([x for x in getallen if x > 8]))",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "4 * 14 + 46",
+   "oplossing": "102"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [6, 18, 26, 1, 38, 31]\nprint(sum([x for x in getallen if x > 17]))",
+   "oplossing": "113"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "7 + 1 - 1",
+   "oplossing": "7"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 1, 30, 7, 32, 13, 34, ?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 58\nb = 84\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "26"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 8 + 2\n\ntotaal = 0\nfor i in range(1, 4):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "54"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "53 + 91",
+   "oplossing": "144"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 116, 232, 464, 928, ?",
+   "oplossing": "1856"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 88\nb = 89\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 99, 297, 891, 2673, 8019, ?",
+   "oplossing": "24057"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [22, 3, 24, 20, 38, 11, 17]\nprint(sum([x for x in getallen if x > 18]))",
+   "oplossing": "104"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 43\nb = 44\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 32\nfor i in range(1, 9):\n    totaal += i * 2\nprint(totaal)",
+   "oplossing": "104"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [35, 30, 10, 26, 25, 36, 22]\nprint(len([x for x in getallen if x > 7]))",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(17 + 22) * 2 - 14",
+   "oplossing": "64"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 60, 65, 72, 81, 92, ?",
+   "oplossing": "105"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "15 * 12 + 52",
+   "oplossing": "232"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 5 + 5\n\ntotaal = 0\nfor i in range(1, 9):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "220"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 24, 35, 52, 75, 104, ?",
+   "oplossing": "139"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 6, 30, 150, 750, 3750, ?",
+   "oplossing": "18750"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "17 * 12 - 85",
+   "oplossing": "119"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 8, 15, 23, 38, 61, 99, ?",
+   "oplossing": "160"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 59, 66, 78, 95, 117, ?",
+   "oplossing": "144"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(33 + 5) * 5 - 4",
+   "oplossing": "186"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "2 + 1 + 7",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "16 * 11 - 37",
+   "oplossing": "139"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "9 * 9 - 54",
+   "oplossing": "27"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 27, 37, 54, 78, 109, ?",
+   "oplossing": "147"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "84 * 8",
+   "oplossing": "672"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 2 + 6\n\ntotaal = 0\nfor i in range(1, 6):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "5 + 5 - 8",
+   "oplossing": "2"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [39, 17, 24, 1, 1]\nprint(len([x for x in getallen if x > 12]))",
+   "oplossing": "3"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 30\nfor i in range(1, 13):\n    totaal += i * 2\nprint(totaal)",
+   "oplossing": "186"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [5, 5, 2, 34, 33, 24]\nprint(len([x for x in getallen if x > 17]))",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "72 * 6",
+   "oplossing": "432"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "5 + 9",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "5 * 11 + 74",
+   "oplossing": "129"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(6 + 28) * 4 - 22",
+   "oplossing": "114"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 6, 24, 9, 31, 12, 38, ?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 13\nfor i in range(1, 12):\n    totaal += i * i\nprint(totaal)",
+   "oplossing": "519"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "38 + 13",
+   "oplossing": "51"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 11, 26, 13, 32, 15, 38, ?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 5, 31, 36, 67, 103, 170, ?",
+   "oplossing": "273"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 3, 3, 6, 9, 15, 24, ?",
+   "oplossing": "39"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "9 + 9",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 95, 111, 127, 143, 159, ?",
+   "oplossing": "175"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 25\nb = 70\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "45"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [20, 32, 27, 30]\nprint(sum([x for x in getallen if x > 21]))",
+   "oplossing": "89"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 5\nb = 22\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "17"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 51, 62, 73, 84, 95, ?",
+   "oplossing": "106"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(33 + 33) * 3 - 25",
+   "oplossing": "173"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 12 + 4\n\ntotaal = 0\nfor i in range(1, 8):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "364"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "7 + 3",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "87 * 11",
+   "oplossing": "957"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(12 + 14) * 9 - 37",
+   "oplossing": "197"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 5, 12, 21, 32, 45, ?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(9 + 12) * 3 - 46",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "41 * 7",
+   "oplossing": "287"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 68, 340, 1700, 8500, ?",
+   "oplossing": "42500"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 67\nb = 26\nprint(a - b)",
+   "oplossing": "41"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 13, 21, 29, 37, 45, ?",
+   "oplossing": "53"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 70, 280, 1120, 4480, ?",
+   "oplossing": "17920"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "21 * 17 - 75",
+   "oplossing": "282"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(3 + 31) * 5 - 54",
+   "oplossing": "116"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 72\nb = 18\nprint(a - b)",
+   "oplossing": "54"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 4, 23, 8, 30, 12, 37, ?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 61\nb = 66\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "5"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 36\nb = 56\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 30, 8, 38, 46, 84, 130, ?",
+   "oplossing": "214"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 3 + 1\n\ntotaal = 0\nfor i in range(1, 16):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "375"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "8 + 4 - 4",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 15, 36, 51, 87, 138, 225, ?",
+   "oplossing": "363"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 14 + 4\n\ntotaal = 0\nfor i in range(1, 15):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "1526"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 9, 26, 11, 28, 13, 30, ?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 5 + 4\n\ntotaal = 0\nfor i in range(1, 16):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "660"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 1\nb = 79\nprint(a - b)",
+   "oplossing": "-78"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "67 * 17",
+   "oplossing": "1139"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 44\nfor i in range(1, 12):\n    totaal += i * 2\nprint(totaal)",
+   "oplossing": "176"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 30, 19, 8, -3, -14, ?",
+   "oplossing": "-25"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 17 + 1\n\ntotaal = 0\nfor i in range(1, 8):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "483"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 91\nb = 83\nprint(a - b)",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 39, 78, 156, 312, ?",
+   "oplossing": "624"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 5, 14, 19, 33, 52, 85, ?",
+   "oplossing": "137"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 10 + 0\n\ntotaal = 0\nfor i in range(1, 10):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "450"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [34, 13, 37, 21, 4]\nprint(sum([x for x in getallen if x > 14]))",
+   "oplossing": "92"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 9, 17, 26, 43, 69, 112, ?",
+   "oplossing": "181"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "96 * 6",
+   "oplossing": "576"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 56, 71, 88, 107, 128, ?",
+   "oplossing": "151"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 8, 18, 36, 62, 96, ?",
+   "oplossing": "138"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 75\nb = 65\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "5 + 9 + 5",
+   "oplossing": "19"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 31\nb = 48\nprint(a + b)",
+   "oplossing": "79"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 15\nfor i in range(1, 17):\n    totaal += i * i\nprint(totaal)",
+   "oplossing": "1511"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "71 - 44",
+   "oplossing": "27"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 2, 15, 29, 44, 60, ?",
+   "oplossing": "77"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 67\nb = 88\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "21"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 6\nb = 84\nprint(a - b)",
+   "oplossing": "-78"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 2, 25, 27, 52, 79, 131, ?",
+   "oplossing": "210"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 3 + 8\n\ntotaal = 0\nfor i in range(1, 9):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "172"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "17 + 32",
+   "oplossing": "49"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "72 - 88",
+   "oplossing": "-16"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 13, 23, 16, 25, 19, 27, ?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 9, 3, -3, -9, -15, ?",
+   "oplossing": "-21"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [10, 1, 18, 26, 17, 6, 12, 16]\nprint(len([x for x in getallen if x > 17]))",
+   "oplossing": "2"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 8\nfor i in range(1, 21):\n    totaal += i * i\nprint(totaal)",
+   "oplossing": "2878"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "3 + 1 + 4",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 12, 21, 33, 54, 87, 141, ?",
+   "oplossing": "228"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [39, 32, 27, 35, 39, 8, 14]\nprint(len([x for x in getallen if x > 11]))",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "28 * 16",
+   "oplossing": "448"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 37, 42, 48, 55, 63, ?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [8, 24, 23, 30, 39, 29, 26, 23]\nprint(sum([x for x in getallen if x > 26]))",
+   "oplossing": "98"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 47, 35, 23, 11, -1, ?",
+   "oplossing": "-13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "9 - 2",
+   "oplossing": "7"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 2\nfor i in range(1, 10):\n    totaal += i * 2\nprint(totaal)",
+   "oplossing": "92"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 99, 87, 75, 63, 51, ?",
+   "oplossing": "39"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 15\nfor i in range(1, 7):\n    totaal += i * i\nprint(totaal)",
+   "oplossing": "106"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 24, 37, 51, 66, 82, ?",
+   "oplossing": "99"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 5, 25, 8, 28, 11, 31, ?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [39, 40, 4, 18, 32]\nprint(len([x for x in getallen if x > 22]))",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "44 * 11",
+   "oplossing": "484"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(15 + 5) * 8 - 55",
+   "oplossing": "105"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 13, 14, 23, 40, 65, ?",
+   "oplossing": "98"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 42\nfor i in range(1, 21):\n    totaal += i * 2\nprint(totaal)",
+   "oplossing": "462"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 32\nfor i in range(1, 8):\n    totaal += i\nprint(totaal)",
+   "oplossing": "60"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [15, 27, 34, 40, 1, 31, 2, 9]\nprint(sum([x for x in getallen if x > 18]))",
+   "oplossing": "132"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "20 * 16",
+   "oplossing": "320"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 27, 35, 48, 66, 89, ?",
+   "oplossing": "117"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 57, 59, 70, 90, 119, ?",
+   "oplossing": "157"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 8, 26, 13, 32, 18, 38, ?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 70\nb = 1\nprint(a - b)",
+   "oplossing": "69"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [20, 1, 9, 4, 3, 9]\nprint(sum([x for x in getallen if x > 24]))",
+   "oplossing": "0"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "48 * 14",
+   "oplossing": "672"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 48, 51, 62, 81, 108, ?",
+   "oplossing": "143"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 8 + 1\n\ntotaal = 0\nfor i in range(1, 13):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "636"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "6 - 8",
+   "oplossing": "-2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "7 * 5 + 18",
+   "oplossing": "53"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(32 + 19) * 3 - 23",
+   "oplossing": "130"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 1, 35, 4, 41, 7, 47, ?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 119, 357, 1071, 3213, 9639, ?",
+   "oplossing": "28917"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(29 + 1) * 2 - 30",
+   "oplossing": "30"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 14 + 5\n\ntotaal = 0\nfor i in range(1, 16):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "1755"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "24 - 97",
+   "oplossing": "-73"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 6\nb = 59\nprint(a + b)",
+   "oplossing": "65"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(26 + 17) * 2 - 32",
+   "oplossing": "54"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "2 * 19 + 82",
+   "oplossing": "120"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 10, 34, 44, 78, 122, 200, ?",
+   "oplossing": "322"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 21, 23, 44, 67, 111, 178, ?",
+   "oplossing": "289"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "14 * 19 - 85",
+   "oplossing": "181"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 68, 340, 1700, 8500, ?",
+   "oplossing": "42500"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 15\nfor i in range(1, 6):\n    totaal += i\nprint(totaal)",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "6 + 6 + 2",
+   "oplossing": "14"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 7, 4, 11, 15, 26, 41, ?",
+   "oplossing": "67"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 118, 708, 4248, 25488, ?",
+   "oplossing": "152928"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 54\nb = 20\nprint(a + b)",
+   "oplossing": "74"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 8 + 4\n\ntotaal = 0\nfor i in range(1, 11):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "480"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 83\nb = 83\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "0"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(22 + 31) * 8 - 18",
+   "oplossing": "406"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "28 + 12",
+   "oplossing": "40"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 11, 33, 14, 36, 17, 39, ?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "10 * 11 + 20",
+   "oplossing": "130"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "3 * 13 - 43",
+   "oplossing": "-4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "23 * 7 + 76",
+   "oplossing": "237"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(39 + 2) * 2 - 41",
+   "oplossing": "41"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 27\nb = 87\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(17 + 22) * 6 - 29",
+   "oplossing": "205"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "6 + 5 + 2",
+   "oplossing": "13"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 38, 25, 12, -1, -14, ?",
+   "oplossing": "-27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "11 * 11 + 75",
+   "oplossing": "196"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 121, 726, 4356, 26136, ?",
+   "oplossing": "156816"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [30, 26, 38, 14, 26, 27, 19, 32]\nprint(sum([x for x in getallen if x > 30]))",
+   "oplossing": "70"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "3 - 9",
+   "oplossing": "-6"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 35\nb = 82\nprint(a + b)",
+   "oplossing": "117"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 24, 26, 34, 48, 68, ?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 13, 36, 20, 42, 27, 48, ?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 10, 40, 13, 45, 16, 50, ?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 12, 17, 29, 46, 75, 121, ?",
+   "oplossing": "196"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 70, 210, 630, 1890, 5670, ?",
+   "oplossing": "17010"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "48 * 18",
+   "oplossing": "864"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 64, 128, 256, 512, 1024, ?",
+   "oplossing": "2048"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "3 * 17",
+   "oplossing": "51"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 2, 36, 8, 38, 14, 40, ?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 53\nb = 96\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "43"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "3 * 18 - 75",
+   "oplossing": "-21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(28 + 6) * 4 - 23",
+   "oplossing": "113"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 20\nb = 8\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "12"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 88\nb = 27\nprint(a + b)",
+   "oplossing": "115"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 18, 32, 54, 84, 122, ?",
+   "oplossing": "168"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 26, 34, 42, 50, 58, ?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 95, 380, 1520, 6080, ?",
+   "oplossing": "24320"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "70 * 11",
+   "oplossing": "770"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 0\nfor i in range(1, 19):\n    totaal += i * i\nprint(totaal)",
+   "oplossing": "2109"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 25, 44, 63, 82, 101, ?",
+   "oplossing": "120"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 16\nfor i in range(1, 13):\n    totaal += i * 2\nprint(totaal)",
+   "oplossing": "172"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "15 - 49",
+   "oplossing": "-34"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 17 + 4\n\ntotaal = 0\nfor i in range(1, 5):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "186"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "62 - 61",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 38, 114, 342, 1026, 3078, ?",
+   "oplossing": "9234"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 1, 37, 6, 42, 11, 47, ?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 71\nb = 78\nprint(a - b)",
+   "oplossing": "-7"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 59, 236, 944, 3776, 15104, ?",
+   "oplossing": "60416"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [21, 7, 15, 36, 17, 31, 26]\nprint(sum([x for x in getallen if x > 26]))",
+   "oplossing": "67"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 15, 27, 18, 34, 21, 41, ?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 24, 15, 6, -3, -12, ?",
+   "oplossing": "-21"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 15, 28, 41, 54, 67, ?",
+   "oplossing": "80"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(38 + 24) * 7 - 10",
+   "oplossing": "424"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 29\nfor i in range(1, 21):\n    totaal += i\nprint(totaal)",
+   "oplossing": "239"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 1,
+   "opgave": "9 + 4",
+   "oplossing": "13"
+  },
+  {
+   "familie": "code",
+   "graad": 2,
+   "opgave": "a = 8\nb = 37\nif a > b:\n    print(a - b)\nelse:\n    print(b - a)",
+   "oplossing": "29"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 68, 56, 44, 32, 20, ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "32 * 11",
+   "oplossing": "352"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "19 * 3 - 44",
+   "oplossing": "13"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 11 + 6\n\ntotaal = 0\nfor i in range(1, 10):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "549"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 59\nb = 36\nprint(a - b)",
+   "oplossing": "23"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "Zet voort: 7, 13, 20, 33, 53, 86, ?",
+   "oplossing": "139"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 5, 34, 7, 37, 9, 40, ?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "55 * 10",
+   "oplossing": "550"
+  },
+  {
+   "familie": "code",
+   "graad": 4,
+   "opgave": "getallen = [17, 3, 19, 14, 11, 14, 12]\nprint(sum([x for x in getallen if x > 7]))",
+   "oplossing": "87"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "69 * 2",
+   "oplossing": "138"
+  },
+  {
+   "familie": "code",
+   "graad": 3,
+   "opgave": "totaal = 37\nfor i in range(1, 12):\n    totaal += i * 2\nprint(totaal)",
+   "oplossing": "169"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 85, 510, 3060, 18360, 110160, ?",
+   "oplossing": "660960"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(34 + 1) * 7 - 30",
+   "oplossing": "215"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 10 + 6\n\ntotaal = 0\nfor i in range(1, 12):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "726"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "88 * 3",
+   "oplossing": "264"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 5, 36, 7, 43, 9, 50, ?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 22, 38, 54, 70, 86, ?",
+   "oplossing": "102"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "90 * 19",
+   "oplossing": "1710"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "(9 + 18) * 12 - 54",
+   "oplossing": "270"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 37, 41, 50, 64, 83, ?",
+   "oplossing": "107"
+  },
+  {
+   "familie": "code",
+   "graad": 5,
+   "opgave": "def f(x):\n    return x * 2 + 2\n\ntotaal = 0\nfor i in range(1, 14):\n    totaal += f(i)\nprint(totaal)",
+   "oplossing": "208"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "6 * 8 + 37",
+   "oplossing": "85"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "24 * 16 + 4",
+   "oplossing": "388"
+  },
+  {
+   "familie": "code",
+   "graad": 1,
+   "opgave": "a = 36\nb = 98\nprint(a - b)",
+   "oplossing": "-62"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 1, 14, 32, 55, 83, ?",
+   "oplossing": "116"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 4, 16, 64, 256, 1024, ?",
+   "oplossing": "4096"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "Zet voort: 11, 36, 18, 42, 25, 48, ?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "Zet voort: 15, 13, 11, 9, 7, ?",
+   "oplossing": "5"
+  }
+ ]
+}
