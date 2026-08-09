@@ -2,6 +2,13 @@
 
 **A lifelong-learning agent, built measurement-first.**
 
+![Amber's brain, live — her real activations flowing through her real wiring (green = positive weights, red = negative), while she works out an arithmetic problem](docs/venster.png)
+
+*The window is live: columns are her eight layers (32 measured channel groups
+each), the waves are single written characters, the wiring colors are read
+from her actual weights, and the panels show the world she has opened up and
+her exam scores over the run.*
+
 Amber is a from-scratch experiment in continual learning: one small
 transformer (14.4M parameters) that lives on a single machine for months,
 keeps learning new material without forgetting the old, survives restarts
