@@ -171,6 +171,46 @@ toets("besmetting wordt identiek herkend",
           == taken.is_besmet(taken.maak("rekenen", 1, n))
           for n in range(200, 700)))
 
+# --- wereld <-> world --------------------------------------------------------
+
+print()
+print("--- wereld -> world ---")
+import wereld
+import world
+
+toets("zaad, hekken en tekstgrens zijn identiek",
+      world.WORLD_SEED == wereld.WERELD_ZAAD
+      and world.MAX_DEPTH == wereld.MEESTE_DIEPTE
+      and world.MAX_DEPTH_PER == wereld.MEESTE_DIEPTE_PER
+      and world.MAX_CHARS == wereld.MEESTE_TEKENS)
+
+zelfde = True
+geen_gelijk = True
+for fam in world.FAMILIES:
+    for d in (1, 2, 3, 5, world.max_depth(fam)):
+        for n in range(4000, 4120):
+            a = wereld.maak(fam, d, n)
+            b = world.make(fam, d, n)
+            if (a is None) != (b is None):
+                geen_gelijk = False
+            elif a is not None and (a.opgave, a.oplossing, a.uitwerking) \
+                    != (b.problem, b.solution, b.working):
+                zelfde = False
+toets("elke wereldtaak is bit voor bit dezelfde, opgave én uitwerking",
+      zelfde, "1800 taken over alle families en diepten, tot aan de hekken")
+toets("onverklaarbare taken vallen aan beide kanten gelijk af", geen_gelijk)
+
+slotje = {wereld.maak("rekenen", 3, 8000).opgave}
+toets("de leerreeks kiest exact dezelfde schone, passende taken",
+      [t.problem for t in world.learning_tasks("rekenen", 3, 50,
+                                               start=8000, exclude=slotje)]
+      == [t.opgave for t in wereld.leerreeks("rekenen", 3, 50,
+                                             vanaf=8000, uitsluiten=slotje)])
+toets("past en fits oordelen gelijk, ook bij een kleiner venster",
+      all(world.fits(world.make("code", 8, n), 300)
+          == wereld.past(wereld.maak("code", 8, n), 300)
+          for n in range(1000, 1200) if wereld.maak("code", 8, n)))
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
