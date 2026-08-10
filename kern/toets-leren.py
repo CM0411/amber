@@ -337,6 +337,38 @@ toets("herhalen na de herstart geeft exact dezelfde herinneringen",
       [x["opgave"] for x in a] == [x["opgave"] for x in b])
 os_module.remove(pad)
 
+# --- evenwichtig vergeten — fase-4-voorproef (10 aug 2026) -----------------
+
+def _vakjestaak(familie, graad, n):
+    return taken.Taak(familie=familie, graad=graad, nummer=n,
+                      opgave=f"{familie} {graad} nr {n}", oplossing=str(n))
+
+ev = hg.Herhaalgeheugen(ruimte=50)
+for i in range(10):
+    ev.onthoud(_vakjestaak("puzzel", 1, i), None, None)   # zeldzaam, en oud
+for i in range(200):
+    ev.onthoud(_vakjestaak("rekenen", 1, 1000 + i), None, None)
+ev_telling = {}
+for o in ev._inhoud:
+    vak = (o["familie"], o["graad"])
+    ev_telling[vak] = ev_telling.get(vak, 0) + 1
+toets("zeldzame vakjes overleven het vergeten",
+      ev_telling.get(("puzzel", 1), 0) == 10,
+      "de oude ring had alle tien weggegooid: wat er niet in zit kan de "
+      "herhaling niet beschermen")
+toets("het grootste vakje levert in, oud-eerst",
+      ev_telling.get(("rekenen", 1), 0) == 40
+      and ev._inhoud[-1]["familie"] == "rekenen")
+
+ev2 = hg.Herhaalgeheugen(ruimte=50)
+ev2.zet_terug(ev.neem_mee())
+for i in range(5):
+    ev.onthoud(_vakjestaak("code", 1, 5000 + i), None, None)
+    ev2.onthoud(_vakjestaak("code", 1, 5000 + i), None, None)
+toets("na zet_terug vergeet hij verder alsof er niets gebeurd is",
+      [o["code"] for o in ev._inhoud] == [o["code"] for o in ev2._inhoud],
+      "de telling staat niet in het checkpoint en wordt exact herbouwd")
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")

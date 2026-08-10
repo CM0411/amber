@@ -140,6 +140,7 @@ class Herhaalgeheugen:
         self.ruimte = ruimte
         self.flessenhals = flessenhals or Flessenhals()
         self._inhoud = []
+        self._telling = {}
         self.geweigerd = 0
 
     def onthoud(self, taak, antwoord, goed):
@@ -149,9 +150,34 @@ class Herhaalgeheugen:
             self.geweigerd += 1
             return False
         self._inhoud.append(opgeslagen)
+        vakje = (opgeslagen["familie"], opgeslagen["graad"])
+        self._telling[vakje] = self._telling.get(vakje, 0) + 1
         if len(self._inhoud) > self.ruimte:
-            del self._inhoud[0]
+            self._vergeet_een()
         return True
+
+    def _vergeet_een(self):
+        """Evenwichtig vergeten — de eerste voorproef van fase 4.
+
+        De eerste versie gooide botweg het oudste weg. Gemeten op 10 aug 2026
+        (stap 102.000): de hele voorraad bestond toen uit de vakjes van de
+        laatste ~600 stappen — zeldzame vakjes waren op drie of vier
+        herinneringen na verdwenen, en wat er niet in zit kan de herhaling
+        niet beschermen. Nu wijkt het oudste uit het gróótste vakje: zeldzaam
+        houdt een bodem, veelvoorkomend blijft vers. Binnen een vakje blijft
+        het vergeten gewoon oud-eerst.
+
+        Deterministisch, ook bij gelijke stand: er wordt op (aantal, vakje)
+        gekozen, dus dezelfde stroom geeft altijd hetzelfde geheugen.
+        """
+        grootste = max(self._telling.items(), key=lambda kv: (kv[1], kv[0]))[0]
+        for i, o in enumerate(self._inhoud):
+            if (o["familie"], o["graad"]) == grootste:
+                del self._inhoud[i]
+                break
+        self._telling[grootste] -= 1
+        if not self._telling[grootste]:
+            del self._telling[grootste]
 
     def herhaal(self, hoeveel, trekker):
         """Haal ervaringen op om opnieuw langs te gaan.
@@ -191,6 +217,12 @@ class Herhaalgeheugen:
         self.ruimte = int(meegenomen["ruimte"])
         self.geweigerd = int(meegenomen["geweigerd"])
         self._inhoud = [dict(o) for o in meegenomen["inhoud"]]
+        # De telling staat niet in het checkpoint maar volgt uit de inhoud —
+        # zo kan een checkpoint van vóór het evenwichtig vergeten er gewoon in.
+        self._telling = {}
+        for o in self._inhoud:
+            vakje = (o["familie"], o["graad"])
+            self._telling[vakje] = self._telling.get(vakje, 0) + 1
         return len(self._inhoud)
 
     def stand(self):
