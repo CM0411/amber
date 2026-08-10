@@ -52,11 +52,12 @@ is 401 (nu 320), puzzel diepte 6 vraagt 525 (nu 336).
 
 ## Wat er bij de start van run 4 moet gebeuren
 
+*(2 en 3 van de oorspronkelijke lijst zijn op 10 aug 's avonds overbodig
+geworden: leerstofgrens en schrijfruimtes volgen sindsdien het venster
+vanzelf — zie de startlijst onderaan.)*
+
 1. Checkpoint van run 3 laden, `groei_venster(768)`, verder — géén verse start
-2. `wereld.MEESTE_TEKENS` 400 → 656, hekken naar 26 / 11 / 6
-3. `ruimte_voor` per familie mee (zie boven), en de venstergrens in het
-   antwoorden (512 in leren.py) naar 768
-4. Tempo meten, raming bijstellen, en de eerste 1000 stappen de ladder in de
+2. Tempo meten, raming bijstellen, en de eerste 1000 stappen de ladder in de
    gaten houden: de nieuwe diepten komen als lege vakjes de nieuwsgierigheid in
 
 ## Herbevestigd op 10 aug, avond — de drievoudige controle voor run 4
