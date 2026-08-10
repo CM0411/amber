@@ -79,18 +79,21 @@ def ruimte_voor(diepte, familie=None):
     ze het wel degelijk leerde. Gevonden op 9 aug 2026.
     """
     if familie == "puzzel":
-        # Groeit hard met de diepte: langste uitwerking 104 tekens op diepte 2,
-        # 257 op 3, 302 op 5 — want de methode zet zichzelf door tot hij
-        # uitkomt. Te krap kost de hele familie, zoals op 9 aug 2026 bleek.
-        return min(336, 80 * diepte + 48)
+        # Nageijkt op 10 aug 2026, na de wisselende rijlengtes: een rij met
+        # zeven getoonde getallen werkt langer uit dan de oude vaste zes —
+        # langste 391 op diepte 3, 379 op 5, waar 336 stond. Te krap kost de
+        # hele familie, zoals op 9 aug 2026 bleek.
+        return min(440, 120 * diepte + 40)
     if familie == "code":
-        # Sinds de uitwerking élke stap laat zien (9 aug 2026): langste 109 op
-        # diepte 4, 177 op 5, 281 op 6. Daarvoor was het één regel per
-        # variabele en leek 88 genoeg — en bleef ze plat op 1% omdat de les
-        # zelf onvolledig was.
+        # Nageijkt op 10 aug 2026, na de drie eindes: ook een opgave van
+        # diepte 1 schrijft nu `a = 11 ; b = 94 ; 11 - 94 = -83` — 62 tekens
+        # waar 24 ruimte stond, dus elk nieuw einde werd bij het proeven
+        # afgekapt. En diepte 3–4 stond al vóór de eindes te krap (81 en 157
+        # gemeten tegen 48 en 144): zelfde ziekte als de flessenhals, een
+        # getal geijkt op een oudere wereld.
         if diepte <= 2:
-            return 24
-        return min(320, 96 * (diepte - 3) + 48)
+            return 72
+        return min(320, 80 * diepte - 144)
     # Rekenen. Langste uitwerking: 50 op diepte 3, 110 op 6, 180 op 9, 247 op
     # 12, en gemeten op 9 aug 2026: 294 op 14, 356 op 16, 384 op 17. De oude
     # grens van 280 kapte diepte 14+ dus af — zelfde fout als bij puzzel en
