@@ -369,6 +369,19 @@ toets("na zet_terug vergeet hij verder alsof er niets gebeurd is",
       [o["code"] for o in ev._inhoud] == [o["code"] for o in ev2._inhoud],
       "de telling staat niet in het checkpoint en wordt exact herbouwd")
 
+# De flessenhals volgt het venster (besluit Cley, 10 aug 2026): wat ze kan
+# lezen mag ze onthouden, en bij venstergroei groeit de doorgang vanzelf mee.
+kleine = leren.Leerder(kern=netwerk.Kern(lagen=1, breedte=32, koppen=2,
+                                         venster=96), partij=4)
+toets("de flessenhals volgt het venster",
+      kleine.geheugen.flessenhals.lengte == 96)
+lange = taken.Taak(familie="rekenen", graad=6, nummer=1,
+                   opgave="x" * 30, oplossing="7", uitwerking="y" * 50)
+toets("een ervaring van wereldse lengte mag er nu in",
+      kleine.geheugen.onthoud(lange, None, None),
+      "83 tekens plus markeringen — de oude doorgang van 128 op een venster "
+      "van 96 had hem ook geweigerd, maar om de verkeerde reden")
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")

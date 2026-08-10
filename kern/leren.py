@@ -144,7 +144,20 @@ class Leerder:
         self.partij = partij
         self.herhaling = herhaling          # deel van elke partij uit het geheugen
         self.remkracht = remkracht          # hoe hard belangrijke gewichten remmen
-        self.geheugen = geheugen if geheugen is not None else Herhaalgeheugen()
+        # De flessenhals volgt het venster (besluit Cley, 10 aug 2026). De
+        # oude vaste 128 stamde uit de wereld van kale antwoorden; met
+        # uitwerkingen erbij weigerde hij 5,5 miljoen van haar ervaringen —
+        # vrijwel alles vanaf rekenen 6 en code 4 kon nooit herhaald worden.
+        # Breder dan het venster kan óók niet: wat er niet in past, kan ze
+        # bij het herhalen niet teruglezen. Dus: precies het venster, en bij
+        # venstergroei (fase 2) groeit de doorgang vanzelf mee. Fase 4 gaat
+        # hem vanaf dat eerlijke beginpunt knijpen.
+        if geheugen is not None:
+            self.geheugen = geheugen
+        else:
+            from herhaalgeheugen import Flessenhals
+            self.geheugen = Herhaalgeheugen(
+                flessenhals=Flessenhals(lengte=self.kern.venster))
         self.stappen = 0
 
         # De rand van haar wereld, per familie apart. Groeit mee zodra ze die
