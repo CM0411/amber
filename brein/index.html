@@ -22,6 +22,9 @@
   #titel { top: 16px; left: 22px; font-size: 15px; letter-spacing: .35em;
            color: #5f6f92; text-transform: uppercase; }
   #titel a { color: #5f6f92; text-decoration: none; border-bottom: 1px dotted #2c3a5e; }
+  #uren { top: 42px; left: 22px; font-size: 11px; color: #47536f;
+          font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+          letter-spacing: .08em; }
   #werk { left: 22px; right: 22px; bottom: 18px;
           font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
           font-size: 13.5px; line-height: 1.65; }
@@ -75,6 +78,7 @@
 <body>
 <canvas id="doek"></canvas>
 <div class="laag-tekst" id="titel"><a href="/rapport">Amber</a></div>
+<div class="laag-tekst" id="uren"></div>
 <div class="laag-tekst" id="status">wachten op de kijker&hellip;</div>
 <div class="laag-tekst" id="wereld"></div>
 <div class="laag-tekst" id="geheugen"></div>
@@ -281,6 +285,9 @@ async function haal() {
         html += `<div class="doorbraak">${l.familie} naar ${l.tot} · stap ${l.stap.toLocaleString("nl")}</div>`;
     }
     document.getElementById("wereld").innerHTML = html;
+    if (s.uren)
+      document.getElementById("uren").textContent =
+        `≈ ${String(s.uren).replace(".", ",")} uur samen gebouwd`;
     // haar geheugen: per vakje hoeveel herinneringen er liggen, en hoe vol
     // de doorgang van de flessenhals zit
     const vakjes = s.geheugen_vakjes || {};

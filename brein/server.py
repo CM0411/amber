@@ -111,6 +111,16 @@ class Venster(BaseHTTPRequestHandler):
                     stand["wachter"] = json.load(f)
             except Exception:
                 pass
+            # De projecturen, live uit het urenlogboek in de papieren-map.
+            # Cley houdt ze daar bij; het venster telt alleen op.
+            try:
+                with open("/home/arch/amber/uren.md") as f:
+                    getallen = re.findall(
+                        r"^\|[^|]+\|\s*~?([\d]+(?:[.,]\d+)?)", f.read(), re.M)
+                stand["uren"] = round(sum(float(g.replace(",", "."))
+                                          for g in getallen), 1)
+            except Exception:
+                pass
             self._stuur(json.dumps(stand).encode(), "application/json")
         elif self.path.startswith("/stuur"):
             with open(f"{MAP}/stuur.html", "rb") as f:
