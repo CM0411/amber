@@ -229,7 +229,8 @@ Ter vergelijking: run 2 eindigde op ladder 72%.</p>
 <table><tr><th style="text-align:left">stap</th>
 <th style="text-align:left">familie</th><th></th></tr>{doorbraak_regels}</table>
 <h2>Bedrijf</h2>
-<p>Herstarts binnen de run: {d["herstarts"]} · tempo nu:
+<p>Herstarts zichtbaar in het log: {d["herstarts"]} — incidenten én bewuste
+herstarts voor hek-wijzigingen samen · tempo nu:
 {laatste["ms"] if laatste else "?"} ms per stap · hek: rekenen 17, code 8,
 puzzel 5 (gemeten grenzen van het venster van 512 tekens).</p>
 </body></html>"""
