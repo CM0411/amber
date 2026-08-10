@@ -236,6 +236,28 @@ class Kern(nn.Module):
         self.blokken = nn.ModuleList(blokken)
         return nieuw
 
+    def groei_venster(self, nieuw):
+        """Maak het venster groter. De uitvoer verandert hierdoor niet.
+
+        Hier wordt het ontwerp van dag één verzilverd: posities gaan via
+        draaiing en die heeft geen parameters, dus het venster is in de hele
+        kern maar op één plek bekend — als grens in `vooruit`. Groeien is die
+        grens verleggen. Voor alles wat binnen het oude venster past zijn de
+        draaihoeken exact dezelfde, dus de uitvoer is bit voor bit gelijk;
+        de toets in toets-venstergroei.py dwingt dat af.
+
+        Gemeten op 10 aug 2026: hiermee kunnen de hekken van run 4 open naar
+        wat er bij het nieuwe venster past — alle drie de families liepen op
+        512 tegen dezelfde muur (rekenen 17, code 8, puzzel 5).
+
+        Krimpen weigert: een kleiner venster kan opgaven die ze al meemaakte
+        onleesbaar maken, en er is geen reden waarom het ooit zou moeten.
+        """
+        if nieuw < self.venster:
+            raise ValueError(
+                f"venster krimpen van {self.venster} naar {nieuw} kan niet")
+        self.venster = nieuw
+
     # --- boekhouding ------------------------------------------------------
 
     def aantal_parameters(self):
