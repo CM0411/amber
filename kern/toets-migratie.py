@@ -211,6 +211,59 @@ toets("past en fits oordelen gelijk, ook bij een kleiner venster",
           == wereld.past(wereld.maak("code", 8, n), 300)
           for n in range(1000, 1200) if wereld.maak("code", 8, n)))
 
+# --- herhaalgeheugen <-> replay_memory ---------------------------------------
+
+print()
+print("--- herhaalgeheugen -> replay_memory ---")
+import herhaalgeheugen
+import replay_memory
+
+fles_nl = herhaalgeheugen.Flessenhals(lengte=200)
+fles_en = replay_memory.Bottleneck(length=200)
+proef_taak = wereld.maak("rekenen", 4, 5000)
+toets("de flessenhals codeert exact hetzelfde, sleutels incluis",
+      fles_nl.codeer(proef_taak, "x", True)
+      == fles_en.encode(proef_taak, "x", True))
+toets("en ontcijfert exact hetzelfde",
+      fles_nl.ontcijfer(fles_nl.codeer(proef_taak, None, None))
+      == fles_en.decode(fles_en.encode(proef_taak, None, None)))
+
+lang_taak = wereld.maak("rekenen", 12, 6000)
+w_nl = w_en = None
+try:
+    herhaalgeheugen.Flessenhals(lengte=64).codeer(lang_taak, None, None)
+except herhaalgeheugen.TePasseren:
+    w_nl = True
+try:
+    replay_memory.Bottleneck(length=64).encode(lang_taak, None, None)
+except replay_memory.Refused:
+    w_en = True
+toets("weigeren gebeurt aan beide kanten op dezelfde ervaring",
+      w_nl is True and w_en is True)
+
+g_nl = herhaalgeheugen.Herhaalgeheugen(ruimte=80,
+                                       flessenhals=herhaalgeheugen.Flessenhals(lengte=512))
+g_en = replay_memory.ReplayMemory(capacity=80,
+                                  bottleneck=replay_memory.Bottleneck(length=512))
+stroom = [wereld.maak(f, d, n)
+          for f in ("rekenen", "puzzel") for d in (1, 2, 3)
+          for n in range(3000, 3060)]
+for taak in stroom:
+    if taak is None:
+        continue
+    g_nl.onthoud(taak, None, None)
+    g_en.remember(taak, None, None)
+toets("volle voorraad met evenwichtig vergeten: exact dezelfde inhoud",
+      g_nl.neem_mee() == g_en.carry(),
+      f"{len(g_en)} herinneringen, zelfde volgorde en zelfde slachtoffers")
+
+g_en2 = replay_memory.ReplayMemory()
+g_en2.restore(g_nl.neem_mee())          # een Nederlands checkpoint erin
+t1, t2 = taken.Trekker(31), taken.Trekker(31)
+toets("een run-3-checkpoint laadt en herhaalt identiek",
+      g_nl.herhaal(12, t1) == g_en2.replay(12, t2))
+toets("de stand meldt dezelfde getallen", g_nl.stand() == g_en.status())
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")

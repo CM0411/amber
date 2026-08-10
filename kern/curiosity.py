@@ -104,17 +104,22 @@ class Curiosity:
         Without `last` she believes after a restart that she has just seen
         everything, and elapsed time pulls nowhere until the clock rebuilds —
         a subtly different Amber than before the restart.
+
+        The dict keys are Dutch on purpose. One rule across the migration:
+        **code is English, her state is Dutch** — these keys live in every
+        checkpoint she has ever written, and translating stored state would
+        buy nothing but a bridge that must never break.
         """
-        return {"kinds": [list(s) for s in self.kinds],
+        return {"soorten": [list(s) for s in self.kinds],
                 "score": {f"{f}/{g}": self.score[(f, g)] for f, g in self.kinds},
-                "last": {f"{f}/{g}": self.last[(f, g)] for f, g in self.kinds}}
+                "laatst": {f"{f}/{g}": self.last[(f, g)] for f, g in self.kinds}}
 
     def restore(self, carried):
-        self.kinds = [tuple(s) for s in carried["kinds"]]
+        self.kinds = [tuple(s) for s in carried["soorten"]]
         self.score, self.last = {}, {}
         for key, value in carried["score"].items():
             f, g = key.rsplit("/", 1)
             self.score[(f, int(g))] = value
-        for key, value in carried["last"].items():
+        for key, value in carried["laatst"].items():
             f, g = key.rsplit("/", 1)
             self.last[(f, int(g))] = value
