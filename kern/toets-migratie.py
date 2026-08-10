@@ -264,6 +264,66 @@ toets("een run-3-checkpoint laadt en herhaalt identiek",
       g_nl.herhaal(12, t1) == g_en2.replay(12, t2))
 toets("de stand meldt dezelfde getallen", g_nl.stand() == g_en.status())
 
+# --- checkpoint <-> snapshot -------------------------------------------------
+
+print()
+print("--- checkpoint -> snapshot ---")
+import os as os_module
+import tempfile
+
+import torch
+
+import bridge
+import checkpoint
+import netwerk
+import network
+import snapshot
+
+with tempfile.TemporaryDirectory() as map_:
+    klein_nl = netwerk.Kern(lagen=2, breedte=64, koppen=4, venster=64)
+    pad_nl = os_module.path.join(map_, "nl.pt")
+    checkpoint.schrijf(pad_nl, stap=9, model=klein_nl,
+                       extra={"vorm": klein_nl.vorm()})
+
+    # Nederlands geschreven, Engels gelezen — mét sleutelbrug in restore.
+    inhoud = snapshot.read(pad_nl)
+    kern_en = network.Core.from_spec(bridge.translate_spec(
+        inhoud["extra"]["vorm"]))
+    stap_terug = snapshot.restore(inhoud, kern_en)
+    determinisme.begin_stap(3)
+    invoer = torch.randint(0, 260, (2, 64))
+    klein_nl.eval(); kern_en.eval()
+    with torch.no_grad():
+        gelijk = torch.equal(klein_nl.vooruit(invoer)[0],
+                             kern_en.advance(invoer)[0])
+    toets("Nederlands geschreven, Engels gelezen: zelfde stap, zelfde brein",
+          stap_terug == 9 and gelijk)
+
+    # Engels geschreven, Nederlands gelezen — het formaat is één en hetzelfde.
+    pad_en = os_module.path.join(map_, "en.pt")
+    snapshot.write(pad_en, step=11, model=kern_en,
+                   extra={"spec": kern_en.spec()})
+    terug = checkpoint.lees(pad_en)
+    toets("Engels geschreven, Nederlands gelezen: zelfde formaat",
+          terug["stap"] == 11 and checkpoint.herstel(terug) == 11)
+
+    # De Engelse sleutels gaan dan wél door de brug moeten — dezelfde kant op.
+    kern_en2 = network.Core.from_spec(kern_en.spec())
+    snapshot.restore(terug, kern_en2)
+    kern_en2.eval()
+    with torch.no_grad():
+        gelijk2 = torch.equal(kern_en.advance(invoer)[0],
+                              kern_en2.advance(invoer)[0])
+    toets("en het Engelse checkpoint herstelt bit voor bit", gelijk2)
+
+    kapot = open(pad_en, "r+b"); kapot.seek(200); kapot.write(b"XX"); kapot.close()
+    stuk = False
+    try:
+        snapshot.read(pad_en)
+    except ValueError:
+        stuk = True
+    toets("beschadiging valt bij het lezen op, net als eerst", stuk)
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
