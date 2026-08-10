@@ -57,6 +57,13 @@ MEESTE_DIEPTE = 17
 # aflevert — 16% bruikbaar op 6, 4% daarboven. Een opgave waar alleen te raden
 # valt hoort niet in haar wereld, en zonder deze grens stuurt de
 # nieuwsgierigheid haar er wél heen en loopt het vast.
+#
+# Langere rijen (gemeten 10 aug 2026, zie _rij) redden de verkláring — diepte
+# 6 gaat van 16% naar 36% verklaarbaar, evenveel als diepte 5 zelf — maar de
+# uitwerking van zo'n diepe vlecht is 500–1200 tekens en past niet in het
+# venster van 512: op diepte 6 past nog 2%, daarboven niets. Zelfde muur als
+# rekenen 18+ en code 9+: overal is de grens het venster, niet haar kunnen.
+# Het hek blijft dus op 5 tot het venster groeit (fase 2).
 MEESTE_DIEPTE_PER = {"puzzel": 5, "code": 8}
 # code tot 8: mét de volledige uitwerking is op diepte 8 nog 85% van de
 # opgaven passend binnen het venster, op diepte 9 nog maar 4% en op 12 niets.
@@ -222,7 +229,11 @@ def _verklaar(rij, laag=0):
     wordt het volgende verschil op dezelfde manier afgeleid, net zo lang tot het
     wél uitkomt.
     """
-    if laag > 5 or len(rij) < 3:
+    # De laaggrens moet meegroeien met de langste rij: diepte 8 heeft zeven
+    # lagen nodig. Voor rijen van zeven verandert er niets — daar stopt de
+    # lengtegrens (< 3) altijd eerder dan laag 5, dus de stof tot en met
+    # diepte 5 blijft bit voor bit gelijk.
+    if laag > 8 or len(rij) < 3:
         return [], False
 
     zichtbaar, doel = rij[:-1], rij[-1]
@@ -281,7 +292,14 @@ def _verklaar(rij, laag=0):
 
 
 def _rij(diepte, t):
-    rij = _rij_reeks(max(1, diepte - 1), t, 7)
+    # Diepere vlechten vragen langere rijen. Elke "opgeteld"-laag verbruikt één
+    # element en elke vlecht halveert de streng; met zeven getallen is op
+    # diepte 6 dus 84% onverklaarbaar — niet omdat de opgave te moeilijk is,
+    # maar omdat er te weinig bewijs op tafel ligt om de lagen af te pellen.
+    # Tot en met diepte 5 blijft de rij zeven lang, zodat die stof niet
+    # verandert.
+    lengte = 7 + 2 * max(0, diepte - 5)
+    rij = _rij_reeks(max(1, diepte - 1), t, lengte)
     getoond = ", ".join(str(x) for x in rij[:-1])
     stappen, gelukt = _verklaar(rij)
     if not gelukt:
