@@ -35,9 +35,9 @@ laatst_gehaald = 0.0
 laatst_geladen = 0.0
 
 # Waar we haar naar laten kijken: rond haar niveau, alle families.
-KEUZES = ([("rekenen", d) for d in (1, 2, 3, 4, 5, 6, 7, 8)]
-          + [("code", d) for d in (1, 2, 3, 4)]
-          + [("puzzel", d) for d in (1, 2, 3)])
+KEUZES = ([("rekenen", d) for d in (1, 2, 3, 4, 6, 8, 10, 12)]
+          + [("code", d) for d in (1, 2, 3, 4, 5, 6, 8)]
+          + [("puzzel", d) for d in (1, 2, 3, 4, 5)])
 
 # Hooks: per doorgang de gemiddelde bedrijvigheid per laag.
 huidige = []
@@ -85,6 +85,8 @@ def haal_checkpoint():
 bedrading = None
 bedrading_uit = None
 wereldrand = None
+geheugen_vakjes = {}
+fles_stand = {}
 
 # Haar herinneringen, uit het checkpoint — met een index om snel de meest
 # gelijkende te vinden. Het zoeken is óns kijkgereedschap (gericht terugvinden
@@ -99,17 +101,30 @@ def _grammen(tekst):
 
 
 def _bouw_herinneringen(extra):
-    global herinneringen
+    global herinneringen, geheugen_vakjes, fles_stand
     herinneringen = []
-    inhoud = ((extra or {}).get("geheugen") or {}).get("inhoud") or []
+    geheugen = (extra or {}).get("geheugen") or {}
+    inhoud = geheugen.get("inhoud") or []
     fles = L.geheugen.flessenhals
+    vakjes = {}
+    tekens_totaal = 0
     for o in inhoud:
         d = fles.ontcijfer(o)
+        vakjes[f"{d['familie']}/{d['graad']}"] = \
+            vakjes.get(f"{d['familie']}/{d['graad']}", 0) + 1
+        tekens_totaal += len(o.get("code") or ())
         if d["opgave"]:
             herinneringen.append({"opgave": d["opgave"],
                                   "oplossing": d["oplossing"],
                                   "familie": d["familie"], "graad": d["graad"],
                                   "g": _grammen(d["opgave"])})
+    geheugen_vakjes = vakjes
+    fles_stand = {
+        "lengte": fles.lengte,
+        "geweigerd": int(geheugen.get("geweigerd") or 0),
+        "bezetting": round(tekens_totaal / (len(inhoud) * fles.lengte), 3)
+                     if inhoud else None,
+    }
 
 
 def _terugdenken(taak, hoeveel=3):
@@ -231,6 +246,8 @@ while True:
         "antwoord": antwoord,
         "goed": taak.nakijk(antwoord),
         "wereldrand": wereldrand,
+        "geheugen_vakjes": geheugen_vakjes,
+        "fles": fles_stand,
         "bedrading": bedrading,
         "bedrading_uit": bedrading_uit,
         "lagen": [{"in": [round(v, 4) for v in rij["in"]],
