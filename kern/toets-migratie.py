@@ -93,6 +93,38 @@ toets("de stand meldt hetzelfde zaad",
 toets("begin_step en begin_stap geven hetzelfde stapzaad",
       determinism.begin_step(41) == determinisme.begin_stap(41))
 
+# --- nieuwsgierigheid <-> curiosity ----------------------------------------
+
+print()
+print("--- nieuwsgierigheid -> curiosity ---")
+import curiosity
+import nieuwsgierigheid
+
+nl = nieuwsgierigheid.Nieuwsgierigheid()
+en = curiosity.Curiosity()
+zelfde = True
+for stap in range(1, 400):
+    t1 = taken.Trekker(determinisme.zaad_voor_stap(stap, zaad=55))
+    t2 = taken.Trekker(determinisme.zaad_voor_stap(stap, zaad=55))
+    k1 = nl.kies(stap, t1)
+    k2 = en.pick(stap, t2)
+    if k1 != k2:
+        zelfde = False
+        break
+    score = (stap % 7) / 7
+    nl.bijgewerkt(k1, score, stap)
+    en.update(k2, score, stap)
+toets("vierhonderd stappen lang exact dezelfde keuzes", zelfde,
+      "zelfde trekkerstroom, zelfde scores, zelfde onderwerpkeuze")
+toets("nieuwe onderwerpen komen er gelijk bij",
+      nl.voeg_toe(("rekenen", 9), 400) == en.add(("rekenen", 9), 400)
+      and nl.kies(401, taken.Trekker(1)) == en.pick(401, taken.Trekker(1)))
+
+en2 = curiosity.Curiosity()
+en2.restore(en.carry())
+toets("meenemen en terugzetten geeft dezelfde vervolgkeuzes",
+      en.pick(500, taken.Trekker(9)) == en2.pick(500, taken.Trekker(9)))
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
