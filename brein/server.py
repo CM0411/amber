@@ -111,14 +111,27 @@ class Venster(BaseHTTPRequestHandler):
                     stand["wachter"] = json.load(f)
             except Exception:
                 pass
-            # De projecturen, live uit het urenlogboek in de papieren-map.
-            # Cley houdt ze daar bij; het venster telt alleen op.
+            # De projecturen: afgesloten dagen uit het urenlogboek, plus de
+            # lopende dag uit de teller — maar alleen als die dag nog níét
+            # als regel in uren.md staat, anders telt hij dubbel.
             try:
                 with open("/home/arch/amber/uren.md") as f:
-                    getallen = re.findall(
-                        r"^\|[^|]+\|\s*~?([\d]+(?:[.,]\d+)?)", f.read(), re.M)
-                stand["uren"] = round(sum(float(g.replace(",", "."))
-                                          for g in getallen), 1)
+                    md = f.read()
+                getallen = re.findall(
+                    r"^\|[^|]+\|\s*~?([\d]+(?:[.,]\d+)?)", md, re.M)
+                uren = sum(float(g.replace(",", ".")) for g in getallen)
+                try:
+                    with open("/home/arch/amber/uren-live.json") as f:
+                        live = json.load(f)
+                    j, m, d = live.get("datum", "0-0-0").split("-")
+                    maand = ["", "jan", "feb", "mrt", "apr", "mei", "jun",
+                             "jul", "aug", "sep", "okt", "nov", "dec"][int(m)]
+                    if f"{int(d)} {maand} {j}" not in md:
+                        uren += live.get("minuten", 0) / 60
+                    stand["haar_uren"] = round(live.get("haar_minuten", 0) / 60, 1)
+                except Exception:
+                    pass
+                stand["uren"] = round(uren, 1)
             except Exception:
                 pass
             self._stuur(json.dumps(stand).encode(), "application/json")

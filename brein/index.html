@@ -285,9 +285,12 @@ async function haal() {
         html += `<div class="doorbraak">${l.familie} naar ${l.tot} · stap ${l.stap.toLocaleString("nl")}</div>`;
     }
     document.getElementById("wereld").innerHTML = html;
-    if (s.uren)
-      document.getElementById("uren").textContent =
-        `≈ ${String(s.uren).replace(".", ",")} uur samen gebouwd`;
+    if (s.uren) {
+      let regel = `≈ ${String(s.uren).replace(".", ",")} uur samen gebouwd`;
+      if (s.haar_uren)
+        regel += ` · zij leerde ${String(s.haar_uren).replace(".", ",")} uur`;
+      document.getElementById("uren").textContent = regel;
+    }
     // haar geheugen: per vakje hoeveel herinneringen er liggen, en hoe vol
     // de doorgang van de flessenhals zit
     const vakjes = s.geheugen_vakjes || {};
