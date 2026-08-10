@@ -19,9 +19,22 @@ import time
 
 X399 = "arch@192.168.1.170"
 GEHEIM_PAD = "/home/arch/.amber-geheim"
-DOEL = "/home/arch/rapport/run3.html"
 DOEL_INDEX = "/home/arch/rapport/index.html"
-TOTAAL = 170_000
+
+# Run-instellingen uit een klein configbestand, zodat een nieuwe run alleen
+# dit bestand hoeft te schrijven en niet dit script. Ontbreekt het, dan
+# gelden de waarden van run 3 — het rapport valt dus nooit stil.
+import json
+try:
+    with open("/home/arch/rapport/run.json") as f:
+        _RUN = json.load(f)
+except (FileNotFoundError, ValueError):
+    _RUN = {}
+NAAM = _RUN.get("naam", "run3")
+TOTAAL = int(_RUN.get("doel", 170_000))
+HEK = _RUN.get("hek", "rekenen 17, code 8, puzzel 5")
+VENSTER = int(_RUN.get("venster", 512))
+DOEL = f"/home/arch/rapport/{NAAM}.html"
 
 KLEUREN = {  # op donkerblauw; identiteit zit ook in de eindlabels, niet
     "ladder": "#ffc35c",       # alleen in kleur
@@ -211,7 +224,7 @@ def maak_html(d):
   .graf {{ background:#0d1826; border-radius:12px; padding:16px;
            overflow-x:auto; }}
 </style></head><body>
-<h1>Run 3 — 170.000 stappen</h1>
+<h1>{NAAM.capitalize()} — {f"{TOTAAL:,}".replace(",", ".")} stappen</h1>
 <p>{status} &nbsp;·&nbsp; {eind} &nbsp;·&nbsp;
    <span class="stil">bijgewerkt {nu}, ververst elk kwartier</span></p>
 <div class="vakken">{kaart}</div>
@@ -231,8 +244,8 @@ Ter vergelijking: run 2 eindigde op ladder 72%.</p>
 <h2>Bedrijf</h2>
 <p>Herstarts zichtbaar in het log: {d["herstarts"]} — incidenten én bewuste
 herstarts voor hek-wijzigingen samen · tempo nu:
-{laatste["ms"] if laatste else "?"} ms per stap · hek: rekenen 17, code 8,
-puzzel 5 (gemeten grenzen van het venster van 512 tekens).</p>
+{laatste["ms"] if laatste else "?"} ms per stap · hek: {HEK} (gemeten
+grenzen van het venster van {VENSTER} tekens).</p>
 </body></html>"""
 
 
