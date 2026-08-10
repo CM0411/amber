@@ -324,6 +324,50 @@ with tempfile.TemporaryDirectory() as map_:
         stuk = True
     toets("beschadiging valt bij het lezen op, net als eerst", stuk)
 
+# --- logboek <-> journal -----------------------------------------------------
+
+print()
+print("--- logboek -> journal ---")
+import logboek
+import journal
+
+with tempfile.TemporaryDirectory() as map_:
+    pad = os_module.path.join(map_, "logboek.jsonl")
+
+    # Nederlands geschreven — het lopende run-3-logboek — Engels hervat.
+    nl = logboek.Logboek(pad)
+    nl.schrijf("stap", stap=1)
+    nl.schrijf("meting", stap=2, ladder=0.9)
+    nl.schrijf("stap", stap=3)
+    nl.rust(reden="avond")
+    nl.sluit()
+    en_uit = journal.resume(map_, upto_step=2)
+    nl_uit = logboek.hervat(map_, tot_stap=2)
+    toets("Engels hervat een Nederlands logboek regel voor regel gelijk",
+          en_uit["events"] == nl_uit["gebeurtenissen"]
+          and en_uit["silence"] == "rest" and nl_uit["stilte"] == "rust",
+          "zelfde >=-grens, zelfde regels, rust herkend")
+
+    # Engels geschreven, Nederlands gelezen — en het opschonen spaart
+    # hetzelfde: BLIJVEND-regels plus alles vanaf de grens.
+    en = journal.Journal(pad)
+    en.write("stap", stap=4)
+    en.write("wereld_dieper", stap=1, familie="rekenen")
+    weg_en = en.clean_up(3)
+    en.close()
+    regels_na, stilte_na = logboek.lees(pad)
+    toets("Engels opschonen laat exact staan wat Nederlands zou laten staan",
+          all(r.get("soort") in logboek.BLIJVEND or (r.get("stap") or 99) >= 3
+              for r in regels_na)
+          and any(r["soort"] == "wereld_dieper" for r in regels_na),
+          f"{weg_en} regels opgeruimd, blijvende regels overleven")
+
+    # Afgekapte staart: allebei even mild.
+    with open(pad, "a") as f:
+        f.write('{"nr": 999, "tijd": 1.0, "soo')
+    toets("een afgekapte laatste regel valt er aan beide kanten stil af",
+          logboek.lees(pad)[0] == journal.read(pad)[0])
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
