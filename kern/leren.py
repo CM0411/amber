@@ -66,7 +66,7 @@ def bf16_bruikbaar(apparaat):
     return groot >= 8
 
 
-def ruimte_voor(diepte, familie=None):
+def ruimte_voor(diepte, familie=None, venster=512):
     """Hoeveel tekens een uitwerking hier nodig heeft.
 
     **Per familie, niet alleen per diepte.** De eerste versie was geijkt op
@@ -83,7 +83,10 @@ def ruimte_voor(diepte, familie=None):
         # zeven getoonde getallen werkt langer uit dan de oude vaste zes —
         # langste 391 op diepte 3, 379 op 5, waar 336 stond. Te krap kost de
         # hele familie, zoals op 9 aug 2026 bleek.
-        return min(440, 120 * diepte + 40)
+        # Plafond = venster - 72: de marge is de langste puzzelopgave. Bij
+        # venster 512 is dit de oude 440; bij 768 wordt het 696 en dekt het
+        # de gemeten 641 van diepte 6 (10 aug 2026).
+        return min(venster - 72, 120 * diepte + 40)
     if familie == "code":
         # Nageijkt op 10 aug 2026, na de drie eindes: ook een opgave van
         # diepte 1 schrijft nu `a = 11 ; b = 94 ; 11 - 94 = -83` — 62 tekens
@@ -93,13 +96,17 @@ def ruimte_voor(diepte, familie=None):
         # getal geijkt op een oudere wereld.
         if diepte <= 2:
             return 72
-        return min(320, 80 * diepte - 144)
+        # Plafond = venster - 192: code-opgaven zijn de langste (173 tekens op
+        # diepte 11). Bij 512 de oude 320; bij 768 wordt het 576 en dekt het
+        # de gemeten 452 van diepte 11 (10 aug 2026).
+        return min(venster - 192, 80 * diepte - 144)
     # Rekenen. Langste uitwerking: 50 op diepte 3, 110 op 6, 180 op 9, 247 op
     # 12, en gemeten op 9 aug 2026: 294 op 14, 356 op 16, 384 op 17. De oude
     # grens van 280 kapte diepte 14+ dus af — zelfde fout als bij puzzel en
-    # code. 384 plus de langste opgave op 17 (102 tekens) blijft binnen het
-    # venster van 512.
-    return min(384, 20 * diepte + 24)
+    # code. Plafond = venster - 128 (marge: langste rekenopgave 148 op diepte
+    # 26): bij 512 de oude 384, bij 768 wordt het 640 en dekt het de gemeten
+    # 526 van diepte 26 (10 aug 2026).
+    return min(venster - 128, 20 * diepte + 24)
 
 
 class Leerder:
@@ -554,7 +561,8 @@ class Leerder:
         score = None
         if stap % self.proberen_elke == 0:
             gegeven = self.antwoorden(brokje,
-                                      hoogstens=ruimte_voor(diepte, familie))
+                                      hoogstens=ruimte_voor(diepte, familie,
+                                                            self.kern.venster))
             goed = [t.nakijk(a) for t, a in zip(brokje, gegeven)]
             for t, a, g in zip(brokje, gegeven, goed):
                 self.geheugen.onthoud(t, a, g)

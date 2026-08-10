@@ -164,7 +164,9 @@ def neem(leerder, naam=None, hoogstens=None):
             stel = [opgaven[i] for i in wijzers]
             diepste = max(t.graad for t in stel)
             antwoorden = leerder.antwoorden(stel,
-                                            hoogstens=ruimte_voor(diepste, familie))
+                                            hoogstens=ruimte_voor(
+                                                diepste, familie,
+                                                leerder.kern.venster))
             for i, a in zip(wijzers, antwoorden):
                 gegeven[i] = a
         goed = sum(1 for t, a in zip(opgaven, gegeven) if t.nakijk(a))

@@ -58,3 +58,23 @@ is 401 (nu 320), puzzel diepte 6 vraagt 525 (nu 336).
    antwoorden (512 in leren.py) naar 768
 4. Tempo meten, raming bijstellen, en de eerste 1000 stappen de ladder in de
    gaten houden: de nieuwe diepten komen als lege vakjes de nieuwsgierigheid in
+
+## Herbevestigd op 10 aug, avond — de drievoudige controle voor run 4
+
+1. **Op haar echte checkpoint** (stap 104.000): groei 512 → 768 bit voor bit
+   gelijk, reeks van 700 tekens draait, en een checkpoint mét venster 768
+   erin komt er gelijk weer uit. Niet alleen op het speelgoednet dus.
+2. **De wereld hermeten mét de grammatica van 10 aug** (eindes, wisselende
+   puzzellengtes): hekken blijven rekenen 26 (99% past), code 11 (100%),
+   puzzel 6 (95% van bruikbaar past).
+3. **Alle versteende getallen gevangen:** flessenhals, leerstofgrens én de
+   schrijfruimte-plafonds volgen nu het venster (plafond = venster − marge
+   per familie: rekenen −128, code −192, puzzel −72 — bij 512 exact de oude
+   waarden). Antwoorden heeft een bestaand vangnet (inkorten, niet omvallen).
+
+### Startlijst run 4 (na de Engels-migratie)
+- checkpoint laden → `groei_venster(768)` → verder, geen verse start
+- hekken: MEESTE_DIEPTE 26, per-familie code 11 / puzzel 6
+- wrapper: stappental run 4; rapport-maker op nieuw doel en nieuwe hek-tekst
+- venster-UI: grens {rekenen 26, code 11, puzzel 6}; kijker-diepten meegroeien
+- eerste 1000 stappen: tempo aflezen en de eindtijd bijstellen
