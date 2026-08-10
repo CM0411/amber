@@ -320,8 +320,40 @@ toets("zonder het slot zou het wél misgaan", kan_botsen > 0,
       f"{kan_botsen} van de {len(zonder_slot)} botsen als je het slot niet "
       f"gebruikt — de grendel doet dus werkelijk iets")
 
+# --- de taal van de grondslag: eindes en lengtes (10 aug 2026) -------------
+
+eindes = {"alsdan": 0, "reken_negatief": 0, "gewoon": 0}
+for n in range(2000, 2600):
+    t = wereld.maak("code", 3, n)
+    if t is None:
+        continue
+    if "if " in t.opgave:
+        eindes["alsdan"] += 1
+    elif int(t.oplossing) < 0:
+        eindes["reken_negatief"] += 1
+    else:
+        eindes["gewoon"] += 1
+    if not t.nakijk(t.uitwerking):
+        eindes = None
+        break
+toets("code kent if/else, en de uitwerking komt op het antwoord uit",
+      eindes is not None and eindes["alsdan"] > 50,
+      "stof die niet in de wereld voorkomt kan ze alleen maar verleren")
+toets("code kent negatieve uitkomsten, en nakijk aanvaardt ze",
+      eindes is not None and eindes["reken_negatief"] > 20)
+
+lengtes = set()
+for n in range(2000, 2400):
+    t = wereld.maak("puzzel", 2, n)
+    if t is not None:
+        lengtes.add(t.opgave.count(","))
+toets("puzzelrijen wisselen in lengte (5, 6 en 7 getoond)",
+      lengtes == {5, 6, 7},
+      "met altijd zes leert ze het ritme in plaats van het stopmoment")
+
 print()
 print("=" * 70)
+
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
 print("=" * 70)
 sys.exit(0 if gefaald == 0 else 1)

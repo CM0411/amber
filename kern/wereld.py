@@ -292,13 +292,18 @@ def _verklaar(rij, laag=0):
 
 
 def _rij(diepte, t):
-    # Diepere vlechten vragen langere rijen. Elke "opgeteld"-laag verbruikt één
-    # element en elke vlecht halveert de streng; met zeven getallen is op
-    # diepte 6 dus 84% onverklaarbaar — niet omdat de opgave te moeilijk is,
-    # maar omdat er te weinig bewijs op tafel ligt om de lagen af te pellen.
-    # Tot en met diepte 5 blijft de rij zeven lang, zodat die stof niet
-    # verandert.
-    lengte = 7 + 2 * max(0, diepte - 5)
+    # Wisselende lengte: vijf tot zeven getallen zichtbaar. Met altijd zes
+    # leert ze het rítme in plaats van het stopmoment — op het bevroren
+    # proefwerk (vijf getallen) rekende ze op 10 aug 2026 alle verschillen
+    # foutloos uit en sloot dan af met `45 - 45 = 0 ; 45 + 0 = 45`: één
+    # verschil te veel, want haar wereld toonde er altijd zes. De methode
+    # hoort bij élke lengte te werken, dus de lengte hoort te wisselen.
+    getoond = t.keuze((5, 6, 7))
+    # En diepere vlechten vragen langere rijen: elke "opgeteld"-laag verbruikt
+    # één element en elke vlecht halveert de streng; met zeven getallen is op
+    # diepte 6 zo'n 84% onverklaarbaar — te weinig bewijs op tafel om de
+    # lagen af te pellen.
+    lengte = getoond + 1 + 2 * max(0, diepte - 5)
     rij = _rij_reeks(max(1, diepte - 1), t, lengte)
     getoond = ", ".join(str(x) for x in rij[:-1])
     stappen, gelukt = _verklaar(rij)
@@ -400,6 +405,50 @@ def _code(diepte, t):
         # terwijl 72 + 10 = 82 de hele les is.
         stappen.append(f"{oud} + {erbij} = {bekend[laatste]}")
         stappen.append(f"{laatste} = {bekend[laatste]}")
+
+    # Drie eindes. `print` met een kale naam was het enige einde, en dat liet
+    # twee gaten die het bevroren proefwerk op 10 aug 2026 blootlegde: een
+    # `print` met een sóm erin kende ze niet (ze schreef er dapper `b = 42`
+    # bij een uitkomst van -42), en `if/else` bestond in haar wereld helemaal
+    # niet. Stof die nergens in de wereld voorkomt kan ze alleen maar
+    # verleren — de wereld hoort de taal van de grondslag te blijven spreken.
+    #
+    # Alleen tot en met diepte 5: dat is het bereik van de grondslag, en op
+    # diepte 7–8 duwden de extra regels 40% van de opgaven het venster uit
+    # (gemeten 10 aug 2026, past zakte van 85% naar 60%).
+    einde = (t.keuze(("gewoon", "gewoon", "reken", "alsdan"))
+             if diepte <= 5 else "gewoon")
+    if einde != "gewoon" and len(bekend) < 2:
+        # Voor een vergelijking of een som zijn twee namen nodig.
+        naam2 = _NAMEN[len(bekend)]
+        extra = t.geheel(1, 99)
+        regels.append(f"{naam2} = {extra}")
+        bekend[naam2] = extra
+        stappen.append(f"{naam2} = {extra}")
+
+    if einde == "reken":
+        # print met een som erin — de uitkomst mag negatief zijn.
+        na, nb = sorted(bekend)[-2:]
+        op = t.keuze(("-", "-", "+"))
+        waarde = bekend[na] - bekend[nb] if op == "-" else bekend[na] + bekend[nb]
+        regels.append(f"print({na} {op} {nb})")
+        stappen.append(f"{bekend[na]} {op} {bekend[nb]} = {waarde}")
+        return "\n".join(regels), waarde, " ; ".join(stappen)
+
+    if einde == "alsdan":
+        na, nb = sorted(bekend)[-2:]
+        wa, wb = bekend[na], bekend[nb]
+        regels += [f"if {na} > {nb}:", f"    print({na} - {nb})",
+                   "else:", f"    print({nb} - {na})"]
+        if wa > wb:
+            stappen.append(f"{wa} > {wb}, dus {na} - {nb}")
+            waarde = wa - wb
+            stappen.append(f"{wa} - {wb} = {waarde}")
+        else:
+            stappen.append(f"{wa} > {wb} is niet zo, dus {nb} - {na}")
+            waarde = wb - wa
+            stappen.append(f"{wb} - {wa} = {waarde}")
+        return "\n".join(regels), waarde, " ; ".join(stappen)
 
     regels.append(f"print({laatste})")
     return "\n".join(regels), bekend[laatste], " ; ".join(stappen)
