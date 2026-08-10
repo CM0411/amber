@@ -276,8 +276,9 @@ async function haal() {
     }
     const db = (s.run && s.run.doorbraken) || [];
     if (db.length) {
-      const l = db[db.length - 1];
-      html += `<div class="doorbraak">laatste doorbraak: ${l.familie} naar ${l.tot} · stap ${l.stap.toLocaleString("nl")}</div>`;
+      html += '<div class="doorbraak">doorbraken:</div>';
+      for (const l of db.slice(-3).reverse())
+        html += `<div class="doorbraak">${l.familie} naar ${l.tot} · stap ${l.stap.toLocaleString("nl")}</div>`;
     }
     document.getElementById("wereld").innerHTML = html;
     // haar geheugen: per vakje hoeveel herinneringen er liggen, en hoe vol
