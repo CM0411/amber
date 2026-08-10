@@ -525,7 +525,12 @@ class Leerder:
         familie, diepte = self.nieuwsgierig.kies(stap, trekker)
         vanaf = trekker.geheel(0, 500_000)
         try:
+            # De leerstofgrens volgt het venster, net als de flessenhals
+            # (10 aug 2026): bij venster 512 is dit precies de oude 400, en
+            # bij venstergroei groeit de leerstof vanzelf mee in plaats van
+            # stil achter te blijven als versteend getal.
             brokje = wereld.leerreeks(familie, diepte, self.partij, vanaf=vanaf,
+                                      ruimte=self.kern.venster - 112,
                                       uitsluiten=proefwerken.stof())
         except ValueError:
             # Een diepte zonder genoeg opgaven mag nooit de run doden.
