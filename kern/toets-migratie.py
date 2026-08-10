@@ -450,6 +450,61 @@ toets("en de meetlus ziet met beide hetzelfde verschil tussen vergeten "
       meetlus.meet(paren[0][0], "puzzel", 1, 40)
       == measuring.measure(paren[0][1], "puzzel", 1, 40))
 
+# --- leren <-> learning: de kroon --------------------------------------------
+
+print()
+print("--- leren -> learning: veertig echte leerstappen zij aan zij ---")
+import leren
+import learning
+
+determinisme.begin_stap(31337)
+nl_leerder = leren.Leerder(
+    kern=netwerk.Kern(lagen=2, breedte=64, koppen=4, venster=320),
+    apparaat="cpu", partij=8, diepste=2, proberen_elke=2, bf16=False)
+determinisme.begin_stap(31337)
+en_learner = learning.Learner(
+    core=network.Core(layers=2, width=64, heads=4, window=320),
+    device="cpu", batch_size=8, deepest=2, probe_every=2, bf16=False)
+
+toets("beide beginnen met exact dezelfde gewichten",
+      all(torch.equal(v, w) for (k, v), (_, w) in
+          zip(sorted(bridge.translate_state(nl_leerder.kern.state_dict()).items()),
+              sorted(en_learner.core.state_dict().items()))))
+
+loop_gelijk = True
+afwijking = None
+for stap in range(1, 41):
+    r1 = nl_leerder.werk(stap)
+    r2 = en_learner.work(stap)
+    if not (r1["familie"] == r2["family"] and r1["diepte"] == r2["depth"]
+            and r1["score"] == r2["score"] and r1["fout"] == r2["loss"]
+            and r1["diepste_per"] == r2["deepest_per"]
+            and r1.get("dieper", []) == [list(x) for x in r2.get("deeper", [])]
+            or r1.get("overgeslagen") != r2.get("skipped")):
+        loop_gelijk = False
+        afwijking = (stap, r1, r2)
+        break
+toets("veertig stappen kiezen, proberen en leren exact gelijk",
+      loop_gelijk, "zelfde onderwerpen, zelfde scores, zelfde fout per stap"
+      if loop_gelijk else f"eerste afwijking bij stap {afwijking[0]}")
+
+toets("na veertig stappen zijn de gewichten nog altijd bit voor bit gelijk",
+      all(torch.equal(v, w) for (k, v), (_, w) in
+          zip(sorted(bridge.translate_state(nl_leerder.kern.state_dict()).items()),
+              sorted(en_learner.core.state_dict().items()))),
+      "veertig optimizer-stappen met herhaling, proeven en geheugen ertussen")
+
+toets("het geheugen en de nieuwsgierigheid zijn identiek meegenomen",
+      nl_leerder.neem_mee() == en_learner.carry())
+
+en_vers = learning.Learner(
+    core=network.Core(layers=2, width=64, heads=4, window=320),
+    device="cpu", batch_size=8, bf16=False)
+en_vers.restore(nl_leerder.neem_mee())
+toets("een Nederlands meegenomene laadt in een verse Engelse leerder",
+      len(en_vers.memory) == len(nl_leerder.geheugen)
+      and en_vers.deepest_per == nl_leerder.diepste_per)
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
