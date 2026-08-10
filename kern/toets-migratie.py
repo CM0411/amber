@@ -368,6 +368,43 @@ with tempfile.TemporaryDirectory() as map_:
     toets("een afgekapte laatste regel valt er aan beide kanten stil af",
           logboek.lees(pad)[0] == journal.read(pad)[0])
 
+# --- proefwerken <-> exams ---------------------------------------------------
+
+print()
+print("--- proefwerken -> exams ---")
+import proefwerken
+import exams
+
+toets("het slot bevat exact dezelfde opgaventeksten",
+      exams.material() == proefwerken.stof(),
+      f"{len(exams.material())} opgaven achter de grendel, aan beide kanten")
+toets("dezelfde proefwerken, dezelfde bladen",
+      exams.names() == proefwerken.namen()
+      and all([t.problem for t in exams.load(n).as_tasks()]
+              == [t.opgave for t in proefwerken.laad(n).als_taken()]
+              for n in exams.names()))
+
+class _Half:
+    """Kan alleen code — dan hangt het cijfer af van de bladselectie."""
+    class kern:
+        venster = 512
+    def antwoorden(self, stel, hoogstens=None):
+        return [t.oplossing if t.familie == "code" else "0" for t in stel]
+
+toets("een proefwerk nemen geeft exact hetzelfde cijfer, ook bij "
+      "gelijkmatige selectie",
+      exams.take(_Half(), name="grondslag", at_most=45)
+      == {"grondslag": proefwerken.neem(_Half(), naam="grondslag",
+                                        hoogstens=45)["grondslag"]})
+
+geweigerd_en = False
+try:
+    exams.freeze("grondslag", "mag niet", [])
+except FileExistsError:
+    geweigerd_en = True
+toets("een bestaand proefwerk overschrijven weigert ook in het Engels",
+      geweigerd_en)
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
