@@ -125,6 +125,52 @@ en2.restore(en.carry())
 toets("meenemen en terugzetten geeft dezelfde vervolgkeuzes",
       en.pick(500, taken.Trekker(9)) == en2.pick(500, taken.Trekker(9)))
 
+# --- taken <-> tasks ---------------------------------------------------------
+
+print()
+print("--- taken -> tasks ---")
+import tasks
+
+toets("families, graden, meetlatgrens en taakzaad zijn identiek",
+      tasks.FAMILIES == taken.FAMILIES and tasks.GRADES == taken.GRADEN
+      and tasks.TEST_UPTO == taken.TEST_TOT
+      and tasks.TASK_SEED == taken.TAAK_ZAAD)
+
+t1, t2 = taken.Trekker(4242), tasks.Picker(4242)
+toets("Trekker en Picker geven dezelfde stroom",
+      all(t1.geheel(0, 10**9) == t2.integer(0, 10**9) for _ in range(500)))
+
+zelfde = True
+for fam in tasks.FAMILIES:
+    for gr in tasks.GRADES:
+        for n in (0, 7, 199, 200, 5000, 81_733):
+            a = taken.maak(fam, gr, n)
+            b = tasks.make(fam, gr, n)
+            if (a.opgave, a.oplossing) != (b.problem, b.solution):
+                zelfde = False
+toets("elke taak is bit voor bit dezelfde, alle families en graden", zelfde,
+      "90 taken vergeleken over het hele bereik")
+
+taak_nl = taken.maak("code", 5, 123)
+taak_en = tasks.make("code", 5, 123)
+toets("nakijken oordeelt identiek, ook via de Nederlandse aliassen",
+      all(taak_nl.nakijk(a) == taak_en.check(a) == taak_en.nakijk(a)
+          for a in (taak_nl.oplossing, "fout 12", "", "uitwerking = "
+                    + taak_nl.oplossing))
+      and taak_en.opgave == taak_nl.opgave
+      and taak_en.te_leren() == taak_nl.te_leren())
+
+toets("de leerreeks vindt exact dezelfde schone taken",
+      [t.problem for t in tasks.learning_tasks("rekenen", 1, 60)]
+      == [t.opgave for t in taken.leerreeks("rekenen", 1, 60)])
+toets("de meetlat is exact dezelfde",
+      [t.problem for t in tasks.benchmark("puzzel", 4)]
+      == [t.opgave for t in taken.testverzameling("puzzel", 4)])
+toets("besmetting wordt identiek herkend",
+      all(tasks.is_contaminated(tasks.make("rekenen", 1, n))
+          == taken.is_besmet(taken.maak("rekenen", 1, n))
+          for n in range(200, 700)))
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
