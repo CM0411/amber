@@ -425,6 +425,31 @@ toets("de hele C-meting komt getal voor getal gelijk uit",
 toets("en de tabel is letter voor letter dezelfde",
       meetlus.tabel(uit_nl) == measuring.table(uit_en))
 
+# --- namaakleerders <-> fake_learners ----------------------------------------
+
+print()
+print("--- namaakleerders -> fake_learners ---")
+import fake_learners
+
+paren = ((namaakleerders.EenRegelLeerder(), fake_learners.OneRuleLearner()),
+         (namaakleerders.RegelPerSoortLeerder(),
+          fake_learners.RulePerKindLearner()),
+         (namaakleerders.StampLeerder(), fake_learners.MemorizerLearner()))
+gelijk = True
+stof_ = taken.leerreeks("puzzel", 1, 40) + taken.leerreeks("rekenen", 3, 40)
+proef_ = taken.testverzameling("puzzel", 1, 30) + stof_[:10]
+for nl_l, en_l in paren:
+    nl_l.leer(stof_[:40]); en_l.learn(stof_[:40])
+    nl_l.leer(stof_[40:]); en_l.learn(stof_[40:])
+    if any(nl_l.antwoord(t) != en_l.answer_one(t) for t in proef_):
+        gelijk = False
+toets("alle drie de namaakleerders antwoorden identiek", gelijk,
+      "één-regel, regel-per-soort en de stamper, na twee leerrondes")
+toets("en de meetlus ziet met beide hetzelfde verschil tussen vergeten "
+      "en onthouden",
+      meetlus.meet(paren[0][0], "puzzel", 1, 40)
+      == measuring.measure(paren[0][1], "puzzel", 1, 40))
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
