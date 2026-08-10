@@ -365,7 +365,102 @@ def _code_uitdrukking(diepte, t, bekend):
             voorrang, waarde, ("op", bewerking, lnode, rnode))
 
 
+def _lus_programma(diepte, t):
+    """`totaal += i` en verwanten — de vorm van grondslag code graad 3.
+
+    Het aantal rondes schaalt met de diepte én met de vorm: een kwadraat
+    schrijft twee stappen per ronde en past dus minder rondes in dezelfde
+    schrijfruimte. Gemeten 10 aug 2026.
+    """
+    vorm = t.keuze(("i",) if diepte <= 3 else ("i", "2i", "i2"))
+    n = t.geheel(2, 4 + diepte) if vorm == "i" else t.geheel(2, 2 + diepte)
+    start = t.geheel(0, 50)
+    body = {"i": "totaal += i", "2i": "totaal += i * 2",
+            "i2": "totaal += i * i"}[vorm]
+    stappen, totaal = [], start
+    for i in range(1, n + 1):
+        if vorm == "i":
+            erbij = i
+        elif vorm == "2i":
+            erbij = i * 2
+            stappen.append(f"{i} * 2 = {erbij}")
+        else:
+            erbij = i * i
+            stappen.append(f"{i} * {i} = {erbij}")
+        stappen.append(f"{totaal} + {erbij} = {totaal + erbij}")
+        totaal += erbij
+    programma = (f"totaal = {start}\nfor i in range(1, {n + 1}):\n"
+                 f"    {body}\nprint(totaal)")
+    return programma, totaal, " ; ".join(stappen)
+
+
+def _lijst_programma(diepte, t):
+    """De lijstfilter — de vorm van grondslag code graad 4."""
+    # Aantal elementen en de som-variant zijn op 10 aug 2026 tegen de
+    # schrijfruimte aan gemeten: op diepte 4 alleen tellen (de som-stappen
+    # pasten daar 74 tekens overheen), vanaf 5 ook optellen.
+    getallen = [t.geheel(1, 40) for _ in range(t.geheel(4, min(7, 2 + diepte)))]
+    drempel = t.geheel(5, 30)
+    tellen = True if diepte <= 4 else t.keuze((True, False))
+    raak = [x for x in getallen if x > drempel]
+    stappen = [f"{x} > {drempel}, telt mee" if x > drempel
+               else f"{x} > {drempel} is niet zo" for x in getallen]
+    if tellen:
+        programma = (f"getallen = {getallen}\n"
+                     f"print(len([x for x in getallen if x > {drempel}]))")
+        stappen.append(f"meegeteld: {len(raak)}")
+        return programma, len(raak), " ; ".join(stappen)
+    programma = (f"getallen = {getallen}\n"
+                 f"print(sum([x for x in getallen if x > {drempel}]))")
+    som = 0
+    for x in raak:
+        stappen.append(f"{som} + {x} = {som + x}")
+        som += x
+    if not raak:
+        stappen.append("niets telt mee, dus 0")
+    return programma, som, " ; ".join(stappen)
+
+
+def _def_programma(diepte, t):
+    """`def f(x)` plus een lus — de vorm van grondslag code graad 5.
+
+    Weinig rondes: elke ronde schrijft drie stappen. De grote aantallen van
+    het proefwerk (tot vijftien rondes) passen pas als het venster groeit.
+    """
+    n, f, k = t.geheel(2, min(6, diepte - 1)), t.geheel(2, 20), t.geheel(0, 9)
+    stappen, totaal = [], 0
+    for i in range(1, n + 1):
+        p = i * f
+        stappen.append(f"f({i}): {i} * {f} = {p}")
+        stappen.append(f"{p} + {k} = {p + k}")
+        stappen.append(f"{totaal} + {p + k} = {totaal + p + k}")
+        totaal += p + k
+    programma = (f"def f(x):\n    return x * {f} + {k}\n\n"
+                 f"totaal = 0\nfor i in range(1, {n + 1}):\n"
+                 f"    totaal += f(i)\nprint(totaal)")
+    return programma, totaal, " ; ".join(stappen)
+
+
 def _code(diepte, t):
+    # De taal van de grondslag, deel twee (10 aug 2026): drie programmavormen
+    # die het proefwerk vraagt en die in de wereld niet bestonden — per vakje
+    # gemeten bleef code graad 3–5 daardoor op exact 0%. Elke vorm vanaf de
+    # diepte waar zijn uitwerking in de schrijfruimte past.
+    vormen = ["regels", "regels"]
+    if diepte >= 3:
+        vormen.append("lus")
+    if diepte >= 4:
+        vormen.append("lijst")
+    if diepte >= 5:
+        vormen.append("def")
+    vorm = t.keuze(tuple(vormen))
+    if vorm == "lus":
+        return _lus_programma(diepte, t)
+    if vorm == "lijst":
+        return _lijst_programma(diepte, t)
+    if vorm == "def":
+        return _def_programma(diepte, t)
+
     # Twee grenzen, allebei omdat een programma anders sneller groeit dan het
     # moeilijker wordt. Op diepte 12 gaf de eerste opzet regels van honderdvijftig
     # tekens — dat past niet eens in haar venster van 256, en het meet lezen in

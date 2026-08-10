@@ -312,13 +312,19 @@ toets("leerstof levert nooit een proefwerkopgave op", not besmet,
 # bovenstaande niets.
 # Uit precies het nummerbereik waar diepte2 uit gemunt is: zonder slot moet het
 # daar wél botsen, anders bewijst de toets hierboven niets.
-zonder_slot = [t.opgave
-               for familie in wereld.FAMILIES
-               for t in wereld.leerreeks(familie, 3, 120, vanaf=900_000)]
-kan_botsen = sum(1 for o in zonder_slot if o in slot)
-toets("zonder het slot zou het wél misgaan", kan_botsen > 0,
-      f"{kan_botsen} van de {len(zonder_slot)} botsen als je het slot niet "
-      f"gebruikt — de grendel doet dus werkelijk iets")
+# (Herzien 10 aug 2026: de oude tegenproef leunde op het toeval dat nummer
+# 900.000 dezelfde teksten gaf als het gemunte proefwerk; elke groei van de
+# wereld brak dat. Nu wordt de botsing zelf klaargelegd.)
+bekend = wereld.maak("rekenen", 3, 700_000)
+met_grendel = wereld.leerreeks("rekenen", 3, 40, vanaf=700_000,
+                               uitsluiten={bekend.opgave})
+zonder_grendel = wereld.leerreeks("rekenen", 3, 40, vanaf=700_000)
+toets("zonder het slot zou het wél misgaan",
+      bekend.opgave in {t.opgave for t in zonder_grendel}
+      and bekend.opgave not in {t.opgave for t in met_grendel},
+      "dezelfde stroom, mét grendel mist precies de klaargelegde opgave")
+toets("en het slot zelf is goed gevuld", len(slot) >= 1700,
+      f"{len(slot)} proefwerkopgaven achter de grendel")
 
 # --- de taal van de grondslag: eindes en lengtes (10 aug 2026) -------------
 
@@ -351,9 +357,34 @@ toets("puzzelrijen wisselen in lengte (5, 6 en 7 getoond)",
       lengtes == {5, 6, 7},
       "met altijd zes leert ze het ritme in plaats van het stopmoment")
 
+# De drie proefwerkvormen van code (lus, lijst, def) bestaan en passen in
+# hun schrijfruimte — de bug van 10 aug (uitwerking groter dan de ruimte)
+# mag niet terugkomen.
+from leren import ruimte_voor as _rv
+vormen_gezien = set()
+vormen_passen = True
+for d in (3, 4, 5, 6, 8):
+    for n in range(3000, 3500):
+        t = wereld.maak("code", d, n)
+        if t is None:
+            continue
+        if "def f" in t.opgave:
+            soort = "def"
+        elif "getallen" in t.opgave:
+            soort = "lijst"
+        elif "totaal" in t.opgave and "range" in t.opgave:
+            soort = "lus"
+        else:
+            continue
+        vormen_gezien.add(soort)
+        if not t.nakijk(t.uitwerking) or len(t.uitwerking) > _rv(d, "code"):
+            vormen_passen = False
+toets("de drie proefwerkvormen van code bestaan in de wereld",
+      vormen_gezien == {"lus", "lijst", "def"})
+toets("en elke uitwerking past in zijn schrijfruimte", vormen_passen)
+
 print()
 print("=" * 70)
-
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
 print("=" * 70)
 sys.exit(0 if gefaald == 0 else 1)
