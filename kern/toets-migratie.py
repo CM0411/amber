@@ -405,6 +405,26 @@ except FileExistsError:
 toets("een bestaand proefwerk overschrijven weigert ook in het Engels",
       geweigerd_en)
 
+# --- meetlus <-> measuring ---------------------------------------------------
+
+print()
+print("--- meetlus -> measuring ---")
+import meetlus
+import measuring
+import namaakleerders
+
+nl_leerder = namaakleerders.StampLeerder()
+en_leerder = namaakleerders.StampLeerder()
+plan = [("rekenen", 1), ("puzzel", 1)]
+uit_nl = meetlus.c_meting(nl_leerder, plan, aantal_leren=60, aantal_meten=40)
+uit_en = measuring.c_measurement(en_leerder, plan, learn_count=60,
+                                 measure_count=40)
+toets("de hele C-meting komt getal voor getal gelijk uit",
+      uit_nl == uit_en,
+      "zelfde plan, zelfde leerstof, zelfde winst/verlies/behouden")
+toets("en de tabel is letter voor letter dezelfde",
+      meetlus.tabel(uit_nl) == measuring.table(uit_en))
+
 print()
 print("=" * 70)
 print(f"geslaagd: {geslaagd}    gefaald: {gefaald}")
