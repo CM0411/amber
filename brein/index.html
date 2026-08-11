@@ -553,14 +553,18 @@ function teken(t) {
   }
   for (const v of vonken) {
     v.u += v.sn;
+    // u bestaat voor béide takken — de kleurregel hieronder gebruikt hem
+    // ook; toen hij alleen in de else-tak stond bevroor het hele beeld
+    // zodra het eerste vonkje de boog op ging (11 aug 2026)
+    const u = Math.min(1, v.u);
     const [x1, y1] = plaats(v.k, v.b);
     const [x2, y2] = plaats(v.k + 1, v.d);
     let x, y;
     if (v.k === KOL.length - 2) {
-      [x, y] = bolRoute(x1, y1, x2, y2, Math.min(1, v.u));
+      [x, y] = bolRoute(x1, y1, x2, y2, u);
     } else {
       const cy = kromming(y1, y2), cx = (x1 + x2) / 2;
-      const u = v.u, w = 1 - u;
+      const w = 1 - u;
       x = w * w * x1 + 2 * w * u * cx + u * u * x2;
       y = w * w * y1 + 2 * w * u * cy + u * u * y2;
     }
