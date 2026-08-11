@@ -164,11 +164,14 @@ function plaats(kol, i) {
   const bx = B * 0.085, ex = B * 0.915;
   const midden = H * 0.465, hoog = H * 0.62;
   const n = KOL[kol];
-  // De zekerheidsbol woont in het hart van het weefsel: op de kolom van
-  // laag 4, verticaal in het midden — Cleys aanwijzing (11 aug 2026).
+  // De zekerheidsbol woont in het hart van het weefsel, in een eigen
+  // gleuf tussen laag 3 en laag 4: ... laag 3 — uitvoer — laag 4 ...
+  // De lagen schuiven om hem heen (Cleys aanwijzing, 11 aug 2026).
+  const gleuven = KOL.length;            // kolommen + de gleuf van de bol
   if (n === 1 && KOL.length > 5)
-    return [bx + (ex - bx) * 4 / (KOL.length - 1), midden];
-  const x = bx + (ex - bx) * kol / (KOL.length - 1);
+    return [bx + (ex - bx) * 4 / gleuven, midden];
+  const gleuf = kol <= 3 ? kol : kol + 1;
+  const x = bx + (ex - bx) * gleuf / gleuven;
   const y = n === 1 ? midden : midden - hoog / 2 + hoog * i / (n - 1);
   return [x, y];
 }
@@ -212,10 +215,11 @@ function bouwWeefsel() {
   for (let k = 0; k < KOL.length - 1; k++) {
     const [x1k] = plaats(k, 0), [x2k] = plaats(k + 1, 0);
     const marge = B * 0.012;
-    // laag 8 -> de bol loopt terug naar het midden; de strook moet dus
-    // beide richtingen aankunnen
+    // laag 8 -> de bol boogt terug over het veld; die strook beslaat de
+    // volle boogbreedte, de gewone stroken alleen hun eigen overgang
     const links = Math.max(0, Math.min(x1k, x2k) - marge);
-    const breed = Math.min(B - links, Math.abs(x2k - x1k) + 2 * marge);
+    const breed = Math.min(B - links, Math.abs(x2k - x1k) + 2 * marge
+                                      + (x2k < x1k ? B * 0.06 : 0));
     const c = document.createElement("canvas");
     c.width = Math.max(2, Math.round(breed)); c.height = H;
     c.dataset.links = links;
@@ -236,6 +240,7 @@ function bouwWeefsel() {
       for (let b = 0; b < KOL[k]; b++)
         paren.push([(bedradingUit ? bedradingUit[b] : 0.5), true, b, 0]);
     }
+    const naarBol = k === KOL.length - 2;
     for (const [w, plus, b, d] of paren) {
       const [x1, y1] = plaats(k, b);
       const [x2, y2] = plaats(k + 1, d);
@@ -245,7 +250,16 @@ function bouwWeefsel() {
       q.lineWidth = Math.max(0.6, Math.min(B, H) * 0.0007);
       q.beginPath();
       q.moveTo(x1, y1);
-      q.quadraticCurveTo((x1 + x2) / 2, kromming(y1, y2), x2, y2);
+      if (naarBol) {
+        // niet dwars door laag 5/6/7: bovenste helft boogt erover, de
+        // onderste helft eronderlangs, en ze dalen in op de bol
+        const boven = y1 <= H * 0.465;
+        const boogY = boven ? H * 0.015 : H * 0.915;
+        q.bezierCurveTo(x1 - (x1 - x2) * 0.15, boogY,
+                        x2 + (x1 - x2) * 0.35, boogY, x2, y2);
+      } else {
+        q.quadraticCurveTo((x1 + x2) / 2, kromming(y1, y2), x2, y2);
+      }
       q.stroke();
     }
     weefsel.push(c);
