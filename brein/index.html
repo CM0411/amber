@@ -162,30 +162,20 @@ const stof = Array.from({length: 45}, () => ({
 
 function plaats(kol, i) {
   const bx = B * 0.085, ex = B * 0.915;
+  const x = bx + (ex - bx) * kol / (KOL.length - 1);
   const midden = H * 0.465, hoog = H * 0.62;
   const n = KOL[kol];
-  // De zekerheidsbol woont in het hart van het weefsel, in een eigen
-  // gleuf tussen laag 3 en laag 4: ... laag 3 — uitvoer — laag 4 ...
-  // De lagen schuiven om hem heen (Cleys aanwijzing, 11 aug 2026).
-  const gleuven = KOL.length;            // kolommen + de gleuf van de bol
-  if (n === 1 && KOL.length > 5)
-    return [bx + (ex - bx) * 4 / gleuven, midden];
-  const gleuf = kol <= 3 ? kol : kol + 1;
-  const x = bx + (ex - bx) * gleuf / gleuven;
   const y = n === 1 ? midden : midden - hoog / 2 + hoog * i / (n - 1);
   return [x, y];
 }
 function bolRoute(x1, y1, x2, y2, u) {
-  // precies de boog van de draden (het fotontwerp), zodat vonkjes van
-  // laag 8 hun eigen draad naar de bol volgen
-  const boven = y1 <= H * 0.465;
-  const boogY = boven ? H * 0.015 : H * 0.915;
-  const c1x = x1 - (x1 - x2) * 0.15, c2x = x2 + (x1 - x2) * 0.35;
-  const t = u, w = 1 - t;
-  return [w * w * w * x1 + 3 * w * w * t * c1x + 3 * w * t * t * c2x
-          + t * t * t * x2,
-          w * w * w * y1 + 3 * w * w * t * boogY + 3 * w * t * t * boogY
-          + t * t * t * y2];
+  // precies de strakke waaierlijn van de draden, zodat vonkjes van
+  // laag 8 hun eigen draad naar de uitvoer volgen
+  const cx = (x1 + x2) / 2;
+  const cy = (y1 + y2) / 2 + (kromming(y1, y2) - (y1 + y2) / 2) * 0.2;
+  const w = 1 - u;
+  return [w * w * x1 + 2 * w * u * cx + u * u * x2,
+          w * w * y1 + 2 * w * u * cy + u * u * y2];
 }
 function kromming(y1, y2) {
   // draden bollen weg van het midden: samen vormen ze de lensvormen
@@ -227,11 +217,8 @@ function bouwWeefsel() {
   for (let k = 0; k < KOL.length - 1; k++) {
     const [x1k] = plaats(k, 0), [x2k] = plaats(k + 1, 0);
     const marge = B * 0.012;
-    // laag 8 -> de bol boogt terug over het veld; die strook beslaat de
-    // volle boogbreedte, de gewone stroken alleen hun eigen overgang
-    const links = Math.max(0, Math.min(x1k, x2k) - marge);
-    const breed = Math.min(B - links, Math.abs(x2k - x1k) + 2 * marge
-                                      + (x2k < x1k ? B * 0.06 : 0));
+    const links = Math.max(0, x1k - marge);
+    const breed = Math.min(B - links, x2k - x1k + 2 * marge);
     const c = document.createElement("canvas");
     c.width = Math.max(2, Math.round(breed)); c.height = H;
     c.dataset.links = links;
@@ -263,12 +250,12 @@ function bouwWeefsel() {
       q.beginPath();
       q.moveTo(x1, y1);
       if (naarBol) {
-        // het ontwerp van Cleys foto (11 aug 2026): grote bogen die vrij
-        // over het veld zwaaien, de bovenste helft hoog, de onderste laag
-        const boven = y1 <= H * 0.465;
-        const boogY = boven ? H * 0.015 : H * 0.915;
-        q.bezierCurveTo(x1 - (x1 - x2) * 0.15, boogY,
-                        x2 + (x1 - x2) * 0.35, boogY, x2, y2);
+        // een strakke, nette waaier naar de uitvoer: bijna recht, met
+        // een zweem van de lensbuiging (Cleys smaak: rustig en clean)
+        q.quadraticCurveTo((x1 + x2) / 2,
+                           (y1 + y2) / 2
+                           + (kromming(y1, y2) - (y1 + y2) / 2) * 0.2,
+                           x2, y2);
       } else {
         q.quadraticCurveTo((x1 + x2) / 2, kromming(y1, y2), x2, y2);
       }
@@ -547,9 +534,7 @@ function teken(t) {
       .sort((x, y) => y[0] - x[0]).slice(0, 10);
     const [, b] = sterk[Math.floor(Math.random() * sterk.length)] || [0, 0];
     const [, d] = doelK[Math.floor(Math.random() * doelK.length)] || [0, 0];
-    const laatste = k === KOL.length - 2;
-    vonken.push({k, b, d, u: 0,
-                 sn: (0.014 + Math.random() * 0.02) * (laatste ? 0.45 : 1)});
+    vonken.push({k, b, d, u: 0, sn: 0.014 + Math.random() * 0.02});
   }
   for (const v of vonken) {
     v.u += v.sn;
@@ -608,8 +593,8 @@ function teken(t) {
     const [x] = plaats(k, 0);
     const [, yb] = plaats(k, KOL[k] - 1);
     const y = (KOL[k] === 1 ? H * 0.465 : yb) + fs * 2.2;
-    ctx.textAlign = k === KOL.length - 1 ? "center" : "left";
-    const lx = k === KOL.length - 1 ? x : x - fs;
+    ctx.textAlign = k === KOL.length - 1 ? "right" : "left";
+    const lx = k === KOL.length - 1 ? x + fs : x - fs;
     ctx.fillStyle = "rgba(225,235,255,0.85)";
     ctx.fillText(NAMEN[k][0], lx, y);
     ctx.fillStyle = "rgba(255,140,90,0.8)";
