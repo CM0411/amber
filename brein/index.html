@@ -299,16 +299,27 @@ async function haal() {
     if (run) {
       let html = `<div class="kop">${rc.naam || "training"} · X399`
         + (rm.poging ? ` · poging ${rm.poging}` : "") + `</div>`;
+      // live uit het logboek (per stap, elke 5 s ververst); de logregel
+      // van elke 50 stappen is het vangnet
+      const lv = (s.run && s.run.live) || {};
       const m = run.match(/stap\s+(\d+)\/(\d+)\s+(\d+)%\s+(\d+) ms\/st\s+nog (\d+)u(\d+)m/);
-      if (m) {
-        const pct = +m[3];
-        const klaar = new Date(Date.now() + (+m[5] * 3600 + +m[6] * 60) * 1000);
+      const doel = cfg.doel || (m ? +m[2] : 0);
+      const stapNu = lv.stap || (m ? +m[1] : 0);
+      const msNu = lv.ms || (m ? +m[4] : 0);
+      if (stapNu && doel && msNu) {
+        const pct = Math.floor(100 * stapNu / doel);
+        const overMs = (doel - stapNu) * msNu;
+        const klaar = new Date(Date.now() + overMs);
         const wanneer = klaar.toLocaleString("nl", {weekday: "short",
                           hour: "2-digit", minute: "2-digit"});
+        const nogU = Math.floor(overMs / 3600000);
+        const nogM = Math.floor(overMs % 3600000 / 60000);
         html += `<div style="background:rgba(127,212,168,.15);border-radius:3px;height:6px;margin:5px 0">`
           + `<div style="background:#7fd4a8;height:6px;border-radius:3px;width:${pct}%"></div></div>`
-          + `<b>${(+m[1]).toLocaleString("nl")}</b> / ${(+m[2]).toLocaleString("nl")} · ${pct}%<br>`
-          + `${m[4]} ms per stap · nog ${m[5]}u${String(m[6]).padStart(2, "0")}`
+          + `<b>${stapNu.toLocaleString("nl")}</b> / ${doel.toLocaleString("nl")} · ${pct}%<br>`
+          + `<b>${msNu.toLocaleString("nl")}</b> ms per stap`
+          + (lv.ms ? ` <span style="color:#7fe0c3">● live</span>` : "")
+          + ` · nog ${nogU}u${String(nogM).padStart(2, "0")}`
           + ` · klaar ~${wanneer}<br>`;
       } else { html += run + "<br>"; }
       const namen = ["ladder", "grondslag", "gemengd", "diepte2", "diepte"];

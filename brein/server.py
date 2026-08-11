@@ -32,7 +32,9 @@ def _ververs_run():
              "grep -oE '^=== poging [0-9]+' ~/leven.log | tail -1 "
              "| sed 's/=== //'; "
              "nvidia-smi --query-gpu=temperature.gpu,power.draw,memory.used "
-             "--format=csv,noheader 2>/dev/null"],
+             "--format=csv,noheader 2>/dev/null; "
+             "echo ===; tail -60 ~/amber-werk/fase1/leven/logboek.jsonl "
+             "2>/dev/null"],
             capture_output=True, text=True)
         if r.returncode == 0:
             ruw = r.stdout.split("===")
@@ -58,6 +60,30 @@ def _ververs_run():
                 sm = re.search(r"stap\s+(\d+)", regels[1])
                 if sm:
                     proefwerk_scores["_stap"] = int(sm.group(1))
+            # écht live: de staart van het logboek heeft per stap een
+            # tijdstempel. Het gemiddelde van de laatste tussenpozen is het
+            # actuele tempo — mét de proefstappen (die zijn echt werk),
+            # zonder de proefwerk-gaten (>60 s, eens per 500 stappen). De
+            # mediaan stond hier eerst en flatteerde: die verstopte de
+            # proefstappen en gaf 1047 waar het lograatje 1900 zei.
+            live = {}
+            stap_tijden = []
+            for regel_j in (ruw[4].splitlines() if len(ruw) > 4 else []):
+                try:
+                    rj = json.loads(regel_j)
+                except ValueError:
+                    continue
+                if rj.get("soort") == "stap" and rj.get("stap"):
+                    stap_tijden.append((int(rj["stap"]), float(rj["tijd"])))
+            if len(stap_tijden) >= 8:
+                stap_tijden.sort()
+                duren = [b[1] - a[1] for a, b in
+                         zip(stap_tijden[-33:], stap_tijden[-32:])
+                         if b[0] == a[0] + 1 and 0 < b[1] - a[1] < 60]
+                if duren:
+                    live = {"stap": stap_tijden[-1][0],
+                            "ms": round(sum(duren) / len(duren) * 1000),
+                            "tijd": stap_tijden[-1][1]}
             # de runconfiguratie zoals het rapport hem ook leest
             try:
                 with open("/home/arch/rapport/run.json") as f:
@@ -89,6 +115,7 @@ def _ververs_run():
                 _run["doorbraken"] = doorbraken[-4:]
                 _run["curve"] = curve
                 _run["machine"] = machine
+                _run["live"] = live
                 _run["scores"] = proefwerk_scores
                 _run["config"] = config
                 _run["tijd"] = time.time()
