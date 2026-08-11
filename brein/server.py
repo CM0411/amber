@@ -184,9 +184,39 @@ class Venster(BaseHTTPRequestHandler):
                                 "text/html; charset=utf-8")
             try:
                 with open(os.path.join("/home/arch/rapport", naam), "rb") as f:
-                    self._stuur(f.read(), soort)
+                    inhoud = f.read()
             except Exception:
                 self._stuur(b"<p>nog geen rapport</p>")
+                return
+            # Safari vraagt audio in stukjes (Range) en weigert af te
+            # spelen als de server dat niet kan — gevonden 11 aug 2026
+            # toen de stemproef in de browser stil bleef.
+            bereik = self.headers.get("Range")
+            if bereik and bereik.startswith("bytes="):
+                try:
+                    van, tot = (bereik[6:].split("-") + [""])[:2]
+                    van = int(van) if van else 0
+                    tot = int(tot) if tot else len(inhoud) - 1
+                    tot = min(tot, len(inhoud) - 1)
+                    stuk = inhoud[van:tot + 1]
+                    self.send_response(206)
+                    self.send_header("Content-Type", soort)
+                    self.send_header("Accept-Ranges", "bytes")
+                    self.send_header("Content-Range",
+                                     f"bytes {van}-{tot}/{len(inhoud)}")
+                    self.send_header("Content-Length", str(len(stuk)))
+                    self.end_headers()
+                    self.wfile.write(stuk)
+                    return
+                except (ValueError, IndexError):
+                    pass
+            self.send_response(200)
+            self.send_header("Content-Type", soort)
+            self.send_header("Accept-Ranges", "bytes")
+            self.send_header("Content-Length", str(len(inhoud)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            self.wfile.write(inhoud)
         else:
             with open(f"{MAP}/index.html", "rb") as f:
                 self._stuur(f.read())
