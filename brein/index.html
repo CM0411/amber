@@ -26,8 +26,21 @@
             font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
   #status b { color: #cfe2ff; font-weight: 600; }
   #titel { top: 16px; left: 22px; font-size: 15px; letter-spacing: .35em;
-           color: #5f6f92; text-transform: uppercase; }
-  #titel a { color: #5f6f92; text-decoration: none; border-bottom: 1px dotted #2c3a5e; }
+           color: #5f6f92; text-transform: uppercase; cursor: pointer;
+           user-select: none; }
+  #titel .pijl { display: inline-block; transition: transform .2s;
+                 letter-spacing: 0; }
+  #titel.open .pijl { transform: rotate(180deg); }
+  #menu { top: 44px; left: 22px; display: none; min-width: 250px;
+          background: #0c1230; border: 1px solid #1d2b4d; border-radius: 8px;
+          padding: 8px 0; font-family: ui-monospace, "Cascadia Mono",
+          Consolas, monospace; font-size: 12.5px; z-index: 3; }
+  #menu.open { display: block; }
+  #menu a { display: flex; justify-content: space-between; gap: 14px;
+            padding: 6px 14px; color: #8ea0c0; text-decoration: none; }
+  #menu a:hover { background: #131b3e; color: #cfe2ff; }
+  #menu .st { color: #51608a; font-size: 11px; }
+  #menu .st.lopend { color: #7fe0c3; }
   #uren { top: 42px; left: 22px; font-size: 11px; color: #47536f;
           font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
           letter-spacing: .08em; }
@@ -83,7 +96,8 @@
 </head>
 <body>
 <canvas id="doek"></canvas>
-<div class="laag-tekst" id="titel"><a href="/rapport">Amber</a></div>
+<div class="laag-tekst" id="titel">Amber <span class="pijl">▾</span></div>
+<div class="laag-tekst" id="menu"></div>
 <div class="laag-tekst" id="uren"></div>
 <div id="rechts">
   <div id="status">wachten op de kijker&hellip;</div>
@@ -102,6 +116,10 @@
   <div id="herinnert"></div>
 </div>
 <script>
+document.getElementById("titel").addEventListener("click", () => {
+  document.getElementById("titel").classList.toggle("open");
+  document.getElementById("menu").classList.toggle("open");
+});
 const doek = document.getElementById("doek");
 const ctx = doek.getContext("2d");
 let B = 1, H = 1;
@@ -252,6 +270,27 @@ async function haal() {
         ? `${s.familie} · moeilijkheid ${s.diepte} · groen is plus, rood is min in haar echte bedrading · brein van stap ${s.checkpoint_stap.toLocaleString("nl")}`
         : "";
     }
+    // het uitklapmenu onder de titel: elk rapport met zijn status
+    const menu = document.getElementById("menu");
+    const cfg = (s.run && s.run.config) || {};
+    const mRegel = ((s.run && s.run.regel) || "")
+      .match(/stap\s+(\d+)\/(\d+)\s+(\d+)%/);
+    let mh = "";
+    for (const f of (s.rapporten || [])) {
+      const naam = f.replace(".html", "");
+      let label = naam, status = "", extra = "";
+      if (naam === "index") { label = "rapportoverzicht"; }
+      else if (naam === "stemmen") { label = "stemkeuze"; }
+      else if (naam === cfg.naam && mRegel) {
+        status = "lopend";
+        extra = ` · ${(+mRegel[1]).toLocaleString("nl")} (${mRegel[3]}%)`;
+      }
+      else if (naam.startsWith("run")) { status = "definitief"; }
+      mh += `<a href="/rapport/${f}" target="_blank"><span>${label}</span>`
+          + `<span class="st ${status}">${status}${extra}</span></a>`;
+    }
+    menu.innerHTML = mh || '<a><span>nog geen rapporten</span></a>';
+
     const run = s.run && s.run.regel ? s.run.regel : "";
     const st = document.getElementById("status");
     const rc = (s.run && s.run.config) || {};

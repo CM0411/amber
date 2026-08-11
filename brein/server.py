@@ -141,6 +141,13 @@ class Venster(BaseHTTPRequestHandler):
                 stand = {}
             with _slot:
                 stand["run"] = dict(_run)
+            # De rapportenlijst voor het uitklapmenu onder de titel.
+            try:
+                stand["rapporten"] = sorted(
+                    f for f in os.listdir("/home/arch/rapport")
+                    if f.endswith(".html"))
+            except Exception:
+                pass
             try:
                 with open("/home/arch/amber-werk/wachter/stand.json") as f:
                     stand["wachter"] = json.load(f)
