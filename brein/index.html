@@ -168,15 +168,6 @@ function plaats(kol, i) {
   const y = n === 1 ? midden : midden - hoog / 2 + hoog * i / (n - 1);
   return [x, y];
 }
-function bolRoute(x1, y1, x2, y2, u) {
-  // precies de strakke waaierlijn van de draden, zodat vonkjes van
-  // laag 8 hun eigen draad naar de uitvoer volgen
-  const cx = (x1 + x2) / 2;
-  const cy = (y1 + y2) / 2 + (kromming(y1, y2) - (y1 + y2) / 2) * 0.2;
-  const w = 1 - u;
-  return [w * w * x1 + 2 * w * u * cx + u * u * x2,
-          w * w * y1 + 2 * w * u * cy + u * u * y2];
-}
 function kromming(y1, y2) {
   // draden bollen weg van het midden: samen vormen ze de lensvormen
   const midden = H * 0.465;
@@ -239,7 +230,6 @@ function bouwWeefsel() {
       for (let b = 0; b < KOL[k]; b++)
         paren.push([(bedradingUit ? bedradingUit[b] : 0.5), true, b, 0]);
     }
-    const naarBol = k === KOL.length - 2;
     for (const [w, plus, b, d] of paren) {
       const [x1, y1] = plaats(k, b);
       const [x2, y2] = plaats(k + 1, d);
@@ -249,16 +239,7 @@ function bouwWeefsel() {
       q.lineWidth = Math.max(0.6, Math.min(B, H) * 0.0007);
       q.beginPath();
       q.moveTo(x1, y1);
-      if (naarBol) {
-        // een strakke, nette waaier naar de uitvoer: bijna recht, met
-        // een zweem van de lensbuiging (Cleys smaak: rustig en clean)
-        q.quadraticCurveTo((x1 + x2) / 2,
-                           (y1 + y2) / 2
-                           + (kromming(y1, y2) - (y1 + y2) / 2) * 0.2,
-                           x2, y2);
-      } else {
-        q.quadraticCurveTo((x1 + x2) / 2, kromming(y1, y2), x2, y2);
-      }
+      q.quadraticCurveTo((x1 + x2) / 2, kromming(y1, y2), x2, y2);
       q.stroke();
     }
     weefsel.push(c);
@@ -538,23 +519,26 @@ function teken(t) {
   }
   for (const v of vonken) {
     v.u += v.sn;
-    // u bestaat voor béide takken — de kleurregel hieronder gebruikt hem
-    // ook; toen hij alleen in de else-tak stond bevroor het hele beeld
-    // zodra het eerste vonkje de boog op ging (11 aug 2026)
     const u = Math.min(1, v.u);
     const [x1, y1] = plaats(v.k, v.b);
     const [x2, y2] = plaats(v.k + 1, v.d);
-    let x, y;
-    if (v.k === KOL.length - 2) {
-      [x, y] = bolRoute(x1, y1, x2, y2, u);
-    } else {
-      const cy = kromming(y1, y2), cx = (x1 + x2) / 2;
-      const w = 1 - u;
-      x = w * w * x1 + 2 * w * u * cx + u * u * x2;
-      y = w * w * y1 + 2 * w * u * cy + u * u * y2;
-    }
+    const cy = kromming(y1, y2), cx = (x1 + x2) / 2;
+    const w = 1 - u;
+    const x = w * w * x1 + 2 * w * u * cx + u * u * x2;
+    const y = w * w * y1 + 2 * w * u * cy + u * u * y2;
+    // het draadje waarover hij reist licht zacht mee: aanzwellen naar
+    // het midden van de reis, uitdoven naar het eind — nooit een flits
+    const zwel = Math.sin(Math.PI * u);
+    ctx.strokeStyle = `rgba(215,232,255,${(0.18 * zwel).toFixed(3)})`;
+    ctx.lineWidth = mn * 0.0011;
+    ctx.beginPath(); ctx.moveTo(x1, y1);
+    ctx.quadraticCurveTo(cx, cy, x2, y2); ctx.stroke();
     ctx.fillStyle = `rgba(235,244,255,${(0.85 * (1 - u * 0.4)).toFixed(2)})`;
     ctx.beginPath(); ctx.arc(x, y, mn * 0.0016, 0, 7); ctx.fill();
+    // aankomst: het bolletje gloeit zacht mee en dooft vanzelf (x0,97
+    // per beeldje); de uitvoerbol ademt en doet hier niet aan mee
+    if (v.u >= 1 && gloed[v.k + 1])
+      gloed[v.k + 1][v.d] = Math.min(1, (gloed[v.k + 1][v.d] || 0) + 0.45);
   }
   vonken = vonken.filter(v => v.u < 1);
 
