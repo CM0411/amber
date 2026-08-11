@@ -176,28 +176,16 @@ function plaats(kol, i) {
   return [x, y];
 }
 function bolRoute(x1, y1, x2, y2, u) {
-  // dezelfde omweg als de draden: uitzwenken, vrije baan, indalen —
-  // zodat vonkjes van laag 8 hun eigen draad naar de bol volgen
+  // precies de boog van de draden (het fotontwerp), zodat vonkjes van
+  // laag 8 hun eigen draad naar de bol volgen
   const boven = y1 <= H * 0.465;
-  const baanY = boven ? H * 0.05 : H * 0.945;
-  const uit = B * 0.033;
-  const q2 = (p0, c, p1, t) => {
-    const w = 1 - t;
-    return [w * w * p0[0] + 2 * w * t * c[0] + t * t * p1[0],
-            w * w * p0[1] + 2 * w * t * c[1] + t * t * p1[1]];
-  };
-  if (u < 0.2) {
-    const t = u / 0.2, w = 1 - t;
-    return [w * w * w * x1 + 3 * w * w * t * (x1 + uit)
-            + 3 * w * t * t * (x1 + uit) + t * t * t * (x1 - B * 0.01),
-            w * w * w * y1 + 3 * w * w * t * y1
-            + 3 * w * t * t * baanY + t * t * t * baanY];
-  }
-  if (u < 0.8)
-    return q2([x1 - B * 0.01, baanY],
-              [(x1 + x2) / 2, baanY + (boven ? -H * 0.025 : H * 0.025)],
-              [x2 + B * 0.05, baanY], (u - 0.2) / 0.6);
-  return q2([x2 + B * 0.05, baanY], [x2, baanY], [x2, y2], (u - 0.8) / 0.2);
+  const boogY = boven ? H * 0.015 : H * 0.915;
+  const c1x = x1 - (x1 - x2) * 0.15, c2x = x2 + (x1 - x2) * 0.35;
+  const t = u, w = 1 - t;
+  return [w * w * w * x1 + 3 * w * w * t * c1x + 3 * w * t * t * c2x
+          + t * t * t * x2,
+          w * w * w * y1 + 3 * w * w * t * boogY + 3 * w * t * t * boogY
+          + t * t * t * y2];
 }
 function kromming(y1, y2) {
   // draden bollen weg van het midden: samen vormen ze de lensvormen
@@ -275,17 +263,12 @@ function bouwWeefsel() {
       q.beginPath();
       q.moveTo(x1, y1);
       if (naarBol) {
-        // volledig búiten het veld om: eerst uitzwenken voorbij laag 8,
-        // dan door de vrije baan boven of onder álle lagen langs, en pas
-        // vlak bij de bol indalen — nooit dwars door een laag heen
+        // het ontwerp van Cleys foto (11 aug 2026): grote bogen die vrij
+        // over het veld zwaaien, de bovenste helft hoog, de onderste laag
         const boven = y1 <= H * 0.465;
-        const baanY = boven ? H * 0.05 : H * 0.945;
-        const uit = B * 0.033;
-        q.bezierCurveTo(x1 + uit, y1, x1 + uit, baanY, x1 - B * 0.01, baanY);
-        q.quadraticCurveTo((x1 + x2) / 2,
-                           baanY + (boven ? -H * 0.025 : H * 0.025),
-                           x2 + B * 0.05, baanY);
-        q.quadraticCurveTo(x2, baanY, x2, y2);
+        const boogY = boven ? H * 0.015 : H * 0.915;
+        q.bezierCurveTo(x1 - (x1 - x2) * 0.15, boogY,
+                        x2 + (x1 - x2) * 0.35, boogY, x2, y2);
       } else {
         q.quadraticCurveTo((x1 + x2) / 2, kromming(y1, y2), x2, y2);
       }
