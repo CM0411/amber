@@ -200,19 +200,20 @@ async function haal() {
 }
 haal(); setInterval(haal, 5000);
 
-// --- het netwerk: de mix — bolletjeskolommen mét zichtbare banden ---------
-// Het skelet van het origineel (per laag een kolom van 32 bolletjes, gloed
-// naar haar echte activiteit) met de leesbaarheid van de kamerversie:
-// brede groen/rood-banden voor wat de gewichten netto doen, één glijdend
-// lichtpunt, en rechts de zekerheidsbol.
+// --- het netwerk: zoals op het grote scherm, op duimformaat ---------------
+// Bolletjeskolommen, ronde draden uit haar echte bedrading (groen plus,
+// rood min), vonkjes waarvan het draadje zacht meegloeit, bolletjes die
+// alléén oplichten als er een vonkje aankomt, en een ademende uitvoerbol.
 const net = document.getElementById("net");
 const nctx = net.getContext("2d");
-let nLagen = [], nZeker = 0, nBanden = [], nTijd = 0;
+let nLagen = [], nZeker = 0, nBedrading = null, nBedradingUit = null;
+let nGloed = [], nVonken = [], nTijd = 0, nDoek = null;
 
 function netMaat() {
   const dpr = Math.min(devicePixelRatio || 1, 2);
   net.width = net.clientWidth * dpr;
   net.height = net.clientHeight * dpr;
+  nDoek = null;
 }
 addEventListener("resize", netMaat);
 
@@ -227,98 +228,138 @@ async function haalNet() {
         return k.map(v => Math.abs(v) / top);
       });
       nZeker = rij.uit || 0;
-      nBanden = (s.bedrading || []).map(M => {
-        let som = 0, absom = 0, n = 0;
-        for (const r of M) for (const v of r) { som += v; absom += Math.abs(v); n++; }
-        return {sterkte: Math.min(1, (absom / n) * 6), plus: som >= 0};
-      });
+      nBedrading = s.bedrading;
+      nBedradingUit = s.bedrading_uit;
+      if (nGloed.length !== nLagen.length)
+        nGloed = nLagen.map(k => new Array(k.length).fill(0));
+      nDoek = null;
     }
   } catch (e) {}
 }
 haalNet(); setInterval(haalNet, 5000);
 
-function nPlek(k, i, nK) {
+function nPlek(k, i) {
   const B = net.width, H = net.height;
-  const x = B * 0.06 + B * 0.82 * k / (nK - 1);
+  const nK = nLagen.length + 1;              // kolommen + de uitvoerbol
+  const x = B * 0.05 + B * 0.9 * k / (nK - 1);
+  if (k >= nLagen.length) return [x, H * 0.44];
   const n = nLagen[k].length;
-  const y = H * 0.07 + H * 0.74 * i / (n - 1);
-  return [x, y];
+  return [x, H * 0.05 + H * 0.78 * i / (n - 1)];
+}
+function nKromming(y1, y2) {
+  const midden = net.height * 0.44;
+  const m = (y1 + y2) / 2;
+  return m + (m - midden) * 0.45 + (y2 - y1) * 0.08;
 }
 
-function nTeken() {
+function nWeefsel() {
+  nDoek = document.createElement("canvas");
+  nDoek.width = net.width; nDoek.height = net.height;
+  const q = nDoek.getContext("2d");
+  q.globalCompositeOperation = "lighter";
+  q.lineWidth = Math.max(0.35, net.width / 2200);
+  const teken = (x1, y1, x2, y2, plus, w) => {
+    q.strokeStyle = plus
+      ? `rgba(105,225,150,${(0.04 + w * 0.22).toFixed(3)})`
+      : `rgba(255,115,85,${(0.04 + w * 0.22).toFixed(3)})`;
+    q.beginPath(); q.moveTo(x1, y1);
+    q.quadraticCurveTo((x1 + x2) / 2, nKromming(y1, y2), x2, y2);
+    q.stroke();
+  };
+  for (let k = 0; k < nLagen.length - 1 && nBedrading && k < nBedrading.length; k++) {
+    const M = nBedrading[k];
+    let paren = [];
+    for (let d = 0; d < M.length; d++)
+      for (let b = 0; b < M[d].length; b++)
+        if (Math.abs(M[d][b]) > 0.06) paren.push([Math.abs(M[d][b]), M[d][b] > 0, b, d]);
+    paren.sort((a, z) => z[0] - a[0]);
+    for (const [w, plus, b, d] of paren.slice(0, 110)) {
+      const [x1, y1] = nPlek(k, b * nLagen[k].length / M[0].length);
+      const [x2, y2] = nPlek(k + 1, d * nLagen[k + 1].length / M.length);
+      teken(x1, y1, x2, y2, plus, w);
+    }
+  }
+  // laag 8 -> de uitvoerbol
+  const laatst = nLagen.length - 1;
+  for (let b = 0; b < nLagen[laatst].length; b++) {
+    const w = nBedradingUit
+      ? nBedradingUit[Math.floor(b * nBedradingUit.length / nLagen[laatst].length)] || 0.3
+      : 0.3;
+    const [x1, y1] = nPlek(laatst, b);
+    const [x2, y2] = nPlek(laatst + 1, 0);
+    teken(x1, y1, x2, y2, true, w * 0.8);
+  }
+}
+
+function nTeken(t) {
   requestAnimationFrame(nTeken);
   const B = net.width, H = net.height;
   nctx.clearRect(0, 0, B, H);
   if (!nLagen.length) return;
-  const nK = nLagen.length;
-  const golf = (performance.now() / 5200) % 1.25;
-  const midden = golf * (nK + 2) - 0.5;
-  const middenY = H * 0.07 + H * 0.37;
+  if (!nDoek) nWeefsel();
+  nctx.drawImage(nDoek, 0, 0);
 
-  // de banden achter de kolommen: breed, zacht, en echt te zien
-  for (let k = 0; k < nK - 1 && k < nBanden.length; k++) {
-    const b = nBanden[k];
-    const [x1] = nPlek(k, 0, nK), [x2] = nPlek(k + 1, 0, nK);
-    const kleur = b.plus ? "127, 224, 195" : "255, 140, 110";
-    const g = nctx.createLinearGradient(x1, 0, x2, 0);
-    g.addColorStop(0, `rgba(${kleur}, 0)`);
-    g.addColorStop(.5, `rgba(${kleur}, ${0.10 + b.sterkte * 0.30})`);
-    g.addColorStop(1, `rgba(${kleur}, 0)`);
-    nctx.fillStyle = g;
-    const dik = H * 0.30 * (0.45 + b.sterkte * 0.55);
-    nctx.beginPath();
-    nctx.moveTo(x1, middenY - dik); 
-    nctx.quadraticCurveTo((x1 + x2) / 2, middenY - dik * 1.15, x2, middenY - dik);
-    nctx.lineTo(x2, middenY + dik);
-    nctx.quadraticCurveTo((x1 + x2) / 2, middenY + dik * 1.15, x1, middenY + dik);
-    nctx.closePath(); nctx.fill();
+  // vonkjes: geboren bij sterke bolletjes, reizend over hun eigen draad
+  if (nVonken.length < 26 && Math.random() < 0.35) {
+    const k = Math.floor(Math.random() * nLagen.length);
+    const naarBol = k === nLagen.length - 1;
+    const sterk = nLagen[k].map((v, i) => [v, i])
+      .sort((a, z) => z[0] - a[0]).slice(0, 8);
+    const doelK = naarBol ? [[1, 0]]
+      : nLagen[k + 1].map((v, i) => [v, i]).sort((a, z) => z[0] - a[0]).slice(0, 8);
+    const [, b] = sterk[Math.floor(Math.random() * sterk.length)] || [0, 0];
+    const [, d] = doelK[Math.floor(Math.random() * doelK.length)] || [0, 0];
+    nVonken.push({k, b, d, u: 0, sn: 0.011 + Math.random() * 0.014});
   }
+  for (const v of nVonken) {
+    v.u += v.sn;
+    const u = Math.min(1, v.u);
+    const [x1, y1] = nPlek(v.k, v.b);
+    const [x2, y2] = nPlek(v.k + 1, v.d);
+    const cx = (x1 + x2) / 2, cy = nKromming(y1, y2);
+    const w = 1 - u;
+    const x = w * w * x1 + 2 * w * u * cx + u * u * x2;
+    const y = w * w * y1 + 2 * w * u * cy + u * u * y2;
+    const zwel = Math.sin(Math.PI * u);
+    nctx.strokeStyle = `rgba(215,232,255,${(0.16 * zwel).toFixed(3)})`;
+    nctx.lineWidth = Math.max(0.5, B / 1800);
+    nctx.beginPath(); nctx.moveTo(x1, y1);
+    nctx.quadraticCurveTo(cx, cy, x2, y2); nctx.stroke();
+    nctx.fillStyle = `rgba(235,244,255,${(0.8 * (1 - u * 0.4)).toFixed(2)})`;
+    nctx.beginPath(); nctx.arc(x, y, Math.max(1, B / 700), 0, 7); nctx.fill();
+    if (v.u >= 1 && v.k + 1 < nGloed.length)
+      nGloed[v.k + 1][v.d] = Math.min(1, (nGloed[v.k + 1][v.d] || 0) + 0.45);
+  }
+  nVonken = nVonken.filter(v => v.u < 1);
 
-  // de bolletjeskolommen, gloed naar activiteit en de langskomende golf
-  nctx.font = `${Math.round(H * 0.05)}px ui-monospace, monospace`;
-  nctx.textAlign = "center";
-  for (let k = 0; k < nK; k++) {
-    const puls = Math.exp(-((k - midden) ** 2) / 0.9);
-    const n = nLagen[k].length;
-    for (let i = 0; i < n; i++) {
-      const v = nLagen[k][i];
-      const gl = v * (0.45 + puls * 0.55);
-      const [x, y] = nPlek(k, i, nK);
-      nctx.fillStyle = `rgba(${145 + gl * 95}, ${172 + gl * 63}, 255, ${0.30 + gl * 0.62})`;
+  // de bolletjes: gloed alleen door aankomsten, rustig uitdovend
+  for (let k = 0; k < nLagen.length; k++)
+    for (let i = 0; i < nLagen[k].length; i++) {
+      nGloed[k][i] *= 0.97;
+      const gl = nGloed[k][i];
+      const [x, y] = nPlek(k, i);
+      nctx.fillStyle = `rgba(${205 + 50 * gl | 0},${220 + 35 * gl | 0},255,${(0.42 + 0.55 * gl).toFixed(2)})`;
       nctx.beginPath();
-      nctx.arc(x, y, (1.5 + gl * 2.1) * (B / 900), 0, 7);
+      nctx.arc(x, y, (1.1 + gl * 1.6) * (B / 700), 0, 7);
       nctx.fill();
     }
-    nctx.fillStyle = `rgba(81, 96, 138, ${0.7 + puls * 0.3})`;
-    nctx.fillText(k === 0 ? "in" : k, nPlek(k, 0, nK)[0], H * 0.93);
-  }
 
-  // de uitgang: de zekerheidsbol
-  const ux = B * 0.94, uy = middenY;
-  const ur = B * 0.028;
-  const rg = nctx.createRadialGradient(ux, uy, 0, ux, uy, ur * 3);
-  rg.addColorStop(0, `rgba(190, 220, 255, ${0.22 + nZeker * 0.5})`);
-  rg.addColorStop(1, "rgba(190, 220, 255, 0)");
+  // de uitvoerbol ademt — traag en zacht, nooit een flits
+  const adem = 0.25 + 0.28 * (0.5 + 0.5 * Math.sin((t || 0) / 800));
+  const [ux, uy] = nPlek(nLagen.length, 0);
+  const rg = nctx.createRadialGradient(ux, uy, 0, ux, uy, B * 0.05);
+  rg.addColorStop(0, `rgba(190,220,255,${0.20 + adem * 0.5})`);
+  rg.addColorStop(1, "rgba(190,220,255,0)");
   nctx.fillStyle = rg;
-  nctx.beginPath(); nctx.arc(ux, uy, ur * 3, 0, 7); nctx.fill();
-  nctx.fillStyle = `rgba(207, 226, 255, ${0.45 + nZeker * 0.5})`;
-  nctx.beginPath(); nctx.arc(ux, uy, ur * (0.6 + nZeker * 0.4), 0, 7); nctx.fill();
-  nctx.fillStyle = "rgba(129, 150, 190, 0.95)";
-  nctx.fillText(Math.round(nZeker * 100) + "%", ux, H * 0.93);
-
-  // het glijdende lichtpunt over de middellijn
-  if (midden > -0.5 && midden < nK + 1.2) {
-    const t = Math.min(midden, nK - 1);
-    const lx = nPlek(Math.max(0, t), 0, nK)[0]
-             + (midden > nK - 1 ? (midden - nK + 1) * (ux - nPlek(nK - 1, 0, nK)[0]) / 2 : 0);
-    const lg = nctx.createRadialGradient(lx, middenY, 0, lx, middenY, B * 0.045);
-    lg.addColorStop(0, "rgba(210, 230, 255, 0.5)");
-    lg.addColorStop(1, "rgba(210, 230, 255, 0)");
-    nctx.fillStyle = lg;
-    nctx.beginPath(); nctx.arc(lx, middenY, B * 0.045, 0, 7); nctx.fill();
-  }
+  nctx.beginPath(); nctx.arc(ux, uy, B * 0.05, 0, 7); nctx.fill();
+  nctx.fillStyle = `rgba(207,226,255,${0.5 + adem * 0.4})`;
+  nctx.beginPath(); nctx.arc(ux, uy, B * 0.012 * (1 + adem), 0, 7); nctx.fill();
+  nctx.font = `${Math.round(H * 0.05)}px ui-monospace, monospace`;
+  nctx.textAlign = "center";
+  nctx.fillStyle = "rgba(129,150,190,0.9)";
+  nctx.fillText(Math.round(nZeker * 100) + "%", ux, uy + H * 0.11);
 }
-netMaat(); nTeken();
+netMaat(); requestAnimationFrame(nTeken);
 </script>
 </body>
 </html>
