@@ -104,10 +104,10 @@ def _best_rule(tasks_):
         right = 0
         for t in tasks_:
             try:
-                outcome = rule(_numbers(t.opgave))
+                outcome = rule(_numbers(t.problem))
             except (IndexError, ZeroDivisionError):
                 outcome = None
-            if outcome is not None and t.nakijk(outcome):
+            if outcome is not None and t.check(outcome):
                 right += 1
         score = right / len(tasks_)
         if score > best_score:
@@ -119,7 +119,7 @@ def _apply(name, task):
     if name is None:
         return ""
     try:
-        outcome = RULES[name](_numbers(task.opgave))
+        outcome = RULES[name](_numbers(task.problem))
     except (IndexError, ZeroDivisionError):
         return ""
     return "" if outcome is None else str(outcome)
@@ -139,9 +139,6 @@ class OneRuleLearner:
     def answer_one(self, task):
         return _apply(self.rule, task)
 
-    # migration aliases — drop when the Dutch modules are gone
-    leer = learn
-    antwoord = answer_one
 
 
 class RulePerKindLearner:
@@ -151,16 +148,14 @@ class RulePerKindLearner:
         self.rules = {}
 
     def learn(self, tasks_):
-        kind = (tasks_[0].familie, tasks_[0].graad)
+        kind = (tasks_[0].family, tasks_[0].grade)
         name, score = _best_rule(tasks_)
         if name is not None:
             self.rules[kind] = name
 
     def answer_one(self, task):
-        return _apply(self.rules.get((task.familie, task.graad)), task)
+        return _apply(self.rules.get((task.family, task.grade)), task)
 
-    leer = learn
-    antwoord = answer_one
 
 
 class MemorizerLearner:
@@ -176,10 +171,8 @@ class MemorizerLearner:
 
     def learn(self, tasks_):
         for t in tasks_:
-            self.table[t.opgave] = t.oplossing
+            self.table[t.problem] = t.solution
 
     def answer_one(self, task):
-        return self.table.get(task.opgave, "")
+        return self.table.get(task.problem, "")
 
-    leer = learn
-    antwoord = answer_one

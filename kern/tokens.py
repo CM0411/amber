@@ -84,10 +84,10 @@ def task_to_sequence(task):
     # solution she is expected to write it. Grading looks at the last number,
     # so working out is allowed — and without that room she would have to
     # compute everything in a single pass.
-    target = task.te_leren()
-    seq = ([QUESTION] + encode(task.opgave)
+    target = task.to_learn()
+    seq = ([QUESTION] + encode(task.problem)
            + [ANSWER] + encode(target) + [END])
-    counts = ([False] * (1 + len(encode(task.opgave)) + 1)
+    counts = ([False] * (1 + len(encode(task.problem)) + 1)
               + [True] * (len(encode(target)) + 1))
     return seq, counts
 
@@ -98,7 +98,7 @@ def question_to_sequence(task):
     This is what you hand her when you want to know what she makes of it:
     from here she continues on her own.
     """
-    return [QUESTION] + encode(task.opgave) + [ANSWER]
+    return [QUESTION] + encode(task.problem) + [ANSWER]
 
 
 def answer_from_sequence(codes):

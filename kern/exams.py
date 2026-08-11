@@ -75,8 +75,8 @@ def freeze(name, description, tasks_):
     content = {
         "naam": name,
         "beschrijving": description,
-        "opgaven": [{"familie": t.familie, "graad": t.graad,
-                     "opgave": t.opgave, "oplossing": t.oplossing}
+        "opgaven": [{"familie": t.family, "graad": t.grade,
+                     "opgave": t.problem, "oplossing": t.solution}
                     for t in tasks_],
     }
     temporary = _path(name) + ".deel"
@@ -139,15 +139,9 @@ def take(learner, name=None, at_most=None):
     Measuring must never teach: only answering is used here, never
     learning.
     """
-    # Transition shims until learning.py lands: the Dutch learner exposes
-    # antwoorden/kern.venster, the English one answer/core.window.
-    try:
-        from learning import room_for
-    except ImportError:
-        from leren import ruimte_voor as room_for
-    answer = getattr(learner, "answer", None) or learner.antwoorden
-    core = getattr(learner, "core", None) or learner.kern
-    window = getattr(core, "window", None) or core.venster
+    from learning import room_for
+    answer = learner.answer
+    window = learner.core.window
 
     out = {}
     for exam_name, exam in all_exams().items():
@@ -174,7 +168,7 @@ def take(learner, name=None, at_most=None):
         for family, indices in per_family.items():
             batch = [problems[i] for i in indices]
             deepest = max(t.grade for t in batch)
-            answers = answer(batch, hoogstens=room_for(deepest, family, window))
+            answers = answer(batch, at_most=room_for(deepest, family, window))
             for i, a in zip(indices, answers):
                 given[i] = a
         right = sum(1 for t, a in zip(problems, given) if t.check(a))

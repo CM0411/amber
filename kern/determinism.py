@@ -44,14 +44,20 @@ import sys
 # CUBLAS_WORKSPACE_CONFIG must be set before cuBLAS initializes, which
 # happens when torch is imported. After that it has no effect and torch
 # refuses determinism for matmul on the GPU.
+#
+# Read what was already there BEFORE setting it: the latch below must
+# compare against the value that held when torch loaded. Until 11 Aug 2026
+# the setdefault ran first, so the check compared against its own repair
+# and never fired — a latch that does not clamp, found the day the test
+# suite was translated.
 _WORKSPACE = ":4096:8"
+_ALREADY = os.environ.get("CUBLAS_WORKSPACE_CONFIG")
 os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", _WORKSPACE)
 
 # Refuse when torch was loaded without the workspace setting. During the
 # migration the Dutch module may legitimately have run first — then the
 # environment is already correct and importing torch again changes nothing.
-if ("torch" in sys.modules
-        and os.environ.get("CUBLAS_WORKSPACE_CONFIG") != _WORKSPACE):
+if "torch" in sys.modules and _ALREADY != _WORKSPACE:
     raise RuntimeError(
         "determinism was imported after torch was already loaded.\n"
         "CUBLAS_WORKSPACE_CONFIG then has no effect anymore and determinism "

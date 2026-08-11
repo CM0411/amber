@@ -30,14 +30,14 @@ English successor of nieuwsgierigheid.py; toets-migratie.py enforces that
 both make identical choices from identical streams.
 """
 
-import taken
+import tasks
 
 
 class Curiosity:
     def __init__(self, families=None, grades=None, fade=6.0, floor=0.05):
         self.kinds = [(f, g)
-                      for f in (families or taken.FAMILIES)
-                      for g in (grades or taken.GRADEN)]
+                      for f in (families or tasks.FAMILIES)
+                      for g in (grades or tasks.GRADES)]
         self.fade = fade                # how sharply incompetence steers
         self.floor = floor              # nothing ever drops all the way to zero
         self.score = {s: 0.0 for s in self.kinds}
@@ -84,7 +84,7 @@ class Curiosity:
         total = sum(weights.values())
         # The picker yields integers; drawing proportionally that way avoids
         # floating point — and so avoids choices differing per machine.
-        point = picker.geheel(0, 1_000_000) / 1_000_000 * total
+        point = picker.integer(0, 1_000_000) / 1_000_000 * total
         walker = 0.0
         for kind, weight in weights.items():
             walker += weight

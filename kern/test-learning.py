@@ -1,0 +1,393 @@
+"""
+Tests the replay memory, the curiosity and the learning loop.
+
+These three modules were the only ones without a test, and precisely in
+these three sat the two bugs of 8 Aug 2026 that had to be picked out by
+hand:
+
+  * the memory stored her answer instead of the correct one, so replaying
+    would have her practising her own mistakes
+  * `learn()` did not fill the memory, so replay did nothing while the
+    comparison seemed to say something about it
+
+Both stand below as tests, so they cannot come back.
+
+Run:  venv/bin/python kern/test-learning.py
+"""
+
+import determinism                         # MUST come before torch
+determinism.lock(1234)
+
+import sys
+
+import torch
+
+import replay_memory as rm
+import learning
+import network
+import curiosity as cur
+import tasks
+import tokens
+
+passed = 0
+failed = 0
+
+
+def check(name, good, note=""):
+    global passed, failed
+    if good:
+        passed += 1
+        print(f"[  OK  ] {name}")
+    else:
+        failed += 1
+        print(f"[ FAIL ] {name}")
+    if note:
+        print(f"         {note}")
+
+
+def small_learner(**more):
+    core = network.Core(layers=2, width=64, heads=2, window=128)
+    return learning.Learner(core=core, batch_size=8, **more)
+
+
+print("=" * 70)
+print("Test — memory, curiosity and learning loop")
+print("=" * 70)
+print()
+
+# --- 1. The bottleneck -----------------------------------------------------
+
+print("--- The bottleneck ---")
+memory = rm.ReplayMemory(capacity=100)
+t = tasks.make("rekenen", 3, 500)
+memory.remember(t, "fout antwoord", False)
+
+stored = memory._content[0]
+check(
+    "the memory stores codes, not tasks",
+    isinstance(stored["code"], list)
+    and all(isinstance(c, int) for c in stored["code"]),
+    "there is no way in except through the doorway",
+)
+
+recovered = memory.replay(1, tasks.Picker(1))[0]
+check(
+    "what goes in is the CORRECT answer, not what she made of it",
+    recovered["oplossing"] == t.solution,
+    f"stored {recovered['oplossing']!r}, she said 'fout antwoord' — "
+    f"otherwise replaying has her practising her own mistakes",
+)
+check("the problem comes out whole", recovered["opgave"] == t.problem)
+
+# The working is the lesson. If the memory kept only the bare answer,
+# every recollection would teach her to skip the working — and at 37.5%
+# replay that is over a third of everything she sees. That bug was in on
+# 8 Aug 2026 and spoiled a whole night of training without one report.
+import world as world_module                                      # noqa: E402
+deep = world_module.make("rekenen", 4, 500)
+m2 = rm.ReplayMemory()
+m2.remember(deep, "gegokt", False)
+from_memory = learning._as_task(m2.replay(1, tasks.Picker(1))[0])
+check(
+    "the memory keeps the working, not only the answer",
+    from_memory.to_learn() == deep.to_learn(),
+    f"from the memory: {from_memory.to_learn()!r}",
+)
+check(
+    "and the answer can still be pulled out for marking",
+    from_memory.check(deep.working) and from_memory.solution == deep.solution,
+)
+
+# What does not fit is refused. In phase 4 that is the pressure U must
+# deliver.
+narrow = rm.ReplayMemory(bottleneck=rm.Bottleneck(length=8))
+succeeded = narrow.remember(t, t.solution, True)
+check("what does not fit through the doorway is refused and counted",
+      not succeeded and len(narrow) == 0 and narrow.refused == 1,
+      "in phase 1 this almost never happens; in phase 4 it is the point")
+
+check("the occupancy is reported",
+      0 < memory.bottleneck.occupancy(stored) < 1,
+      f"{memory.bottleneck.occupancy(stored):.0%} of the doorway — this is "
+      f"the number phase 4 squeezes")
+
+print()
+
+# --- 2. Unmarked is not wrong ----------------------------------------------
+
+print("--- Not marked ---")
+m = rm.ReplayMemory()
+m.remember(tasks.make("rekenen", 1, 300), "x", None)
+m.remember(tasks.make("rekenen", 1, 301), "x", True)
+m.remember(tasks.make("rekenen", 1, 302), "x", False)
+status = m.status()
+check(
+    "unmarked does not count as wrong",
+    status["nagekeken"] == 2 and abs(status["goed_deel"] - 0.5) < 1e-9,
+    "two of the three are marked, half of those correct — counting None "
+    "as wrong would quietly distort the picture",
+)
+
+print()
+
+# --- 3. The memory fills up ------------------------------------------------
+
+print("--- Filling up ---")
+small = rm.ReplayMemory(capacity=5)
+for n in range(20):
+    small.remember(tasks.make("rekenen", 2, 400 + n), "x", True)
+check("exactly as many remain as there is room", len(small) == 5)
+content = [small.bottleneck.decode(s)["opgave"] for s in small._content]
+check("and the oldest disappears first",
+      tasks.make("rekenen", 2, 419).problem in content
+      and tasks.make("rekenen", 2, 400).problem not in content)
+
+print()
+
+# --- 4. Replaying is repeatable --------------------------------------------
+
+print("--- Repeatable recall ---")
+a = memory.replay(3, tasks.Picker(99))
+b = memory.replay(3, tasks.Picker(99))
+check("the same picker recalls the same memories",
+      [x["opgave"] for x in a] == [x["opgave"] for x in b],
+      "the picker is passed in and not invented locally, so the choice "
+      "follows from (seed, step number)")
+
+print()
+
+# --- 5. Curiosity ----------------------------------------------------------
+
+print("--- Curiosity ---")
+c1 = cur.Curiosity()
+c2 = cur.Curiosity()
+picks1 = [c1.pick(s, tasks.Picker(s)) for s in range(50)]
+picks2 = [c2.pick(s, tasks.Picker(s)) for s in range(50)]
+check("the same pickers give the same order of topics", picks1 == picks2)
+
+c = cur.Curiosity()
+before = c.attraction(100)[("rekenen", 1)]
+c.update(("rekenen", 1), 1.0, 100)
+after = c.attraction(100)[("rekenen", 1)]
+check("curiosity fades once she can do something", after < before,
+      f"{before:.2f} → {after:.2f} once the score stands at 1")
+
+c.update(("rekenen", 1), 1.0, 0)
+check("and returns when something has not come by for long",
+      c.attraction(1000)[("rekenen", 1)] > after,
+      "without this she hangs on the hardest thing and C measures the "
+      "order instead of forgetting")
+
+c = cur.Curiosity()
+for kind in c.kinds:
+    c.update(kind, 1.0, 0)
+c.update(("code", 1), 0.0, 0)
+chosen = {c.pick(s, tasks.Picker(s * 31 + 7)) for s in range(300)}
+check(
+    "she does not always pick the most attractive",
+    len(chosen) > 1,
+    f"{len(chosen)} different topics in 300 picks — always taking the "
+    f"highest would pin her to one topic",
+)
+check("and the most attractive does come by most often",
+      max(((c.pick(s, tasks.Picker(s * 31 + 7)) == ("code", 1))
+           for s in range(300)), default=False))
+
+print()
+
+# --- 6. The learning loop: does the loss count over the right part? --------
+
+print("--- Where the loss counts ---")
+learner = small_learner()
+t = tasks.make("rekenen", 1, 700)
+codes, mask = learner._make_batch([t])
+
+# _step does the same: the score at place i predicts character i+1.
+target = codes[:, 1:][mask[:, 1:]].tolist()
+check(
+    "the loss counts exactly over the answer plus the END token",
+    tokens.decode(target) == t.solution and target[-1] == tokens.END,
+    f"predicted is: {tokens.show(target)!r} — shift one position and she "
+    f"learns to predict the question, which looks fine in the loss curve",
+)
+check("nothing of the question is counted in",
+      not any(mask[0][:codes[0].tolist().index(tokens.ANSWER) + 1]))
+
+print()
+
+# --- 7. Answering in one batch equals answering separately -----------------
+
+print("--- Answering in one batch ---")
+learner = small_learner()
+probe = [tasks.make("rekenen", 1, 800 + i) for i in range(6)]
+# The same room for both, or one cuts off where the other continues: the
+# room depends on the longest problem in the batch.
+together = learner.answer(probe, at_most=32)
+separate = [learner.answer([t], at_most=32)[0] for t in probe]
+check(
+    "six tasks together gives the same as six times one",
+    together == separate,
+    "pad on the right with an own counter per task; padding left would "
+    "shift the positions and that would fail here silently",
+)
+
+print()
+
+# --- 8. The batch stays the same size --------------------------------------
+
+print("--- Equal batches ---")
+without = small_learner(replay_share=0.0)
+with_replay = small_learner(replay_share=0.5)
+check("without replay the whole batch is new",
+      without.new_per_batch == without.batch_size)
+check("with 50% replay half is new",
+      with_replay.new_per_batch == with_replay.batch_size // 2,
+      f"{with_replay.new_per_batch} new + "
+      f"{with_replay.batch_size - with_replay.new_per_batch} replayed = "
+      f"{with_replay.batch_size}. Replay comes out of new material, not on "
+      f"top of it")
+
+# And that must really turn out that way in the batch the network sees.
+seen = []
+real_step = with_replay._step
+with_replay._step = lambda chunk: (seen.append(len(chunk)), real_step(chunk))[1]
+with_replay.learn(tasks.learning_tasks("rekenen", 1, 40))
+check("every batch the network sees is the same size",
+      all(g == with_replay.batch_size for g in seen),
+      f"batches: {seen} — the first one too, because the memory is filled "
+      f"before anything is replayed from it")
+with_replay._step = real_step
+
+print()
+
+# --- 9. Learning fills the memory ------------------------------------------
+
+print("--- Learning remembers ---")
+learner = small_learner()
+check("the memory starts empty", len(learner.memory) == 0)
+learner.learn(tasks.learning_tasks("rekenen", 1, 16))
+check(
+    "what is learned also enters the memory",
+    len(learner.memory) == 16,
+    "without this the memory stays empty and replay does nothing, while a "
+    "comparison with and without seems to say something about it",
+)
+
+print()
+
+# --- 10. Does the thing actually learn? ------------------------------------
+
+print("--- Does the loss drop? ---")
+determinism.lock(7)
+learner = small_learner()
+first = learner.learn(tasks.learning_tasks("rekenen", 1, 8 * 5))
+for _ in range(10):
+    last = learner.learn(tasks.learning_tasks("rekenen", 1, 8 * 5,
+                                              start=tasks.TEST_UPTO + 9000))
+check("the loss drops with repeated practice", last < first,
+      f"{first:.3f} → {last:.3f}")
+
+print()
+
+# --- 11. Repeatable --------------------------------------------------------
+
+print("--- Repeatable ---")
+
+
+def weights_after_learning():
+    determinism.lock(555)
+    l = small_learner()
+    l.learn(tasks.learning_tasks("rekenen", 2, 24))
+    return [p.detach().clone() for p in l.core.parameters()]
+
+
+check("two identical runs give bit for bit the same weights",
+      all(torch.equal(a, b) for a, b in zip(weights_after_learning(),
+                                            weights_after_learning())),
+      "the learning loop is thereby as repeatable as the core beneath it")
+
+print("--- Her state travels along ---")
+# N: "Her state is more than weights: her accumulated memory too." At the
+# crash of 9 Aug 2026 the run resumed with her ability intact and her
+# 20,000 memories gone. This pins down that that cannot come back.
+import snapshot as snapshot_module                                 # noqa: E402
+import os as os_module                                             # noqa: E402
+determinism.lock(808)
+l1 = small_learner()
+l1.learn(tasks.learning_tasks("rekenen", 2, 24))
+l1.curiosity.update(("rekenen", 2), 0.7, 5)
+path = "/home/arch/amber-werk/tmp/toestand.pt"
+snapshot_module.write(path, 5, l1.core, l1.optimizer, determinism.state(),
+                      extra=l1.carry())
+
+determinism.lock(808)
+l2 = small_learner()
+content = snapshot_module.read(path)
+snapshot_module.restore(content, l2.core, l2.optimizer, l2.device)
+l2.restore(content["extra"])
+
+check("her memory comes back bit for bit from the snapshot",
+      l2.memory._content == l1.memory._content
+      and len(l2.memory) == 24,
+      f"{len(l2.memory)} memories, content identical")
+check("the curiosity comes back with its clock",
+      l2.curiosity.score == l1.curiosity.score
+      and l2.curiosity.last == l1.curiosity.last,
+      "without the clock, elapsed time attracts nowhere after a restart")
+a = l1.memory.replay(5, tasks.Picker(3))
+b = l2.memory.replay(5, tasks.Picker(3))
+check("replaying after the restart gives exactly the same memories",
+      [x["opgave"] for x in a] == [x["opgave"] for x in b])
+os_module.remove(path)
+
+# --- balanced forgetting — phase-4 foretaste (10 Aug 2026) -----------------
+
+def _cell_task(family, grade, n):
+    return tasks.Task(family=family, grade=grade, number=n,
+                      problem=f"{family} {grade} nr {n}", solution=str(n))
+
+ev = rm.ReplayMemory(capacity=50)
+for i in range(10):
+    ev.remember(_cell_task("puzzel", 1, i), None, None)   # rare, and old
+for i in range(200):
+    ev.remember(_cell_task("rekenen", 1, 1000 + i), None, None)
+tally = {}
+for s in ev._content:
+    cell = (s["familie"], s["graad"])
+    tally[cell] = tally.get(cell, 0) + 1
+check("rare cells survive the forgetting",
+      tally.get(("puzzel", 1), 0) == 10,
+      "the old ring would have thrown all ten away: what is not in it, "
+      "replay cannot protect")
+check("the largest cell gives way, oldest first",
+      tally.get(("rekenen", 1), 0) == 40
+      and ev._content[-1]["familie"] == "rekenen")
+
+ev2 = rm.ReplayMemory(capacity=50)
+ev2.restore(ev.carry())
+for i in range(5):
+    ev.remember(_cell_task("code", 1, 5000 + i), None, None)
+    ev2.remember(_cell_task("code", 1, 5000 + i), None, None)
+check("after restore it forgets on as if nothing happened",
+      [s["code"] for s in ev._content] == [s["code"] for s in ev2._content],
+      "the tally is not in the snapshot and is rebuilt exactly")
+
+# The bottleneck follows the window (Cley's call, 10 Aug 2026): what she
+# can read she may remember, and when the window grows the doorway grows
+# along by itself.
+tiny = learning.Learner(core=network.Core(layers=1, width=32, heads=2,
+                                          window=96), batch_size=4)
+check("the bottleneck follows the window",
+      tiny.memory.bottleneck.length == 96)
+long_task = tasks.Task(family="rekenen", grade=6, number=1,
+                       problem="x" * 30, solution="7", working="y" * 50)
+check("an experience of worldly length is now allowed in",
+      tiny.memory.remember(long_task, None, None),
+      "83 characters plus markers — the old doorway of 128 on a window of "
+      "96 would also have refused it, but for the wrong reason")
+
+print()
+print("=" * 70)
+print(f"passed: {passed}    failed: {failed}")
+print("=" * 70)
+sys.exit(0 if failed == 0 else 1)

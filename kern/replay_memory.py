@@ -61,9 +61,6 @@ class Bottleneck:
     def __init__(self, charset=CHARSET, length=LENGTH):
         self.charset = charset
         self.length = length
-        # Dutch aliases for the transition — wachter/kijker still read these.
-        self.tekens_in_de_set = charset
-        self.lengte = length
 
     def encode(self, task, given_answer, correct):
         """An experience becomes a sequence of characters. Nothing bigger
@@ -84,8 +81,8 @@ class Bottleneck:
         # working — at 37.5% replay that is over a third of everything she
         # sees. Found on 9 Aug 2026 after a night of guessing at grade 4
         # while she could do it.
-        raw = ([tokens.QUESTION] + tokens.encode(task.opgave)
-               + [tokens.ANSWER] + tokens.encode(task.te_leren())
+        raw = ([tokens.QUESTION] + tokens.encode(task.problem)
+               + [tokens.ANSWER] + tokens.encode(task.to_learn())
                + [tokens.END])
         if len(raw) > self.length:
             raise Refused(
@@ -99,8 +96,8 @@ class Bottleneck:
             )
         return {
             "code": raw,
-            "familie": task.familie,
-            "graad": task.graad,
+            "familie": task.family,
+            "graad": task.grade,
             # None means: not graded. That is different from wrong, and
             # mixing the two silently distorts the picture of how well she
             # is doing.
@@ -195,7 +192,7 @@ class ReplayMemory:
         """
         if not self._content:
             return []
-        chosen = [self._content[picker.geheel(0, len(self._content) - 1)]
+        chosen = [self._content[picker.integer(0, len(self._content) - 1)]
                   for _ in range(min(how_many, len(self._content)))]
         return [self.bottleneck.decode(s) for s in chosen]
 

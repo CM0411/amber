@@ -189,10 +189,31 @@ def _rij_reeks(diepte, t, lengte):
     orde" negeerde de regel eronder, en diepte 5 gaf hetzelfde als diepte 8.
     """
     if diepte <= 1:
-        start = t.geheel(1, 30)
-        if t.keuze((True, False, False)):
-            factor = t.geheel(2, 3)
+        soort = t.keuze(("maal", "plus", "plus", "beide-vorige"))
+        if soort == "maal":
+            # Tot en met ×6, zoals de grondslag vraagt — tot 11 aug 2026 was
+            # dit ×2/×3 en stond puzzel graad 2 daardoor op 30%: bij een
+            # ×5-rij viel ze terug op aftrekken en verdwaalde. De start
+            # krimpt mee met de factor, zodat het laatste getal in de buurt
+            # van het proefwerk blijft (~400.000) en niet ontploft.
+            # Ondergrens 30: het plafond dient de kórte, getoonde rijen
+            # (grondslag graad 2). Lange rijen — de strengen van diepte 6+ —
+            # zouden anders op start 1–2 vastlopen en de variatie doden:
+            # gemeten 11 aug 2026, puzzel d12 zakte van ~1900 naar 135
+            # verschillende opgaven per 2000 nummers.
+            factor = t.geheel(2, 6)
+            plafond = max(30, min(150, 400_000 // factor ** max(1, lengte - 1)))
+            start = t.geheel(1, plafond)
             return [start * factor ** i for i in range(lengte)]
+        if soort == "beide-vorige":
+            # Elk getal is de som van zijn twee voorgangers — de vorm van
+            # grondslag puzzel 5, die tot 11 aug 2026 nergens in de wereld
+            # bestond (0% op het proefwerk).
+            uit = [t.geheel(1, 60), t.geheel(1, 60)]
+            while len(uit) < lengte:
+                uit.append(uit[-2] + uit[-1])
+            return uit[:lengte]
+        start = t.geheel(1, 30)
         stap = t.geheel(2, 19) * t.keuze((1, 1, -1))
         return [start + i * stap for i in range(lengte)]
 
@@ -266,6 +287,16 @@ def _verklaar(rij, laag=0):
             stappen.append(f"{zichtbaar[-1]} * {factor} = {doel}")
             if zichtbaar[-1] * factor == doel:
                 return stappen, True
+
+    # 2b. Som van de vorige twee (grondslag puzzel 5): elk getal is de som
+    #     van zijn twee voorgangers. Dit moet vóór de verschillenrecursie
+    #     staan, want de verschillen van zo'n rij zijn wéér zo'n rij — daar
+    #     komt de recursie nooit uit en dan bestond deze stof niet.
+    if len(zichtbaar) >= 3 and all(rij[i] == rij[i - 2] + rij[i - 1]
+                                   for i in range(2, len(rij))):
+        stappen = [f"{rij[i - 2]} + {rij[i - 1]} = {rij[i]}"
+                   for i in range(2, len(rij))]
+        return stappen, True
 
     # 3. Het verschil verandert zelf: dezelfde methode op de verschillen.
     volgend = doel - zichtbaar[-1]
@@ -372,8 +403,13 @@ def _lus_programma(diepte, t):
     schrijft twee stappen per ronde en past dus minder rondes in dezelfde
     schrijfruimte. Gemeten 10 aug 2026.
     """
-    vorm = t.keuze(("i",) if diepte <= 3 else ("i", "2i", "i2"))
-    n = t.geheel(2, 4 + diepte) if vorm == "i" else t.geheel(2, 2 + diepte)
+    # Alle drie de vormen vanaf diepte 3 — de grondslag vraagt op graad 3
+    # juist `i * 2` en `i * i`, en tot 11 aug 2026 maakte de wereld die pas
+    # op diepte 4, met te weinig rondes (17% op het proefwerk). De aantallen
+    # passen bij venster 768; `past()` filtert wat te groot uitvalt.
+    vorm = t.keuze(("i", "2i", "i2"))
+    n = (t.geheel(2, 4 + 2 * diepte) if vorm == "i"
+         else t.geheel(2, min(11, 3 + 2 * diepte)))
     start = t.geheel(0, 50)
     body = {"i": "totaal += i", "2i": "totaal += i * 2",
             "i2": "totaal += i * i"}[vorm]
@@ -399,9 +435,11 @@ def _lijst_programma(diepte, t):
     # Aantal elementen en de som-variant zijn op 10 aug 2026 tegen de
     # schrijfruimte aan gemeten: op diepte 4 alleen tellen (de som-stappen
     # pasten daar 74 tekens overheen), vanaf 5 ook optellen.
-    getallen = [t.geheel(1, 40) for _ in range(t.geheel(4, min(7, 2 + diepte)))]
+    getallen = [t.geheel(1, 40) for _ in range(t.geheel(4, min(9, 2 + diepte)))]
     drempel = t.geheel(5, 30)
-    tellen = True if diepte <= 4 else t.keuze((True, False))
+    # Sinds venster 768 past de som-variant ook op diepte 4 (11 aug 2026);
+    # daarvóór liepen de som-stappen daar 74 tekens over de schrijfruimte.
+    tellen = True if diepte <= 3 else t.keuze((True, False))
     raak = [x for x in getallen if x > drempel]
     stappen = [f"{x} > {drempel}, telt mee" if x > drempel
                else f"{x} > {drempel} is niet zo" for x in getallen]
@@ -427,7 +465,11 @@ def _def_programma(diepte, t):
     Weinig rondes: elke ronde schrijft drie stappen. De grote aantallen van
     het proefwerk (tot vijftien rondes) passen pas als het venster groeit.
     """
-    n, f, k = t.geheel(2, min(6, diepte - 1)), t.geheel(2, 20), t.geheel(0, 9)
+    # Tot tien rondes sinds venster 768 (11 aug 2026, was zes) — het proefwerk
+    # gaat tot vijftien, maar vijftien rondes × drie stappen is ~675 tekens
+    # en dat past ook in 768 niet; elf schoot er op diepte 6 al 7 tekens
+    # overheen. De rest is stof voor het volgende venster.
+    n, f, k = t.geheel(2, min(10, 2 * diepte)), t.geheel(2, 20), t.geheel(0, 9)
     stappen, totaal = [], 0
     for i in range(1, n + 1):
         p = i * f

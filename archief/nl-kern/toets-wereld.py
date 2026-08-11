@@ -69,8 +69,10 @@ toets("300 programma's drukken werkelijk af wat als antwoord genoteerd staat",
       not fout, "elk programma echt uitgevoerd")
 
 # Bij de rijen is er geen tweede bron van waarheid. Wel is de eenvoudigste
-# laag na te lopen: op diepte 1 is het verschil vast óf de verhouding vast.
+# laag na te lopen: op diepte 1 is het verschil vast, de verhouding vast, óf
+# elk getal de som van zijn twee voorgangers (sinds 11 aug 2026).
 fout = []
+soorten = set()
 for n in range(200):
     t = wereld.maak("puzzel", 1, n)
     if t is None:
@@ -78,12 +80,23 @@ for n in range(200):
     rij = [int(x) for x in re.findall(r"-?\d+", t.opgave)] + [int(t.oplossing)]
     verschillen = {rij[i + 1] - rij[i] for i in range(len(rij) - 1)}
     verhoudingen = {rij[i + 1] / rij[i] for i in range(len(rij) - 1) if rij[i]}
-    if len(verschillen) != 1 and len(verhoudingen) != 1:
+    vorige_twee = all(rij[i] == rij[i - 2] + rij[i - 1]
+                      for i in range(2, len(rij)))
+    if len(verschillen) == 1:
+        soorten.add("plus")
+    elif len(verhoudingen) == 1:
+        soorten.add("maal")
+    elif vorige_twee:
+        soorten.add("beide-vorige")
+    else:
         fout.append(t.opgave)
-toets("de eenvoudigste rijen hebben een vast verschil of een vaste verhouding",
-      not fout,
+toets("de eenvoudigste rijen: vast verschil, vaste verhouding of som van de "
+      "vorige twee", not fout,
       "voor de samengestelde rijen bestaat geen onafhankelijke bron; die "
       "worden hieronder op hun gedrág getoetst")
+toets("en alle drie de soorten komen ook echt voor",
+      soorten == {"plus", "maal", "beide-vorige"},
+      "grondslag puzzel 5 stond op 0% omdat de derde soort niet bestond")
 
 print()
 
@@ -377,7 +390,10 @@ for d in (3, 4, 5, 6, 8):
         else:
             continue
         vormen_gezien.add(soort)
-        if not t.nakijk(t.uitwerking) or len(t.uitwerking) > _rv(d, "code"):
+        # Tegen de schrijfruimte van venster 768 — de vormen op proefwerkmaat
+        # (kwadraatlus n=9, def n=11) bestaan juist voor run 4 en passen
+        # bewust níét meer in 512 (11 aug 2026).
+        if not t.nakijk(t.uitwerking) or len(t.uitwerking) > _rv(d, "code", 768):
             vormen_passen = False
 toets("de drie proefwerkvormen van code bestaan in de wereld",
       vormen_gezien == {"lus", "lijst", "def"})

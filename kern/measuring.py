@@ -54,12 +54,11 @@ def measure(learner, family, grade, count=100):
     measuring you start avoiding — and "measuring is not optional".
     """
     test = tasks.benchmark(family, grade, count)
-    answer_batch = (getattr(learner, "answer", None)
-                    or getattr(learner, "antwoorden", None))
+    answer_batch = getattr(learner, "answer", None)
     if answer_batch is not None:
         given = answer_batch(test)
     else:
-        answer_one = getattr(learner, "answer_one", None) or learner.antwoord
+        answer_one = learner.answer_one
         given = [answer_one(t) for t in test]
     right = sum(1 for t, a in zip(test, given) if t.check(a))
     return right / len(test)
@@ -85,10 +84,10 @@ def c_measurement(learner, plan, learn_count=200, measure_count=100,
     *everything* is measured again, not just what was learned — because the
     question is precisely what happens to the rest.
     """
-    learn = getattr(learner, "learn", None) or learner.leer
+    learn = learner.learn
     log_write = None
     if journal is not None:
-        log_write = getattr(journal, "write", None) or journal.schrijf
+        log_write = journal.write
 
     measurements = [{"fase": "begin",
                      "scores": measure_all(learner, count=measure_count)}]

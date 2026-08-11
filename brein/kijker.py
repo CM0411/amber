@@ -1,260 +1,278 @@
-"""De kijker — een venster in haar hoofd, zonder haar op te houden.
+"""De kijker — a window into her head, without holding her up.
 
-Roadmap, fase 2 (O): "Achter de cirkel zie je haar werkelijke netwerk werken:
-activaties die door de lagen stromen." En de harde regel: "Het mag haar nooit
-ophouden — een uitdunning, een paar honderd waarden; de leerlus wacht nooit op
-het scherm."
+Roadmap, phase 2 (O): "Behind the circle you see her real network at work:
+activations streaming through the layers." And the hard rule: "It must
+never hold her up — a thinning, a few hundred values; the learning loop
+never waits for the screen."
 
-Daarom draait dit op de DL380 (P100 #0) terwijl zij op de X399 traint. Elke
-paar seconden: pak haar nieuwste checkpoint, leg één taak voor, en vang per
-geschreven teken de bedrijvigheid per laag. Dat gaat als klein JSON-bestand
-naar de webpagina. De training merkt hier niets van.
+That is why this runs on the DL380 (P100 #0) while she trains on the
+X399. Every few seconds: take her latest snapshot, put one task in front
+of her, and catch per written character the activity per layer. That goes
+to the web page as a small JSON file. The training notices nothing.
+
+The stand.json keys stay Dutch: they are the interface the page reads,
+and the page speaks Cley's language.
 """
 import sys, os, json, time, subprocess
 sys.path.insert(0, "/home/arch/amber-werk/kern")
-import determinisme; determinisme.zet_vast(9001)
-import checkpoint, leren, wereld, proefwerken, taken, torch
+import determinism; determinism.lock(9001)
+import bridge, exams, learning, snapshot, tasks, world, torch
 
-# Het wachtwoord van de rekenmachine staat búiten de repo — een repo die ooit
-# openbaar wordt mag nooit een geheim in zijn geschiedenis dragen.
-def _geheim():
+# The calculator's password lives outside the repo — a repo that one day
+# goes public must never carry a secret in its history.
+def _secret():
     with open("/home/arch/.amber-geheim") as f:
         return f.read().strip()
 
 
-MAP = "/home/arch/amber-werk/brein"
-VERS = "/home/arch/amber-werk/fase1/nu.pt"
+FOLDER = "/home/arch/amber-werk/brein"
+FRESH = "/home/arch/amber-werk/fase1/nu.pt"
 X399 = "arch@192.168.1.170"
-HAAL_ELKE = 180          # verse momentopname van de X399, elke 3 minuten —
-                         # zo vaak als ze er zelf een neerlegt
+FETCH_EVERY = 180        # a fresh snapshot from the X399, every 3 minutes —
+                         # as often as she writes one herself
 
-L = leren.Leerder(partij=8)
-slot = proefwerken.stof()
-stap_in_checkpoint = 0
-laatst_gehaald = 0.0
-laatst_geladen = 0.0
+L = learning.Learner(batch_size=8)
+lock = exams.material()
+step_in_snapshot = 0
+last_fetched = 0.0
+last_loaded = 0.0
 
-# Waar we haar naar laten kijken: rond haar niveau, alle families.
-KEUZES = ([("rekenen", d) for d in (1, 2, 3, 4, 6, 8, 10, 12)]
-          + [("code", d) for d in (1, 2, 3, 4, 5, 6, 8)]
-          + [("puzzel", d) for d in (1, 2, 3, 4, 5)])
+# What we have her look at: around her level, all families.
+CHOICES = ([("rekenen", d) for d in (1, 2, 3, 4, 6, 8, 10, 12)]
+           + [("code", d) for d in (1, 2, 3, 4, 5, 6, 8)]
+           + [("puzzel", d) for d in (1, 2, 3, 4, 5)])
 
-# Hooks: per doorgang de gemiddelde bedrijvigheid per laag.
-huidige = []
-GROEPEN = 32
+# Hooks: per pass the average activity per layer.
+current = []
+GROUPS = 32
 
-def _groepen(x, n):
-    per_kanaal = x.detach().abs().mean(dim=(0, 1))
-    rest = per_kanaal.numel() % n
+def _groups(x, n):
+    per_channel = x.detach().abs().mean(dim=(0, 1))
+    rest = per_channel.numel() % n
     if rest:
-        per_kanaal = per_kanaal[:per_kanaal.numel() - rest]
-    return [float(v) for v in per_kanaal.reshape(n, -1).mean(dim=1)]
+        per_channel = per_channel[:per_channel.numel() - rest]
+    return [float(v) for v in per_channel.reshape(n, -1).mean(dim=1)]
 
-# Het hele pad, zoals op een schema: invoer → acht lagen → uitvoer.
-#   invoer  = de inbedding, in 32 groepen
-#   laag    = elk blok, in 32 groepen — hoge kolommen, zoals op Cley's foto
-#   uitvoer = één knoop: hoe zeker ze is van het teken dat ze kiest
-def _vang_in(_m, _in, uit):
-    huidige.append(("in", _groepen(uit, 32)))
+# The whole path, as on a diagram: input → eight layers → output.
+#   in   = the embedding, in 32 groups
+#   laag = every block, in 32 groups — tall columns, as on Cley's photo
+#   uit  = one node: how certain she is of the character she picks
+def _catch_in(_m, _in, out):
+    current.append(("in", _groups(out, 32)))
 
-def _vang_blok(_m, _in, uit):
-    x = uit[0] if isinstance(uit, tuple) else uit
-    huidige.append(("blok", _groepen(x, GROEPEN)))
+def _catch_block(_m, _in, out):
+    x = out[0] if isinstance(out, tuple) else out
+    current.append(("blok", _groups(x, GROUPS)))
 
-def _vang_uit(_m, _in, uit):
-    p = torch.softmax(uit.detach()[0, -1].float(), dim=-1)
-    huidige.append(("uit", float(p.max())))
+def _catch_out(_m, _in, out):
+    p = torch.softmax(out.detach()[0, -1].float(), dim=-1)
+    current.append(("uit", float(p.max())))
 
-L.kern.inbedding.register_forward_hook(_vang_in)
-for blok in L.kern.blokken:
-    blok.register_forward_hook(_vang_blok)
-L.kern.uitbedding.register_forward_hook(_vang_uit)
+L.core.embedding.register_forward_hook(_catch_in)
+for block in L.core.blocks:
+    block.register_forward_hook(_catch_block)
+L.core.unembedding.register_forward_hook(_catch_out)
 
 
-def haal_checkpoint():
-    global laatst_gehaald
-    laatst_gehaald = time.time()
+def fetch_snapshot():
+    global last_fetched
+    last_fetched = time.time()
     r = subprocess.run(
-        ["sshpass", "-p", _geheim(), "scp", "-q", "-o", "ConnectTimeout=8",
-         f"{X399}:~/amber-werk/fase1/leven/momentopname.pt", VERS + ".deel"],
+        ["sshpass", "-p", _secret(), "scp", "-q", "-o", "ConnectTimeout=8",
+         f"{X399}:~/amber-werk/fase1/leven/momentopname.pt", FRESH + ".deel"],
         capture_output=True)
     if r.returncode == 0:
-        os.replace(VERS + ".deel", VERS)
+        os.replace(FRESH + ".deel", FRESH)
 
 
-bedrading = None
-bedrading_uit = None
-wereldrand = None
-geheugen_vakjes = {}
-fles_stand = {}
+wiring = None
+wiring_out = None
+world_edge = None
+memory_cells = {}
+bottleneck_status = {}
 
-# Haar herinneringen, uit het checkpoint — met een index om snel de meest
-# gelijkende te vinden. Het zoeken is óns kijkgereedschap (gericht terugvinden
-# is H, fase 4); de herinneringen zelf zijn echt: wat zij op de X399 heeft
-# meegemaakt en door de flessenhals heeft onthouden.
-herinneringen = []
+# Her memories, from the snapshot — with an index to find the most alike
+# quickly. The searching is our viewing tool (targeted recall is H, phase
+# 4); the memories themselves are real: what she lived through on the
+# X399 and kept through the bottleneck.
+memories = []
 
 
-def _grammen(tekst):
-    t = tekst.replace(" ", "")
+def _grams(text):
+    t = text.replace(" ", "")
     return frozenset(t[i:i + 3] for i in range(len(t) - 2))
 
 
-def _bouw_herinneringen(extra):
-    global herinneringen, geheugen_vakjes, fles_stand
-    herinneringen = []
-    geheugen = (extra or {}).get("geheugen") or {}
-    inhoud = geheugen.get("inhoud") or []
-    fles = L.geheugen.flessenhals
-    vakjes = {}
-    tekens_totaal = 0
-    for o in inhoud:
-        d = fles.ontcijfer(o)
-        vakjes[f"{d['familie']}/{d['graad']}"] = \
-            vakjes.get(f"{d['familie']}/{d['graad']}", 0) + 1
-        tekens_totaal += len(o.get("code") or ())
+def _build_memories(extra):
+    global memories, memory_cells, bottleneck_status
+    memories = []
+    memory = (extra or {}).get("geheugen") or {}
+    content = memory.get("inhoud") or []
+    neck = L.memory.bottleneck
+    cells = {}
+    characters_total = 0
+    for stored in content:
+        d = neck.decode(stored)
+        cells[f"{d['familie']}/{d['graad']}"] = \
+            cells.get(f"{d['familie']}/{d['graad']}", 0) + 1
+        characters_total += len(stored.get("code") or ())
         if d["opgave"]:
-            herinneringen.append({"opgave": d["opgave"],
-                                  "oplossing": d["oplossing"],
-                                  "familie": d["familie"], "graad": d["graad"],
-                                  "g": _grammen(d["opgave"])})
-    geheugen_vakjes = vakjes
-    fles_stand = {
-        "lengte": fles.lengte,
-        "geweigerd": int(geheugen.get("geweigerd") or 0),
-        "bezetting": round(tekens_totaal / (len(inhoud) * fles.lengte), 3)
-                     if inhoud else None,
+            memories.append({"opgave": d["opgave"],
+                             "oplossing": d["oplossing"],
+                             "familie": d["familie"], "graad": d["graad"],
+                             "g": _grams(d["opgave"])})
+    memory_cells = cells
+    bottleneck_status = {
+        "lengte": neck.length,
+        "geweigerd": int(memory.get("geweigerd") or 0),
+        "bezetting": round(characters_total / (len(content) * neck.length), 3)
+                     if content else None,
     }
 
 
-def _terugdenken(taak, hoeveel=3):
-    """De herinneringen die het meest op deze opgave lijken."""
-    if not herinneringen:
+def _recall(task, how_many=3):
+    """The memories most alike this problem."""
+    if not memories:
         return []
-    doel = _grammen(taak.opgave)
-    if not doel:
+    target = _grams(task.problem)
+    if not target:
         return []
     scores = []
-    for h in herinneringen:
-        overlap = len(doel & h["g"])
+    for m in memories:
+        overlap = len(target & m["g"])
         if overlap:
-            score = overlap / len(doel | h["g"])
-            if h["familie"] == taak.familie:
+            score = overlap / len(target | m["g"])
+            if m["familie"] == task.family:
                 score += 0.08
-            scores.append((score, h))
+            scores.append((score, m))
     scores.sort(key=lambda x: -x[0])
-    uit, gezien = [], set()
-    for sc, h in scores:
-        if sc <= 0.12 or h["opgave"] in gezien:
-            continue                     # dubbel onthouden = één gedachte
-        gezien.add(h["opgave"])
-        uit.append({"opgave": h["opgave"][:90], "oplossing": h["oplossing"][-24:],
-                    "familie": h["familie"], "graad": h["graad"],
+    out, seen = [], set()
+    for sc, m in scores:
+        if sc <= 0.12 or m["opgave"] in seen:
+            continue                     # remembered twice = one thought
+        seen.add(m["opgave"])
+        out.append({"opgave": m["opgave"][:90], "oplossing": m["oplossing"][-24:],
+                    "familie": m["familie"], "graad": m["graad"],
                     "gelijkenis": round(sc, 2)})
-        if len(uit) >= hoeveel:
+        if len(out) >= how_many:
             break
-    return uit
+    return out
 
 
-def _lees_bedrading():
-    """Haar echte bedrading, voor het weefsel op het scherm.
+def _read_wiring():
+    """Her real wiring, for the weave on the screen.
 
-    Per laag: hoe het voorwaartse blok de stroomgroepen mengt — W_omlaag ×
-    W_omhoog, samengevat tot 32×32 groepen, mét teken. Groen/rood op de
-    pagina is dus werkelijk plus/min in haar gewichten, zoals in het filmpje
-    dat Cley aanwees. Wordt eenmalig per checkpoint berekend.
+    Per layer: how the feedforward block mixes the stream groups — W_down
+    × W_up, summarised to 32×32 groups, with sign. Green/red on the page
+    is thus truly plus/minus in her weights, as in the clip Cley pointed
+    at. Computed once per snapshot.
     """
-    global bedrading, bedrading_uit
-    n = GROEPEN
-    matten = []
+    global wiring, wiring_out
+    n = GROUPS
+    mats = []
     with torch.no_grad():
-        for blok in L.kern.blokken:
-            M = blok.voorwaarts.omlaag.weight @ blok.voorwaarts.omhoog.weight
+        for block in L.core.blocks:
+            M = block.feedforward.down.weight @ block.feedforward.up.weight
             d = M.shape[0]; g = d // n
             M = M[:g * n, :g * n].reshape(n, g, n, g).mean(dim=(1, 3))
-            schaal = float(M.abs().max()) or 1.0
-            matten.append([[round(float(v) / schaal, 3) for v in rij]
-                           for rij in M])
-        u = L.kern.uitbedding.weight.abs().mean(dim=0)
+            scale = float(M.abs().max()) or 1.0
+            mats.append([[round(float(v) / scale, 3) for v in row]
+                         for row in M])
+        u = L.core.unembedding.weight.abs().mean(dim=0)
         u = u[:(u.numel() // n) * n].reshape(n, -1).mean(dim=1)
         us = float(u.max()) or 1.0
-        bedrading_uit = [round(float(v) / us, 3) for v in u]
-    bedrading = matten
+        wiring_out = [round(float(v) / us, 3) for v in u]
+    wiring = mats
 
 
-def laad_als_nieuwer():
-    global stap_in_checkpoint, laatst_geladen
+def _adopt_window(extra):
+    """Follow the snapshot's window: run 4 trains at 768 while this
+    Learner was built at the default. Growing changes nothing about the
+    weights — proven in test-window-growth.py — so the viewer simply
+    grows along."""
+    vorm = (extra or {}).get("vorm")
+    if not vorm:
+        return
+    window = bridge.translate_spec(vorm).get("window") or 0
+    for core in {L.core, getattr(L, "_answer_core", L.core)}:
+        if window > core.window:
+            core.grow_window(window)
+
+
+def load_if_newer():
+    global step_in_snapshot, last_loaded
     try:
-        m = os.path.getmtime(VERS)
+        m = os.path.getmtime(FRESH)
     except OSError:
         return
-    if m <= laatst_geladen:
+    if m <= last_loaded:
         return
     try:
-        inhoud = checkpoint.lees(VERS, apparaat=L.apparaat)
-        stap_in_checkpoint = checkpoint.herstel(inhoud, L.kern, L.optimizer,
-                                                L.apparaat)
-        global wereldrand
-        extra = inhoud.get("extra") or {}
-        wereldrand = extra.get("diepste_per") or None
-        _bouw_herinneringen(extra)
-        laatst_geladen = m
-        _lees_bedrading()
+        content = snapshot.read(FRESH, device=L.device)
+        step_in_snapshot = snapshot.restore(content, L.core, L.optimizer,
+                                            L.device)
+        global world_edge
+        extra = content.get("extra") or {}
+        world_edge = extra.get("diepste_per") or None
+        _adopt_window(extra)
+        _build_memories(extra)
+        last_loaded = m
+        _read_wiring()
     except Exception:
-        pass                             # half bestand: volgende ronde weer
+        pass                             # half a file: next round again
 
-
-teller = 0
+counter = 0
 while True:
-    if time.time() - laatst_gehaald > HAAL_ELKE:
-        haal_checkpoint()
-    laad_als_nieuwer()
+    if time.time() - last_fetched > FETCH_EVERY:
+        fetch_snapshot()
+    load_if_newer()
 
-    teller += 1
-    trekker = taken.Trekker(9001 + teller)
-    familie, diepte = KEUZES[trekker.geheel(0, len(KEUZES) - 1)]
+    counter += 1
+    picker = tasks.Picker(9001 + counter)
+    family, depth = CHOICES[picker.integer(0, len(CHOICES) - 1)]
     try:
-        taak = wereld.leerreeks(familie, diepte, 1,
-                                vanaf=trekker.geheel(0, 200_000),
-                                uitsluiten=slot)[0]
+        task = world.learning_tasks(family, depth, 1,
+                                    start=picker.integer(0, 200_000),
+                                    exclude=lock)[0]
     except Exception:
         time.sleep(2); continue
 
-    huidige.clear()
-    antwoord = L.antwoorden([taak],
-                            hoogstens=leren.ruimte_voor(diepte, familie))[0]
-    # `huidige` bevat nu (aantal doorgangen × 8) waarden achter elkaar
-    # opknippen per doorgang: in → blokken → uit
-    n_lagen = len(L.kern.blokken)
-    per = 1 + n_lagen + 1
-    ruw = [huidige[i:i + per] for i in range(0, len(huidige), per)]
-    rijen = []
-    for r in ruw:
+    current.clear()
+    answer = L.answer([task],
+                      at_most=learning.room_for(depth, family,
+                                                L.core.window))[0]
+    # `current` now holds (passes × 8) values in a row
+    # cut per pass: in → blocks → out
+    n_layers = len(L.core.blocks)
+    per = 1 + n_layers + 1
+    raw = [current[i:i + per] for i in range(0, len(current), per)]
+    rows = []
+    for r in raw:
         if len(r) == per and r[0][0] == "in" and r[-1][0] == "uit":
-            rijen.append({"in": r[0][1],
-                          "b": [x[1] for x in r[1:-1]],
-                          "uit": round(r[-1][1], 4)})
-    rijen = rijen[-48:]
+            rows.append({"in": r[0][1],
+                         "b": [x[1] for x in r[1:-1]],
+                         "uit": round(r[-1][1], 4)})
+    rows = rows[-48:]
 
     stand = {
         "tijd": time.time(),
-        "herinnert": _terugdenken(taak),
-        "geheugen_grootte": len(herinneringen),
-        "checkpoint_stap": stap_in_checkpoint,
-        "familie": familie, "diepte": diepte,
-        "opgave": taak.opgave,
-        "antwoord": antwoord,
-        "goed": taak.nakijk(antwoord),
-        "wereldrand": wereldrand,
-        "geheugen_vakjes": geheugen_vakjes,
-        "fles": fles_stand,
-        "bedrading": bedrading,
-        "bedrading_uit": bedrading_uit,
-        "lagen": [{"in": [round(v, 4) for v in rij["in"]],
-                   "b": [[round(v, 4) for v in laag] for laag in rij["b"]],
-                   "uit": rij["uit"]} for rij in rijen],
+        "herinnert": _recall(task),
+        "geheugen_grootte": len(memories),
+        "checkpoint_stap": step_in_snapshot,
+        "familie": family, "diepte": depth,
+        "opgave": task.problem,
+        "antwoord": answer,
+        "goed": task.check(answer),
+        "wereldrand": world_edge,
+        "geheugen_vakjes": memory_cells,
+        "fles": bottleneck_status,
+        "bedrading": wiring,
+        "bedrading_uit": wiring_out,
+        "lagen": [{"in": [round(v, 4) for v in row["in"]],
+                   "b": [[round(v, 4) for v in layer] for layer in row["b"]],
+                   "uit": row["uit"]} for row in rows],
     }
-    with open(f"{MAP}/stand.json.deel", "w") as f:
+    with open(f"{FOLDER}/stand.json.deel", "w") as f:
         json.dump(stand, f)
-    os.replace(f"{MAP}/stand.json.deel", f"{MAP}/stand.json")
+    os.replace(f"{FOLDER}/stand.json.deel", f"{FOLDER}/stand.json")
     time.sleep(6)

@@ -114,9 +114,6 @@ class Picker:
     def choice(self, options):
         return options[self._next() % len(options)]
 
-    # migration aliases — drop when the Dutch modules are gone
-    geheel = integer
-    keuze = choice
 
 
 def _seed_of(family, grade, number):
@@ -164,43 +161,6 @@ class Task:
             return False
         right = _NUMBER.findall(self.solution)
         return bool(right) and found[-1] == right[-1]
-
-    # --- migration aliases — drop when the Dutch modules are gone ----------
-
-    @property
-    def familie(self):
-        return self.family
-
-    @property
-    def graad(self):
-        return self.grade
-
-    @property
-    def nummer(self):
-        return self.number
-
-    @property
-    def opgave(self):
-        return self.problem
-
-    @property
-    def oplossing(self):
-        return self.solution
-
-    @property
-    def uitwerking(self):
-        return self.working
-
-    @property
-    def is_meetlat(self):
-        return self.is_benchmark
-
-    def te_leren(self):
-        return self.to_learn()
-
-    def nakijk(self, answer):
-        return self.check(answer)
-
 
 # --- rekenen (arithmetic) ----------------------------------------------------
 # Increasing in the number of operations and the size of the numbers. The

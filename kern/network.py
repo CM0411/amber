@@ -46,10 +46,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-try:
-    from tokens import VOCAB
-except ImportError:                        # until tokens.py exists (migration)
-    from tekens import OMVANG as VOCAB
+from tokens import VOCAB
 
 
 def _angles(length, head_size, device, offset=0):

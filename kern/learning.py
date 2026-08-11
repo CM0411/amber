@@ -104,7 +104,13 @@ def room_for(depth, family=None, window=512):
         # Ceiling = window - 192: code problems are the longest (173
         # characters at depth 11). At 512 the old 320; at 768 it becomes
         # 576 and covers the measured 452 of depth 11 (10 Aug 2026).
-        return min(window - 192, 80 * depth - 144)
+        #
+        # The slope was doubled on 11 Aug 2026 (was 80·d − 144): the exam
+        # forms at true size write far more than the old lines form — a
+        # squares loop with nine rounds is ~280 characters at depth 3,
+        # where 96 stood, and a def with ten rounds ~480 at depth 5. The
+        # same disease as always: a number calibrated on an older world.
+        return min(window - 192, 160 * depth - 160)
     # Arithmetic. Longest working: 50 at depth 3, 110 at 6, 180 at 9, 247
     # at 12, and measured on 9 Aug 2026: 294 at 14, 356 at 16, 384 at 17.
     # The old bound of 280 cut depth 14+ — the same mistake as with puzzle
@@ -273,10 +279,10 @@ class Learner:
     # --- answering ----------------------------------------------------------
 
     @torch.no_grad()
-    def answer(self, tasks_, hoogstens=ROOM):
+    def answer(self, tasks_, at_most=ROOM):
         """Answer a series of tasks in one batch.
 
-        `hoogstens` must be roomy enough for a whole working. With 24 she
+        `at_most` must be roomy enough for a whole working. With 24 she
         could not finish her sum and every answer counted wrong, however
         well she computed.
 
@@ -288,7 +294,7 @@ class Learner:
         cores = self._answer_cores()
         if len(cores) == 1 or len(tasks_) < 2 * len(cores):
             core, device = cores[0]
-            return self._answer_on(tasks_, core, device, hoogstens)
+            return self._answer_on(tasks_, core, device, at_most)
 
         # Across both cards at once. Every thread drives its own card with
         # its own copy of the network; torch drops the GIL while computing,
@@ -302,7 +308,7 @@ class Learner:
 
         def run(i):
             core, device = cores[i]
-            outcomes[i] = self._answer_on(chunks[i], core, device, hoogstens)
+            outcomes[i] = self._answer_on(chunks[i], core, device, at_most)
 
         threads = [threading.Thread(target=run, args=(i,))
                    for i in range(len(cores)) if chunks[i]]
@@ -328,12 +334,12 @@ class Learner:
                 (self._answer_core, self._answer_device)]
 
     @torch.no_grad()
-    def _answer_on(self, tasks_, core, device, hoogstens):
+    def _answer_on(self, tasks_, core, device, at_most):
         with torch.autocast("cuda", dtype=torch.bfloat16, enabled=self.bf16):
-            return self._answer_real(tasks_, core, device, hoogstens)
+            return self._answer_real(tasks_, core, device, at_most)
 
     @torch.no_grad()
-    def _answer_real(self, tasks_, core, device, hoogstens):
+    def _answer_real(self, tasks_, core, device, at_most):
         """The actual loop, on one card."""
         core.eval()
         prompts = [tokens.question_to_sequence(t) for t in tasks_]
@@ -345,7 +351,7 @@ class Learner:
             raise ValueError(
                 f"problem of {longest} characters leaves no room to answer "
                 f"within a window of {core.window}")
-        hoogstens = min(hoogstens, room)
+        at_most = min(at_most, room)
 
         # Pad **left**, not right. All questions then end at the same
         # position, which is what makes the cache possible: one character
@@ -364,13 +370,13 @@ class Learner:
         done = torch.zeros(len(tasks_), dtype=torch.bool, device=device)
         following = scores[:, -1].argmax(dim=-1)
 
-        for step in range(hoogstens):
+        for step in range(at_most):
             following = torch.where(done,
                                     torch.full_like(following, tokens.PAD),
                                     following)
             written.append(following)
             done = done | (following == tokens.END)
-            if bool(done.all()) or step == hoogstens - 1:
+            if bool(done.all()) or step == at_most - 1:
                 break
             mask = torch.cat(
                 (mask, torch.zeros_like(mask[:, :1])), dim=1)
@@ -386,9 +392,6 @@ class Learner:
     def answer_one(self, task):
         return self.answer([task])[0]
 
-    # migration aliases — drop when the Dutch modules are gone
-    antwoorden = answer
-    antwoord = answer_one
 
     # --- learning -----------------------------------------------------------
 
@@ -481,7 +484,7 @@ class Learner:
             chunk = list(tasks_[start:start + step_size])
             if remember:
                 for t in chunk:
-                    self.memory.remember(t, t.oplossing, None)
+                    self.memory.remember(t, t.solution, None)
             if self.replay_share > 0 and len(self.memory):
                 room = self.batch_size - len(chunk)
                 picker = tasks_module.Picker(
@@ -494,8 +497,6 @@ class Learner:
                 losses.append(self._step(chunk))
         return sum(losses) / len(losses) if losses else None
 
-    # migration alias — drop when the Dutch modules are gone
-    leer = learn
 
     # --- the long loop ------------------------------------------------------
 
@@ -575,7 +576,7 @@ class Learner:
         score = None
         if step % self.probe_every == 0:
             given = self.answer(chunk,
-                                hoogstens=room_for(depth, family,
+                                at_most=room_for(depth, family,
                                                    self.core.window))
             right = [t.check(a) for t, a in zip(chunk, given)]
             for t, a, r in zip(chunk, given, right):

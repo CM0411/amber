@@ -99,7 +99,13 @@ def ruimte_voor(diepte, familie=None, venster=512):
         # Plafond = venster - 192: code-opgaven zijn de langste (173 tekens op
         # diepte 11). Bij 512 de oude 320; bij 768 wordt het 576 en dekt het
         # de gemeten 452 van diepte 11 (10 aug 2026).
-        return min(venster - 192, 80 * diepte - 144)
+        #
+        # De helling is op 11 aug 2026 verdubbeld (was 80·d − 144): de
+        # proefwerkvormen op ware grootte schrijven veel meer dan de oude
+        # regels-vorm — een kwadraatlus met negen rondes is ~280 tekens op
+        # diepte 3, waar 96 stond, en een def met tien rondes ~480 op diepte
+        # 5. Zelfde ziekte als steeds: een getal geijkt op een oudere wereld.
+        return min(venster - 192, 160 * diepte - 160)
     # Rekenen. Langste uitwerking: 50 op diepte 3, 110 op 6, 180 op 9, 247 op
     # 12, en gemeten op 9 aug 2026: 294 op 14, 356 op 16, 384 op 17. De oude
     # grens van 280 kapte diepte 14+ dus af — zelfde fout als bij puzzel en

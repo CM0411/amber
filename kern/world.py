@@ -194,10 +194,29 @@ def _row_series(depth, t, length):
     depth 8.
     """
     if depth <= 1:
-        start = t.integer(1, 30)
-        if t.choice((True, False, False)):
-            factor = t.integer(2, 3)
+        kind = t.choice(("maal", "plus", "plus", "beide-vorige"))
+        if kind == "maal":
+            # Up to ×6, as the grondslag exam asks — until 11 Aug 2026 this
+            # was ×2/×3 and puzzle grade 2 sat at 30%: facing a ×5 row she
+            # fell back to subtracting and got lost. The start shrinks with
+            # the factor so the last number stays near the exam's (~400,000)
+            # instead of exploding. Floor 30: the cap serves the short,
+            # shown rows; long strands (depth 6+) would otherwise collapse
+            # onto start 1–2 and kill variety (measured 11 Aug 2026, puzzle
+            # d12 dropped from ~1900 to 135 distinct problems per 2000).
+            factor = t.integer(2, 6)
+            cap = max(30, min(150, 400_000 // factor ** max(1, length - 1)))
+            start = t.integer(1, cap)
             return [start * factor ** i for i in range(length)]
+        if kind == "beide-vorige":
+            # Each number is the sum of its two predecessors — the form of
+            # grondslag puzzle 5, which existed nowhere in the world until
+            # 11 Aug 2026 (0% on the exam).
+            out = [t.integer(1, 60), t.integer(1, 60)]
+            while len(out) < length:
+                out.append(out[-2] + out[-1])
+            return out[:length]
+        start = t.integer(1, 30)
         step = t.integer(2, 19) * t.choice((1, 1, -1))
         return [start + i * step for i in range(length)]
 
@@ -270,6 +289,17 @@ def _explain(row, layer=0):
             steps.append(f"{visible[-1]} * {factor} = {target}")
             if visible[-1] * factor == target:
                 return steps, True
+
+    # 2b. Sum of the previous two (grondslag puzzle 5): each number is the
+    #     sum of its two predecessors. This must sit before the difference
+    #     recursion: the differences of such a row are again such a row —
+    #     the recursion never gets out, and then this material would not
+    #     exist.
+    if len(visible) >= 3 and all(row[i] == row[i - 2] + row[i - 1]
+                                 for i in range(2, len(row))):
+        steps = [f"{row[i - 2]} + {row[i - 1]} = {row[i]}"
+                 for i in range(2, len(row))]
+        return steps, True
 
     # 3. The difference itself changes: the same method on the differences.
     following = target - visible[-1]
@@ -376,8 +406,13 @@ def _loop_program(depth, t):
     writes two steps per round and therefore fits fewer rounds in the same
     writing space. Measured 10 Aug 2026.
     """
-    form = t.choice(("i",) if depth <= 3 else ("i", "2i", "i2"))
-    n = t.integer(2, 4 + depth) if form == "i" else t.integer(2, 2 + depth)
+    # All three forms from depth 3 — the grondslag asks `i * 2` and `i * i`
+    # at grade 3 itself, and until 11 Aug 2026 the world only made those
+    # from depth 4, with too few rounds (17% on the exam). The counts fit
+    # window 768; `fits()` filters what falls out too large.
+    form = t.choice(("i", "2i", "i2"))
+    n = (t.integer(2, 4 + 2 * depth) if form == "i"
+         else t.integer(2, min(11, 3 + 2 * depth)))
     start = t.integer(0, 50)
     body = {"i": "totaal += i", "2i": "totaal += i * 2",
             "i2": "totaal += i * i"}[form]
@@ -403,9 +438,11 @@ def _list_program(depth, t):
     # Element count and the sum variant were measured against the writing
     # space on 10 Aug 2026: at depth 4 counting only (the sum steps ran 74
     # characters over), from 5 also summing.
-    numbers = [t.integer(1, 40) for _ in range(t.integer(4, min(7, 2 + depth)))]
+    numbers = [t.integer(1, 40) for _ in range(t.integer(4, min(9, 2 + depth)))]
     threshold = t.integer(5, 30)
-    count = True if depth <= 4 else t.choice((True, False))
+    # Since window 768 the sum variant also fits at depth 4 (11 Aug 2026);
+    # before that its steps ran 74 characters over the writing space there.
+    count = True if depth <= 3 else t.choice((True, False))
     hits = [x for x in numbers if x > threshold]
     steps = [f"{x} > {threshold}, telt mee" if x > threshold
              else f"{x} > {threshold} is niet zo" for x in numbers]
@@ -431,7 +468,11 @@ def _def_program(depth, t):
     Few rounds: every round writes three steps. The exam's larger counts
     (up to fifteen rounds) only fit once the window grows.
     """
-    n, f, k = t.integer(2, min(6, depth - 1)), t.integer(2, 20), t.integer(0, 9)
+    # Up to ten rounds since window 768 (11 Aug 2026, was six) — the exam
+    # goes to fifteen, but fifteen rounds × three steps is ~675 characters
+    # and does not fit 768 either; eleven already ran 7 characters over at
+    # depth 6. The rest is material for the next window.
+    n, f, k = t.integer(2, min(10, 2 * depth)), t.integer(2, 20), t.integer(0, 9)
     steps, total = [], 0
     for i in range(1, n + 1):
         p = i * f
