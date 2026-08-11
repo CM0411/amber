@@ -200,10 +200,14 @@ async function haal() {
 }
 haal(); setInterval(haal, 5000);
 
-// --- het netwerk: kalm — één zachte golf rolt door de lagen --------------
+// --- het netwerk: acht kamers waar het signaal doorheen reist -------------
+// Geen haardunne draadjes (onleesbaar op een telefoon) maar per laag een
+// kamer met 32 staafjes — haar echte groepsactiviteit — verbonden door
+// banden die tonen wat de gewichten netto doen (groen plus, rood min),
+// en één lichtpunt dat van invoer naar uitvoer glijdt.
 const net = document.getElementById("net");
 const nctx = net.getContext("2d");
-let nKOL = [], nBedrading = null, nSterkte = [], nTijd = 0;
+let nLagen = [], nZeker = 0, nBanden = [], nTijd = 0;
 
 function netMaat() {
   const dpr = Math.min(devicePixelRatio || 1, 2);
@@ -218,75 +222,100 @@ async function haalNet() {
     if (s.lagen && s.lagen.length && s.tijd !== nTijd) {
       nTijd = s.tijd;
       const rij = s.lagen[s.lagen.length - 1];
-      const kol = [rij.in, ...rij.b, [rij.uit]];
-      nKOL = kol.map(k => k.length);
-      // per bolletje een vaste sterkte uit haar laatste doorgang,
-      // genormaliseerd per laag — dit verandert maar eens per 5 s
-      nSterkte = kol.map(k => {
+      nLagen = [rij.in, ...rij.b].map(k => {
         const top = Math.max(...k.map(Math.abs), 1e-4);
         return k.map(v => Math.abs(v) / top);
       });
-      nBedrading = s.bedrading;
+      nZeker = rij.uit || 0;
+      // per overgang: hoe sterk, en netto plus of min
+      nBanden = (s.bedrading || []).map(M => {
+        let som = 0, absom = 0, n = 0;
+        for (const r of M) for (const v of r) { som += v; absom += Math.abs(v); n++; }
+        return {sterkte: Math.min(1, (absom / n) * 6), plus: som >= 0};
+      });
     }
   } catch (e) {}
 }
 haalNet(); setInterval(haalNet, 5000);
 
-function nPlek(k, i) {
-  const B = net.width, H = net.height;
-  const x = B * 0.05 + B * 0.9 * k / (nKOL.length - 1);
-  const n = nKOL[k];
-  const y = n === 1 ? H / 2 : H * 0.06 + H * 0.88 * i / (n - 1);
-  return [x, y];
-}
-
-let nDoek = null;   // de draden één keer tekenen, niet elk beeld opnieuw
-function nWeefsel() {
-  nDoek = document.createElement("canvas");
-  nDoek.width = net.width; nDoek.height = net.height;
-  const q = nDoek.getContext("2d");
-  if (!nBedrading) return;
-  q.lineWidth = Math.max(0.4, net.width / 1600);
-  for (let k = 0; k < Math.min(nBedrading.length, nKOL.length - 1); k++) {
-    const M = nBedrading[k];
-    for (let a = 0; a < M.length; a += 2)
-      for (let b = 0; b < M[a].length; b += 2) {
-        const v = M[a][b];
-        if (Math.abs(v) < 0.55) continue;
-        const [x1, y1] = nPlek(k, a * nKOL[k] / M.length);
-        const [x2, y2] = nPlek(k + 1, b * nKOL[k + 1] / M[a].length);
-        q.strokeStyle = v > 0
-          ? `rgba(96, 200, 150, ${Math.abs(v) * 0.09})`
-          : `rgba(230, 120, 100, ${Math.abs(v) * 0.09})`;
-        q.beginPath(); q.moveTo(x1, y1);
-        q.quadraticCurveTo((x1 + x2) / 2, (y1 + y2) / 2 + net.height * 0.03,
-                           x2, y2);
-        q.stroke();
-      }
-  }
-}
-let nWeefselTijd = 0;
-
 function nTeken() {
   requestAnimationFrame(nTeken);
-  if (!nKOL.length) return;
-  if (nTijd !== nWeefselTijd) { nWeefselTijd = nTijd; nWeefsel(); }
   const B = net.width, H = net.height;
   nctx.clearRect(0, 0, B, H);
-  if (nDoek) nctx.drawImage(nDoek, 0, 0);
-  // de golf: één zacht lichtpunt rolt in ~4,5 s van invoer naar uitvoer
-  const golf = (performance.now() / 4500) % 1.3;
-  const midden = golf * (nKOL.length + 2) - 1;
-  for (let k = 0; k < nKOL.length; k++) {
-    const puls = Math.exp(-((k - midden) ** 2) / 1.1);
-    for (let i = 0; i < nKOL[k]; i++) {
-      const st = (nSterkte[k] ? nSterkte[k][i] : 0.4) * puls;
-      const [x, y] = nPlek(k, i);
-      nctx.fillStyle = `rgba(${150 + st * 70}, ${175 + st * 50}, 255, ${0.30 + st * 0.38})`;
-      nctx.beginPath();
-      nctx.arc(x, y, (1.5 + st * 0.9) * (B / 900), 0, 7);
-      nctx.fill();
+  if (!nLagen.length) return;
+  const nK = nLagen.length;                 // kamers: invoer + 8 lagen
+  const rand = B * 0.045;
+  const vakB = Math.min(B * 0.062, (B - 2 * rand) / (nK + 1.6));
+  const stap = (B - 2 * rand - vakB * 1.4) / nK;
+  const topY = H * 0.10, hoogte = H * 0.58;
+  const golf = (performance.now() / 5200) % 1.25;
+  const midden = golf * (nK + 2) - 0.5;
+
+  // verbindingsbanden, dik genoeg om te zíén
+  for (let k = 0; k < nK - 1 && k < nBanden.length; k++) {
+    const b = nBanden[k];
+    const x1 = rand + k * stap + vakB, x2 = rand + (k + 1) * stap;
+    const y = topY + hoogte / 2;
+    const g = nctx.createLinearGradient(x1, 0, x2, 0);
+    const kleur = b.plus ? "127, 224, 195" : "255, 140, 110";
+    g.addColorStop(0, `rgba(${kleur}, ${0.10 + b.sterkte * 0.25})`);
+    g.addColorStop(.5, `rgba(${kleur}, ${0.22 + b.sterkte * 0.45})`);
+    g.addColorStop(1, `rgba(${kleur}, ${0.10 + b.sterkte * 0.25})`);
+    nctx.fillStyle = g;
+    const dik = H * 0.028 * (0.6 + b.sterkte);
+    nctx.beginPath();
+    nctx.moveTo(x1, y - dik); nctx.lineTo(x2, y - dik * 0.55);
+    nctx.lineTo(x2, y + dik * 0.55); nctx.lineTo(x1, y + dik);
+    nctx.closePath(); nctx.fill();
+  }
+
+  // de kamers met hun 32 staafjes
+  nctx.font = `${Math.round(H * 0.055)}px ui-monospace, monospace`;
+  nctx.textAlign = "center";
+  for (let k = 0; k < nK; k++) {
+    const x = rand + k * stap;
+    const puls = Math.exp(-((k - midden) ** 2) / 0.9);
+    nctx.fillStyle = `rgba(19, 27, 62, ${0.75 + puls * 0.2})`;
+    nctx.strokeStyle = `rgba(93, 140, 255, ${0.18 + puls * 0.5})`;
+    nctx.lineWidth = 1 + puls * 1.5;
+    nctx.beginPath();
+    nctx.roundRect(x, topY, vakB, hoogte, vakB * 0.22);
+    nctx.fill(); nctx.stroke();
+    const st = nLagen[k], n = st.length;
+    const bh = hoogte * 0.86, by = topY + hoogte * 0.07;
+    for (let i = 0; i < n; i++) {
+      const v = st[i];
+      const br = vakB * 0.62 * (0.15 + v * 0.85);
+      nctx.fillStyle = `rgba(${140 + v * 90 + puls * 25}, ${170 + v * 60}, 255, ${0.35 + v * 0.5 + puls * 0.15})`;
+      nctx.fillRect(x + vakB * 0.19, by + bh * i / n, br, Math.max(1, bh / n - 1));
     }
+    nctx.fillStyle = `rgba(81, 96, 138, ${0.8 + puls * 0.2})`;
+    nctx.fillText(k === 0 ? "in" : k, x + vakB / 2, topY + hoogte + H * 0.085);
+  }
+
+  // de uitgang: hoe zeker ze is van haar teken
+  const ux = rand + nK * stap + vakB * 0.2, uy = topY + hoogte / 2;
+  const ur = vakB * 0.55;
+  const gl = nctx.createRadialGradient(ux + ur, uy, 0, ux + ur, uy, ur * 2.4);
+  gl.addColorStop(0, `rgba(190, 220, 255, ${0.25 + nZeker * 0.55})`);
+  gl.addColorStop(1, "rgba(190, 220, 255, 0)");
+  nctx.fillStyle = gl;
+  nctx.beginPath(); nctx.arc(ux + ur, uy, ur * 2.4, 0, 7); nctx.fill();
+  nctx.fillStyle = `rgba(207, 226, 255, ${0.45 + nZeker * 0.5})`;
+  nctx.beginPath(); nctx.arc(ux + ur, uy, ur * (0.55 + nZeker * 0.4), 0, 7); nctx.fill();
+  nctx.fillStyle = "rgba(129, 150, 190, 0.95)";
+  nctx.fillText(Math.round(nZeker * 100) + "%", ux + ur, topY + hoogte + H * 0.085);
+
+  // het lichtpunt dat de route aflegt
+  if (midden > -0.5 && midden < nK + 0.8) {
+    const lx = rand + Math.min(midden, nK) * stap + vakB * 0.5
+             + (midden > nK ? (midden - nK) * vakB : 0);
+    const ly = topY + hoogte / 2;
+    const lg = nctx.createRadialGradient(lx, ly, 0, lx, ly, vakB * 0.8);
+    lg.addColorStop(0, "rgba(210, 230, 255, 0.55)");
+    lg.addColorStop(1, "rgba(210, 230, 255, 0)");
+    nctx.fillStyle = lg;
+    nctx.beginPath(); nctx.arc(lx, ly, vakB * 0.8, 0, 7); nctx.fill();
   }
 }
 netMaat(); nTeken();
