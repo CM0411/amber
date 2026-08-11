@@ -162,9 +162,13 @@ const stof = Array.from({length: 45}, () => ({
 
 function plaats(kol, i) {
   const bx = B * 0.085, ex = B * 0.915;
-  const x = bx + (ex - bx) * kol / (KOL.length - 1);
   const midden = H * 0.465, hoog = H * 0.62;
   const n = KOL[kol];
+  // De zekerheidsbol woont in het hart van het weefsel: op de kolom van
+  // laag 4, verticaal in het midden — Cleys aanwijzing (11 aug 2026).
+  if (n === 1 && KOL.length > 5)
+    return [bx + (ex - bx) * 4 / (KOL.length - 1), midden];
+  const x = bx + (ex - bx) * kol / (KOL.length - 1);
   const y = n === 1 ? midden : midden - hoog / 2 + hoog * i / (n - 1);
   return [x, y];
 }
@@ -208,8 +212,10 @@ function bouwWeefsel() {
   for (let k = 0; k < KOL.length - 1; k++) {
     const [x1k] = plaats(k, 0), [x2k] = plaats(k + 1, 0);
     const marge = B * 0.012;
-    const links = Math.max(0, x1k - marge);
-    const breed = Math.min(B - links, x2k - x1k + 2 * marge);
+    // laag 8 -> de bol loopt terug naar het midden; de strook moet dus
+    // beide richtingen aankunnen
+    const links = Math.max(0, Math.min(x1k, x2k) - marge);
+    const breed = Math.min(B - links, Math.abs(x2k - x1k) + 2 * marge);
     const c = document.createElement("canvas");
     c.width = Math.max(2, Math.round(breed)); c.height = H;
     c.dataset.links = links;
@@ -561,8 +567,8 @@ function teken(t) {
     const [x] = plaats(k, 0);
     const [, yb] = plaats(k, KOL[k] - 1);
     const y = (KOL[k] === 1 ? H * 0.465 : yb) + fs * 2.2;
-    ctx.textAlign = k === KOL.length - 1 ? "right" : "left";
-    const lx = k === KOL.length - 1 ? x + fs : x - fs;
+    ctx.textAlign = k === KOL.length - 1 ? "center" : "left";
+    const lx = k === KOL.length - 1 ? x : x - fs;
     ctx.fillStyle = "rgba(225,235,255,0.85)";
     ctx.fillText(NAMEN[k][0], lx, y);
     ctx.fillStyle = "rgba(255,140,90,0.8)";
