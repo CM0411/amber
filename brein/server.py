@@ -175,9 +175,16 @@ class Venster(BaseHTTPRequestHandler):
                 self._stuur(f.read())
         elif self.path.startswith("/rapport"):
             naam = os.path.basename(self.path[len("/rapport"):].strip("/")) or "index.html"
+            # Het juiste soort per bestand: sinds de spraakproef (11 aug
+            # 2026) staan hier ook wav-bestanden, en die spelen alleen af
+            # als ze niet als html verstuurd worden.
+            soorten = {".wav": "audio/wav", ".png": "image/png",
+                       ".svg": "image/svg+xml", ".json": "application/json"}
+            soort = soorten.get(os.path.splitext(naam)[1],
+                                "text/html; charset=utf-8")
             try:
                 with open(os.path.join("/home/arch/rapport", naam), "rb") as f:
-                    self._stuur(f.read())
+                    self._stuur(f.read(), soort)
             except Exception:
                 self._stuur(b"<p>nog geen rapport</p>")
         else:
