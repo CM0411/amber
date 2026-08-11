@@ -461,29 +461,7 @@ async function haal() {
     }
   } catch (e) {}
 }
-haal(); setInterval(haal, 1000);
-
-// De 10-hertz-tikker: tussen twee echte meetpunten schuift de teller
-// door op het gemeten tempo (extrapolatie), en elke seconde zet het
-// verse meetpunt hem weer recht. Boven de balk verandert er dus elke
-// 0,1 s iets, zonder ook maar één verzonnen getal: het tempo zelf is
-// altijd gemeten.
-setInterval(() => {
-  if (!window.lvBasis || !window.lvBasis.ms) return;
-  const b = window.lvBasis;
-  const verstreken = performance.now() - b.ontvangen;
-  const geschat = Math.min(b.doel, b.stap + verstreken / b.ms);
-  const el = (i) => document.getElementById(i);
-  if (!el("lv-stap")) return;
-  el("lv-stap").textContent = Math.floor(geschat).toLocaleString("nl");
-  el("lv-balk").style.width = (100 * geschat / b.doel) + "%";
-  const overMs = (b.doel - geschat) * b.ms;
-  const nogU = Math.floor(overMs / 3600000);
-  const nogM = Math.floor(overMs % 3600000 / 60000);
-  const nogS = Math.floor(overMs % 60000 / 1000);
-  el("lv-nog").textContent =
-    `${nogU}u${String(nogM).padStart(2, "0")}m${String(nogS).padStart(2, "0")}`;
-}, 100);
+haal(); setInterval(haal, 5000);
 maat();
 
 function teken(t) {
