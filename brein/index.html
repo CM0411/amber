@@ -488,10 +488,12 @@ function teken(t) {
     }
   }
   for (let k = 0; k < KOL.length; k++) {
-    const raak = rijNu && front >= k && front < k + 1.7;
     for (let i = 0; i < KOL[k]; i++) {
-      const doel = raak ? Math.min(1, (rijNu[k][i] || 0) / kolMax[k]) : 0;
-      gloed[k][i] = Math.max(doel, gloed[k][i] * 0.97);
+      // Geen golf die hele kolommen tegelijk aanzet (Cleys aanwijzing,
+      // 11 aug 2026): een bolletje gloeit alléén als er werkelijk een
+      // vonkje bij hem aankomt — de aankomstbult verderop — en dooft
+      // daarna vanzelf uit. Net als de draadjes.
+      gloed[k][i] = gloed[k][i] * 0.97;
     }
   }
 
