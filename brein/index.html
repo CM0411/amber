@@ -15,7 +15,13 @@
          font-family: system-ui, "Segoe UI", sans-serif; }
   canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
   .laag-tekst { position: fixed; z-index: 2; }
-  #status { top: 18px; right: 22px; text-align: right; font-size: 13px;
+  /* De rechterkolom stapelt zijn panelen zelf: het statuspaneel groeide op
+     11 aug 2026 en viel toen over "haar wereld" heen — vaste top-posities
+     verdragen geen panelen die met de inhoud meegroeien. */
+  #rechts { position: fixed; z-index: 2; top: 18px; right: 22px;
+            display: flex; flex-direction: column; gap: 20px;
+            align-items: flex-end; }
+  #status { text-align: right; font-size: 13px;
             color: #8ea0c0; line-height: 1.8; font-variant-numeric: tabular-nums;
             font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
   #status b { color: #cfe2ff; font-weight: 600; }
@@ -38,7 +44,7 @@
   #herinnert .kopje { font-size: 10.5px; letter-spacing: .16em;
                       text-transform: uppercase; color: #47536f; }
   #herinnert .h { opacity: .75; }
-  #wereld { top: 108px; right: 22px; text-align: right;
+  #wereld { text-align: right;
             font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
             font-size: 12.5px; color: #8ea0c0; line-height: 2; }
   #wereld .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
@@ -52,7 +58,7 @@
   #wereld .nieuw { color: #7fe0c3; animation: fonkel 1.2s ease-in-out infinite; }
   #wereld .doorbraak { font-size: 11px; color: #51608a; }
   @keyframes fonkel { 50% { opacity: .35; } }
-  #geheugen { top: 340px; right: 22px; text-align: right;
+  #geheugen { text-align: right;
               font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
               font-size: 12.5px; color: #8ea0c0; line-height: 2; }
   #geheugen .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
@@ -79,9 +85,11 @@
 <canvas id="doek"></canvas>
 <div class="laag-tekst" id="titel"><a href="/rapport">Amber</a></div>
 <div class="laag-tekst" id="uren"></div>
-<div class="laag-tekst" id="status">wachten op de kijker&hellip;</div>
-<div class="laag-tekst" id="wereld"></div>
-<div class="laag-tekst" id="geheugen"></div>
+<div id="rechts">
+  <div id="status">wachten op de kijker&hellip;</div>
+  <div id="wereld"></div>
+  <div id="geheugen"></div>
+</div>
 <div class="laag-tekst" id="lijnvak" style="display:none">
   <div class="kopje">haar levenslijn — ladder-proefwerk deze run</div>
   <canvas id="lijn" width="360" height="72"></canvas>
