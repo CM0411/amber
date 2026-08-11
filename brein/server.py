@@ -119,7 +119,7 @@ def _ververs_run():
                 _run["scores"] = proefwerk_scores
                 _run["config"] = config
                 _run["tijd"] = time.time()
-        time.sleep(5)
+        time.sleep(2)
 
 
 class Venster(BaseHTTPRequestHandler):

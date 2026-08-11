@@ -314,12 +314,14 @@ async function haal() {
                           hour: "2-digit", minute: "2-digit"});
         const nogU = Math.floor(overMs / 3600000);
         const nogM = Math.floor(overMs % 3600000 / 60000);
+        window.lvBasis = {stap: stapNu, ms: msNu, doel: doel,
+                          ontvangen: performance.now()};
         html += `<div style="background:rgba(127,212,168,.15);border-radius:3px;height:6px;margin:5px 0">`
-          + `<div style="background:#7fd4a8;height:6px;border-radius:3px;width:${pct}%"></div></div>`
-          + `<b>${stapNu.toLocaleString("nl")}</b> / ${doel.toLocaleString("nl")} · ${pct}%<br>`
+          + `<div id="lv-balk" style="background:#7fd4a8;height:6px;border-radius:3px;width:${pct}%"></div></div>`
+          + `<b id="lv-stap">${stapNu.toLocaleString("nl")}</b> / ${doel.toLocaleString("nl")}<br>`
           + `<b>${msNu.toLocaleString("nl")}</b> ms per stap`
           + (lv.ms ? ` <span style="color:#7fe0c3">● live</span>` : "")
-          + ` · nog ${nogU}u${String(nogM).padStart(2, "0")}`
+          + ` · nog <span id="lv-nog">${nogU}u${String(nogM).padStart(2, "0")}</span>`
           + ` · klaar ~${wanneer}<br>`;
       } else { html += run + "<br>"; }
       const namen = ["ladder", "grondslag", "gemengd", "diepte2", "diepte"];
@@ -437,7 +439,29 @@ async function haal() {
     }
   } catch (e) {}
 }
-haal(); setInterval(haal, 2500);
+haal(); setInterval(haal, 1000);
+
+// De 10-hertz-tikker: tussen twee echte meetpunten schuift de teller
+// door op het gemeten tempo (extrapolatie), en elke seconde zet het
+// verse meetpunt hem weer recht. Boven de balk verandert er dus elke
+// 0,1 s iets, zonder ook maar één verzonnen getal: het tempo zelf is
+// altijd gemeten.
+setInterval(() => {
+  if (!window.lvBasis || !window.lvBasis.ms) return;
+  const b = window.lvBasis;
+  const verstreken = performance.now() - b.ontvangen;
+  const geschat = Math.min(b.doel, b.stap + verstreken / b.ms);
+  const el = (i) => document.getElementById(i);
+  if (!el("lv-stap")) return;
+  el("lv-stap").textContent = Math.floor(geschat).toLocaleString("nl");
+  el("lv-balk").style.width = (100 * geschat / b.doel) + "%";
+  const overMs = (b.doel - geschat) * b.ms;
+  const nogU = Math.floor(overMs / 3600000);
+  const nogM = Math.floor(overMs % 3600000 / 60000);
+  const nogS = Math.floor(overMs % 60000 / 1000);
+  el("lv-nog").textContent =
+    `${nogU}u${String(nogM).padStart(2, "0")}m${String(nogS).padStart(2, "0")}`;
+}, 100);
 maat();
 
 function teken(t) {
