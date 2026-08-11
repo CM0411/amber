@@ -246,11 +246,36 @@ async function haal() {
     }
     const run = s.run && s.run.regel ? s.run.regel : "";
     const st = document.getElementById("status");
+    const rc = (s.run && s.run.config) || {};
+    const rm = (s.run && s.run.machine) || {};
+    const rs = (s.run && s.run.scores) || {};
     if (run) {
-      const m = run.match(/stap\s+(\d+)\/(\d+)\s+(\d+%)\s+(\d+) ms\/st\s+nog (\S+)/);
-      st.innerHTML = m
-        ? `training X399<br><b>${(+m[1]).toLocaleString("nl")}</b> / ${(+m[2]).toLocaleString("nl")} · ${m[3]}<br>${m[4]} ms · nog ${m[5]}`
-        : run;
+      let html = `<div class="kop">${rc.naam || "training"} · X399`
+        + (rm.poging ? ` · poging ${rm.poging}` : "") + `</div>`;
+      const m = run.match(/stap\s+(\d+)\/(\d+)\s+(\d+)%\s+(\d+) ms\/st\s+nog (\d+)u(\d+)m/);
+      if (m) {
+        const pct = +m[3];
+        const klaar = new Date(Date.now() + (+m[5] * 3600 + +m[6] * 60) * 1000);
+        const wanneer = klaar.toLocaleString("nl", {weekday: "short",
+                          hour: "2-digit", minute: "2-digit"});
+        html += `<div style="background:rgba(127,212,168,.15);border-radius:3px;height:6px;margin:5px 0">`
+          + `<div style="background:#7fd4a8;height:6px;border-radius:3px;width:${pct}%"></div></div>`
+          + `<b>${(+m[1]).toLocaleString("nl")}</b> / ${(+m[2]).toLocaleString("nl")} · ${pct}%<br>`
+          + `${m[4]} ms per stap · nog ${m[5]}u${String(m[6]).padStart(2, "0")}`
+          + ` · klaar ~${wanneer}<br>`;
+      } else { html += run + "<br>"; }
+      const namen = ["ladder", "grondslag", "gemengd", "diepte2", "diepte"];
+      const pw = namen.filter(n => n in rs).map(n => `${n} ${rs[n]}%`).join(" · ");
+      if (pw) html += `<span style="opacity:.75">proefwerk`
+        + (rs._stap ? ` bij stap ${(+rs._stap).toLocaleString("nl")}` : "")
+        + `:<br>${pw}</span><br>`;
+      if (rc.venster) html += `<span style="opacity:.75">venster ${rc.venster}`
+        + (rc.hek ? ` · hek ${rc.hek}` : "") + `</span><br>`;
+      if (rm.temp) html += `<span style="opacity:.75">kaart ${rm.temp} °C`
+        + ` · ${rm.watt} W · ${rm.vram} MB`
+        + (rm.dienst ? ` · dienst ${rm.dienst === "active" ? "draait" : rm.dienst}` : "")
+        + `</span>`;
+      st.innerHTML = html;
     } else { st.textContent = "geen training actief"; }
     // haar wereld: per familie hoe diep hij openstaat — checkpoint eerst,
     // logregels als aanvulling; een verse doorbraak fonkelt

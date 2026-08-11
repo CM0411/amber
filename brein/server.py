@@ -25,13 +25,45 @@ def _ververs_run():
         r = subprocess.run(
             ["sshpass", "-p", _geheim(), "ssh", "-o", "ConnectTimeout=6", X399,
              "grep -E 'ms/st' ~/leven.log | tail -1; "
-             "grep -E '^  stap +[0-9]+ \\|' ~/leven.log | tail -1; "
+             "grep -E '^  stap +[0-9]+ \\|.*ladder' ~/leven.log | tail -1; "
              "echo ===; grep 'wereld open' ~/leven.log | tail -15; "
-             "echo ===; grep -E '^  stap +[0-9]+ \\|' ~/leven.log | tail -400"],
+             "echo ===; grep -E '^  stap +[0-9]+ \\|' ~/leven.log | tail -400; "
+             "echo ===; systemctl is-active amber-train; "
+             "grep -oE '^=== poging [0-9]+' ~/leven.log | tail -1 "
+             "| sed 's/=== //'; "
+             "nvidia-smi --query-gpu=temperature.gpu,power.draw,memory.used "
+             "--format=csv,noheader 2>/dev/null"],
             capture_output=True, text=True)
         if r.returncode == 0:
             ruw = r.stdout.split("===")
             regels = [x for x in ruw[0].strip().splitlines() if x.strip()]
+            # het machinedeel: dienst, poging, kaart
+            machine = {}
+            for m_regel in (ruw[3].splitlines() if len(ruw) > 3 else []):
+                m_regel = m_regel.strip()
+                if m_regel in ("active", "inactive", "activating", "failed"):
+                    machine["dienst"] = m_regel
+                elif m_regel.startswith("poging"):
+                    machine["poging"] = int(m_regel.split()[1])
+                elif "," in m_regel and ("W" in m_regel or "MiB" in m_regel):
+                    delen = [d.strip() for d in m_regel.split(",")]
+                    machine["temp"] = delen[0]
+                    machine["watt"] = delen[1].replace(" W", "")
+                    machine["vram"] = delen[2].replace(" MiB", "")
+            # de scores van het laatste proefwerk, als losse velden
+            proefwerk_scores = {}
+            if len(regels) > 1:
+                for naam, pct in re.findall(r"(\w+)\s+(\d+)%", regels[1]):
+                    proefwerk_scores[naam] = int(pct)
+                sm = re.search(r"stap\s+(\d+)", regels[1])
+                if sm:
+                    proefwerk_scores["_stap"] = int(sm.group(1))
+            # de runconfiguratie zoals het rapport hem ook leest
+            try:
+                with open("/home/arch/rapport/run.json") as f:
+                    config = json.load(f)
+            except Exception:
+                config = {}
             # de rand van haar wereld, per familie, uit de doorbraakregels
             wereld = {"rekenen": 2, "puzzel": 2, "code": 2}
             doorbraken = []
@@ -56,6 +88,9 @@ def _ververs_run():
                 _run["wereld"] = wereld
                 _run["doorbraken"] = doorbraken[-4:]
                 _run["curve"] = curve
+                _run["machine"] = machine
+                _run["scores"] = proefwerk_scores
+                _run["config"] = config
                 _run["tijd"] = time.time()
         time.sleep(5)
 
