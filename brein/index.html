@@ -152,7 +152,6 @@ let gloed = KOL.map(n => new Array(n).fill(0));
 let kolMax = KOL.map(() => 0.0001);
 let bedrading = null, bedradingUit = null, weefsel = [];
 let vonken = [];
-let bolGloed = 0;      // licht op wanneer een vonkje van laag 8 aankomt
 let antwoordDoel = "", antwoordNu = 0, laatstTonen = 0;
 const DUUR = 1300;
 
@@ -572,20 +571,17 @@ function teken(t) {
     ctx.fillStyle = `rgba(235,244,255,${(0.85 * (1 - u * 0.4)).toFixed(2)})`;
     ctx.beginPath(); ctx.arc(x, y, mn * 0.0016, 0, 7); ctx.fill();
   }
-  // aankomst bij de bol: precies dán oplichten, niet willekeurig
-  for (const v of vonken)
-    if (v.k === KOL.length - 2 && v.u >= 1)
-      bolGloed = Math.min(1, bolGloed + 0.5);
-  bolGloed *= 0.955;
   vonken = vonken.filter(v => v.u < 1);
 
   // de kolommen zelf, met een gloed aan de invoer als de golf daar begint
   for (let k = 0; k < KOL.length; k++)
     for (let i = 0; i < KOL[k]; i++) {
       const [x, y] = plaats(k, i);
-      // de bol gloeit alleen op aankomsten van laag-8-vonkjes; de andere
-      // bolletjes op de golf zoals altijd
-      const gl = KOL[k] === 1 ? bolGloed : gloed[k][i];
+      // de bol ademt: een trage, zachte puls van ~5 seconden — bewust
+      // zonder flitsen (Cley is gevoelig voor knipperende beelden)
+      const gl = KOL[k] === 1
+        ? 0.25 + 0.28 * (0.5 + 0.5 * Math.sin(t / 800))
+        : gloed[k][i];
       const r = mn * (KOL[k] === 1 ? 0.008 : 0.0021) * (1 + 1.7 * gl);
       ctx.fillStyle = `rgba(${205 + 50 * gl | 0},${220 + 35 * gl | 0},255,${(0.5 + 0.5 * gl).toFixed(2)})`;
       ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
