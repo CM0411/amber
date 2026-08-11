@@ -68,6 +68,11 @@
 </div>
 
 <div class="kaart">
+  <div class="kop">haar netwerk</div>
+  <canvas id="net" style="width:100%; height:290px; display:block"></canvas>
+</div>
+
+<div class="kaart">
   <div class="kop" id="p-kop">laatste proefwerk</div>
   <div class="chips" id="p-chips"><span class="chip">wachten…</span></div>
 </div>
@@ -194,6 +199,93 @@ async function haal() {
   } catch (e) {}
 }
 haal(); setInterval(haal, 5000);
+
+// --- het netwerk: haar bedrading met activatiegolven, compact ------------
+const net = document.getElementById("net");
+const nctx = net.getContext("2d");
+let nKOL = [], nBedrading = null, nRijen = [], nRij = 0, nRijTijd = 0;
+let nGloed = [], nTijd = 0;
+
+function netMaat() {
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  net.width = net.clientWidth * dpr;
+  net.height = net.clientHeight * dpr;
+}
+addEventListener("resize", netMaat);
+
+async function haalNet() {
+  try {
+    const s = await (await fetch("/stand.json", {cache: "no-store"})).json();
+    if (s.lagen && s.lagen.length && s.tijd !== nTijd) {
+      nTijd = s.tijd;
+      nRijen = s.lagen.map(r => [r.in, ...r.b, [r.uit]]);
+      nKOL = nRijen[0].map(k => k.length);
+      if (!nGloed.length)
+        nGloed = nKOL.map(n => new Array(n).fill(0));
+      nBedrading = s.bedrading;
+      nRij = 0;
+    }
+  } catch (e) {}
+}
+haalNet(); setInterval(haalNet, 5000);
+
+function nPlek(k, i) {
+  const B = net.width, H = net.height;
+  const x = B * 0.05 + B * 0.9 * k / (nKOL.length - 1);
+  const n = nKOL[k];
+  const y = n === 1 ? H / 2 : H * 0.06 + H * 0.88 * i / (n - 1);
+  return [x, y];
+}
+
+function nTeken() {
+  requestAnimationFrame(nTeken);
+  if (!nKOL.length) return;
+  const nu = performance.now();
+  // volgende activatierij inschuiven, rustig tempo
+  if (nRijen.length && nu - nRijTijd > 420) {
+    nRijTijd = nu;
+    const rij = nRijen[nRij % nRijen.length]; nRij++;
+    rij.forEach((kol, k) => {
+      const top = Math.max(...kol.map(Math.abs), 1e-4);
+      kol.forEach((v, i) => {
+        nGloed[k][i] = Math.max(nGloed[k][i] || 0, Math.abs(v) / top);
+      });
+    });
+  }
+  const B = net.width, H = net.height;
+  nctx.clearRect(0, 0, B, H);
+  // bedrading: per overgang de sterkste verbindingen, groen plus rood min
+  if (nBedrading) {
+    nctx.lineWidth = Math.max(0.4, B / 1400);
+    for (let k = 0; k < Math.min(nBedrading.length, nKOL.length - 1); k++) {
+      const M = nBedrading[k];
+      for (let a = 0; a < M.length; a += 2)
+        for (let b = 0; b < M[a].length; b += 2) {
+          const v = M[a][b];
+          if (Math.abs(v) < 0.45) continue;
+          const [x1, y1] = nPlek(k, a * nKOL[k] / M.length);
+          const [x2, y2] = nPlek(k + 1, b * nKOL[k + 1] / M[a].length);
+          nctx.strokeStyle = v > 0
+            ? `rgba(96, 220, 160, ${Math.abs(v) * 0.16})`
+            : `rgba(255, 120, 90, ${Math.abs(v) * 0.16})`;
+          nctx.beginPath(); nctx.moveTo(x1, y1);
+          nctx.quadraticCurveTo((x1 + x2) / 2, (y1 + y2) / 2 + H * 0.03, x2, y2);
+          nctx.stroke();
+        }
+    }
+  }
+  // bolletjes met gloed
+  for (let k = 0; k < nKOL.length; k++)
+    for (let i = 0; i < nKOL[k]; i++) {
+      const g = nGloed[k] ? (nGloed[k][i] || 0) : 0;
+      nGloed[k][i] = g * 0.94;
+      const [x, y] = nPlek(k, i);
+      const r = (1.4 + g * 2.2) * (B / 900);
+      nctx.fillStyle = `rgba(${140 + g * 100}, ${170 + g * 70}, 255, ${0.35 + g * 0.6})`;
+      nctx.beginPath(); nctx.arc(x, y, r, 0, 7); nctx.fill();
+    }
+}
+netMaat(); nTeken();
 </script>
 </body>
 </html>
