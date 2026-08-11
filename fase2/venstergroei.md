@@ -79,3 +79,29 @@ vanzelf — zie de startlijst onderaan.)*
 - wrapper: stappental run 4; rapport-maker op nieuw doel en nieuwe hek-tekst
 - venster-UI: grens {rekenen 26, code 11, puzzel 6}; kijker-diepten meegroeien
 - eerste 1000 stappen: tempo aflezen en de eindtijd bijstellen
+
+## 11 aug, avond — alles klaargezet; starten is nog twee commando's
+
+De hele startlijst hierboven is uitgevoerd en gecontroleerd, plus de
+Engelse omschakeling en de werelduitbreiding (som-van-vorige-twee,
+×4–×6-rijen, proefwerkmaat-lussen en -def's). Hekken hermeten mét die
+nieuwe vormen op 768: rekenen 26 → 99%, code 11 → 100%, puzzel 6 → 94%.
+
+Wat er nu al staat:
+- `fase1/leven/momentopname.pt` op de X399 **is** het run-4-startpunt:
+  stap 170.000, venster 768, vorm in het checkpoint, geheugen 20.000 mee,
+  stapelruimte 30.000 (beleid volgt de code, niet het checkpoint)
+- run-3-eindstand veiliggesteld als `fase1/run3-eind.pt` op beide
+  machines (md5 gelijk); DL380 heeft ook `fase1/run4-start.pt`
+- wrapper staat bewust nog op `life.py 170000`: een herstart van de X399
+  is dan een onschuldige no-op in plaats van een ongevraagde run-4-start
+  ("zwijgen is nee" geldt ook voor systemd)
+- `~/rapport/run4.json.klaar` ligt klaar naast de rapportmaker
+
+**Startprocedure zodra Cley "start run 4" zegt:**
+1. X399: in `~/nacht` het stappental `170000` → `320000`
+   (170.000 gedaan + 150.000 nieuw; life.py telt absoluut)
+2. DL380: `cp ~/rapport/run4.json.klaar ~/rapport/run.json`
+3. X399: `sudo systemctl start amber-train`
+4. Eerste 1000 stappen tempo aflezen en de eindtijd bevestigen
+   (voorlopige raming: zie tempo-ijking hieronder)

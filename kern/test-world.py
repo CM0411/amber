@@ -317,7 +317,12 @@ for family in world.FAMILIES:
     for depth in (3, 6, 9):
         if depth > world.max_depth(family):
             continue          # no usable material exists there
-        for t in world.learning_tasks(family, depth, 200, exclude=lock):
+        # The run-4 room (768 - 112): at puzzle depth 6 the conservative
+        # default of 400 fits so little that 200 clean tasks do not exist
+        # within the search bound — the fence at 6 presumes the window
+        # that opened it.
+        for t in world.learning_tasks(family, depth, 200, exclude=lock,
+                                      room=768 - 112):
             if t.problem in lock:
                 contaminated.append(t.problem)
 check("study material never yields an exam problem", not contaminated,

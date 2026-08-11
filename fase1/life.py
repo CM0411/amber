@@ -33,6 +33,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
 import determinism                         # MUST come before torch
 determinism.lock(20260808)
 
+import bridge
 import exams
 import journal
 import snapshot
@@ -61,6 +62,13 @@ if os.path.exists(SNAPSHOT):
                              learner.device) + 1
     learner.steps = BEGIN - 1
     extra = content.get("extra") or {}
+    # Follow the snapshot's window before anything else touches it: run 4
+    # trains at 768 while the Learner is built at the default. Growing
+    # changes nothing about the weights (test-window-growth.py) and takes
+    # the answer copy and the memory doorway along (adopt_window).
+    vorm = extra.get("vorm")
+    if vorm:
+        learner.adopt_window(bridge.translate_spec(vorm).get("window") or 0)
     if "geheugen" in extra:
         learner.restore(extra)
         print(f"  geheugen terug: {len(learner.memory):,} herinneringen")

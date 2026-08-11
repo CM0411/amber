@@ -38,9 +38,9 @@ last_fetched = 0.0
 last_loaded = 0.0
 
 # What we have her look at: around her level, all families.
-CHOICES = ([("rekenen", d) for d in (1, 2, 3, 4, 6, 8, 10, 12)]
-           + [("code", d) for d in (1, 2, 3, 4, 5, 6, 8)]
-           + [("puzzel", d) for d in (1, 2, 3, 4, 5)])
+CHOICES = ([("rekenen", d) for d in (1, 2, 3, 4, 6, 8, 10, 13, 17, 21, 26)]
+           + [("code", d) for d in (1, 2, 3, 4, 5, 6, 8, 11)]
+           + [("puzzel", d) for d in (1, 2, 3, 4, 5, 6)])
 
 # Hooks: per pass the average activity per layer.
 current = []
@@ -189,14 +189,10 @@ def _adopt_window(extra):
     """Follow the snapshot's window: run 4 trains at 768 while this
     Learner was built at the default. Growing changes nothing about the
     weights — proven in test-window-growth.py — so the viewer simply
-    grows along."""
+    grows along, doorway included."""
     vorm = (extra or {}).get("vorm")
-    if not vorm:
-        return
-    window = bridge.translate_spec(vorm).get("window") or 0
-    for core in {L.core, getattr(L, "_answer_core", L.core)}:
-        if window > core.window:
-            core.grow_window(window)
+    if vorm:
+        L.adopt_window(bridge.translate_spec(vorm).get("window") or 0)
 
 
 def load_if_newer():
@@ -233,6 +229,7 @@ while True:
     try:
         task = world.learning_tasks(family, depth, 1,
                                     start=picker.integer(0, 200_000),
+                                    room=L.core.window - 112,
                                     exclude=lock)[0]
     except Exception:
         time.sleep(2); continue

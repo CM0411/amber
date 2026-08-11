@@ -50,12 +50,11 @@ from tasks import FAMILIES, Task, Picker, _mix
 WORLD_SEED = 0x5765_7265_6C64          # "Wereld"
 
 MIN_DEPTH = 1
-# Measured 9 Aug 2026, 400 problems per depth: through 15, 100% fits with
-# its working inside MAX_CHARS, at 16 still 97%, at 17 still 93%, at 18 it
-# drops to 66% and from 20 nothing fits. Same standard as code (fence at
-# 85%): the fence stands at 17. Deeper is not a choice but the window
-# itself — only when the window grows (phase 2) can the fence open further.
-MAX_DEPTH = 17
+# The fence follows the window, measured at the 85% standard (at least
+# 85% of usable problems fit with their working). At 512 that gave 17
+# (measured 9 Aug 2026: 100% through 15, 93% at 17, 66% at 18). At 768,
+# measured 10-11 Aug 2026 for run 4: arithmetic fits 99% at depth 26.
+MAX_DEPTH = 26
 
 # Per family the fence can sit lower. Puzzle rows from depth 6 are woven so
 # deep that no method comes out that delivers the answer — 16% usable at 6,
@@ -64,23 +63,23 @@ MAX_DEPTH = 17
 #
 # Longer rows (measured 10 Aug 2026, see _row) rescue the explanation —
 # depth 6 goes from 16% to 36% explainable, as much as depth 5 itself — but
-# the working of such a deep weave runs 500–1200 characters and does not fit
-# a 512 window: at depth 6, 2% fits, above it nothing. The same wall as
-# arithmetic 18+ and code 9+: everywhere the limit is the window, not her
-# ability. The fence stays at 5 until the window grows (phase 2).
-MAX_DEPTH_PER = {"puzzel": 5, "code": 8}
-# code up to 8: with the full working, 85% of problems at depth 8 still fit
-# the window, at depth 9 only 4% and at 12 none. Run 3 opened code to 12 on
-# 9 Aug 2026 and crashed there six times on "1 of the 64 tasks found" — a
-# depth without problems is not a world.
+# the working of such a deep weave runs 500–1200 characters and did not fit
+# a 512 window. At 768 (run 4, measured 10-11 Aug 2026) puzzle 6 has 95% of
+# its usable problems fitting and code 11 fits 100%; at 512 the fences
+# stood at 5 and 8. Deeper stays a wall: puzzle 7+ is unexplainable weave,
+# code 12+ does not fit even 768. Run 3 opened code to 12 on 9 Aug 2026 and
+# crashed there six times on "1 of the 64 tasks found" — a depth without
+# problems is not a world; hence fences, not hope.
+MAX_DEPTH_PER = {"puzzel": 6, "code": 11}
 
 
 def max_depth(family):
     return MAX_DEPTH_PER.get(family, MAX_DEPTH)
 
-# Her window is 512 characters. A problem that does not fit it together with
-# its working is one she cannot even read. 400 leaves room for the own
-# tokens.
+# The conservative default for callers who do not know a window: 400 fitted
+# the first 512 window with room for the own tokens. The learning loop and
+# the kijker pass the real room themselves (window - 112); this default
+# only bounds direct calls.
 #
 # Wider than the initial 200, because a working is much longer than a bare
 # answer: at depth 12 it is already 247 characters. With a 256 window the

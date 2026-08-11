@@ -141,7 +141,13 @@ class ReplayMemory:
     a floor, frequent ones stay fresh.
     """
 
-    def __init__(self, capacity=20000, bottleneck=None):
+    def __init__(self, capacity=30000, bottleneck=None):
+        # 30,000 since 11 Aug 2026 (Cley's call: "she need not forget"):
+        # run 4 opens 43 cells (26+11+6) and the balanced forgetting
+        # divides capacity over the open cells — 30,000 keeps ~700 per
+        # cell, the coverage run 3 had with 30 cells in 20,000. The cap
+        # itself must stay: every step adds ~20 experiences, and a stack
+        # that only grows dilutes replay until it protects nothing.
         self.capacity = capacity
         self.bottleneck = bottleneck or Bottleneck()
         self._content = []
@@ -219,8 +225,16 @@ class ReplayMemory:
         }
 
     def restore(self, carried):
-        """Put a carried memory back exactly. Reads run-3-era checkpoints."""
-        self.capacity = int(carried["ruimte"])
+        """Put a carried memory back exactly. Reads run-3-era checkpoints.
+
+        Capacity is policy and follows the code, not the snapshot: on 11
+        Aug 2026 the stack grew from 20,000 to 30,000 (Cley's call), and a
+        restore must not quietly shrink it back to the run-3 value. The
+        carried "ruimte" stays in the snapshot as documentation. Content
+        is never dropped at load — should it ever exceed today's policy,
+        the balanced forgetting trims on the next remember().
+        """
+        self.capacity = max(self.capacity, len(carried["inhoud"]))
         self.refused = int(carried["geweigerd"])
         self._content = [dict(s) for s in carried["inhoud"]]
         # The tally is not in the checkpoint but follows from the content —

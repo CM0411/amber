@@ -118,13 +118,16 @@ if os.path.exists(PATH):
     probe = torch.randint(0, 260, (2, real.window))
     with torch.no_grad():
         out = real.advance(probe)[0]
-    check("her run-3 weights load through the ordinary restore path",
-          out.shape == (2, real.window, 260)
-          and bridge.is_dutch_state(content["model"]),
-          f"snapshot of step {content.get('stap', '?')}, Dutch keys on disk, "
-          f"full window forward pass")
+    era = "Dutch" if bridge.is_dutch_state(content["model"]) else "English"
+    check("her real weights load through the ordinary restore path",
+          out.shape == (2, real.window, 260),
+          f"snapshot of step {content.get('stap', '?')}, {era} keys on "
+          f"disk, full window forward pass — the viewer refreshes this "
+          f"file, so either era can sit here")
+    if real.window < 768:
+        real.grow_window(768)
     check("and the English core can simply grow afterwards",
-          (real.grow_window(max(768, real.window)) or real.window >= 768))
+          real.window >= 768)
 else:
     print("         (no snapshot found — skipped)")
 

@@ -605,7 +605,27 @@ class Learner:
             "geheugen": self.memory.carry(),
             "nieuwsgierig": self.curiosity.carry(),
             "diepste_per": dict(self.deepest_per),
+            # Since 11 Aug 2026: the snapshot knows her shape, so a loader
+            # can follow her window instead of assuming the default. Run-3
+            # snapshots lack this key; loaders must cope with that.
+            "vorm": self.core.spec(),
         }
+
+    def adopt_window(self, window):
+        """Follow a grown window: core, answer copy and doorway together.
+
+        Growing changes nothing about the weights (test-window-growth.py);
+        forgetting to grow the bottleneck would silently refuse every
+        experience longer than the old window — the exact class of quiet
+        failure this project hunts.
+        """
+        if not window:
+            return
+        for core in {self.core, self._answer_core}:
+            if window > core.window:
+                core.grow_window(window)
+        if window > self.memory.bottleneck.length:
+            self.memory.bottleneck.length = window
 
     def restore(self, carried):
         if not carried:
