@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Amber</title>
+<style>
+  /* De telefoonpagina — gebouwd voor de duim, niet geperst vanaf het grote
+     scherm. Zelfde gegevens (/stand.json), rustige kaarten, 5 s verversen. */
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #080b1e; color: #d8dde5; padding: 14px 14px 40px;
+         font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+         padding-top: calc(14px + env(safe-area-inset-top)); }
+  h1 { font-size: 15px; letter-spacing: .35em; color: #5f6f92;
+       text-transform: uppercase; font-weight: 600; margin: 4px 2px 2px; }
+  #uren { font-size: 11px; color: #47536f; margin: 0 2px 12px;
+          font-family: ui-monospace, monospace; }
+  .kaart { background: #0c1230; border: 1px solid #1d2b4d; border-radius: 12px;
+           padding: 14px 16px; margin-bottom: 12px; }
+  .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+         text-transform: uppercase; margin-bottom: 8px; }
+  .groot { font-size: 22px; font-weight: 650; color: #cfe2ff;
+           font-variant-numeric: tabular-nums; }
+  .zacht { color: #8ea0c0; font-size: 13px; }
+  .fijn { color: #51608a; font-size: 12px; }
+  .balk { background: rgba(127, 212, 168, .15); border-radius: 4px;
+          height: 8px; margin: 10px 0; }
+  .balk > div { background: #7fd4a8; height: 8px; border-radius: 4px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { background: #131b3e; border-radius: 8px; padding: 7px 11px;
+          font-size: 13px; color: #8ea0c0;
+          font-variant-numeric: tabular-nums; }
+  .chip b { color: #cfe2ff; font-weight: 600; }
+  .rij { display: flex; justify-content: space-between; align-items: center;
+         padding: 5px 0; font-size: 14px; color: #8ea0c0;
+         font-variant-numeric: tabular-nums; }
+  .staafbalk { flex: 1; margin: 0 12px; background: #1d2b4d; height: 7px;
+               border-radius: 4px; overflow: hidden; }
+  .staafbalk > div { background: #5ca8ff; height: 7px; }
+  #opgave { font-family: ui-monospace, monospace; font-size: 13px;
+            color: #8ea0c0; white-space: pre-wrap; word-break: break-word; }
+  #antwoord { font-family: ui-monospace, monospace; font-size: 13px;
+              margin-top: 6px; word-break: break-word; }
+  #antwoord.goed { color: #7fe0c3; } #antwoord.fout { color: #ffa385; }
+  .link { display: flex; justify-content: space-between; padding: 11px 2px;
+          color: #8ea0c0; text-decoration: none; font-size: 14px;
+          border-top: 1px solid #131b3e; }
+  .link:first-of-type { border-top: 0; }
+  .link .st { color: #51608a; font-size: 12px; }
+  .link .st.lopend { color: #7fe0c3; }
+  .doorbraak { font-size: 13px; color: #8ea0c0; padding: 3px 0; }
+  .doorbraak b { color: #7fe0c3; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>Amber</h1>
+<div id="uren"></div>
+
+<div class="kaart" id="k-run">
+  <div class="kop" id="r-kop">training</div>
+  <div><span class="groot" id="r-stap">—</span>
+       <span class="zacht" id="r-doel"></span></div>
+  <div class="balk"><div id="r-balk" style="width:0%"></div></div>
+  <div class="zacht" id="r-tempo"></div>
+  <div class="fijn" id="r-machine" style="margin-top:6px"></div>
+</div>
+
+<div class="kaart">
+  <div class="kop" id="p-kop">laatste proefwerk</div>
+  <div class="chips" id="p-chips"><span class="chip">wachten…</span></div>
+</div>
+
+<div class="kaart">
+  <div class="kop">haar wereld</div>
+  <div id="w-rijen"></div>
+  <div id="w-doorbraken" style="margin-top:6px"></div>
+</div>
+
+<div class="kaart">
+  <div class="kop">haar geheugen</div>
+  <div class="zacht" id="g-regel">—</div>
+  <div class="fijn" id="g-fles"></div>
+</div>
+
+<div class="kaart">
+  <div class="kop" id="d-kop">wat ze nu doet</div>
+  <div id="opgave">—</div>
+  <div id="antwoord"></div>
+</div>
+
+<div class="kaart">
+  <div class="kop">rapporten</div>
+  <div id="rapporten"></div>
+</div>
+
+<script>
+const grens = {rekenen: 26, code: 11, puzzel: 6};
+
+async function haal() {
+  try {
+    const s = await (await fetch("/stand.json", {cache: "no-store"})).json();
+    const cfg = (s.run && s.run.config) || {};
+    const lv = (s.run && s.run.live) || {};
+    const rm = (s.run && s.run.machine) || {};
+    const rs = (s.run && s.run.scores) || {};
+
+    if (s.uren) {
+      let u = `≈ ${String(s.uren).replace(".", ",")} uur samen gebouwd`;
+      if (s.haar_uren) u += ` · zij leerde ${String(s.haar_uren).replace(".", ",")} uur`;
+      document.getElementById("uren").textContent = u;
+    }
+
+    // de run
+    const doel = cfg.doel || 0;
+    document.getElementById("r-kop").textContent =
+      `${cfg.naam || "training"} · X399` + (rm.poging ? ` · poging ${rm.poging}` : "");
+    if (lv.stap && doel) {
+      const pct = Math.floor(100 * lv.stap / doel);
+      const overMs = (doel - lv.stap) * (lv.ms || 0);
+      const klaar = new Date(Date.now() + overMs);
+      document.getElementById("r-stap").textContent = lv.stap.toLocaleString("nl");
+      document.getElementById("r-doel").textContent =
+        ` / ${doel.toLocaleString("nl")} · ${pct}%`;
+      document.getElementById("r-balk").style.width = pct + "%";
+      document.getElementById("r-tempo").textContent =
+        `${(lv.ms || 0).toLocaleString("nl")} ms per stap · klaar ~` +
+        klaar.toLocaleString("nl", {weekday: "short", hour: "2-digit", minute: "2-digit"});
+    }
+    document.getElementById("r-machine").textContent = rm.temp
+      ? `kaart ${rm.temp} °C · ${rm.watt} W · dienst ${rm.dienst === "active" ? "draait" : rm.dienst}`
+      : "";
+
+    // proefwerk
+    const namen = ["ladder", "grondslag", "gemengd", "diepte2", "diepte"];
+    const chips = namen.filter(n => n in rs)
+      .map(n => `<span class="chip">${n} <b>${rs[n]}%</b></span>`).join("");
+    if (chips) document.getElementById("p-chips").innerHTML = chips;
+    if (rs._stap !== undefined)
+      document.getElementById("p-kop").textContent =
+        `laatste proefwerk · stap ${(+rs._stap).toLocaleString("nl")}`;
+
+    // wereld
+    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2},
+                               (s.run && s.run.wereld) || {}, s.wereldrand || {});
+    let wr = "";
+    for (const f of ["rekenen", "puzzel", "code"]) {
+      const d = Math.min(rand[f], grens[f]);
+      wr += `<div class="rij"><span>${f}</span>
+        <span class="staafbalk"><div style="width:${100 * d / grens[f]}%"></div></span>
+        <span>${d}/${grens[f]}</span></div>`;
+    }
+    document.getElementById("w-rijen").innerHTML = wr;
+    const db = (s.run && s.run.doorbraken) || [];
+    document.getElementById("w-doorbraken").innerHTML = db.slice(-3).reverse()
+      .map(l => `<div class="doorbraak"><b>${l.familie} → ${l.tot}</b>
+                 · stap ${l.stap.toLocaleString("nl")}</div>`).join("");
+
+    // geheugen
+    const vakjes = s.geheugen_vakjes || {};
+    const totaal = Object.values(vakjes).reduce((a, b) => a + b, 0);
+    if (totaal)
+      document.getElementById("g-regel").textContent =
+        `${totaal.toLocaleString("nl")} herinneringen · ${Object.keys(vakjes).length} vakjes`;
+    if (s.fles)
+      document.getElementById("g-fles").textContent =
+        `doorgang ${s.fles.lengte} tekens` +
+        (s.fles.bezetting ? ` · ${Math.round(s.fles.bezetting * 100)}% gevuld` : "");
+
+    // wat ze nu doet
+    if (s.opgave) {
+      document.getElementById("d-kop").textContent =
+        `wat ze nu doet · ${s.familie} ${s.diepte}`;
+      document.getElementById("opgave").textContent = s.opgave;
+      const a = document.getElementById("antwoord");
+      a.textContent = s.antwoord || "";
+      a.className = s.goed ? "goed" : "fout";
+    }
+
+    // rapporten
+    const mRegel = lv.stap && doel
+      ? ` · ${lv.stap.toLocaleString("nl")}` : "";
+    document.getElementById("rapporten").innerHTML = (s.rapporten || [])
+      .map(f => {
+        const naam = f.replace(".html", "");
+        let label = naam, st = "";
+        if (naam === "index") label = "rapportoverzicht";
+        else if (naam === "stemmen") label = "stemkeuze";
+        else if (naam === cfg.naam) st = `<span class="st lopend">lopend${mRegel}</span>`;
+        else if (naam.startsWith("run")) st = `<span class="st">definitief</span>`;
+        return `<a class="link" href="/rapport/${f}"><span>${label}</span>${st}</a>`;
+      }).join("");
+  } catch (e) {}
+}
+haal(); setInterval(haal, 5000);
+</script>
+</body>
+</html>

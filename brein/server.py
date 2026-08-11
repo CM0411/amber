@@ -256,5 +256,18 @@ class Venster(BaseHTTPRequestHandler):
                 self._stuur(f.read())
 
 
+class Mobiel(Venster):
+    """Poort 8001: dezelfde gegevens, maar de wortel is de telefoonpagina —
+    gebouwd voor de duim in plaats van geperst vanaf het grote scherm."""
+    def do_GET(self):
+        if self.path == "/" or self.path.startswith("/index"):
+            with open(f"{MAP}/mobiel.html", "rb") as f:
+                self._stuur(f.read())
+        else:
+            super().do_GET()
+
+
 threading.Thread(target=_ververs_run, daemon=True).start()
+threading.Thread(target=lambda: ThreadingHTTPServer(
+    ("0.0.0.0", 8001), Mobiel).serve_forever(), daemon=True).start()
 ThreadingHTTPServer(("0.0.0.0", 8000), Venster).serve_forever()
