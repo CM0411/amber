@@ -175,6 +175,30 @@ function plaats(kol, i) {
   const y = n === 1 ? midden : midden - hoog / 2 + hoog * i / (n - 1);
   return [x, y];
 }
+function bolRoute(x1, y1, x2, y2, u) {
+  // dezelfde omweg als de draden: uitzwenken, vrije baan, indalen —
+  // zodat vonkjes van laag 8 hun eigen draad naar de bol volgen
+  const boven = y1 <= H * 0.465;
+  const baanY = boven ? H * 0.05 : H * 0.945;
+  const uit = B * 0.033;
+  const q2 = (p0, c, p1, t) => {
+    const w = 1 - t;
+    return [w * w * p0[0] + 2 * w * t * c[0] + t * t * p1[0],
+            w * w * p0[1] + 2 * w * t * c[1] + t * t * p1[1]];
+  };
+  if (u < 0.2) {
+    const t = u / 0.2, w = 1 - t;
+    return [w * w * w * x1 + 3 * w * w * t * (x1 + uit)
+            + 3 * w * t * t * (x1 + uit) + t * t * t * (x1 - B * 0.01),
+            w * w * w * y1 + 3 * w * w * t * y1
+            + 3 * w * t * t * baanY + t * t * t * baanY];
+  }
+  if (u < 0.8)
+    return q2([x1 - B * 0.01, baanY],
+              [(x1 + x2) / 2, baanY + (boven ? -H * 0.025 : H * 0.025)],
+              [x2 + B * 0.05, baanY], (u - 0.2) / 0.6);
+  return q2([x2 + B * 0.05, baanY], [x2, baanY], [x2, y2], (u - 0.8) / 0.2);
+}
 function kromming(y1, y2) {
   // draden bollen weg van het midden: samen vormen ze de lensvormen
   const midden = H * 0.465;
@@ -540,16 +564,23 @@ function teken(t) {
       .sort((x, y) => y[0] - x[0]).slice(0, 10);
     const [, b] = sterk[Math.floor(Math.random() * sterk.length)] || [0, 0];
     const [, d] = doelK[Math.floor(Math.random() * doelK.length)] || [0, 0];
-    vonken.push({k, b, d, u: 0, sn: 0.014 + Math.random() * 0.02});
+    const laatste = k === KOL.length - 2;
+    vonken.push({k, b, d, u: 0,
+                 sn: (0.014 + Math.random() * 0.02) * (laatste ? 0.45 : 1)});
   }
   for (const v of vonken) {
     v.u += v.sn;
     const [x1, y1] = plaats(v.k, v.b);
     const [x2, y2] = plaats(v.k + 1, v.d);
-    const cy = kromming(y1, y2), cx = (x1 + x2) / 2;
-    const u = v.u, w = 1 - u;
-    const x = w * w * x1 + 2 * w * u * cx + u * u * x2;
-    const y = w * w * y1 + 2 * w * u * cy + u * u * y2;
+    let x, y;
+    if (v.k === KOL.length - 2) {
+      [x, y] = bolRoute(x1, y1, x2, y2, Math.min(1, v.u));
+    } else {
+      const cy = kromming(y1, y2), cx = (x1 + x2) / 2;
+      const u = v.u, w = 1 - u;
+      x = w * w * x1 + 2 * w * u * cx + u * u * x2;
+      y = w * w * y1 + 2 * w * u * cy + u * u * y2;
+    }
     ctx.fillStyle = `rgba(235,244,255,${(0.85 * (1 - u * 0.4)).toFixed(2)})`;
     ctx.beginPath(); ctx.arc(x, y, mn * 0.0016, 0, 7); ctx.fill();
   }
