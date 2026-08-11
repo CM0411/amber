@@ -53,8 +53,11 @@ from curiosity import Curiosity
 # that is worse.
 ROOM = 128
 
-# batch × length² per chunk; ~64 sequences of 280 characters at once
-_CHUNK_BUDGET = 5_000_000
+# batch × length² per chunk. Measured on 11 Aug 2026 at window 768: groups
+# of 16 make the probe round ~10% faster than groups of 8 (10.3 -> 9.3 s),
+# larger is flat, and the VRAM peak did not move. Chunking never changes
+# outcomes — test-learning proves batched answering equals one-by-one.
+_CHUNK_BUDGET = 10_000_000
 
 
 def bf16_usable(device):
