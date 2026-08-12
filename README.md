@@ -63,8 +63,15 @@ No datacenter — two second-hand machines on a home LAN:
 
 | role | machine |
 |---|---|
-| **training** | AMD Threadripper 1920X · 40 GB RAM · **RTX 3070 Ti 8 GB** · NVMe · Arch Linux · torch 2.12 / CUDA 13 |
+| **training** | Intel i7-11700 (Z490) · 32 GB RAM · **RTX 3070 Ti 8 GB** · NVMe + NVMe RAID1 mirror · Arch Linux · torch 2.12 / CUDA 13 |
 | **home base** | HP DL380 Gen9 · 56 threads · 472 GB RAM · **2× Tesla P100 16 GB** (Pascal) · Arch Linux · torch 2.4.1 / cu121 |
+
+The trainer changed boards mid-run (Aug 12, 2026): the original Threadripper
+X399 developed 5V power-rail problems and froze twice. The run was paused
+right after a snapshot, the checkpoint moved to the new machine, and training
+resumed with zero steps lost — the interruptibility story, exercised for
+real. The i7 also turned out ~20% faster per step, since the answer loop is
+partly CPU-bound.
 
 The training box runs her 24/7 (~200 W, quiet). The DL380 is the home base:
 it holds the code, the backups and the frozen exams, runs the watchdog that
