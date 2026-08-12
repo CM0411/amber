@@ -204,6 +204,39 @@ class Venster(BaseHTTPRequestHandler):
             except Exception:
                 pass
             self._stuur(json.dumps(stand).encode(), "application/json")
+        elif self.path.startswith("/spreek"):
+            # bouw een gesproken stand en leg hem in de wachtrij van de mond
+            with _slot:
+                r = dict(_run)
+            lv = r.get("live") or {}
+            cfg = r.get("config") or {}
+            sc = r.get("scores") or {}
+            delen = []
+            if lv.get("stap") and cfg.get("doel"):
+                pct = 100 * lv["stap"] // cfg["doel"]
+                delen.append("Ik ben bij stap "
+                             + f"{lv['stap']:,}".replace(",", " ")
+                             + f", dat is {pct} procent van run vier")
+            if lv.get("ms"):
+                delen.append(f"Een stap kost mij nu {lv['ms']} milliseconden")
+            db = r.get("doorbraken") or []
+            if db:
+                delen.append(f"Mijn laatste doorbraak was {db[-1]['familie']} "
+                             f"tot diepte {db[-1]['tot']}")
+            if sc.get("grondslag") is not None:
+                delen.append(f"Op het grondslagproefwerk sta ik op "
+                             f"{sc['grondslag']} procent")
+            tekst = (". ".join(delen) + "."
+                     if delen else "Ik heb nog niets te vertellen.")
+            os.makedirs("/home/arch/spraak/zeg-wachtrij", exist_ok=True)
+            with open(f"/home/arch/spraak/zeg-wachtrij/{time.time():.0f}.txt",
+                      "w") as f:
+                f.write(tekst)
+            self._stuur(json.dumps({"aangevraagd": True}).encode(),
+                        "application/json")
+        elif self.path.startswith("/opname"):
+            with open(f"{MAP}/opname.html", "rb") as f:
+                self._stuur(f.read())
         elif self.path.startswith("/stuur"):
             with open(f"{MAP}/stuur.html", "rb") as f:
                 self._stuur(f.read())

@@ -104,17 +104,32 @@ while True:
                 tijd=20)
             toestand["stap_tijd"] = nu
 
+        # het doel komt uit de runconfiguratie — de vaste 169.999 van run 3
+        # liet run 4 (doel 320.000) onbewaakt (gevonden 12 aug 2026)
+        try:
+            doel = json.load(open("/home/arch/rapport/run.json"))["doel"]
+        except Exception:
+            doel = 320_000
         if dienst == "inactive" and toestand["stap"] is not None \
-                and toestand["stap"] < 169_999:
+                and toestand["stap"] < doel - 1:
             schrijf("dienst staat uit terwijl de run niet af is — start hem")
             ssh(f"echo {_geheim()} | sudo -S systemctl start amber-train 2>/dev/null",
                 tijd=20)
 
-        if nu - laatste_meting > 300:
-            laatste_meting = nu
-            ok2, m = ssh("nvidia-smi --query-gpu=temperature.gpu,power.draw,"
-                         "memory.used --format=csv,noheader,nounits")
-            if ok2 and m:
+        # het warmte-oog: elke ronde kijken, geschiedenis elke 5 minuten
+        melding = None
+        ok2, m = ssh("nvidia-smi --query-gpu=temperature.gpu,power.draw,"
+                     "memory.used --format=csv,noheader,nounits")
+        if ok2 and m:
+            try:
+                temp = int(m.split(",")[0].strip())
+                if temp >= 80:
+                    melding = f"trainer warm: {temp} °C"
+                    schrijf(melding)
+            except ValueError:
+                pass
+            if nu - laatste_meting > 300:
+                laatste_meting = nu
                 nieuw = not os.path.exists(METINGEN)
                 with open(METINGEN, "a") as f:
                     if nieuw:
@@ -122,7 +137,7 @@ while True:
                     f.write(f"{time.strftime('%H:%M')},{m.replace(', ', ',')},"
                             f"{toestand['stap']}\n")
 
-        zet_stand(dienst=dienst, melding=None)
+        zet_stand(dienst=dienst, melding=melding)
     except Exception as e:
         schrijf(f"wachter-fout: {type(e).__name__}: {e}")
     time.sleep(60)

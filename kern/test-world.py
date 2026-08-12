@@ -396,14 +396,37 @@ for d in (3, 4, 5, 6, 8):
         else:
             continue
         forms_seen.add(kind)
-        # Against the writing space of window 768 — the exam-scale forms
-        # (squares loop n=9, def n=10) exist exactly for run 4 and
-        # deliberately no longer fit 512 (11 Aug 2026).
-        if not t.check(t.working) or len(t.working) > _rf(d, "code", 768):
+        # Every form must fit the window of its own era: through ten
+        # def-rounds is run-4 material (768); the exam-size defs above
+        # that belong to 1024 and are filtered by fits() until then.
+        rounds = 0
+        if kind == "def":
+            m = re.search(r"range\(1, (\d+)\)", t.problem)
+            rounds = int(m.group(1)) - 1 if m else 0
+        era = 1024 if (kind == "def" and rounds > 10) else 768
+        if not t.check(t.working) or len(t.working) > _rf(d, "code", era):
             forms_fit = False
 check("the three exam forms of code exist in the world",
       forms_seen == {"lus", "lijst", "def"})
 check("and every working fits its writing space", forms_fit)
+
+# The exam-size def (up to fifteen rounds) exists for the 1024 era and
+# fits its writing space there; at 768 `fits()` keeps it out of her
+# batches, so minting it today is harmless (12 Aug 2026).
+big_def = correct = 0
+for n in range(6000, 6800):
+    t = world.make("code", 8, n)
+    if t is None or "def f" not in t.problem:
+        continue
+    import re as _re2
+    m = _re2.search(r"range\(1, (\d+)\)", t.problem)
+    if m and int(m.group(1)) >= 13:
+        big_def += 1
+        if t.check(t.working) and len(t.working) <= _rf(8, "code", 1024):
+            correct += 1
+check("exam-size defs (13+ rounds) exist and fit window 1024",
+      big_def > 0 and correct == big_def,
+      f"{big_def} large defs sampled, all correct and fitting")
 
 print()
 print("=" * 70)

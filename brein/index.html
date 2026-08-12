@@ -138,6 +138,28 @@
   <div id="herinnert"></div>
 </div>
 <script>
+let spreekVanaf = 0;
+document.addEventListener("click", async (e) => {
+  if (e.target.id !== "spreek") return;
+  e.target.textContent = "🔊 ze formuleert…";
+  spreekVanaf = Date.now() / 1000;
+  await fetch("/spreek");
+  const wacht = setInterval(async () => {
+    try {
+      const m = await (await fetch("/rapport/stem-stand.json",
+                                   {cache: "no-store"})).json();
+      if (m.tijd > spreekVanaf) {
+        clearInterval(wacht);
+        const a = document.getElementById("stem-audio");
+        a.src = "/rapport/stem-stand.wav?" + m.tijd;
+        a.play();
+        e.target.textContent = "🔊 vertel de stand";
+      }
+    } catch (err) {}
+  }, 2000);
+  setTimeout(() => { clearInterval(wacht);
+    e.target.textContent = "🔊 vertel de stand"; }, 90000);
+});
 document.getElementById("titel").addEventListener("click", () => {
   document.getElementById("titel").classList.toggle("open");
   document.getElementById("menu").classList.toggle("open");
@@ -353,10 +375,17 @@ async function haal() {
         + `:<br>${pw}</span><br>`;
       if (rc.venster) html += `<span style="opacity:.75">venster ${rc.venster}`
         + (rc.hek ? ` · hek ${rc.hek}` : "") + `</span><br>`;
-      if (rm.temp) html += `<span style="opacity:.75">kaart ${rm.temp} °C`
-        + ` · ${rm.watt} W · ${rm.vram} MB`
-        + (rm.dienst ? ` · dienst ${rm.dienst === "active" ? "draait" : rm.dienst}` : "")
-        + `</span>`;
+      if (rm.temp) {
+        const warm = +rm.temp >= 80;
+        html += `<span style="opacity:.75">kaart `
+          + (warm ? `<span style="color:#ffa385">let op: ${rm.temp} °C</span>`
+                  : `${rm.temp} °C`)
+          + ` · ${rm.watt} W · ${rm.vram} MB`
+          + (rm.dienst ? ` · dienst ${rm.dienst === "active" ? "draait" : rm.dienst}` : "")
+          + `</span><br>`;
+      }
+      html += `<span id="spreek" style="cursor:pointer;color:#7fa8d4">🔊 vertel de stand</span>`
+        + ` <audio id="stem-audio" style="display:none"></audio>`;
       st.innerHTML = html;
     } else { st.textContent = "geen training actief"; }
     // haar wereld: per familie hoe diep hij openstaat — checkpoint eerst,

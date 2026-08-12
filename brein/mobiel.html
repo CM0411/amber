@@ -65,6 +65,8 @@
   <div class="balk"><div id="r-balk" style="width:0%"></div></div>
   <div class="zacht" id="r-tempo"></div>
   <div class="fijn" id="r-machine" style="margin-top:6px"></div>
+  <div id="spreek" style="margin-top:10px;color:#7fa8d4;font-size:14px;cursor:pointer">🔊 vertel de stand</div>
+  <audio id="stem-audio" style="display:none"></audio>
 </div>
 
 <div class="kaart">
@@ -133,8 +135,9 @@ async function haal() {
         `${(lv.ms || 0).toLocaleString("nl")} ms per stap · klaar ~` +
         klaar.toLocaleString("nl", {weekday: "short", hour: "2-digit", minute: "2-digit"});
     }
-    document.getElementById("r-machine").textContent = rm.temp
-      ? `kaart ${rm.temp} °C · ${rm.watt} W · dienst ${rm.dienst === "active" ? "draait" : rm.dienst}`
+    document.getElementById("r-machine").innerHTML = rm.temp
+      ? ((+rm.temp >= 80 ? `<span style="color:#ffa385">let op: ${rm.temp} °C</span>` : `kaart ${rm.temp} °C`)
+         + ` · ${rm.watt} W · dienst ${rm.dienst === "active" ? "draait" : rm.dienst}`)
       : "";
 
     // proefwerk
@@ -199,6 +202,28 @@ async function haal() {
   } catch (e) {}
 }
 haal(); setInterval(haal, 5000);
+
+let spreekVanaf = 0;
+document.getElementById("spreek").onclick = async (e) => {
+  e.target.textContent = "🔊 ze formuleert…";
+  spreekVanaf = Date.now() / 1000;
+  await fetch("/spreek");
+  const wacht = setInterval(async () => {
+    try {
+      const m = await (await fetch("/rapport/stem-stand.json",
+                                   {cache: "no-store"})).json();
+      if (m.tijd > spreekVanaf) {
+        clearInterval(wacht);
+        const a = document.getElementById("stem-audio");
+        a.src = "/rapport/stem-stand.wav?" + m.tijd;
+        a.play();
+        e.target.textContent = "🔊 vertel de stand";
+      }
+    } catch (err) {}
+  }, 2000);
+  setTimeout(() => { clearInterval(wacht);
+    e.target.textContent = "🔊 vertel de stand"; }, 90000);
+};
 
 // --- het netwerk: zoals op het grote scherm, op duimformaat ---------------
 // Bolletjeskolommen, ronde draden uit haar echte bedrading (groen plus,

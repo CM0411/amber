@@ -467,11 +467,12 @@ def _def_program(depth, t):
     Few rounds: every round writes three steps. The exam's larger counts
     (up to fifteen rounds) only fit once the window grows.
     """
-    # Up to ten rounds since window 768 (11 Aug 2026, was six) — the exam
-    # goes to fifteen, but fifteen rounds × three steps is ~675 characters
-    # and does not fit 768 either; eleven already ran 7 characters over at
-    # depth 6. The rest is material for the next window.
-    n, f, k = t.integer(2, min(10, 2 * depth)), t.integer(2, 20), t.integer(0, 9)
+    # Up to fifteen rounds since 12 Aug 2026 — the exam's full size. That
+    # working (~750 characters) only fits from window 1024 (measured: code
+    # depth 15 fits 99% there); during run 4 at 768 `fits()` simply skips
+    # what is too large, so the cap follows the exam and the window
+    # decides per era what she actually sees.
+    n, f, k = t.integer(2, min(15, 2 * depth)), t.integer(2, 20), t.integer(0, 9)
     steps, total = [], 0
     for i in range(1, n + 1):
         p = i * f
