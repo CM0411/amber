@@ -122,6 +122,17 @@ def _build_memories(extra):
                              "familie": d["familie"], "graad": d["graad"],
                              "g": _grams(d["opgave"])})
     memory_cells = cells
+    # doorzoekbaar voor het geheugen-tabblad (H-voorproef: het zoeken is
+    # óns kijkgereedschap; haar eigen gerichte terugvinden is fase 4)
+    try:
+        with open(f"{FOLDER}/herinneringen.json.deel", "w") as f:
+            json.dump([{"opgave": m["opgave"], "oplossing": m["oplossing"],
+                        "familie": m["familie"], "graad": m["graad"]}
+                       for m in memories], f, ensure_ascii=False)
+        os.replace(f"{FOLDER}/herinneringen.json.deel",
+                   f"{FOLDER}/herinneringen.json")
+    except Exception:
+        pass
     bottleneck_status = {
         "lengte": neck.length,
         "geweigerd": int(memory.get("geweigerd") or 0),

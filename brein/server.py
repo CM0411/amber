@@ -271,6 +271,37 @@ class Venster(BaseHTTPRequestHandler):
                 f.write(tekst)
             self._stuur(json.dumps({"aangevraagd": True}).encode(),
                         "application/json")
+        elif self.path.startswith("/zoek"):
+            from urllib.parse import urlparse, parse_qs
+            q = parse_qs(urlparse(self.path).query).get("q", [""])[0]
+            q = q.strip()[:120]
+            uit = []
+            if len(q) >= 2:
+                def grams(t):
+                    t = t.replace(" ", "")
+                    return {t[i:i + 3] for i in range(len(t) - 2)}
+                doel = grams(q)
+                try:
+                    with open(f"{MAP}/herinneringen.json") as f:
+                        alles = json.load(f)
+                except Exception:
+                    alles = []
+                scores = []
+                for m in alles:
+                    overlap = len(doel & grams(m["opgave"]))
+                    if overlap:
+                        scores.append(
+                            (overlap / len(doel | grams(m["opgave"])), m))
+                scores.sort(key=lambda x: -x[0])
+                uit = [{**m, "gelijkenis": round(sc, 2)}
+                       for sc, m in scores[:12]]
+            self._stuur(json.dumps({"gevonden": uit,
+                                    "totaal": len(alles) if q else 0},
+                                   ensure_ascii=False).encode(),
+                        "application/json")
+        elif self.path.startswith("/geheugen"):
+            with open(f"{MAP}/geheugen.html", "rb") as f:
+                self._stuur(f.read())
         elif self.path.startswith("/dagbericht-nu"):
             subprocess.run(["python3", "/home/arch/spraak/dagbericht.py"],
                            timeout=20, capture_output=True)

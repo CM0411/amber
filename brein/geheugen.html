@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amber — geheugen</title><style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #080b1e; color: #d8dde5; padding: 16px 16px 40px;
+         font-family: system-ui, -apple-system, sans-serif; max-width: 620px;
+         margin: 0 auto; padding-top: calc(16px + env(safe-area-inset-top)); }
+  nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  nav a { padding: 8px 13px; border-radius: 9px; font-size: 13px;
+          color: #8ea0c0; text-decoration: none; background: #0c1230;
+          border: 1px solid #1d2b4d; }
+  nav a.hier { color: #cfe2ff; border-color: #3d5285; }
+  h1 { font-size: 14px; letter-spacing: .28em; color: #5f6f92;
+       text-transform: uppercase; font-weight: 600; margin: 4px 0 12px; }
+  .kaart { background: #0c1230; border: 1px solid #1d2b4d;
+           border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+  .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+         text-transform: uppercase; margin-bottom: 8px; }
+  .rij { display: flex; justify-content: space-between; padding: 4px 0;
+         font-size: 14px; color: #8ea0c0;
+         font-variant-numeric: tabular-nums; }
+  .rij b { color: #cfe2ff; font-weight: 600; }
+  .goed { color: #7fe0c3; } .slecht { color: #ffa385; }
+  .fijn { font-size: 12px; color: #51608a; }
+  audio { width: 100%; height: 32px; margin-top: 8px; }
+  .knop { display: inline-block; padding: 10px 15px; margin-top: 10px;
+          background: #131b3e; color: #cfe2ff; border: 1px solid #2c3a5e;
+          border-radius: 10px; font-size: 14px; cursor: pointer; }
+</style>
+<style>
+  #zoek { width: 100%; padding: 13px 15px; border-radius: 12px;
+          background: #0c1230; border: 1px solid #2c3a5e; color: #d8dde5;
+          font-size: 16px; margin-bottom: 12px; }
+  .her .opgave { font-family: ui-monospace, monospace; font-size: 13px;
+                 color: #d8dde5; white-space: pre-wrap;
+                 word-break: break-word; }
+  .her .antwoord { font-family: ui-monospace, monospace; font-size: 12.5px;
+                   color: #7fe0c3; margin-top: 3px; word-break: break-word; }
+</style></head><body>
+<nav><a href="/">venster</a><a href="/dagbericht">dagbericht</a>
+<a href="/machines">machines</a><a href="/gebeurtenissen">gebeurtenissen</a>
+<a href="/opname">oren</a><a class="hier" href="/geheugen">geheugen</a></nav>
+<h1>Haar geheugen</h1>
+<input id="zoek" placeholder="zoek in haar 30.000 herinneringen… (bv. 13 * 8, def f, Zet voort)">
+<div class="fijn" id="stand"></div>
+<div id="uit" style="margin-top:10px"></div>
+<p class="fijn" style="margin-top:16px">Het zoeken is óns kijkgereedschap —
+haar eigen gerichte terugvinden is fase 4 (H). Wat je hier ziet is echt:
+door de flessenhals onthouden ervaringen uit haar run.</p>
+<script>
+let wacht = null;
+document.getElementById("zoek").oninput = (e) => {
+  clearTimeout(wacht);
+  wacht = setTimeout(() => zoek(e.target.value), 350);
+};
+async function zoek(q) {
+  if (q.trim().length < 2) {
+    document.getElementById("uit").innerHTML = "";
+    document.getElementById("stand").textContent = "";
+    return;
+  }
+  const d = await (await fetch("/zoek?q=" + encodeURIComponent(q),
+                               {cache: "no-store"})).json();
+  document.getElementById("stand").textContent =
+    `${d.gevonden.length} treffers in ${d.totaal.toLocaleString("nl")} herinneringen`;
+  document.getElementById("uit").innerHTML = d.gevonden.map(m =>
+    `<div class="kaart her">
+     <div class="kop">${m.familie} · graad ${m.graad} · gelijkenis ${m.gelijkenis}</div>
+     <div class="opgave">${m.opgave}</div>
+     <div class="antwoord">→ ${m.oplossing}</div></div>`).join("")
+    || '<p class="fijn">niets gevonden</p>';
+}
+</script></body></html>
