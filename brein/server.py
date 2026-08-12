@@ -271,6 +271,30 @@ class Venster(BaseHTTPRequestHandler):
                 f.write(tekst)
             self._stuur(json.dumps({"aangevraagd": True}).encode(),
                         "application/json")
+        elif self.path.startswith("/vraag-stel"):
+            from urllib.parse import urlparse, parse_qs
+            q = parse_qs(urlparse(self.path).query).get("q", [""])[0]
+            q = q.strip()[:200]
+            # een x tussen cijfers bedoelt vermenigvuldigen — zij kent de
+            # letter x alleen uit lijstfilters en antwoordt anders in díé
+            # taal (Cleys ontdekking, 12 aug 2026)
+            q = re.sub(r"(?<=[\d\s])[xX](?=[\d\s])", "*", q)
+            if q:
+                os.makedirs(f"{MAP}/vraag-wachtrij", exist_ok=True)
+                with open(f"{MAP}/vraag-wachtrij/{time.time():.2f}.txt",
+                          "w") as f:
+                    f.write(q)
+            self._stuur(json.dumps({"gesteld": bool(q)}).encode(),
+                        "application/json")
+        elif self.path.startswith("/vraag-antwoord.json"):
+            try:
+                with open(f"{MAP}/vraag-antwoord.json", "rb") as f:
+                    self._stuur(f.read(), "application/json")
+            except Exception:
+                self._stuur(b"{}", "application/json")
+        elif self.path.startswith("/vraag"):
+            with open(f"{MAP}/vraag.html", "rb") as f:
+                self._stuur(f.read())
         elif self.path.startswith("/zoek"):
             from urllib.parse import urlparse, parse_qs
             q = parse_qs(urlparse(self.path).query).get("q", [""])[0]

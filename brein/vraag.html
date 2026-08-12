@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amber — vraag haar iets</title><style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #080b1e; color: #d8dde5; padding: 16px 16px 40px;
+         font-family: system-ui, -apple-system, sans-serif; max-width: 620px;
+         margin: 0 auto; padding-top: calc(16px + env(safe-area-inset-top)); }
+  nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  nav a { padding: 8px 13px; border-radius: 9px; font-size: 13px;
+          color: #8ea0c0; text-decoration: none; background: #0c1230;
+          border: 1px solid #1d2b4d; }
+  nav a.hier { color: #cfe2ff; border-color: #3d5285; }
+  h1 { font-size: 14px; letter-spacing: .28em; color: #5f6f92;
+       text-transform: uppercase; font-weight: 600; margin: 4px 0 12px; }
+  .kaart { background: #0c1230; border: 1px solid #1d2b4d;
+           border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+  .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+         text-transform: uppercase; margin-bottom: 8px; }
+  .rij { display: flex; justify-content: space-between; padding: 4px 0;
+         font-size: 14px; color: #8ea0c0;
+         font-variant-numeric: tabular-nums; }
+  .rij b { color: #cfe2ff; font-weight: 600; }
+  .goed { color: #7fe0c3; } .slecht { color: #ffa385; }
+  .fijn { font-size: 12px; color: #51608a; }
+  audio { width: 100%; height: 32px; margin-top: 8px; }
+  .knop { display: inline-block; padding: 10px 15px; margin-top: 10px;
+          background: #131b3e; color: #cfe2ff; border: 1px solid #2c3a5e;
+          border-radius: 10px; font-size: 14px; cursor: pointer; }
+</style>
+<style>
+  #vraag { width: 100%; padding: 13px 15px; border-radius: 12px;
+           background: #0c1230; border: 1px solid #2c3a5e; color: #d8dde5;
+           font-size: 16px; font-family: ui-monospace, monospace; }
+  .knop { display: inline-block; padding: 11px 16px; margin-top: 10px;
+          background: #131b3e; color: #cfe2ff; border: 1px solid #2c3a5e;
+          border-radius: 10px; font-size: 14px; cursor: pointer; }
+  #antwoord { font-family: ui-monospace, monospace; font-size: 14px;
+              color: #7fe0c3; white-space: pre-wrap; word-break: break-word;
+              min-height: 1.5em; }
+  .her { font-family: ui-monospace, monospace; font-size: 12px;
+         color: #5f6f92; padding: 3px 0; word-break: break-word; }
+</style></head><body>
+<nav><a href="/">venster</a><a href="/dagbericht">dagbericht</a>
+<a href="/machines">machines</a><a href="/gebeurtenissen">gebeurtenissen</a>
+<a href="/opname">oren</a><a href="/geheugen">geheugen</a>
+<a class="hier" href="/vraag">vraag haar</a></nav>
+<h1>Vraag haar iets</h1>
+<input id="vraag" placeholder="bv. 1 * 1   of   13 * 8 * 11   of   Zet voort: 2, 4, 6, 8, ?">
+<div class="knop" id="stel">vraag het haar</div>
+<div class="kaart" style="margin-top:14px"><div class="kop" id="a-kop">haar antwoord</div>
+  <div id="antwoord">—</div>
+  <div id="herinnert" style="margin-top:8px"></div></div>
+<p class="fijn">Ze schrijft teken voor teken met haar echte brein van dit
+moment — met uitwerking als ze die nodig heeft (het laatste getal is haar
+antwoord). Vragen buiten haar wereld mogen: dan zie je eerlijk waar haar
+kunnen ophoudt.</p>
+<script>
+let vanaf = 0;
+async function stel() {
+  const q = document.getElementById("vraag").value.trim();
+  if (!q) return;
+  vanaf = Date.now() / 1000;
+  document.getElementById("antwoord").textContent = "ze denkt na…";
+  document.getElementById("a-kop").textContent = "haar antwoord";
+  document.getElementById("herinnert").innerHTML = "";
+  await fetch("/vraag-stel?q=" + encodeURIComponent(q));
+  const wacht = setInterval(async () => {
+    const d = await (await fetch("/vraag-antwoord.json",
+                                 {cache: "no-store"})).json();
+    if (d.tijd > vanaf) {
+      clearInterval(wacht);
+      document.getElementById("a-kop").textContent =
+        "haar antwoord op: " + d.vraag;
+      document.getElementById("antwoord").textContent = d.antwoord || "(niets)";
+      document.getElementById("herinnert").innerHTML =
+        (d.herinnert || []).map(h =>
+          `<div class="her">herinnert: ${h.opgave} → ${h.oplossing}</div>`
+        ).join("");
+    }
+  }, 1500);
+  setTimeout(() => clearInterval(wacht), 40000);
+}
+document.getElementById("stel").onclick = stel;
+document.getElementById("vraag").addEventListener("keydown",
+  (e) => { if (e.key === "Enter") stel(); });
+</script></body></html>

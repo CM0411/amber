@@ -228,10 +228,40 @@ def load_if_newer():
     except Exception:
         pass                             # half a file: next round again
 
+VRAGEN = f"{FOLDER}/vraag-wachtrij"
+os.makedirs(VRAGEN, exist_ok=True)
+
+
+def _beantwoord_vragen():
+    """Cleys vragen uit het venster: zij antwoordt met haar echte brein.
+
+    Alles mag gevraagd worden — ook wat buiten haar wereld ligt. Dat is
+    juist informatief: je ziet wat ze kan, niet wat wij ervan maken."""
+    for naam in sorted(os.listdir(VRAGEN))[:3]:
+        pad = os.path.join(VRAGEN, naam)
+        try:
+            vraag = open(pad).read().strip()[:200]
+        finally:
+            os.remove(pad)
+        if not vraag:
+            continue
+        taak = tasks.Task(family="vraag", grade=1, number=0,
+                          problem=vraag, solution="")
+        ruim = max(16, min(500, L.core.window - len(vraag) - 16))
+        antwoord = L.answer([taak], at_most=ruim)[0]
+        uit = {"tijd": time.time(), "vraag": vraag, "antwoord": antwoord,
+               "herinnert": _recall(taak)}
+        with open(f"{FOLDER}/vraag-antwoord.json.deel", "w") as f:
+            json.dump(uit, f, ensure_ascii=False)
+        os.replace(f"{FOLDER}/vraag-antwoord.json.deel",
+                   f"{FOLDER}/vraag-antwoord.json")
+
+
 counter = 0
 while True:
     if time.time() - last_fetched > FETCH_EVERY:
         fetch_snapshot()
+    _beantwoord_vragen()
     load_if_newer()
 
     counter += 1
