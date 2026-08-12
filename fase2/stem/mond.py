@@ -36,7 +36,7 @@ while True:
                                  exaggeration=MET["exaggeration"],
                                  cfg_weight=MET["cfg_weight"],
                                  temperature=MET["temperature"])
-            torchaudio.save(WAV + ".deel", wav, model.sr)
+            torchaudio.save(WAV + ".deel", wav, model.sr, format="wav")
             os.replace(WAV + ".deel", WAV)
             with open(MELD + ".deel", "w") as f:
                 json.dump({"tijd": time.time(), "tekst": tekst}, f,

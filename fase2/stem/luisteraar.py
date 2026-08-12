@@ -13,6 +13,10 @@ import time
 INBOX = "/home/arch/inbox"
 UIT = "/home/arch/rapport/gehoord.json"
 VERWERKT = "/home/arch/spraak/gehoord-verwerkt.json"
+# De brievenbus: alles wat ze verstaat wordt hier duurzaam bewaard als
+# waarneming-in-wording, en bij een rungrens in haar logboek bezorgd
+# (bezorg-brievenbus.py). Buiten git (privé), binnen de back-ups.
+BRIEVENBUS = "/home/arch/amber-werk/fase1/brievenbus.jsonl"
 SOORTEN = (".m4a", ".mp3", ".wav", ".webm", ".ogg", ".aac", ".flac")
 
 import whisper
@@ -52,6 +56,13 @@ while True:
                            "tijd": time.strftime("%H:%M"),
                            "tekst": tekst})
             schrijf_gehoord(regels)
+            with open(BRIEVENBUS, "a") as f:
+                f.write(json.dumps({
+                    "tijd": time.time(),
+                    "wanneer": time.strftime("%Y-%m-%d %H:%M"),
+                    "bron": "spraak", "bestand": naam[:64],
+                    "tekst": tekst, "bezorgd": False,
+                }, ensure_ascii=False) + "\n")
             verwerkt.add(naam)
             with open(VERWERKT + ".deel", "w") as f:
                 json.dump(sorted(verwerkt), f)

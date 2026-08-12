@@ -81,6 +81,16 @@ if os.path.exists(SNAPSHOT):
           + (f", {gap / 60:.0f} minuten geleden." if gap else "."))
     log.write("hervat", stap=BEGIN, stilte=stilte, gat_seconden=gap)
 
+if BEGIN > STEPS:
+    # Klaar is klaar: een start voorbij het doel (bv. systemd na een
+    # herstart terwijl de run al af is) doet níéts — geen proefwerk, geen
+    # overschreven verslag, geen extra rustmarkering. De leegloop van 12
+    # aug 2026 verving het run-3-verslag door een stomp van één regel.
+    print(f"run is af (stap {BEGIN - 1:,} van {STEPS:,}) — niets te doen"
+          .replace(",", "."))
+    log.close()
+    sys.exit(0)
+
 print("=" * 72)
 print("Leven in de wereld")
 print("=" * 72)
@@ -138,7 +148,7 @@ for step in range(BEGIN, STEPS + 1):
         print(f"  stap {step:>5} | "
               + "  ".join(f"{n} {v:>4.0%}" for n, v in sorted(scores.items()))
               + f"   | diepte tot {learner.deepest}"
-              + f" | {elapsed / step * 1000:.0f} ms/stap")
+              + f" | {elapsed / max(1, step - BEGIN + 1) * 1000:.0f} ms/stap")
         snapshot.write(
             SNAPSHOT, step, learner.core, learner.optimizer,
             determinism.state(),
