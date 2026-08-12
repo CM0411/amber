@@ -14,7 +14,7 @@ MAP = "/home/arch/amber-werk/brein"
 def _geheim():
     with open("/home/arch/.amber-geheim") as f:
         return f.read().strip()
-X399 = "arch@192.168.1.170"
+X399 = "arch@192.168.1.239"
 
 _run = {"regel": "", "proefwerk": "", "tijd": 0.0}
 _slot = threading.Lock()

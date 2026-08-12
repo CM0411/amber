@@ -1,0 +1,14 @@
+Python 3.14.6
+torch 2.12.1+cu130
+580.159.04, NVIDIA GeForce RTX 3070 Ti
+[Unit]
+Description=Amber-training — hervat vanzelf na een reboot
+After=network-online.target
+
+[Service]
+Type=simple
+User=arch
+ExecStart=/home/arch/nacht
+
+[Install]
+WantedBy=multi-user.target

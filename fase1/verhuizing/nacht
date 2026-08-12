@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Draait de leerlus en start opnieuw als hij omvalt. Het logboek blijft
+# staan over herstarts heen — anders zijn wachter en diagnose blind, zoals
+# op 9 aug 2026 toen 34 stille crashes onzichtbaar bleven.
+LOG=/home/arch/leven.log
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+touch "$LOG"
+if [ $(stat -c %s "$LOG") -gt 5000000 ]; then
+    tail -n 3000 "$LOG" > "$LOG.t" && mv "$LOG.t" "$LOG"
+fi
+cd /home/arch/amber-werk || exit 1
+for poging in $(seq 1 200); do
+    echo "=== poging $poging — $(date +%H:%M:%S) ===" >> "$LOG"
+    python3 -u fase1/life.py 320000 >> "$LOG" 2>&1 && break
+    echo "=== omgevallen, opnieuw over 15 s ===" >> "$LOG"
+    sleep 15
+done
+echo "=== klaar om $(date +%H:%M:%S) ===" >> "$LOG"

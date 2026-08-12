@@ -27,7 +27,7 @@ def _secret():
 
 FOLDER = "/home/arch/amber-werk/brein"
 FRESH = "/home/arch/amber-werk/fase1/nu.pt"
-X399 = "arch@192.168.1.170"
+X399 = "arch@192.168.1.239"
 FETCH_EVERY = 180        # a fresh snapshot from the X399, every 3 minutes —
                          # as often as she writes one herself
 

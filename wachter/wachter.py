@@ -23,7 +23,7 @@ def _geheim():
 
 
 MAP = os.path.dirname(os.path.abspath(__file__))
-X399 = "arch@192.168.1.170"
+X399 = "arch@192.168.1.239"
 LOG = f"{MAP}/x399-logboek.txt"
 METINGEN = f"{MAP}/x399-metingen.csv"
 STAND = f"{MAP}/stand.json"
