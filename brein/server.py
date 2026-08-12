@@ -275,12 +275,15 @@ class Venster(BaseHTTPRequestHandler):
             from urllib.parse import urlparse, parse_qs
             q = parse_qs(urlparse(self.path).query).get("q", [""])[0]
             q = q.strip()[:120]
+            # zij schrijft * — wie x typt bedoelt hetzelfde
+            q = re.sub(r"(?<=[\d\s])[xX](?=[\d\s])", "*", q)
             uit = []
             if len(q) >= 2:
                 def grams(t):
                     t = t.replace(" ", "")
                     return {t[i:i + 3] for i in range(len(t) - 2)}
                 doel = grams(q)
+                plat = q.replace(" ", "")
                 try:
                     with open(f"{MAP}/herinneringen.json") as f:
                         alles = json.load(f)
@@ -288,6 +291,13 @@ class Venster(BaseHTTPRequestHandler):
                     alles = []
                 scores = []
                 for m in alles:
+                    kaal = m["opgave"].replace(" ", "")
+                    # letterlijk raak telt het zwaarst — korte
+                    # zoekopdrachten hebben te weinig 3-grammen om op
+                    # gelijkenis te varen
+                    if plat and plat in kaal:
+                        scores.append((1.0, m))
+                        continue
                     overlap = len(doel & grams(m["opgave"]))
                     if overlap:
                         scores.append(
