@@ -319,7 +319,7 @@ async function haal() {
     const rm = (s.run && s.run.machine) || {};
     const rs = (s.run && s.run.scores) || {};
     if (run) {
-      let html = `<div class="kop">${rc.naam || "training"} · X399`
+      let html = `<div class="kop">${rc.naam || "training"} · ${rc.machine || "trainer"}`
         + (rm.poging ? ` · poging ${rm.poging}` : "") + `</div>`;
       // live uit het logboek (per stap, elke 5 s ververst); de logregel
       // van elke 50 stappen is het vangnet
@@ -457,7 +457,7 @@ async function haal() {
     if (w && (w.melding || w.crashes_vandaag > 0)) {
       st.innerHTML += "<br>" + (w.melding
         ? "⚠ " + w.melding
-        : `X399 ${w.crashes_vandaag}× herstart — vanzelf hervat`);
+        : `trainer ${w.crashes_vandaag}× herstart — vanzelf hervat`);
     }
   } catch (e) {}
 }

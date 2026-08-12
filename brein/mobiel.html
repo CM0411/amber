@@ -120,7 +120,7 @@ async function haal() {
     // de run
     const doel = cfg.doel || 0;
     document.getElementById("r-kop").textContent =
-      `${cfg.naam || "training"} · X399` + (rm.poging ? ` · poging ${rm.poging}` : "");
+      `${cfg.naam || "training"} · ${cfg.machine || "trainer"}` + (rm.poging ? ` · poging ${rm.poging}` : "");
     if (lv.stap && doel) {
       const pct = Math.floor(100 * lv.stap / doel);
       const overMs = (doel - lv.stap) * (lv.ms || 0);

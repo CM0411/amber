@@ -1,6 +1,6 @@
-"""De wachter — houdt de X399 in de gaten, vanaf de DL380.
+"""De wachter — houdt de trainer (nu de Z490) in de gaten, vanaf de DL380.
 
-Bewust vanaf de thuisbasis: als de X399 bevriest is een agent aan boord net zo
+Bewust vanaf de thuisbasis: als de trainer bevriest is een agent aan boord net zo
 dood als de machine. Elke minuut:
 
   * bereikbaar? zo niet: vastleggen, en blijven proberen
@@ -69,7 +69,7 @@ while True:
             if toestand["bereikbaar"] is not False:
                 schrijf("ONBEREIKBAAR — machine plat of netwerk weg")
             toestand["bereikbaar"] = False
-            zet_stand(melding="X399 onbereikbaar")
+            zet_stand(melding="trainer onbereikbaar")
             time.sleep(30)
             continue
 

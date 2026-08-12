@@ -2,13 +2,13 @@
 De eindrapport-maker van run 3.
 
 Draait op de DL380, elk kwartier (amber-rapport.timer). Haalt het levenslog
-van de X399, ontleedt het, en schrijft één zelfstandig HTML-bestand naar
+van de trainer, ontleedt het, en schrijft één zelfstandig HTML-bestand naar
 /home/arch/rapport/ — zolang de run loopt als tussenstand, en zodra stap
 170.000 binnen is (of de dienst gestopt is op het eindpunt) als definitief
 eindrapport. Het rapport hoeft dus nooit "gemaakt" te worden: het staat er
 al op het moment dat iemand komt kijken.
 
-Alleen standaardbibliotheek. Het log is de enige waarheid; is de X399
+Alleen standaardbibliotheek. Het log is de enige waarheid; is de trainer
 onbereikbaar, dan blijft het vorige rapport gewoon staan.
 """
 
