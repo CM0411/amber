@@ -132,6 +132,25 @@ def _lijn(punten, kleur, naam, dik=False):
             f'font-size="13">{naam}</text>')
 
 
+def _merktekens():
+    """Gebeurtenissen met een stapnummer (zoals de machinewissel bij
+    208.500) horen zichtbaar in de grafiek — het verhaal moet ook in de
+    geschiedenis kloppen."""
+    try:
+        vast = json.load(open("/home/arch/rapport/gebeurtenissen.json"))["vast"]
+        per_stap = {}
+        for g in vast:
+            if not g.get("stap"):
+                continue
+            # bij meerdere gebeurtenissen op dezelfde stap wint de
+            # verhuizing — dat is het merkteken dat het verhaal vertelt
+            if g["stap"] not in per_stap or "Z490" in g["wat"]:
+                per_stap[g["stap"]] = g["wat"]
+        return sorted(per_stap.items())
+    except Exception:
+        return []
+
+
 def grafiek(curve, reeksen, doorbraken=None, hoog=300):
     """Eén assenstelsel, 0–100%, x altijd 0–170.000 zodat je ziet hoe ver
     de run is. Dunne lijnen, label aan het eind, raster onopvallend."""
@@ -158,6 +177,18 @@ def grafiek(curve, reeksen, doorbraken=None, hoog=300):
                        f'stroke-dasharray="3 5"/>'
                        f'<text x="{x:.1f}" y="{Y(100) - 6:.1f}" fill="#7a9ab8" '
                        f'font-size="11" text-anchor="middle">{fam[0]}{tot}</text>')
+    gezien = set()
+    for stap, wat in _merktekens():
+        if not 0 < stap <= TOTAAL or stap in gezien:
+            continue
+        gezien.add(stap)
+        x = X(stap)
+        naam = "→ Z490" if "Z490" in wat else wat[:14]
+        uit.append(f'<line x1="{x:.1f}" y1="{Y(100):.1f}" x2="{x:.1f}" '
+                   f'y2="{Y(0):.1f}" stroke="#c8873d" stroke-width="1.4" '
+                   f'stroke-dasharray="7 4"/>'
+                   f'<text x="{x + 5:.1f}" y="{Y(96):.1f}" fill="#c8873d" '
+                   f'font-size="12">{naam}</text>')
     for naam in reeksen:
         punten = [(X(s), Y(v[naam])) for s, v in curve]
         uit.append(_lijn(punten, KLEUREN[naam], naam, dik=(naam == "ladder")))
