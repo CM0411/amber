@@ -319,7 +319,11 @@ async function haal() {
     const cfg = (s.run && s.run.config) || {};
     const mRegel = ((s.run && s.run.regel) || "")
       .match(/stap\s+(\d+)\/(\d+)\s+(\d+)%/);
-    let mh = "";
+    let mh = `<a href="/dagbericht"><span>dagbericht</span><span class="st">🔊</span></a>`
+      + `<a href="/machines"><span>machines</span></a>`
+      + `<a href="/gebeurtenissen"><span>gebeurtenissen</span></a>`
+      + `<a href="/opname"><span>oren — spreek iets in</span></a>`
+      + `<div style="border-top:1px solid #1d2b4d;margin:6px 0"></div>`;
     for (const f of (s.rapporten || [])) {
       const naam = f.replace(".html", "");
       let label = naam, status = "", extra = "";

@@ -33,6 +33,10 @@ def _ververs_run():
              "| sed 's/=== //'; "
              "nvidia-smi --query-gpu=temperature.gpu,power.draw,memory.used "
              "--format=csv,noheader 2>/dev/null; "
+             "sensors 2>/dev/null | grep -m1 'Package id 0' "
+             "| grep -oE '[0-9]+[.][0-9]' | head -1; "
+             "grep -o 'resync = [0-9.]*%' /proc/mdstat 2>/dev/null "
+             "|| echo spiegel-synchroon; "
              "echo ===; tail -60 ~/amber-werk/fase1/leven/logboek.jsonl "
              "2>/dev/null"],
             capture_output=True, text=True)
@@ -52,6 +56,11 @@ def _ververs_run():
                     machine["temp"] = delen[0]
                     machine["watt"] = delen[1].replace(" W", "")
                     machine["vram"] = delen[2].replace(" MiB", "")
+                elif m_regel.replace(".", "").isdigit():
+                    machine["cpu_temp"] = m_regel
+                elif "spiegel" in m_regel or "resync" in m_regel:
+                    machine["spiegel"] = m_regel.replace("resync = ",
+                                                         "synchroniseert ")
             # de scores van het laatste proefwerk, als losse velden
             proefwerk_scores = {}
             if len(regels) > 1:
@@ -108,7 +117,35 @@ def _ververs_run():
                     # oplopende lijn houden
                     if not curve or stap > curve[-1][0]:
                         curve.append([stap, pct])
+            thuis = {}
+            try:
+                r2 = subprocess.run(
+                    ["nvidia-smi", "--query-gpu=temperature.gpu,power.draw",
+                     "--format=csv,noheader"], capture_output=True, text=True,
+                    timeout=8)
+                thuis["kaarten"] = [x.strip() for x in
+                                    r2.stdout.strip().splitlines()]
+                r3 = subprocess.run(["sensors"], capture_output=True,
+                                    text=True, timeout=8)
+                for sr in r3.stdout.splitlines():
+                    if sr.startswith("temp1:"):
+                        thuis["cpu_temp"] = sr.split("+")[1].split("°")[0]
+                        break
+                md = open("/proc/mdstat").read()
+                thuis["array"] = ("synchroniseert" if "resync" in md
+                                  else "synchroon" if "md127" in md
+                                  else "geen array")
+                r4 = subprocess.run(
+                    ["systemctl", "is-active", "amber-kijker", "amber-venster",
+                     "amber-wachter", "amber-oren", "amber-mond"],
+                    capture_output=True, text=True, timeout=8)
+                namen = ["kijker", "venster", "wachter", "oren", "mond"]
+                thuis["diensten"] = dict(zip(
+                    namen, r4.stdout.strip().splitlines()))
+            except Exception:
+                pass
             with _slot:
+                _run["thuis"] = thuis
                 _run["regel"] = regels[0].strip() if regels else ""
                 _run["proefwerk"] = regels[1].strip() if len(regels) > 1 else ""
                 _run["wereld"] = wereld
@@ -229,11 +266,25 @@ class Venster(BaseHTTPRequestHandler):
             tekst = (". ".join(delen) + "."
                      if delen else "Ik heb nog niets te vertellen.")
             os.makedirs("/home/arch/spraak/zeg-wachtrij", exist_ok=True)
-            with open(f"/home/arch/spraak/zeg-wachtrij/{time.time():.0f}.txt",
+            with open("/home/arch/spraak/zeg-wachtrij/stem-stand.txt",
                       "w") as f:
                 f.write(tekst)
             self._stuur(json.dumps({"aangevraagd": True}).encode(),
                         "application/json")
+        elif self.path.startswith("/dagbericht-nu"):
+            subprocess.run(["python3", "/home/arch/spraak/dagbericht.py"],
+                           timeout=20, capture_output=True)
+            self._stuur(json.dumps({"aangevraagd": True}).encode(),
+                        "application/json")
+        elif self.path.startswith("/dagbericht"):
+            with open(f"{MAP}/dagbericht.html", "rb") as f:
+                self._stuur(f.read())
+        elif self.path.startswith("/machines"):
+            with open(f"{MAP}/machines.html", "rb") as f:
+                self._stuur(f.read())
+        elif self.path.startswith("/gebeurtenissen"):
+            with open(f"{MAP}/gebeurtenissen.html", "rb") as f:
+                self._stuur(f.read())
         elif self.path.startswith("/opname"):
             with open(f"{MAP}/opname.html", "rb") as f:
                 self._stuur(f.read())

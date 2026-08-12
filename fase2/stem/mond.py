@@ -10,8 +10,7 @@ import os
 import time
 
 WACHTRIJ = "/home/arch/spraak/zeg-wachtrij"
-WAV = "/home/arch/rapport/stem-stand.wav"
-MELD = "/home/arch/rapport/stem-stand.json"
+RAPPORT = "/home/arch/rapport"
 MET = json.load(open("/home/arch/spraak/amber-stem/instellingen.json"))
 
 os.makedirs(WACHTRIJ, exist_ok=True)
@@ -30,18 +29,25 @@ while True:
             os.remove(pad)
             if not tekst:
                 continue
-            print("spreekt:", tekst[:70], flush=True)
+            # de bestandsnaam van de wachtrij is de bestemming:
+            # stem-stand.txt -> rapport/stem-stand.wav (+ .json), enz.
+            doel = os.path.splitext(os.path.basename(naam))[0] or "stem-stand"
+            wav_uit = os.path.join(RAPPORT, doel + ".wav")
+            meld_uit = os.path.join(RAPPORT, doel + ".json")
+            print("spreekt naar", doel, ":", tekst[:60], flush=True)
             wav = model.generate(tekst, language_id=MET["language_id"],
                                  audio_prompt_path=MET["mal"],
                                  exaggeration=MET["exaggeration"],
                                  cfg_weight=MET["cfg_weight"],
                                  temperature=MET["temperature"])
-            torchaudio.save(WAV + ".deel", wav, model.sr, format="wav")
-            os.replace(WAV + ".deel", WAV)
-            with open(MELD + ".deel", "w") as f:
+            # tijdelijk bestand mét .wav-erin: torchaudio kijkt hardnekkig
+            # naar de bestandsnaam, wat we ook meegeven (12 aug 2026)
+            torchaudio.save(wav_uit + ".deel.wav", wav, model.sr)
+            os.replace(wav_uit + ".deel.wav", wav_uit)
+            with open(meld_uit + ".deel", "w") as f:
                 json.dump({"tijd": time.time(), "tekst": tekst}, f,
                           ensure_ascii=False)
-            os.replace(MELD + ".deel", MELD)
+            os.replace(meld_uit + ".deel", meld_uit)
     except Exception as e:
         print("mond-hapering:", e, flush=True)
         time.sleep(5)

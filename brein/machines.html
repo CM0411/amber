@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amber — machines</title><style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #080b1e; color: #d8dde5; padding: 16px 16px 40px;
+         font-family: system-ui, -apple-system, sans-serif; max-width: 620px;
+         margin: 0 auto; padding-top: calc(16px + env(safe-area-inset-top)); }
+  nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  nav a { padding: 8px 13px; border-radius: 9px; font-size: 13px;
+          color: #8ea0c0; text-decoration: none; background: #0c1230;
+          border: 1px solid #1d2b4d; }
+  nav a.hier { color: #cfe2ff; border-color: #3d5285; }
+  h1 { font-size: 14px; letter-spacing: .28em; color: #5f6f92;
+       text-transform: uppercase; font-weight: 600; margin: 4px 0 12px; }
+  .kaart { background: #0c1230; border: 1px solid #1d2b4d;
+           border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+  .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+         text-transform: uppercase; margin-bottom: 8px; }
+  .rij { display: flex; justify-content: space-between; padding: 4px 0;
+         font-size: 14px; color: #8ea0c0;
+         font-variant-numeric: tabular-nums; }
+  .rij b { color: #cfe2ff; font-weight: 600; }
+  .goed { color: #7fe0c3; } .slecht { color: #ffa385; }
+  .fijn { font-size: 12px; color: #51608a; }
+  audio { width: 100%; height: 32px; margin-top: 8px; }
+  .knop { display: inline-block; padding: 10px 15px; margin-top: 10px;
+          background: #131b3e; color: #cfe2ff; border: 1px solid #2c3a5e;
+          border-radius: 10px; font-size: 14px; cursor: pointer; }
+</style></head><body>
+<nav><a href="/">venster</a><a href="/dagbericht">dagbericht</a><a href="/machines" class=hier>machines</a><a href="/gebeurtenissen">gebeurtenissen</a><a href="/opname">oren</a></nav>
+<h1>Machines</h1>
+<div class="kaart"><div class="kop" id="t-kop">trainer — Z490</div>
+  <div id="t-rijen" class="fijn">wachten…</div></div>
+<div class="kaart"><div class="kop">thuisbasis — DL380</div>
+  <div id="h-rijen" class="fijn">wachten…</div></div>
+<script>
+const rij = (n, w, klas) =>
+  `<div class="rij"><span>${n}</span><b class="${klas || ""}">${w}</b></div>`;
+async function haal() {
+  try {
+    const s = await (await fetch("/stand.json", {cache: "no-store"})).json();
+    const rm = (s.run && s.run.machine) || {};
+    const cfg = (s.run && s.run.config) || {};
+    const lv = (s.run && s.run.live) || {};
+    document.getElementById("t-kop").textContent =
+      "trainer — " + (cfg.machine || "?");
+    let t = "";
+    t += rij("dienst", rm.dienst === "active" ? "draait" : (rm.dienst || "?"),
+             rm.dienst === "active" ? "goed" : "slecht");
+    if (lv.stap) t += rij("stap", lv.stap.toLocaleString("nl")
+                          + (lv.ms ? ` · ${lv.ms} ms` : ""));
+    if (rm.poging) t += rij("poging", rm.poging);
+    if (rm.temp) t += rij("videokaart", `${rm.temp} °C · ${rm.watt} W · ${rm.vram} MB`,
+                          +rm.temp >= 80 ? "slecht" : "");
+    if (rm.cpu_temp) t += rij("processor", `${rm.cpu_temp} °C`,
+                              +rm.cpu_temp >= 85 ? "slecht" : "");
+    if (rm.spiegel) t += rij("NVMe-spiegel", rm.spiegel,
+                             rm.spiegel.includes("synchroon") ? "goed" : "");
+    document.getElementById("t-rijen").innerHTML = t || "geen gegevens";
+    const th = (s.run && s.run.thuis) || {};
+    let h = "";
+    (th.kaarten || []).forEach((k, i) => {
+      const [tp, w] = k.split(",");
+      h += rij(`P100 nummer ${i}`, `${tp.trim()} °C ·${w}`);
+    });
+    if (th.cpu_temp) h += rij("processor", `${th.cpu_temp} °C`,
+                              +th.cpu_temp >= 85 ? "slecht" : "");
+    if (th.array) h += rij("RAID10-array", th.array,
+                           th.array === "synchroon" ? "goed" : "");
+    for (const [n, st] of Object.entries(th.diensten || {}))
+      h += rij(n, st === "active" ? "draait" : st,
+               st === "active" ? "goed" : "slecht");
+    document.getElementById("h-rijen").innerHTML = h || "geen gegevens";
+  } catch (e) {}
+}
+haal(); setInterval(haal, 5000);
+</script></body></html>
