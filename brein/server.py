@@ -292,7 +292,11 @@ class Venster(BaseHTTPRequestHandler):
             with open(f"{MAP}/stuur.html", "rb") as f:
                 self._stuur(f.read())
         elif self.path.startswith("/rapport"):
-            naam = os.path.basename(self.path[len("/rapport"):].strip("/")) or "index.html"
+            # de verversingscode (?tijd) hoort niet bij de bestandsnaam —
+            # zonder dit strippen zocht de server naar "dagbericht.wav?123"
+            # en speelde er stilte (gevonden 12 aug 2026, Cleys oren)
+            schoon = self.path.split("?")[0]
+            naam = os.path.basename(schoon[len("/rapport"):].strip("/")) or "index.html"
             # Het juiste soort per bestand: sinds de spraakproef (11 aug
             # 2026) staan hier ook wav-bestanden, en die spelen alleen af
             # als ze niet als html verstuurd worden.
