@@ -16,6 +16,11 @@ try:
 except Exception as _e:
     gesprek = None
     print("gesprek niet geladen:", _e, flush=True)
+try:
+    import beelden
+except Exception as _e:
+    beelden = None
+    print("beelden niet geladen:", _e, flush=True)
 
 # Het wachtwoord van de rekenmachine staat búiten de repo — een repo die ooit
 # openbaar wordt mag nooit een geheim in zijn geschiedenis dragen.
@@ -413,6 +418,17 @@ class Venster(BaseHTTPRequestHandler):
         elif self.path.startswith("/opname"):
             with open(f"{MAP}/opname.html", "rb") as f:
                 self._stuur(f.read())
+        elif self.path.startswith("/onderweg"):
+            with open(f"{MAP}/onderweg.html", "rb") as f:
+                self._stuur(f.read())
+        elif self.path.startswith("/beelden.json"):
+            try:
+                with open("/home/arch/amber-werk/fase2/beelden/stand.json",
+                          "rb") as f:
+                    self._stuur(f.read(), "application/json")
+            except Exception:
+                self._stuur(b'{"totaal": 0, "per_rit": {}}',
+                            "application/json")
         elif self.path.startswith("/stuur"):
             with open(f"{MAP}/stuur.html", "rb") as f:
                 self._stuur(f.read())
@@ -483,6 +499,8 @@ class Mobiel(Venster):
 threading.Thread(target=_ververs_run, daemon=True).start()
 if gesprek:
     threading.Thread(target=gesprek.lus, daemon=True).start()
+if beelden:
+    threading.Thread(target=beelden.lus, daemon=True).start()
 threading.Thread(target=lambda: ThreadingHTTPServer(
     ("0.0.0.0", 8001), Mobiel).serve_forever(), daemon=True).start()
 ThreadingHTTPServer(("0.0.0.0", 8000), Venster).serve_forever()

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amber — onderweg</title><style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #080b1e; color: #d8dde5; padding: 16px 16px 40px;
+         font-family: system-ui, -apple-system, sans-serif; max-width: 560px;
+         margin: 0 auto; padding-top: calc(16px + env(safe-area-inset-top)); }
+  h1 { font-size: 14px; letter-spacing: .28em; color: #5f6f92;
+       text-transform: uppercase; font-weight: 600; margin: 4px 0 10px; }
+  p { color: #8ea0c0; font-size: 13.5px; line-height: 1.6; margin: 8px 0; }
+  .knop { display: block; width: 100%; padding: 15px; margin: 12px 0;
+          background: #131b3e; color: #cfe2ff; border: 1px solid #2c3a5e;
+          border-radius: 12px; font-size: 16px; cursor: pointer;
+          text-align: center; }
+  .kaart { background: #0c1230; border: 1px solid #1d2b4d;
+           border-radius: 12px; padding: 12px 15px; margin: 10px 0; }
+  .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+         text-transform: uppercase; margin-bottom: 6px; }
+  .rij { display: flex; justify-content: space-between; gap: 10px;
+         padding: 5px 0; font-size: 13.5px; color: #8ea0c0;
+         border-bottom: 1px solid #131b3e; }
+  .rij:last-child { border-bottom: none; }
+  .rij .naam { overflow: hidden; text-overflow: ellipsis;
+               white-space: nowrap; }
+  .wacht { color: #e8c37f; } .klaar { color: #7fe0c3; }
+  .bezig { color: #cfe2ff; } .fout { color: #ffa385; }
+  #tel { font-size: 13px; color: #7fe0c3; min-height: 1.4em; margin: 6px 0; }
+  .fijn { font-size: 12px; color: #51608a; line-height: 1.5; }
+  a { color: #8ea0c0; }
+</style></head><body>
+<h1>Onderweg</h1>
+<p>Alles van een rit — spraakmemo's en foto's — komt hier binnen. De
+pagina onthoudt wat nog niet verstuurd is (ook zonder bereik of na
+sluiten) en levert in zodra de server weer te zien is.</p>
+
+<label class="knop" for="bestanden">+ opnames en foto's van de rit</label>
+<input type="file" id="bestanden" multiple accept="audio/*,image/*"
+       style="display:none">
+<div id="tel"></div>
+
+<div class="kaart"><div class="kop">de wachtrij</div>
+  <div id="lijst"><p class="fijn">leeg — alles is binnen</p></div></div>
+
+<div class="kaart"><div class="kop">wat er al ligt</div>
+  <div id="stand" class="fijn">…</div></div>
+
+<p class="fijn">Audio gaat meteen door haar oren (whisper) en komt in de
+brievenbus; foto's worden per rit bewaard voor het oog dat er nog niet
+is. Terug naar het <a href="/">venster</a>.</p>
+
+<script>
+const el = (id) => document.getElementById(id);
+
+// --- de buffer: IndexedDB, zodat een rit een tabsluiting overleeft -----
+let db = null;
+function metDb() {
+  return new Promise((ok, nee) => {
+    if (db) return ok(db);
+    const r = indexedDB.open("amber-onderweg", 1);
+    r.onupgradeneeded = () => r.result.createObjectStore(
+      "wachtrij", {keyPath: "id", autoIncrement: true});
+    r.onsuccess = () => { db = r.result; ok(db); };
+    r.onerror = () => nee(r.error);
+  });
+}
+function idb(modus, werk) {
+  return metDb().then(d => new Promise((ok, nee) => {
+    const t = d.transaction("wachtrij", modus);
+    const uit = werk(t.objectStore("wachtrij"));
+    t.oncomplete = () => ok(uit && uit.result);
+    t.onerror = () => nee(t.error);
+  }));
+}
+const alles = () => idb("readonly", s => s.getAll());
+const bewaar = (r) => idb("readwrite", s => s.put(r));
+const weg = (id) => idb("readwrite", s => s.delete(id));
+
+// --- de rit: één nummer per rit; na drie uur stilte begint een nieuwe --
+function ritId() {
+  let r = {};
+  try { r = JSON.parse(localStorage.ritje || "{}"); } catch (e) {}
+  if (!r.id || Date.now() - r.laatst > 3 * 3600 * 1000)
+    r = {id: Date.now(), teller: 0};
+  r.laatst = Date.now();
+  r.teller = (r.teller || 0) + 1;
+  localStorage.ritje = JSON.stringify(r);
+  return {id: r.id, nr: r.teller};
+}
+
+let bezigMet = null;   // id van het record dat nu verstuurd wordt
+
+async function toon() {
+  const rijen = await alles();
+  el("lijst").innerHTML = rijen.map(r => {
+    const st = r.id === bezigMet ? ["bezig", "versturen…"]
+                                 : ["wacht", "wacht op bereik"];
+    return `<div class="rij"><span class="naam">${r.naam}</span>
+      <span class="${st[0]}">${st[1]}</span></div>`;
+  }).join("") || '<p class="fijn">leeg — alles is binnen</p>';
+  const klaar = parseInt(localStorage.verstuurd || "0");
+  el("tel").textContent =
+    (rijen.length ? `${rijen.length} in de wachtrij` : "wachtrij leeg")
+    + (klaar ? ` — ${klaar} verstuurd` : "");
+}
+
+el("bestanden").onchange = async (e) => {
+  for (const f of e.target.files) {
+    const {id, nr} = ritId();
+    await bewaar({naam: `rit-${id}-${String(nr).padStart(3, "0")}-${f.name}`,
+                  blob: f});
+  }
+  e.target.value = "";
+  toon(); verstuur();
+};
+
+let aanHetVersturen = false;
+async function verstuur() {
+  if (aanHetVersturen) return;
+  aanHetVersturen = true;
+  try {
+    while (true) {
+      const rijen = await alles();
+      if (!rijen.length) break;
+      const r = rijen[0];
+      bezigMet = r.id; toon();
+      try {
+        const a = await fetch(`/upload?naam=${encodeURIComponent(r.naam)}`,
+                              {method: "PUT", body: r.blob});
+        if (!a.ok) throw new Error("server zei " + a.status);
+        await weg(r.id);
+        localStorage.verstuurd =
+          (parseInt(localStorage.verstuurd || "0") + 1);
+      } catch (e) {
+        break;                 // geen bereik — de lus komt vanzelf terug
+      } finally {
+        bezigMet = null;
+      }
+      toon();
+    }
+  } finally {
+    aanHetVersturen = false; toon();
+  }
+}
+setInterval(verstuur, 10000);
+window.addEventListener("online", verstuur);
+
+async function haalStand() {
+  try {
+    const d = await (await fetch("/beelden.json", {cache: "no-store"})).json();
+    const ritten = Object.entries(d.per_rit || {});
+    el("stand").innerHTML =
+      `${d.totaal || 0} foto's liggen klaar voor het oog dat er nog niet is`
+      + (ritten.length ? "<br>" + ritten.slice(-5).map(([r, n]) => {
+          const t = r.startsWith("rit-")
+            ? new Date(+r.slice(4)).toLocaleString("nl-NL",
+                {day: "numeric", month: "short", hour: "2-digit",
+                 minute: "2-digit"})
+            : "losse beelden";
+          return `${t}: ${n}`;
+        }).join("<br>") : "");
+  } catch (e) {}
+}
+toon(); verstuur(); haalStand(); setInterval(haalStand, 15000);
+</script></body></html>
