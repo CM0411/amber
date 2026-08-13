@@ -1,0 +1,1266 @@
+{
+ "naam": "gesprek",
+ "beschrijving": "De gespreksjas: rekenvragen zoals Cley ze stelt — 'Wat is …?', 'Hoeveel is …?', 'Reken uit: …', in cijfers en in spreektaal. Dertig per diepte 2 t/m 8, vastgelegd 13 aug 2026.",
+ "opgaven": [
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Hoeveel is 6 - (12 + 14)?",
+   "oplossing": "-20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Hoeveel is 12 keer 8 min 13?",
+   "oplossing": "83"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Hoeveel is (13 - 12) * 10?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is (2 + 18) * 6?",
+   "oplossing": "120"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 10 - (7 - 7)?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Reken uit: (2 + 1) * 6",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Hoeveel is (18 + 9) * 4?",
+   "oplossing": "108"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Hoeveel is 8 + 18 + 15?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Hoeveel is 18 * 8 * 5?",
+   "oplossing": "720"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 12 + 5 * 12?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 13 * 4 + 9?",
+   "oplossing": "61"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 3 - (13 - 4)?",
+   "oplossing": "-6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 7 keer 10 keer 11?",
+   "oplossing": "770"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Hoeveel is 8 plus 3 plus 15?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is (6 + 9) * 8?",
+   "oplossing": "120"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is (9 + 14) * 5?",
+   "oplossing": "115"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 16 plus 2 plus 12?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Reken uit: 13 - (18 + 7)",
+   "oplossing": "-12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Reken uit: 5 - 14 + 16",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 15 - 3 - 5?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 9 + 3 * 3?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 14 keer 4 min 10?",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Reken uit: 1 + 5 - 17",
+   "oplossing": "-11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Reken uit: 10 + 12 - 4",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Hoeveel is 1 + 13 - 17?",
+   "oplossing": "-3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is 18 min 5 min 10?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Wat is (16 - 5) * 6?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Reken uit: 12 * 8 * 11",
+   "oplossing": "1056"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Reken uit: 7 - 7 * 4",
+   "oplossing": "-21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 2,
+   "opgave": "Hoeveel is 13 + 12 - 8?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is 23 + 19 * 4 * 2?",
+   "oplossing": "175"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is (10 - 25) * 4 + 24?",
+   "oplossing": "-36"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is (4 - 4 - 8) * 2?",
+   "oplossing": "-16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is 1 * 5 - 16 * 4?",
+   "oplossing": "-59"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Reken uit: (24 - 9) * 3 * 10",
+   "oplossing": "450"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Reken uit: 12 - 2 * 11 - 6",
+   "oplossing": "-16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is (19 - (22 - 12)) * 8?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is 13 - 11 - 3 + 23?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is 6 + 12 - (7 + 17)?",
+   "oplossing": "-6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is (10 + 19) * 7 * 3?",
+   "oplossing": "609"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is 17 - (26 - 9) * 3?",
+   "oplossing": "-34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is 6 - (24 + 6) * 4?",
+   "oplossing": "-114"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is 19 - (21 + 17) * 5?",
+   "oplossing": "-171"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is (22 + 9 * 7) * 2?",
+   "oplossing": "170"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Reken uit: 26 - 25 * 8 * 6",
+   "oplossing": "-1174"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is 24 - 11 + 8 - 7?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is (8 + 24 - 24) * 11?",
+   "oplossing": "88"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is 4 + 27 + 18 * 7?",
+   "oplossing": "157"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Reken uit: 17 * 3 + 4 - 20",
+   "oplossing": "35"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is 16 + (8 - 11) * 7?",
+   "oplossing": "-5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Reken uit: (24 + 1) * 6 * 9",
+   "oplossing": "1350"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Reken uit: 16 + 2 + 4 * 8",
+   "oplossing": "50"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is (4 - 6) * 8 * 10?",
+   "oplossing": "-160"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is 19 + (26 + 15) * 3?",
+   "oplossing": "142"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is 7 - (26 + 11 + 22)?",
+   "oplossing": "-52"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is (2 * 11 - 2) * 10?",
+   "oplossing": "200"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Wat is 19 - (8 + 11 * 7)?",
+   "oplossing": "-66"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Reken uit: (16 - 5 - 8) * 3",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Hoeveel is 12 * 11 + 14 * 11?",
+   "oplossing": "286"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "Reken uit: (4 - 24) * 2 * 7",
+   "oplossing": "-280"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Wat is 17 min 4 plus 2 plus 26 keer 10?",
+   "oplossing": "275"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Wat is 30 - (16 * 8 + 6 + 36)?",
+   "oplossing": "-140"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 9 + 16 + 14 + 21 + 24",
+   "oplossing": "84"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: (11 + 20 - 30 * 8) * 12",
+   "oplossing": "-2508"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 13 keer 6 min 13 keer 7 keer 4",
+   "oplossing": "-286"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Wat is 32 - (5 - 32) * 12 * 3?",
+   "oplossing": "1004"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Hoeveel is 23 + 35 + 35 + 32 + 28?",
+   "oplossing": "153"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 19 - 16 * 12 - 4 - 13",
+   "oplossing": "-190"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Hoeveel is (12 + 19) * 10 * 3 - 16?",
+   "oplossing": "914"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Wat is (21 - (15 + 36 - 8)) * 7?",
+   "oplossing": "-154"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 29 * 6 + 11 + 29 * 8",
+   "oplossing": "417"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Hoeveel is 13 - (6 + 23 - (3 + 16))?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Wat is 26 + 16 + 16 - 16 * 9?",
+   "oplossing": "-86"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Wat is 15 + 32 - (21 + 10) * 3?",
+   "oplossing": "-46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Hoeveel is 5 plus 19 plus 17 plus 17 plus 12?",
+   "oplossing": "70"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: (20 * 2 + 33 - 15) * 2",
+   "oplossing": "116"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: (33 + 13) * 6 * 7 - 10",
+   "oplossing": "1922"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Hoeveel is ((36 - 21) * 12 - 4) * 5?",
+   "oplossing": "880"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Hoeveel is 18 keer 2 keer 9 keer 12 plus 11?",
+   "oplossing": "3899"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Wat is 21 * 8 + (27 + 24) * 11?",
+   "oplossing": "729"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 36 - (11 + 35 + 28 - 14)",
+   "oplossing": "-24"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Hoeveel is 22 + 6 * 7 - (13 + 14)?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Hoeveel is 30 * 3 - 17 - 12 - 24?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 34 * 3 * 2 + 25 + 31",
+   "oplossing": "260"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 33 + 27 - 19 - 33 * 10",
+   "oplossing": "-289"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 16 * 10 + 19 + 3 - 36",
+   "oplossing": "146"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 13 + 22 + 2 - 26 * 3",
+   "oplossing": "-41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: (3 - (9 - 27 * 4)) * 6",
+   "oplossing": "612"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Hoeveel is (25 - 5 * 8 * 9) * 10?",
+   "oplossing": "-3350"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "Reken uit: 15 - (3 - (23 - 4) * 11)",
+   "oplossing": "221"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Reken uit: (4 - 20) * 9 + 22 * 5 - 35",
+   "oplossing": "-69"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Reken uit: (5 - (32 - 31)) * 11 + 24 * 9",
+   "oplossing": "260"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is 6 * 10 + 11 + 18 - 11 * 6?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is (21 - (34 - 13) + 37 - 10) * 8?",
+   "oplossing": "216"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is 24 - (22 + (20 + 37 + 20) * 3)?",
+   "oplossing": "-229"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is 26 + (31 + 12 * 2 + 30) * 3?",
+   "oplossing": "281"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is (36 + 26 + 1 + 6) * 5 * 10?",
+   "oplossing": "3450"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Reken uit: (33 - 15) * 12 + 25 * 10 - 24",
+   "oplossing": "442"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is 29 - 12 - 21 - 28 - (21 - 16)?",
+   "oplossing": "-37"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Reken uit: 11 * 4 - (14 - 32 + 18) - 15",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Reken uit: (19 - 37) * 7 * 4 + 7 + 16",
+   "oplossing": "-481"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is (7 * 12 * 2 + 11) * 9 * 10?",
+   "oplossing": "16110"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is (29 + 30 - 30) * 6 * 12 * 11?",
+   "oplossing": "22968"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Reken uit: 3 min 32 plus 16 keer 4 keer 12 keer 7",
+   "oplossing": "5347"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is 31 * 12 - (6 + 10 * 7 * 2)?",
+   "oplossing": "226"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is 11 - 7 - 6 * 5 - (29 - 2)?",
+   "oplossing": "-53"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is (15 - 14 * 7 * 7) * 2 * 4?",
+   "oplossing": "-5368"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Reken uit: 23 + 40 * 11 + 36 * 7 + 39",
+   "oplossing": "754"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is (24 + 26 + (24 - 15) * 4) * 8?",
+   "oplossing": "688"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Reken uit: 31 + (30 + 14) * 5 * 12 * 7",
+   "oplossing": "18511"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is (13 - (4 - 11)) * 6 * 11 - 33?",
+   "oplossing": "1287"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is (2 + 29 + 39 + 32 * 11) * 7?",
+   "oplossing": "2954"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is 38 + 13 - 10 + 32 + 4 * 10?",
+   "oplossing": "113"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is 40 - 14 * 12 + (33 + 22) * 10?",
+   "oplossing": "422"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is 34 - (32 - 40 + 11 * 3) * 11?",
+   "oplossing": "-241"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Reken uit: 32 - 3 - (9 + 20 - 15 - 10)",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is (26 * 4 * 9 - (24 + 20)) * 7?",
+   "oplossing": "6244"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is 11 * 4 * 5 * 9 + 13 + 9?",
+   "oplossing": "2002"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Hoeveel is 1 + 36 - (14 + 8 + 23) * 2?",
+   "oplossing": "-53"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "Wat is (21 + 8 + 33 - 11 + 3) * 9?",
+   "oplossing": "486"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is (14 - 7 * 7) * 10 - (18 - 8) + 32?",
+   "oplossing": "-328"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Hoeveel is 5 * 3 * 12 * 2 - (2 * 4 + 22)?",
+   "oplossing": "330"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: 32 - 6 - (1 + 15 * 11 - (5 + 30))",
+   "oplossing": "-105"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is ((24 + 2 * 11 * 5) * 5 - 4) * 5?",
+   "oplossing": "3330"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Hoeveel is 18 - (36 * 2 - (16 + 7 * 11 - 31))?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: (8 * 12 + 12 * 7 + 25 * 6) * 4",
+   "oplossing": "1320"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: (34 - (30 + 24) + 12 - 12) * 12 * 9",
+   "oplossing": "-2160"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is (7 * 11 + 19 * 2 + 2 - 39) * 11?",
+   "oplossing": "858"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Hoeveel is 24 + (24 + 33 + 19 + 38) * 9 - 17?",
+   "oplossing": "1033"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Hoeveel is 33 + 32 * 2 + 24 - (34 + 2 - 22)?",
+   "oplossing": "107"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: 39 - (30 * 5 * 10 * 8 + 27 + 19)",
+   "oplossing": "-12007"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: (11 - 20 - 20 + 35 + 7 + 35) * 7",
+   "oplossing": "336"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is 8 + 19 - 14 - (27 + 15 - 3 + 1)?",
+   "oplossing": "-27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is 24 + ((13 + 8) * 10 - 27 * 5) * 7?",
+   "oplossing": "549"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is (16 - 36 * 10 * 9 - 23 + 33) * 8?",
+   "oplossing": "-25712"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is (25 - 30 + 5 - 25 - (2 + 1)) * 6?",
+   "oplossing": "-168"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Hoeveel is 26 - 18 + 24 + 5 - (10 + 32) * 8?",
+   "oplossing": "-299"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: (14 - (17 - 18 + 23) * 7 * 3) * 8",
+   "oplossing": "-3584"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Hoeveel is ((8 - 27) * 7 + 30 + 15 + 8) * 9?",
+   "oplossing": "-720"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: (24 * 7 - (19 + 32 - 36 * 6)) * 6",
+   "oplossing": "1998"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is 35 + (39 + (23 + 37 * 9) * 4) * 8?",
+   "oplossing": "11739"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is 31 + 1 + 13 + 38 - (32 + 40 + 3)?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Hoeveel is ((23 + 6) * 4 + 23 * 2 * 10) * 8?",
+   "oplossing": "4608"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: (4 + 17) * 2 + (16 + 31 + 24) * 5",
+   "oplossing": "397"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: 30 min 29 keer 3 min 29 min 20 plus 19 plus 21",
+   "oplossing": "-66"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is (18 - 35) * 5 - 11 * 3 * 12 * 10?",
+   "oplossing": "-4045"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Hoeveel is 4 - (10 + 18 + 30 - 14) - (17 - 30)?",
+   "oplossing": "-27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Reken uit: (29 * 4 + 30 + 14 * 12 - 3) * 8",
+   "oplossing": "2488"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Wat is (11 * 10 * 4 * 8 + 6 - 1) * 11?",
+   "oplossing": "38775"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "Hoeveel is (35 + 22 * 7 + 30 + 40) * 6 * 4?",
+   "oplossing": "6216"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: 31 - 18 - (27 * 4 + 8 * 12 - (36 + 7))",
+   "oplossing": "-148"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: (8 + 35) * 6 - 28 - (1 - 11 - (7 - 22))",
+   "oplossing": "225"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is 39 - 27 + 34 - (24 - (31 - (28 + 16))) - 26?",
+   "oplossing": "-17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Hoeveel is 25 + 30 - 18 + 24 - 18 + 1 + 5 + 27?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: (29 * 11 + 10) * 5 - (29 - 14) + 29 + 34",
+   "oplossing": "1693"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is (25 - 29) * 5 + 24 - 16 + (40 + 23) * 3?",
+   "oplossing": "177"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is ((5 - ((10 + 14) * 6 - 4)) * 10 - 27) * 4?",
+   "oplossing": "-5508"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is (6 * 3 * 7 - (14 * 12 + 6)) * 2 * 5?",
+   "oplossing": "-480"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: (14 - 35) * 9 * 3 - (33 * 3 * 11 - 2)",
+   "oplossing": "-1654"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: 37 * 11 - ((5 - 38) * 4 + 12 - 27 * 9)",
+   "oplossing": "770"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is 20 + (2 + 15) * 2 - 2 - 14 - (5 + 24)?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: ((10 + 9 - 29) * 8 * 6 * 6 + 27) * 9",
+   "oplossing": "-25677"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Hoeveel is ((8 + 16 - 18) * 11 + 27 * 4 * 3) * 2?",
+   "oplossing": "780"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Hoeveel is 34 + 30 * 4 * 8 + 14 + (2 - 5) * 10?",
+   "oplossing": "978"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Hoeveel is 35 * 2 + 31 + 23 + 5 + 30 - (18 - 7)?",
+   "oplossing": "148"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is (8 - (15 + 4 * 10 * 4 + 12 + 32)) * 11?",
+   "oplossing": "-2321"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is ((30 - 34) * 7 * 12 + 32 * 2) * 2 + 26?",
+   "oplossing": "-518"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Hoeveel is (9 * 7 - 2 - (23 - 24 * 5) * 12) * 9?",
+   "oplossing": "11025"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: 15 + (4 + 3 - 5) * 11 - (20 + 27) * 9",
+   "oplossing": "-386"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Hoeveel is 10 - 28 - 21 + 7 + 17 - 38 - (1 + 5)?",
+   "oplossing": "-59"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is 19 - (36 * 4 - (22 * 11 + 10 * 12) + 3)?",
+   "oplossing": "234"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: 14 + 28 + 12 + 27 - 19 - (4 + 5 * 4)",
+   "oplossing": "38"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is 4 keer 3 keer 10 keer 8 min 8 plus 9 plus 6 keer 5?",
+   "oplossing": "991"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Hoeveel is (7 * 10 * 5 - (11 - 25)) * 6 * 6 * 8?",
+   "oplossing": "104832"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: 8 + 33 + 9 + 20 - 19 + 37 - 39 * 4",
+   "oplossing": "-68"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Reken uit: 9 - 6 - (4 - 40 * 6 - (6 + 12)) - 28",
+   "oplossing": "229"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Hoeveel is (26 - (5 + 13) + (6 - 32) * 12) * 5 + 33?",
+   "oplossing": "-1487"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is 21 + ((29 + 3 + 2) * 11 - 23) * 4 + 7?",
+   "oplossing": "1432"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Hoeveel is 30 - (16 + (6 + 27) * 6 - (38 + 21) * 4)?",
+   "oplossing": "52"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "Wat is ((27 + 16 - 25 - 19 + 19) * 8 - 15) * 2?",
+   "oplossing": "258"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Reken uit: 9 * 12 - ((6 + 25) * 4 - 33) * 2 - 19 * 10",
+   "oplossing": "-264"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Reken uit: ((37 - (30 + 9)) * 8 + 17 - (1 + 4)) * 11 * 6",
+   "oplossing": "-264"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Wat is (16 + 22 * 6 + 30 + (2 - (10 - 13)) * 4) * 5?",
+   "oplossing": "990"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Reken uit: (5 + 30 + 38 - 2) * 4 + 31 + 15 + 3 + 33",
+   "oplossing": "366"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is (26 + 33 * 10) * 3 * 12 * 8 * 2 - (14 + 37)?",
+   "oplossing": "205005"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Wat is (13 - 27 + 31 - 26 - 25 + 36 + 23 - 3) * 12?",
+   "oplossing": "264"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Wat is (33 * 9 * 9 + 16 + 1 - 25 + 4 + 24) * 2?",
+   "oplossing": "5386"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Reken uit: 31 - 20 + 28 - (11 + 39) - (30 + 8 + 20 - 17)",
+   "oplossing": "-52"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is (30 - 13) * 10 - (11 - (26 + 33) * 3 - 27 + 26)?",
+   "oplossing": "337"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Wat is 25 plus 36 min 34 keer 3 plus 29 min 19 plus 21 plus 18 min 6?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is (34 + 9 + 28 + 22) * 2 + 24 - (14 + 11 + 20)?",
+   "oplossing": "165"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is (38 + (2 + 32 - (26 + 10) * 11) * 9 - 26) * 8?",
+   "oplossing": "-25968"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is 8 - (((8 * 2 - 34) * 5 - 38 * 10) * 12 + 15)?",
+   "oplossing": "5633"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is (15 - (21 + 13 + 25) * 8 + 33 * 11 + 19) * 2?",
+   "oplossing": "-150"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Wat is (29 + 39 * 8 + 16 - (35 - 23 - 27)) * 12 * 3?",
+   "oplossing": "13392"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is 21 - (9 + 14) - (33 - (20 - 12 * 5)) + 10 + 20?",
+   "oplossing": "-45"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is 37 - ((22 - 36) * 11 + 27) - (3 - 23 * 4) + 37?",
+   "oplossing": "290"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is ((2 - 16) * 11 + 17 * 8) * 3 * 9 * 11 * 3?",
+   "oplossing": "-16038"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Wat is 13 - 28 - 5 + 23 - (12 - 19) + (14 - 13) * 6?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is (26 - 18 - (21 - (31 * 4 * 7 + 16 + 26))) * 9?",
+   "oplossing": "8073"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is 29 - (25 - 38 - 10 * 9) + 27 * 4 - 28 * 8?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is 40 + 27 + 28 + 32 - (38 + 34) * 3 - (25 + 8)?",
+   "oplossing": "-122"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Reken uit: 24 + 30 + 21 + 35 - (27 - 17 * 7 * 7 * 9)",
+   "oplossing": "7580"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is 11 - (8 - 31 + 27) * 3 - (40 + 22 * 12 - 32)?",
+   "oplossing": "-273"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Wat is (2 + 30 + 13 * 9 * 2) * 8 - 1 - (37 + 28)?",
+   "oplossing": "2062"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Reken uit: (22 - 4 - (16 * 9 * 10 + 3 + 26)) * 3 * 10",
+   "oplossing": "-43530"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Hoeveel is (19 - (33 + 10 + 19) + (34 + 19) * 5) * 4 - 30?",
+   "oplossing": "858"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Reken uit: (5 - 13) * 10 * 8 - (28 - 26) * 12 + 3 * 3",
+   "oplossing": "-655"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Wat is (6 + 13) * 3 + (8 - 2) * 8 - 39 * 9 * 4?",
+   "oplossing": "-1299"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "Reken uit: 21 + 3 + 22 - 9 + 25 - 2 * 11 + 30 - 22",
+   "oplossing": "48"
+  }
+ ]
+}

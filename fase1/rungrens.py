@@ -84,18 +84,31 @@ ok, uit = ssh("cd ~/amber-werk && PYTORCH_CUDA_ALLOC_CONF="
 print(uit[-600:])
 
 stap(5, "hekken naar het 1024-tijdperk en de toetsen")
+# Puzzel staat sinds 13 aug 2026 al op 9 (compacte uitwerking); hier hoeft
+# alleen nog rekenen 26 -> 38 en code 11 -> 15.
 hier(f"sed -i 's/^MAX_DEPTH = 26/MAX_DEPTH = 38/; "
-     f"s/MAX_DEPTH_PER = {{\"puzzel\": 6, \"code\": 11}}/"
-     f"MAX_DEPTH_PER = {{\"puzzel\": 6, \"code\": 15}}/' {DL}/kern/world.py")
+     f"s/MAX_DEPTH_PER = {{\"puzzel\": 9, \"code\": 11}}/"
+     f"MAX_DEPTH_PER = {{\"puzzel\": 9, \"code\": 15}}/' {DL}/kern/world.py")
+# Teruglezen wat er werkelijk staat — sed zwijgt bij een gemiste regel,
+# dezelfde valstrik als nvidia-smi (8 aug 2026).
+if not hier(f"grep -q '^MAX_DEPTH = 38' {DL}/kern/world.py && "
+            f"grep -q 'MAX_DEPTH_PER = {{\"puzzel\": 9, \"code\": 15}}' "
+            f"{DL}/kern/world.py"):
+    sys.exit("hekverzetting niet teruggevonden in world.py — stop")
 if not hier(f"cd {DL}/kern && {VENV} test-world.py > /tmp/tw.log 2>&1 "
             f"|| (tail -5 /tmp/tw.log; false)"):
     sys.exit("test-world faalt na de hekverzetting — stop")
-print("hekken 38/15/6, toetsen groen")
+print("hekken 38/15/9, toetsen groen")
 
-stap(6, "kern en life.py naar de trainer")
+stap(6, "kern, life.py en proefwerken naar de trainer")
 hier(f"cd {DL}/kern && for f in *.py; do sshpass -p {_geheim()} scp -q $f "
      f"{TRAINER}:amber-werk/kern/; done")
 scp(f"{DL}/fase1/life.py", f"{TRAINER}:amber-werk/fase1/life.py")
+# De proefwerken gaan alléén op een rungrens mee: take() draait elk
+# json-bestand dat hij ziet, dus een nieuw proefwerk mid-run plaatsen
+# zou de meting van een lopende run stil veranderen (gesprek, 13 aug).
+hier(f"cd {DL}/proefwerken && for f in *.json; do sshpass -p {_geheim()} "
+     f"scp -q $f {TRAINER}:amber-werk/proefwerken/; done")
 
 stap(7, "groeicheckpoint naar venster 1024 bouwen en plaatsen")
 groei = f"""
@@ -125,15 +138,16 @@ scp(f"{DL}/fase1/run5-start.pt",
     f"{TRAINER}:amber-werk/fase1/leven/momentopname.pt")
 
 stap(8, "tempo- en geheugenproef op 1024 (past partij 64 nog?)")
-scp("/home/arch/.claude/jobs/49f91ed4/tmp/tempo-768.py",
-    f"{TRAINER}:/tmp/tempo-1024.py")
+# 13 aug 2026: het script stond in een tijdelijke jobmap die opgeruimd
+# wordt; nu op een duurzame plek.
+scp(f"{DL}/fase1/tempo-proef.py", f"{TRAINER}:/tmp/tempo-1024.py")
 ok, uit = ssh("PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True "
               "python3 -u /tmp/tempo-1024.py 2>&1 | tail -4", 1800)
 print(uit)
 
 stap(9, "run.json en wrapper")
 json.dump({"naam": "run5", "doel": DOEL5,
-           "hek": "rekenen 38, code 15, puzzel 6",
+           "hek": "rekenen 38, code 15, puzzel 9",
            "venster": 1024, "machine": "Z490"},
           open("/home/arch/rapport/run.json", "w"))
 ssh(f"sed -i 's|life.py [0-9]*|life.py {DOEL5}|' ~/nacht && "
@@ -141,5 +155,5 @@ ssh(f"sed -i 's|life.py [0-9]*|life.py {DOEL5}|' ~/nacht && "
 
 print("\nALLES KLAAR — run 5 wacht op Cleys woord:")
 print(f"  doel {DOEL5:,} · venster 1024 · hekken rekenen 38, code 15, "
-      f"puzzel 6".replace(",", "."))
+      f"puzzel 9".replace(",", "."))
 print("  starten = ssh trainer: sudo systemctl start amber-train")
