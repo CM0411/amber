@@ -45,9 +45,13 @@ sluiten) en levert in zodra de server weer te zien is.</p>
 <div class="kaart"><div class="kop">wat er al ligt</div>
   <div id="stand" class="fijn">…</div></div>
 
+<div class="kaart"><div class="kop">wat het oog zag</div>
+  <div id="gezien"><p class="fijn">nog niets bekeken…</p></div></div>
+
 <p class="fijn">Audio gaat meteen door haar oren (whisper) en komt in de
-brievenbus; foto's worden per rit bewaard voor het oog dat er nog niet
-is. Terug naar het <a href="/">venster</a>.</p>
+brievenbus; foto's bekijkt het oog (Qwen, kaart 1) en zijn beschrijving
+gaat als waarneming de brievenbus in — op de rungrens haar logboek in.
+Terug naar het <a href="/">venster</a>.</p>
 
 <script>
 const el = (id) => document.getElementById(id);
@@ -144,6 +148,18 @@ async function verstuur() {
 }
 setInterval(verstuur, 10000);
 window.addEventListener("online", verstuur);
+
+async function haalGezien() {
+  try {
+    const d = await (await fetch("/rapport/gezien.json",
+                                 {cache: "no-store"})).json();
+    el("gezien").innerHTML = (d.gezien || []).slice().reverse().map(g =>
+      `<div class="rij" style="display:block">
+         <span class="fijn">${g.tijd} · ${g.rit}</span><br>${g.tekst}</div>`
+      ).join("") || '<p class="fijn">nog niets bekeken…</p>';
+  } catch (e) {}
+}
+setInterval(haalGezien, 15000); haalGezien();
 
 async function haalStand() {
   try {

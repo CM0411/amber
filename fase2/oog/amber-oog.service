@@ -1,0 +1,13 @@
+[Unit]
+Description=Amber — het oog (Qwen2.5-VL kijkt naar de ritfoto's, rust in RAM)
+After=network.target
+
+[Service]
+Type=simple
+User=arch
+ExecStart=/home/arch/oog/oog-venv/bin/python -u /home/arch/oog/oog.py
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target

@@ -60,11 +60,32 @@ stap = int(laatste.get("stap") or 0)
 nieuwe = []
 for r in post:
     nr += 1
-    nieuwe.append(json.dumps({
-        "nr": nr, "tijd": r["tijd"], "soort": "waarneming",
-        "stap": stap, "bron": "cley (spraak)",
-        "tekst": r["tekst"], "gesproken_op": r["wanneer"],
-    }, ensure_ascii=False))
+    if r.get("soort") == "les":
+        # Een les uit de vraag-tab: vraag + het júiste antwoord van Cley.
+        # Wordt bij de volgende start door learn_lessons het geheugen in
+        # genomen (familie "gesprek"), door de flessenhals als alles.
+        nieuwe.append(json.dumps({
+            "nr": nr, "tijd": r["tijd"], "soort": "les",
+            "stap": stap, "bron": "cley (les)",
+            "vraag": r["vraag"], "antwoord": r["antwoord"],
+            "gegeven_op": r["wanneer"],
+        }, ensure_ascii=False))
+    elif r.get("bron") == "beeld":
+        # Het oog (Qwen2.5-VL op kaart 1) zag een foto van een rit en
+        # beschreef hem in het Nederlands. De beschrijving is de
+        # waarneming; de foto zelf blijft in fase2/beelden/.
+        nieuwe.append(json.dumps({
+            "nr": nr, "tijd": r["tijd"], "soort": "waarneming",
+            "stap": stap, "bron": "oog (beeld)",
+            "tekst": r["tekst"], "gezien_op": r["wanneer"],
+            "rit": r.get("rit") or "los",
+        }, ensure_ascii=False))
+    else:
+        nieuwe.append(json.dumps({
+            "nr": nr, "tijd": r["tijd"], "soort": "waarneming",
+            "stap": stap, "bron": "cley (spraak)",
+            "tekst": r["tekst"], "gesproken_op": r["wanneer"],
+        }, ensure_ascii=False))
 blok = "\n".join(nieuwe) + "\n"
 ok, _ = ssh("cat >> " + LOGBOEK + " << 'POST'\n" + blok + "POST\nsync")
 if not ok:
