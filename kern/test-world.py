@@ -48,11 +48,25 @@ print()
 # For rekenen and code there is an independent source: Python itself.
 
 print("--- Are the answers right? ---")
+
+
+def _unwrap(problem):
+    """Strip the conversational wrapper so Python can be the judge again.
+
+    The wrapper is study clothing; underneath must sit a sum that eval
+    computes to exactly the noted answer — also for spoken-word forms."""
+    p = re.sub(r"^(Wat is |Hoeveel is |Reken uit: )", "", problem)
+    p = p.rstrip("?")
+    for word, op in (("plus", "+"), ("min", "-"), ("keer", "*")):
+        p = p.replace(f" {word} ", f" {op} ")
+    return p
+
+
 wrong = []
 for depth in range(2, 13):
     for n in range(60):
         t = world.make("rekenen", depth, n)
-        if str(eval(t.problem)) != t.solution:
+        if str(eval(_unwrap(t.problem))) != t.solution:
             wrong.append(t.problem)
 check("660 expressions match what Python itself computes",
       not wrong, f"{len(wrong)} deviations" if wrong else "not a single deviation")
@@ -427,6 +441,94 @@ for n in range(6000, 6800):
 check("exam-size defs (13+ rounds) exist and fit window 1024",
       big_def > 0 and correct == big_def,
       f"{big_def} large defs sampled, all correct and fitting")
+
+# --- the compact puzzle working (13 Aug 2026) --------------------------------
+# From depth 7 each layer writes its differences as one row ("verschillen:")
+# instead of one equation per pair; depths 1-6 keep the wide form bit for
+# bit. Without this latch someone can flip the boundary and silently change
+# the shape of everything she already mastered.
+wide_ok = compact_ok = True
+compact_fit = compact_seen = 0
+for depth in (1, 2, 3, 4, 5, 6):
+    for n in range(200):
+        t = world.make("puzzel", depth, n)
+        if t and ("verschillen:" in t.working or "om en om: " in t.working):
+            wide_ok = False
+for depth in (7, 8, 9):
+    for n in range(200):
+        t = world.make("puzzel", depth, n)
+        if t is None:
+            continue
+        compact_seen += 1
+        # Deep rows always carry at least one difference layer, so the
+        # compact label must appear — and the answer must still be the
+        # last number of the working (nakijk looks there).
+        if "verschillen:" not in t.working:
+            compact_ok = False
+        if not t.working.rstrip().endswith(t.solution):
+            compact_ok = False
+        if len(t.problem) + len(t.to_learn()) + 3 <= 1024 - 112:
+            compact_fit += 1
+check("puzzle depth 1-6 keeps the wide working (no compact labels)", wide_ok)
+check("puzzle depth 7-9 works compactly and ends on the answer",
+      compact_ok and compact_seen > 0, f"{compact_seen} sampled")
+check("compact workings fit window 1024",
+      compact_seen > 0 and compact_fit == compact_seen,
+      f"{compact_fit}/{compact_seen} within 912")
+
+# --- the conversational wrapper (13 Aug 2026) --------------------------------
+# A fifth of arithmetic depth 2-8 appears as an everyday question ("Wat is
+# 13 keer 8?"); spoken-word forms start their working with the bare sum.
+# Outside that band, and in the other families, nothing changes shape.
+wrapped = flat = 0
+outside = 0
+wrap_ok = True
+for depth in range(1, 11):
+    for n in range(400):
+        t = world.make("rekenen", depth, n)
+        if t is None:
+            continue
+        is_wrapped = t.problem.endswith("?") or t.problem.startswith("Reken")
+        if is_wrapped and not 2 <= depth <= 8:
+            outside += 1
+        if not is_wrapped:
+            continue
+        wrapped += 1
+        # checking still reads the last number of the working
+        if not t.check(t.working):
+            wrap_ok = False
+        # a spoken form carries its translation as the first step
+        if "keer" in t.problem or "plus" in t.problem or "min" in t.problem:
+            flat += 1
+            head = t.working.split(" ; ")[0]
+            if "=" in head or not _re.match(r"^-?\d+( [+*-] -?\d+)+$", head):
+                wrap_ok = False
+check("the wrapper only dresses arithmetic depth 2-8", outside == 0)
+check("about a fifth is wrapped, and every working still checks out",
+      wrap_ok and 0.15 < wrapped / 2800 < 0.27,
+      f"{wrapped} wrapped, {flat} spoken")
+check("spoken forms exist and keep their symbols in the working",
+      flat > 50, f"{flat} spoken forms sampled")
+other = 0
+for fam in ("puzzel", "code"):
+    for n in range(200):
+        t = world.make(fam, 3, n)
+        if t and (t.problem.startswith(("Wat is", "Hoeveel", "Reken uit"))):
+            other += 1
+check("puzzle and code stay unwrapped", other == 0)
+wrap_fit = wrap_all = 0
+for depth in range(2, 9):
+    for n in range(400):
+        t = world.make("rekenen", depth, n)
+        if t is None or not (t.problem.endswith("?")
+                             or t.problem.startswith("Reken")):
+            continue
+        wrap_all += 1
+        if (len(t.to_learn()) <= _rf(depth, "rekenen", 768)
+                and world.fits(t, 768 - 112)):
+            wrap_fit += 1
+check("wrapped problems fit the window and their writing space (768)",
+      wrap_all > 0 and wrap_fit == wrap_all, f"{wrap_fit}/{wrap_all}")
 
 print()
 print("=" * 70)

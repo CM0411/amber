@@ -9,6 +9,14 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 MAP = "/home/arch/amber-werk/brein"
 
+# de gesprekslus (oren → brein → mond) draait als eigen draad; een kapot
+# gesprek mag het venster zelf nooit meetrekken
+try:
+    import gesprek
+except Exception as _e:
+    gesprek = None
+    print("gesprek niet geladen:", _e, flush=True)
+
 # Het wachtwoord van de rekenmachine staat búiten de repo — een repo die ooit
 # openbaar wordt mag nooit een geheim in zijn geschiedenis dragen.
 def _geheim():
@@ -286,6 +294,58 @@ class Venster(BaseHTTPRequestHandler):
                     f.write(q)
             self._stuur(json.dumps({"gesteld": bool(q)}).encode(),
                         "application/json")
+        elif self.path.startswith("/les-leer"):
+            # "Leer haar dit": vraag + het juiste antwoord de brievenbus in.
+            # De les gaat pas op een rungrens naar haar logboek (één
+            # schrijver) en dan bij de volgende start het geheugen in —
+            # nooit haar eigen antwoord, de correctie is de les.
+            from urllib.parse import urlparse, parse_qs
+            velden = parse_qs(urlparse(self.path).query)
+            vraag = velden.get("vraag", [""])[0].strip()[:400]
+            antwoord = velden.get("antwoord", [""])[0].strip()[:400]
+            # zelfde x-herschrijving als bij het stellen: de les moet er
+            # uitzien zoals zij de vraag te zien krijgt
+            vraag = re.sub(r"(?<=[\d\s])[xX](?=[\d\s])", "*", vraag)
+            if vraag and antwoord:
+                with open("/home/arch/amber-werk/fase1/brievenbus.jsonl",
+                          "a") as f:
+                    f.write(json.dumps({
+                        "tijd": time.time(),
+                        "wanneer": time.strftime("%Y-%m-%d %H:%M"),
+                        "soort": "les", "bron": "vraag-tab",
+                        "vraag": vraag, "antwoord": antwoord,
+                        "bezorgd": False,
+                    }, ensure_ascii=False) + "\n")
+                    f.flush()
+                    os.fsync(f.fileno())
+            self._stuur(json.dumps(
+                {"in_brievenbus": bool(vraag and antwoord)}).encode(),
+                "application/json")
+        elif self.path.startswith("/gesprek.json"):
+            try:
+                with open(f"{MAP}/gesprek.json", "rb") as f:
+                    self._stuur(f.read(), "application/json")
+            except Exception:
+                self._stuur(b'{"beurten": [], "status": "rust"}',
+                            "application/json")
+        elif self.path.startswith("/gesprek-zeg"):
+            # een getypte gespreksbeurt: in de gesprek-inbox, de regisseur
+            # (gesprek.py) pakt hem op. Eerst .deel, dan hernoemen — de
+            # regisseur mag nooit een half bericht lezen
+            from urllib.parse import urlparse, parse_qs
+            q = parse_qs(urlparse(self.path).query).get("q", [""])[0]
+            q = q.strip()[:200]
+            if q:
+                os.makedirs(f"{MAP}/gesprek-inbox", exist_ok=True)
+                pad = f"{MAP}/gesprek-inbox/{time.time():.2f}.txt"
+                with open(pad + ".deel", "w") as f:
+                    f.write(q)
+                os.replace(pad + ".deel", pad)
+            self._stuur(json.dumps({"gezegd": bool(q)}).encode(),
+                        "application/json")
+        elif self.path.startswith("/gesprek"):
+            with open(f"{MAP}/gesprek.html", "rb") as f:
+                self._stuur(f.read())
         elif self.path.startswith("/vraag-antwoord.json"):
             try:
                 with open(f"{MAP}/vraag-antwoord.json", "rb") as f:
@@ -421,6 +481,8 @@ class Mobiel(Venster):
 
 
 threading.Thread(target=_ververs_run, daemon=True).start()
+if gesprek:
+    threading.Thread(target=gesprek.lus, daemon=True).start()
 threading.Thread(target=lambda: ThreadingHTTPServer(
     ("0.0.0.0", 8001), Mobiel).serve_forever(), daemon=True).start()
 ThreadingHTTPServer(("0.0.0.0", 8000), Venster).serve_forever()

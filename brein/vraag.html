@@ -29,7 +29,7 @@
           border-radius: 10px; font-size: 14px; cursor: pointer; }
 </style>
 <style>
-  #vraag { width: 100%; padding: 13px 15px; border-radius: 12px;
+  #vraag, #les-antwoord { width: 100%; padding: 13px 15px; border-radius: 12px;
            background: #0c1230; border: 1px solid #2c3a5e; color: #d8dde5;
            font-size: 16px; font-family: ui-monospace, monospace; }
   .knop { display: inline-block; padding: 11px 16px; margin-top: 10px;
@@ -44,17 +44,27 @@
 <nav><a href="/">venster</a><a href="/dagbericht">dagbericht</a>
 <a href="/machines">machines</a><a href="/gebeurtenissen">gebeurtenissen</a>
 <a href="/opname">oren</a><a href="/geheugen">geheugen</a>
-<a class="hier" href="/vraag">vraag haar</a></nav>
+<a class="hier" href="/vraag">vraag haar</a>
+<a href="/gesprek">gesprek</a></nav>
 <h1>Vraag haar iets</h1>
 <input id="vraag" placeholder="bv. 1 * 1   of   13 * 8 * 11   of   Zet voort: 2, 4, 6, 8, ?">
 <div class="knop" id="stel">vraag het haar</div>
 <div class="kaart" style="margin-top:14px"><div class="kop" id="a-kop">haar antwoord</div>
   <div id="antwoord">—</div>
   <div id="herinnert" style="margin-top:8px"></div></div>
+<div class="kaart" id="les-kaart" style="display:none">
+  <div class="kop">leer haar dit</div>
+  <input id="les-antwoord" placeholder="het juiste antwoord">
+  <div class="knop" id="les-knop">leer haar dit</div>
+  <div class="fijn" id="les-stand" style="margin-top:8px"></div>
+</div>
 <p class="fijn">Ze schrijft teken voor teken met haar echte brein van dit
 moment — met uitwerking als ze die nodig heeft (het laatste getal is haar
 antwoord). Vragen buiten haar wereld mogen: dan zie je eerlijk waar haar
-kunnen ophoudt.</p>
+kunnen ophoudt. Klopt haar antwoord niet? Typ het juiste en druk op
+<i>leer haar dit</i>: de les gaat de brievenbus in en op de volgende
+rungrens haar geheugen in — als vraag met het júiste antwoord, nooit haar
+eigen.</p>
 <script>
 let vanaf = 0;
 async function stel() {
@@ -77,11 +87,29 @@ async function stel() {
         (d.herinnert || []).map(h =>
           `<div class="her">herinnert: ${h.opgave} → ${h.oplossing}</div>`
         ).join("");
+      laatsteVraag = d.vraag;
+      document.getElementById("les-antwoord").value = "";
+      document.getElementById("les-stand").textContent = "";
+      document.getElementById("les-kaart").style.display = "block";
     }
   }, 1500);
   setTimeout(() => clearInterval(wacht), 40000);
 }
+let laatsteVraag = "";
+async function leer() {
+  const a = document.getElementById("les-antwoord").value.trim();
+  if (!laatsteVraag || !a) return;
+  const d = await (await fetch("/les-leer?vraag=" +
+    encodeURIComponent(laatsteVraag) + "&antwoord=" +
+    encodeURIComponent(a))).json();
+  document.getElementById("les-stand").textContent = d.in_brievenbus
+    ? "in de brievenbus — gaat mee op de volgende rungrens"
+    : "niet gelukt — vraag en antwoord allebei nodig";
+}
 document.getElementById("stel").onclick = stel;
 document.getElementById("vraag").addEventListener("keydown",
   (e) => { if (e.key === "Enter") stel(); });
+document.getElementById("les-knop").onclick = leer;
+document.getElementById("les-antwoord").addEventListener("keydown",
+  (e) => { if (e.key === "Enter") leer(); });
 </script></body></html>

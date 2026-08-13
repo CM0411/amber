@@ -66,11 +66,18 @@ MAX_DEPTH = 26
 # the working of such a deep weave runs 500–1200 characters and did not fit
 # a 512 window. At 768 (run 4, measured 10-11 Aug 2026) puzzle 6 has 95% of
 # its usable problems fitting and code 11 fits 100%; at 512 the fences
-# stood at 5 and 8. Deeper stays a wall: puzzle 7+ is unexplainable weave,
-# code 12+ does not fit even 768. Run 3 opened code to 12 on 9 Aug 2026 and
-# crashed there six times on "1 of the 64 tasks found" — a depth without
-# problems is not a world; hence fences, not hope.
-MAX_DEPTH_PER = {"puzzel": 6, "code": 11}
+# stood at 5 and 8. Run 3 opened code to 12 on 9 Aug 2026 and crashed
+# there six times on "1 of the 64 tasks found" — a depth without problems
+# is not a world; hence fences, not hope.
+#
+# Puzzle 9 (was 6): the compact working (see _explain) broke the length
+# wall — measured 13 Aug 2026 at window 1024, of the explainable problems
+# 100% fits at depth 7, 8 and 9, and 80% at 10 (under the 85% standard,
+# so the fence stops at 9). Explainability itself stays 21-30% at every
+# depth, the fixed tax of deep weaves; learning_tasks' search bound
+# handles that fine. NOTE: this fence belongs to window 1024 — run 5.
+# Run 4 (768) keeps its own copy of this file with fence 6.
+MAX_DEPTH_PER = {"puzzel": 9, "code": 11}
 
 
 def max_depth(family):
@@ -235,7 +242,7 @@ def _row_series(depth, t, length):
     return out
 
 
-def _explain(row, layer=0):
+def _explain(row, layer=0, compact=False):
     """Derive the last number from the row before it, with a working method.
 
     Returns (steps, success). The first version only showed the differences
@@ -251,6 +258,16 @@ def _explain(row, layer=0):
     Now the method is genuinely carried through: if the difference is not
     fixed, the next difference is derived the same way, for as long as it
     takes to come out.
+
+    `compact` (depth 7 and up, 13 Aug 2026): each layer writes its
+    differences as one row — `verschillen: 10, 38, 67` — instead of one
+    subtraction equation per pair. Every number is still one easy step
+    (both operands stand directly above), but the working of a deep weave
+    shrinks by roughly half; at full width depth 8 fitted a 1024 window
+    for only 30% of its problems. The additions on the way back up stay
+    written in full: those produce the new numbers, and a number may
+    never come out of nowhere. Depths 1-6 keep the wide form bit for bit,
+    so nothing she already mastered changes shape.
     """
     # The layer bound must grow with the longest row: depth 8 needs seven
     # layers. For rows of seven nothing changes — the length bound (< 3)
@@ -266,8 +283,11 @@ def _explain(row, layer=0):
     # 1. Fixed difference: add and done.
     if len(set(differences)) == 1:
         step = differences[0]
-        steps = [f"{visible[i + 1]} - {visible[i]} = {step}"
-                 for i in range(len(differences))]
+        if compact:
+            steps = ["verschillen: " + ", ".join(str(d) for d in differences)]
+        else:
+            steps = [f"{visible[i + 1]} - {visible[i]} = {step}"
+                     for i in range(len(differences))]
         steps.append(f"{visible[-1]} + {step} = {target}")
         return steps, visible[-1] + step == target
 
@@ -283,8 +303,12 @@ def _explain(row, layer=0):
                     for i in range(len(visible) - 1))
         if exact and len(divisors) == 1:
             factor = divisors.pop()
-            steps = [f"{visible[i + 1]} : {visible[i]} = {factor}"
-                     for i in range(len(visible) - 1)]
+            if compact:
+                steps = ["gedeeld: " + ", ".join(str(factor)
+                         for _ in range(len(visible) - 1))]
+            else:
+                steps = [f"{visible[i + 1]} : {visible[i]} = {factor}"
+                         for i in range(len(visible) - 1)]
             steps.append(f"{visible[-1]} * {factor} = {target}")
             if visible[-1] * factor == target:
                 return steps, True
@@ -302,9 +326,12 @@ def _explain(row, layer=0):
 
     # 3. The difference itself changes: the same method on the differences.
     following = target - visible[-1]
-    steps = [f"{visible[i + 1]} - {visible[i]} = {differences[i]}"
-             for i in range(len(differences))]
-    inner, success = _explain(differences + [following], layer + 1)
+    if compact:
+        steps = ["verschillen: " + ", ".join(str(d) for d in differences)]
+    else:
+        steps = [f"{visible[i + 1]} - {visible[i]} = {differences[i]}"
+                 for i in range(len(differences))]
+    inner, success = _explain(differences + [following], layer + 1, compact)
     if success:
         steps += inner
         steps.append(f"{visible[-1]} + {following} = {target}")
@@ -316,10 +343,11 @@ def _explain(row, layer=0):
     position = len(row) - 1
     own = row[position % 2::2]
     if len(own) >= 3:
-        inner, success = _explain(own, layer + 1)
+        inner, success = _explain(own, layer + 1, compact)
         if success:
             om = ", ".join(str(x) for x in own[:-1])
-            return [f"om en om, dus kijk naar {om}"] + inner, True
+            label = "om en om: " if compact else "om en om, dus kijk naar "
+            return [label + om] + inner, True
 
     return [], False
 
@@ -339,7 +367,10 @@ def _row(depth, t):
     length = shown + 1 + 2 * max(0, depth - 5)
     row = _row_series(max(1, depth - 1), t, length)
     displayed = ", ".join(str(x) for x in row[:-1])
-    steps, success = _explain(row)
+    # Compact working from depth 7: at full width nothing there fits the
+    # window (30% at depth 8 on 1024). Depths 1-6 keep the wide form, so
+    # her existing material and memories keep their exact shape.
+    steps, success = _explain(row, compact=depth >= 7)
     if not success:
         # No method that comes out. Then this is not an honest problem:
         # there is nothing to work out, only to guess. `make()` drops it.
@@ -597,6 +628,53 @@ def _code(depth, t):
 _MAKERS = {"rekenen": _arithmetic, "puzzel": _row, "code": _code}
 
 
+# --- the conversational wrapper (13 Aug 2026) --------------------------------
+# Since O closed the loop Cley can talk to her: whisper turns his voice into
+# text like "Wat is 3 plus 4?". That wrapper did not exist in her world —
+# on the first live conversation she read it as list-filter language and
+# answered nonsense. So the world now teaches the wrapper itself: a fifth
+# of the arithmetic problems (depth 2-8, the depths one would actually say
+# aloud) appears as an everyday question, and with a spoken-word expression
+# the working starts with the bare sum — first translate, then calculate.
+#
+# The wrapper draws from its own seed split. Unwrapped problems stay bit
+# for bit what they were — same demand as the compact puzzle working of
+# 13 Aug 2026: nothing she already masters changes shape.
+
+CONVERSE_SEED = 0x4765_7370_7265_6B      # "Gesprek"
+CONVERSE_MIN, CONVERSE_MAX = 2, 8
+
+_SPOKEN_OP = {"+": "plus", "-": "min", "*": "keer"}
+# Only a flat chain of positive numbers reads naturally as spoken words;
+# anything with parentheses keeps its symbols ("3 haakje 7 sluit" is not
+# a sentence anyone says).
+import re as _re
+_FLAT = _re.compile(r"^\d+( [+*-] \d+)+$")
+
+
+def _converse(problem, working, depth, t):
+    """Perhaps wrap an arithmetic problem in everyday question language."""
+    if not CONVERSE_MIN <= depth <= CONVERSE_MAX or t.integer(1, 5) != 1:
+        return problem, working
+    spoken = None
+    if _FLAT.match(problem) and t.integer(1, 2) == 1:
+        spoken = " ".join(_SPOKEN_OP.get(p, p) for p in problem.split(" "))
+    e = spoken or problem
+    form = t.integer(1, 3)
+    if form == 1:
+        wrapped = f"Wat is {e}?"
+    elif form == 2:
+        wrapped = f"Hoeveel is {e}?"
+    else:
+        wrapped = f"Reken uit: {e}"
+    if spoken:
+        # The translation is the first step of the working: she learns to
+        # write the sum in her own notation before calculating. nakijk()
+        # still reads the last number, so checking stays unchanged.
+        working = f"{problem} ; {working}" if working else problem
+    return wrapped, working
+
+
 # --- outward -----------------------------------------------------------------
 
 def make(family, depth, number):
@@ -611,12 +689,16 @@ def make(family, depth, number):
         raise ValueError(
             f"depth {depth} falls outside {MIN_DEPTH}–{MAX_DEPTH}"
         )
-    t = Picker(_seed_of(family, depth, number))
+    seed = _seed_of(family, depth, number)
+    t = Picker(seed)
     problem, solution, working = _MAKERS[family](depth, t)
     if problem is None:
         # No working comes out — then there is nothing to learn, only to
         # guess. `learning_tasks` skips it.
         return None
+    if family == "rekenen":
+        problem, working = _converse(problem, working, depth,
+                                     Picker(_mix(seed ^ CONVERSE_SEED)))
     return Task(family=family, grade=depth, number=number,
                 problem=problem, solution=str(solution), working=working)
 

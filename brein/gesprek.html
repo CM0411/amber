@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amber — gesprek</title><style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #080b1e; color: #d8dde5; padding: 16px 16px 40px;
+         font-family: system-ui, -apple-system, sans-serif; max-width: 620px;
+         margin: 0 auto; padding-top: calc(16px + env(safe-area-inset-top)); }
+  nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  nav a { padding: 8px 13px; border-radius: 9px; font-size: 13px;
+          color: #8ea0c0; text-decoration: none; background: #0c1230;
+          border: 1px solid #1d2b4d; }
+  nav a.hier { color: #cfe2ff; border-color: #3d5285; }
+  h1 { font-size: 14px; letter-spacing: .28em; color: #5f6f92;
+       text-transform: uppercase; font-weight: 600; margin: 4px 0 12px; }
+  #beurten { display: flex; flex-direction: column; gap: 8px;
+             margin-bottom: 12px; }
+  .beurt { max-width: 86%; padding: 10px 13px; border-radius: 13px;
+           font-size: 14.5px; line-height: 1.5; word-break: break-word;
+           white-space: pre-wrap; }
+  .cley { align-self: flex-end; background: #1a2450; color: #cfe2ff;
+          border: 1px solid #2c3a5e; border-bottom-right-radius: 4px; }
+  .amber { align-self: flex-start; background: #0c1230; color: #7fe0c3;
+           border: 1px solid #1d2b4d; border-bottom-left-radius: 4px;
+           font-family: ui-monospace, monospace; font-size: 14px; }
+  .beurt .tijd { display: block; font-size: 10px; color: #51608a;
+                 font-family: ui-monospace, monospace; margin-top: 4px; }
+  .beurt .her { font-size: 11.5px; color: #5f6f92; margin-top: 5px;
+                font-family: ui-monospace, monospace; }
+  .stil { opacity: .55; font-style: italic; }
+  /* de status ademt heel traag — nooit iets dat flitst */
+  #status { font-size: 13px; color: #7fe0c3; min-height: 1.5em;
+            margin: 6px 2px; animation: adem 3.2s ease-in-out infinite; }
+  @keyframes adem { 0%, 100% { opacity: .45; } 50% { opacity: .95; } }
+  .balk { display: flex; gap: 8px; margin-top: 10px; }
+  #tekst { flex: 1; padding: 12px 14px; border-radius: 12px;
+           background: #0c1230; border: 1px solid #2c3a5e; color: #d8dde5;
+           font-size: 16px; }
+  .knop { padding: 12px 15px; background: #131b3e; color: #cfe2ff;
+          border: 1px solid #2c3a5e; border-radius: 12px; font-size: 14px;
+          cursor: pointer; text-align: center; }
+  .knop.opnemen { background: #3d1a24; border-color: #7a2f3f; }
+  .knop.breed { display: block; width: 100%; margin-top: 8px; }
+  #speel { display: none; }
+  .kaart { background: #0c1230; border: 1px solid #1d2b4d;
+           border-radius: 12px; padding: 13px 15px; margin-top: 12px; }
+  .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+         text-transform: uppercase; margin-bottom: 8px; }
+  #les-antwoord { width: 100%; padding: 12px 14px; border-radius: 12px;
+                  background: #080b1e; border: 1px solid #2c3a5e;
+                  color: #d8dde5; font-size: 16px;
+                  font-family: ui-monospace, monospace; }
+  .fijn { font-size: 12px; color: #51608a; margin-top: 8px;
+          line-height: 1.5; }
+</style></head><body>
+<nav><a href="/">venster</a><a href="/dagbericht">dagbericht</a>
+<a href="/machines">machines</a><a href="/gebeurtenissen">gebeurtenissen</a>
+<a href="/opname">oren</a><a href="/geheugen">geheugen</a>
+<a href="/vraag">vraag haar</a><a class="hier" href="/gesprek">gesprek</a></nav>
+<h1>Gesprek</h1>
+
+<div id="beurten"><p class="fijn">nog geen gesprek — zeg iets…</p></div>
+<div id="status"></div>
+
+<button class="knop opnemen breed" id="opneem" style="display:none">● inspreken</button>
+<label class="knop breed" for="bestand" id="bestand-knop">opname kiezen (Dictafoon, spraakmemo…)</label>
+<input type="file" id="bestand" style="display:none">
+<div class="balk">
+  <input id="tekst" placeholder="of typ iets…">
+  <div class="knop" id="stuur">stuur</div>
+</div>
+<button class="knop breed" id="speel">▶ speel haar stem af</button>
+
+<div class="kaart" id="les-kaart" style="display:none">
+  <div class="kop">klopte haar antwoord niet? leer haar dit</div>
+  <input id="les-antwoord" placeholder="het juiste antwoord">
+  <div class="knop" id="les-knop" style="margin-top:8px">leer haar dit</div>
+  <div class="fijn" id="les-stand"></div>
+</div>
+
+<p class="fijn">Ze antwoordt teken voor teken met haar echte brein van dit
+moment en spreekt het uit met haar eigen stem. Een beurt kost ongeveer een
+minuut: verstaan, denken en spreken zijn drie echte stappen. Antwoorden is
+geen leren — leren gaat alleen via <i>leer haar dit</i>.</p>
+
+<script>
+const el = (id) => document.getElementById(id);
+let lokaleStatus = "", lokaleTot = 0;
+
+function zetStatus(t, seconden) {
+  lokaleStatus = t; lokaleTot = Date.now() + (seconden || 90) * 1000;
+}
+
+async function stuurAudio(blob, naam) {
+  zetStatus("ze luistert… (verstaan kost een halve minuut)", 120);
+  toon();
+  await fetch(`/upload?naam=${encodeURIComponent(naam)}`,
+              {method: "PUT", body: blob});
+}
+
+// direct opnemen waar de browser het toestaat (https of Mac);
+// op de iPhone zonder https blijft de bestandsknop over
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia
+    && window.MediaRecorder && (location.protocol === "https:"
+    || ["localhost", "127.0.0.1"].includes(location.hostname))) {
+  const k = el("opneem");
+  k.style.display = "block";
+  el("bestand-knop").style.display = "none";
+  let rec = null, stukken = [];
+  k.onclick = async () => {
+    if (rec && rec.state === "recording") { rec.stop(); return; }
+    const stroom = await navigator.mediaDevices.getUserMedia({audio: true});
+    stukken = [];
+    rec = new MediaRecorder(stroom);
+    rec.ondataavailable = (e) => stukken.push(e.data);
+    rec.onstop = () => {
+      stroom.getTracks().forEach(t => t.stop());
+      k.textContent = "● inspreken";
+      stuurAudio(new Blob(stukken, {type: rec.mimeType}),
+                 `gesprek-${Date.now()}.webm`);
+    };
+    rec.start();
+    k.textContent = "■ stop en verstuur";
+    zetStatus("aan het opnemen…", 300); toon();
+  };
+}
+
+el("bestand").onchange = (e) => {
+  const f = e.target.files[0];
+  if (f) stuurAudio(f, `gesprek-${Date.now()}-${f.name}`);
+  e.target.value = "";
+};
+
+async function stuurTekst() {
+  const q = el("tekst").value.trim();
+  if (!q) return;
+  el("tekst").value = "";
+  zetStatus("verstuurd…", 90); toon();
+  await fetch("/gesprek-zeg?q=" + encodeURIComponent(q));
+}
+el("stuur").onclick = stuurTekst;
+el("tekst").addEventListener("keydown",
+  (e) => { if (e.key === "Enter") stuurTekst(); });
+
+const klok = (t) => new Date(t * 1000).toLocaleTimeString(
+  "nl-NL", {hour: "2-digit", minute: "2-digit"});
+
+let laatste = "", laatsteVraag = "", gespeeld = null, stand = null;
+
+function toon() {
+  if (!stand) return;
+  const b = stand.beurten || [];
+  el("beurten").innerHTML = b.map(x => {
+    const stil = x.tekst.startsWith("(");
+    const her = (x.herinnert || []).map(h =>
+      `<div class="her">herinnert: ${h.opgave} → ${h.oplossing}</div>`).join("");
+    return `<div class="beurt ${x.wie}${stil ? " stil" : ""}">${x.tekst}${her}
+      <span class="tijd">${klok(x.tijd)}${x.bron === "spraak" ? " · ingesproken" : ""}</span></div>`;
+  }).join("") || '<p class="fijn">nog geen gesprek — zeg iets…</p>';
+  // de statusregel: wat de regisseur meldt, of wat we net zelf deden
+  let s = "";
+  if (stand.status === "denkt") s = "ze denkt na…";
+  else if (stand.status === "spreekt") s = "ze maakt haar stem klaar…";
+  else if (lokaleStatus && Date.now() < lokaleTot) s = lokaleStatus;
+  el("status").textContent = s;
+  // de laatste vraag van Cley, voor "leer haar dit"
+  for (const x of b) if (x.wie === "cley" && !x.tekst.startsWith("("))
+    laatsteVraag = x.tekst;
+  const laatsteAmber = b.filter(x => x.wie === "amber").pop();
+  el("les-kaart").style.display =
+    (laatsteAmber && laatsteVraag) ? "block" : "none";
+}
+
+async function haal() {
+  try {
+    const r = await fetch("/gesprek.json", {cache: "no-store"});
+    if (!r.ok) return;
+    const d = await r.json();
+    const vers = JSON.stringify(d);
+    if (vers === laatste) { toon(); return; }
+    laatste = vers; stand = d;
+    const b = d.beurten || [];
+    // is er een nieuwe beurt? dan is de lokale status achterhaald
+    if (b.length && b[b.length - 1].tijd * 1000 > Date.now() - 8000)
+      lokaleStatus = "";
+    toon();
+    // haar nieuwste stem afspelen — maar nooit iets van vóór het laden
+    let wav = null;
+    for (const x of b) if (x.wav_tijd) wav = x.wav_tijd;
+    if (gespeeld === null) gespeeld = wav || 0;
+    if (wav && wav > gespeeld) {
+      gespeeld = wav;
+      const audio = new Audio("/rapport/gesprek.wav?" + wav);
+      audio.play().catch(() => {
+        const k = el("speel");
+        k.style.display = "block";
+        k.onclick = () => { audio.play(); k.style.display = "none"; };
+      });
+    }
+  } catch (e) {}
+}
+haal(); setInterval(haal, 1500);
+
+async function leer() {
+  const a = el("les-antwoord").value.trim();
+  if (!laatsteVraag || !a) return;
+  const d = await (await fetch("/les-leer?vraag=" +
+    encodeURIComponent(laatsteVraag) + "&antwoord=" +
+    encodeURIComponent(a))).json();
+  el("les-stand").textContent = d.in_brievenbus
+    ? "in de brievenbus — gaat mee op de volgende rungrens"
+    : "niet gelukt — vraag en antwoord allebei nodig";
+  if (d.in_brievenbus) el("les-antwoord").value = "";
+}
+el("les-knop").onclick = leer;
+el("les-antwoord").addEventListener("keydown",
+  (e) => { if (e.key === "Enter") leer(); });
+</script></body></html>
