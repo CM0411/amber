@@ -1,0 +1,8 @@
+[Unit]
+Description=Amber — cijfers na de finish (nameting + foutanalyse op de Z490)
+
+[Service]
+Type=oneshot
+User=arch
+ExecStart=/usr/bin/python /home/arch/amber-werk/fase1/cijfers-bij-finish.py
+TimeoutStartSec=2h

@@ -43,6 +43,7 @@ checkpoint.
 import math
 
 import torch
+import torch.utils.checkpoint
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -75,6 +76,43 @@ def _rotate(x, cos, sin):
     sin = sin.to(x.dtype)[None, None, :, :]
     return torch.stack((even * cos - odd * sin,
                         even * sin + odd * cos), dim=-1).flatten(-2)
+
+
+class KVCache:
+    """The keys and values of everything already written, per layer — laid
+    out once at full length and written into in place (15 Aug 2026).
+
+    Before, every new character did `torch.cat` on the cache: a fresh,
+    slightly larger block, everything copied over, the old one dropped. For
+    a moment two caches stood side by side (measured: the answering peak
+    was twice the cache, 7.3 GB at 12 layers × window 1536 × batch 64 in
+    fp32), and each character copied the whole cache again — gigabytes of
+    copying per answer round. Now one buffer of `capacity` positions per
+    layer, `n` of them filled; the attention reads the first `n`. The
+    numbers she computes are the same; only the copying is gone.
+    """
+
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.k = None
+        self.v = None
+        self.n = 0
+
+    def append(self, k, v):
+        """Write (batch, heads, length, head_size) at the end; return the
+        filled part of both buffers."""
+        length = k.shape[2]
+        if self.k is None:
+            batch, heads, _, size = k.shape
+            self.k = k.new_zeros(batch, heads, self.capacity, size)
+            self.v = v.new_zeros(batch, heads, self.capacity, size)
+        if self.n + length > self.capacity:
+            raise ValueError(
+                f"cache full: {self.n} + {length} > capacity {self.capacity}")
+        self.k[:, :, self.n:self.n + length] = k
+        self.v[:, :, self.n:self.n + length] = v
+        self.n += length
+        return self.k[:, :, :self.n], self.v[:, :, :self.n]
 
 
 class Attention(nn.Module):
@@ -111,22 +149,33 @@ class Attention(nn.Module):
         q = _rotate(q, cos, sin)
         k = _rotate(k, cos, sin)
 
-        if cache is not None and cache[0] is not None:
-            k = torch.cat((cache[0], k), dim=2)
-            v = torch.cat((cache[1], v), dim=2)
-        new_cache = (k, v)
+        if cache is not None:
+            k, v = cache.append(k, v)
+            # In the cache path k and v now live in the buffers, and q was
+            # replaced by its rotation: the qkv block is dead weight from
+            # here (15 Aug 2026 — the answering peak sits in this layer's
+            # scratch, measured 4411 → 4267 MB at the run-6 shape). In the
+            # learning path v is still a view into qkv, so it stays.
+            del qkv
 
+        device = x.device
+        full_pass = q.shape[2] == k.shape[2]
         scores = (q @ k.transpose(-2, -1)) / math.sqrt(self.head_size)
+        del q
 
         # A causal ban only when query and key are equally long — that is
         # the full pass. When she writes one token against a filled cache,
-        # that token may see everything before it.
-        if q.shape[2] == k.shape[2]:
+        # that token may see everything before it. The masks fill in place:
+        # `scores` is a fresh tensor from the division and nothing keeps
+        # the unmasked version (autograd does not save div's output), so
+        # this is the same computation with fewer copies alive — measured
+        # bit for bit equal, learning and answering.
+        if full_pass:
             ban = torch.ones(length, length,
-                             device=x.device, dtype=torch.bool).triu(1)
-            scores = scores.masked_fill(ban, float("-inf"))
+                             device=device, dtype=torch.bool).triu(1)
+            scores.masked_fill_(ban, float("-inf"))
         if key_mask is not None:
-            scores = scores.masked_fill(key_mask[:, None, None, :], float("-inf"))
+            scores.masked_fill_(key_mask[:, None, None, :], float("-inf"))
 
             # A padding position may look at nothing: every score is then
             # minus infinity, and its softmax is NaN. That NaN creeps through
@@ -134,12 +183,14 @@ class Attention(nn.Module):
             # the healthy ones. Such rows get equal weights instead; their
             # output is nonsense but finite, and it is never read.
             empty = torch.isinf(scores).all(dim=-1, keepdim=True)
-            scores = scores.masked_fill(empty, 0.0)
+            scores.masked_fill_(empty, 0.0)
 
         weight = torch.softmax(scores, dim=-1)
+        del scores
         out = weight @ v
+        del weight
         out = out.transpose(1, 2).reshape(batch, length, width)
-        return self.out(out), new_cache
+        return self.out(out), cache
 
 
 class FeedForward(nn.Module):
@@ -189,6 +240,18 @@ class Core(nn.Module):
         self.final_norm = nn.LayerNorm(width)
         self.unembedding = nn.Linear(width, VOCAB, bias=False)
 
+        # Activation checkpointing (15 Aug 2026, groundwork for E). While
+        # learning, every block keeps its intermediates for the backward
+        # pass; at batch 64 × window 1024 that scratch work is most of the
+        # VRAM, not the weights. With this on, a block keeps only its input
+        # and recomputes the rest during backward: the same numbers, bit for
+        # bit (test-checkpointing.py), for ~30% more time on the learning
+        # part — and a net several times bigger fits the 8 GB of the Z490
+        # without halving the batch. Off by default; the Learner switches it
+        # on. Only acts while gradients are being tracked; answering (no
+        # grad, with cache) is untouched.
+        self.checkpointing = False
+
         nn.init.normal_(self.embedding.weight, std=0.02)
         nn.init.normal_(self.unembedding.weight, std=0.02)
 
@@ -202,6 +265,10 @@ class Core(nn.Module):
         `offset` is the position where these tokens start. While writing an
         answer the cache already holds text, and the new token must get the
         angle of its own position — not that of position zero.
+
+        `cache` is what `new_cache(capacity)` returned, or None for a plain
+        pass (learning). Since 15 Aug 2026 the cache is a fixed buffer per
+        layer, written into in place — see KVCache.
         """
         batch, length = codes.shape
         if offset + length > self.window:
@@ -212,11 +279,27 @@ class Core(nn.Module):
         cos, sin = _angles(length, self.blocks[0].attention.head_size,
                            codes.device, offset)
         new = []
+        recompute = (self.checkpointing and self.training
+                     and torch.is_grad_enabled() and cache is None)
         for i, block in enumerate(self.blocks):
-            x, block_cache = block(x, cos, sin,
-                                   cache[i] if cache else None, key_mask)
+            if recompute:
+                # non-reentrant: works with any output shape and keeps the
+                # RNG state, so the recomputation is exactly the first pass
+                x, block_cache = torch.utils.checkpoint.checkpoint(
+                    block, x, cos, sin, None, key_mask, use_reentrant=False)
+            else:
+                x, block_cache = block(x, cos, sin,
+                                       cache[i] if cache is not None else None,
+                                       key_mask)
             new.append(block_cache)
-        return self.unembedding(self.final_norm(x)), new
+        return self.unembedding(self.final_norm(x)), (cache if cache is not None
+                                                      else new)
+
+    def new_cache(self, capacity):
+        """One KVCache per layer, laid out for `capacity` positions. Pass
+        it to `advance` on the first call already — the question fills it,
+        every character after that appends."""
+        return [KVCache(capacity) for _ in self.blocks]
 
     # --- growing ----------------------------------------------------------
 

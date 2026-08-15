@@ -18,13 +18,28 @@
   /* De rechterkolom stapelt zijn panelen zelf: het statuspaneel groeide op
      11 aug 2026 en viel toen over "haar wereld" heen — vaste top-posities
      verdragen geen panelen die met de inhoud meegroeien. */
-  #rechts { position: fixed; z-index: 2; top: 18px; right: 22px;
-            display: flex; flex-direction: column; gap: 20px;
-            align-items: flex-end; }
+  #rechts { position: fixed; z-index: 2; top: 56vh; left: 22px; right: 22px;
+            display: flex; flex-direction: row-reverse; gap: 56px;
+            justify-content: space-between; align-items: flex-start; }
+            /* drie blokken netjes verdeeld over de volle breedte onder de
+               weefselband (14 aug 2026): geheugen links, wereld midden,
+               run-stand rechts — row-reverse houdt de run-stand buiten */
   #status { text-align: right; font-size: 13px;
             color: #8ea0c0; line-height: 1.8; font-variant-numeric: tabular-nums;
             font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
   #status b { color: #cfe2ff; font-weight: 600; }
+  /* de stappenbalk: bovenaan de rechterkolom, alles onder de band
+     (Cleys aanwijzing, 14 aug 2026) */
+  #runkolom { display: flex; flex-direction: column; gap: 4px;
+              align-items: flex-end; }  /* alles strak tegen de
+              rechterrand — geen gat naast de balk */
+  #stappen { width: 480px; text-align: right;
+             font-size: 13px; color: #8ea0c0; line-height: 1.8;
+             font-variant-numeric: tabular-nums;
+             font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  #stappen b { color: #cfe2ff; font-weight: 600; }
+  #stappen .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+                  text-transform: uppercase; }
   #titel { top: 16px; left: 22px; font-size: 15px; letter-spacing: .35em;
            color: #5f6f92; text-transform: uppercase; cursor: pointer;
            user-select: none; }
@@ -83,7 +98,8 @@
   #geheugen .staaf { width: 7px; border-radius: 1.5px 1.5px 0 0;
                      background: #b78ae0; min-height: 2px; }
   #geheugen .fles { font-size: 11px; color: #51608a; }
-  #lijnvak { bottom: 118px; right: 22px; text-align: right; }
+  #lijnvak { bottom: 26px; right: 22px; text-align: right;
+             max-width: 250px; }  /* onderaan, vrij van alles */
   #lijnvak .kopje, #lijnvak #lijnwaarde {
     font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
     font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
@@ -122,7 +138,10 @@
 <div class="laag-tekst" id="menu"></div>
 <div class="laag-tekst" id="uren"></div>
 <div id="rechts">
-  <div id="status">wachten op de kijker&hellip;</div>
+  <div id="runkolom">
+    <div id="stappen"></div>
+    <div id="status">wachten op de kijker&hellip;</div>
+  </div>
   <div id="wereld"></div>
   <div id="geheugen"></div>
 </div>
@@ -182,17 +201,21 @@ const stof = Array.from({length: 45}, () => ({
   r: 0.4 + Math.random() * 1.3, s: 0.00002 + Math.random() * 0.00006,
   tw: Math.random() * 6.28 }));
 
+// Het weefsel is sinds 14 aug 2026 een brede, lage band bovenin (Cleys
+// aanwijzing): alle tekst staat erónder in plaats van erop. Deze drie
+// getallen zijn de hele maatvoering.
+const MIDDEN = 0.30, HOOG = 0.42, RANDX = 0.04;
 function plaats(kol, i) {
-  const bx = B * 0.085, ex = B * 0.915;
+  const bx = B * RANDX, ex = B * (1 - RANDX);
   const x = bx + (ex - bx) * kol / (KOL.length - 1);
-  const midden = H * 0.465, hoog = H * 0.62;
+  const midden = H * MIDDEN, hoog = H * HOOG;
   const n = KOL[kol];
   const y = n === 1 ? midden : midden - hoog / 2 + hoog * i / (n - 1);
   return [x, y];
 }
 function kromming(y1, y2) {
   // draden bollen weg van het midden: samen vormen ze de lensvormen
-  const midden = H * 0.465;
+  const midden = H * MIDDEN;
   const m = (y1 + y2) / 2;
   return m + (m - midden) * 0.55 + (y2 - y1) * 0.08;
 }
@@ -345,12 +368,16 @@ async function haal() {
 
     const run = s.run && s.run.regel ? s.run.regel : "";
     const st = document.getElementById("status");
+    const sb = document.getElementById("stappen");
     const rc = (s.run && s.run.config) || {};
     const rm = (s.run && s.run.machine) || {};
     const rs = (s.run && s.run.scores) || {};
     if (run) {
-      let html = `<div class="kop">${rc.naam || "training"} · ${rc.machine || "trainer"}`
+      // de stappenbalk blijft rechtsboven — in één oogopslag zichtbaar,
+      // los van de tekstblokken onder de band (Cleys punt, 14 aug 2026)
+      let kop = `<div class="kop">${rc.naam || "training"} · ${rc.machine || "trainer"}`
         + (rm.poging ? ` · poging ${rm.poging}` : "") + `</div>`;
+      let html = "";
       // live uit het logboek (per stap, elke 5 s ververst); de logregel
       // van elke 50 stappen is het vangnet
       const lv = (s.run && s.run.live) || {};
@@ -368,21 +395,32 @@ async function haal() {
         const nogM = Math.floor(overMs % 3600000 / 60000);
         window.lvBasis = {stap: stapNu, ms: msNu, doel: doel,
                           ontvangen: performance.now()};
-        html += `<div style="background:rgba(127,212,168,.15);border-radius:3px;height:6px;margin:5px 0">`
+        kop += `<div style="background:rgba(127,212,168,.15);border-radius:3px;height:6px;margin:5px 0">`
           + `<div id="lv-balk" style="background:#7fd4a8;height:6px;border-radius:3px;width:${pct}%"></div></div>`
           + `<b id="lv-stap">${stapNu.toLocaleString("nl")}</b> / ${doel.toLocaleString("nl")}<br>`
           + `<b>${msNu.toLocaleString("nl")}</b> ms per stap`
           + (lv.ms ? ` <span style="color:#7fe0c3">● live</span>` : "")
           + ` · nog <span id="lv-nog">${nogU}u${String(nogM).padStart(2, "0")}</span>`
-          + ` · klaar ~${wanneer}<br>`;
-      } else { html += run + "<br>"; }
-      const namen = ["ladder", "grondslag", "gemengd", "diepte2", "diepte"];
+          + ` · klaar ~${wanneer}`;
+      } else { kop += run; }
+      sb.innerHTML = kop;
+      // vaste volgorde eerst; een nieuw proefwerk (zoals gesprek, 14 aug
+      // 2026) komt er automatisch achteraan — geen handwerk meer
+      const vast = ["ladder", "grondslag", "gemengd", "gesprek", "diepte2", "diepte"];
+      const namen = vast.concat(Object.keys(rs).filter(
+        n => n !== "_stap" && !vast.includes(n)));
       const pw = namen.filter(n => n in rs).map(n => `${n} ${rs[n]}%`).join(" · ");
       if (pw) html += `<span style="opacity:.75">proefwerk`
         + (rs._stap ? ` bij stap ${(+rs._stap).toLocaleString("nl")}` : "")
         + `:<br>${pw}</span><br>`;
       if (rc.venster) html += `<span style="opacity:.75">venster ${rc.venster}`
-        + (rc.hek ? ` · hek ${rc.hek}` : "") + `</span><br>`;
+        + (rc.hek ? ` · hek ${rc.hek}` : "")
+        // sinds 15 aug 2026 schrijft de rungrens ook haar vorm mee: lagen,
+        // parameters en of checkpointing aanstaat (E — ze kan nu groeien)
+        + (rc.lagen ? ` · ${rc.lagen} lagen` : "")
+        + (rc.parameters ? ` · ${(+rc.parameters/1e6).toFixed(1).replace(".", ",")} M parameters` : "")
+        + (rc.checkpointing ? ` · checkpointing aan` : "")
+        + `</span><br>`;
       if (rm.temp) {
         const warm = +rm.temp >= 80;
         html += `<span style="opacity:.75">kaart `
@@ -395,10 +433,15 @@ async function haal() {
       html += `<span id="spreek" style="cursor:pointer;color:#7fa8d4">🔊 vertel de stand</span>`
         + ` <audio id="stem-audio" style="display:none"></audio>`;
       st.innerHTML = html;
-    } else { st.textContent = "geen training actief"; }
+    } else { sb.innerHTML = ""; st.textContent = "geen training actief"; }
     // haar wereld: per familie hoe diep hij openstaat — checkpoint eerst,
     // logregels als aanvulling; een verse doorbraak fonkelt
-    const grens = {rekenen: 26, code: 11, puzzel: 6};
+    // de hekken komen uit run.json (de rungrens schrijft die mee met elke
+    // run); de vaste waarden zijn alleen het vangnet als de config ontbreekt.
+    // Handbijhouden liep op 14 aug 2026 drie hekken achter — nooit meer.
+    const grens = {rekenen: 38, code: 15, puzzel: 9};
+    const hekstr = (s.run && s.run.config && s.run.config.hek) || "";
+    for (const m of hekstr.matchAll(/([a-z]+)\s+(\d+)/g)) grens[m[1]] = +m[2];
     // het checkpoint is de waarheid; logregels vullen alleen aan wat het
     // checkpoint nog niet weet, en nooit boven de echte grens uit
     const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2},
@@ -410,9 +453,15 @@ async function haal() {
     for (const f of ["rekenen", "puzzel", "code"]) {
       const d = rand[f], nieuw = window.vorigeRand[f] && d > window.vorigeRand[f];
       if (nieuw) window.fonkelTot = Date.now() + 90000;
+      // hoe meer blokjes, hoe smaller ze worden: een rij blijft altijd
+      // binnen ~285px en steekt dus nooit het netwerk in (14 aug 2026,
+      // toen rekenen naar 38 ging)
+      const bw = Math.min(7, Math.max(3,
+        Math.round((285 / grens[f] - 2.5) * 10) / 10));
       let blokjes = "";
       for (let i = 1; i <= grens[f]; i++)
-        blokjes += `<span class="blokje${i <= d ? " aan" : ""}"></span>`;
+        blokjes += `<span class="blokje${i <= d ? " aan" : ""}"`
+                 + ` style="width:${bw}px"></span>`;
       const fonkelt = window.fonkelTot > Date.now()
                       && d === Math.max(...Object.values(rand));
       html += `<div class="rij"><span${nieuw || fonkelt && window.laatstNieuw === f
@@ -446,11 +495,15 @@ async function haal() {
           .filter(k => k.startsWith(f + "/"))
           .map(k => +k.split("/")[1]).sort((a, b) => a - b);
         if (!graden.length) continue;
+        // zelfde regel als bij de wereld-blokjes: meer vakjes = smallere
+        // staafjes, de rij blijft binnen ~285px
+        const sw = Math.min(7, Math.max(3,
+          Math.round((285 / graden.length - 2.5) * 10) / 10));
         let staven = "";
         for (const gr of graden) {
           const n = vakjes[`${f}/${gr}`];
           const h = Math.max(2, Math.round(18 * n / top));
-          staven += `<span class="staaf" style="height:${h}px" title="${f} ${gr}: ${n.toLocaleString("nl")}"></span>`;
+          staven += `<span class="staaf" style="height:${h}px;width:${sw}px" title="${f} ${gr}: ${n.toLocaleString("nl")}"></span>`;
         }
         g += `<div class="rij"><span>${f}</span><span class="staven">${staven}</span></div>`;
       }
@@ -615,7 +668,7 @@ function teken(t) {
   for (let k = 0; k < KOL.length; k++) {
     const [x] = plaats(k, 0);
     const [, yb] = plaats(k, KOL[k] - 1);
-    const y = (KOL[k] === 1 ? H * 0.465 : yb) + fs * 2.2;
+    const y = (KOL[k] === 1 ? H * MIDDEN : yb) + fs * 2.2;
     ctx.textAlign = k === KOL.length - 1 ? "right" : "left";
     const lx = k === KOL.length - 1 ? x + fs : x - fs;
     ctx.fillStyle = "rgba(225,235,255,0.85)";

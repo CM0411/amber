@@ -1,8 +1,9 @@
 """
 De eindrapport-maker van run 3.
 
-Draait op de DL380, elk kwartier (amber-rapport.timer). Haalt het levenslog
-van de trainer, ontleedt het, en schrijft één zelfstandig HTML-bestand naar
+Draait op de Z490 (sinds 14 aug 2026), elk kwartier (amber-rapport.timer).
+Leest het levenslog van deze machine, ontleedt het, en schrijft één
+zelfstandig HTML-bestand naar
 /home/arch/rapport/ — zolang de run loopt als tussenstand, en zodra stap
 170.000 binnen is (of de dienst gestopt is op het eindpunt) als definitief
 eindrapport. Het rapport hoeft dus nooit "gemaakt" te worden: het staat er
@@ -34,6 +35,15 @@ NAAM = _RUN.get("naam", "run3")
 TOTAAL = int(_RUN.get("doel", 170_000))
 HEK = _RUN.get("hek", "rekenen 17, code 8, puzzel 5")
 VENSTER = int(_RUN.get("venster", 512))
+# haar vorm, sinds 15 aug 2026 in run.json (E: ze kan groeien)
+VORM_TEKST = ""
+if _RUN.get("lagen"):
+    VORM_TEKST = f" · {_RUN['lagen']} lagen"
+    if _RUN.get("parameters"):
+        VORM_TEKST += (f", {_RUN['parameters'] / 1e6:.1f} M parameters"
+                       .replace(".", ","))
+    if _RUN.get("checkpointing"):
+        VORM_TEKST += " · checkpointing aan"
 DOEL = f"/home/arch/rapport/{NAAM}.html"
 
 KLEUREN = {  # op donkerblauw; identiteit zit ook in de eindlabels, niet
@@ -42,18 +52,15 @@ KLEUREN = {  # op donkerblauw; identiteit zit ook in de eindlabels, niet
     "diepte": "#5aa7e8",
     "gemengd": "#b58ae0",
     "grondslag": "#e87a7a",
+    "gesprek": "#7fe0c3",
 }
+GRIJS = "#9aa7c9"              # vangnet voor een proefwerk zonder eigen kleur
 
 
 def haal_log():
-    geheim = open(GEHEIM_PAD).read().strip()
-    uit = subprocess.run(
-        ["sshpass", "-p", geheim, "ssh", "-o", "ConnectTimeout=10",
-         "-o", "StrictHostKeyChecking=no", X399, "cat ~/leven.log"],
-        capture_output=True, text=True, timeout=60)
-    if uit.returncode != 0:
-        raise RuntimeError(f"log niet op te halen: {uit.stderr[:200]}")
-    return uit.stdout
+    # sinds 14 aug 2026 draait dit op de Z490 zelf — het log staat hier
+    with open("/home/arch/leven.log", errors="replace") as f:
+        return f.read()
 
 
 def ontleed(log):
@@ -66,17 +73,18 @@ def ontleed(log):
     """
     regels = log.splitlines()
     proef = []          # (regelnr, stap, {naam: score})
-    p_proef = re.compile(
-        r"stap\s+(\d+) \| diepte\s+(\d+)%\s+diepte2\s+(\d+)%\s+gemengd\s+(\d+)%"
-        r"\s+grondslag\s+(\d+)%\s+ladder\s+(\d+)%")
+    # De namen komen uit de regel zelf: een vaste opsomming liep op 14 aug
+    # 2026 stuk toen "gesprek" tussen de proefwerken verscheen en geen
+    # enkele run-5-regel meer herkend werd. Nieuwe proefwerken doen nu
+    # vanzelf mee.
+    p_proef = re.compile(r"stap\s+(\d+) \|((?:\s+\w+\s+\d+%)+)")
     for i, r in enumerate(regels):
         m = p_proef.search(r)
         if m:
             stap = int(m.group(1))
             proef.append((i, stap, {
-                "diepte": int(m.group(2)), "diepte2": int(m.group(3)),
-                "gemengd": int(m.group(4)), "grondslag": int(m.group(5)),
-                "ladder": int(m.group(6))}))
+                n: int(v) for n, v in re.findall(r"(\w+)\s+(\d+)%",
+                                                 m.group(2))}))
 
     # De staart: van achteren terug zolang de stappen blijven dalen.
     kern = [p for p in proef if p[1] > 0]
@@ -190,8 +198,12 @@ def grafiek(curve, reeksen, doorbraken=None, hoog=300):
                    f'<text x="{x + 5:.1f}" y="{Y(96):.1f}" fill="#c8873d" '
                    f'font-size="12">{naam}</text>')
     for naam in reeksen:
-        punten = [(X(s), Y(v[naam])) for s, v in curve]
-        uit.append(_lijn(punten, KLEUREN[naam], naam, dik=(naam == "ladder")))
+        # oudere metingen kennen een jonger proefwerk niet (gesprek begon
+        # pas bij run 5) — de lijn begint dan gewoon waar de meting begint
+        punten = [(X(s), Y(v[naam])) for s, v in curve if naam in v]
+        if punten:
+            uit.append(_lijn(punten, KLEUREN.get(naam, GRIJS), naam,
+                             dik=(naam == "ladder")))
     uit.append("</svg>")
     return "".join(uit)
 
@@ -222,18 +234,37 @@ def maak_html(d):
                 f'tegen een piek van {g_piek}% — de basis slijt terwijl het '
                 f'front rent. Dit is het eerste aandachtspunt voor na de run.</p>')
 
+    # Het groeisignaal van E (15 aug 2026): een los script, hier alleen
+    # getoond. Ontbreekt het of struikelt het, dan staat dát er.
+    try:
+        r = subprocess.run([sys.executable,
+                            "/home/arch/amber-werk/fase1/groei-advies.py",
+                            "/home/arch/leven.log"],
+                           capture_output=True, text=True, timeout=60)
+        advies = (r.stdout or r.stderr).strip() or "(geen uitvoer)"
+    except Exception as e:                    # noqa: BLE001
+        advies = f"groei-advies niet beschikbaar: {e}"
+
     doorbraak_regels = "".join(
         f"<tr><td>{s:,}</td><td>{fam}</td><td>tot diepte {tot}</td></tr>"
         .replace(",", ".") for s, fam, tot in d["doorbraken"])
 
+    vaste_volgorde = ("ladder", "gesprek", "diepte2", "diepte", "gemengd",
+                      "grondslag")
+    kaart_namen = ([n for n in vaste_volgorde if n in scores]
+                   + sorted(n for n in scores if n not in vaste_volgorde))
+    # alle proefwerken die in deze run gemeten zijn, de ladder apart —
+    # nieuwe bladen (diepte3, stapel op run 6) doen zo vanzelf mee
+    proef_namen = [n for n in kaart_namen if n != "ladder"]
     kaart = "".join(
-        f'<div class="vak"><div class="cijfer" style="color:{KLEUREN[n]}">'
+        f'<div class="vak"><div class="cijfer" '
+        f'style="color:{KLEUREN.get(n, GRIJS)}">'
         f'{scores[n]}%</div><div class="naam">{n}</div></div>'
-        for n in ("ladder", "diepte2", "diepte", "gemengd", "grondslag"))
+        for n in kaart_namen)
 
     return f"""<!doctype html><html lang="nl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Run 3 — {('eindrapport' if d['klaar'] else 'tussenstand')}</title>
+<title>{NAAM.capitalize()} — {('eindrapport' if d['klaar'] else 'tussenstand')}</title>
 <style>
   body {{ background:#0a1420; color:#cfe0ef; font: 16px/1.55 system-ui,
          sans-serif; max-width: 1000px; margin: 0 auto; padding: 24px; }}
@@ -248,6 +279,8 @@ def maak_html(d):
   .cijfer {{ font-size:1.9rem; font-weight:700;
              font-variant-numeric: tabular-nums; }}
   .naam {{ color:#7a9ab8; font-size:.85rem; }}
+  .advies {{ background:#151a2a; border-left:4px solid #6f8fd6; padding:10px 14px;
+            font-size:13px; white-space:pre-wrap; overflow-x:auto; }}
   .zorg {{ background:#2a1a1a; border-left:4px solid #e87a7a;
            padding:10px 14px; border-radius:6px; }}
   table {{ border-collapse:collapse; font-variant-numeric: tabular-nums; }}
@@ -263,12 +296,16 @@ def maak_html(d):
 <div class="graf">{grafiek(curve, ["ladder"], d["doorbraken"])}</div>
 <p class="stil">De stippellijnen zijn doorbraken: het moment waarop ze zelf
 een diepte openmaakte (r = rekenen, c = code, p = puzzel).</p>
-<h2>De vier bevroren proefwerken</h2>
-<div class="graf">{grafiek(curve, ["diepte2", "diepte", "gemengd", "grondslag"], hoog=340)}</div>
+<h2>De bevroren proefwerken ({len(proef_namen)})</h2>
+<div class="graf">{grafiek(curve, proef_namen, hoog=340)}</div>
 <p class="stil">Bevroren op 9 aug 2026 — elke meting is exact dezelfde
 opgavenlijst, dus deze lijnen zijn over de hele run vergelijkbaar.
 Ter vergelijking: run 2 eindigde op ladder 72%.</p>
 {zorg}
+<h2>Groei-advies (E)</h2>
+<pre class="advies">{advies}</pre>
+<p class="stil">Vlak + meters niet vol + wereld dicht → "overweeg een laag";
+anders wat er wél speelt. Een voorstel, geen automatisme.</p>
 <h2>Doorbraken</h2>
 <table><tr><th style="text-align:left">stap</th>
 <th style="text-align:left">familie</th><th></th></tr>{doorbraak_regels}</table>
@@ -276,7 +313,7 @@ Ter vergelijking: run 2 eindigde op ladder 72%.</p>
 <p>Herstarts zichtbaar in het log: {d["herstarts"]} — incidenten én bewuste
 herstarts voor hek-wijzigingen samen · tempo nu:
 {laatste["ms"] if laatste else "?"} ms per stap · hek: {HEK} (gemeten
-grenzen van het venster van {VENSTER} tekens).</p>
+grenzen van het venster van {VENSTER} tekens){VORM_TEKST}.</p>
 </body></html>"""
 
 

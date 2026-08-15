@@ -1,33 +1,36 @@
-"""Het brein-venster: webserver op de DL380, zoals de roadmap voorschrijft.
+"""Het brein-venster: webserver op de Z490 — de altijd-aan-machine (14 aug 2026).
 
   /            de levende pagina — cirkel, lagen, wat ze nu doet
   /stand.json  de gegevens erachter (kijker + stand van de grote run)
   /rapport     het laatste nachtrapport
+
+De run leeft op deze machine, dus alles daarover wordt lokaal gelezen.
+De GPU-kant (kijker, gesprek, oren, mond, oog) draait op de DL380 en is
+er alleen 17:00–23:00; de brug (amber-brug, DL380) sjouwt de bestanden
+heen en weer. Valt de DL380 weg, dan blijft de pagina gewoon staan —
+alleen de levende hersenweergave en de spraak vallen dan stil.
 """
 import json, os, re, subprocess, threading, time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 MAP = "/home/arch/amber-werk/brein"
+DL380 = "arch@192.168.1.51"
+SPRAAK_UIT = "/home/arch/spraak-uit"   # verzoeken aan de mond; de brug brengt ze
 
-# de gesprekslus (oren → brein → mond) draait als eigen draad; een kapot
-# gesprek mag het venster zelf nooit meetrekken
-try:
-    import gesprek
-except Exception as _e:
-    gesprek = None
-    print("gesprek niet geladen:", _e, flush=True)
+# de beeldenopvang (Q-voorproef) draait als eigen draad mee
 try:
     import beelden
 except Exception as _e:
     beelden = None
     print("beelden niet geladen:", _e, flush=True)
 
-# Het wachtwoord van de rekenmachine staat búiten de repo — een repo die ooit
-# openbaar wordt mag nooit een geheim in zijn geschiedenis dragen.
-def _geheim():
-    with open("/home/arch/.amber-geheim") as f:
-        return f.read().strip()
-X399 = "arch@192.168.1.239"
+
+def _ssh_dl380(opdracht, tijd=8):
+    """Eén bevel naar de thuisbasis, met sleutel en korte tijdslimiet —
+    de DL380 is er alleen 's avonds en dit mag het venster nooit ophouden."""
+    return subprocess.run(
+        ["ssh", "-o", "BatchMode=yes", "-o", f"ConnectTimeout={tijd}",
+         DL380, opdracht], capture_output=True, text=True, timeout=tijd + 12)
 
 _run = {"regel": "", "proefwerk": "", "tijd": 0.0}
 _slot = threading.Lock()
@@ -35,8 +38,9 @@ _slot = threading.Lock()
 
 def _ververs_run():
     while True:
+        # alles over de run staat op deze machine — gewoon lezen dus
         r = subprocess.run(
-            ["sshpass", "-p", _geheim(), "ssh", "-o", "ConnectTimeout=6", X399,
+            ["bash", "-c",
              "grep -E 'ms/st' ~/leven.log | tail -1; "
              "grep -E '^  stap +[0-9]+ \\|.*ladder' ~/leven.log | tail -1; "
              "echo ===; grep 'wereld open' ~/leven.log | tail -15; "
@@ -130,33 +134,40 @@ def _ververs_run():
                     # oplopende lijn houden
                     if not curve or stap > curve[-1][0]:
                         curve.append([stap, pct])
+            # het thuis-blok: de DL380, alleen 's avonds aan — één
+            # ssh-bevel, en blijft hij stil dan zegt de pagina dat eerlijk
             thuis = {}
             try:
-                r2 = subprocess.run(
-                    ["nvidia-smi", "--query-gpu=temperature.gpu,power.draw",
-                     "--format=csv,noheader"], capture_output=True, text=True,
-                    timeout=8)
-                thuis["kaarten"] = [x.strip() for x in
-                                    r2.stdout.strip().splitlines()]
-                r3 = subprocess.run(["sensors"], capture_output=True,
-                                    text=True, timeout=8)
-                for sr in r3.stdout.splitlines():
-                    if sr.startswith("temp1:"):
-                        thuis["cpu_temp"] = sr.split("+")[1].split("°")[0]
-                        break
-                md = open("/proc/mdstat").read()
-                thuis["array"] = ("synchroniseert" if "resync" in md
-                                  else "synchroon" if "md127" in md
-                                  else "geen array")
-                r4 = subprocess.run(
-                    ["systemctl", "is-active", "amber-kijker", "amber-venster",
-                     "amber-wachter", "amber-oren", "amber-mond"],
-                    capture_output=True, text=True, timeout=8)
-                namen = ["kijker", "venster", "wachter", "oren", "mond"]
-                thuis["diensten"] = dict(zip(
-                    namen, r4.stdout.strip().splitlines()))
+                r2 = _ssh_dl380(
+                    "nvidia-smi --query-gpu=temperature.gpu,power.draw "
+                    "--format=csv,noheader 2>/dev/null; echo ===; "
+                    "sensors 2>/dev/null | grep -m1 '^temp1:'; echo ===; "
+                    "cat /proc/mdstat 2>/dev/null; echo ===; "
+                    "systemctl is-active amber-kijker amber-brug "
+                    "amber-gesprek amber-oren amber-mond amber-oog; true")
+                if r2.returncode == 0:
+                    t = r2.stdout.split("===")
+                    thuis["aan"] = True
+                    thuis["kaarten"] = [x.strip() for x in
+                                        t[0].strip().splitlines()]
+                    for sr in (t[1] if len(t) > 1 else "").splitlines():
+                        sr = sr.strip()
+                        if sr.startswith("temp1:"):
+                            thuis["cpu_temp"] = sr.split("+")[1].split("°")[0]
+                            break
+                    md = t[2] if len(t) > 2 else ""
+                    thuis["array"] = ("synchroniseert" if "resync" in md
+                                      else "synchroon" if "md127" in md
+                                      else "geen array")
+                    namen = ["kijker", "brug", "gesprek", "oren", "mond",
+                             "oog"]
+                    thuis["diensten"] = dict(zip(
+                        namen, (t[3] if len(t) > 3 else "").strip()
+                        .splitlines()))
+                else:
+                    thuis["aan"] = False
             except Exception:
-                pass
+                thuis["aan"] = False
             with _slot:
                 _run["thuis"] = thuis
                 _run["regel"] = regels[0].strip() if regels else ""
@@ -266,7 +277,7 @@ class Venster(BaseHTTPRequestHandler):
                 pct = 100 * lv["stap"] // cfg["doel"]
                 delen.append("Ik ben bij stap "
                              + f"{lv['stap']:,}".replace(",", " ")
-                             + f", dat is {pct} procent van run vier")
+                             + f", dat is {pct} procent van deze run")
             if lv.get("ms"):
                 delen.append(f"Een stap kost mij nu {lv['ms']} milliseconden")
             db = r.get("doorbraken") or []
@@ -278,10 +289,14 @@ class Venster(BaseHTTPRequestHandler):
                              f"{sc['grondslag']} procent")
             tekst = (". ".join(delen) + "."
                      if delen else "Ik heb nog niets te vertellen.")
-            os.makedirs("/home/arch/spraak/zeg-wachtrij", exist_ok=True)
-            with open("/home/arch/spraak/zeg-wachtrij/stem-stand.txt",
-                      "w") as f:
+            # niet rechtstreeks in de zeg-wachtrij: de mond woont op de
+            # DL380. Hier klaarleggen, de brug brengt het (.deel eerst —
+            # de brug mag nooit een half verzoek meenemen)
+            os.makedirs(SPRAAK_UIT, exist_ok=True)
+            pad = f"{SPRAAK_UIT}/stem-stand.txt"
+            with open(pad + ".deel", "w") as f:
                 f.write(tekst)
+            os.replace(pad + ".deel", pad)
             self._stuur(json.dumps({"aangevraagd": True}).encode(),
                         "application/json")
         elif self.path.startswith("/vraag-stel"):
@@ -312,17 +327,23 @@ class Venster(BaseHTTPRequestHandler):
             # uitzien zoals zij de vraag te zien krijgt
             vraag = re.sub(r"(?<=[\d\s])[xX](?=[\d\s])", "*", vraag)
             if vraag and antwoord:
-                with open("/home/arch/amber-werk/fase1/brievenbus.jsonl",
-                          "a") as f:
-                    f.write(json.dumps({
-                        "tijd": time.time(),
-                        "wanneer": time.strftime("%Y-%m-%d %H:%M"),
-                        "soort": "les", "bron": "vraag-tab",
-                        "vraag": vraag, "antwoord": antwoord,
-                        "bezorgd": False,
-                    }, ensure_ascii=False) + "\n")
-                    f.flush()
-                    os.fsync(f.fileno())
+                # onder het gedeelde slot: de bezorging (rungrens) wisselt
+                # dit bestand om, en de brug hangt er ook aan — zonder slot
+                # kan een les precies in die wissel stil verdwijnen
+                import fcntl
+                bus = "/home/arch/amber-werk/fase1/brievenbus.jsonl"
+                with open(bus + ".slot", "w") as s:
+                    fcntl.flock(s, fcntl.LOCK_EX)
+                    with open(bus, "a") as f:
+                        f.write(json.dumps({
+                            "tijd": time.time(),
+                            "wanneer": time.strftime("%Y-%m-%d %H:%M"),
+                            "soort": "les", "bron": "vraag-tab",
+                            "vraag": vraag, "antwoord": antwoord,
+                            "bezorgd": False,
+                        }, ensure_ascii=False) + "\n")
+                        f.flush()
+                        os.fsync(f.fileno())
             self._stuur(json.dumps(
                 {"in_brievenbus": bool(vraag and antwoord)}).encode(),
                 "application/json")
@@ -402,10 +423,11 @@ class Venster(BaseHTTPRequestHandler):
             with open(f"{MAP}/geheugen.html", "rb") as f:
                 self._stuur(f.read())
         elif self.path.startswith("/dagbericht-nu"):
-            subprocess.run(["python3", "/home/arch/spraak/dagbericht.py"],
-                           timeout=20, capture_output=True)
-            self._stuur(json.dumps({"aangevraagd": True}).encode(),
-                        "application/json")
+            # het dagbericht wordt op de DL380 gemaakt (de mond woont daar)
+            r = _ssh_dl380("python3 /home/arch/spraak/dagbericht.py", 20)
+            self._stuur(json.dumps(
+                {"aangevraagd": r.returncode == 0}).encode(),
+                "application/json")
         elif self.path.startswith("/dagbericht"):
             with open(f"{MAP}/dagbericht.html", "rb") as f:
                 self._stuur(f.read())
@@ -497,8 +519,8 @@ class Mobiel(Venster):
 
 
 threading.Thread(target=_ververs_run, daemon=True).start()
-if gesprek:
-    threading.Thread(target=gesprek.lus, daemon=True).start()
+# de gesprekslus draait níét hier: oren, mond en kijker wonen op de
+# DL380, dus daar draait gesprek.py als eigen dienst (amber-gesprek)
 if beelden:
     threading.Thread(target=beelden.lus, daemon=True).start()
 threading.Thread(target=lambda: ThreadingHTTPServer(

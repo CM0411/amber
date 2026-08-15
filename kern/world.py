@@ -54,7 +54,7 @@ MIN_DEPTH = 1
 # 85% of usable problems fit with their working). At 512 that gave 17
 # (measured 9 Aug 2026: 100% through 15, 93% at 17, 66% at 18). At 768,
 # measured 10-11 Aug 2026 for run 4: arithmetic fits 99% at depth 26.
-MAX_DEPTH = 26
+MAX_DEPTH = 38
 
 # Per family the fence can sit lower. Puzzle rows from depth 6 are woven so
 # deep that no method comes out that delivers the answer — 16% usable at 6,
@@ -77,7 +77,7 @@ MAX_DEPTH = 26
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 9, "code": 11}
+MAX_DEPTH_PER = {"puzzel": 9, "code": 15}
 
 
 def max_depth(family):
@@ -191,16 +191,33 @@ def _arithmetic(depth, t):
 # something"; above that you can alternate two rules, or apply a rule to the
 # differences instead of to the numbers themselves.
 
-def _row_series(depth, t, length):
+_BASES = ("maal", "plus", "plus", "beide-vorige")
+
+
+def _row_series(depth, t, length, bases=_BASES):
     """Build a series of `length` numbers.
 
     A series, not a "next value" function — otherwise a rule cannot be
     applied to another rule. That was the mistake in the first version:
     "second order" ignored the rule beneath it, and depth 5 equalled
     depth 8.
+
+    `bases` is the set of bricks at the bottom. The default is the world
+    as it was; the keer-plus rows (15 Aug 2026) pass their own brick.
     """
     if depth <= 1:
-        kind = t.choice(("maal", "plus", "plus", "beide-vorige"))
+        kind = t.choice(bases)
+        if kind == "keer-plus":
+            # x → 2x + b (or 2x − b): the differences double, so the
+            # method she has peels it — differences, then the fixed ratio.
+            # Factor 2 only: with 3 a seventeen-number strand runs past
+            # forty million. Minus keeps the row rising (start > b).
+            b = t.integer(1, 9) * t.choice((1, 1, -1))
+            start = t.integer(1, 20) + (abs(b) if b < 0 else 0)
+            out = [start]
+            while len(out) < length:
+                out.append(2 * out[-1] + b)
+            return out
         if kind == "maal":
             # Up to ×6, as the grondslag exam asks — until 11 Aug 2026 this
             # was ×2/×3 and puzzle grade 2 sat at 30%: facing a ×5 row she
@@ -228,14 +245,14 @@ def _row_series(depth, t, length):
 
     if t.choice(("afwisselend", "opgeteld", "opgeteld")) == "afwisselend":
         # Two series woven together.
-        a = _row_series(depth - 1, t, (length + 1) // 2)
-        b = _row_series(depth - 1, t, length // 2 + 1)
+        a = _row_series(depth - 1, t, (length + 1) // 2, bases)
+        b = _row_series(depth - 1, t, length // 2 + 1, bases)
         return [a[i // 2] if i % 2 == 0 else b[i // 2] for i in range(length)]
 
     # The series beneath is this one's differences. That is how stacking
     # really works: a row with a fixed difference becomes one with a growing
     # difference, and one more layer makes that growth itself grow.
-    differences = _row_series(depth - 1, t, length - 1)
+    differences = _row_series(depth - 1, t, length - 1, bases)
     out = [t.integer(1, 30)]
     for d in differences:
         out.append(out[-1] + d)
@@ -352,7 +369,7 @@ def _explain(row, layer=0, compact=False):
     return [], False
 
 
-def _row(depth, t):
+def _row(depth, t, bases=_BASES, extra=0):
     # Varying length: five to seven numbers shown. With always six she
     # learns the rhythm instead of the stopping point — on the frozen exam
     # (five numbers) she computed every difference flawlessly on 10 Aug 2026
@@ -364,8 +381,12 @@ def _row(depth, t):
     # element and every weave halves the strand; with seven numbers some 84%
     # at depth 6 is unexplainable — too little evidence on the table to peel
     # the layers off.
-    length = shown + 1 + 2 * max(0, depth - 5)
-    row = _row_series(max(1, depth - 1), t, length)
+    # `extra`: the keer-plus brick is itself one layer deeper than a plus
+    # brick (differences, then the ratio), so its rows get the length of one
+    # depth more — measured 15 Aug 2026: without it depth 4 explained 32%,
+    # with two more numbers 56%, the same profile as the world it joins.
+    length = shown + 1 + 2 * max(0, depth - 5) + extra
+    row = _row_series(max(1, depth - 1), t, length, bases)
     displayed = ", ".join(str(x) for x in row[:-1])
     # Compact working from depth 7: at full width nothing there fits the
     # window (30% at depth 8 on 1024). Depths 1-6 keep the wide form, so
@@ -517,11 +538,182 @@ def _def_program(depth, t):
     return program, total, " ; ".join(steps)
 
 
+# --- stacked forms (15 Aug 2026) ---------------------------------------------
+# Beyond depth 15 the four forms stopped getting harder: `regels` caps at six
+# lines, `lijst` at nine numbers, `def` at fifteen rounds — measured 15 Aug
+# 2026 (fase1/hek-meting.md): at depth 30 everything fits and reads like
+# depth 12. Fence 15 was the end of the world, not a window limit. Deeper
+# therefore means what it means for the rows: building blocks stacked on
+# each other. A filter inside a loop, a function over a list, a loop inside
+# a loop, a function calling a function — from depth 16 two blocks, from
+# depth 20 three. Nothing at or below depth 15 changes shape: these forms
+# are only offered above the old fence, so her material and memories keep
+# their exact form (the rule of 13 Aug 2026; test-world pins a checksum).
+#
+# The working stays in the language she has: one easy step per number, the
+# filter lines of the list form, the `f(i): …` lines of the def form, and
+# for long series the compact rows of the long loop (14 Aug 2026) — the
+# terms as one row, the running sum as one row.
+
+STAPEL_MIN = 16          # two blocks stacked
+STAPEL3_MIN = 20         # three blocks stacked
+
+
+def _running(start, terms):
+    """The compact sum row of the long loop: `som: 0 3 8 15`."""
+    sums, total = [start], start
+    for x in terms:
+        total += x
+        sums.append(total)
+    return "som: " + " ".join(str(x) for x in sums), total
+
+
+def _loop_filter(depth, t, three):
+    """A filter inside a loop (lus + lijst): `if i > d: totaal += i`.
+
+    Three blocks: the term under the filter is `i * 2` or `i * i`, so the
+    filtered rounds still need a term row before the sum row.
+    """
+    n = t.integer(6, min(26, depth + 2))
+    d = t.integer(1, n - 3)                     # at least three rounds pass
+    start = t.integer(0, 50)
+    form = t.choice(("2i", "i2")) if three else "i"
+    body = {"i": "totaal += i", "2i": "totaal += i * 2",
+            "i2": "totaal += i * i"}[form]
+    hits = [i for i in range(1, n + 1) if i > d]
+    program = (f"totaal = {start}\nfor i in range(1, {n + 1}):\n"
+               f"    if i > {d}:\n        {body}\nprint(totaal)")
+    steps = ["telt mee: " + " ".join(str(i) for i in hits)]
+    if form == "i":
+        terms = hits
+    elif form == "2i":
+        terms = [2 * i for i in hits]
+        steps.append("termen: " + " ".join(str(x) for x in terms))
+    else:
+        terms = [i * i for i in hits]
+        steps.append("kwadraten: " + " ".join(str(x) for x in terms))
+    row, total = _running(start, terms)
+    steps.append(row)
+    return program, total, " ; ".join(steps)
+
+
+def _def_over_list(depth, t, three):
+    """A function over a list (def + lijst): `sum([f(x) for x in getallen])`.
+
+    Three blocks: with the list filter on top, `… if x > d]`.
+    """
+    count = t.integer(3, min(9, depth - 11))
+    numbers = [t.integer(1, 40) for _ in range(count)]
+    f, k = t.integer(2, 9), t.integer(0, 9)
+    steps = []
+    if three:
+        d = t.integer(5, 30)
+        chosen = [x for x in numbers if x > d]
+        steps += [f"{x} > {d}, telt mee" if x > d
+                  else f"{x} > {d} is niet zo" for x in numbers]
+        tail = f" if x > {d}"
+    else:
+        chosen = numbers
+        tail = ""
+    program = (f"def f(x):\n    return x * {f} + {k}\n\n"
+               f"getallen = {numbers}\n"
+               f"print(sum([f(x) for x in getallen{tail}]))")
+    total = 0
+    for x in chosen:
+        p = x * f
+        steps.append(f"f({x}): {x} * {f} = {p}")
+        steps.append(f"{p} + {k} = {p + k}")
+        steps.append(f"{total} + {p + k} = {total + p + k}")
+        total += p + k
+    if not chosen:
+        steps.append("niets telt mee, dus 0")
+    return program, total, " ; ".join(steps)
+
+
+def _nested_loop(depth, t, three):
+    """A loop inside a loop (lus + lus): `totaal += i * j` or `i + j`.
+
+    Three blocks: a filter on the inner loop, `if j > d`. The sum row runs
+    on across the outer rounds, so the last number is the answer.
+    """
+    a = t.integer(2, min(6, depth - 13))
+    b = t.integer(3, min(8, depth - 12))
+    op = t.choice(("*", "+"))
+    start = t.integer(0, 30)
+    d = t.integer(1, b - 2) if three else 0
+    inner = f"totaal += i {op} j"
+    lines = [f"totaal = {start}", f"for i in range(1, {a + 1}):",
+             f"    for j in range(1, {b + 1}):"]
+    if three:
+        lines += [f"        if j > {d}:", f"            {inner}"]
+    else:
+        lines.append(f"        {inner}")
+    lines.append("print(totaal)")
+    steps, total = [], start
+    for i in range(1, a + 1):
+        js = [j for j in range(1, b + 1) if j > d]
+        terms = [i * j if op == "*" else i + j for j in js]
+        row, total = _running(total, terms)
+        head = f"i = {i}: termen " + " ".join(str(x) for x in terms)
+        steps.append(head + " ; " + row)
+    return "\n".join(lines), total, " ; ".join(steps)
+
+
+def _def_chain(depth, t, three):
+    """A function calling a function (def + def): `g(x) = f(x) + c`.
+
+    Two blocks: `print(g(a) - g(b))`. Three blocks: a loop summing g(i)
+    over the rounds (def + def + lus), with the compact rows.
+    """
+    f, c = t.integer(2, 9), t.integer(1, 20)
+    op = t.choice(("+", "-"))
+    g = (lambda x: x * f + c) if op == "+" else (lambda x: x * f - c)
+    head = (f"def f(x):\n    return x * {f}\n\n"
+            f"def g(x):\n    return f(x) {op} {c}\n\n")
+    steps = []
+
+    def call(x):
+        p = x * f
+        steps.append(f"f({x}): {x} * {f} = {p}")
+        steps.append(f"g({x}): {p} {op} {c} = {g(x)}")
+        return g(x)
+
+    if not three:
+        a, b = t.integer(2, 30), t.integer(2, 30)
+        if a == b:
+            b = a + 1
+        va, vb = call(a), call(b)
+        steps.append(f"{va} - {vb} = {va - vb}")
+        return head + f"print(g({a}) - g({b}))", va - vb, " ; ".join(steps)
+
+    n = t.integer(4, min(15, depth - 8))
+    terms = [g(i) for i in range(1, n + 1)]
+    call(1)
+    # g(i+1) − g(i) = f: after the first, each next one is one small
+    # addition — the long loop's own trick (14 Aug 2026).
+    steps.append(f"daarna steeds +{f}: " + " ".join(str(x) for x in terms))
+    row, total = _running(0, terms)
+    steps.append(row)
+    program = (head + f"totaal = 0\nfor i in range(1, {n + 1}):\n"
+               f"    totaal += g(i)\nprint(totaal)")
+    return program, total, " ; ".join(steps)
+
+
+_STACKED = {"lus-filter": _loop_filter, "def-lijst": _def_over_list,
+            "lus-lus": _nested_loop, "def-def": _def_chain}
+
+
 def _code(depth, t):
     # The grondslag's language, part two (10 Aug 2026): three program forms
     # the exam asks and the world lacked — measured per cell, code grades
     # 3–5 sat at exactly 0% because of it. Each form from the depth where
     # its working fits the writing space.
+    if depth >= STAPEL_MIN:
+        # Above the old fence only the stacked forms: the four plain ones
+        # stopped getting harder at 15, and a depth that repeats depth 12
+        # is not deeper. Below STAPEL_MIN nothing here changes.
+        form = t.choice(tuple(sorted(_STACKED)))
+        return _STACKED[form](depth, t, depth >= STAPEL3_MIN)
     forms = ["regels", "regels"]
     if depth >= 3:
         forms.append("lus")
@@ -675,6 +867,101 @@ def _converse(problem, working, depth, t):
     return wrapped, working
 
 
+# --- the big multiplication (14 Aug 2026) ------------------------------------
+# The exam asks `48 * 14` (grade 3: factors up to 99 × 19) but the world
+# only ever multiplied by 2–12 — the form did not exist in her material, so
+# she answered it by guessing in one pass, systematically dropping the tens
+# digit (79 * 19 answered as exactly 79 * 9; stuck at 65% for two runs).
+# The cure is the same as on 8 Aug 2026: a working, here the split over
+# tens: each step is one easy operation. Own seed split, like the
+# conversational wrapper: untouched problems stay bit for bit what they were.
+
+KEER_SEED = 0x4B65657273                 # "Keers"
+KEER_MIN, KEER_MAX = 3, 8
+
+
+def _big_multiplication(k):
+    a = k.integer(2, 99)
+    b = k.integer(13, 19)
+    tens, ones = a * 10, a * (b - 10)
+    working = (f"{a} * 10 = {tens} ; {a} * {b - 10} = {ones} ; "
+               f"{tens} + {ones} = {tens + ones}")
+    return f"{a} * {b}", a * b, working
+
+
+# --- the long loop with a compact working (14 Aug 2026) ----------------------
+# The exam's loops run to twenty rounds; the world stopped at eleven because
+# the wide working (two or three equations per round, ~660 characters for
+# eighteen rounds) fit no writing space. On the run-4 exam she computed
+# those loops flawlessly and then fell off the page — every code-3/5 miss
+# was a long loop cut short. Same cure as the puzzle wall of 13 Aug 2026:
+# a compact working — the terms as one row, the running sum as one row,
+# every number derivable from the row above or the program itself. Short
+# loops keep the wide working she already masters; the long sizes were
+# always filtered out by `fits()`, so nothing she has seen changes shape.
+
+LUS_SEED = 0x4C616E67654C7573            # "LangeLus"
+LUS_MIN = 5
+# Not above the old fence: from STAPEL_MIN the stacked forms carry the depth
+# (15 Aug 2026); a plain twenty-round loop at depth 22 would repeat depth
+# 12. Below 16 nothing changes — the draw itself still happens.
+LUS_MAX = 15
+
+
+def _long_loop(depth, k):
+    form = k.choice(("2i", "i2", "def"))
+    if form == "def":
+        n = k.integer(12, 15)            # the exam's full size
+        f, c = k.integer(2, 20), k.integer(0, 9)
+        terms = [i * f + c for i in range(1, n + 1)]
+        program = (f"def f(x):\n    return x * {f} + {c}\n\n"
+                   f"totaal = 0\nfor i in range(1, {n + 1}):\n"
+                   f"    totaal += f(i)\nprint(totaal)")
+        # f(i+1) − f(i) = f: after the first term, each next one is a
+        # single small addition — no teen multiplication per round.
+        head = (f"f(1) = 1 * {f} + {c} = {terms[0]} ; daarna steeds +{f}: "
+                + " ".join(str(x) for x in terms))
+        start = 0
+    else:
+        n = k.integer(12, 20)            # the exam's full size
+        start = k.integer(0, 50)
+        if form == "2i":
+            terms = [2 * i for i in range(1, n + 1)]
+            body = "totaal += i * 2"
+            head = "termen: " + " ".join(str(x) for x in terms)
+        else:
+            terms = [i * i for i in range(1, n + 1)]
+            body = "totaal += i * i"
+            head = "kwadraten: " + " ".join(str(x) for x in terms)
+        program = (f"totaal = {start}\nfor i in range(1, {n + 1}):\n"
+                   f"    {body}\nprint(totaal)")
+    sums, total = [start], start
+    for x in terms:
+        total += x
+        sums.append(total)
+    working = head + " ; som: " + " ".join(str(x) for x in sums)
+    return program, total, working
+
+
+# --- the keer-plus row (15 Aug 2026) -----------------------------------------
+# The rows had three bricks at the bottom: a fixed step, a fixed factor, and
+# the sum of the previous two. Deeper meant more layers on those bricks —
+# and past depth 10 that road ends: ten layers of differences and weaves on
+# a nineteen-number row is not a harder puzzle, and the method mostly finds
+# nothing (5% usable) or a coincidence (measured 15 Aug 2026, fase1). So the
+# world grows here the other way: a new brick, `x → 2x + b`, under the same
+# layers. Her method already peels it — differences, then the fixed ratio —
+# so nothing in `_explain` changes and no new coincidences appear.
+#
+# Own seed split, one in five numbers from depth 2 (at depth 1 a brick
+# stands alone, and this one already asks two layers of working): the same
+# form as the conversational wrapper and the big multiplication. Untouched
+# numbers stay bit for bit what they were.
+
+KEERPLUS_SEED = 0x4B656572506C7573       # "KeerPlus"
+KEERPLUS_MIN = 2
+
+
 # --- outward -----------------------------------------------------------------
 
 def make(family, depth, number):
@@ -692,13 +979,31 @@ def make(family, depth, number):
     seed = _seed_of(family, depth, number)
     t = Picker(seed)
     problem, solution, working = _MAKERS[family](depth, t)
+    if family == "puzzel":
+        # Before the emptiness check: one in five numbers tries the
+        # keer-plus brick first. Comes a method out, the number carries
+        # that row (also where the old row had none — the world grows);
+        # otherwise it keeps its old row. The split may replace, never
+        # remove, and the other four in five stay bit for bit.
+        k = Picker(_mix(seed ^ KEERPLUS_SEED))
+        if depth >= KEERPLUS_MIN and k.integer(1, 5) == 1:
+            kp = _row(depth, k, bases=("keer-plus",), extra=2)
+            if kp[0] is not None:
+                problem, solution, working = kp
     if problem is None:
         # No working comes out — then there is nothing to learn, only to
         # guess. `learning_tasks` skips it.
         return None
     if family == "rekenen":
+        k = Picker(_mix(seed ^ KEER_SEED))
+        if KEER_MIN <= depth <= KEER_MAX and k.integer(1, 5) == 1:
+            problem, solution, working = _big_multiplication(k)
         problem, working = _converse(problem, working, depth,
                                      Picker(_mix(seed ^ CONVERSE_SEED)))
+    if family == "code":
+        k = Picker(_mix(seed ^ LUS_SEED))
+        if LUS_MIN <= depth <= LUS_MAX and k.integer(1, 4) == 1:
+            problem, solution, working = _long_loop(depth, k)
     return Task(family=family, grade=depth, number=number,
                 problem=problem, solution=str(solution), working=working)
 

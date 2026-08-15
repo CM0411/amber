@@ -1,0 +1,2 @@
+herhaling 0.375 zaad 1 stappen 1000 | vóór code=0.98 puzzel=0.88 rekenen=0.96 | na code=0.97 puzzel=0.94 rekenen=0.94 | behouden rekenen=0.98 code=0.98
+herhaling 0.000 zaad 1 stappen 1000 | vóór code=0.98 puzzel=0.88 rekenen=0.96 | na code=0.97 puzzel=0.93 rekenen=0.95 | behouden rekenen=0.99 code=0.98

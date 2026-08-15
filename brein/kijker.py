@@ -38,9 +38,15 @@ last_fetched = 0.0
 last_loaded = 0.0
 
 # What we have her look at: around her level, all families.
-CHOICES = ([("rekenen", d) for d in (1, 2, 3, 4, 6, 8, 10, 13, 17, 21, 26)]
-           + [("code", d) for d in (1, 2, 3, 4, 5, 6, 8, 11)]
-           + [("puzzel", d) for d in (1, 2, 3, 4, 5, 6)])
+# The choice list follows the world's own fences (world.max_depth), so a
+# fence move on a rungrens arrives here by itself — the service restarts
+# daily with the server. Hand-kept, this list ran three fences behind on
+# 14 Aug 2026. The top fence itself is always included.
+_LADDER = (1, 2, 3, 4, 5, 6, 8, 10, 13, 17, 21, 26, 32)
+CHOICES = [(fam, d)
+           for fam in ("rekenen", "code", "puzzel")
+           for d in sorted({x for x in _LADDER if x < world.max_depth(fam)}
+                           | {world.max_depth(fam)})]
 
 # Hooks: per pass the average activity per layer.
 current = []
@@ -216,6 +222,8 @@ def load_if_newer():
         return
     try:
         content = snapshot.read(FRESH, device=L.device)
+        # shape first (a grown net has more blocks; 15 Aug 2026)
+        L.adopt_shape((content.get("extra") or {}).get("vorm"))
         step_in_snapshot = snapshot.restore(content, L.core, L.optimizer,
                                             L.device)
         global world_edge

@@ -1,0 +1,1788 @@
+{
+ "naam": "stapel",
+ "beschrijving": "Uit de wereld van 15 aug 2026, de nieuwe stof: code 16, 18, 20, 22, 24 (gestapelde vormen: filter in een lus, def over een lijst, lus in lus, def die def aanroept; drie blokken vanaf 20) en puzzel 2, 4, 6, 8 met uitsluitend keer-plus-rijen (x → 2x + b). Alles past op venster 1024. Vastgelegd vóór run 6 als meetlat voor de wereldbouw van 15 aug.",
+ "opgaven": [
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 7\nfor i in range(1, 4):\n    for j in range(1, 4):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "43"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 21\nfor i in range(1, 4):\n    for j in range(1, 5):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "81"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 3 + 5\n\ngetallen = [17, 10, 14, 23]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "212"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 19\nfor i in range(1, 16):\n    if i > 1:\n        totaal += i\nprint(totaal)",
+   "oplossing": "138"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 4 + 0\n\ngetallen = [2, 35, 39, 26]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "408"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 5\nfor i in range(1, 4):\n    for j in range(1, 5):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "65"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 9\nfor i in range(1, 14):\n    if i > 2:\n        totaal += i\nprint(totaal)",
+   "oplossing": "97"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 3\n\ndef g(x):\n    return f(x) - 8\n\nprint(g(2) - g(3))",
+   "oplossing": "-3"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 32\nfor i in range(1, 11):\n    if i > 1:\n        totaal += i\nprint(totaal)",
+   "oplossing": "86"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 5 + 3\n\ngetallen = [5, 31, 8, 16]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "312"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 9 + 6\n\ngetallen = [8, 22, 13, 4, 4]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "489"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 3 + 4\n\ngetallen = [8, 22, 11, 5, 18]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "212"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 15\nfor i in range(1, 4):\n    for j in range(1, 4):\n        totaal += i + j\nprint(totaal)",
+   "oplossing": "51"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 5\n\ndef g(x):\n    return f(x) + 10\n\nprint(g(27) - g(6))",
+   "oplossing": "105"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 33\nfor i in range(1, 14):\n    if i > 8:\n        totaal += i\nprint(totaal)",
+   "oplossing": "88"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 9\n\ndef g(x):\n    return f(x) - 6\n\nprint(g(17) - g(10))",
+   "oplossing": "63"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 2 + 8\n\ngetallen = [30, 24, 22, 9]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "202"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 27\nfor i in range(1, 16):\n    if i > 6:\n        totaal += i\nprint(totaal)",
+   "oplossing": "126"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 8 + 9\n\ngetallen = [8, 1, 28, 6]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "380"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 40\nfor i in range(1, 10):\n    if i > 6:\n        totaal += i\nprint(totaal)",
+   "oplossing": "64"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 3 + 1\n\ngetallen = [34, 9, 6, 25]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "226"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 36\nfor i in range(1, 13):\n    if i > 6:\n        totaal += i\nprint(totaal)",
+   "oplossing": "93"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 9 + 0\n\ngetallen = [24, 8, 22, 35]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "801"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 4 + 6\n\ngetallen = [9, 26, 26]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "262"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 2\nfor i in range(1, 3):\n    for j in range(1, 4):\n        totaal += i + j\nprint(totaal)",
+   "oplossing": "23"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 8 + 6\n\ngetallen = [22, 2, 21]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "378"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 9\n\ndef g(x):\n    return f(x) + 13\n\nprint(g(28) - g(30))",
+   "oplossing": "-18"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 7\n\ndef g(x):\n    return f(x) + 11\n\nprint(g(26) - g(23))",
+   "oplossing": "21"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 13\nfor i in range(1, 11):\n    if i > 3:\n        totaal += i\nprint(totaal)",
+   "oplossing": "62"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 8 + 5\n\ngetallen = [27, 3, 37, 17]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "692"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "def f(x):\n    return x * 4\n\ndef g(x):\n    return f(x) + 15\n\nprint(g(10) - g(24))",
+   "oplossing": "-56"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 23\nfor i in range(1, 4):\n    for j in range(1, 5):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "83"
+  },
+  {
+   "familie": "code",
+   "graad": 16,
+   "opgave": "totaal = 22\nfor i in range(1, 10):\n    if i > 3:\n        totaal += i\nprint(totaal)",
+   "oplossing": "61"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 7 + 1\n\ngetallen = [24, 38, 21, 21, 14]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "831"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 8 + 1\n\ngetallen = [25, 6, 29, 24, 16]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "805"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 3 + 5\n\ngetallen = [28, 7, 12, 38, 33, 39]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "501"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 7\n\ndef g(x):\n    return f(x) - 13\n\nprint(g(28) - g(27))",
+   "oplossing": "7"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 7\nfor i in range(1, 6):\n    for j in range(1, 6):\n        totaal += i + j\nprint(totaal)",
+   "oplossing": "157"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 41\nfor i in range(1, 8):\n    if i > 3:\n        totaal += i\nprint(totaal)",
+   "oplossing": "63"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 3\n\ndef g(x):\n    return f(x) + 14\n\nprint(g(23) - g(18))",
+   "oplossing": "15"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 2 + 6\n\ngetallen = [17, 39, 33, 1]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "204"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 26\nfor i in range(1, 6):\n    for j in range(1, 6):\n        totaal += i + j\nprint(totaal)",
+   "oplossing": "176"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 6\n\ndef g(x):\n    return f(x) + 1\n\nprint(g(8) - g(19))",
+   "oplossing": "-66"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 43\nfor i in range(1, 8):\n    if i > 1:\n        totaal += i\nprint(totaal)",
+   "oplossing": "70"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 9\n\ndef g(x):\n    return f(x) - 18\n\nprint(g(6) - g(11))",
+   "oplossing": "-45"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 6\n\ndef g(x):\n    return f(x) + 5\n\nprint(g(24) - g(11))",
+   "oplossing": "78"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 20\nfor i in range(1, 9):\n    if i > 4:\n        totaal += i\nprint(totaal)",
+   "oplossing": "46"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 0\nfor i in range(1, 10):\n    if i > 6:\n        totaal += i\nprint(totaal)",
+   "oplossing": "24"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 7\n\ndef g(x):\n    return f(x) + 16\n\nprint(g(15) - g(24))",
+   "oplossing": "-63"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 7\n\ndef g(x):\n    return f(x) - 4\n\nprint(g(3) - g(26))",
+   "oplossing": "-161"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 2\n\ndef g(x):\n    return f(x) - 12\n\nprint(g(19) - g(29))",
+   "oplossing": "-20"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 6 + 9\n\ngetallen = [18, 39, 16, 12]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "546"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 35\nfor i in range(1, 18):\n    if i > 2:\n        totaal += i\nprint(totaal)",
+   "oplossing": "185"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 2 + 5\n\ngetallen = [23, 26, 11]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "135"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 10\nfor i in range(1, 4):\n    for j in range(1, 6):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "100"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 12\nfor i in range(1, 4):\n    for j in range(1, 6):\n        totaal += i + j\nprint(totaal)",
+   "oplossing": "87"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 11\nfor i in range(1, 5):\n    for j in range(1, 4):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "71"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 12\nfor i in range(1, 4):\n    for j in range(1, 7):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "138"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 6 + 0\n\ngetallen = [18, 20, 22, 11]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "426"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 24\nfor i in range(1, 5):\n    for j in range(1, 6):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "174"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 11\nfor i in range(1, 6):\n    for j in range(1, 4):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "101"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 18\nfor i in range(1, 11):\n    if i > 7:\n        totaal += i\nprint(totaal)",
+   "oplossing": "45"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 3\n\ndef g(x):\n    return f(x) + 20\n\nprint(g(4) - g(20))",
+   "oplossing": "-48"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "def f(x):\n    return x * 7 + 4\n\ngetallen = [38, 24, 19, 14, 30, 13, 7]\nprint(sum([f(x) for x in getallen]))",
+   "oplossing": "1043"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 1\nfor i in range(1, 4):\n    for j in range(1, 6):\n        totaal += i * j\nprint(totaal)",
+   "oplossing": "91"
+  },
+  {
+   "familie": "code",
+   "graad": 18,
+   "opgave": "totaal = 21\nfor i in range(1, 21):\n    if i > 9:\n        totaal += i\nprint(totaal)",
+   "oplossing": "186"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 5 + 7\n\ngetallen = [13, 21, 33]\nprint(sum([f(x) for x in getallen if x > 26]))",
+   "oplossing": "172"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 2 + 1\n\ngetallen = [21, 14, 27, 7]\nprint(sum([f(x) for x in getallen if x > 15]))",
+   "oplossing": "98"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 27\nfor i in range(1, 3):\n    for j in range(1, 8):\n        if j > 1:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "99"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 8\nfor i in range(1, 4):\n    for j in range(1, 5):\n        if j > 2:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "50"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 6\n\ndef g(x):\n    return f(x) - 9\n\ntotaal = 0\nfor i in range(1, 9):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "144"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 33\nfor i in range(1, 17):\n    if i > 7:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "1389"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 6 + 6\n\ngetallen = [1, 1, 27, 26, 36, 1]\nprint(sum([f(x) for x in getallen if x > 12]))",
+   "oplossing": "552"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 23\nfor i in range(1, 7):\n    for j in range(1, 9):\n        if j > 4:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "569"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 13\nfor i in range(1, 11):\n    if i > 5:\n        totaal += i * 2\nprint(totaal)",
+   "oplossing": "93"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 41\nfor i in range(1, 16):\n    if i > 9:\n        totaal += i * 2\nprint(totaal)",
+   "oplossing": "191"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 14\nfor i in range(1, 3):\n    for j in range(1, 9):\n        if j > 4:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "78"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 6\nfor i in range(1, 3):\n    for j in range(1, 8):\n        if j > 4:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "60"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 19\nfor i in range(1, 3):\n    for j in range(1, 7):\n        if j > 4:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "47"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 2 + 8\n\ngetallen = [25, 23, 20, 19, 34]\nprint(sum([f(x) for x in getallen if x > 12]))",
+   "oplossing": "282"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 2\nfor i in range(1, 19):\n    if i > 4:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "2081"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 5\n\ndef g(x):\n    return f(x) - 15\n\ntotaal = 0\nfor i in range(1, 6):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "0"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 9 + 3\n\ngetallen = [28, 16, 3, 17, 25]\nprint(sum([f(x) for x in getallen if x > 19]))",
+   "oplossing": "483"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 4 + 9\n\ngetallen = [20, 18, 11]\nprint(sum([f(x) for x in getallen if x > 9]))",
+   "oplossing": "223"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 2 + 7\n\ngetallen = [22, 10, 28, 24, 17, 10, 33, 13]\nprint(sum([f(x) for x in getallen if x > 15]))",
+   "oplossing": "283"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 6\n\ndef g(x):\n    return f(x) - 14\n\ntotaal = 0\nfor i in range(1, 9):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "104"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 6 + 7\n\ngetallen = [25, 10, 27, 11, 32, 20]\nprint(sum([f(x) for x in getallen if x > 28]))",
+   "oplossing": "199"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 29\nfor i in range(1, 4):\n    for j in range(1, 5):\n        if j > 2:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "62"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 4\n\ndef g(x):\n    return f(x) - 12\n\ntotaal = 0\nfor i in range(1, 6):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "0"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 1\nfor i in range(1, 4):\n    for j in range(1, 6):\n        if j > 2:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "55"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 5\nfor i in range(1, 6):\n    for j in range(1, 7):\n        if j > 2:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "155"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 21\nfor i in range(1, 15):\n    if i > 3:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "1022"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 22\nfor i in range(1, 7):\n    for j in range(1, 4):\n        if j > 1:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "94"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 3 + 7\n\ngetallen = [21, 1, 12, 8]\nprint(sum([f(x) for x in getallen if x > 20]))",
+   "oplossing": "70"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 7\n\ndef g(x):\n    return f(x) + 18\n\ntotaal = 0\nfor i in range(1, 12):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "660"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "totaal = 27\nfor i in range(1, 7):\n    for j in range(1, 6):\n        if j > 1:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "321"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 9\n\ndef g(x):\n    return f(x) - 5\n\ntotaal = 0\nfor i in range(1, 9):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "284"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 2 + 0\n\ngetallen = [15, 29, 29, 23, 36, 6, 5]\nprint(sum([f(x) for x in getallen if x > 6]))",
+   "oplossing": "264"
+  },
+  {
+   "familie": "code",
+   "graad": 20,
+   "opgave": "def f(x):\n    return x * 7 + 5\n\ngetallen = [13, 17, 29]\nprint(sum([f(x) for x in getallen if x > 8]))",
+   "oplossing": "428"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 9 + 4\n\ngetallen = [7, 28, 14, 3]\nprint(sum([f(x) for x in getallen if x > 24]))",
+   "oplossing": "256"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 7\n\ndef g(x):\n    return f(x) - 12\n\ntotaal = 0\nfor i in range(1, 5):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "22"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 30\nfor i in range(1, 6):\n    for j in range(1, 6):\n        if j > 1:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "240"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 5\n\ndef g(x):\n    return f(x) - 19\n\ntotaal = 0\nfor i in range(1, 11):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "85"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 7\n\ndef g(x):\n    return f(x) - 4\n\ntotaal = 0\nfor i in range(1, 5):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "54"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 5 + 6\n\ngetallen = [18, 33, 9, 12, 29, 39]\nprint(sum([f(x) for x in getallen if x > 20]))",
+   "oplossing": "523"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 21\nfor i in range(1, 7):\n    for j in range(1, 6):\n        if j > 3:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "117"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 6\n\ndef g(x):\n    return f(x) - 20\n\ntotaal = 0\nfor i in range(1, 7):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "6"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 14\nfor i in range(1, 3):\n    for j in range(1, 9):\n        if j > 3:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "89"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 25\nfor i in range(1, 5):\n    for j in range(1, 8):\n        if j > 3:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "245"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 3 + 3\n\ngetallen = [5, 17, 31, 18, 17, 38, 1, 23]\nprint(sum([f(x) for x in getallen if x > 26]))",
+   "oplossing": "213"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 14\nfor i in range(1, 4):\n    for j in range(1, 7):\n        if j > 2:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "122"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 7\nfor i in range(1, 4):\n    for j in range(1, 5):\n        if j > 2:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "40"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 3\nfor i in range(1, 7):\n    for j in range(1, 6):\n        if j > 2:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "138"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 43\nfor i in range(1, 20):\n    if i > 1:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "2512"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 16\nfor i in range(1, 6):\n    for j in range(1, 5):\n        if j > 1:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "151"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 4\n\ndef g(x):\n    return f(x) - 8\n\ntotaal = 0\nfor i in range(1, 8):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "56"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 6 + 7\n\ngetallen = [10, 38, 27, 40]\nprint(sum([f(x) for x in getallen if x > 9]))",
+   "oplossing": "718"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 2 + 0\n\ngetallen = [3, 2, 13, 5]\nprint(sum([f(x) for x in getallen if x > 12]))",
+   "oplossing": "26"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 9 + 0\n\ngetallen = [10, 29, 33]\nprint(sum([f(x) for x in getallen if x > 20]))",
+   "oplossing": "558"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 5\n\ndef g(x):\n    return f(x) + 5\n\ntotaal = 0\nfor i in range(1, 14):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "520"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 8\n\ndef g(x):\n    return f(x) - 12\n\ntotaal = 0\nfor i in range(1, 8):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "140"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 4\nfor i in range(1, 3):\n    for j in range(1, 8):\n        if j > 1:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "85"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 44\nfor i in range(1, 10):\n    if i > 5:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "274"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 3\n\ndef g(x):\n    return f(x) + 6\n\ntotaal = 0\nfor i in range(1, 8):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "126"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 20\nfor i in range(1, 9):\n    if i > 2:\n        totaal += i * 2\nprint(totaal)",
+   "oplossing": "86"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 5\nfor i in range(1, 4):\n    for j in range(1, 8):\n        if j > 2:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "110"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 36\nfor i in range(1, 16):\n    if i > 7:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "1136"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 25\nfor i in range(1, 6):\n    for j in range(1, 5):\n        if j > 1:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "115"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 4\n\ndef g(x):\n    return f(x) - 17\n\ntotaal = 0\nfor i in range(1, 9):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "8"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 27\nfor i in range(1, 6):\n    for j in range(1, 6):\n        if j > 1:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "237"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "totaal = 28\nfor i in range(1, 10):\n    if i > 3:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "299"
+  },
+  {
+   "familie": "code",
+   "graad": 22,
+   "opgave": "def f(x):\n    return x * 3 + 1\n\ngetallen = [5, 34, 25, 7, 17, 24, 15, 8]\nprint(sum([f(x) for x in getallen if x > 18]))",
+   "oplossing": "252"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 12\nfor i in range(1, 4):\n    for j in range(1, 5):\n        if j > 2:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "54"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 4\nfor i in range(1, 3):\n    for j in range(1, 7):\n        if j > 4:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "37"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 5\n\ndef g(x):\n    return f(x) + 6\n\ntotaal = 0\nfor i in range(1, 11):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "335"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 45\nfor i in range(1, 12):\n    if i > 5:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "496"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 9 + 5\n\ngetallen = [23, 15, 35, 21, 18, 6, 19, 31]\nprint(sum([f(x) for x in getallen if x > 15]))",
+   "oplossing": "1353"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 2\n\ndef g(x):\n    return f(x) - 1\n\ntotaal = 0\nfor i in range(1, 8):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "49"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 9\n\ndef g(x):\n    return f(x) - 9\n\ntotaal = 0\nfor i in range(1, 13):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "594"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 7\nfor i in range(1, 14):\n    if i > 9:\n        totaal += i * 2\nprint(totaal)",
+   "oplossing": "99"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 6\n\ndef g(x):\n    return f(x) + 11\n\ntotaal = 0\nfor i in range(1, 8):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "245"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 2 + 4\n\ngetallen = [18, 9, 20]\nprint(sum([f(x) for x in getallen if x > 14]))",
+   "oplossing": "84"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 14\nfor i in range(1, 4):\n    for j in range(1, 6):\n        if j > 2:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "68"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 18\nfor i in range(1, 4):\n    for j in range(1, 5):\n        if j > 1:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "63"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 7 + 4\n\ngetallen = [28, 33, 26, 19]\nprint(sum([f(x) for x in getallen if x > 17]))",
+   "oplossing": "758"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 21\nfor i in range(1, 19):\n    if i > 1:\n        totaal += i * 2\nprint(totaal)",
+   "oplossing": "361"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 4\n\ndef g(x):\n    return f(x) + 1\n\ntotaal = 0\nfor i in range(1, 9):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "152"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 23\nfor i in range(1, 3):\n    for j in range(1, 9):\n        if j > 2:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "122"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 39\nfor i in range(1, 27):\n    if i > 22:\n        totaal += i * 2\nprint(totaal)",
+   "oplossing": "235"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 12\nfor i in range(1, 14):\n    if i > 3:\n        totaal += i * 2\nprint(totaal)",
+   "oplossing": "182"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 17\nfor i in range(1, 26):\n    if i > 9:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "5257"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 4\n\ndef g(x):\n    return f(x) + 6\n\ntotaal = 0\nfor i in range(1, 7):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "120"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 17\nfor i in range(1, 10):\n    if i > 4:\n        totaal += i * 2\nprint(totaal)",
+   "oplossing": "87"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 6\nfor i in range(1, 6):\n    for j in range(1, 8):\n        if j > 4:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "276"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 2\n\ndef g(x):\n    return f(x) + 6\n\ntotaal = 0\nfor i in range(1, 8):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "98"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 29\nfor i in range(1, 7):\n    for j in range(1, 9):\n        if j > 6:\n            totaal += i + j\nprint(totaal)",
+   "oplossing": "161"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 23\nfor i in range(1, 11):\n    if i > 2:\n        totaal += i * 2\nprint(totaal)",
+   "oplossing": "127"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 19\nfor i in range(1, 7):\n    for j in range(1, 9):\n        if j > 6:\n            totaal += i * j\nprint(totaal)",
+   "oplossing": "334"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 7 + 6\n\ngetallen = [24, 32, 17, 11, 36]\nprint(sum([f(x) for x in getallen if x > 27]))",
+   "oplossing": "488"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 20\nfor i in range(1, 13):\n    if i > 5:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "615"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 7 + 0\n\ngetallen = [2, 38, 2, 15, 1, 16, 21, 8]\nprint(sum([f(x) for x in getallen if x > 12]))",
+   "oplossing": "630"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 8\n\ndef g(x):\n    return f(x) - 5\n\ntotaal = 0\nfor i in range(1, 16):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "885"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "totaal = 1\nfor i in range(1, 19):\n    if i > 10:\n        totaal += i * i\nprint(totaal)",
+   "oplossing": "1725"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 9\n\ndef g(x):\n    return f(x) - 3\n\ntotaal = 0\nfor i in range(1, 10):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "378"
+  },
+  {
+   "familie": "code",
+   "graad": 24,
+   "opgave": "def f(x):\n    return x * 3\n\ndef g(x):\n    return f(x) + 5\n\ntotaal = 0\nfor i in range(1, 11):\n    totaal += g(i)\nprint(totaal)",
+   "oplossing": "215"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 13, 32, 70, 146, 298, 602, 1210, 2426, ?",
+   "oplossing": "4858"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 11, 26, 56, 116, 236, 476, 956, ?",
+   "oplossing": "1916"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 20, 37, 71, 139, 275, 547, 1091, 2179, 4355, ?",
+   "oplossing": "8707"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 17, 37, 77, 157, 317, 637, 1277, 2557, ?",
+   "oplossing": "5117"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 20, 48, 104, 216, 440, 888, 1784, ?",
+   "oplossing": "3576"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 17, 35, 71, 143, 287, 575, 1151, 2303, ?",
+   "oplossing": "4607"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 3, 7, 15, 31, 63, 127, 255, 511, 1023, ?",
+   "oplossing": "2047"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 15, 37, 81, 169, 345, 697, 1401, 2809, 5625, ?",
+   "oplossing": "11257"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 7, 23, 55, 119, 247, 503, 1015, 2039, 4087, ?",
+   "oplossing": "8183"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 10, 22, 46, 94, 190, 382, 766, 1534, 3070, ?",
+   "oplossing": "6142"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 22, 36, 64, 120, 232, 456, 904, 1800, 3592, ?",
+   "oplossing": "7176"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 9, 19, 39, 79, 159, 319, 639, ?",
+   "oplossing": "1279"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 5, 12, 26, 54, 110, 222, 446, 894, 1790, ?",
+   "oplossing": "3582"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 17, 30, 56, 108, 212, 420, 836, 1668, 3332, ?",
+   "oplossing": "6660"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 22, 35, 61, 113, 217, 425, 841, 1673, ?",
+   "oplossing": "3337"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 4, 15, 37, 81, 169, 345, 697, 1401, 2809, ?",
+   "oplossing": "5625"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 9, 21, 45, 93, 189, 381, 765, ?",
+   "oplossing": "1533"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 17, 39, 83, 171, 347, 699, 1403, 2811, 5627, ?",
+   "oplossing": "11259"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 7, 17, 37, 77, 157, 317, 637, 1277, 2557, ?",
+   "oplossing": "5117"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 26, 43, 77, 145, 281, 553, 1097, ?",
+   "oplossing": "2185"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 3, 4, 6, 10, 18, 34, 66, ?",
+   "oplossing": "130"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 17, 41, 89, 185, 377, 761, 1529, 3065, 6137, ?",
+   "oplossing": "12281"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 23, 42, 80, 156, 308, 612, 1220, 2436, 4868, ?",
+   "oplossing": "9732"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 18, 44, 96, 200, 408, 824, 1656, ?",
+   "oplossing": "3320"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 17, 42, 92, 192, 392, 792, 1592, ?",
+   "oplossing": "3192"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 12, 20, 36, 68, 132, 260, 516, 1028, 2052, ?",
+   "oplossing": "4100"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 8, 22, 50, 106, 218, 442, 890, 1786, ?",
+   "oplossing": "3578"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 3, 12, 30, 66, 138, 282, 570, 1146, ?",
+   "oplossing": "2298"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 12, 17, 27, 47, 87, 167, 327, 647, 1287, ?",
+   "oplossing": "2567"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 21, 38, 72, 140, 276, 548, 1092, 2180, ?",
+   "oplossing": "4356"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 2, 5, 11, 23, 47, 95, 191, 383, ?",
+   "oplossing": "767"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 6, 7, 9, 13, 21, 37, 69, 133, 261, ?",
+   "oplossing": "517"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "Zet voort: 12, 22, 42, 82, 162, 322, 642, 1282, 2562, ?",
+   "oplossing": "5122"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 12, 27, 19, 47, 29, 83, 45, 151, 73, ?",
+   "oplossing": "283"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 10, 11, 16, 25, 42, 67, 108, 165, 254, ?",
+   "oplossing": "375"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 3, 9, 28, 80, 205, 483, 1074, 2298, ?",
+   "oplossing": "4795"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 3, 30, 74, 161, 343, 724, 1512, 3123, ?",
+   "oplossing": "6389"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 16, 27, 47, 82, 144, 257, 469, 876, 1670, ?",
+   "oplossing": "3235"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 29, 44, 65, 99, 160, 276, 503, ?",
+   "oplossing": "953"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 13, 30, 61, 124, 255, 526, 1081, ?",
+   "oplossing": "2208"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 29, 40, 63, 107, 190, 348, 653, 1249, ?",
+   "oplossing": "2424"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 16, 33, 62, 113, 206, 381, 718, ?",
+   "oplossing": "1377"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 23, 33, 60, 119, 240, 483, 968, 1935, 3864, ?",
+   "oplossing": "7715"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 16, 46, 81, 133, 226, 408, 775, 1519, ?",
+   "oplossing": "3024"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 12, 24, 38, 57, 87, 140, 240, 435, ?",
+   "oplossing": "821"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 10, 13, 32, 90, 233, 553, 1234, 2644, ?",
+   "oplossing": "5519"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 7, 19, 49, 116, 258, 551, 1147, ?",
+   "oplossing": "2350"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 10, 36, 76, 146, 278, 536, 1048, ?",
+   "oplossing": "2070"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 11, 28, 59, 127, 278, 604, 1289, ?",
+   "oplossing": "2701"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 26, 35, 71, 154, 324, 661, 1325, 2636, ?",
+   "oplossing": "5234"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 25, 30, 53, 105, 208, 406, 787, ?",
+   "oplossing": "1527"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 2, 22, 61, 140, 301, 628, 1289, ?",
+   "oplossing": "2620"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 23, 25, 40, 50, 73, 99, 138, 196, 267, ?",
+   "oplossing": "389"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 1, 28, 74, 165, 353, 742, 1540, 3163, ?",
+   "oplossing": "6443"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 23, 27, 44, 84, 167, 333, 662, 1314, 2609, ?",
+   "oplossing": "5187"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 17, 45, 87, 164, 318, 633, 1277, 2586, 5232, ?",
+   "oplossing": "10559"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 9, 19, 34, 57, 80, 129, 168, 269, 340, ?",
+   "oplossing": "545"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 23, 34, 54, 68, 114, 134, 232, 264, 466, ?",
+   "oplossing": "522"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 15, 21, 25, 38, 53, 80, 117, 172, 253, ?",
+   "oplossing": "364"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 2, 7, 14, 31, 74, 175, 398, ?",
+   "oplossing": "871"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 10, 34, 74, 155, 327, 690, 1444, ?",
+   "oplossing": "2989"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 7, 31, 58, 95, 156, 269, 490, 931, ?",
+   "oplossing": "1816"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 22, 36, 69, 147, 322, 698, 1483, ?",
+   "oplossing": "3093"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 9, 27, 61, 123, 237, 451, 861, 1659, 3229, ?",
+   "oplossing": "6339"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 30, 31, 60, 137, 302, 635, 1296, 2605, 5202, ?",
+   "oplossing": "10367"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "Zet voort: 1, 4, 16, 47, 117, 266, 574, 1201, ?",
+   "oplossing": "2467"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 5, 21, 29, 43, 63, 90, 97, 125, 149, 202, 227, ?",
+   "oplossing": "288"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 10, 33, 61, 106, 186, 334, 616, 1167, 2263, 4465, ?",
+   "oplossing": "8907"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 21, 39, 73, 136, 229, 384, 612, 983, 1528, 2393, 3649, ?",
+   "oplossing": "5594"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 11, 22, 35, 76, 180, 404, 853, 1732, 3450, ?",
+   "oplossing": "6828"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 11, 33, 61, 116, 187, 296, 444, 655, 954, 1369, 1973, ?",
+   "oplossing": "2802"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 6, 29, 59, 115, 200, 358, 599, 1017, 1636, 2650, 4111, ?",
+   "oplossing": "6413"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 19, 49, 100, 189, 341, 592, 995, 1632, 2638, ?",
+   "oplossing": "4249"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 1, 19, 62, 143, 300, 612, 1231, 2446, 4811, ?",
+   "oplossing": "9401"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 19, 33, 58, 109, 212, 416, 817, 1606, 3165, ?",
+   "oplossing": "6259"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 20, 22, 50, 109, 216, 406, 744, 1349, 2442, ?",
+   "oplossing": "4442"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 15, 36, 68, 122, 220, 400, 726, 1308, 2342, ?",
+   "oplossing": "4190"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 13, 35, 69, 128, 227, 384, 622, 973, 1486, ?",
+   "oplossing": "2243"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 30, 55, 82, 124, 188, 287, 446, 687, 1062, 1620, ?",
+   "oplossing": "2458"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 7, 24, 42, 90, 200, 418, 826, 1586, 3028, 5826, ?",
+   "oplossing": "11350"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 25, 46, 83, 149, 277, 536, 1063, 2127, 4257, ?",
+   "oplossing": "8498"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 18, 20, 36, 96, 239, 530, 1094, 2184, 4317, ?",
+   "oplossing": "8546"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 8, 33, 66, 122, 226, 422, 791, 1487, 2809, 5345, ?",
+   "oplossing": "10260"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 17, 19, 38, 81, 169, 347, 704, 1413, 2811, 5559, ?",
+   "oplossing": "10962"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 18, 32, 76, 161, 310, 575, 1071, 2044, 4007, ?",
+   "oplossing": "8012"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 21, 25, 26, 15, 39, 7, 60, 20, 103, ?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 16, 23, 35, 56, 95, 168, 302, 543, 972, ?",
+   "oplossing": "1737"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 30, 45, 71, 111, 170, 261, 417, 715, 1324, 2601, ?",
+   "oplossing": "5283"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 28, 35, 46, 72, 139, 295, 624, 1274, 2513, 4841, ?",
+   "oplossing": "9214"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 3, 13, 36, 77, 153, 314, 685, 1550, 3520, ?",
+   "oplossing": "7869"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 9, 33, 79, 159, 292, 507, 836, 1342, 2083, 3190, 4773, ?",
+   "oplossing": "7099"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 2, 8, 35, 112, 283, 625, 1284, 2547, 4986, ?",
+   "oplossing": "9746"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 11, 12, 24, 50, 98, 184, 338, 616, 1124, ?",
+   "oplossing": "2066"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 22, 23, 48, 106, 215, 407, 738, 1308, 2301, 4065, ?",
+   "oplossing": "7272"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 16, 17, 26, 70, 193, 468, 1021, 2079, 4066, 7795, ?",
+   "oplossing": "14852"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 24, 50, 82, 136, 238, 430, 782, 1416, 2554, ?",
+   "oplossing": "4614"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 29, 10, 51, 31, 71, 59, 112, 98, 143, 156, 226, ?",
+   "oplossing": "245"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 21, 32, 59, 105, 174, 281, 472, 864, 1725, 3634, ?",
+   "oplossing": "7801"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "Zet voort: 20, 27, 47, 88, 165, 310, 592, 1157, 2308, 4665, ?",
+   "oplossing": "9485"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 3, 15, 38, 98, 224, 468, 953, 1969, 4157, 8861, 18808, 39436, 81510, 166306, ?",
+   "oplossing": "335923"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 22, 45, 75, 114, 168, 277, 551, 1220, 2714, 5805, 11875, 23438, 45172, ?",
+   "oplossing": "85973"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 24, 53, 86, 149, 280, 519, 938, 1624, 2738, 4446, 7074, 10984, 16872, 25445, ?",
+   "oplossing": "38094"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 21, 37, 65, 131, 280, 578, 1134, 2113, 3775, 6510, 10911, 17853, 28634, ?",
+   "oplossing": "45142"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 23, 33, 58, 124, 260, 512, 948, 1661, 2796, 4540, 7184, 11096, 16844, 25144, 37096, ?",
+   "oplossing": "54091"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 24, 34, 55, 93, 182, 388, 836, 1777, 3729, 7760, 16049, 32997, 67432, 136996, ?",
+   "oplossing": "276890"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 27, 52, 89, 161, 314, 627, 1239, 2419, 4731, 9398, 19073, 39433, 82428, 172849, 361543, ?",
+   "oplossing": "751931"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 24, 38, 74, 150, 310, 626, 1202, 2188, 3820, 6518, 11106, 19282, 34594, ?",
+   "oplossing": "64434"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 2, 10, 24, 46, 108, 292, 778, 1940, 4530, 10030, 21332, 44066, 89216, ?",
+   "oplossing": "178304"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 22, 41, 63, 111, 233, 514, 1083, 2129, 3919, 6822, 11349, 18193, 28313, 43006, ?",
+   "oplossing": "64079"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 19, 35, 66, 137, 253, 452, 759, 1243, 1924, 2946, 4351, 6454, 9268, 13479, 19169, ?",
+   "oplossing": "27803"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 9, 34, 69, 143, 294, 568, 1038, 1802, 3025, 4938, 7923, 12517, 19580, 30312, ?",
+   "oplossing": "46584"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 13, 20, 38, 76, 161, 349, 755, 1622, 3469, 7398, 15720, 33220, 69701, ?",
+   "oplossing": "145087"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 25, 26, 45, 108, 270, 633, 1365, 2734, 5139, 9176, 15693, 25920, 41572, ?",
+   "oplossing": "65107"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 26, 46, 88, 177, 351, 681, 1294, 2409, 4406, 7968, 14376, 26117, 48125, 90295, 172550, ?",
+   "oplossing": "335021"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 16, 17, 34, 37, 62, 86, 125, 160, 225, 291, 372, 451, 564, ?",
+   "oplossing": "691"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 30, 10, 57, 27, 99, 33, 157, 61, 248, 87, 366, 131, 534, 178, ?",
+   "oplossing": "741"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 12, 23, 62, 136, 255, 447, 774, 1353, 2396, 4243, 7450, 12846, 21717, 35911, ?",
+   "oplossing": "58214"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 8, 38, 41, 63, 66, 117, 138, 154, 158, 227, 258, 308, 322, ?",
+   "oplossing": "418"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 23, 50, 97, 171, 309, 584, 1131, 2221, 4439, 9078, 18973, 40223, 85697, 182116, 384295, ?",
+   "oplossing": "803713"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 27, 43, 74, 145, 282, 531, 993, 1885, 3647, 7135, 13980, 27273, 52896, 102139, 196883, ?",
+   "oplossing": "379909"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 7, 27, 42, 90, 123, 182, 252, 337, 484, 588, 876, 1013, 1547, ?",
+   "oplossing": "1711"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 7, 12, 23, 53, 69, 97, 120, 161, 214, 270, 355, 415, 557, ?",
+   "oplossing": "652"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 5, 27, 55, 103, 207, 443, 960, 2034, 4155, 8171, 15537, 28765, 52267, 93975, 168506, ?",
+   "oplossing": "303408"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 12, 13, 20, 37, 74, 153, 326, 695, 1439, 2862, 5438, 9915, 17396, 29555, ?",
+   "oplossing": "48790"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 16, 44, 87, 173, 360, 738, 1435, 2635, 4624, 7896, 13383, 22937, 40320, 73214, 137275, ?",
+   "oplossing": "264279"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 2, 28, 21, 38, 53, 63, 105, 115, 197, 215, 335, 377, 528, 615, 797, ?",
+   "oplossing": "955"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 23, 39, 82, 164, 315, 604, 1174, 2304, 4524, 8835, 17138, 33080, 63733, ?",
+   "oplossing": "122938"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 1, 29, 87, 202, 428, 869, 1719, 3339, 6411, 12249, 23427, 45044, 87266, 170425, ?",
+   "oplossing": "335235"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 20, 33, 62, 91, 128, 174, 213, 295, 353, 471, 547, 713, 806, 1023, ?",
+   "oplossing": "1146"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 23, 46, 71, 127, 234, 446, 791, 1370, 2220, 3531, 5359, 8065, 11752, 17114, 24365, ?",
+   "oplossing": "34854"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 28, 34, 44, 69, 109, 163, 234, 306, 391, 490, 638, 798, 975, 1160, ?",
+   "oplossing": "1463"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "Zet voort: 15, 18, 41, 99, 212, 400, 694, 1133, 1765, 2646, 3853, 5485, 7656, 10506, 14214, ?",
+   "oplossing": "19011"
+  }
+ ]
+}

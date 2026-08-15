@@ -47,7 +47,12 @@ REPORT = "/home/arch/amber-werk/fase1/leven.md"
 
 os.makedirs(FOLDER, exist_ok=True)
 log = journal.Journal(f"{FOLDER}/logboek.jsonl")
-learner = Learner(batch_size=64)
+# Activation checkpointing (15 Aug 2026): off until a bigger net needs it.
+# A machine setting, not part of her state — set AMBER_CHECKPOINTING=1 in
+# the service environment when she outgrows the card. Same numbers bit for
+# bit (test-checkpointing.py), ~35% more time on the learning part.
+learner = Learner(batch_size=64,
+                  checkpointing=os.environ.get("AMBER_CHECKPOINTING") == "1")
 
 # --- resuming --------------------------------------------------------------
 # What everything is built around: the server can drop out at night from
@@ -58,17 +63,20 @@ BEGIN = 1
 SNAPSHOT = f"{FOLDER}/momentopname.pt"
 if os.path.exists(SNAPSHOT):
     content = snapshot.read(SNAPSHOT, device=learner.device)
+    extra = content.get("extra") or {}
+    # Take the snapshot's shape BEFORE the weights go in (15 Aug 2026): a
+    # grown net has more blocks than the Learner is built with, and
+    # load_state_dict would refuse it. adopt_shape grows to the snapshot's
+    # depth and follows its window (both change nothing about the weights
+    # — test-layer-growth.py, test-window-growth.py — and take the answer
+    # copy and the memory doorway along). Run-3 snapshots lack the key:
+    # then the default shape is the shape.
+    vorm = extra.get("vorm")
+    if vorm:
+        learner.adopt_shape(bridge.translate_spec(vorm))
     BEGIN = snapshot.restore(content, learner.core, learner.optimizer,
                              learner.device) + 1
     learner.steps = BEGIN - 1
-    extra = content.get("extra") or {}
-    # Follow the snapshot's window before anything else touches it: run 4
-    # trains at 768 while the Learner is built at the default. Growing
-    # changes nothing about the weights (test-window-growth.py) and takes
-    # the answer copy and the memory doorway along (adopt_window).
-    vorm = extra.get("vorm")
-    if vorm:
-        learner.adopt_window(bridge.translate_spec(vorm).get("window") or 0)
     if "geheugen" in extra:
         learner.restore(extra)
         print(f"  geheugen terug: {len(learner.memory):,} herinneringen")
@@ -90,6 +98,30 @@ if BEGIN > STEPS:
           .replace(",", "."))
     log.close()
     sys.exit(0)
+
+# --- lessen van Cley -------------------------------------------------------
+# Bezorgd op een rungrens (bezorg-brievenbus.py), soort "les" in het
+# logboek. `learn_lessons` is idempotent op het regelnummer: wat al in het
+# geheugen zit (het reist mee in de momentopname) wordt overgeslagen, dus
+# een hervatting vanaf een oudere opname komt bit voor bit gelijk uit.
+# Ná de klaar-is-klaar-grendel: een herstart van een afgelopen run doet
+# níets, ook dit niet.
+try:
+    # journal.read geeft (regels, stilte) terug — niet alleen de regels.
+    # Fout gevonden 14 aug 2026, bij de allereerste echte draai van dit
+    # blok: run 5 viel er drie keer op om vóór één stap gezet was.
+    _les_rows, _ = journal.read(f"{FOLDER}/logboek.jsonl")
+    _les_rows = [r for r in _les_rows if r.get("soort") == "les"]
+except FileNotFoundError:
+    _les_rows = []
+if _les_rows:
+    taken, refused = learner.learn_lessons(_les_rows)
+    if taken or refused:
+        print(f"  lessen van Cley: {taken} het geheugen in"
+              + (f", {refused} geweigerd (te lang voor de doorgang)"
+                 if refused else ""))
+        log.write("les_geleerd", stap=BEGIN, aantal=taken,
+                  geweigerd=refused)
 
 print("=" * 72)
 print("Leven in de wereld")
@@ -113,6 +145,15 @@ print(f"  stap {0:>5} | " + "  ".join(
     f"{n} {v:>4.0%}" for n, v in sorted(measurements[0][1].items())))
 
 start_time = time.perf_counter()
+# Tempo en resttijd over de láátste 500 stappen, niet sinds de start. Op
+# 14 aug 2026 stond na 50 stappen "1614 ms/st, klaar 18:00"; de run deed
+# vanaf het begin 2216 en was pas 02:15 klaar — de eerste vijftig
+# stappen zijn te weinig en het lopende gemiddelde bleef daar uren aan
+# hangen. 500 stappen dekken precies één proefwerk plus momentopname, dus
+# elk venster telt hetzelfde. Vóór 500 stappen: wel het tempo tot nu toe
+# (het rapport leest die cijfers), maar géén eindtijd — "nog ?".
+WINDOW_STEPS = 500
+marks = [(BEGIN - 1, start_time)]        # (stap, kloktijd) elke 50 stappen
 chosen = {}
 for step in range(BEGIN, STEPS + 1):
     result = learner.work(step)
@@ -129,15 +170,26 @@ for step in range(BEGIN, STEPS + 1):
 
     # Every 50 steps a sign of life: how far, how fast, how much longer.
     if step % 50 == 0:
-        elapsed = time.perf_counter() - start_time
-        per_step = elapsed / (step - BEGIN + 1)
-        left = (STEPS - step) * per_step
+        now = time.perf_counter()
+        marks.append((step, now))
+        base_step, base_time = marks[0]
+        for s_, t_ in reversed(marks):
+            if step - s_ >= WINDOW_STEPS:
+                base_step, base_time = s_, t_
+                break
+        per_step = (now - base_time) / max(1, step - base_step)
+        if step - base_step >= WINDOW_STEPS:
+            left = (STEPS - step) * per_step
+            rest = f"{int(left // 3600)}u{int(left % 3600 // 60):02d}m"
+        else:
+            rest = "?"
+        del marks[:-(WINDOW_STEPS // 50 + 1)]
         last_score = ("--" if result["score"] is None
                       else f"{result['score']:.0%}")
         print(f"  {time.strftime('%H:%M')}  stap {step:>6}/{STEPS}"
               f"  {step / STEPS:>4.0%}"
               f"  {per_step * 1000:>4.0f} ms/st"
-              f"  nog {int(left // 3600)}u{int(left % 3600 // 60):02d}m"
+              f"  nog {rest}"
               f"   {result['family']}/{result['depth']}  {last_score:>4}",
               flush=True)
 

@@ -27,7 +27,8 @@ def stuur(titel, tekst, prioriteit="default"):
 
 
 def haal_stand():
-    with urllib.request.urlopen("http://127.0.0.1:8000/stand.json",
+    # het venster woont sinds 14 aug 2026 op de Z490
+    with urllib.request.urlopen("http://192.168.1.239:8000/stand.json",
                                 timeout=10) as r:
         return json.load(r)
 

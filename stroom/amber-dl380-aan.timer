@@ -1,0 +1,11 @@
+[Unit]
+Description=Amber — DL380 elke dag om 17:00 aan
+
+[Timer]
+OnCalendar=*-*-* 17:00:00
+# Persistent=true met opzet: stond de Z490 om 17:00 zelf uit, dan wordt
+# de gemiste beurt bij het opkomen alsnog gedraaid.
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Amber — DL380 aanzetten via de iLO
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=arch
+ExecStart=/home/arch/amber-werk/stroom/dl380-aan.sh

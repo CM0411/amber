@@ -1,0 +1,9 @@
+[Unit]
+Description=Amber — elke tien minuten kijken of er cijfers te maken zijn
+
+[Timer]
+OnCalendar=*:0/10
+Persistent=false
+
+[Install]
+WantedBy=timers.target

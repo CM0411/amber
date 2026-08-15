@@ -15,6 +15,7 @@ Run:  venv/bin/python kern/test-world.py
 """
 
 import contextlib
+import hashlib
 import io
 import re
 import sys
@@ -386,8 +387,9 @@ for n in range(2000, 2400):
     t = world.make("puzzel", 2, n)
     if t is not None:
         lengths.add(t.problem.count(","))
-check("puzzle rows vary in length (5, 6 and 7 shown)",
-      lengths == {5, 6, 7},
+# since 15 Aug 2026 the keer-plus rows at depth 2 show two more (7-9)
+check("puzzle rows vary in length (5, 6 and 7 shown; keer-plus 7-9)",
+      lengths == {5, 6, 7, 8, 9},
       "with always six she learns the rhythm instead of the stopping point")
 
 # The three exam forms of code (loop, list, def) exist and fit their
@@ -472,9 +474,54 @@ for depth in (7, 8, 9):
 check("puzzle depth 1-6 keeps the wide working (no compact labels)", wide_ok)
 check("puzzle depth 7-9 works compactly and ends on the answer",
       compact_ok and compact_seen > 0, f"{compact_seen} sampled")
-check("compact workings fit window 1024",
-      compact_seen > 0 and compact_fit == compact_seen,
+# The world's own standard is 85% (the fence rule of 10 Aug 2026); until
+# 15 Aug 2026 everything here fitted, since then the keer-plus rows at
+# depth 9 run to ~1050 characters for one in ten. `fits()` filters those.
+check("compact workings fit window 1024 (85% rule)",
+      compact_seen > 0 and compact_fit >= 0.85 * compact_seen,
       f"{compact_fit}/{compact_seen} within 912")
+
+# --- the keer-plus brick (15 Aug 2026) ---------------------------------------
+# One in five puzzle numbers from depth 2 tries `x → 2x + b` under the usual
+# layers (own seed split). The other four in five must stay bit for bit the
+# world of before: this checksum was taken over them on 15 Aug 2026 before
+# the brick existed (300 numbers per depth 1-10, minus the split numbers).
+_h = hashlib.sha256()
+kp_numbers = []
+for depth in range(1, 11):
+    for n in range(300):
+        seed = world._seed_of("puzzel", depth, n)
+        k = tasks.Picker(tasks._mix(seed ^ world.KEERPLUS_SEED))
+        if depth >= world.KEERPLUS_MIN and k.integer(1, 5) == 1:
+            kp_numbers.append((depth, n))
+            continue
+        t = world.make("puzzel", depth, n)
+        _h.update((f"{depth}|{n}|{t.problem if t else ''}|"
+                   f"{t.working if t else ''}|{t.solution if t else ''}\n")
+                  .encode())
+check("puzzle numbers outside the keer-plus split are bit for bit the world "
+      "of 15 Aug 2026", _h.hexdigest()[:16] == "a7d2547646bda49b",
+      _h.hexdigest()[:16])
+# and the split numbers: a row that comes out ends on its answer, every
+# equation holds, and the doubling shows in the working (a `: 2` ratio
+# step or a `gedeeld: 2` row) for the plain brick at depth 2
+kp_seen = kp_bad = kp_plain = kp_plain_ok = 0
+for depth, n in kp_numbers:
+    t = world.make("puzzel", depth, n)
+    if t is None:
+        continue
+    kp_seen += 1
+    if not t.working.rstrip().endswith(t.solution) or not _steps_hold(t):
+        kp_bad += 1
+    if depth == 2:
+        kp_plain += 1
+        if " : " in t.working and "= 2 ;" in t.working:
+            kp_plain_ok += 1
+check("keer-plus rows end on their answer with true steps",
+      kp_seen > 100 and kp_bad == 0, f"{kp_seen} rows, {kp_bad} bad")
+check("at depth 2 the keer-plus brick stands alone: differences, ratio 2",
+      kp_plain > 0 and kp_plain_ok == kp_plain, f"{kp_plain_ok}/{kp_plain}")
+
 
 # --- the conversational wrapper (13 Aug 2026) --------------------------------
 # A fifth of arithmetic depth 2-8 appears as an everyday question ("Wat is
@@ -529,6 +576,159 @@ for depth in range(2, 9):
             wrap_fit += 1
 check("wrapped problems fit the window and their writing space (768)",
       wrap_all > 0 and wrap_fit == wrap_all, f"{wrap_fit}/{wrap_all}")
+
+# --- the big multiplication (14 Aug 2026) ------------------------------------
+# A fifth of arithmetic depth 3-8 becomes a bare teen multiplication
+# (`48 * 14`) with the split-over-tens working — the run-4 exam showed she
+# guessed exactly this form, dropping the tens digit. Outside the band and
+# for every untouched number: bit for bit the old world.
+big = 0
+big_bad = 0
+for depth in range(3, 9):
+    for n in range(400):
+        t = world.make("rekenen", depth, n)
+        if t is None:
+            continue
+        m = re.fullmatch(r"(\d+) \* (1[3-9])", _unwrap(t.problem))
+        if not m:
+            continue
+        big += 1
+        a, b = int(m.group(1)), int(m.group(2))
+        tens, ones = a * 10, a * (b - 10)
+        expected = (f"{a} * 10 = {tens} ; {a} * {b - 10} = {ones} ; "
+                    f"{tens} + {ones} = {a * b}")
+        if not t.working.endswith(expected) or t.solution != str(a * b):
+            big_bad += 1
+check("teen multiplications carry the split-over-tens working",
+      big > 0 and big_bad == 0, f"{big} of 2400 sampled")
+check("their share is around a fifth", 0.15 < big / 2400 < 0.27, f"{big}")
+buiten = 0
+for depth in (1, 2, 9, 10):
+    for n in range(200):
+        t = world.make("rekenen", depth, n)
+        if t and re.fullmatch(r"\d+ \* 1[3-9]", _unwrap(t.problem)):
+            buiten += 1
+check("outside depth 3-8 no teen multiplications appear", buiten == 0)
+
+# --- the long loop with a compact working (14 Aug 2026) ----------------------
+# The exam's loops run to twenty rounds; the wide working for those never
+# fit any writing space, so she computed flawlessly and fell off the page —
+# every code-3/5 miss of run 4. A quarter of code depth 5+ now carries the
+# exam's full loop sizes with the compact working: terms as one row, the
+# running sum as one row, the last number the answer. Short loops keep the
+# wide working she already masters.
+lang = 0
+lang_bad = 0
+lang_fit = 0
+kort_bad = 0
+for depth in range(1, 12):
+    for n in range(300):
+        t = world.make("code", depth, n)
+        if t is None:
+            continue
+        m = re.search(r"range\(1, (\d+)\)", t.problem)
+        rondes = int(m.group(1)) - 1 if m else 0
+        if " ; som: " in t.working:
+            lang += 1
+            head, staart = t.working.rsplit(" ; som: ", 1)
+            sums = [int(x) for x in staart.split()]
+            terms = [int(x) for x in head.rsplit(": ", 1)[1].split()]
+            goed = (depth >= 5 and rondes >= 12 and len(terms) == rondes
+                    and len(sums) == rondes + 1
+                    and all(sums[i + 1] - sums[i] == terms[i]
+                            for i in range(rondes))
+                    and str(sums[-1]) == t.solution)
+            if not goed:
+                lang_bad += 1
+            if (world.fits(t, 1024 - 112)
+                    and len(t.to_learn()) <= _rf(depth, "code", 1024)):
+                lang_fit += 1
+        elif rondes and ("i * 2" in t.problem or "i * i" in t.problem):
+            # the wide loop she already masters: still eleven rounds at most
+            if rondes > 11:
+                kort_bad += 1
+check("long loops (12-20 rounds) come with the compact working",
+      lang > 0 and lang_bad == 0, f"{lang} sampled")
+check("compact loop workings fit window 1024 and its writing space",
+      lang > 0 and lang_fit == lang, f"{lang_fit}/{lang}")
+check("wide 2i/i2 loops keep at most eleven rounds (unchanged shape)",
+      kort_bad == 0)
+
+# --- the stacked code forms (15 Aug 2026) ------------------------------------
+# From depth 16 the code family stacks its blocks (filter in a loop, def
+# over a list, loop in a loop, def calling def; three blocks from 20).
+# Depths 1-15 must stay bit for bit what they were: this checksum was
+# taken on 15 Aug 2026 before the stacked forms existed, over 300 numbers
+# per depth. Anyone who changes it changes the shape of what she mastered.
+_h = hashlib.sha256()
+for depth in range(1, 16):
+    for n in range(300):
+        t = world.make("code", depth, n)
+        _h.update((f"{depth}|{n}|{t.problem if t else ''}|"
+                   f"{t.working if t else ''}|{t.solution if t else ''}\n")
+                  .encode())
+check("code depth 1-15 is bit for bit the world of 15 Aug 2026",
+      _h.hexdigest()[:16] == "e6b79a906f84757f", _h.hexdigest()[:16])
+
+_STACK_MARKS = ("    if i > ", "for x in getallen", "    for j in ",
+                "def g(x)")
+_old_fence = world.MAX_DEPTH
+world.MAX_DEPTH = max(world.MAX_DEPTH, 30)
+stacked_seen = stacked_bad = stacked_fit = 0
+forms_two, forms_three = set(), set()
+three_bad = 0
+for depth in range(16, 27):
+    for n in range(150):
+        t = world.make("code", depth, n)
+        if t is None:
+            stacked_bad += 1
+            continue
+        stacked_seen += 1
+        marks = [m for m in _STACK_MARKS if m in t.problem]
+        if not marks:
+            stacked_bad += 1            # a plain form or a long loop leaked
+        if not t.working.rstrip().endswith(t.solution):
+            stacked_bad += 1
+        if len(t.problem) + len(t.to_learn()) + 3 <= 1024 - 112:
+            stacked_fit += 1
+        # three blocks from 20: filter under the def-list, term under the
+        # loop filter, filter in the inner loop, loop over g(i)
+        three = (" if x > " in t.problem or "        totaal += i * 2" in t.problem
+                 or "        totaal += i * i" in t.problem
+                 or "        if j > " in t.problem or "totaal += g(i)" in t.problem)
+        (forms_three if depth >= 20 else forms_two).add(marks[0] if marks else "?")
+        if depth < 20 and three:
+            three_bad += 1
+        if depth >= 20 and not three:
+            three_bad += 1
+world.MAX_DEPTH = _old_fence
+check("code depth 16-26: every problem is a stacked form, ends on its answer",
+      stacked_seen > 0 and stacked_bad == 0, f"{stacked_bad} bad of {stacked_seen}")
+check("all four stacked forms occur, two blocks below 20 and three from 20",
+      len(forms_two) == 4 and len(forms_three) == 4 and three_bad == 0,
+      f"{sorted(forms_two)} / {sorted(forms_three)} / {three_bad} wrong")
+check("stacked forms fit window 1024",
+      stacked_seen > 0 and stacked_fit == stacked_seen,
+      f"{stacked_fit}/{stacked_seen}")
+# and Python itself is the judge again: every stacked program really prints
+# the noted answer, and every equation in the working holds
+world.MAX_DEPTH = max(world.MAX_DEPTH, 30)
+wrong_run = wrong_steps = 0
+for depth in range(16, 27):
+    for n in range(40):
+        t = world.make("code", depth, n)
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            exec(t.problem, {})
+        if out.getvalue().strip() != t.solution:
+            wrong_run += 1
+        if not _steps_hold(t):
+            wrong_steps += 1
+world.MAX_DEPTH = _old_fence
+check("440 stacked programs really print what is noted as the answer",
+      wrong_run == 0, f"{wrong_run} deviations")
+check("every equation in a stacked working is a true operation",
+      wrong_steps == 0, f"{wrong_steps} broken")
 
 print()
 print("=" * 70)

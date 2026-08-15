@@ -30,6 +30,7 @@ end.
 
 import threading
 
+import bridge
 import determinism
 import exams
 import tasks as tasks_module
@@ -91,10 +92,13 @@ def room_for(depth, family=None, window=512):
         # longest 391 at depth 3, 379 at 5, where 336 stood. Too narrow
         # costs the whole family, as 9 Aug 2026 showed.
         #
-        # Ceiling = window - 72: the margin is the longest puzzle problem.
-        # At window 512 this is the old 440; at 768 it becomes 696 and
-        # covers the measured 641 of depth 6 (10 Aug 2026).
-        return min(window - 72, 120 * depth + 40)
+        # Ceiling = window - 112: the margin follows the longest puzzle
+        # problem, and since the compact working opened depth 7-9 (13 Aug
+        # 2026) problems run to 104 characters — the old margin of 72 dated
+        # from fence 6. 112 is the same margin the learning loop uses for
+        # its material. Measured 13 Aug 2026 at window 1024: longest
+        # working 782 at depth 9, ceiling 912 covers it.
+        return min(window - 112, 120 * depth + 40)
     if family == "code":
         # Recalibrated 10 Aug 2026, after the three endings: even a depth-1
         # problem now writes `a = 11 ; b = 94 ; 11 - 94 = -83` — 62
@@ -113,7 +117,16 @@ def room_for(depth, family=None, window=512):
         # squares loop with nine rounds is ~280 characters at depth 3,
         # where 96 stood, and a def with ten rounds ~480 at depth 5. The
         # same disease as always: a number calibrated on an older world.
-        return min(window - 192, 160 * depth - 160)
+        #
+        # Raised again on 14 Aug 2026, after the error analysis of run 4:
+        # every code-3/5 miss was a long loop computed flawlessly and cut
+        # off by this bound. An eleven-round squares loop she has genuinely
+        # seen writes ~370 characters where grade 3 gave 320, and a
+        # fifteen-round def writes ~750 where grade 5 gave 640 — the cap
+        # was below her own learned material. 200·d − 200 covers both
+        # (400 at grade 3, 800 at grade 5); the ceiling still guards the
+        # window.
+        return min(window - 192, 200 * depth - 200)
     # Arithmetic. Longest working: 50 at depth 3, 110 at 6, 180 at 9, 247
     # at 12, and measured on 9 Aug 2026: 294 at 14, 356 at 16, 384 at 17.
     # The old bound of 280 cut depth 14+ — the same mistake as with puzzle
@@ -127,10 +140,15 @@ class Learner:
     def __init__(self, core=None, device=None, learning_rate=3e-4,
                  batch_size=32, replay_share=0.375, brake=0.0, memory=None,
                  curiosity=None, deepest=2, edge_threshold=0.5,
-                 probe_every=4, bf16=None):
+                 probe_every=4, bf16=None, checkpointing=False):
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.core = (core or Core()).to(self.device)
         self.bf16 = bf16_usable(self.device) if bf16 is None else bf16
+        # Activation checkpointing (15 Aug 2026): a machine setting like
+        # bf16, not part of who she is — it never enters the snapshot. Same
+        # numbers bit for bit, less VRAM, ~30% more time on the learning
+        # part. See Core.checkpointing and test-checkpointing.py.
+        self.core.checkpointing = bool(checkpointing)
 
         # Both cards. They cannot reach each other's memory (no NVLink on
         # the PCIe build), so the batch splits and the gradients meet over
@@ -182,6 +200,13 @@ class Learner:
             self.memory = ReplayMemory(
                 bottleneck=Bottleneck(length=self.core.window))
         self.steps = 0
+
+        # Lessons from Cley (13 Aug 2026): the highest journal line number
+        # already taken into the memory. Travels in the snapshot, so a
+        # lesson enters the memory exactly once — a resume from an older
+        # snapshot replays the same lessons in the same order and lands on
+        # the same memory, bit for bit.
+        self.lessons_upto = 0
 
         # The edge of her world, per family. Grows as soon as she can
         # handle that family at the current edge — see open_deeper().
@@ -365,10 +390,19 @@ class Learner:
         for i, prompt in enumerate(prompts):
             question[i, longest - len(prompt):] = torch.tensor(prompt,
                                                                device=device)
-        mask = question == tokens.PAD          # nothing real stands here
+        # The mask at full length up front (15 Aug 2026): before, every
+        # character grew it with torch.cat, like the cache. Beyond the
+        # question everything is real, so False.
+        capacity = longest + at_most
+        mask_full = torch.zeros(len(tasks_), capacity, dtype=torch.bool,
+                                device=device)
+        mask_full[:, :longest] = question == tokens.PAD    # nothing real here
 
-        # The question in one pass; after that only each new character.
-        scores, cache = core.advance(question, key_mask=mask)
+        # The question in one pass into a cache laid out at full length;
+        # after that only each new character (see KVCache in network.py).
+        cache = core.new_cache(capacity)
+        scores, cache = core.advance(question, cache=cache,
+                                     key_mask=mask_full[:, :longest])
         written = []
         done = torch.zeros(len(tasks_), dtype=torch.bool, device=device)
         following = scores[:, -1].argmax(dim=-1)
@@ -381,11 +415,9 @@ class Learner:
             done = done | (following == tokens.END)
             if bool(done.all()) or step == at_most - 1:
                 break
-            mask = torch.cat(
-                (mask, torch.zeros_like(mask[:, :1])), dim=1)
             scores, cache = core.advance(following[:, None], cache=cache,
                                          offset=longest + step,
-                                         key_mask=mask)
+                                         key_mask=mask_full[:, :longest + step + 1])
             following = scores[:, -1].argmax(dim=-1)
 
         answers = torch.stack(written, dim=1).tolist()
@@ -452,6 +484,13 @@ class Learner:
 
         torch.nn.utils.clip_grad_norm_(self.core.parameters(), 1.0)
         self.optimizer.step()
+        # Let the gradients go right away (15 Aug 2026): the next _step_real
+        # rebuilds them from zero anyway, but between two learning steps she
+        # answers — the probe every fourth step, the exams every 500th —
+        # and 82 MB of dead fp32 gradients sat inside that peak. Bit for bit
+        # the same learning; nothing reads .grad after the step (consolidate
+        # and the brake compute their own, the snapshot never stores them).
+        self.optimizer.zero_grad(set_to_none=True)
         self.steps += 1
         self._weights_fresh = True
         # The measured loss is the one *without* the brake: otherwise the
@@ -603,16 +642,122 @@ class Learner:
     # gone after a restart — like her memory at the crash of 9 Aug 2026.
     # Keys are Dutch: they are her state, in every snapshot ever written.
 
+    def learn_lessons(self, rows):
+        """Lessons from Cley enter the memory — through the doorway, like
+        everything else. There is no second entrance (U).
+
+        A lesson is the question with the **right** answer, delivered via
+        the mailbox on a run boundary (journal kind "les"). Never her own
+        answer: the correction is the lesson (8 Aug 2026). Family "gesprek",
+        grade 1 — the drawer labels, so the C measurement sees the family
+        and balanced forgetting keeps it a floor.
+
+        Idempotent on the journal line number: rows at or below
+        `lessons_upto` are already in the memory (it travels in the
+        snapshot). Returns (taken, refused) — refused means the doorway
+        (the window) was too narrow, and that is a fact worth logging,
+        not a crash.
+        """
+        taken = refused = 0
+        for row in sorted((r for r in rows
+                           if int(r.get("nr", 0)) > self.lessons_upto),
+                          key=lambda r: int(r["nr"])):
+            lesson = tasks_module.Task(
+                family="gesprek", grade=1, number=int(row["nr"]),
+                problem=str(row["vraag"]), solution=str(row["antwoord"]),
+                working=None)
+            if self.memory.remember(lesson, None, None):
+                taken += 1
+            else:
+                refused += 1
+            self.lessons_upto = int(row["nr"])
+        return taken, refused
+
     def carry(self):
         return {
             "geheugen": self.memory.carry(),
             "nieuwsgierig": self.curiosity.carry(),
+            "les_tot": self.lessons_upto,
             "diepste_per": dict(self.deepest_per),
             # Since 11 Aug 2026: the snapshot knows her shape, so a loader
             # can follow her window instead of assuming the default. Run-3
             # snapshots lack this key; loaders must cope with that.
             "vorm": self.core.spec(),
         }
+
+    def grow_layer(self, position=None):
+        """Grow one layer deep. The output stays bit for bit the same, and
+        everything around the core follows (15 Aug 2026, phase-5 groundwork).
+
+        The core's `add_block` puts in a block with both gates at zero —
+        `x + 0 * f(x)` is exactly `x`. What the core cannot do itself is the
+        rest of the machinery, and that is where growth breaks things
+        quietly (roadmap: "a network that grows breaks the optimizer's
+        state"):
+
+        * **the optimizer.** AdamW's state (the two moments per weight) is
+          kept per parameter. A fresh optimizer over the grown core would
+          throw the moments of fourteen million weights away — the whole
+          run's momentum. Adding a second parameter group would keep them,
+          but a snapshot then carries a two-group optimizer that only loads
+          into an optimizer built the same way — a shape nobody rebuilds
+          from the spec. So: one fresh optimizer, one group, and the old
+          moments transplanted by parameter identity. The new block starts
+          with empty moments, which is right — it has learned nothing yet.
+          The saved state dict then indexes the grown core's parameter
+          order, and `Core.from_spec` rebuilds exactly that order.
+        * **the answer copy on card 1** has the old shape: rebuild it from
+          the spec and mark the weights for the next transfer.
+        * **DataParallel** wraps `self.core` by reference and replicates on
+          every call, so it picks the new block up by itself.
+
+        Returns the new block. Shrinking does not exist, on purpose.
+        """
+        old_state = dict(self.optimizer.state)
+        old_group = self.optimizer.param_groups[0]
+        new_block = self.core.add_block(position)
+        fresh = torch.optim.AdamW(self.core.parameters(),
+                                  lr=old_group["lr"])
+        for key, value in old_group.items():
+            if key != "params":
+                fresh.param_groups[0][key] = value
+        for p in self.core.parameters():
+            if p in old_state:
+                fresh.state[p] = old_state[p]
+        self.optimizer = fresh
+        if self._answer_core is not self.core:
+            self._answer_core = Core.from_spec(self.core.spec()).to(
+                self._answer_device)
+            self._answer_core.eval()
+            self._weights_fresh = True
+        return new_block
+
+    def adopt_shape(self, spec):
+        """Take the shape of a snapshot before its weights are loaded.
+
+        A snapshot from a grown net has more blocks than a fresh Learner;
+        `load_state_dict` would refuse it. So first grow to the snapshot's
+        depth (blocks at the end — the snapshot's own order is kept, since
+        the weights overwrite everything afterwards), then follow its
+        window. Width and heads cannot change yet; a mismatch there is an
+        error, not something to paper over.
+        """
+        if not spec:
+            return
+        spec = bridge.translate_spec(spec)
+        if spec.get("width", self.core.width) != self.core.width or \
+                spec.get("heads", self.core.heads) != self.core.heads:
+            raise ValueError(
+                f"snapshot has width {spec.get('width')} × heads "
+                f"{spec.get('heads')}, this net {self.core.width} × "
+                f"{self.core.heads} — that growth does not exist yet")
+        while len(self.core.blocks) < spec.get("layers", 0):
+            self.grow_layer()
+        if len(self.core.blocks) > spec.get("layers", len(self.core.blocks)):
+            raise ValueError(
+                f"snapshot has {spec['layers']} layers, this net "
+                f"{len(self.core.blocks)} — nets do not shrink")
+        self.adopt_window(spec.get("window") or 0)
 
     def adopt_window(self, window):
         """Follow a grown window: core, answer copy and doorway together.
@@ -635,6 +780,9 @@ class Learner:
             return
         if carried.get("geheugen"):
             self.memory.restore(carried["geheugen"])
+        # Snapshots from before 13 Aug 2026 lack this key: then no lesson
+        # has ever been taken in, and 0 is exactly right.
+        self.lessons_upto = int(carried.get("les_tot") or 0)
         if carried.get("nieuwsgierig"):
             self.curiosity.restore(carried["nieuwsgierig"])
         if carried.get("diepste_per"):
@@ -669,11 +817,16 @@ def _as_task(decoded):
     # shortcut.
     whole = decoded["oplossing"]
     numbers = tasks_module._NUMBER.findall(whole)
+    solution = numbers[-1] if numbers else whole
     return tasks_module.Task(
         family=decoded["familie"],
         grade=decoded["graad"],
         number=-1,                       # a memory, not a task from stock
         problem=decoded["opgave"],
-        solution=numbers[-1] if numbers else whole,
-        working=whole if "=" in whole else None,
+        solution=solution,
+        # A working whenever the stored text is more than the bare answer —
+        # not just when it contains "=". A lesson like "Parijs heeft 2
+        # miljoen inwoners" would otherwise replay as its last number and
+        # the sentence itself would silently vanish (13 Aug 2026).
+        working=None if whole == solution else whole,
     )

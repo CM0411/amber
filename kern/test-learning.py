@@ -386,6 +386,60 @@ check("an experience of worldly length is now allowed in",
       "83 characters plus markers — the old doorway of 128 on a window of "
       "96 would also have refused it, but for the wrong reason")
 
+# --- Lessons from Cley (13 Aug 2026) ---------------------------------------
+# A lesson is the question with the right answer, delivered as journal kind
+# "les". It enters the memory through the doorway (no second entrance) and
+# `lessons_upto` makes the intake idempotent on the line number.
+
+print("--- Lessons from Cley ---")
+
+lessen = small_learner()
+rows = [{"nr": 12, "vraag": "hoe heet ik?", "antwoord": "Cley"},
+        {"nr": 15, "vraag": "waar woon ik?",
+         "antwoord": "in Nederland, bij de server"}]
+before = len(lessen.memory)
+taken, refused = lessen.learn_lessons(rows)
+check("both lessons enter the memory",
+      taken == 2 and refused == 0 and len(lessen.memory) == before + 2)
+check("the drawer label is familie gesprek, graad 1",
+      lessen.memory._tally.get(("gesprek", 1)) == 2)
+check("intake is idempotent on the line number",
+      lessen.learn_lessons(rows) == (0, 0) and len(lessen.memory) == before + 2)
+
+picker = tasks.Picker(99)
+replayed = [d for d in lessen.memory.replay(50, picker)
+            if d["familie"] == "gesprek"]
+whole_ok = any(d["opgave"] == "waar woon ik?"
+               and d["oplossing"] == "in Nederland, bij de server"
+               for d in replayed)
+check("a replayed lesson returns question and full answer", whole_ok)
+lesson_task = learning._as_task(
+    {"opgave": "waar woon ik?",
+     "oplossing": "in Nederland, bij de server",
+     "familie": "gesprek", "graad": 1, "goed": None})
+check("a lesson with a number in it replays as the whole sentence",
+      learning._as_task(
+          {"opgave": "hoeveel kaarten heeft de server?",
+           "oplossing": "2 kaarten van 16 GB",
+           "familie": "gesprek", "graad": 1, "goed": None}
+      ).to_learn() == "2 kaarten van 16 GB",
+      "before 13 Aug 2026 this replayed as its last number alone")
+check("a lesson without numbers replays whole too",
+      lesson_task.to_learn() == "in Nederland, bij de server")
+
+carried = lessen.carry()
+fresh = small_learner()
+fresh.restore(carried)
+check("les_tot travels in the snapshot",
+      fresh.lessons_upto == 15 and carried["les_tot"] == 15)
+check("and after the restore the same lessons are skipped",
+      fresh.learn_lessons(rows) == (0, 0))
+
+too_long = [{"nr": 20, "vraag": "v" * 200, "antwoord": "a" * 200}]
+taken, refused = lessen.learn_lessons(too_long)
+check("a lesson too big for the doorway is refused, not fatal",
+      taken == 0 and refused == 1 and lessen.lessons_upto == 20)
+
 print()
 print("=" * 70)
 print(f"passed: {passed}    failed: {failed}")

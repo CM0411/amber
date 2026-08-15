@@ -21,6 +21,7 @@ PAD = sys.argv[1] if len(sys.argv) > 1 else "/home/arch/amber-werk/fase1/nu.pt"
 
 learner = learning.Learner(batch_size=32)
 content = snapshot.read(PAD, device=learner.device)
+learner.adopt_shape((content.get("extra") or {}).get("vorm"))
 step = snapshot.restore(content, learner.core, learner.optimizer,
                         learner.device)
 extra = content.get("extra") or {}

@@ -1,0 +1,14 @@
+[Unit]
+Description=Amber — melding als de DL380 aan of uit gaat
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/bash -c 'curl -s --max-time 10 -H "Title: DL380 aan" -H "Tags: electric_plug" -d "de server is op" https://ntfy.sh/$(cat /home/arch/.amber-ntfy)'
+ExecStop=/bin/bash -c 'curl -s --max-time 10 -H "Title: DL380 uit" -H "Tags: electric_plug" -d "de server gaat netjes uit" https://ntfy.sh/$(cat /home/arch/.amber-ntfy)'
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target

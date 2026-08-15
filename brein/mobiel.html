@@ -113,7 +113,8 @@
 </div>
 
 <script>
-const grens = {rekenen: 26, code: 11, puzzel: 6};
+// vangnet; de echte hekken komen per run uit run.json (zie haal())
+const grens = {rekenen: 38, code: 15, puzzel: 9};
 
 async function haal() {
   try {
@@ -122,6 +123,9 @@ async function haal() {
     const lv = (s.run && s.run.live) || {};
     const rm = (s.run && s.run.machine) || {};
     const rs = (s.run && s.run.scores) || {};
+    // de hekken volgen run.json — handbijhouden liep 14 aug 2026 achter
+    for (const m of (cfg.hek || "").matchAll(/([a-z]+)\s+(\d+)/g))
+      grens[m[1]] = +m[2];
 
     if (s.uren) {
       let u = `≈ ${String(s.uren).replace(".", ",")} uur samen gebouwd`;
@@ -151,7 +155,10 @@ async function haal() {
       : "";
 
     // proefwerk
-    const namen = ["ladder", "grondslag", "gemengd", "diepte2", "diepte"];
+    // vaste volgorde eerst; een nieuw proefwerk komt er vanzelf achteraan
+    const vast = ["ladder", "grondslag", "gemengd", "gesprek", "diepte2", "diepte"];
+    const namen = vast.concat(Object.keys(rs).filter(
+      n => n !== "_stap" && !vast.includes(n)));
     const chips = namen.filter(n => n in rs)
       .map(n => `<span class="chip">${n} <b>${rs[n]}%</b></span>`).join("");
     if (chips) document.getElementById("p-chips").innerHTML = chips;

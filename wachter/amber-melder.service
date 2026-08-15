@@ -1,0 +1,12 @@
+[Unit]
+Description=Amber melder aan boord van de trainer
+After=network-online.target
+
+[Service]
+User=arch
+ExecStart=/usr/bin/python /home/arch/amber-werk/wachter/melder-trainer.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

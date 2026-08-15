@@ -1,0 +1,65 @@
+
+=== 0. is de run echt af? ================================
+Verslag: /home/arch/amber-werk/fase1/leven.md
+=== klaar om 16:35:46 ===
+
+=== 1. eindstand veiligstellen ===========================
+TrueNAS overslaan (traag)
+aefb8b31
+
+=== 2. nameting per vakje (het eindrapport van run 4) ====
+checkpoint van stap 320.000 · venster 768
+
+geheugen: 30.000 herinneringen
+  rekenen  1:  698  2:  698  3:  698  4:  698  5:  698  6:  698  7:  698  8:  698  9:  698  10:  698  11:  698  12:  698  13:  697  14:  697  15:  697  16:  697  17:  697  18:  697  19:  697  20:  697  21:  697  22:  697  23:  697  24:  697  25:  697  26:  697
+  code     1:  698  2:  698  3:  698  4:  698  5:  698  6:  698  7:  698  8:  698  9:  698  10:  698  11:  698
+  puzzel   1:  698  2:  698  3:  698  4:  698  5:  698  6:  698
+
+grondslag per vakje (score, aantal opgaven):
+  code     graad 1:   99%   (100)
+  code     graad 2:   97%   (100)
+  code     graad 3:   62%   (100)
+  code     graad 4:   99%   (100)
+  code     graad 5:   63%   (100)
+  puzzel   graad 1:   99%   (100)
+  puzzel   graad 2:   97%   (100)
+  puzzel   graad 3:   99%   (100)
+  puzzel   graad 4:   99%   (100)
+  puzzel   graad 5:  100%   (100)
+  rekenen  graad 1:  100%   (100)
+  rekenen  graad 2:   96%   (100)
+  rekenen  graad 3:   65%   (100)
+  rekenen  graad 4:   81%   (100)
+  rekenen  graad 5:  100%   (100)
+
+=== 3. de brievenbus bezorgen ============================
+bezorgd: 9 waarneming(en), logboek t/m regel 327329, bij stap 320000
+
+=== 4. compile-proef op de trainer (meten, nog niets aanzetten) =
+== zonder compile ==
+1346 ms per stap
+== met compile: eerst het determinisme-bewijs ==
+  ronde 1: 8d2b59c56be2239a
+  ronde 2: 40ab44eb1f62658a
+GEEN BIT-GELIJKHEID — compile gaat NIET aan. Klaar.
+W0814 19:17:25.212000 1028082 torch/_inductor/utils.py:1717] [0/0] Not enough SMs to use max_autotune_gemm mode
+
+=== 5. hekken naar het 1024-tijdperk en de toetsen =======
+hekken 38/15/9, toetsen groen
+
+=== 6. kern, life.py en proefwerken naar de trainer ======
+
+=== 7. groeicheckpoint naar venster 1024 bouwen en plaatsen =
+run5-start.pt: 320000 venster 1024
+
+=== 8. tempo- en geheugenproef op 1024 (past partij 64 nog?) =
+geladen: stap 320000, venster 1024, geheugen 30000, partij 64, bf16 True
+tempo: 1701 ms/stap | VRAM-piek 6338 MB
+proefwerk (150 opgaven): 31 s
+raming 150.000 stappen: 70.9 u werk + 2.5 u proefwerken = 73.4 uur
+
+=== 9. run.json en wrapper ===============================
+
+ALLES KLAAR — run 5 wacht op Cleys woord:
+  doel 370.000 · venster 1024 · hekken rekenen 38. code 15. puzzel 9
+  starten = ssh trainer: sudo systemctl start amber-train

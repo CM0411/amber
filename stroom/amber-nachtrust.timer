@@ -1,0 +1,11 @@
+[Unit]
+Description=Amber — DL380 elke avond om 23:00 uit
+
+[Timer]
+OnCalendar=*-*-* 23:00:00
+# GEEN Persistent=true, met opzet: viel de server 's avonds zelf uit
+# (warmte) en komt hij om 17:00 op, dan zou een "gemiste" 23:00-beurt
+# hem bij het opstarten meteen weer uitzetten.
+
+[Install]
+WantedBy=timers.target

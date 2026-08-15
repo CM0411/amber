@@ -71,7 +71,10 @@ END_KINDS = {"rust"}
 # the "outcomes you do not want to have to earn again" N speaks of. On
 # 8 Aug 2026 they shared the file and cleanup ate them: after a 1500-step
 # run one line of progress was left.
-PERMANENT = {"meting", "proefwerk", "wereld_dieper", "besluit"}
+# "les" is permanent since 13 Aug 2026: a lesson from Cley came from
+# outside and can never be recomputed — and `lessons_upto` in the snapshot
+# needs the original line numbers to stay honest across compactions.
+PERMANENT = {"meting", "proefwerk", "wereld_dieper", "besluit", "les"}
 
 
 class Journal:
