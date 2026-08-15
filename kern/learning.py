@@ -732,31 +732,104 @@ class Learner:
             self._weights_fresh = True
         return new_block
 
+    def grow_width(self, heads=None, hidden=None):
+        """Grow wider inside the blocks: to `heads` attention heads and/or a
+        feedforward of `hidden` units. The output stays the same, and the
+        machinery follows (16 Aug 2026, the second half of E).
+
+        The core does the weight surgery (`grow_heads`, `grow_hidden`: new
+        heads and units come in behind zero columns, so what she computes
+        does not change). What has to follow, as with `grow_layer`:
+
+        * **the optimizer.** Here the old parameters are *replaced* by
+          bigger tensors, not merely joined by new ones. Their moments are
+          carried over by the same `place` rule the core used for the
+          weights: old moments in the old slots, zeros in the new — the new
+          rows and columns have learned nothing yet. The step count is
+          kept, so AdamW's bias correction stays where it was. Untouched
+          parameters keep their moments by identity, as before.
+        * **the answer copy** is rebuilt from the spec.
+        * **DataParallel** picks the new modules up by itself.
+
+        The residual width itself does not grow: LayerNorm averages over it,
+        so no padding leaves the old numbers alone. That is why "wider"
+        means heads and hidden units. Shrinking does not exist.
+        """
+        if heads is None and hidden is None:
+            raise ValueError("grow_width: say how — heads=, hidden=, or both")
+        old_state = dict(self.optimizer.state)
+        old_group = self.optimizer.param_groups[0]
+        transplants = []
+        if heads is not None:
+            transplants += self.core.grow_heads(heads - self.core.heads)
+        if hidden is not None:
+            transplants += self.core.grow_hidden(hidden)
+        fresh = torch.optim.AdamW(self.core.parameters(),
+                                  lr=old_group["lr"])
+        for key, value in old_group.items():
+            if key != "params":
+                fresh.param_groups[0][key] = value
+        for p in self.core.parameters():
+            if p in old_state:
+                fresh.state[p] = old_state[p]
+        for old, new, place in transplants:
+            if old not in old_state:
+                continue
+            was = old_state[old]
+            carried = {}
+            for key, value in was.items():
+                if torch.is_tensor(value) and value.shape == old.shape:
+                    moved = torch.zeros_like(new)
+                    place(value, moved)
+                    carried[key] = moved
+                else:
+                    carried[key] = value          # the step count
+            fresh.state[new] = carried
+        self.optimizer = fresh
+        if self._answer_core is not self.core:
+            self._answer_core = Core.from_spec(self.core.spec()).to(
+                self._answer_device)
+            self._answer_core.eval()
+            self._weights_fresh = True
+        return transplants
+
     def adopt_shape(self, spec):
         """Take the shape of a snapshot before its weights are loaded.
 
         A snapshot from a grown net has more blocks than a fresh Learner;
         `load_state_dict` would refuse it. So first grow to the snapshot's
         depth (blocks at the end — the snapshot's own order is kept, since
-        the weights overwrite everything afterwards), then follow its
-        window. Width and heads cannot change yet; a mismatch there is an
-        error, not something to paper over.
+        the weights overwrite everything afterwards), then wider if the
+        snapshot has more heads or hidden units, then follow its window.
+        The residual width and the head size cannot change; a mismatch
+        there is an error, not something to paper over.
         """
         if not spec:
             return
         spec = bridge.translate_spec(spec)
+        head_size = spec.get("head_size") or spec.get("width", 0) // max(
+            spec.get("heads", 1), 1)
         if spec.get("width", self.core.width) != self.core.width or \
-                spec.get("heads", self.core.heads) != self.core.heads:
+                head_size != self.core.head_size:
             raise ValueError(
-                f"snapshot has width {spec.get('width')} × heads "
-                f"{spec.get('heads')}, this net {self.core.width} × "
-                f"{self.core.heads} — that growth does not exist yet")
+                f"snapshot has width {spec.get('width')} × head size "
+                f"{head_size}, this net {self.core.width} × "
+                f"{self.core.head_size} — that growth does not exist")
         while len(self.core.blocks) < spec.get("layers", 0):
             self.grow_layer()
         if len(self.core.blocks) > spec.get("layers", len(self.core.blocks)):
             raise ValueError(
                 f"snapshot has {spec['layers']} layers, this net "
                 f"{len(self.core.blocks)} — nets do not shrink")
+        heads = spec.get("heads", self.core.heads)
+        hidden = spec.get("hidden", self.core.hidden)
+        if heads < self.core.heads or hidden < self.core.hidden:
+            raise ValueError(
+                f"snapshot has {heads} heads × {hidden} hidden, this net "
+                f"{self.core.heads} × {self.core.hidden} — nets do not shrink")
+        if heads > self.core.heads or hidden > self.core.hidden:
+            self.grow_width(heads=heads if heads > self.core.heads else None,
+                            hidden=hidden if hidden > self.core.hidden else None)
         self.adopt_window(spec.get("window") or 0)
 
     def adopt_window(self, window):

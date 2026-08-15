@@ -34,6 +34,8 @@ _SPEC_KEYS = {
     "lagen": "layers",
     "breedte": "width",
     "koppen": "heads",
+    "kopgrootte": "head_size",
+    "verborgen": "hidden",
     "venster": "window",
     "parameters": "parameters",
 }

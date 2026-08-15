@@ -116,16 +116,26 @@ class KVCache:
 
 
 class Attention(nn.Module):
-    def __init__(self, width, heads):
+    """`heads` heads of `head_size` each. By default heads × head_size is
+    the width — the usual split, and the shape every snapshot before 16 Aug
+    2026 has. Growing wider (E) adds heads while the width stays: then the
+    inner size heads × head_size grows past the width, and only `to_qkv`
+    and `out` change shape. The head size never changes — the rotation
+    angles depend on it, and so does every key she has ever computed."""
+
+    def __init__(self, width, heads, head_size=None):
         super().__init__()
-        if width % heads:
-            raise ValueError(f"width {width} not divisible by {heads} heads")
+        if head_size is None:
+            if width % heads:
+                raise ValueError(f"width {width} not divisible by {heads} heads")
+            head_size = width // heads
         self.heads = heads
-        self.head_size = width // heads
+        self.head_size = head_size
+        self.inner = heads * head_size
         if self.head_size % 2:
             raise ValueError("head size must be even for the rotation")
-        self.to_qkv = nn.Linear(width, 3 * width, bias=False)
-        self.out = nn.Linear(width, width, bias=False)
+        self.to_qkv = nn.Linear(width, 3 * self.inner, bias=False)
+        self.out = nn.Linear(self.inner, width, bias=False)
 
     def forward(self, x, cos, sin, cache=None, key_mask=None):
         """Returns (output, new cache).
@@ -189,15 +199,16 @@ class Attention(nn.Module):
         del scores
         out = weight @ v
         del weight
-        out = out.transpose(1, 2).reshape(batch, length, width)
+        out = out.transpose(1, 2).reshape(batch, length, self.inner)
         return self.out(out), cache
 
 
 class FeedForward(nn.Module):
-    def __init__(self, width, factor=4):
+    def __init__(self, width, hidden=None):
         super().__init__()
-        self.up = nn.Linear(width, factor * width, bias=False)
-        self.down = nn.Linear(factor * width, width, bias=False)
+        self.hidden = 4 * width if hidden is None else hidden
+        self.up = nn.Linear(width, self.hidden, bias=False)
+        self.down = nn.Linear(self.hidden, width, bias=False)
 
     def forward(self, x):
         return self.down(F.gelu(self.up(x)))
@@ -210,14 +221,14 @@ class Block(nn.Module):
     leaves the output exactly untouched.
     """
 
-    def __init__(self, width, heads):
+    def __init__(self, width, heads, head_size=None, hidden=None):
         super().__init__()
         self.norm1 = nn.LayerNorm(width)
-        self.attention = Attention(width, heads)
+        self.attention = Attention(width, heads, head_size)
         self.alpha1 = nn.Parameter(torch.zeros(1))
 
         self.norm2 = nn.LayerNorm(width)
-        self.feedforward = FeedForward(width)
+        self.feedforward = FeedForward(width, hidden)
         self.alpha2 = nn.Parameter(torch.zeros(1))
 
     def forward(self, x, cos, sin, cache=None, key_mask=None):
@@ -229,14 +240,19 @@ class Block(nn.Module):
 
 
 class Core(nn.Module):
-    def __init__(self, layers=8, width=384, heads=6, window=512):
+    def __init__(self, layers=8, width=384, heads=6, window=512,
+                 head_size=None, hidden=None):
         super().__init__()
         self.width = width
         self.heads = heads
+        self.head_size = width // heads if head_size is None else head_size
+        self.hidden = 4 * width if hidden is None else hidden
         self.window = window
 
         self.embedding = nn.Embedding(VOCAB, width)
-        self.blocks = nn.ModuleList(Block(width, heads) for _ in range(layers))
+        self.blocks = nn.ModuleList(
+            Block(width, heads, self.head_size, self.hidden)
+            for _ in range(layers))
         self.final_norm = nn.LayerNorm(width)
         self.unembedding = nn.Linear(width, VOCAB, bias=False)
 
@@ -315,11 +331,97 @@ class Core(nn.Module):
         roadmap, "a network that grows breaks the optimizer's state".
         """
         position = len(self.blocks) if position is None else position
-        new = Block(self.width, self.heads).to(self.embedding.weight.device)
+        new = Block(self.width, self.heads, self.head_size,
+                    self.hidden).to(self.embedding.weight.device)
         blocks = list(self.blocks)
         blocks.insert(position, new)
         self.blocks = nn.ModuleList(blocks)
         return new
+
+    def grow_heads(self, extra):
+        """Add `extra` attention heads to every block. The output does not
+        change (16 Aug 2026, the second half of E).
+
+        The residual stream keeps its width; what grows is the inner size
+        of the attention, heads × head_size. Every new head gets fresh
+        rows in `to_qkv` and **zero columns in `out`**: it looks at the
+        text like any other head, but what it sees is multiplied by zero
+        before it reaches the stream. Mathematically the output is exactly
+        the old one; the new columns then get a gradient and the head
+        learns itself in — the same idea as the zero gate on a new block.
+        (Growing the residual width itself is not on offer: LayerNorm
+        averages over that width, so no padding leaves the old numbers
+        alone. Only whole-block or inner growth is exact.)
+
+        Returns the transplants: (old_param, new_param, place) triples,
+        where `place(src, dst)` copies an old-shaped tensor into its slots
+        of a new-shaped one. The Learner uses that to carry the optimizer's
+        moments across — the weights here, the moments there, by the same
+        rule.
+        """
+        if extra <= 0:
+            raise ValueError(f"grow_heads wants a positive count, got {extra}")
+        device = self.embedding.weight.device
+        old_heads, hs = self.heads, self.head_size
+        new_heads = old_heads + extra
+        old_inner, new_inner = old_heads * hs, new_heads * hs
+        transplants = []
+        for block in self.blocks:
+            old = block.attention
+            new = Attention(self.width, new_heads, hs).to(device)
+
+            def place_qkv(src, dst, oi=old_inner, ni=new_inner):
+                # rows: [q | k | v], each old_inner long → same three
+                # groups, each new_inner long, old rows first in each
+                for g in range(3):
+                    dst[g * ni:g * ni + oi] = src[g * oi:(g + 1) * oi]
+
+            def place_out(src, dst, oi=old_inner):
+                dst[:, :oi] = src
+
+            with torch.no_grad():
+                place_qkv(old.to_qkv.weight, new.to_qkv.weight)
+                new.out.weight.zero_()
+                place_out(old.out.weight, new.out.weight)
+            transplants.append((old.to_qkv.weight, new.to_qkv.weight, place_qkv))
+            transplants.append((old.out.weight, new.out.weight, place_out))
+            block.attention = new
+        self.heads = new_heads
+        return transplants
+
+    def grow_hidden(self, new_hidden):
+        """Widen the feedforward of every block to `new_hidden` units. The
+        output does not change (16 Aug 2026).
+
+        New rows in `up` (fresh), **zero columns in `down`**: the new units
+        compute, but add exactly nothing until they have learned to. Same
+        rule and same return value as `grow_heads`.
+        """
+        if new_hidden <= self.hidden:
+            raise ValueError(
+                f"grow_hidden: {new_hidden} is not more than {self.hidden}")
+        device = self.embedding.weight.device
+        old_hidden = self.hidden
+        transplants = []
+        for block in self.blocks:
+            old = block.feedforward
+            new = FeedForward(self.width, new_hidden).to(device)
+
+            def place_up(src, dst, oh=old_hidden):
+                dst[:oh] = src
+
+            def place_down(src, dst, oh=old_hidden):
+                dst[:, :oh] = src
+
+            with torch.no_grad():
+                place_up(old.up.weight, new.up.weight)
+                new.down.weight.zero_()
+                place_down(old.down.weight, new.down.weight)
+            transplants.append((old.up.weight, new.up.weight, place_up))
+            transplants.append((old.down.weight, new.down.weight, place_down))
+            block.feedforward = new
+        self.hidden = new_hidden
+        return transplants
 
     def grow_window(self, new):
         """Enlarge the window. The output does not change.
@@ -354,11 +456,17 @@ class Core(nn.Module):
             "layers": len(self.blocks),
             "width": self.width,
             "heads": self.heads,
+            "head_size": self.head_size,
+            "hidden": self.hidden,
             "window": self.window,
             "parameters": self.parameter_count(),
         }
 
     @staticmethod
     def from_spec(spec):
+        # Snapshots before 16 Aug 2026 carry no head_size or hidden: then
+        # the defaults (width ÷ heads, 4 × width) are exactly their shape.
         return Core(layers=spec["layers"], width=spec["width"],
-                    heads=spec["heads"], window=spec["window"])
+                    heads=spec["heads"], window=spec["window"],
+                    head_size=spec.get("head_size"),
+                    hidden=spec.get("hidden"))

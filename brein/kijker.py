@@ -31,7 +31,7 @@ X399 = "arch@192.168.1.239"
 FETCH_EVERY = 180        # a fresh snapshot from the X399, every 3 minutes —
                          # as often as she writes one herself
 
-L = learning.Learner(batch_size=8)
+L = learning.Learner(batch_size=8, device="cpu")   # 16 aug 2026: op de CPU — de kaarten zijn voor het leren
 lock = exams.material()
 step_in_snapshot = 0
 last_fetched = 0.0
