@@ -1,0 +1,20 @@
+[Unit]
+Description=Amber — de kijker die haar brein doormeet voor het venster (Z490, CPU)
+After=network-online.target
+
+[Service]
+Type=simple
+User=arch
+# alleen de CPU: de kaart is van de training; en zachtjes, zodat de
+# leerlus nooit op de kijker wacht (roadmap fase 2)
+Environment=CUDA_VISIBLE_DEVICES=
+Environment=OMP_NUM_THREADS=4
+Environment=AMBER_KIJKER_LOKAAL=1
+Nice=10
+WorkingDirectory=/home/arch/amber-werk
+ExecStart=/usr/bin/python3 -u /home/arch/amber-werk/brein/kijker.py
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

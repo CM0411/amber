@@ -219,13 +219,6 @@ else:
 # de hele kern, niet alleen world en tasks (15 aug 2026: 11 toetsen, ~1 min)
 if not hier(f"{DL}/kern/toets-alles.sh"):
     sys.exit("er is een toets rood — stop")
-if HEK != HEK_OUD:
-    # de kijker leidt zijn keuzelijst af uit world.max_depth maar laadt de
-    # wereld alleen bij zijn start — na een hekverzetting dus herstarten,
-    # anders toont het venster tot de volgende dag de oude wereld (14 aug)
-    hier(f"echo {_geheim()} | sudo -S systemctl restart amber-kijker "
-         f"2>/dev/null")
-    print("kijker herstart")
 print("toetsen groen")
 
 stap(5, "kern, life.py, gereedschap en proefwerken naar de trainer")
@@ -252,6 +245,15 @@ hier(f"cd {DL}/proefwerken && for f in *.json; do sshpass -p {_geheim()} "
      f"scp -q $f {TRAINER}:amber-werk/proefwerken/; done")
 ok, uit = ssh("ls ~/amber-werk/proefwerken/ | tr '\\n' ' '", 30)
 print("proefwerken op de trainer:", uit)
+# De kijker woont sinds 16 aug 2026 op de trainer zelf (Z490, CPU) en
+# importeert dáár de kern: hij leidt zijn keuzelijst af uit world.max_depth
+# en laadt de wereld alleen bij zijn start. Na het deployen dus herstarten
+# — vóór de deploy zou hij de oude wereld inladen (14 aug 2026: het venster
+# toonde tot de volgende dag de oude hekken).
+scp(f"{DL}/brein/kijker.py", f"{TRAINER}:amber-werk/brein/kijker.py")
+ok, uit = ssh(f"echo {_geheim()} | sudo -S systemctl restart amber-kijker "
+              f"2>/dev/null; systemctl is-active amber-kijker", 60)
+print("kijker op de trainer herstart:", uit.strip().splitlines()[-1] if uit else "?")
 
 stap(6, "startcheckpoint bouwen en plaatsen")
 # Via de Learner en niet via het kale netwerk (15 aug 2026): een laag erbij

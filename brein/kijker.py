@@ -26,10 +26,19 @@ def _secret():
 
 
 FOLDER = "/home/arch/amber-werk/brein"
-FRESH = "/home/arch/amber-werk/fase1/nu.pt"
 X399 = "arch@192.168.1.239"
 FETCH_EVERY = 180        # a fresh snapshot from the X399, every 3 minutes —
                          # as often as she writes one herself
+
+# Since 16 Aug 2026 the viewer lives on the trainer itself (the Z490, always
+# on, CPU only — the card is hers): AMBER_KIJKER_LOKAAL=1 in the service.
+# Then the snapshot is read in place — life.py writes it as .deel and
+# renames, so a reader sees the old file or the new one, never a half —
+# and nothing is fetched. Without the flag: the old road, scp from the
+# trainer, for a viewer on another machine.
+LOCAL = os.environ.get("AMBER_KIJKER_LOKAAL") == "1"
+FRESH = ("/home/arch/amber-werk/fase1/leven/momentopname.pt" if LOCAL
+         else "/home/arch/amber-werk/fase1/nu.pt")
 
 L = learning.Learner(batch_size=8, device="cpu")   # 16 aug 2026: op de CPU — de kaarten zijn voor het leren
 lock = exams.material()
@@ -97,6 +106,8 @@ _hook_blocks()
 def fetch_snapshot():
     global last_fetched
     last_fetched = time.time()
+    if LOCAL:
+        return                           # it is already here
     r = subprocess.run(
         ["sshpass", "-p", _secret(), "scp", "-q", "-o", "ConnectTimeout=8",
          f"{X399}:~/amber-werk/fase1/leven/momentopname.pt", FRESH + ".deel"],
