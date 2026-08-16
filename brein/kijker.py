@@ -75,9 +75,23 @@ def _catch_out(_m, _in, out):
     current.append(("uit", float(p.max())))
 
 L.core.embedding.register_forward_hook(_catch_in)
-for block in L.core.blocks:
-    block.register_forward_hook(_catch_block)
 L.core.unembedding.register_forward_hook(_catch_out)
+
+# The block hooks are hung per block, and blocks come and go: adopt_shape
+# (15 Aug 2026) inserts new ones when a snapshot has grown. Hooked at start
+# only, the four blocks of run 6 (8 → 12, 16 Aug 2026) sent nothing, no
+# pass matched `per` any more, and the window lost its waves and sparks
+# while the wiring (read fresh per snapshot) was fine. So: (re)hang after
+# every load, and only on blocks that do not have the hook yet.
+_hooked = set()
+
+def _hook_blocks():
+    for block in L.core.blocks:
+        if id(block) not in _hooked:
+            block.register_forward_hook(_catch_block)
+            _hooked.add(id(block))
+
+_hook_blocks()
 
 
 def fetch_snapshot():
@@ -224,6 +238,7 @@ def load_if_newer():
         content = snapshot.read(FRESH, device=L.device)
         # shape first (a grown net has more blocks; 15 Aug 2026)
         L.adopt_shape((content.get("extra") or {}).get("vorm"))
+        _hook_blocks()                   # new blocks get their hook too
         step_in_snapshot = snapshot.restore(content, L.core, L.optimizer,
                                             L.device)
         global world_edge

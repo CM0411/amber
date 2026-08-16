@@ -303,13 +303,27 @@ async function haal() {
   try {
     const r = await fetch("/stand.json", {cache: "no-store"});
     const s = await r.json();
-    if ((!stand || s.tijd !== stand.tijd) && s.lagen && s.lagen.length
-        && !Array.isArray(s.lagen[0])) {
+    // Rijen met activaties (de golven) of alleen bedrading (de draadjes):
+    // sinds 16 aug 2026 — 12 lagen — kan de kijker de bedrading van haar
+    // echte brein leveren zonder activatierijen (de kijker hangt zijn
+    // hooks bij de start aan de blokken en mist de vier nieuwe). Dan
+    // tekent het venster het weefsel toch: de kolommen volgen uit de
+    // bedrading zelf — invoer, één kolom per blok, uitvoer.
+    const rijenOk = s.lagen && s.lagen.length && !Array.isArray(s.lagen[0]);
+    const alleenBedrading = !rijenOk && s.bedrading && s.bedrading.length
+      && s.bedrading[0] && s.bedrading[0].length;
+    if ((!stand || s.tijd !== stand.tijd) && (rijenOk || alleenBedrading)) {
       const nieuweBedrading = JSON.stringify(s.checkpoint_stap)
         !== JSON.stringify(stand && stand.checkpoint_stap);
       stand = s;
-      wachtrij = s.lagen.map(rij => [rij.in, ...rij.b, [rij.uit]]);
-      KOL = wachtrij[0].map(kl => kl.length);
+      if (rijenOk) {
+        wachtrij = s.lagen.map(rij => [rij.in, ...rij.b, [rij.uit]]);
+        KOL = wachtrij[0].map(kl => kl.length);
+      } else {
+        wachtrij = []; rijNu = null; vonken = [];
+        KOL = [s.bedrading[0][0].length,
+               ...s.bedrading.map(M => M.length), 1];
+      }
       bouwNamen();
       gloed = KOL.map(n => new Array(n).fill(0));
       kolMax = KOL.map(() => 0.0001);
