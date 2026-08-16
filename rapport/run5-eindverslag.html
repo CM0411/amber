@@ -1,0 +1,253 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Run 5 — eindverslag</title>
+<style>
+  body { background:#0a1420; color:#cfe0ef; font: 16px/1.55 system-ui,
+         sans-serif; max-width: 1000px; margin: 0 auto; padding: 24px; }
+  h1 { color:#ffc35c; font-size: 1.6rem; margin-bottom: .2rem; }
+  h2 { color:#8fb2d0; font-size: 1.1rem; margin-top: 2.2rem; }
+  h3 { color:#a9c1d8; font-size: 1rem; margin-top: 1.4rem; margin-bottom: .3rem; }
+  .af   { color:#5ad18f; font-weight: 600; }
+  .loop { color:#5aa7e8; font-weight: 600; }
+  .stil { color:#5a7a96; font-size: .9rem; }
+  .vakken { display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; }
+  .vak { background:#101e30; border-radius:10px; padding:14px 20px;
+          text-align:center; flex:1; min-width:110px; }
+  .cijfer { font-size:1.9rem; font-weight:700; font-variant-numeric: tabular-nums; }
+  .naam { color:#7a9ab8; font-size:.85rem; }
+  .zorg { background:#2a1a1a; border-left:4px solid #e87a7a; padding:10px 14px; border-radius:6px; }
+  .goednieuws { background:#12281e; border-left:4px solid #5ad18f; padding:10px 14px; border-radius:6px; }
+  .advies { background:#151a2a; border-left:4px solid #6f8fd6; padding:10px 14px;
+            font-size:13px; white-space:pre-wrap; overflow-x:auto; }
+  table { border-collapse:collapse; font-variant-numeric: tabular-nums; }
+  td, th { padding:4px 18px 4px 0; border-bottom:1px solid #1c3048; text-align:left; vertical-align:top; }
+  th { color:#7a9ab8; font-weight:600; }
+  .graf { background:#0d1826; border-radius:12px; padding:16px; overflow-x:auto; }
+  .misser { background:#0d1826; border-radius:8px; padding:8px 12px; margin:8px 0; font-size:.9rem; }
+  .misser pre { white-space:pre-wrap; margin:0 0 6px 0; color:#a9c1d8; }
+  .zij { color:#e87a7a; } .goed { color:#5ad18f; }
+  code { font-size:.85rem; }
+  details summary { cursor:pointer; }
+  .scroll { overflow-x:auto; }
+  ul { padding-left: 1.2rem; }  li { margin: .25rem 0; }
+</style></head><body>
+<h1>Run 5 — eindverslag</h1>
+<p><span class="af">klaar — alle stappen gezet</span> &nbsp;·&nbsp; gefinisht 16 aug 2026 om 02:12 &nbsp;·&nbsp;
+   <span class="stil">stap 320.000 → 370.000 (50.000 stappen in deze run) ·
+   2217 ms per stap op de Z490 · venster 1024 · hek: rekenen 38, code 15, puzzel 9</span></p>
+<div class="vakken"><div class="vak"><div class="cijfer" style="color:#ffc35c">89%</div><div class="naam">ladder</div></div><div class="vak"><div class="cijfer" style="color:#7fe0c3">97%</div><div class="naam">gesprek</div></div><div class="vak"><div class="cijfer" style="color:#5ad18f">81%</div><div class="naam">diepte2</div></div><div class="vak"><div class="cijfer" style="color:#5aa7e8">35%</div><div class="naam">diepte</div></div><div class="vak"><div class="cijfer" style="color:#b58ae0">94%</div><div class="naam">gemengd</div></div><div class="vak"><div class="cijfer" style="color:#e87a7a">95%</div><div class="naam">grondslag</div></div></div>
+
+<h2>Samenvatting</h2>
+
+<p>Run 5 was een korte run met nieuwe stof: 50.000 stappen (30 uur op de Z490), venster 768 → 1024, drie
+reparaties in de wereld gericht op de vakjes die in run 4 stilstonden, en de gespreksjas met een eigen meetlat.
+De run is netjes uitgedraaid: één proces van begin tot eind, nul herstarts na de eerste stap, tempo kaarsrecht op 2,2 s per stap.</p>
+<p><b>De brede meters gingen omhoog en de nieuwe stof is geleerd.</b> Grondslag 87% → 94%, gemengd 87% → 92%
+(gemiddelde van de laatste tien metingen), en het gesprek-blad van 7% naar 97–98% — de jas zat er binnen 500 stappen aan.
+Ladder (89%) en diepte2 (~80%) bleven vlak, maar die twee zitten op hun plafond van 91 en 81: wat er op die bladen nog
+mist is niet uitlegbaar (zie <i>Naast de run gemeten</i>). Het diepte-blad bleef op ~37% — al sinds run 3, en om dezelfde reden.</p>
+<p>De wereld ging in de eerste 5.400 stappen open tot alle drie de hekken: rekenen 26 → 38, code 11 → 15, puzzel 6 → 9. Daarna was
+er niets meer om open te maken. De nameting per vakje bevestigt dat de drie reparaties raak waren: <b>rekenen 3 van 65% naar 99%, code 3 van 62% naar 100%, code 5 van 63% naar 91%</b> — de drie meetpunten van deze run. Er zijn ook twee vakjes gezakt: rekenen 4 (81 → 72%) en puzzel 4 (99 → 88%); zie <i>Waar de fouten zitten</i>.</p>
+<p class="zorg">Het aandachtspunt: <b>ze zit tegen het plafond van haar wereld aan, niet tegen dat van haar kunnen.</b>
+De hekken zijn de gemeten grenzen van het venster (rekenen) en van de grammatica (code, puzzel); binnen die grenzen haalt
+ze op de nieuwe diepte3-meetlat al 95%. Groei zit de komende run in de wereld (code stapelt tot 24, de keer-plus-steen) en in
+het venster (1536) — en Cley heeft er 8 → 12 lagen bij gekozen. Dat is run 6. Het groei-advies (E) komt aan het eind van de run zelf op hetzelfde uit: vlak, wereld dicht, en diepte2 een tik onder zijn plafond → "overweeg een laag" (zie onderaan).</p>
+
+
+<h2>Wat run 5 was</h2>
+
+<ul>
+<li><b>Een korte run: 50.000 stappen</b> (320.000 → 370.000), Cleys voorstel na run 4 —
+daar zat de winst in de eerste ~35.000 stappen, dus: kortere runs, vaker bijsturen op een rungrens.</li>
+<li><b>Venster 768 → 1024</b>, als groeistap op de rungrens: het groeicheckpoint is bit voor bit
+bewezen (run5-start.pt, stap 320.000). Hekken op de gemeten grenzen van 1024: rekenen 38, code 15, puzzel 9.</li>
+<li><b>Drie reparaties in de wereld</b>, uit de foutanalyse van run 4 (14 aug):
+de <i>keersom-splits</i> (een vijfde van rekenen diepte 3–8 wordt een kale keersom met
+tientallen-uitwerking, <code>87 * 10 = 870 ; 87 * 7 = 609 ; 870 + 609 = 1479</code> — de vorm die
+twee runs op 65% stond bestond niet in haar leerstof), <i>lange lussen compact</i> (een kwart van code
+diepte 5+ in het proefwerkformaat van 12–20 rondes met rijen-uitwerking, ~200 tekens in plaats van
+~660) en de <i>schrijfruimte van code herijkt</i> (200·graad − 200; de oude grens lag onder haar eigen stof).</li>
+<li><b>De gespreksjas</b> — de eerste stof die geen som is — met een eigen bevroren proefwerk
+<i>gesprek</i>. Startstreep vóór de run: 1% (13 aug) en 7% op de eerste meting van deze run.</li>
+<li>Bij de start het geheugen in: <b>één les van Cley</b> en <b>negen waarnemingen</b> uit de brievenbus (ritfoto's van het oog).</li>
+<li>Verder ongewijzigd: 8 lagen, breedte 384, 14,4 M parameters · herhaling 37,5% · partij 64 ·
+proefwerk elke 500 stappen, 150 opgaven per blad · determinisme aan · Z490 met de RTX 3070 Ti.</li>
+<li>Meetpunten die vooraf zijn afgesproken: code 3 en 5, rekenen 3, het diepte-proefwerk, en de gesprek-startstreep.</li>
+</ul>
+
+
+<h2>Van run 4 naar run 5</h2>
+<div class="scroll"><table class=""><tr><th>proefwerk</th><th>eind run 4</th><th>eind run 5</th><th>verschil</th><th>laatste 10 metingen</th><th>piek</th></tr><tr><td>ladder</td><td>89%</td><td>89%</td><td><span style="color:#7a9ab8">±0</span></td><td>89% (89–90)</td><td>90%</td></tr><tr><td>gesprek</td><td>7%</td><td>97%</td><td><span style="color:#5ad18f">+90</span></td><td>98% (97–99)</td><td>99%</td></tr><tr><td>diepte2</td><td>80%</td><td>81%</td><td><span style="color:#5ad18f">+1</span></td><td>79% (75–81)</td><td>82%</td></tr><tr><td>diepte</td><td>37%</td><td>35%</td><td><span style="color:#e87a7a">-2</span></td><td>37% (35–39)</td><td>43%</td></tr><tr><td>gemengd</td><td>87%</td><td>94%</td><td><span style="color:#5ad18f">+7</span></td><td>93% (90–95)</td><td>95%</td></tr><tr><td>grondslag</td><td>87%</td><td>95%</td><td><span style="color:#5ad18f">+8</span></td><td>94% (91–96)</td><td>97%</td></tr></table></div>
+<p class="stil">"eind run 4" is de meting op stap 320.000 vóór de start; voor een proefwerk
+dat pas in deze run begon (gesprek) staat daar de startstreep van de eerste meting.
+"laatste 10 metingen" is het gemiddelde met de laagste en hoogste erachter — lees geen
+verschillen van een paar procent uit één meting.</p>
+
+<h2>Nameting per vakje — stap 370.000</h2>
+<div class="scroll"><table class=""><tr><th>graad</th><th>rekenen</th><th>code</th><th>puzzel</th></tr><tr><td>1</td><td>100% <span class="stil">(<span style="color:#7a9ab8">±0</span>)</span></td><td>100% <span class="stil">(<span style="color:#5ad18f">+1</span>)</span></td><td>100% <span class="stil">(<span style="color:#5ad18f">+1</span>)</span></td></tr><tr><td>2</td><td>97% <span class="stil">(<span style="color:#5ad18f">+1</span>)</span></td><td>95% <span class="stil">(<span style="color:#e87a7a">-2</span>)</span></td><td>93% <span class="stil">(<span style="color:#e87a7a">-4</span>)</span></td></tr><tr><td>3</td><td>99% <span class="stil">(<span style="color:#5ad18f">+34</span>)</span></td><td>100% <span class="stil">(<span style="color:#5ad18f">+38</span>)</span></td><td>99% <span class="stil">(<span style="color:#7a9ab8">±0</span>)</span></td></tr><tr><td>4</td><td>72% <span class="stil">(<span style="color:#e87a7a">-9</span>)</span></td><td>99% <span class="stil">(<span style="color:#7a9ab8">±0</span>)</span></td><td>88% <span class="stil">(<span style="color:#e87a7a">-11</span>)</span></td></tr><tr><td>5</td><td>100% <span class="stil">(<span style="color:#7a9ab8">±0</span>)</span></td><td>91% <span class="stil">(<span style="color:#5ad18f">+28</span>)</span></td><td>100% <span class="stil">(<span style="color:#7a9ab8">±0</span>)</span></td></tr></table><p class="stil">grondslag-proefwerk, 100 opgaven per vakje, gemeten op de Z490 na afloop; tussen haakjes het verschil met de nameting van run 4</p></div>
+<p>Het geheugen: <b>30.000 herinneringen</b> over 62 vakjes.</p><table class=""><tr><th>familie</th><th>vakjes</th><th>per vakje (min–max)</th><th>samen</th></tr><tr><td>rekenen</td><td>38</td><td>483–484</td><td>18383</td></tr><tr><td>code</td><td>15</td><td>484–484</td><td>7260</td></tr><tr><td>puzzel</td><td>9</td><td>484–484</td><td>4356</td></tr></table>
+
+
+<h2>Waar de fouten zitten</h2>
+
+<p>De nameting wijst drie zwakste vakjes aan — rekenen 4 (72%), puzzel 4 (88%), code 5 (91%) — en de foutanalyse
+laat het eindbrein alle missers uitschrijven. Alle 49 missers zijn gelezen; het beeld per vakje staat hieronder, met de
+eerste drie voluit (uitklappen). Daarnaast de bladen die om een andere reden vlak staan.</p>
+<ul>
+<li><b>Het diepte-blad bleef op 35–37%</b>, zoals in run 3 en 4. De stof op diepte 6 en 9 stamt van vóór de rijlengte-regel van
+13 aug en toont zes getallen waar het patroon niet uit te halen is — hetzelfde geldt voor diepte2 (puzzel 6 en 9) en ladder
+(puzzel 5 en 6), die daarmee op hun plafond van 81 en 91 zitten. Geen leerprobleem; een volle meter. De nieuwe bladen diepte3
+en stapel nemen die rol over.</li>
+<li><b>Twee vakjes zakten: rekenen 4 (81 → 72%) en puzzel 4 (99 → 88%).</b> Bij allebei is het één patroon dat alle missers
+verklaart — zie hieronder. Rekenen 4 stond bij de tussenmeting op stap 351.000 al op 76%: het zakte aan het begin van de run en
+bleef daar. Kleine verschuivingen als code 2 (97 → 95) en puzzel 2 (97 → 93) vallen binnen wat honderd opgaven aan ruis geven.</li>
+<li><b>Het gemengd-blad (94%) blijft iets onder grondslag (95%)</b> — het verschil is klein, maar gemengd toetst ook of ze
+ziet wélke soort ze voor zich heeft, en de puzzel-4-missers zijn precies dat soort fout.</li>
+</ul>
+<p class="stil">Bij de opgaven hieronder staat geen nummer: de bevroren bladen dragen hun opgaven zelf, niet een recept.</p>
+
+<h3>rekenen graad 4 — 72 van 100 goed, 28 missers</h3><p>27 van de 28 missers zitten in de vermenigvuldiging, niet in het optellen of aftrekken erna (de 28e telt de <code>+ 61</code> twee keer). De vorm van dit vakje is <code>a * b ± c</code> en de uitwerking vraagt het product in één klap: <code>21 * 17 = 357 ; 357 - 75 = 282</code>. Bij 20 van de 28 gokt ze dat product en zit ze ernaast — de tweede factor is er telkens een tiener (13–19), en vaak lijkt het alsof de tientallen daarvan wegvallen: <code>2 * 19 = 18</code>, <code>3 * 17 = 21</code>, <code>8 * 15 = 80</code>, <code>17 * 19 = 203</code> — hetzelfde weglaten van het tiental dat de foutanalyse van run 4 bij rekenen 3 zag. Bij de andere 7 begint ze de tientallen-uitwerking die ze in deze run leerde voor de kale keersom (<code>21 * 10 = 210</code>) en springt dan meteen door naar de <code>± c</code>-stap — de eenheden vergeet ze. De keersom-splits van 14 aug heeft rekenen 3 van 65 naar 99% gebracht, maar geldt alleen voor de kále keersom; binnen een samengestelde som mag ze niet uitwerken en dan gokt ze weer, precies zoals in run 4 bij rekenen 3. Dat is een aanwijzing voor de wereld van run 6, ter overweging: laat de splits ook binnen <code>a * b ± c</code> gebeuren (<code>21 * 10 = 210 ; 21 * 7 = 147 ; 210 + 147 = 357 ; 357 - 75 = 282</code>) — nakijken leest het laatste getal, dus het bevroren blad blijft geldig. Dezelfde les als op 8 aug: ze moet mogen uitwerken.</p><details><summary class="stil">de eerste 3 missers voluit</summary><div class="misser"><pre>11 * 13 - 50</pre><div><span class="zij">zij:</span> <code>11 * 13 = 133 ; 133 - 50 = 83</code></div><div><span class="goed">goed:</span> <code>93</code></div></div><div class="misser"><pre>24 * 16 + 4</pre><div><span class="zij">zij:</span> <code>24 * 16 = 324 ; 324 + 4 = 328</code></div><div><span class="goed">goed:</span> <code>388</code></div></div><div class="misser"><pre>9 * 19 + 5</pre><div><span class="zij">zij:</span> <code>9 * 19 = 191 ; 191 + 5 = 196</code></div><div><span class="goed">goed:</span> <code>176</code></div></div></details><h3>puzzel graad 4 — 88 van 100 goed, 12 missers</h3><p>Alle 12 missers zijn hetzelfde: een rij waarvan het verschil zelf oploopt (57, 59, 70, 90, 119: verschillen 2, 11, 20, 29, telkens +9, dus 157) pakt ze aan met de methode van graad 5, <i>som van de vorige twee</i>: <code>57 + 59 = 116 ; 59 + 116 = 175 ; …</code> — een uitwerking die netjes doorloopt maar bij het derde getal al niet meer klopt (116 is geen 70). Ze rekent goed, ze kiest de verkeerde steen. In run 4 stond dit vakje op 99% en graad 5 (som van de vorige twee) staat nu op 100%: de graad-5-methode is sterker geworden en duwt op de graad-4-rijen. Wat er in deze run veranderde is dat de puzzelwereld openging tot 9 en dat zij daar zelf het meest naartoe trok (puzzel 7, 9 en 8 waren haar drie vaakst gekozen onderwerpen, en puzzel 4 stond op vijf) — de hypothese is dus dat de nieuwe diepe puzzelstof de keuze van de methode verstoort, niet het rekenen. Een hypothese, geen meting: gemengd zou dit moeten laten zien en staat op 94.</p><details><summary class="stil">de eerste 3 missers voluit</summary><div class="misser"><pre>Zet voort: 57, 59, 70, 90, 119, ?</pre><div><span class="zij">zij:</span> <code>57 + 59 = 116 ; 59 + 116 = 175 ; 116 + 175 = 291 ; 90 + 291 = 381</code></div><div><span class="goed">goed:</span> <code>157</code></div></div><div class="misser"><pre>Zet voort: 49, 54, 66, 85, 111, ?</pre><div><span class="zij">zij:</span> <code>49 + 54 = 103 ; 54 + 103 = 157 ; 103 + 157 = 260 ; 85 + 260 = 345</code></div><div><span class="goed">goed:</span> <code>144</code></div></div><div class="misser"><pre>Zet voort: 60, 64, 76, 96, 124, ?</pre><div><span class="zij">zij:</span> <code>60 + 64 = 124 ; 64 + 124 = 188 ; 124 + 188 = 312 ; 96 + 312 = 408</code></div><div><span class="goed">goed:</span> <code>160</code></div></div></details><h3>code graad 5 — 91 van 100 goed, 9 missers</h3><p>Alle 9 missers zijn de som van twaalf tot vijftien termen (<code>for i in range(1, 16): totaal += f(i)</code>). De termenrij klopt telkens (<code>daarna steeds +14: 19 33 47 …</code>); de fout zit in de lopende som — en bij 7 van de 9 in de állerlaatste optelling, meestal één of twee tientallen ernaast: <code>1540 + 215</code> wordt 1775 in plaats van 1755, <code>581 + 79</code> wordt 670, <code>490 + 65</code> wordt 565. De twee andere struikelen eerder in de keten. Vergelijk run 4: toen braken alle 37 missers halverwege af omdat de schrijfruimte kleiner was dan de uitwerking. Dat plafond is weg (compacte vorm, schrijfruimte herijkt); wat overblijft is een rekenfout diep in een lange keten — 9 op de 100, geen muur.</p><details><summary class="stil">de eerste 3 missers voluit</summary><div class="misser"><pre>def f(x):
+    return x * 14 + 5
+
+totaal = 0
+for i in range(1, 16):
+    totaal += f(i)
+print(totaal)</pre><div><span class="zij">zij:</span> <code>f(1) = 1 * 14 + 5 = 19 ; daarna steeds +14: 19 33 47 61 75 89 103 117 131 145 159 173 187 201 215 ; som: 0 19 52 99 160 235 324 427 544 675 820 979 1152 1339 1540 1775</code></div><div><span class="goed">goed:</span> <code>1755</code></div></div><div class="misser"><pre>def f(x):
+    return x * 5 + 4
+
+totaal = 0
+for i in range(1, 16):
+    totaal += f(i)
+print(totaal)</pre><div><span class="zij">zij:</span> <code>f(1) = 1 * 5 + 4 = 9 ; daarna steeds +5: 9 14 19 24 29 34 39 44 49 54 59 64 69 74 79 ; som: 0 9 23 42 66 95 129 168 212 261 315 374 438 507 581 670</code></div><div><span class="goed">goed:</span> <code>660</code></div></div><div class="misser"><pre>def f(x):
+    return x * 9 + 6
+
+totaal = 0
+for i in range(1, 16):
+    totaal += f(i)
+print(totaal)</pre><div><span class="zij">zij:</span> <code>f(1) = 1 * 9 + 6 = 15 ; daarna steeds +9: 15 24 33 42 51 60 69 78 87 96 105 114 123 132 141 ; som: 0 15 39 72 114 165 225 294 372 459 555 660 774 897 1029 1160</code></div><div><span class="goed">goed:</span> <code>1170</code></div></div></details>
+
+<h2>Waar de verbeteringen zitten</h2>
+
+<ul>
+<li><b>Het gesprek: 7% → 97–98%.</b> Op stap 320.500 stond het al op 83%, op 321.000 op 90%. De jas is dun — eerst vertalen
+naar de kale som, dan rekenen — en het rekenen kon ze al; het vertalen leerde ze in een paar honderd stappen. Op 13 aug las ze
+"Wat is 3 plus 4?" nog als lijstfilter-taal.</li>
+<li><b>Grondslag 87% → 94%, gemengd 87% → 92%.</b> Anders dan in run 4 kwam de winst hier niet in één sprong bij
+de start maar in twee stappen: rond 335.000–345.000 (grondslag naar 92–95) en nog een tik na 360.000. In de nameting: <b>rekenen 3: 65 → 99%</b> (twee runs lang precies 65 — de kale keersom die ze in één klap gokte; met de tientallen-uitwerking is hij weg), <b>code 3: 62 → 100%</b> en <b>code 5: 63 → 91%</b> (de lange lussen die halverwege afbraken schrijft ze nu in de compacte vorm helemaal uit — wat overblijft is een optelfout in de staart).</li>
+<li><b>Ladder en diepte2 hielden stand</b> (89 en ~80) terwijl het venster groeide en er nieuwe stof bij kwam — geen vergeten door de verbouwing.</li>
+<li><b>Alle drie de hekken binnen 5.400 stappen open:</b> rekenen 38 op stap 321.740, code 15 op 320.368, puzzel 9 op 325.372. Rekenen
+opende twaalf diepten in 1.740 stappen. Op de nieuwe diepte3-meetlat (uit de wereld van nu, tot rekenen 30) haalt ze rekenen 91–100% en code 97–100%.</li>
+<li><b>Nul crashes, tempo stabiel</b> (2,10–2,28 s per blok van 2000 stappen), en de startfout van 14 aug was in twee minuten gedicht.</li>
+</ul>
+
+
+<h2>Proefwerken over de tijd</h2>
+<div class="graf"><svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto"><line x1="50" y1="336.0" x2="850" y2="336.0" stroke="#1c3048" stroke-width="1"/><text x="42" y="340.0" fill="#5a7a96" font-size="12" text-anchor="end">0%</text><line x1="50" y1="255.0" x2="850" y2="255.0" stroke="#1c3048" stroke-width="1"/><text x="42" y="259.0" fill="#5a7a96" font-size="12" text-anchor="end">25%</text><line x1="50" y1="174.0" x2="850" y2="174.0" stroke="#1c3048" stroke-width="1"/><text x="42" y="178.0" fill="#5a7a96" font-size="12" text-anchor="end">50%</text><line x1="50" y1="93.0" x2="850" y2="93.0" stroke="#1c3048" stroke-width="1"/><text x="42" y="97.0" fill="#5a7a96" font-size="12" text-anchor="end">75%</text><line x1="50" y1="12.0" x2="850" y2="12.0" stroke="#1c3048" stroke-width="1"/><text x="42" y="16.0" fill="#5a7a96" font-size="12" text-anchor="end">100%</text><text x="50.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">320k</text><text x="130.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">325k</text><text x="210.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">330k</text><text x="290.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">335k</text><text x="370.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">340k</text><text x="450.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">345k</text><text x="530.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">350k</text><text x="610.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">355k</text><text x="690.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">360k</text><text x="770.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">365k</text><text x="850.0" y="356" fill="#5a7a96" font-size="12" text-anchor="middle">370k</text><line x1="50.0" y1="12.0" x2="50.0" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="51.3" y1="12.0" x2="51.3" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="52.2" y1="12.0" x2="52.2" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="52.4" y1="12.0" x2="52.4" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="52.8" y1="12.0" x2="52.8" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="53.1" y1="12.0" x2="53.1" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="53.2" y1="12.0" x2="53.2" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="54.1" y1="12.0" x2="54.1" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="55.9" y1="12.0" x2="55.9" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="61.0" y1="12.0" x2="61.0" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="61.6" y1="12.0" x2="61.6" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="64.8" y1="12.0" x2="64.8" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="71.5" y1="12.0" x2="71.5" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="74.8" y1="12.0" x2="74.8" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="77.8" y1="12.0" x2="77.8" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="88.7" y1="12.0" x2="88.7" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><line x1="136.0" y1="12.0" x2="136.0" y2="336.0" stroke="#2a4560" stroke-width="1" stroke-dasharray="3 5"/><polyline points="50.0,47.6 58.0,57.4 66.0,54.1 74.0,50.9 82.0,54.1 90.0,54.1 98.0,47.6 106.0,50.9 114.0,50.9 122.0,47.6 130.0,54.1 138.0,47.6 146.0,47.6 154.0,54.1 162.0,50.9 170.0,47.6 178.0,54.1 186.0,47.6 194.0,47.6 202.0,50.9 210.0,47.6 218.0,54.1 226.0,50.9 234.0,47.6 242.0,47.6 250.0,50.9 258.0,47.6 266.0,44.4 274.0,54.1 282.0,47.6 290.0,47.6 298.0,47.6 306.0,47.6 314.0,47.6 322.0,47.6 330.0,47.6 338.0,47.6 346.0,50.9 354.0,47.6 362.0,47.6 370.0,47.6 378.0,47.6 386.0,50.9 394.0,50.9 402.0,54.1 410.0,47.6 418.0,47.6 426.0,50.9 434.0,50.9 442.0,47.6 450.0,47.6 458.0,47.6 466.0,47.6 474.0,47.6 482.0,50.9 490.0,47.6 498.0,47.6 506.0,47.6 514.0,47.6 522.0,44.4 530.0,47.6 538.0,47.6 546.0,47.6 554.0,47.6 562.0,50.9 570.0,47.6 578.0,50.9 586.0,47.6 594.0,47.6 602.0,44.4 610.0,47.6 618.0,47.6 626.0,47.6 634.0,47.6 642.0,47.6 650.0,47.6 658.0,47.6 666.0,47.6 674.0,47.6 682.0,57.4 690.0,54.1 698.0,47.6 706.0,44.4 714.0,47.6 722.0,47.6 730.0,50.9 738.0,44.4 746.0,47.6 754.0,47.6 762.0,44.4 770.0,47.6 778.0,47.6 786.0,47.6 794.0,47.6 802.0,47.6 810.0,44.4 818.0,47.6 826.0,47.6 834.0,47.6 842.0,47.6 850.0,47.6" fill="none" stroke="#ffc35c" stroke-width="3" stroke-linejoin="round"/><circle cx="850.0" cy="47.6" r="3" fill="#ffc35c"/><polyline points="58.0,67.1 66.0,44.4 74.0,44.4 82.0,34.7 90.0,34.7 98.0,34.7 106.0,31.4 114.0,31.4 122.0,31.4 130.0,28.2 138.0,28.2 146.0,28.2 154.0,28.2 162.0,28.2 170.0,28.2 178.0,28.2 186.0,28.2 194.0,28.2 202.0,28.2 210.0,34.7 218.0,28.2 226.0,31.4 234.0,21.7 242.0,21.7 250.0,21.7 258.0,21.7 266.0,21.7 274.0,21.7 282.0,28.2 290.0,21.7 298.0,18.5 306.0,18.5 314.0,18.5 322.0,18.5 330.0,21.7 338.0,25.0 346.0,28.2 354.0,21.7 362.0,21.7 370.0,25.0 378.0,18.5 386.0,18.5 394.0,21.7 402.0,25.0 410.0,21.7 418.0,21.7 426.0,25.0 434.0,21.7 442.0,18.5 450.0,21.7 458.0,21.7 466.0,21.7 474.0,21.7 482.0,21.7 490.0,21.7 498.0,18.5 506.0,18.5 514.0,18.5 522.0,21.7 530.0,18.5 538.0,25.0 546.0,18.5 554.0,21.7 562.0,18.5 570.0,18.5 578.0,21.7 586.0,18.5 594.0,18.5 602.0,18.5 610.0,18.5 618.0,18.5 626.0,21.7 634.0,21.7 642.0,18.5 650.0,21.7 658.0,21.7 666.0,18.5 674.0,21.7 682.0,28.2 690.0,21.7 698.0,21.7 706.0,15.2 714.0,18.5 722.0,21.7 730.0,15.2 738.0,21.7 746.0,21.7 754.0,18.5 762.0,18.5 770.0,18.5 778.0,21.7 786.0,15.2 794.0,21.7 802.0,21.7 810.0,21.7 818.0,15.2 826.0,18.5 834.0,21.7 842.0,18.5 850.0,21.7" fill="none" stroke="#7fe0c3" stroke-width="1.6" stroke-linejoin="round"/><circle cx="850.0" cy="21.7" r="3" fill="#7fe0c3"/><polyline points="50.0,76.8 58.0,80.0 66.0,80.0 74.0,80.0 82.0,73.6 90.0,80.0 98.0,73.6 106.0,76.8 114.0,73.6 122.0,73.6 130.0,83.3 138.0,73.6 146.0,73.6 154.0,86.5 162.0,76.8 170.0,76.8 178.0,73.6 186.0,73.6 194.0,73.6 202.0,73.6 210.0,80.0 218.0,73.6 226.0,80.0 234.0,80.0 242.0,80.0 250.0,76.8 258.0,73.6 266.0,80.0 274.0,76.8 282.0,76.8 290.0,83.3 298.0,73.6 306.0,80.0 314.0,73.6 322.0,76.8 330.0,76.8 338.0,80.0 346.0,80.0 354.0,76.8 362.0,73.6 370.0,80.0 378.0,76.8 386.0,73.6 394.0,80.0 402.0,80.0 410.0,80.0 418.0,80.0 426.0,73.6 434.0,73.6 442.0,73.6 450.0,80.0 458.0,73.6 466.0,73.6 474.0,73.6 482.0,73.6 490.0,80.0 498.0,73.6 506.0,73.6 514.0,73.6 522.0,73.6 530.0,73.6 538.0,73.6 546.0,76.8 554.0,73.6 562.0,73.6 570.0,73.6 578.0,73.6 586.0,73.6 594.0,70.3 602.0,73.6 610.0,76.8 618.0,76.8 626.0,73.6 634.0,80.0 642.0,76.8 650.0,80.0 658.0,76.8 666.0,73.6 674.0,73.6 682.0,76.8 690.0,73.6 698.0,73.6 706.0,73.6 714.0,73.6 722.0,73.6 730.0,80.0 738.0,80.0 746.0,73.6 754.0,76.8 762.0,76.8 770.0,86.5 778.0,80.0 786.0,73.6 794.0,76.8 802.0,76.8 810.0,73.6 818.0,80.0 826.0,93.0 834.0,80.0 842.0,80.0 850.0,73.6" fill="none" stroke="#5ad18f" stroke-width="1.6" stroke-linejoin="round"/><circle cx="850.0" cy="73.6" r="3" fill="#5ad18f"/><polyline points="50.0,216.1 58.0,209.6 66.0,225.8 74.0,216.1 82.0,209.6 90.0,222.6 98.0,212.9 106.0,225.8 114.0,216.1 122.0,216.1 130.0,225.8 138.0,216.1 146.0,216.1 154.0,219.4 162.0,222.6 170.0,216.1 178.0,216.1 186.0,216.1 194.0,209.6 202.0,209.6 210.0,209.6 218.0,216.1 226.0,232.3 234.0,209.6 242.0,232.3 250.0,222.6 258.0,216.1 266.0,222.6 274.0,219.4 282.0,216.1 290.0,216.1 298.0,216.1 306.0,212.9 314.0,203.2 322.0,216.1 330.0,212.9 338.0,222.6 346.0,212.9 354.0,216.1 362.0,216.1 370.0,232.3 378.0,222.6 386.0,216.1 394.0,229.1 402.0,219.4 410.0,225.8 418.0,229.1 426.0,216.1 434.0,209.6 442.0,209.6 450.0,212.9 458.0,219.4 466.0,212.9 474.0,209.6 482.0,209.6 490.0,216.1 498.0,206.4 506.0,209.6 514.0,216.1 522.0,212.9 530.0,212.9 538.0,209.6 546.0,209.6 554.0,209.6 562.0,199.9 570.0,196.7 578.0,209.6 586.0,206.4 594.0,203.2 602.0,212.9 610.0,222.6 618.0,216.1 626.0,212.9 634.0,232.3 642.0,216.1 650.0,216.1 658.0,209.6 666.0,209.6 674.0,216.1 682.0,235.6 690.0,219.4 698.0,216.1 706.0,222.6 714.0,209.6 722.0,209.6 730.0,216.1 738.0,216.1 746.0,229.1 754.0,222.6 762.0,216.1 770.0,225.8 778.0,219.4 786.0,216.1 794.0,216.1 802.0,216.1 810.0,209.6 818.0,216.1 826.0,219.4 834.0,216.1 842.0,222.6 850.0,222.6" fill="none" stroke="#5aa7e8" stroke-width="1.6" stroke-linejoin="round"/><circle cx="850.0" cy="222.6" r="3" fill="#5aa7e8"/><polyline points="50.0,54.1 58.0,67.1 66.0,63.8 74.0,54.1 82.0,50.9 90.0,54.1 98.0,54.1 106.0,47.6 114.0,44.4 122.0,47.6 130.0,47.6 138.0,47.6 146.0,50.9 154.0,67.1 162.0,41.2 170.0,37.9 178.0,41.2 186.0,34.7 194.0,31.4 202.0,34.7 210.0,41.2 218.0,41.2 226.0,50.9 234.0,44.4 242.0,41.2 250.0,37.9 258.0,57.4 266.0,47.6 274.0,44.4 282.0,41.2 290.0,57.4 298.0,47.6 306.0,34.7 314.0,31.4 322.0,47.6 330.0,47.6 338.0,54.1 346.0,41.2 354.0,34.7 362.0,41.2 370.0,41.2 378.0,41.2 386.0,34.7 394.0,44.4 402.0,31.4 410.0,34.7 418.0,41.2 426.0,41.2 434.0,37.9 442.0,54.1 450.0,37.9 458.0,47.6 466.0,34.7 474.0,34.7 482.0,34.7 490.0,34.7 498.0,41.2 506.0,41.2 514.0,44.4 522.0,37.9 530.0,28.2 538.0,41.2 546.0,37.9 554.0,34.7 562.0,41.2 570.0,41.2 578.0,37.9 586.0,34.7 594.0,34.7 602.0,47.6 610.0,41.2 618.0,37.9 626.0,44.4 634.0,54.1 642.0,44.4 650.0,60.6 658.0,47.6 666.0,47.6 674.0,34.7 682.0,67.1 690.0,31.4 698.0,41.2 706.0,34.7 714.0,28.2 722.0,28.2 730.0,37.9 738.0,28.2 746.0,34.7 754.0,34.7 762.0,34.7 770.0,34.7 778.0,34.7 786.0,44.4 794.0,34.7 802.0,41.2 810.0,37.9 818.0,34.7 826.0,34.7 834.0,37.9 842.0,28.2 850.0,31.4" fill="none" stroke="#b58ae0" stroke-width="1.6" stroke-linejoin="round"/><circle cx="850.0" cy="31.4" r="3" fill="#b58ae0"/><polyline points="50.0,54.1 58.0,41.2 66.0,50.9 74.0,67.1 82.0,41.2 90.0,60.6 98.0,54.1 106.0,44.4 114.0,34.7 122.0,47.6 130.0,47.6 138.0,44.4 146.0,41.2 154.0,60.6 162.0,41.2 170.0,34.7 178.0,54.1 186.0,34.7 194.0,37.9 202.0,41.2 210.0,37.9 218.0,41.2 226.0,60.6 234.0,44.4 242.0,54.1 250.0,50.9 258.0,44.4 266.0,47.6 274.0,41.2 282.0,41.2 290.0,54.1 298.0,54.1 306.0,44.4 314.0,34.7 322.0,47.6 330.0,60.6 338.0,47.6 346.0,31.4 354.0,41.2 362.0,47.6 370.0,54.1 378.0,34.7 386.0,41.2 394.0,41.2 402.0,34.7 410.0,34.7 418.0,47.6 426.0,41.2 434.0,28.2 442.0,54.1 450.0,28.2 458.0,41.2 466.0,21.7 474.0,28.2 482.0,34.7 490.0,37.9 498.0,34.7 506.0,37.9 514.0,37.9 522.0,28.2 530.0,28.2 538.0,47.6 546.0,28.2 554.0,34.7 562.0,28.2 570.0,34.7 578.0,25.0 586.0,25.0 594.0,28.2 602.0,41.2 610.0,41.2 618.0,41.2 626.0,28.2 634.0,41.2 642.0,44.4 650.0,67.1 658.0,34.7 666.0,34.7 674.0,47.6 682.0,80.0 690.0,34.7 698.0,37.9 706.0,34.7 714.0,21.7 722.0,31.4 730.0,34.7 738.0,31.4 746.0,41.2 754.0,28.2 762.0,25.0 770.0,31.4 778.0,25.0 786.0,34.7 794.0,28.2 802.0,37.9 810.0,41.2 818.0,34.7 826.0,28.2 834.0,28.2 842.0,28.2 850.0,28.2" fill="none" stroke="#e87a7a" stroke-width="1.6" stroke-linejoin="round"/><circle cx="850.0" cy="28.2" r="3" fill="#e87a7a"/><text x="858.0" y="25.7" fill="#7fe0c3" font-size="13">gesprek</text><text x="858.0" y="39.7" fill="#e87a7a" font-size="13">grondslag</text><text x="858.0" y="53.7" fill="#b58ae0" font-size="13">gemengd</text><text x="858.0" y="67.7" fill="#ffc35c" font-size="13">ladder</text><text x="858.0" y="81.7" fill="#5ad18f" font-size="13">diepte2</text><text x="858.0" y="226.6" fill="#5aa7e8" font-size="13">diepte</text></svg></div>
+<p class="stil">De stippellijnen zijn doorbraken: momenten waarop ze zelf een diepte openmaakte.
+Elke meting is exact dezelfde bevroren opgavenlijst, dus de lijnen zijn over de hele run
+vergelijkbaar. Tabel: elke 2.500 stappen; het volledige verloop per 500 staat in leven.md op de trainer.</p>
+<div class="scroll"><table class=""><tr><th>stap</th><th>ladder</th><th>gesprek</th><th>diepte2</th><th>diepte</th><th>gemengd</th><th>grondslag</th></tr><tr><td>320.000</td><td>89%</td><td>—</td><td>80%</td><td>37%</td><td>87%</td><td>87%</td></tr><tr><td>322.500</td><td>87%</td><td>93%</td><td>79%</td><td>35%</td><td>87%</td><td>85%</td></tr><tr><td>325.000</td><td>87%</td><td>95%</td><td>78%</td><td>34%</td><td>89%</td><td>89%</td></tr><tr><td>327.500</td><td>89%</td><td>95%</td><td>80%</td><td>37%</td><td>92%</td><td>93%</td></tr><tr><td>330.000</td><td>89%</td><td>93%</td><td>79%</td><td>39%</td><td>91%</td><td>92%</td></tr><tr><td>332.500</td><td>88%</td><td>97%</td><td>80%</td><td>35%</td><td>92%</td><td>88%</td></tr><tr><td>335.000</td><td>89%</td><td>97%</td><td>78%</td><td>37%</td><td>86%</td><td>87%</td></tr><tr><td>337.500</td><td>89%</td><td>97%</td><td>80%</td><td>38%</td><td>89%</td><td>85%</td></tr><tr><td>340.000</td><td>89%</td><td>96%</td><td>79%</td><td>32%</td><td>91%</td><td>87%</td></tr><tr><td>342.500</td><td>89%</td><td>97%</td><td>79%</td><td>34%</td><td>93%</td><td>93%</td></tr><tr><td>345.000</td><td>89%</td><td>97%</td><td>79%</td><td>38%</td><td>92%</td><td>95%</td></tr><tr><td>347.500</td><td>89%</td><td>97%</td><td>79%</td><td>37%</td><td>93%</td><td>92%</td></tr><tr><td>350.000</td><td>89%</td><td>98%</td><td>81%</td><td>38%</td><td>95%</td><td>95%</td></tr><tr><td>352.500</td><td>89%</td><td>98%</td><td>81%</td><td>43%</td><td>91%</td><td>93%</td></tr><tr><td>355.000</td><td>89%</td><td>98%</td><td>80%</td><td>35%</td><td>91%</td><td>91%</td></tr><tr><td>357.500</td><td>89%</td><td>97%</td><td>79%</td><td>37%</td><td>85%</td><td>83%</td></tr><tr><td>360.000</td><td>87%</td><td>97%</td><td>81%</td><td>36%</td><td>94%</td><td>93%</td></tr><tr><td>362.500</td><td>88%</td><td>99%</td><td>79%</td><td>37%</td><td>92%</td><td>93%</td></tr><tr><td>365.000</td><td>89%</td><td>98%</td><td>77%</td><td>34%</td><td>93%</td><td>94%</td></tr><tr><td>367.500</td><td>90%</td><td>97%</td><td>81%</td><td>39%</td><td>92%</td><td>91%</td></tr><tr><td>370.000</td><td>89%</td><td>97%</td><td>81%</td><td>35%</td><td>94%</td><td>95%</td></tr></table></div>
+
+<h2>Doorbraken — waar de wereld openging</h2>
+<div class="scroll"><table class=""><tr><th>stap</th><th>doorbraak</th></tr><tr><td>320.001</td><td>code tot 12, rekenen tot 27, puzzel tot 7</td></tr><tr><td>320.080</td><td>code tot 13</td></tr><tr><td>320.136</td><td>code tot 14</td></tr><tr><td>320.148</td><td>rekenen tot 28</td></tr><tr><td>320.176</td><td>rekenen tot 29</td></tr><tr><td>320.196</td><td>rekenen tot 30</td></tr><tr><td>320.200</td><td>rekenen tot 31</td></tr><tr><td>320.256</td><td>rekenen tot 32</td></tr><tr><td>320.368</td><td>code tot 15</td></tr><tr><td>320.688</td><td>rekenen tot 33</td></tr><tr><td>320.724</td><td>rekenen tot 34</td></tr><tr><td>320.928</td><td>rekenen tot 35</td></tr><tr><td>321.344</td><td>rekenen tot 36</td></tr><tr><td>321.552</td><td>rekenen tot 37</td></tr><tr><td>321.740</td><td>rekenen tot 38</td></tr><tr><td>322.420</td><td>puzzel tot 8</td></tr><tr><td>325.372</td><td>puzzel tot 9</td></tr></table></div>
+
+
+<h2>Waar ze zelf voor koos</h2>
+<p class="stil">uit de eindtelling van life.py over alle 50.000 stappen van deze run; verdeling over de families in de steekproef: rekenen 59% · code 24% · puzzel 16%</p>
+<ul><li>puzzel/7 — 1.125× (2,2%)</li><li>puzzel/9 — 1.125× (2,2%)</li><li>puzzel/8 — 1.027× (2,1%)</li><li>rekenen/38 — 878× (1,8%)</li><li>puzzel/4 — 859× (1,7%)</li><li>rekenen/31 — 858× (1,7%)</li></ul>
+<p>Hoe goed ze het deed op wat ze zélf koos — de score van haar pogingen in diezelfde steekproef,
+op stof uit haar eigen wereld en niet uit een bevroren blad: rekenen 97% (n=284) · code 97% (n=134) · puzzel 82% (n=82).</p>
+
+
+<h2>Naast de run gemeten</h2>
+
+<p class="stil">Terwijl de run op de Z490 liep, is er op de DL380 (15–16 aug) tegen kopieën van de
+momentopname gemeten — lezen en meten, niets veranderde aan haar. De uitkomsten horen bij het beeld van deze run.</p>
+<ul>
+<li><b>diepte2 en ladder zijn vol.</b> diepte2: alles ~100% behalve puzzel 6 (21%) en 9 (3%) — van die
+rijen is met de huidige grammatica maar 8 van 33 en 2 van 33 uitlegbaar (het blad toont zes getallen waar het
+patroon niet uit te halen is); zij haalt 7 en 1. Plafond 81%, ze staat op 81. ladder: puzzel 5 en 6 met 4 en 3
+van 20 uitlegbaar; zij haalt 4 en 3. Plafond 91%, ze staat op 89. <b>Een volle meter meet niets meer</b> —
+vlak op deze twee bladen is géén leerprobleem. Beide zijn bevroren vóór de rijlengte-regel van 13 aug, dezelfde
+ziekte als het diepte-blad.</li>
+<li><b>Twee nieuwe bevroren proefwerken</b> (Cleys akkoord, alleen op de DL380 tot de rungrens):
+<i>diepte3</i> — 495 opgaven uit de wereld van nu, rekenen tot 30, code tot 15, puzzel tot 9, alles past op 1024,
+alleen oplosbare rijen. <b>Startstreep op stap 351.000: 95%</b> (code 97–100% t/m 15, rekenen 91–100% t/m 30,
+puzzel 9: 55%). Ze zit voor code en puzzel tegen het plafond van de <i>wereld</i>: groeiruimte zit in de wereld,
+niet in het proefwerk. En <i>stapel</i> — 297 opgaven: code 16/18/20/22/24 (gestapelde lussen en defs, nieuwe stof)
+en puzzel 2/4/6/8 met alleen de nieuwe keer-plus-steen. Startstreep stap 351.000: <b>code 0%</b> (bestond nog niet
+in haar wereld), <b>keer-plus 82/76/82/55%</b> — een nieuwe steen, en haar oude methode draagt over.</li>
+<li><b>Hekmeting: het venster helpt alléén rekenen</b> — 38 op 1024, 60 op 1536, 82 op 2048. Code paste overal
+maar de grammatica plafonneerde rond 15 (nu stapelt code vanaf diepte 16, tot 24); bij puzzel is de uitlegbaarheid
+de muur (5–7% bruikbaar vanaf diepte 11), niet de lengte. Voor code en puzzel is de weg wereldbouw, geen venster.</li>
+<li><b>De C-meting op het rijpe brein</b> (stap 351.000, 30.000 herinneringen, 1000 stappen alléén puzzels):
+98% behouden mét herhaling en 99/98% zónder. Op het lege netwerk van 8 aug was dat 71% tegen 10%. Het rijpe brein
+vergeet in zo'n kort blok vrijwel niets — deze meting scheidt de twee instellingen niet. Geen reden om herhaling
+af te zetten: kort blok, één zaad. Een langere meting (5000 stappen) is 's nachts afgeblazen: zou hetzelfde tonen.</li>
+<li><b>Het tempo van deze run, uitgezocht:</b> niets werd trager — 2,10 · 2,28 · 2,28 · 2,22 … 2,19 s per stap per
+2000 stappen, kaarsrecht. Stap zonder poging 1,55 s, mét poging (zelf antwoorden, dan leren) 3,90 s, één op vier is een
+poging. Duurder dan run 4 (1,42 s) door venster 1024: langere stof en ruimere schrijfruimte, plus de lange lussen die
+bewust ~750 tekens schrijven. Er is geen CPU-kloof (2–5%). Een groter venster kost daarna niets meer: 1536 en 2048
+draaien 0,91× en 0,90× de staptijd van 1024 — de rem is de schrijflengte van de pogingen, niet de aandacht.</li>
+<li><b>Voor de P100's gemeten</b> (run-6-vorm, stille stand): 9,5 s per stap op één kaart, 7,05 met twee
+(DataParallel), ~2× trager dan de 3070 Ti. Hefbomen: vol vermogen ×1,7 (Cleys oren), DDP (op de lijst), slankere
+aandacht (softmax + maskers zijn ~33% van een stap). fp16 versnelt daar niet.</li>
+<li><b>Gebouwd voor run 6, alle toetsen groen (14 toetsen, 260):</b> laaggroei op de rungrens (<code>--lagen</code>,
+optimizer gaat mee, bit voor bit gecontroleerd), breedtegroei in de kern (koppen en feedforward-eenheden achter
+nul-kolommen — nog niet aan de rungrens), activatie-checkpointing (VRAM-piek 4682 → 1295 MB, leerstap +35% tijd),
+een vaste KV-cache bij het antwoorden (35% sneller, piek 7,3 → 4,4 GB), en de herhaalproef die op elke rungrens
+bewijst dat de trainer bit voor bit herhaalt.</li>
+</ul>
+
+
+<h2>Groei-advies (E)</h2>
+<pre class="advies">groei-advies · venster stap 360.500–370.000 (20 metingen)
+ proefwerk    nu  stijging
+    diepte   36%     -1.4  (telt niet mee)
+   diepte2   79%     -2.0  (plafond 81)
+   gemengd   93%     +0.2
+   gesprek   98%     -0.2
+ grondslag   95%     +0.8
+    ladder   89%     +0.0  (plafond 91)
+
+1. vlak?            ja — beste stijging +0.8 punten (drempel 2.0)
+2. meters niet vol? ja — onder 90% of onder hun plafond: diepte2
+3. wereld nog open? nee
+
+ADVIES: vastgelopen bij een open wereld en meters die nog ruimte hebben — overweeg een laag op de volgende rungrens (rungrens.py --lagen). Eerst foutanalyse.py op de vlakke meters: is het kunnen, of zijn de opgaven niet oplosbaar?</pre>
+<p class="stil">Vlak + meters niet vol + wereld dicht → "overweeg een laag"; anders wat er wél speelt.
+Een voorstel, geen automatisme — Cley beslist.</p>
+
+<h2>Bedrijf</h2>
+<p>Gedraaid op de Z490 · eerste voortgangsregel 19:26, laatste 02:12 ·
+tempo 2217 ms per stap (lopend gemiddelde over de hele run) ·
+startpogingen vóór de eerste stap: 8 · herstarts ná de eerste stap: 0 ·
+17 doorbraken.</p>
+
+<p>De acht startpogingen zijn de startfout van 14 aug 19:22–19:24: de les-koppeling las het paar
+(regels, stilte) van <code>journal.read</code> als regels en viel om vóór de eerste stap; dezelfde avond gedicht,
+daarna liep de run in één proces van begin tot eind — nul herstarts, nul verloren stappen. Tempo 2217 ms per stap
+als lopend gemiddelde, per blok van 2000 stappen tussen 2,10 en 2,28 s. De dienst <code>amber-train</code> stopt
+zelf na de laatste stap; <code>cijfers-bij-finish</code> (gebouwd 14 aug, dit was zijn eerste echte finish)
+draaide daarna de nameting en de foutanalyse. De DL380 is om 01:10 uitgezet (Cley); na dit verslag volgen een
+back-up en het uitzetten van de Z490 — de machine krijgt even rust, op Cleys wens.</p>
+
+
+<h2>En nu</h2>
+
+<p><b>De maat van run 6 is op 15 aug besloten (Cleys akkoord, bijgesteld 18:20):</b> venster 1536, hekken
+rekenen 60 / code 24 / puzzel 10, herhaling 37,5%, doel 420.000 (opnieuw 50.000 stappen), en <b>8 → 12 lagen met
+activatie-checkpointing aan</b> — Cleys keuze, na de kanttekening dat wereld en capaciteit dan tegelijk veranderen.
+De nieuwe bladen diepte3 en stapel gaan op de rungrens mee, zodat de nieuwe stof (code 16–24, keer-plus) een meetlat heeft.</p>
+<pre class="advies">rungrens.py --doel 420000 --venster 1536 --hek rekenen=60 --hek code=24 --hek puzzel=10 --lagen 12 --checkpointing</pre>
+<p>Op de DL380, die kopieert alles naar de Z490 en bewijst onderweg de groeistap bit voor bit en de herhaalbaarheid
+op de trainer. <b>Start alleen op Cleys woord.</b> Reken op een trager tempo: 12 lagen op 1536 met checkpointing is
+op de 3070 Ti naar schatting 5–6 s per stap, dus 50.000 stappen is eerder drie dagen dan dertig uur — dat is een
+schatting uit de tempometingen van 15–16 aug, geen meting van run 6 zelf.</p>
+<p>Wat er na deze run open blijft staan (de prioriteitenlijst in <code>TE-DOEN.md</code>): DDP voor de twee P100's,
+de aandacht slanker op Pascal, het bewijs dat de NAS netjes afsluit, en de breedtegroei aan de rungrens.</p>
+
+
+<p class="stil">eindverslag opgemaakt 16 Aug 2026, 02:25, na afloop van de run · maak-eindverslag.py leest leven.log,
+run5-cijfers.txt en run.json; het verhaal is geschreven door Claude in de nacht van de finish, op Cleys verzoek</p>
+</body></html>

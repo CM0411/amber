@@ -610,6 +610,68 @@ for depth in (1, 2, 9, 10):
             buiten += 1
 check("outside depth 3-8 no teen multiplications appear", buiten == 0)
 
+# --- the teen multiplication with a tail (16 Aug 2026) -----------------------
+# The exam's grade 4 asks `a * b ± c` with a teen factor; after run 5 she
+# still guessed that product or did half the split (27 of 28 misses). One
+# in five numbers at depth 4-10 now carries that form with the full
+# working — applied before the bare split, so every bare teen
+# multiplication stays bit for bit, and so does every untouched number.
+staart = 0
+staart_bad = 0
+for depth in range(4, 11):
+    for n in range(300):
+        t = world.make("rekenen", depth, n)
+        if t is None:
+            continue
+        m = re.fullmatch(r"(\d+) \* (1[3-9]) ([+-]) (\d+)", _unwrap(t.problem))
+        if not m:
+            continue
+        staart += 1
+        a, b, op, c = (int(m.group(1)), int(m.group(2)), m.group(3),
+                       int(m.group(4)))
+        tens, ones = a * 10, a * (b - 10)
+        product = tens + ones
+        result = product + c if op == "+" else product - c
+        expected = (f"{a} * 10 = {tens} ; {a} * {b - 10} = {ones} ; "
+                    f"{tens} + {ones} = {product} ; {product} {op} {c} = "
+                    f"{result}")
+        if (not t.working.endswith(expected) or t.solution != str(result)
+                or not (2 <= a <= 40 and 1 <= c <= 99)):
+            staart_bad += 1
+check("teen multiplications with a tail carry the four-step working",
+      staart > 0 and staart_bad == 0, f"{staart} of 2100 sampled")
+# a fifth, minus the fifth the bare split takes back: about 16%
+check("their share is around a sixth", 0.12 < staart / 2100 < 0.21,
+      f"{staart}")
+buiten = 0
+for depth in (1, 2, 3, 11, 12):
+    for n in range(200):
+        t = world.make("rekenen", depth, n)
+        if t and re.fullmatch(r"\d+ \* 1[3-9] [+-] \d+", _unwrap(t.problem)):
+            buiten += 1
+check("outside depth 4-10 no teen multiplications with a tail appear",
+      buiten == 0)
+# Every number the split does not touch must be bit for bit the world of
+# before: this checksum was taken on 16 Aug 2026 before the form existed
+# (300 numbers per depth 1-12, minus the split numbers).
+_h = hashlib.sha256()
+kc_numbers = 0
+for depth in range(1, 13):
+    for n in range(300):
+        seed = world._seed_of("rekenen", depth, n)
+        k = tasks.Picker(tasks._mix(seed ^ world.KEERC_SEED))
+        if world.KEERC_MIN <= depth <= world.KEERC_MAX and k.integer(1, 5) == 1:
+            kc_numbers += 1
+            continue
+        t = world.make("rekenen", depth, n)
+        p = t.problem if t else ""
+        w = t.working if t else ""
+        s = t.solution if t else ""
+        _h.update(f"{depth}|{n}|{p}|{w}|{s}\n".encode())
+check("untouched arithmetic numbers depth 1-12 are bit for bit the old world",
+      _h.hexdigest()[:16] == "5f4eee0d46fcfe25",
+      f"{_h.hexdigest()[:16]}, {kc_numbers} split numbers")
+
 # --- the long loop with a compact working (14 Aug 2026) ----------------------
 # The exam's loops run to twenty rounds; the wide working for those never
 # fit any writing space, so she computed flawlessly and fell off the page —

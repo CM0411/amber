@@ -239,6 +239,10 @@ for f in ("nameting.py", "foutanalyse.py", "bezorg-brievenbus.py",
     scp(f"{DL}/fase1/{f}", f"{TRAINER}:amber-werk/fase1/{f}")
 # het rapport en de toetsknop reizen ook mee (15 aug 2026)
 scp(f"{DL}/rapport/maak-rapport.py", f"{TRAINER}:amber-werk/rapport/maak-rapport.py")
+# de eindverslag-scripts reizen ook mee (16 aug 2026): het eindverslag
+# wordt na de finish op de Z490 gemaakt en de moederkopie woont hier
+for f in ("maak-eindverslag.py", "verhaal_run.py"):
+    scp(f"{DL}/rapport/{f}", f"{TRAINER}:amber-werk/rapport/{f}")
 scp(f"{DL}/brein/index.html", f"{TRAINER}:amber-werk/brein/index.html")
 scp(f"{DL}/kern/toets-alles.sh", f"{TRAINER}:amber-werk/kern/toets-alles.sh")
 # De proefwerken gaan alléén op een rungrens mee: take() draait elk

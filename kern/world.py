@@ -889,6 +889,38 @@ def _big_multiplication(k):
     return f"{a} * {b}", a * b, working
 
 
+# --- the teen multiplication with a tail (16 Aug 2026) -----------------------
+# The bare form above went 65 → 99% in run 5. But the exam's grade 4 asks
+# `a * b + c` and `a * b - c` with the same teen factor, and there she
+# guessed the product in one pass again (`24 * 16 = 324`) or did half the
+# split (`21 * 10 = 210 ; 210 + 19`): 27 of the 28 misses on rekenen 4
+# after run 5. The tree never makes this form — it multiplies by 2–12 only —
+# so the split-over-tens was, to her, something for a bare multiplication
+# and not for a multiplication inside a sum. Same cure once more: the form
+# with the full working, four easy steps, the last number the answer.
+#
+# Own seed split, one in five numbers at depth 4–10; applied *before* the
+# bare split, so every bare teen multiplication stays bit for bit where it
+# was and only plain tree problems get replaced. Ranges wrap the exam's
+# (a up to 25, c up to 99): what the exam asks must exist in her material.
+
+KEERC_SEED = 0x4B65657243                # "KeerC"
+KEERC_MIN, KEERC_MAX = 4, 10
+
+
+def _teen_multiplication_with_tail(k):
+    a = k.integer(2, 40)
+    b = k.integer(13, 19)
+    c = k.integer(1, 99)
+    op = k.choice(("+", "-"))
+    tens, ones = a * 10, a * (b - 10)
+    product = tens + ones
+    result = product + c if op == "+" else product - c
+    working = (f"{a} * 10 = {tens} ; {a} * {b - 10} = {ones} ; "
+               f"{tens} + {ones} = {product} ; {product} {op} {c} = {result}")
+    return f"{a} * {b} {op} {c}", result, working
+
+
 # --- the long loop with a compact working (14 Aug 2026) ----------------------
 # The exam's loops run to twenty rounds; the world stopped at eleven because
 # the wide working (two or three equations per round, ~660 characters for
@@ -995,6 +1027,12 @@ def make(family, depth, number):
         # guess. `learning_tasks` skips it.
         return None
     if family == "rekenen":
+        # First the teen multiplication with a tail (16 Aug 2026), then the
+        # bare one: the bare split wins where both hit, so every bare teen
+        # multiplication she learned in run 5 stays bit for bit in place.
+        k = Picker(_mix(seed ^ KEERC_SEED))
+        if KEERC_MIN <= depth <= KEERC_MAX and k.integer(1, 5) == 1:
+            problem, solution, working = _teen_multiplication_with_tail(k)
         k = Picker(_mix(seed ^ KEER_SEED))
         if KEER_MIN <= depth <= KEER_MAX and k.integer(1, 5) == 1:
             problem, solution, working = _big_multiplication(k)
