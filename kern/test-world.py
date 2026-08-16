@@ -792,6 +792,100 @@ check("440 stacked programs really print what is noted as the answer",
 check("every equation in a stacked working is a true operation",
       wrong_steps == 0, f"{wrong_steps} broken")
 
+# --- geheugen: the fourth family (16 Aug 2026) --------------------------------
+# An answer that depends on something earlier in the sequence: a note to
+# hold, distractions, then a question that reaches back. The judge here is
+# an independent reader of the problem text — it follows every assignment
+# in order (the last one counts) and answers the question itself. If the
+# generator's answer and the reader's differ, the family lies.
+print()
+print("--- geheugen: the fourth family ---")
+check("the world's families are the measured three, then geheugen — in that order",
+      world.FAMILIES[:3] == tasks.FAMILIES and world.FAMILIES[3:] == ("geheugen",))
+check("the fence for geheugen stands at 12", world.max_depth("geheugen") == 12)
+
+
+def _read_memory(problem):
+    """Follow the text like a careful reader; return the answer, or None."""
+    lines = problem.split("\n")
+    if len(lines) != 3:
+        return None
+    held = {}
+    for line in lines[:2]:
+        head, _, rest = line.partition(": ")
+        if head not in ("onthoud", "tussendoor"):
+            return None
+        for piece in rest.split(" ; "):
+            m = re.fullmatch(r"([a-z]) = (\d+)", piece)
+            if m:
+                held[m.group(1)] = int(m.group(2))
+                continue
+            m = re.fullmatch(r"(\d+) ([-+]) (\d+) = (-?\d+)", piece)
+            if not m:
+                return None                       # something we do not know
+            a, op, b, out = int(m[1]), m[2], int(m[3]), int(m[4])
+            if (a + b if op == "+" else a - b) != out:
+                return None                       # a distraction that lies
+    q = lines[2]
+    m = re.fullmatch(r"wat is ([a-z])\?", q)
+    if m:
+        return held.get(m.group(1))
+    m = re.fullmatch(r"wat is ([a-z]) ([-+]) ([a-z])\?", q)
+    if m and m[1] in held and m[3] in held:
+        return held[m[1]] + held[m[3]] if m[2] == "+" else held[m[1]] - held[m[3]]
+    m = re.fullmatch(r"welke is groter, ([a-z]) of ([a-z])\? schrijf het getal", q)
+    if m and m[1] in held and m[2] in held:
+        return max(held[m[1]], held[m[2]])
+    return None
+
+
+mem_seen = mem_wrong = mem_unfit = 0
+mem_updates = {d: 0 for d in range(1, 13)}
+mem_combos = {d: 0 for d in range(1, 13)}
+mem_forms = set()
+mem_room_short = 0
+for depth in range(1, 13):
+    for n in range(300):
+        t = world.make("geheugen", depth, n)
+        if t is None:
+            mem_wrong += 1
+            continue
+        mem_seen += 1
+        if _read_memory(t.problem) != int(t.solution):
+            mem_wrong += 1
+        if not world.fits(t, 1536 - 112):
+            mem_unfit += 1
+        note, between, q = t.problem.split("\n")
+        names = re.findall(r"([a-z]) = \d+", note)
+        if any(re.search(rf"\b{c} = \d+", between) for c in names):
+            mem_updates[depth] += 1
+        if not q.startswith("wat is ") or " " in q[7:-1].strip():
+            mem_combos[depth] += 1
+        mem_forms.add(re.sub(r"[a-z]", "x", q))
+        if len(t.working) + 8 > _rf(depth, "geheugen", 1536):
+            mem_room_short += 1
+check("3600 geheugen problems: an independent reader lands on the same answer",
+      mem_seen == 3600 and mem_wrong == 0, f"{mem_wrong} disagreements")
+check("all of them fit window 1536 with their working", mem_unfit == 0)
+check("no held value changes on the way before depth 4",
+      all(mem_updates[d] == 0 for d in (1, 2, 3)))
+check("from depth 4 held values do change on the way — the last one counts",
+      all(mem_updates[d] > 60 for d in range(4, 13)),
+      ", ".join(f"d{d}:{mem_updates[d]}" for d in range(4, 13)))
+check("depth 1–2 asks for one value; from depth 3 two values are combined",
+      mem_combos[1] == 0 and mem_combos[2] == 0
+      and all(mem_combos[d] > 60 for d in range(3, 13)),
+      ", ".join(f"d{d}:{mem_combos[d]}" for d in range(1, 13)))
+check("four question forms exist: one value, sum, difference, larger",
+      len(mem_forms) == 4, str(sorted(mem_forms)))
+check("the writing room for geheugen holds every working with margin",
+      mem_room_short == 0)
+check("a geheugen task is the same task every time",
+      world.make("geheugen", 7, 4321) == world.make("geheugen", 7, 4321))
+# and the world of the other three did not move: the checksums above
+# (arithmetic 5f4eee0d46fcfe25, code e6b79a906f84757f, puzzle) still hold
+# because "geheugen" was appended, never inserted — see world.FAMILIES.
+
 print()
 print("=" * 70)
 print(f"passed: {passed}    failed: {failed}")

@@ -43,7 +43,17 @@ byte-identical to wereld.py's, which toets-migratie.py enforces. Only the
 code around the world is English.
 """
 
-from tasks import FAMILIES, Task, Picker, _mix
+from tasks import FAMILIES as _MEASURED_FAMILIES, Task, Picker, _mix
+
+# The world's families: the three of the frozen measuring stick, and then
+# what the world itself added. **Append only, never reorder**: the seed of
+# every task carries the family's position in this tuple, so a family
+# inserted in front would silently move every problem she ever saw. The
+# measuring stick (tasks.py) keeps its own three — the world grows, an
+# exam never does.
+#   16 Aug 2026: "geheugen" — an answer that depends on something earlier
+#   in the sequence (see _memory below).
+FAMILIES = _MEASURED_FAMILIES + ("geheugen",)
 
 # Own constant, separate from tasks.py's: the world and the exams are two
 # separate things and must be so in their numbers too.
@@ -77,7 +87,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 10, "code": 24}
+MAX_DEPTH_PER = {"puzzel": 10, "code": 24, "geheugen": 12}
 
 
 def max_depth(family):
@@ -817,7 +827,101 @@ def _code(depth, t):
     return "\n".join(lines), known[last], " ; ".join(steps)
 
 
-_MAKERS = {"rekenen": _arithmetic, "puzzel": _row, "code": _code}
+# --- geheugen (memory) — 16 Aug 2026 ------------------------------------------
+# The fourth family, and the sharpest test of C: an answer that depends on
+# something earlier in the sequence. All within one task — a note to hold,
+# distractions in between, then a question that reaches back:
+#
+#     onthoud: k = 7 ; p = 12 ; m = 4
+#     tussendoor: 5 + 9 = 14 ; z = 6 ; 8 - 3 = 5
+#     wat is k + m?
+#
+# and the working she learns to write: `k = 7 ; m = 4 ; 7 + 4 = 11` — first
+# look back and copy what was held, then compute. The last number is the
+# answer, so nakijk stays what it is.
+#
+# Depth is two dials in one, building blocks that stack: how much to hold
+# (`n` names, one more every two depths) and how far back (`depth` lines of
+# distraction between the note and the question). From MEM_UPDATE_MIN a held
+# name may be re-assigned on the way and the LAST value counts — letting go
+# of the old and keeping the new, C in the small. From MEM_SUM_MIN the
+# question may combine two held values (sum, difference), from MEM_MAX_MIN
+# ask for the larger one. Names are single letters (bytes, no tokenizer),
+# values 1–99. This measures memory *within* one task — the working memory
+# over the sequence — the run-up to remembering across days, not that
+# itself; that remains H and the replay.
+
+MEM_NAMES = "abcdefghkmnpqrstuvwxyz"     # no i, j, l, o — they read as digits or as each other
+MEM_HOLD_MAX = 12
+MEM_UPDATE_MIN = 4                       # from here a held value may change on the way
+MEM_SUM_MIN = 3                          # from here two held values may be combined
+MEM_MAX_MIN = 5                          # from here "which is larger" may be asked
+
+
+def _mem_names(t, n):
+    names = []
+    while len(names) < n:
+        c = MEM_NAMES[t.integer(0, len(MEM_NAMES) - 1)]
+        if c not in names:
+            names.append(c)
+    return names
+
+
+def _memory(depth, t):
+    n = min(MEM_HOLD_MAX, 1 + (depth - 1) // 2)
+    names = _mem_names(t, n)
+    values = {c: t.integer(1, 99) for c in names}
+    lines = ["onthoud: " + " ; ".join(f"{c} = {values[c]}" for c in names)]
+
+    others = [c for c in MEM_NAMES if c not in names]
+    between = []
+    for _ in range(depth):
+        kind = t.integer(1, 3)
+        if kind == 1 and depth >= MEM_UPDATE_MIN:
+            c = names[t.integer(0, n - 1)]
+            values[c] = t.integer(1, 99)          # the last one counts
+            between.append(f"{c} = {values[c]}")
+        elif kind == 2:
+            c = others[t.integer(0, len(others) - 1)]
+            between.append(f"{c} = {t.integer(1, 99)}")
+        else:
+            a, b = t.integer(1, 50), t.integer(1, 50)
+            op = t.choice(("+", "-"))
+            between.append(f"{a} {op} {b} = {a + b if op == '+' else a - b}")
+    lines.append("tussendoor: " + " ; ".join(between))
+
+    forms = ["een"]
+    if n >= 2 and depth >= MEM_SUM_MIN:
+        forms += ["som", "verschil"]
+    if n >= 2 and depth >= MEM_MAX_MIN:
+        forms += ["grootste"]
+    form = t.choice(tuple(forms))
+    if form == "een":
+        c = names[t.integer(0, n - 1)]
+        question = f"wat is {c}?"
+        working = f"{c} = {values[c]}"
+        answer = values[c]
+    else:
+        i = t.integer(0, n - 1)
+        j = t.integer(0, n - 2)
+        j = j if j < i else j + 1                 # two different held names
+        c1, c2 = names[i], names[j]
+        v1, v2 = values[c1], values[c2]
+        if form == "som":
+            question, answer = f"wat is {c1} + {c2}?", v1 + v2
+            last = f"{v1} + {v2} = {answer}"
+        elif form == "verschil":
+            question, answer = f"wat is {c1} - {c2}?", v1 - v2
+            last = f"{v1} - {v2} = {answer}"
+        else:
+            question, answer = f"welke is groter, {c1} of {c2}? schrijf het getal", max(v1, v2)
+            last = f"groter: {answer}"
+        working = f"{c1} = {v1} ; {c2} = {v2} ; {last}"
+    return "\n".join(lines + [question]), answer, working
+
+
+_MAKERS = {"rekenen": _arithmetic, "puzzel": _row, "code": _code,
+           "geheugen": _memory}
 
 
 # --- the conversational wrapper (13 Aug 2026) --------------------------------

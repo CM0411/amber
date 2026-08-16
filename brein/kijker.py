@@ -53,7 +53,7 @@ last_loaded = 0.0
 # 14 Aug 2026. The top fence itself is always included.
 _LADDER = (1, 2, 3, 4, 5, 6, 8, 10, 13, 17, 21, 26, 32)
 CHOICES = [(fam, d)
-           for fam in ("rekenen", "code", "puzzel")
+           for fam in world.FAMILIES        # 16 aug 2026: alle families van de wereld, ook "geheugen"
            for d in sorted({x for x in _LADDER if x < world.max_depth(fam)}
                            | {world.max_depth(fam)})]
 

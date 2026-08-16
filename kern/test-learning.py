@@ -440,6 +440,35 @@ taken, refused = lessen.learn_lessons(too_long)
 check("a lesson too big for the doorway is refused, not fatal",
       taken == 0 and refused == 1 and lessen.lessons_upto == 20)
 
+# --- a family the snapshot does not know (16 Aug 2026) --------------------
+# The world grew a fourth family (geheugen) after run 6's snapshot was
+# written. On the rungrens that snapshot is the start of run 6.5: the
+# restored curiosity must not lock the new family out, and its edge must
+# exist — otherwise open_deeper falls over and she never draws it.
+older = small_learner()                  # a learner as run 6 knew the world
+carried_old = older.carry()
+carried_old["diepste_per"] = {f: d for f, d in carried_old["diepste_per"].items()
+                              if f != "geheugen"}
+cur_c = carried_old["nieuwsgierig"]
+cur_c["soorten"] = [s for s in cur_c["soorten"] if s[0] != "geheugen"]
+cur_c["score"] = {k: v for k, v in cur_c["score"].items() if not k.startswith("geheugen/")}
+cur_c["laatst"] = {k: v for k, v in cur_c["laatst"].items() if not k.startswith("geheugen/")}
+newer = small_learner()
+newer.restore(carried_old)
+check("a family the snapshot does not know enters at the entrance depth",
+      newer.deepest_per.get("geheugen") == newer._entrance
+      and all(newer.deepest_per[f] == older.deepest_per[f]
+              for f in ("code", "rekenen", "puzzel")))
+check("… and its first depths stand in curiosity at score zero — attractive",
+      all((("geheugen", g) in newer.curiosity.score
+           and newer.curiosity.score[("geheugen", g)] == 0.0)
+          for g in range(world_module.MIN_DEPTH, newer._entrance + 1)))
+check("… while the known families keep their curiosity as carried",
+      all(newer.curiosity.score[k] == v for k, v in older.curiosity.score.items()
+          if k[0] != "geheugen"))
+check("and open_deeper runs over all four families without falling",
+      isinstance(newer.open_deeper(1), list))
+
 print()
 print("=" * 70)
 print(f"passed: {passed}    failed: {failed}")

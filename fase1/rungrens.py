@@ -105,6 +105,10 @@ p.add_argument("--doel", type=int, required=True,
                help="absoluut stapdoel van de nieuwe run, bv. 470000")
 p.add_argument("--run", type=int, default=None,
                help="nummer van de nieuwe run (standaard: vorige + 1)")
+p.add_argument("--naam", default=None,
+               help="etiket van de nieuwe run als het geen heel nummer is, "
+                    "bv. 6.5 — een afgeknipte run die een vervolg krijgt "
+                    "(16 aug 2026); standaard: vorige + 1")
 p.add_argument("--venster", type=int, default=None,
                help="nieuw venster; weglaten = niet groeien")
 p.add_argument("--hek", action="append", default=[],
@@ -139,17 +143,36 @@ ok, rj = ssh("cat ~/rapport/run.json", 30)
 if not ok:
     sys.exit("run.json niet leesbaar op de trainer")
 vorige = json.loads(rj)
-m = re.fullmatch(r"run(\d+)", vorige.get("naam", ""))
+# het etiket mag sinds 16 aug 2026 een tussennummer zijn ("run6.5": een
+# afgeknipte run die een vervolg krijgt); het volgende hele nummer is dan
+# de standaard voor de run daarna
+m = re.fullmatch(r"run(\d+(?:\.\d+)?)", vorige.get("naam", ""))
 if not m:
     sys.exit(f"run.json noemt geen runN: {vorige}")
-VORIG = int(m.group(1))
-RUN = a.run if a.run is not None else VORIG + 1
-if RUN != VORIG + 1:
+VORIG = m.group(1)                       # etiket, bv. "6" of "6.5"
+if a.naam is not None:
+    RUN = a.naam
+elif a.run is not None:
+    RUN = str(a.run)
+else:
+    RUN = str(int(float(VORIG)) + 1)
+if a.naam is None and a.run is not None and a.run != int(float(VORIG)) + 1:
     sys.exit(f"run.json zegt run{VORIG} is net afgelopen; --run {RUN} klopt "
              f"daar niet mee — stop")
+if float(RUN) <= float(VORIG):
+    sys.exit(f"run{RUN} komt niet na run{VORIG} — stop")
+# het doel moet voorbij de teller van de trainer liggen; voorbij het vorige
+# doel hoeft niet meer sinds een run afgeknipt kan worden (run 6, 16 aug
+# 2026: doel 420.000, gestopt eerder — run 6.5 krijgt een korter doel)
+ok, stapregel = ssh("grep -oE 'stap +[0-9]+/' ~/leven.log | tail -1", 30)
+m = re.search(r"stap +(\d+)/", stapregel or "")
+STAP_NU = int(m.group(1)) if m else None
+if STAP_NU is not None and a.doel <= STAP_NU:
+    sys.exit(f"doel {a.doel} ligt niet voorbij de teller van de trainer "
+             f"({STAP_NU}) — stop")
 if a.doel <= vorige.get("doel", 0):
-    sys.exit(f"doel {a.doel} ligt niet voorbij het vorige doel "
-             f"{vorige.get('doel')} — stop")
+    print(f"let op: doel {a.doel} ligt vóór het vorige doel {vorige.get('doel')} — "
+          f"run{VORIG} is afgeknipt (teller {STAP_NU})")
 print(f"run{VORIG} afgelopen (doel {vorige.get('doel')}, venster "
       f"{vorige.get('venster')}, hek {vorige.get('hek')})")
 print(f"nieuw: run{RUN}, doel {a.doel}")
@@ -315,7 +338,7 @@ extra["vorm"] = core.spec()
 snapshot.write("{START}", stapnr, core, L.optimizer,
                inhoud.get("determinisme"), extra=extra)
 print("run{RUN}-start.pt:", stapnr, "vorm", core.spec())
-import json as _j; _j.dump(core.spec(), open("/tmp/groei-uitkomst.json", "w"))
+import json as _j; _j.dump(dict(core.spec(), stap=int(stapnr)), open("/tmp/groei-uitkomst.json", "w"))
 """
 open("/tmp/groei.py", "w").write(groei)
 if not hier(f"{VENV} /tmp/groei.py"):
@@ -325,6 +348,7 @@ if not scp(START, f"{TRAINER}:amber-werk/fase1/leven/momentopname.pt"):
 VORM = json.load(open("/tmp/groei-uitkomst.json"))
 VENSTER = VORM["window"]
 LAGEN = VORM["layers"]
+BEGIN_STAP = VORM.get("stap")            # waar de nieuwe run begint (de eindstand)
 
 stap("6b", "checkpointing in de dienst op de trainer")
 # Een machine-instelling, geen deel van haar: als omgevingsvariabele in
@@ -383,10 +407,10 @@ else:
 stap(9, "run.json en wrapper")
 # run.json woont sinds 14 aug 2026 op de Z490: venster en rapport lezen
 # hem daar. De kopie hier blijft alleen ter referentie staan.
-# `start` (16 aug 2026): het vorige doel — de wachter start een gevallen
-# run alleen weer als de teller daar al voorbij is; een run die nog moet
-# beginnen is Cleys woord
-json.dump({"naam": f"run{RUN}", "doel": a.doel, "start": vorige.get("doel"),
+# `start` (16 aug 2026): de stap van de eindstand — de wachter start een
+# gevallen run alleen weer als de teller daar al voorbij is; een run die nog
+# moet beginnen is Cleys woord
+json.dump({"naam": f"run{RUN}", "doel": a.doel, "start": BEGIN_STAP,
            "hek": hek_tekst(HEK), "venster": VENSTER, "lagen": LAGEN,
            "koppen": VORM.get("heads"), "verborgen": VORM.get("hidden"),
            "parameters": VORM.get("parameters"),

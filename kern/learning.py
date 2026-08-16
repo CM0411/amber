@@ -128,6 +128,14 @@ def room_for(depth, family=None, window=512):
         # (400 at grade 3, 800 at grade 5); the ceiling still guards the
         # window.
         return min(window - 192, 200 * depth - 200)
+    if family == "geheugen":
+        # Memory (16 Aug 2026): the working is short at every depth — look
+        # back, copy one or two held values, one operation: `c = 44 ; g =
+        # 11 ; 44 - 11 = 33` is 27 characters, the longest form ("groter")
+        # under 40. A flat 72: room for the whole working and a slip, and
+        # no invitation to write on. Not depth-bound on purpose — deeper
+        # here means more to hold and further back, not more to write.
+        return min(window - 112, 72)
     # Arithmetic. Longest working: 50 at depth 3, 110 at 6, 180 at 9, 247
     # at 12, and measured on 9 Aug 2026: 294 at 14, 356 at 16, 384 at 17.
     # The old bound of 280 cut depth 14+ — the same mistake as with puzzle
@@ -230,6 +238,7 @@ class Learner:
         # The edge of her world, per family. Grows as soon as she can
         # handle that family at the current edge — see open_deeper().
         self.deepest_per = {f: deepest for f in world.FAMILIES}
+        self._entrance = deepest         # where a family starts (also one the snapshot does not know yet)
         self.edge_threshold = edge_threshold
         # How often she first tries herself. Not every step: writing an
         # answer costs three times the learning step around it, and
@@ -953,6 +962,19 @@ class Learner:
             self.curiosity.kinds.remove(kind)
             self.curiosity.score.pop(kind, None)
             self.curiosity.last.pop(kind, None)
+        # A family the snapshot does not know yet — the world grew after it
+        # was written (16 Aug 2026: geheugen, on the rungrens to run 6.5) —
+        # comes in at the entrance: its edge at the default depth, and its
+        # first depths in curiosity at score zero, new and therefore
+        # attractive. Without this the restored curiosity holds only the
+        # old kinds and the new family would never be drawn: an empty
+        # room nobody ever knocks on. Families the snapshot does know
+        # keep exactly what they carried.
+        for f in world.FAMILIES:
+            if f not in self.deepest_per:
+                self.deepest_per[f] = min(self._entrance, world.max_depth(f))
+            for g in range(world.MIN_DEPTH, self.deepest_per[f] + 1):
+                self.curiosity.add((f, g), self.steps)
 
 
 def _as_task(decoded):
