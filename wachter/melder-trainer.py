@@ -11,7 +11,11 @@ tien minuten stilstand (dan herstart hij de dienst ook zelf, hoogstens
 één keer per kwartier), een kaart van 80 graden of heter, en sinds 16 aug
 2026 de wereld die op slot zit: SLOT_NA stappen zonder dat er ergens een
 diepte openging (één melding per slot; Cley beslist over een rungrens),
-en apart de wereld die dicht is — elke familie tegen zijn hek.
+en apart de wereld die dicht is — elke familie tegen zijn hek. En de
+vak-wachter (16 aug 2026, Cleys wens): per proefwerk waken of het van
+zijn plek komt — een nieuw vak dat na VAK_NUL_NA proefwerken nog op de
+nulmeting staat, of een vak dat VAK_VLAK_NA proefwerken lang vlak én
+laag staat — één melding per vak per run; alleen melden, nooit ingrijpen.
 """
 import json
 import os
@@ -28,6 +32,19 @@ STILSTAND_NA = 600      # seconden zonder nieuwe stap voordat hij ingrijpt
 HERSTART_RUST = 900     # minimale rust tussen twee eigen herstarts
 WARM_VANAF = 80         # graden; melding gaat pas opnieuw onder de 75
 SLOT_NA = 5000          # stappen zonder nieuwe opening → "wereld op slot", één melding
+# --- de vak-wachter: drempels (16 aug 2026, Cleys opdracht) -------------------
+# Alles alleen melden, nooit ingrijpen. Eén melding per vak per voorval.
+VAK_NUL_GRENS = 5       # procent: tot hier heet een vak "op de nulmeting"
+VAK_NUL_NA = 6          # proefwerken (à 500 stappen) op de nulmeting → melding
+VERGEET_VENSTER = 3     # proefwerken in het voortschrijdend gemiddelde
+VERGEET_DALING = 5      # procentpunten onder het beste gemiddelde → C-alarm …
+VERGEET_OP_RIJ = 2      # … als het zoveel proefwerken op rij zo staat
+VERGEET_HERSTEL = 2     # binnen zoveel punten van het beste = hersteld (herwapent)
+VAK_VLAK_NA = 12        # proefwerken vlak (spreiding ≤ VAK_VLAK_BAND) …
+VAK_VLAK_BAND = 3       # … procentpunten …
+VAK_LAAG = 90           # … én nog onder dit percentage → "staat vlak"
+VAK_UITZONDERING = ("diepte",)   # de bevroren oude meetlat staat expres vlak (~37%)
+FAM_SLOT_NA = 4000      # stappen zonder "wereld open" voor één familie onder haar hek
 RUNJSON = "/home/arch/rapport/run.json"
 
 
@@ -106,6 +123,33 @@ def lees_run():
         return rc.get("naam"), rc.get("start"), hek
     except Exception:
         return None, None, {}
+
+
+def _n(x):
+    """Getal met puntjes als duizendtal-scheiding (nl), zonder de zinnen aan te raken."""
+    return f"{int(x):,}".replace(",", ".")
+
+
+def lees_proefwerken(start):
+    """Alle proefwerkregels van deze run uit de logstaart, op volgorde:
+    [(stap, {naam: pct}), ...]. De startregel van een run staat als
+    `stap 0` in het logboek en krijgt hier de startstap van de run."""
+    uit = []
+    try:
+        with open(LOG, "rb") as f:
+            f.seek(0, 2)
+            f.seek(max(0, f.tell() - 262144))
+            staart = f.read().decode(errors="ignore")
+        for stap, rest in re.findall(r"^\s+stap\s+(\d+) \|((?:\s+\w+\s+\d+%)+)", staart, re.M):
+            stap = int(stap)
+            if stap == 0:
+                stap = int(start or 0)
+            if start is not None and stap < int(start):
+                continue                      # een vorige run
+            uit.append((stap, {n: int(v) for n, v in re.findall(r"(\w+)\s+(\d+)%", rest)}))
+    except Exception as e:
+        print("proefwerken lezen mislukte:", e, flush=True)
+    return uit
 
 
 def dienst_status():
@@ -224,18 +268,100 @@ while True:
                     stuur("Wereld dicht",
                           "elke familie staat tegen zijn hek ("
                           + ", ".join(f"{f} {wereld[f][0]}" for f in hek)
-                          + f") bij stap {stap:,}".replace(",", ".")
+                          + f") bij stap {_n(stap)}"
                           + " — rungrens overwegen? Jij beslist.")
                     onthouden["dicht_gemeld"] = True
             elif (stap - laatst_open >= SLOT_NA
                     and onthouden.get("slot_gemeld_bij") != laatst_open):
                 stuur("Wereld op slot",
-                      f"al {stap - laatst_open:,} stappen ging nergens een diepte "
-                      f"open (laatst bij stap {laatst_open:,}; nu {stap:,}, wereld "
-                      .replace(",", ".")
+                      f"al {_n(stap - laatst_open)} stappen ging nergens een diepte "
+                      f"open (laatst bij stap {_n(laatst_open)}; nu {_n(stap)}, wereld "
                       + ", ".join(f"{f} {d}" for f, (d, _) in sorted(wereld.items()))
                       + ") — rungrens overwegen? Jij beslist.")
                 onthouden["slot_gemeld_bij"] = laatst_open
+
+        # De vak-wachter (16 aug 2026, Cleys opdracht): per proefwerk en per
+        # familie, alleen melden met getallen — Cley beslist.
+        #  (1) nulmeting: een vak dat aan het begin van de run op ≤ VAK_NUL_GRENS
+        #      staat en daar na VAK_NUL_NA proefwerken nog staat;
+        #  (2) vergeten — het C-alarm: een vak dat VERGEET_OP_RIJ proefwerken op
+        #      rij ≥ VERGEET_DALING punten onder zijn beste voortschrijdend
+        #      gemiddelde (VERGEET_VENSTER) staat; herwapent na herstel;
+        #  (3) stilstand per vak: VAK_VLAK_NA proefwerken binnen VAK_VLAK_BAND
+        #      punten én nog onder VAK_LAAG — behalve de bevroren oude meetlat;
+        #  (4) familie op slot: FAM_SLOT_NA stappen geen "wereld open" voor een
+        #      familie die nog onder haar hek zit (naast de wereldbrede slotmelding).
+        vak_gemeld = onthouden.setdefault("vak_gemeld", {})
+        fam_gemeld = onthouden.setdefault("fam_slot_gemeld", {})
+        if naam != onthouden.get("vak_run"):
+            vak_gemeld.clear(); fam_gemeld.clear()
+            onthouden["vak_run"] = naam
+        reeks = lees_proefwerken(start)
+        meldingen = []
+        if reeks:
+            per_vak = {}
+            for st, sc in reeks:
+                for v, pct in sc.items():
+                    per_vak.setdefault(v, []).append((st, pct))
+            for v, punten in per_vak.items():
+                waarden = [pct for _, pct in punten]
+                g = vak_gemeld.setdefault(v, {})
+                # (1) nulmeting
+                if (not g.get("nulmeting") and len(punten) >= VAK_NUL_NA
+                        and waarden[0] <= VAK_NUL_GRENS
+                        and max(waarden) <= VAK_NUL_GRENS):
+                    meldingen.append(
+                        f"NULMETING {v}: {len(punten)} proefwerken op ≤ {VAK_NUL_GRENS}% "
+                        f"(stap {_n(punten[0][0])} → {_n(punten[-1][0])}, nu {waarden[-1]}%)")
+                    g["nulmeting"] = True
+                # (2) vergeten — het C-alarm
+                if len(waarden) >= VERGEET_VENSTER + VERGEET_OP_RIJ:
+                    gemiddelden = [sum(waarden[i:i + VERGEET_VENSTER]) / VERGEET_VENSTER
+                                   for i in range(len(waarden) - VERGEET_VENSTER + 1)]
+                    top = max(gemiddelden)
+                    top_stap = punten[gemiddelden.index(top) + VERGEET_VENSTER - 1][0]
+                    staart = waarden[-VERGEET_OP_RIJ:]
+                    gedaald = all(w <= top - VERGEET_DALING for w in staart)
+                    if gedaald and g.get("vergeten_top") != round(top, 1):
+                        meldingen.append(
+                            f"VERGETEN {v}: van {top:.0f}% (beste gemiddelde, tot stap "
+                            f"{_n(top_stap)}) naar {staart[-1]}% — {VERGEET_OP_RIJ} proefwerken "
+                            f"op rij ≥ {VERGEET_DALING} punten lager, sinds stap "
+                            f"{_n(punten[-VERGEET_OP_RIJ][0])}")
+                        g["vergeten_top"] = round(top, 1)
+                    elif not gedaald and waarden[-1] >= top - VERGEET_HERSTEL:
+                        g.pop("vergeten_top", None)          # hersteld: herwapenen
+                # (3) stilstand per vak
+                if (not g.get("vlak") and v not in VAK_UITZONDERING
+                        and len(punten) >= VAK_VLAK_NA):
+                    laatste = waarden[-VAK_VLAK_NA:]
+                    if (max(laatste) - min(laatste) <= VAK_VLAK_BAND
+                            and laatste[-1] < VAK_LAAG):
+                        meldingen.append(
+                            f"VLAK {v}: {VAK_VLAK_NA} proefwerken tussen {min(laatste)} en "
+                            f"{max(laatste)}% (stap {_n(punten[-VAK_VLAK_NA][0])} → "
+                            f"{_n(punten[-1][0])})")
+                        g["vlak"] = True
+                elif g.get("vlak") and len(waarden) >= 2 and abs(waarden[-1] - waarden[-2]) > VAK_VLAK_BAND:
+                    g.pop("vlak", None)                       # beweegt weer: herwapenen
+        # (4) familie op slot
+        if stap is not None and dienst == "active" and doel and stap < doel and hek:
+            for fam, hekdiepte in hek.items():
+                diepte_nu, bij = wereld.get(fam, [None, None])
+                laatst = max(int(start or 0), int(bij or 0))
+                if diepte_nu is not None and diepte_nu >= hekdiepte:
+                    fam_gemeld.pop(fam, None)                 # tegen het hek: niets te melden
+                    continue
+                if stap - laatst >= FAM_SLOT_NA and fam_gemeld.get(fam) != laatst:
+                    meldingen.append(
+                        f"FAMILIE OP SLOT {fam}: al {_n(stap - laatst)} stappen niets nieuws "
+                        + (f"open (staat op {diepte_nu} van hek {hekdiepte}, "
+                           if diepte_nu is not None else
+                           f"open (nog op de instap, hek {hekdiepte}, ")
+                        + f"laatst bij stap {_n(laatst)})")
+                    fam_gemeld[fam] = laatst
+        if meldingen:
+            stuur("Vak-wachter", " · ".join(meldingen) + " — jij beslist.")
 
         if temp is not None:
             if temp >= WARM_VANAF and not onthouden["warm_gemeld"]:
