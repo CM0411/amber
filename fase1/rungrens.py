@@ -5,6 +5,7 @@ Draaien op de DL380 zodra een run af is (dienst inactive op de trainer):
   venv/bin/python fase1/rungrens.py --doel 470000
   venv/bin/python fase1/rungrens.py --doel 470000 --venster 1536 \
       --hek rekenen=38 --hek code=20 --hek puzzel=12 --lagen 9 --checkpointing
+  venv/bin/python fase1/rungrens.py --doel 470000 --koppen 8 --verborgen 2048
 
 Sinds 15 aug 2026 algemeen: niets van een bepaald runnummer staat er
 meer hard in. Het runnummer komt uit `run.json` op de trainer (de run die
@@ -12,7 +13,8 @@ zojuist afliep) plus één; `--run` overschrijft dat, en het draaiboek stopt
 als de twee niet kloppen. Zonder `--venster` blijft het venster wat het
 is; zonder `--hek` blijven de hekken van world.py staan; zonder `--lagen`
 komt er geen laag bij (`Learner.grow_layer`, 15 aug 2026: optimizer en
-antwoordkopie gaan mee). Alleen wat
+antwoordkopie gaan mee); zonder `--koppen`/`--verborgen` blijft de breedte
+binnen de blokken wat ze is (`Learner.grow_width`, 16 aug 2026). Alleen wat
 verandert wordt gedaan — een rungrens zonder groei is dus ook geldig.
 
 Het argument `--doel` is het absolute doel van de nieuwe run (Cleys
@@ -109,6 +111,12 @@ p.add_argument("--hek", action="append", default=[],
                help="familie=diepte, herhaalbaar; weglaten = laten staan")
 p.add_argument("--lagen", type=int, default=None,
                help="aantal lagen na de groei; weglaten = niet groeien")
+p.add_argument("--koppen", type=int, default=None,
+               help="aantal aandachtskoppen per blok na de groei (breedte, "
+                    "16 aug 2026); weglaten = niet groeien")
+p.add_argument("--verborgen", type=int, default=None,
+               help="feedforward-eenheden per blok na de groei (breedte, "
+                    "16 aug 2026); weglaten = niet groeien")
 p.add_argument("--zonder-herhaalproef", action="store_true",
                help="sla het herhaalbaarheidsbewijs op de trainer over")
 p.add_argument("--checkpointing", action="store_true",
@@ -272,23 +280,37 @@ stapnr = snapshot.restore(inhoud, L.core, L.optimizer, "cuda:1")
 core = L.core
 core.eval(); determinism.begin_step(1)
 oud_venster, oud_lagen = core.window, len(core.blocks)
+oud_koppen, oud_verborgen = core.heads, core.hidden
 nieuw_venster = {a.venster if a.venster else 'oud_venster'}
 nieuw_lagen = {a.lagen if a.lagen else 'oud_lagen'}
+nieuw_koppen = {a.koppen if a.koppen else 'oud_koppen'}
+nieuw_verborgen = {a.verborgen if a.verborgen else 'oud_verborgen'}
 if nieuw_venster < oud_venster:
     raise SystemExit(f"venster {{nieuw_venster}} < {{oud_venster}} — krimpen kan niet")
 if nieuw_lagen < oud_lagen:
     raise SystemExit(f"lagen {{nieuw_lagen}} < {{oud_lagen}} — krimpen kan niet")
+if nieuw_koppen < oud_koppen:
+    raise SystemExit(f"koppen {{nieuw_koppen}} < {{oud_koppen}} — krimpen kan niet")
+if nieuw_verborgen < oud_verborgen:
+    raise SystemExit(f"verborgen {{nieuw_verborgen}} < {{oud_verborgen}} — krimpen kan niet")
 proef = torch.randint(0, 260, (2, oud_venster), device="cuda:1")
 with torch.no_grad(): voor = core.advance(proef)[0].clone()
 if nieuw_venster > oud_venster:
     L.adopt_window(nieuw_venster)
 while len(core.blocks) < nieuw_lagen:
     L.grow_layer()
+# breedte ná de lagen (16 aug 2026): koppen en feedforward-eenheden bínnen
+# de blokken, achter nul-kolommen — ook de zojuist ingevoegde blokken
+# groeien dan mee; de optimizer-momenten reizen mee (Learner.grow_width)
+if nieuw_koppen > oud_koppen or nieuw_verborgen > oud_verborgen:
+    L.grow_width(heads=nieuw_koppen if nieuw_koppen > oud_koppen else None,
+                 hidden=nieuw_verborgen if nieuw_verborgen > oud_verborgen else None)
 core.eval()
 with torch.no_grad(): na = core.advance(proef)[0]
 assert torch.equal(voor, na), "groei veranderde de uitvoer!"
 print(f"venster {{oud_venster}} → {{core.window}}, lagen {{oud_lagen}} → "
-      f"{{len(core.blocks)}}, uitvoer bit voor bit gelijk")
+      f"{{len(core.blocks)}}, koppen {{oud_koppen}} → {{core.heads}}, "
+      f"verborgen {{oud_verborgen}} → {{core.hidden}}, uitvoer bit voor bit gelijk")
 extra["vorm"] = core.spec()
 snapshot.write("{START}", stapnr, core, L.optimizer,
                inhoud.get("determinisme"), extra=extra)
@@ -366,6 +388,7 @@ stap(9, "run.json en wrapper")
 # beginnen is Cleys woord
 json.dump({"naam": f"run{RUN}", "doel": a.doel, "start": vorige.get("doel"),
            "hek": hek_tekst(HEK), "venster": VENSTER, "lagen": LAGEN,
+           "koppen": VORM.get("heads"), "verborgen": VORM.get("hidden"),
            "parameters": VORM.get("parameters"),
            "checkpointing": CHECKPOINTING, "machine": "Z490"},
           open("/home/arch/rapport/run.json", "w"))
@@ -378,7 +401,8 @@ if uit.strip() != f"life.py {a.doel}":
     sys.exit(f"wrapper ~/nacht niet op {a.doel} gekomen: {uit!r}")
 
 print(f"\nALLES KLAAR — run {RUN} wacht op Cleys woord:")
-print(f"  doel {a.doel:,} · venster {VENSTER} · lagen {LAGEN} "
+print(f"  doel {a.doel:,} · venster {VENSTER} · lagen {LAGEN} · koppen "
+      f"{VORM.get('heads')} · verborgen {VORM.get('hidden')} "
       f"({VORM.get('parameters', 0):,} parameters) · checkpointing "
       f"{'aan' if CHECKPOINTING else 'uit'} · hekken {hek_tekst(HEK)}"
       .replace(",", "."))
