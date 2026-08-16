@@ -350,6 +350,37 @@ VENSTER = VORM["window"]
 LAGEN = VORM["layers"]
 BEGIN_STAP = VORM.get("stap")            # waar de nieuwe run begint (de eindstand)
 
+stap("6c", "logboek op de trainer afknippen op de eindstand")
+# Een run die eerder stopt dan zijn doel (run 6, 16 aug 2026) heeft na de
+# laatste momentopname nog stappen in het logboek staan. Die zijn niet in
+# haar toestand — de opname is de waarheid — en zouden bij de start van de
+# nieuwe run als dubbele regels naast de echte komen te staan. Weg ermee,
+# maar niet weggegooid: eerst een volledige kopie naast het logboek. Alles
+# wat bij een stap vóórbij de eindstand hoort (stap, wereld_dieper,
+# proefwerk); lessen, rust en hervat blijven staan — die zijn van buiten.
+knip = f"""
+import json, os, shutil
+pad = "/home/arch/amber-werk/fase1/leven/logboek.jsonl"
+grens = {BEGIN_STAP}
+regels = [r for r in open(pad, encoding="utf-8").read().splitlines() if r.strip()]
+BLIJFT = ("les", "les_geleerd", "hervat", "rust")
+def stapvan(r):
+    try:
+        d = json.loads(r); return None if d.get("soort") in BLIJFT else d.get("stap")
+    except Exception:
+        return None
+weg = [r for r in regels if (stapvan(r) or 0) > grens]
+if weg:
+    shutil.copy2(pad, pad.replace("logboek.jsonl", "logboek-run{VORIG}-volledig.jsonl"))
+    houd = [r for r in regels if not ((stapvan(r) or 0) > grens)]
+    with open(pad + ".deel", "w", encoding="utf-8") as f:
+        f.write("\\n".join(houd) + "\\n"); f.flush(); os.fsync(f.fileno())
+    os.replace(pad + ".deel", pad)
+print(f"logboek: {{len(weg)}} regels voorbij stap {{grens}} weggeknipt, {{len(regels) - len(weg)}} blijven")
+"""
+ok, uit = ssh("python3 - <<'PYEOF'\n" + knip + "\nPYEOF", 120)
+print(uit.strip().splitlines()[-1] if uit else "(geen antwoord)")
+
 stap("6b", "checkpointing in de dienst op de trainer")
 # Een machine-instelling, geen deel van haar: als omgevingsvariabele in
 # een drop-in van amber-train, zodat ~/nacht → life.py hem erft. Alleen
