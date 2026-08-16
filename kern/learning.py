@@ -33,6 +33,7 @@ import threading
 import bridge
 import determinism
 import exams
+import parallel
 import tasks as tasks_module
 import tokens
 import torch
@@ -141,7 +142,10 @@ class Learner:
                  batch_size=32, replay_share=0.375, brake=0.0, memory=None,
                  curiosity=None, deepest=2, edge_threshold=0.5,
                  probe_every=4, bf16=None, checkpointing=False):
-        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        # Under torchrun (parallel.start() done) every process is pinned to
+        # its own card and that card is the device — see parallel.py.
+        self.device = (device or parallel.device()
+                       or ("cuda" if torch.cuda.is_available() else "cpu"))
         self.core = (core or Core()).to(self.device)
         self.bf16 = bf16_usable(self.device) if bf16 is None else bf16
         # Activation checkpointing (15 Aug 2026): a machine setting like
@@ -154,15 +158,30 @@ class Learner:
         # the PCIe build), so the batch splits and the gradients meet over
         # the PCIe bus. At 14 million parameters that is well worth it.
         #
+        # Two ways to do that (16 Aug 2026):
+        #
+        # * **one process, DataParallel** — the old way, still what a plain
+        #   `python life.py` gets on a two-card machine. One boss card that
+        #   copies weights and gathers outputs every step; ×1.35 out of the
+        #   second card, measured.
+        # * **one process per card** (`parallel.active()`, launched by
+        #   torchrun) — every process holds a whole Learner and takes the
+        #   same step; only the gradient is computed in shares and summed
+        #   over the bus. Then there is no DataParallel and no answer copy:
+        #   this process has one card, and answering is shared the same
+        #   way (see `answer`). Nothing else in here needs to know.
+        #
         # `self.core` stays the bare network: the snapshot must not know
-        # how many cards happen to sit in the machine. The same demand as
-        # "store state hardware-independently".
+        # how many cards happen to sit in the machine, nor how many
+        # processes drive them. The same demand as "store state
+        # hardware-independently".
         self._compute_core = self.core
         self._answer_core = self.core
         self._answer_device = self.device
         self._weights_fresh = True
 
-        if self.device == "cuda" and torch.cuda.device_count() > 1:
+        if (not parallel.active() and self.device == "cuda"
+                and torch.cuda.device_count() > 1):
             self._compute_core = torch.nn.DataParallel(self.core)
 
             # Answering happens on the second card. Two reasons:
@@ -247,6 +266,10 @@ class Learner:
         must be boundaries between topics. In an open world (F) there are
         none by themselves. Not a detail but the reason this approach does
         not scale into what comes later.
+
+        Not shared over processes: in a group every process computes the
+        whole thing itself, identically. Duplicated work, but the brake is
+        off in every real run and this stays correct without a collective.
         """
         self.core.train()
         new_importance = {n: torch.zeros_like(p)
@@ -319,6 +342,17 @@ class Learner:
         padding behind it. Padding left would not work here without
         shifting the positions.
         """
+        if parallel.active():
+            # One process per card: every process answers its own share on
+            # its own card, then everyone gets the whole list back in the
+            # original order. Same shape as the two-thread version below,
+            # only the threads are processes. A collective — every process
+            # calls this with the same tasks, so nobody waits for nothing.
+            mine = parallel.share(tasks_)
+            done = (self._answer_on(mine, self.core, self.device, at_most)
+                    if mine else [])
+            return parallel.gather(done)
+
         cores = self._answer_cores()
         if len(cores) == 1 or len(tasks_) < 2 * len(cores):
             core, device = cores[0]
@@ -460,11 +494,20 @@ class Learner:
         chunk_size = max(1, min(n, _CHUNK_BUDGET // max(1, length * length)))
 
         self.optimizer.zero_grad(set_to_none=True)
+        # `total_counts` is over the WHOLE batch, also with one process per
+        # card: every process divides its share's loss by the same number,
+        # so the summed gradients equal the gradient of one big batch — the
+        # same identity the chunks rely on, one level up.
         total_counts = int(mask[:, 1:].sum())
         total_loss = 0.0
-        for i in range(0, n, chunk_size):
-            c = codes[i:i + chunk_size]
-            m = mask[i:i + chunk_size]
+        # My rows. Alone that is all of them; in a group every `world`-th
+        # row (parallel.share), cut from the batch AFTER padding so both
+        # shares see the same `length` and thus the same chunk size.
+        codes_mine = parallel.share(codes)
+        mask_mine = parallel.share(mask)
+        for i in range(0, len(codes_mine), chunk_size):
+            c = codes_mine[i:i + chunk_size]
+            m = mask_mine[i:i + chunk_size]
             scores = self._compute_core(c)
             # The score at position j predicts the character at j+1. The
             # mask must therefore shift one along; one position off and she
@@ -476,8 +519,18 @@ class Learner:
                                      reduction="sum")
             (summed / max(1, total_counts)).backward()
             total_loss += float(summed.item())
+        # Meet over the bus: the shares' gradients add up to the gradient of
+        # the whole batch, and every process leaves with that total. From
+        # here on both take exactly the same step. The measured loss is
+        # summed too, so the number in the journal is the whole batch's.
+        # Alone both calls do nothing.
+        parallel.sum_grads(self.core.parameters())
+        total_loss = parallel.sum_number(total_loss)
         measured = total_loss / max(1, total_counts)
 
+        # The brake (off by default — EWC, measured and rejected 8 Aug 2026)
+        # is computed on every process alike, AFTER the sum: it depends only
+        # on the weights, so adding it before the sum would count it twice.
         penalty = self._brake_penalty()
         if penalty is not None:
             penalty.backward()
@@ -673,12 +726,37 @@ class Learner:
             self.lessons_upto = int(row["nr"])
         return taken, refused
 
+    def fingerprint(self):
+        """A digest of everything that must be equal across processes:
+        weights, optimizer moments, and the small state around them (the
+        step, how many memories, the lesson counter, the open edge, the
+        curiosity). life.py compares it over the group before every
+        snapshot — parallel.same() — and refuses to go on if the two
+        learners have drifted apart. Not the memory's content: millions of
+        codes to hash every 500 steps, while its length and the curiosity
+        it feeds catch any drift within a step or two."""
+        return parallel.fingerprint(
+            self.core, self.optimizer,
+            extra=(self.steps, len(self.memory), self.lessons_upto,
+                   sorted(self.deepest_per.items()),
+                   sorted(self.curiosity.score.items()),
+                   sorted(self.curiosity.last.items())))
+
     def carry(self):
         return {
             "geheugen": self.memory.carry(),
             "nieuwsgierig": self.curiosity.carry(),
             "les_tot": self.lessons_upto,
             "diepste_per": dict(self.deepest_per),
+            # The optimizer-step counter (16 Aug 2026). It seeds the replay
+            # picker, and it is NOT the loop's step number: one work() is
+            # two optimizer steps (40 new + 24 replayed, then 24 + 40), so
+            # setting it to "step - 1" on resume — what life.py did — gave
+            # a resumed run other replay draws than a run straight through.
+            # Repeatable, but not bit for bit the same as never having
+            # stopped. Now it travels; snapshots without the key keep the
+            # old behaviour.
+            "leerstappen": self.steps,
             # Since 11 Aug 2026: the snapshot knows her shape, so a loader
             # can follow her window instead of assuming the default. Run-3
             # snapshots lack this key; loaders must cope with that.
@@ -858,6 +936,8 @@ class Learner:
         self.lessons_upto = int(carried.get("les_tot") or 0)
         if carried.get("nieuwsgierig"):
             self.curiosity.restore(carried["nieuwsgierig"])
+        if carried.get("leerstappen") is not None:
+            self.steps = int(carried["leerstappen"])
         if carried.get("diepste_per"):
             # Bounded restore: a snapshot can carry a world open too deep
             # (code to 12, from before the fence of 8 existed).

@@ -10,6 +10,7 @@ diepte, herhaling 0 — dus zuiver het rekenwerk). Ook de piek-VRAM.
 Welke kaarten meedoen bepaal je buiten het script:
 
   CUDA_VISIBLE_DEVICES=0,1 venv/bin/python fase1/tempo-p100.py --lagen 12 --venster 1536
+  venv/bin/torchrun --standalone --nproc_per_node=2 fase1/tempo-p100.py ...   (DDP: twee processen)
   CUDA_VISIBLE_DEVICES=1   venv/bin/python fase1/tempo-p100.py ... --checkpointing
   ...                                                           --fused   (AdamW fused-kernel)
 """
@@ -18,7 +19,9 @@ sys.path.insert(0, "/home/arch/amber-werk/kern")
 import determinism
 determinism.lock(27182)
 import torch
-import learning, network, world
+import learning, network, parallel, world
+parallel.start()                    # onder torchrun: één proces per kaart
+say = print if parallel.chief() else (lambda *a, **k: None)
 
 p = argparse.ArgumentParser()
 p.add_argument("--lagen", type=int, default=12)
@@ -49,15 +52,16 @@ if a.fused:
     oud = L.optimizer.param_groups[0]
     L.optimizer = torch.optim.AdamW(L.core.parameters(), lr=oud["lr"],
                                     weight_decay=oud["weight_decay"], fused=True)
-print(f"vorm: {a.lagen} lagen × {core.width}, {core.heads} koppen, {core.hidden} "
+say(f"vorm: {a.lagen} lagen × {core.width}, {core.heads} koppen, {core.hidden} "
       f"verborgen, venster {a.venster}, partij {a.partij}, "
-      f"{L.core.parameter_count() / 1e6:.1f} M parameters · {kaarten} kaart(en) · "
+      f"{L.core.parameter_count() / 1e6:.1f} M parameters · "
+      f"{f'{parallel.world()} processen (DDP)' if parallel.active() else f'{kaarten} kaart(en)'} · "
       f"{'bf16' if a.bf16 else 'fp32'} · checkpointing {'aan' if a.checkpointing else 'uit'}"
       f"{' · fused AdamW' if a.fused else ''} · chunkbudget {learning._CHUNK_BUDGET / 1e6:.0f} M",
       flush=True)
 lengte = max(len(t.problem) + len(t.to_learn()) + 3 for t in
              world.learning_tasks("rekenen", a.diepte, a.partij, start=3000, room=a.venster - 112))
-print(f"langste reeks ~{lengte} tekens → doorgangen van "
+say(f"langste reeks ~{lengte} tekens → doorgangen van "
       f"{max(1, min(a.partij, learning._CHUNK_BUDGET // (lengte * lengte)))} reeksen", flush=True)
 
 # elke stap een andere partij, zoals in het echt
@@ -76,6 +80,11 @@ for k in range(a.stappen):
     L.learn(partijen[3 + k])
 torch.cuda.synchronize()
 per = (time.perf_counter() - t0) / a.stappen
-piek = max(torch.cuda.max_memory_allocated(i) for i in range(kaarten)) / MB
-print(f"{per * 1000:.0f} ms/stap · {a.partij / per:.0f} taken/s · piek {piek:.0f} MB "
+if parallel.active():          # elk proces zijn eigen kaart; de drukste telt
+    _, pieken = parallel.same(torch.cuda.max_memory_allocated(torch.cuda.current_device()))
+    piek = max(pieken) / MB
+else:
+    piek = max(torch.cuda.max_memory_allocated(i) for i in range(kaarten)) / MB
+say(f"{per * 1000:.0f} ms/stap · {a.partij / per:.0f} taken/s · piek {piek:.0f} MB "
       f"op de drukste kaart", flush=True)
+parallel.stop()

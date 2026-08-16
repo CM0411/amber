@@ -36,8 +36,10 @@ L = learning.Learner(batch_size=64,
                      checkpointing=os.environ.get("AMBER_CHECKPOINTING") == "1")
 L.adopt_shape(extra.get("vorm"))
 stap = snapshot.restore(inhoud, L.core, L.optimizer, L.device)
-L.restore(extra)
+# Same order as life.py: the step number first, then the carried state —
+# a snapshot that carries the optimizer-step counter (16 aug 2026) wins.
 L.steps = stap
+L.restore(extra)
 print(f"geladen: stap {stap}, venster {L.core.window}, lagen "
       f"{len(L.core.blocks)}, geheugen {len(L.memory)}, bf16 {L.bf16}, "
       f"checkpointing {L.core.checkpointing}",
