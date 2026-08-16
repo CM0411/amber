@@ -115,6 +115,88 @@ class KVCache:
         return self.k[:, :, :self.n], self.v[:, :, :self.n]
 
 
+# --- the slimmer attention (16 Aug 2026) ---------------------------------------
+# On the P100 the softmax and the masks were a third of a learning step:
+# every pass over the (batch, heads, length, length) scores is 900 million
+# numbers at the run-6 shape, and the old path made twenty of them per
+# layer — divide, mask, softmax and their backwards, each a separate kernel
+# with its own copy. Three things are slimmer now, all bit for bit the same
+# arithmetic (proven in test-attention.py, learning and answering, fp32 and
+# bf16, with and without checkpointing):
+#
+# * **The scale is folded into q** (`q * (1 / sqrt(head_size))`) instead of
+#   dividing the scores — in fp32. Exact because the head size is 64 and
+#   its root 8 a power of two: scaling by 2^-3 shifts the exponent and
+#   rounds nothing, so every product and every partial sum in the matmul
+#   is the old one divided by eight, and the same holds for the gradients.
+#   Not under bf16 autocast: there the backward matmuls came out different
+#   (measured 16 Aug 2026 on the P100 — cuBLAS's bf16 GEMM with its
+#   reduced-precision reductions is not the same kernel for the two
+#   layouts autograd builds), so the trainer's bf16 path keeps dividing
+#   the scores, which is the old computation by construction. Any other
+#   head size takes the old road too.
+# * **The causal ban is built once per length** and kept, not rebuilt in
+#   every block of every step.
+# * **Mask and softmax are one autograd node** (`_MaskedSoftmax`). Forward
+#   is what it was; the backward runs only the softmax backward — the
+#   masked weights are exactly zero, so their gradient is exactly zero
+#   without a second pass that writes zeros over zeros.
+
+_BAN = {}
+
+
+def _causal_ban(length, device):
+    key = (length, device)
+    ban = _BAN.get(key)
+    if ban is None:
+        ban = torch.ones(length, length, device=device,
+                         dtype=torch.bool).triu(1)
+        _BAN[key] = ban
+    return ban
+
+
+class _MaskedSoftmax(torch.autograd.Function):
+    """Softmax over the last axis after the bans, as one node.
+
+    Forward is the old sequence: ban in place, padding in place, empty rows
+    to equal weights, softmax. Backward is the softmax backward alone —
+    torch's own kernel with the input dtype the softmax had (bf16 under
+    autocast), exactly what autograd ran before. The old graph then also
+    ran the backward of the in-place masks: gradient times zero at every
+    banned place, which is what the softmax backward already produced.
+    """
+
+    @staticmethod
+    def forward(ctx, scores, ban, key_mask):
+        if ban is not None:
+            scores.masked_fill_(ban, float("-inf"))
+        if key_mask is not None:
+            scores.masked_fill_(key_mask[:, None, None, :], float("-inf"))
+            # A padding position may look at nothing: every score is then
+            # minus infinity, and its softmax is NaN. That NaN creeps through
+            # the residual stream and breaks every answer in the batch, also
+            # the healthy ones. Such rows get equal weights instead; their
+            # output is nonsense but finite, and it is never read.
+            empty = torch.isinf(scores).all(dim=-1, keepdim=True)
+            scores.masked_fill_(empty, 0.0)
+        ctx.input_dtype = scores.dtype
+        weight = torch.softmax(scores, dim=-1)
+        ctx.save_for_backward(weight)
+        return weight
+
+    @staticmethod
+    def backward(ctx, grad):
+        (weight,) = ctx.saved_tensors
+        # the same two steps autograd ran: the softmax backward in the
+        # dtype of the weights, then — under autocast — the cast back to
+        # the dtype the scores had. Not the fused half-to-float kernel: it
+        # is bit for bit the old path by construction, this way
+        g = torch._softmax_backward_data(grad, weight, -1, weight.dtype)
+        if g.dtype != ctx.input_dtype:
+            g = g.to(ctx.input_dtype)
+        return g, None, None
+
+
 class Attention(nn.Module):
     """`heads` heads of `head_size` each. By default heads × head_size is
     the width — the usual split, and the shape every snapshot before 16 Aug
@@ -136,6 +218,11 @@ class Attention(nn.Module):
             raise ValueError("head size must be even for the rotation")
         self.to_qkv = nn.Linear(width, 3 * self.inner, bias=False)
         self.out = nn.Linear(self.inner, width, bias=False)
+        # 1/sqrt(head_size) folded into q — exact only when that root is a
+        # power of two (head size 64 → 8), see the note above _causal_ban
+        root = math.sqrt(self.head_size)
+        self._scale_folds = root == int(root) and (int(root) & (int(root) - 1)) == 0
+        self._scale = 1.0 / root
 
     def forward(self, x, cos, sin, cache=None, key_mask=None):
         """Returns (output, new cache).
@@ -168,34 +255,21 @@ class Attention(nn.Module):
             # learning path v is still a view into qkv, so it stays.
             del qkv
 
-        device = x.device
         full_pass = q.shape[2] == k.shape[2]
-        scores = (q @ k.transpose(-2, -1)) / math.sqrt(self.head_size)
-        del q
-
         # A causal ban only when query and key are equally long — that is
         # the full pass. When she writes one token against a filled cache,
-        # that token may see everything before it. The masks fill in place:
-        # `scores` is a fresh tensor from the division and nothing keeps
-        # the unmasked version (autograd does not save div's output), so
-        # this is the same computation with fewer copies alive — measured
-        # bit for bit equal, learning and answering.
-        if full_pass:
-            ban = torch.ones(length, length,
-                             device=device, dtype=torch.bool).triu(1)
-            scores.masked_fill_(ban, float("-inf"))
-        if key_mask is not None:
-            scores.masked_fill_(key_mask[:, None, None, :], float("-inf"))
-
-            # A padding position may look at nothing: every score is then
-            # minus infinity, and its softmax is NaN. That NaN creeps through
-            # the residual stream and breaks every answer in the batch, also
-            # the healthy ones. Such rows get equal weights instead; their
-            # output is nonsense but finite, and it is never read.
-            empty = torch.isinf(scores).all(dim=-1, keepdim=True)
-            scores.masked_fill_(empty, 0.0)
-
-        weight = torch.softmax(scores, dim=-1)
+        # that token may see everything before it.
+        ban = _causal_ban(length, x.device) if full_pass else None
+        if self._scale_folds and not torch.is_autocast_enabled():
+            # exact in fp32: see the note above _causal_ban
+            scores = (q * self._scale) @ k.transpose(-2, -1)
+        else:
+            scores = (q @ k.transpose(-2, -1)) / math.sqrt(self.head_size)
+        del q
+        # `scores` is a fresh tensor from the matmul and nothing keeps the
+        # unmasked version, so the masks fill in place; the node saves only
+        # the softmax output for its backward.
+        weight = _MaskedSoftmax.apply(scores, ban, key_mask)
         del scores
         out = weight @ v
         del weight
