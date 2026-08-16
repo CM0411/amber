@@ -361,8 +361,11 @@ else:
 stap(9, "run.json en wrapper")
 # run.json woont sinds 14 aug 2026 op de Z490: venster en rapport lezen
 # hem daar. De kopie hier blijft alleen ter referentie staan.
-json.dump({"naam": f"run{RUN}", "doel": a.doel, "hek": hek_tekst(HEK),
-           "venster": VENSTER, "lagen": LAGEN,
+# `start` (16 aug 2026): het vorige doel — de wachter start een gevallen
+# run alleen weer als de teller daar al voorbij is; een run die nog moet
+# beginnen is Cleys woord
+json.dump({"naam": f"run{RUN}", "doel": a.doel, "start": vorige.get("doel"),
+           "hek": hek_tekst(HEK), "venster": VENSTER, "lagen": LAGEN,
            "parameters": VORM.get("parameters"),
            "checkpointing": CHECKPOINTING, "machine": "Z490"},
           open("/home/arch/rapport/run.json", "w"))

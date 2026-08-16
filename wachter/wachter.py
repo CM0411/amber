@@ -89,6 +89,12 @@ while True:
                     f"vandaag) — nieuwe start: {uptime}; dienst: {dienst}")
         toestand["uptime"] = uptime
 
+        # de dienst komt (weer) op: stilte-teller opnieuw — laden en het
+        # startproefwerk duren minuten zonder nieuwe stap (16 aug 2026)
+        if dienst == "active" and toestand.get("dienst") != "active":
+            toestand["stap_tijd"] = nu
+        toestand["dienst"] = dienst
+
         if stap is not None and stap != toestand["stap"]:
             toestand["stap"] = stap
             toestand["stap_tijd"] = nu
@@ -107,14 +113,32 @@ while True:
         # het doel komt uit de runconfiguratie — de vaste 169.999 van run 3
         # liet run 4 (doel 320.000) onbewaakt (gevonden 12 aug 2026)
         try:
-            doel = json.load(open("/home/arch/rapport/run.json"))["doel"]
+            _rc = json.load(open("/home/arch/rapport/run.json"))
+            doel, start = _rc["doel"], _rc.get("start")
         except Exception:
-            doel = 320_000
+            doel, start = 320_000, None
         if dienst == "inactive" and toestand["stap"] is not None \
                 and toestand["stap"] < doel - 1:
-            schrijf("dienst staat uit terwijl de run niet af is — start hem")
-            ssh(f"echo {_geheim()} | sudo -S systemctl start amber-train 2>/dev/null",
-                tijd=20)
+            # Een run begint alleen op Cleys woord (regel van het project).
+            # De wachter mag een gevállen run weer aanzetten — een run die
+            # al stappen deed — maar nooit een run die nog moet beginnen: op
+            # 16 aug 2026 om 10:57 startte hij run 6 zelf, zeven minuten na
+            # de rungrens (run.json zei doel 420.000, de trainer stond stil
+            # op 370.000). Sindsdien draagt run.json `start` (het vorige
+            # doel); staat de teller daar nog op, of ontbreekt `start`, dan
+            # alleen melden — één keer.
+            if start is None or toestand["stap"] <= start:
+                if not toestand.get("wacht_gemeld"):
+                    schrijf("dienst staat uit en de run is nog niet begonnen "
+                            f"(stap {toestand['stap']}, start {start}) — ik "
+                            "start niets, dat is Cleys woord")
+                    toestand["wacht_gemeld"] = True
+            else:
+                toestand["wacht_gemeld"] = False
+                schrijf("dienst staat uit terwijl de run al liep en niet af "
+                        "is — start hem")
+                ssh(f"echo {_geheim()} | sudo -S systemctl start amber-train "
+                    "2>/dev/null", tijd=20)
 
         # het warmte-oog: elke ronde kijken, geschiedenis elke 5 minuten
         melding = None

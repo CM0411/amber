@@ -104,6 +104,14 @@ while True:
         temp = kaart_temp()
         nu = time.time()
 
+        # Wordt de dienst (weer) actief, dan begint de stilte-teller opnieuw:
+        # de eerste minuten van een run zijn laden en het startproefwerk,
+        # zonder nieuwe stap. Geteld vanaf de laatste stap in het log — uren
+        # oud na een rungrens — herstartte de melder run 6 op 16 aug 2026 om
+        # 11:01 na vier minuten voor niets.
+        if dienst == "active" and onthouden.get("dienst") != "active":
+            onthouden["stap_sinds"] = nu
+
         if stap is not None:
             if stap != onthouden["stap"]:
                 onthouden["stap"] = stap
