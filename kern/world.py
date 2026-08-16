@@ -54,7 +54,7 @@ MIN_DEPTH = 1
 # 85% of usable problems fit with their working). At 512 that gave 17
 # (measured 9 Aug 2026: 100% through 15, 93% at 17, 66% at 18). At 768,
 # measured 10-11 Aug 2026 for run 4: arithmetic fits 99% at depth 26.
-MAX_DEPTH = 38
+MAX_DEPTH = 60
 
 # Per family the fence can sit lower. Puzzle rows from depth 6 are woven so
 # deep that no method comes out that delivers the answer — 16% usable at 6,
@@ -77,7 +77,7 @@ MAX_DEPTH = 38
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 9, "code": 15}
+MAX_DEPTH_PER = {"puzzel": 10, "code": 24}
 
 
 def max_depth(family):

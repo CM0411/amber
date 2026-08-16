@@ -1,0 +1,23 @@
+checkpoint van stap 370.000 · venster 1024
+
+geheugen: 30.000 herinneringen
+  rekenen  1:  484  2:  484  3:  484  4:  484  5:  484  6:  484  7:  484  8:  484  9:  484  10:  484  11:  484  12:  484  13:  484  14:  484  15:  484  16:  484  17:  484  18:  484  19:  484  20:  484  21:  484  22:  484  23:  484  24:  484  25:  484  26:  484  27:  484  28:  484  29:  484  30:  483  31:  483  32:  483  33:  483  34:  483  35:  483  36:  483  37:  483  38:  483
+  code     1:  484  2:  484  3:  484  4:  484  5:  484  6:  484  7:  484  8:  484  9:  484  10:  484  11:  484  12:  484  13:  484  14:  484  15:  484
+  puzzel   1:  484  2:  484  3:  484  4:  484  5:  484  6:  484  7:  484  8:  484  9:  484
+
+grondslag per vakje (score, aantal opgaven):
+  code     graad 1:  100%   (100)
+  code     graad 2:   95%   (100)
+  code     graad 3:  100%   (100)
+  code     graad 4:   99%   (100)
+  code     graad 5:   91%   (100)
+  puzzel   graad 1:  100%   (100)
+  puzzel   graad 2:   93%   (100)
+  puzzel   graad 3:   99%   (100)
+  puzzel   graad 4:   88%   (100)
+  puzzel   graad 5:  100%   (100)
+  rekenen  graad 1:  100%   (100)
+  rekenen  graad 2:   98%   (100)
+  rekenen  graad 3:   99%   (100)
+  rekenen  graad 4:   72%   (100)
+  rekenen  graad 5:  100%   (100)
