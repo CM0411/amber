@@ -241,6 +241,15 @@ class Venster(BaseHTTPRequestHandler):
                     stand["wachter"] = json.load(f)
             except Exception:
                 pass
+            # De eindstand van de vorige run (16 aug 2026, Cleys wens): het
+            # afscheidsproefwerk blijft in beeld als de nieuwe run loopt. De
+            # rungrens schrijft dit bestand op elke grens; ontbreekt het,
+            # dan is er niets te tonen.
+            try:
+                with open("/home/arch/rapport/vorige-run.json") as f:
+                    stand["vorige_run"] = json.load(f)
+            except Exception:
+                pass
             # De projecturen: afgesloten dagen uit het urenlogboek, plus de
             # lopende dag uit de teller — maar alleen als die dag nog níét
             # als regel in uren.md staat, anders telt hij dubbel.

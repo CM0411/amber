@@ -291,10 +291,15 @@ function bouwWeefsel() {
   }
 }
 
+// Laagnamen uit haar meting (16 aug 2026, Cleys keuze): de kijker meet per
+// laag welke familie hem naar verhouding het meest laat oplichten en
+// schrijft dat in stand.json (laagnamen); hier wordt het de naam onder de
+// laag. Zolang de meting er nog niet is staat er wat er stond.
+let laagnamen = {};
 function bouwNamen() {
   NAMEN = [["invoer", "inbedding"]];
   for (let i = 1; i < KOL.length - 1; i++)
-    NAMEN.push(["laag " + i, "GELU"]);
+    NAMEN.push(["laag " + i, laagnamen[i] || "GELU"]);
   NAMEN.push(["uitvoer", "zekerheid"]);
 }
 bouwNamen();
@@ -323,6 +328,10 @@ async function haal() {
         wachtrij = []; rijNu = null; vonken = [];
         KOL = [s.bedrading[0][0].length,
                ...s.bedrading.map(M => M.length), 1];
+      }
+      if (Array.isArray(s.laagnamen)) {
+        laagnamen = {};
+        for (const x of s.laagnamen) if (x && x.laag) laagnamen[x.laag] = x.naam;
       }
       bouwNamen();
       gloed = KOL.map(n => new Array(n).fill(0));
@@ -427,6 +436,17 @@ async function haal() {
       if (pw) html += `<span style="opacity:.75">proefwerk`
         + (rs._stap ? ` bij stap ${(+rs._stap).toLocaleString("nl")}` : "")
         + `:<br>${pw}</span><br>`;
+      // de eindstand van de vorige run blijft staan (Cley, 16 aug 2026):
+      // het afscheidsproefwerk, zodat je de nieuwe run ertegen afleest
+      const vr = s.vorige_run;
+      if (vr && vr.scores) {
+        const vn = vast.concat(Object.keys(vr.scores).filter(n => !vast.includes(n)));
+        const vp = vn.filter(n => n in vr.scores).map(n => `${n} ${vr.scores[n]}%`).join(" · ");
+        html += `<span style="opacity:.6">eindstand ${vr.naam || "vorige run"}`
+          + (vr.stap ? ` · stap ${(+vr.stap).toLocaleString("nl")}` : "")
+          + (vr.afgeknipt ? ` (afgeknipt)` : "")
+          + `:<br>${vp}</span><br>`;
+      }
       if (rc.venster) html += `<span style="opacity:.75">venster ${rc.venster}`
         + (rc.hek ? ` · hek ${rc.hek}` : "")
         // sinds 15 aug 2026 schrijft de rungrens ook haar vorm mee: lagen,

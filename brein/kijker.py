@@ -291,6 +291,70 @@ def _beantwoord_vragen():
                    f"{FOLDER}/vraag-antwoord.json")
 
 
+# --- laagnamen uit haar meting (16 aug 2026, Cleys keuze) ---------------------
+# Elke laag krijgt in het venster de naam van de familie die hem het meest
+# laat oplichten. Per familie een lopend gemiddelde van de activiteit per
+# laag (over de doorgangen en de 32 groepen van elke opgave die de kijker
+# haar voorlegt); per laag wordt dat gemiddelde gedeeld door het eigen
+# gemiddelde van die familie over alle lagen — zo telt niet wie het hardst
+# roept maar wie deze laag naar verhouding het meest gebruikt. De hoogste
+# wint; ligt de tweede binnen vijf procent, dan heet de laag "gemengd".
+# Namen zijn dus een meting en veranderen mee met haar — de teller reist
+# mee in een eigen standbestand, zodat een herstart niet bij nul begint.
+LAAGNAMEN = {"rekenen": "rekenlaag", "code": "codelaag",
+             "puzzel": "puzzellaag", "geheugen": "geheugenlaag"}
+LAAGSTAND = f"{FOLDER}/laagnamen-stand.json"
+MINSTENS = 20                            # opgaven per familie vóór hij meetelt
+try:
+    laagtel = json.load(open(LAAGSTAND))
+except Exception:
+    laagtel = {}                         # familie -> {"n": aantal, "som": [per laag]}
+
+
+def _tel_lagen(family, rows):
+    """Neem de activiteit per laag van deze opgave op in het lopend gemiddelde."""
+    if not rows:
+        return
+    n_layers = len(rows[0]["b"])
+    per_laag = [sum(sum(row["b"][l]) / max(1, len(row["b"][l])) for row in rows) / len(rows)
+                for l in range(n_layers)]
+    t = laagtel.setdefault(family, {"n": 0, "som": [0.0] * n_layers})
+    if len(t["som"]) != n_layers:        # gegroeid: opnieuw beginnen voor deze familie
+        t["n"], t["som"] = 0, [0.0] * n_layers
+    t["n"] += 1
+    t["som"] = [a + b for a, b in zip(t["som"], per_laag)]
+    try:
+        with open(LAAGSTAND + ".deel", "w") as f:
+            json.dump(laagtel, f)
+        os.replace(LAAGSTAND + ".deel", LAAGSTAND)
+    except Exception:
+        pass
+
+
+def _laagnamen():
+    """Per laag: welke familie hem naar verhouding het meest gebruikt."""
+    profiel = {}
+    for fam, t in laagtel.items():
+        if t["n"] < MINSTENS or not t["som"]:
+            continue
+        gem = [x / t["n"] for x in t["som"]]
+        eigen = sum(gem) / len(gem) or 1.0
+        profiel[fam] = [g / eigen for g in gem]
+    if len(profiel) < 2:
+        return []
+    n_layers = min(len(v) for v in profiel.values())
+    uit = []
+    for l in range(n_layers):
+        kandidaten = sorted(((v[l], fam) for fam, v in profiel.items()), reverse=True)
+        (s1, f1), (s2, _) = kandidaten[0], kandidaten[1]
+        gemengd = s1 < 1.05 * s2
+        uit.append({"laag": l + 1,
+                    "familie": None if gemengd else f1,
+                    "naam": "gemengd" if gemengd else LAAGNAMEN.get(f1, f1 + "laag"),
+                    "sterkte": round(s1 / s2, 3) if s2 else None})
+    return uit
+
+
 counter = 0
 while True:
     if time.time() - last_fetched > FETCH_EVERY:
@@ -325,9 +389,11 @@ while True:
                          "b": [x[1] for x in r[1:-1]],
                          "uit": round(r[-1][1], 4)})
     rows = rows[-48:]
+    _tel_lagen(family, rows)
 
     stand = {
         "tijd": time.time(),
+        "laagnamen": _laagnamen(),
         "herinnert": _recall(task),
         "geheugen_grootte": len(memories),
         "checkpoint_stap": step_in_snapshot,

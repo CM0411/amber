@@ -450,6 +450,27 @@ json.dump({"naam": f"run{RUN}", "doel": a.doel, "start": BEGIN_STAP,
 if not scp("/home/arch/rapport/run.json", f"{TRAINER}:rapport/run.json"):
     sys.exit(f"run.json niet op de Z490 gekomen — venster zou run{VORIG} "
              f"blijven tonen")
+# De eindstand van de run die net afliep blijft in het venster staan
+# (Cley, 16 aug 2026): het laatste proefwerk uit leven.log als
+# vorige-run.json op de trainer; server.py voegt het bij stand.json.
+eind = f"""
+import json, os, re, time
+log = open("/home/arch/leven.log", encoding="utf-8", errors="ignore").read()
+m = list(re.finditer(r"^\\s+stap\\s+(\\d+) \\|((?:\\s+\\w+\\s+\\d+%)+)", log, re.M))
+if m:
+    last = m[-1]
+    d = {{"naam": "run{VORIG}", "stap": int(last.group(1)), "doel": {vorige.get("doel", 0)},
+          "afgeknipt": int(last.group(1)) < {vorige.get("doel", 0)},
+          "tijd": time.strftime("%-d %b %Y %H:%M"),
+          "scores": {{n: int(v) for n, v in re.findall(r"(\\w+)\\s+(\\d+)%", last.group(2))}}}}
+    p = "/home/arch/rapport/vorige-run.json"
+    json.dump(d, open(p + ".deel", "w"), ensure_ascii=False, indent=1); os.replace(p + ".deel", p)
+    print("vorige-run.json:", d["naam"], d["stap"], d["scores"])
+else:
+    print("geen proefwerkregel gevonden — vorige-run.json niet geschreven")
+"""
+ok, uit = ssh("python3 - <<'PYEOF'\n" + eind + "\nPYEOF", 60)
+print(uit.strip().splitlines()[-1] if uit else "(geen antwoord)")
 ok, uit = ssh(f"sed -i 's|life.py [0-9]*|life.py {a.doel}|' ~/nacht && "
               f"grep -o 'life.py [0-9]*' ~/nacht", 30)
 if uit.strip() != f"life.py {a.doel}":
