@@ -8,7 +8,10 @@ repo); de berichten zijn karig — een stand, geen inhoud.
 
 Wat hij meldt: de finish, de dienst gevallen terwijl de run niet af is,
 tien minuten stilstand (dan herstart hij de dienst ook zelf, hoogstens
-één keer per kwartier), en een kaart van 80 graden of heter.
+één keer per kwartier), een kaart van 80 graden of heter, en sinds 16 aug
+2026 de wereld die op slot zit: SLOT_NA stappen zonder dat er ergens een
+diepte openging (één melding per slot; Cley beslist over een rungrens),
+en apart de wereld die dicht is — elke familie tegen zijn hek.
 """
 import json
 import os
@@ -24,6 +27,8 @@ STAND = "/home/arch/amber-werk/wachter/melder-trainer-stand.json"
 STILSTAND_NA = 600      # seconden zonder nieuwe stap voordat hij ingrijpt
 HERSTART_RUST = 900     # minimale rust tussen twee eigen herstarts
 WARM_VANAF = 80         # graden; melding gaat pas opnieuw onder de 75
+SLOT_NA = 5000          # stappen zonder nieuwe opening → "wereld op slot", één melding
+RUNJSON = "/home/arch/rapport/run.json"
 
 
 def stuur(titel, tekst, prioriteit="default"):
@@ -72,6 +77,35 @@ def lees_proefwerk():
     except Exception as e:
         print("proefwerk lezen mislukte:", e, flush=True)
     return {}
+
+
+def lees_wereld():
+    """Alle `stap N | wereld open: familie tot D` uit de logstaart:
+    {familie: (diepte, stap)} met per familie de laatste. Het logboek wordt
+    bij een herstart afgekapt, dus de melder onthoudt zelf wat hij ooit
+    zag (zie hieronder) en dit is alleen wat er nú te lezen valt."""
+    gezien = {}
+    try:
+        with open(LOG, "rb") as f:
+            f.seek(0, 2)
+            f.seek(max(0, f.tell() - 262144))
+            staart = f.read().decode(errors="ignore")
+        for stap, rest in re.findall(r"stap\s+(\d+) \| wereld open: ([^\n]+)", staart):
+            for fam, diepte in re.findall(r"(\w+) tot (\d+)", rest):
+                gezien[fam] = (int(diepte), int(stap))
+    except Exception as e:
+        print("wereld lezen mislukte:", e, flush=True)
+    return gezien
+
+
+def lees_run():
+    """run.json: naam, doel, start en de hekken {familie: diepte}."""
+    try:
+        rc = json.load(open(RUNJSON))
+        hek = {f: int(d) for f, d in re.findall(r"(\w+) (\d+)", rc.get("hek", ""))}
+        return rc.get("naam"), rc.get("start"), hek
+    except Exception:
+        return None, None, {}
 
 
 def dienst_status():
@@ -164,6 +198,44 @@ while True:
                 gemeld[naam] = pct
         if sprongen:
             stuur("Proefwerk-sprong", " · ".join(sprongen))
+
+        # De wereld op slot (16 aug 2026, Cleys wens): gaat er SLOT_NA
+        # stappen lang nergens een diepte open, dan één melding — Cley
+        # beslist dan over een rungrens; de melder start of stopt niets.
+        # Los daarvan: is elke familie tegen zijn hek, dan is de wereld
+        # dicht en is dat het bericht (ook één keer). De baseline is de
+        # start van de run (run.json), zodat een verse run niet meteen
+        # "op slot" heet; de laatst geziene openingen reizen mee in de
+        # eigen stand, want het logboek wordt bij een herstart afgekapt.
+        naam, start, hek = lees_run()
+        wereld = onthouden.setdefault("wereld", {})
+        if naam != onthouden.get("wereld_run"):
+            wereld.clear()                        # een nieuwe run: schone lei
+            onthouden["wereld_run"] = naam
+            onthouden["slot_gemeld_bij"] = None
+            onthouden["dicht_gemeld"] = False
+        for fam, (diepte, bij) in lees_wereld().items():
+            if fam not in wereld or diepte > wereld[fam][0]:
+                wereld[fam] = [diepte, bij]
+        if stap is not None and dienst == "active" and doel and stap < doel:
+            laatst_open = max([bij for _, bij in wereld.values()] + [int(start or 0)])
+            if wereld and hek and all(wereld.get(f, [0])[0] >= d for f, d in hek.items()):
+                if not onthouden.get("dicht_gemeld"):
+                    stuur("Wereld dicht",
+                          "elke familie staat tegen zijn hek ("
+                          + ", ".join(f"{f} {wereld[f][0]}" for f in hek)
+                          + f") bij stap {stap:,}".replace(",", ".")
+                          + " — rungrens overwegen? Jij beslist.")
+                    onthouden["dicht_gemeld"] = True
+            elif (stap - laatst_open >= SLOT_NA
+                    and onthouden.get("slot_gemeld_bij") != laatst_open):
+                stuur("Wereld op slot",
+                      f"al {stap - laatst_open:,} stappen ging nergens een diepte "
+                      f"open (laatst bij stap {laatst_open:,}; nu {stap:,}, wereld "
+                      .replace(",", ".")
+                      + ", ".join(f"{f} {d}" for f, (d, _) in sorted(wereld.items()))
+                      + ") — rungrens overwegen? Jij beslist.")
+                onthouden["slot_gemeld_bij"] = laatst_open
 
         if temp is not None:
             if temp >= WARM_VANAF and not onthouden["warm_gemeld"]:
