@@ -349,8 +349,24 @@ def _laagnamen():
     if len(profiel) < 2:
         return []
     n_layers = min(len(v) for v in profiel.values())
+    # hoe hard werkt elke laag überhaupt (over alle families samen)? Een
+    # laag die nog nauwelijks iets toevoegt — de verse blokken na een
+    # groei, poorten nog bijna dicht — heet "stil": daar zou een familie-
+    # naam alleen ruis benoemen (gezien 16 aug 2026 bij lagen 9–12)
+    hardte = []
+    for l in range(n_layers):
+        hardte.append(sum(t["som"][l] / t["n"] for fam, t in laagtel.items()
+                          if fam in profiel) / len(profiel))
+    # tegen de middelste laag afgezet, niet tegen de hardste: het laatste
+    # oude blok werkt tien keer harder dan de eerste en zou anders ook
+    # een echte, getrainde laag 1 "stil" laten heten
+    midden = sorted(hardte)[len(hardte) // 2] or 1.0
     uit = []
     for l in range(n_layers):
+        if hardte[l] < 0.05 * midden:
+            uit.append({"laag": l + 1, "familie": None, "naam": "stil",
+                        "sterkte": None})
+            continue
         kandidaten = sorted(((v[l], fam) for fam, v in profiel.items()), reverse=True)
         (s1, f1), (s2, _) = kandidaten[0], kandidaten[1]
         gemengd = s1 < 1.05 * s2
