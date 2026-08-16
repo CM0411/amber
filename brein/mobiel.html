@@ -89,6 +89,11 @@
   <div class="chips" id="p-chips"><span class="chip">wachten…</span></div>
 </div>
 
+<div class="kaart" id="v-kaart" style="display:none">
+  <div class="kop" id="v-kop">eindstand vorige run</div>
+  <div class="chips" id="v-chips"></div>
+</div>
+
 <div class="kaart">
   <div class="kop">haar wereld</div>
   <div id="w-rijen"></div>
@@ -114,7 +119,7 @@
 
 <script>
 // vangnet; de echte hekken komen per run uit run.json (zie haal())
-const grens = {rekenen: 38, code: 15, puzzel: 9};
+const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12};   // vangnet; 16 aug: geheugen erbij
 
 async function haal() {
   try {
@@ -165,12 +170,25 @@ async function haal() {
     if (rs._stap !== undefined)
       document.getElementById("p-kop").textContent =
         `laatste proefwerk · stap ${(+rs._stap).toLocaleString("nl")}`;
+    // de eindstand van de vorige run blijft staan (Cley, 16 aug 2026)
+    const vr = s.vorige_run;
+    if (vr && vr.scores) {
+      const vn = vast.concat(Object.keys(vr.scores).filter(n => !vast.includes(n)));
+      document.getElementById("v-chips").innerHTML = vn.filter(n => n in vr.scores)
+        .map(n => `<span class="chip">${n} <b>${vr.scores[n]}%</b></span>`).join("");
+      document.getElementById("v-kop").textContent =
+        `eindstand ${vr.naam || "vorige run"}`
+        + (vr.stap ? ` · stap ${(+vr.stap).toLocaleString("nl")}` : "")
+        + (vr.afgeknipt ? " (afgeknipt)" : "");
+      document.getElementById("v-kaart").style.display = "";
+    }
 
     // wereld
-    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2},
+    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2},
                                (s.run && s.run.wereld) || {}, s.wereldrand || {});
     let wr = "";
-    for (const f of ["rekenen", "puzzel", "code"]) {
+    for (const f of ["rekenen", "puzzel", "code", "geheugen"]) {
+      if (!grens[f]) continue;
       const d = Math.min(rand[f], grens[f]);
       wr += `<div class="rij"><span>${f}</span>
         <span class="staafbalk"><div style="width:${100 * d / grens[f]}%"></div></span>
@@ -249,6 +267,9 @@ document.getElementById("spreek").onclick = async (e) => {
 const net = document.getElementById("net");
 const nctx = net.getContext("2d");
 let nLagen = [], nZeker = 0, nBedrading = null, nBedradingUit = null;
+let nNamen = {};                          // laag -> naam uit haar meting (16 aug 2026)
+const nKort = {rekenlaag: "reken", codelaag: "code", puzzellaag: "puzzel",
+               geheugenlaag: "geheugen", gemengd: "gemengd"};
 let nGloed = [], nVonken = [], nTijd = 0, nDoek = null;
 
 function netMaat() {
@@ -272,6 +293,9 @@ async function haalNet() {
       nZeker = rij.uit || 0;
       nBedrading = s.bedrading;
       nBedradingUit = s.bedrading_uit;
+      nNamen = {};
+      if (Array.isArray(s.laagnamen))
+        for (const x of s.laagnamen) if (x && x.laag) nNamen[x.laag] = nKort[x.naam] || x.naam;
       if (nGloed.length !== nLagen.length)
         nGloed = nLagen.map(k => new Array(k.length).fill(0));
       nDoek = null;
@@ -400,6 +424,18 @@ function nTeken(t) {
   nctx.textAlign = "center";
   nctx.fillStyle = "rgba(129,150,190,0.9)";
   nctx.fillText(Math.round(nZeker * 100) + "%", ux, uy + H * 0.11);
+  // de laagnamen uit haar meting, onder elke laag, om en om hoog/laag
+  // zodat ze op een smal scherm niet over elkaar vallen
+  if (Object.keys(nNamen).length) {
+    nctx.font = `${Math.max(8, Math.round(H * 0.032))}px ui-monospace, monospace`;
+    nctx.fillStyle = "rgba(255,150,100,0.85)";
+    for (let k = 1; k < nLagen.length; k++) {
+      const naam = nNamen[k];
+      if (!naam) continue;
+      const [x] = nPlek(k, 0);
+      nctx.fillText(naam, x, H * (k % 2 ? 0.905 : 0.965));
+    }
+  }
 }
 netMaat(); requestAnimationFrame(nTeken);
 </script>

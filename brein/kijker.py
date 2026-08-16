@@ -77,7 +77,12 @@ def _catch_in(_m, _in, out):
 
 def _catch_block(_m, _in, out):
     x = out[0] if isinstance(out, tuple) else out
-    current.append(("blok", _groups(x, GROUPS)))
+    # ook wat het blok zélf toevoegt (uit − in): de stroom groeit met de
+    # diepte en zegt weinig over dit blok, het verschil wél — daarop rusten
+    # de laagnamen (16 aug 2026); het beeld op de pagina blijft de stroom
+    xin = _in[0] if isinstance(_in, tuple) else _in
+    delta = x - xin if xin is not None and xin.shape == x.shape else x
+    current.append(("blok", _groups(x, GROUPS), _groups(delta, GROUPS)))
 
 def _catch_out(_m, _in, out):
     p = torch.softmax(out.detach()[0, -1].float(), dim=-1)
@@ -299,6 +304,7 @@ def _beantwoord_vragen():
 # gemiddelde van die familie over alle lagen — zo telt niet wie het hardst
 # roept maar wie deze laag naar verhouding het meest gebruikt. De hoogste
 # wint; ligt de tweede binnen vijf procent, dan heet de laag "gemengd".
+# Gemeten op wat elk blok zélf toevoegt (uit − in), niet op de stroom.
 # Namen zijn dus een meting en veranderen mee met haar — de teller reist
 # mee in een eigen standbestand, zodat een herstart niet bij nul begint.
 LAAGNAMEN = {"rekenen": "rekenlaag", "code": "codelaag",
@@ -315,8 +321,8 @@ def _tel_lagen(family, rows):
     """Neem de activiteit per laag van deze opgave op in het lopend gemiddelde."""
     if not rows:
         return
-    n_layers = len(rows[0]["b"])
-    per_laag = [sum(sum(row["b"][l]) / max(1, len(row["b"][l])) for row in rows) / len(rows)
+    n_layers = len(rows[0]["d"])
+    per_laag = [sum(sum(row["d"][l]) / max(1, len(row["d"][l])) for row in rows) / len(rows)
                 for l in range(n_layers)]
     t = laagtel.setdefault(family, {"n": 0, "som": [0.0] * n_layers})
     if len(t["som"]) != n_layers:        # gegroeid: opnieuw beginnen voor deze familie
@@ -387,6 +393,7 @@ while True:
         if len(r) == per and r[0][0] == "in" and r[-1][0] == "uit":
             rows.append({"in": r[0][1],
                          "b": [x[1] for x in r[1:-1]],
+                         "d": [x[2] for x in r[1:-1]],   # de eigen bijdrage per blok
                          "uit": round(r[-1][1], 4)})
     rows = rows[-48:]
     _tel_lagen(family, rows)
