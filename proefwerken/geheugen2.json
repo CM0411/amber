@@ -1,0 +1,2526 @@
+{
+ "naam": "geheugen2",
+ "beschrijving": "De geheugen-steen (17 aug 2026): een lopende toestand — rekenende updates (k = k + 3, p = p * 2, begrensd) en verwijzingen (p = k, kettingen vanaf 9), tussen de gewone afleiders; vragen als bij geheugen. Diepte 4 t/m 24, alleen steen-opgaven, 20 per diepte, nummers vanaf 1.500.000. Alles past op venster 1536.",
+ "opgaven": [
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: q = 6 ; g = 77\ntussendoor: g = g - 23 ; m = 81 ; d = 65 ; 33 - 28 = 5\nwat is g + q?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: g = 10 ; s = 26\ntussendoor: r = 35 ; s = s - 25 ; w = 45 ; d = 23\nwat is s - g?",
+   "oplossing": "-9"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: w = 99 ; a = 2\ntussendoor: a = a + 14 ; 45 - 26 = 19 ; 36 + 24 = 60 ; s = 51\nwat is a + w?",
+   "oplossing": "115"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: b = 46 ; z = 86\ntussendoor: 24 + 26 = 50 ; z = z - 3 ; 2 + 43 = 45 ; 5 + 5 = 10\nwat is z - b?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: v = 7 ; g = 51\ntussendoor: v = v - 8 ; 20 - 19 = 1 ; p = 60 ; 4 - 19 = -15\nwat is v?",
+   "oplossing": "-1"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: m = 25 ; r = 32\ntussendoor: 21 - 25 = -4 ; u = 9 ; r = r + 5 ; 13 + 50 = 63\nwat is r + m?",
+   "oplossing": "62"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: u = 97 ; b = 4\ntussendoor: n = 25 ; r = 86 ; b = b + 29 ; 36 + 37 = 73\nwat is b - u?",
+   "oplossing": "-64"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: c = 43 ; b = 8\ntussendoor: c = c + 26 ; r = 10 ; h = 39 ; 8 + 19 = 27\nwat is c - b?",
+   "oplossing": "61"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: n = 51 ; h = 66\ntussendoor: r = 12 ; p = 37 ; g = 29 ; n = n - 24\nwat is n + h?",
+   "oplossing": "93"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: b = 65 ; a = 63\ntussendoor: b = b - 24 ; g = 67 ; 19 - 35 = -16 ; 45 + 20 = 65\nwat is b?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: z = 73 ; b = 1\ntussendoor: 46 + 7 = 53 ; p = 85 ; z = z + 10 ; a = 73\nwat is z - b?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: h = 80 ; t = 57\ntussendoor: 32 - 20 = 12 ; t = t + 21 ; 27 - 22 = 5 ; 17 + 9 = 26\nwat is t + h?",
+   "oplossing": "158"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: k = 22 ; w = 73\ntussendoor: v = 74 ; h = 81 ; w = w - 28 ; r = 56\nwat is w?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: d = 51 ; s = 77\ntussendoor: s = s + 9 ; r = 83 ; 34 + 25 = 59 ; a = 71\nwat is s - d?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: w = 7 ; y = 58\ntussendoor: 36 + 39 = 75 ; 5 - 12 = -7 ; w = w - 29 ; b = 56\nwat is w?",
+   "oplossing": "-22"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: h = 11 ; t = 81\ntussendoor: v = 32 ; q = 48 ; t = t - 25 ; b = 64\nwat is t?",
+   "oplossing": "56"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: h = 74 ; k = 94\ntussendoor: 5 + 5 = 10 ; 35 + 9 = 44 ; h = h + 6 ; c = 25\nwat is h?",
+   "oplossing": "80"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: c = 68 ; h = 81\ntussendoor: 50 - 18 = 32 ; 1 - 15 = -14 ; 3 + 20 = 23 ; h = h - 20\nwat is h?",
+   "oplossing": "61"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: e = 3 ; z = 89\ntussendoor: 22 - 17 = 5 ; z = z - 12 ; 42 - 48 = -6 ; h = 3\nwat is z?",
+   "oplossing": "77"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 4,
+   "opgave": "onthoud: t = 41 ; h = 74\ntussendoor: h = h - 26 ; 10 + 19 = 29 ; u = 51 ; m = 56\nwat is h - t?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: d = 60 ; m = 97 ; b = 23\ntussendoor: 36 - 24 = 12 ; b = b + 9 ; 7 + 21 = 28 ; 13 + 10 = 23 ; 47 - 35 = 12\nwat is b?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: k = 21 ; z = 64 ; a = 81\ntussendoor: a = a * 7 ; 14 + 38 = 52 ; 16 - 3 = 13 ; 35 - 22 = 13 ; 7 + 20 = 27\nwelke is groter, a of z? schrijf het getal",
+   "oplossing": "567"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: e = 13 ; m = 5 ; s = 90\ntussendoor: 45 - 7 = 38 ; 16 + 22 = 38 ; 18 + 45 = 63 ; s = s * 6 ; v = 55\nwat is s?",
+   "oplossing": "540"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: y = 42 ; m = 65 ; g = 23\ntussendoor: 30 - 42 = -12 ; 9 + 6 = 15 ; u = 23 ; m = m - 6 ; 26 - 33 = -7\nwat is m - y?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: c = 32 ; s = 89 ; b = 8\ntussendoor: w = 98 ; c = c - 25 ; d = 91 ; 1 - 35 = -34 ; q = 85\nwelke is groter, c of s? schrijf het getal",
+   "oplossing": "89"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: q = 93 ; n = 24 ; a = 87\ntussendoor: 12 - 19 = -7 ; y = 83 ; 39 - 28 = 11 ; q = q + 10 ; 38 + 43 = 81\nwelke is groter, q of a? schrijf het getal",
+   "oplossing": "103"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: a = 93 ; r = 60 ; e = 66\ntussendoor: 8 + 46 = 54 ; 33 - 30 = 3 ; a = a * 9 ; w = 72 ; k = 24\nwat is a?",
+   "oplossing": "837"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: q = 59 ; e = 74 ; f = 2\ntussendoor: 5 + 14 = 19 ; 1 + 47 = 48 ; e = e + 9 ; 32 + 28 = 60 ; 49 - 50 = -1\nwat is e - f?",
+   "oplossing": "81"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: n = 79 ; p = 41 ; c = 65\ntussendoor: 49 + 5 = 54 ; c = c * 9 ; e = 43 ; t = 83 ; v = 79\nwat is c?",
+   "oplossing": "585"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: x = 55 ; e = 88 ; r = 29\ntussendoor: m = 9 ; s = 33 ; e = e - 28 ; 4 + 23 = 27 ; 48 - 21 = 27\nwat is e + x?",
+   "oplossing": "115"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: y = 78 ; q = 99 ; a = 98\ntussendoor: v = 6 ; p = 48 ; y = y + 13 ; 48 - 10 = 38 ; 13 + 11 = 24\nwelke is groter, y of q? schrijf het getal",
+   "oplossing": "99"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: v = 78 ; w = 94 ; k = 7\ntussendoor: 5 - 23 = -18 ; 41 + 46 = 87 ; e = 94 ; w = w + 8 ; e = 47\nwat is w?",
+   "oplossing": "102"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: a = 15 ; k = 97 ; v = 4\ntussendoor: 21 + 11 = 32 ; u = 68 ; g = 10 ; v = v * 4 ; w = 57\nwat is v?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: q = 35 ; a = 80 ; u = 79\ntussendoor: 39 - 24 = 15 ; 5 - 49 = -44 ; u = u + 28 ; 14 - 16 = -2 ; 42 - 18 = 24\nwat is u - a?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: e = 48 ; w = 56 ; g = 36\ntussendoor: 18 - 40 = -22 ; h = 26 ; a = 64 ; w = w + 11 ; v = 11\nwat is w - g?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: r = 48 ; y = 15 ; v = 66\ntussendoor: y = y - 19 ; n = 81 ; d = 24 ; p = 92 ; b = 74\nwat is y + r?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: x = 33 ; r = 54 ; s = 38\ntussendoor: e = 92 ; 45 + 5 = 50 ; 16 + 29 = 45 ; r = r + 1 ; 32 - 15 = 17\nwat is r + x?",
+   "oplossing": "88"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: f = 82 ; h = 88 ; x = 66\ntussendoor: s = 83 ; t = 24 ; p = 67 ; p = 90 ; f = f * 2\nwat is f + h?",
+   "oplossing": "252"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: m = 53 ; y = 61 ; e = 31\ntussendoor: y = y + 11 ; 27 - 28 = -1 ; f = 93 ; v = 79 ; w = 93\nwelke is groter, y of e? schrijf het getal",
+   "oplossing": "72"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 5,
+   "opgave": "onthoud: d = 60 ; y = 34 ; h = 81\ntussendoor: c = 84 ; 7 - 8 = -1 ; r = 96 ; e = 86 ; h = h - 6\nwat is h + y?",
+   "oplossing": "109"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: h = 73 ; m = 52 ; z = 14\ntussendoor: 29 - 49 = -20 ; z = z + 21 ; m = m + 23 ; 49 - 49 = 0 ; k = 10 ; m = h\nwat is z?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: v = 47 ; m = 81 ; g = 32\ntussendoor: c = 19 ; v = v * 5 ; 29 + 23 = 52 ; g = g - 22 ; g = m ; e = 11\nwat is g - v?",
+   "oplossing": "-154"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: r = 58 ; n = 53 ; z = 51\ntussendoor: z = z + 30 ; n = n + 13 ; z = r ; a = 12 ; u = 21 ; h = 77\nwat is z - r?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: s = 6 ; z = 44 ; w = 42\ntussendoor: z = z - 25 ; w = w - 3 ; z = s ; 3 + 16 = 19 ; a = 92 ; r = 40\nwat is w + s?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: q = 11 ; w = 11 ; f = 2\ntussendoor: 7 + 33 = 40 ; r = 71 ; q = q - 13 ; q = q * 9 ; 4 + 37 = 41 ; w = q\nwat is q - w?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: w = 88 ; c = 63 ; m = 84\ntussendoor: w = w + 24 ; q = 22 ; n = 56 ; m = m - 15 ; c = w ; x = 77\nwelke is groter, w of c? schrijf het getal",
+   "oplossing": "112"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: b = 93 ; r = 36 ; k = 59\ntussendoor: k = k + 27 ; d = 52 ; m = 98 ; u = 96 ; k = k - 29 ; k = r\nwelke is groter, k of b? schrijf het getal",
+   "oplossing": "93"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: s = 87 ; y = 19 ; q = 3\ntussendoor: s = s - 10 ; q = q - 5 ; 11 + 1 = 12 ; 26 - 29 = -3 ; k = 35 ; s = q\nwat is q + y?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: g = 27 ; y = 41 ; s = 47\ntussendoor: d = 75 ; e = 51 ; s = s + 23 ; y = y - 3 ; k = 31 ; s = g\nwat is y + s?",
+   "oplossing": "65"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: d = 99 ; v = 11 ; u = 64\ntussendoor: v = v + 18 ; 16 - 48 = -32 ; u = u + 14 ; u = v ; 33 + 22 = 55 ; g = 93\nwat is u - v?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: v = 4 ; a = 52 ; p = 13\ntussendoor: p = p + 11 ; e = 69 ; a = a + 16 ; p = v ; k = 79 ; 11 + 39 = 50\nwat is a - v?",
+   "oplossing": "64"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: e = 13 ; k = 48 ; u = 68\ntussendoor: k = k * 6 ; e = e - 17 ; e = u ; 31 + 32 = 63 ; t = 99 ; 20 - 6 = 14\nwat is k?",
+   "oplossing": "288"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: d = 70 ; g = 74 ; p = 65\ntussendoor: p = p - 1 ; 26 - 21 = 5 ; 26 + 40 = 66 ; v = 1 ; g = g * 3 ; g = d\nwat is g + p?",
+   "oplossing": "134"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: p = 83 ; f = 44 ; k = 77\ntussendoor: f = f + 1 ; p = p - 28 ; p = k ; 36 + 31 = 67 ; 25 + 14 = 39 ; m = 54\nwat is f - k?",
+   "oplossing": "-32"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: n = 56 ; p = 57 ; u = 17\ntussendoor: a = 93 ; g = 22 ; n = n - 5 ; u = u - 20 ; c = 53 ; u = n\nwat is n - u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: x = 77 ; t = 34 ; u = 90\ntussendoor: y = 38 ; q = 43 ; u = u - 27 ; x = x - 18 ; t = x ; z = 93\nwat is x + u?",
+   "oplossing": "122"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: d = 18 ; a = 7 ; m = 98\ntussendoor: c = 88 ; x = 32 ; a = a * 6 ; d = d - 6 ; f = 4 ; m = a\nwat is a - d?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: a = 5 ; s = 78 ; v = 29\ntussendoor: 13 - 23 = -10 ; 38 + 21 = 59 ; a = a - 14 ; v = v - 12 ; v = s ; 18 - 42 = -24\nwat is v + a?",
+   "oplossing": "69"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: z = 78 ; y = 37 ; s = 14\ntussendoor: 38 + 38 = 76 ; y = y * 4 ; y = y * 6 ; n = 14 ; s = z ; c = 29\nwat is s + y?",
+   "oplossing": "966"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 6,
+   "opgave": "onthoud: h = 97 ; n = 80 ; f = 80\ntussendoor: 29 + 5 = 34 ; f = f + 9 ; 42 - 26 = 16 ; 41 - 17 = 24 ; n = n - 26 ; f = n\nwat is f?",
+   "oplossing": "54"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: d = 74 ; q = 62 ; r = 18 ; n = 69\ntussendoor: s = 6 ; r = r * 4 ; q = q * 4 ; c = 91 ; 49 - 30 = 19 ; d = n ; y = 49\nwat is q - d?",
+   "oplossing": "179"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: b = 54 ; y = 63 ; n = 39 ; p = 5\ntussendoor: q = 10 ; n = n * 4 ; v = 8 ; 27 + 41 = 68 ; 11 - 35 = -24 ; p = p * 9 ; p = n\nwat is p - b?",
+   "oplossing": "102"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: y = 18 ; x = 29 ; h = 5 ; e = 57\ntussendoor: 41 + 2 = 43 ; e = e * 5 ; x = x + 27 ; t = 59 ; x = e ; 5 - 5 = 0 ; b = 1\nwat is e?",
+   "oplossing": "285"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: n = 90 ; y = 85 ; t = 22 ; x = 93\ntussendoor: d = 86 ; n = n - 28 ; 38 - 9 = 29 ; n = n - 29 ; n = y ; 22 - 6 = 16 ; 22 + 41 = 63\nwat is n - t?",
+   "oplossing": "63"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: p = 61 ; v = 28 ; c = 57 ; z = 42\ntussendoor: p = p * 3 ; 50 - 32 = 18 ; 8 + 41 = 49 ; h = 71 ; p = p + 30 ; u = 2 ; c = v\nwelke is groter, p of z? schrijf het getal",
+   "oplossing": "213"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: q = 8 ; a = 56 ; b = 72 ; s = 22\ntussendoor: a = a + 21 ; b = b - 15 ; 22 - 5 = 17 ; 48 - 28 = 20 ; q = s ; 22 - 35 = -13 ; k = 19\nwelke is groter, b of q? schrijf het getal",
+   "oplossing": "57"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: g = 58 ; c = 77 ; y = 70 ; p = 6\ntussendoor: c = c - 30 ; y = y - 8 ; 4 + 7 = 11 ; p = y ; 30 + 49 = 79 ; 29 + 38 = 67 ; m = 2\nwat is p + c?",
+   "oplossing": "109"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: c = 8 ; h = 5 ; g = 79 ; a = 97\ntussendoor: 4 + 4 = 8 ; 5 - 31 = -26 ; v = 40 ; h = h + 9 ; g = g + 16 ; a = c ; 50 - 33 = 17\nwat is h + c?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: x = 50 ; h = 30 ; c = 60 ; e = 60\ntussendoor: m = 88 ; 42 + 19 = 61 ; 23 - 21 = 2 ; 46 - 6 = 40 ; h = h - 9 ; e = e - 28 ; x = e\nwat is e - h?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: q = 70 ; f = 70 ; v = 25 ; k = 43\ntussendoor: f = f + 26 ; k = k - 11 ; 26 - 50 = -24 ; 8 - 43 = -35 ; v = f ; w = 11 ; z = 21\nwelke is groter, v of q? schrijf het getal",
+   "oplossing": "96"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: e = 60 ; k = 12 ; u = 25 ; g = 64\ntussendoor: g = g - 17 ; t = 43 ; k = k * 2 ; n = 66 ; f = 96 ; 22 + 26 = 48 ; u = k\nwelke is groter, k of e? schrijf het getal",
+   "oplossing": "60"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: w = 44 ; p = 76 ; e = 24 ; x = 94\ntussendoor: r = 93 ; w = w * 5 ; w = w + 3 ; e = p ; q = 48 ; 29 - 13 = 16 ; d = 88\nwat is w + x?",
+   "oplossing": "317"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: q = 31 ; c = 19 ; v = 84 ; n = 42\ntussendoor: p = 5 ; 19 + 49 = 68 ; 31 + 4 = 35 ; q = q * 5 ; c = c - 20 ; x = 64 ; q = v\nwelke is groter, c of v? schrijf het getal",
+   "oplossing": "84"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: v = 94 ; w = 92 ; a = 80 ; d = 57\ntussendoor: w = w * 2 ; v = v * 7 ; a = d ; 15 - 24 = -9 ; 49 - 31 = 18 ; 48 + 33 = 81 ; e = 17\nwat is w?",
+   "oplossing": "184"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: z = 52 ; g = 20 ; r = 80 ; c = 45\ntussendoor: r = r - 18 ; 10 - 35 = -25 ; e = 13 ; z = z * 4 ; w = 67 ; 36 + 42 = 78 ; z = c\nwat is z + r?",
+   "oplossing": "107"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: c = 36 ; y = 41 ; d = 71 ; k = 84\ntussendoor: 38 - 6 = 32 ; u = 5 ; k = k - 17 ; 41 + 24 = 65 ; q = 86 ; d = d + 14 ; d = k\nwat is k + d?",
+   "oplossing": "134"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: q = 66 ; d = 46 ; v = 73 ; n = 16\ntussendoor: 15 + 40 = 55 ; 47 - 27 = 20 ; b = 91 ; u = 43 ; v = v - 10 ; d = d - 19 ; n = v\nwelke is groter, v of n? schrijf het getal",
+   "oplossing": "63"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: q = 6 ; e = 75 ; w = 97 ; c = 57\ntussendoor: u = 10 ; w = w + 21 ; q = q * 2 ; e = q ; x = 35 ; 33 + 1 = 34 ; 15 + 25 = 40\nwat is q + w?",
+   "oplossing": "130"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: g = 39 ; n = 91 ; m = 85 ; y = 33\ntussendoor: 10 - 21 = -11 ; p = 20 ; n = n * 8 ; s = 97 ; n = n + 9 ; k = 79 ; y = g\nwat is n?",
+   "oplossing": "737"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 7,
+   "opgave": "onthoud: p = 66 ; x = 93 ; z = 57 ; e = 64\ntussendoor: q = 4 ; q = 56 ; z = z * 2 ; e = e * 5 ; 27 - 16 = 11 ; x = p ; w = 16\nwat is z - e?",
+   "oplossing": "-206"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: z = 19 ; b = 3 ; h = 27 ; m = 64\ntussendoor: h = h - 13 ; h = h + 29 ; b = b - 6 ; b = z ; c = 85 ; 35 + 46 = 81 ; 27 - 46 = -19 ; 17 - 37 = -20\nwat is h?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: x = 40 ; w = 75 ; g = 61 ; m = 25\ntussendoor: w = w + 27 ; 3 - 23 = -20 ; g = g - 12 ; 47 + 6 = 53 ; w = w + 17 ; v = 38 ; a = 43 ; x = m\nwat is g?",
+   "oplossing": "49"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: d = 30 ; c = 70 ; e = 42 ; z = 54\ntussendoor: c = c - 18 ; a = 63 ; e = e * 7 ; 6 + 32 = 38 ; z = z - 17 ; u = 96 ; p = 87 ; e = z\nwat is c - e?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: b = 48 ; h = 33 ; s = 83 ; x = 90\ntussendoor: c = 4 ; v = 86 ; t = 95 ; s = s - 28 ; 3 + 18 = 21 ; b = b - 14 ; s = s + 7 ; s = h\nwat is b?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: h = 12 ; x = 88 ; z = 99 ; y = 98\ntussendoor: z = z + 14 ; v = 18 ; x = x + 25 ; 35 - 13 = 22 ; y = y - 3 ; 23 - 13 = 10 ; s = 48 ; z = h\nwat is y + x?",
+   "oplossing": "208"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: v = 63 ; n = 55 ; r = 74 ; a = 5\ntussendoor: z = 55 ; 38 + 12 = 50 ; 37 + 18 = 55 ; v = v - 22 ; a = a - 21 ; n = n - 17 ; 31 - 16 = 15 ; r = v\nwat is a?",
+   "oplossing": "-16"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: a = 21 ; y = 56 ; d = 93 ; m = 60\ntussendoor: x = 15 ; a = a - 4 ; y = y * 3 ; u = 70 ; y = y - 3 ; n = 84 ; d = a ; 31 + 8 = 39\nwelke is groter, a of y? schrijf het getal",
+   "oplossing": "165"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: s = 96 ; k = 86 ; f = 37 ; c = 68\ntussendoor: z = 75 ; f = f + 2 ; 20 - 27 = -7 ; 35 - 48 = -13 ; c = c + 29 ; c = c * 6 ; k = f ; e = 26\nwelke is groter, k of s? schrijf het getal",
+   "oplossing": "96"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: e = 76 ; s = 65 ; k = 23 ; v = 32\ntussendoor: k = k + 19 ; c = 97 ; v = v + 27 ; y = 12 ; 18 + 50 = 68 ; 11 + 2 = 13 ; v = v - 27 ; s = k\nwat is s + e?",
+   "oplossing": "118"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: t = 34 ; a = 14 ; y = 83 ; d = 16\ntussendoor: 20 + 27 = 47 ; 49 + 19 = 68 ; t = t * 6 ; 20 + 39 = 59 ; d = d - 30 ; a = a - 5 ; y = t ; 1 - 29 = -28\nwat is y?",
+   "oplossing": "204"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: m = 10 ; k = 64 ; a = 20 ; r = 76\ntussendoor: h = 76 ; 25 - 42 = -17 ; r = r + 17 ; a = a * 7 ; m = m + 26 ; m = r ; 22 + 7 = 29 ; w = 17\nwelke is groter, a of m? schrijf het getal",
+   "oplossing": "140"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: x = 3 ; w = 89 ; h = 49 ; a = 3\ntussendoor: 15 - 4 = 11 ; 34 - 12 = 22 ; w = w + 25 ; x = x + 5 ; x = x * 5 ; w = a ; z = 81 ; 24 - 15 = 9\nwat is w + x?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: q = 29 ; e = 61 ; g = 92 ; w = 41\ntussendoor: f = 70 ; g = g - 9 ; q = q + 4 ; 5 + 40 = 45 ; 38 + 4 = 42 ; g = g * 4 ; g = w ; z = 25\nwat is q - g?",
+   "oplossing": "-8"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: y = 92 ; f = 90 ; u = 87 ; x = 38\ntussendoor: e = 2 ; 44 + 42 = 86 ; v = 49 ; 39 + 5 = 44 ; u = u + 5 ; f = f - 20 ; y = y * 4 ; u = f\nwelke is groter, y of x? schrijf het getal",
+   "oplossing": "368"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: c = 54 ; g = 28 ; m = 29 ; q = 52\ntussendoor: e = 12 ; 18 - 50 = -32 ; g = g + 1 ; 10 - 39 = -29 ; g = g + 6 ; q = q + 13 ; 27 - 46 = -19 ; q = c\nwat is q?",
+   "oplossing": "54"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: k = 53 ; z = 40 ; c = 42 ; d = 1\ntussendoor: 4 - 49 = -45 ; k = k + 29 ; x = 83 ; a = 68 ; z = z * 8 ; u = 34 ; k = k + 24 ; z = k\nwat is k + d?",
+   "oplossing": "107"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: d = 75 ; h = 43 ; b = 61 ; g = 79\ntussendoor: d = d + 8 ; h = h + 18 ; d = d * 7 ; 4 + 16 = 20 ; p = 38 ; c = 53 ; u = 42 ; b = g\nwelke is groter, d of b? schrijf het getal",
+   "oplossing": "581"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: w = 32 ; v = 45 ; y = 72 ; m = 53\ntussendoor: h = 70 ; w = w * 2 ; m = m * 6 ; 40 - 38 = 2 ; w = w - 29 ; 47 - 45 = 2 ; 9 - 26 = -17 ; w = y\nwelke is groter, m of v? schrijf het getal",
+   "oplossing": "318"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: g = 23 ; q = 4 ; r = 9 ; h = 91\ntussendoor: q = q + 21 ; g = g - 1 ; r = r - 4 ; 50 - 33 = 17 ; y = 61 ; z = 98 ; n = 51 ; h = q\nwat is q?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 8,
+   "opgave": "onthoud: e = 39 ; d = 79 ; q = 37 ; w = 39\ntussendoor: e = e * 7 ; 7 - 15 = -8 ; d = d + 4 ; 5 - 19 = -14 ; b = 31 ; 13 + 43 = 56 ; e = e + 4 ; w = d\nwat is e + w?",
+   "oplossing": "360"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: z = 48 ; e = 3 ; d = 50 ; w = 30 ; a = 64\ntussendoor: 16 + 2 = 18 ; d = d - 10 ; e = e + 18 ; a = a - 17 ; k = 79 ; q = 48 ; z = a ; e = z ; e = a\nwat is z + d?",
+   "oplossing": "87"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: r = 53 ; d = 96 ; v = 26 ; h = 60 ; u = 62\ntussendoor: h = h - 10 ; u = u - 29 ; 49 + 34 = 83 ; x = 98 ; 17 - 45 = -28 ; d = d - 29 ; v = d ; h = v ; u = h\nwat is h + r?",
+   "oplossing": "120"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: q = 67 ; n = 20 ; r = 97 ; g = 21 ; h = 25\ntussendoor: n = n + 9 ; q = q * 5 ; n = n * 5 ; r = g ; t = 54 ; 35 - 15 = 20 ; v = 89 ; h = r ; n = q\nwat is q - r?",
+   "oplossing": "314"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: y = 59 ; d = 44 ; h = 87 ; k = 75 ; p = 49\ntussendoor: k = k - 30 ; 8 + 26 = 34 ; d = d + 26 ; m = 89 ; d = d * 5 ; h = p ; k = h ; 8 - 22 = -14 ; k = d\nwat is d - h?",
+   "oplossing": "301"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: y = 77 ; t = 33 ; f = 48 ; b = 31 ; c = 22\ntussendoor: f = f + 4 ; t = t * 4 ; y = y + 15 ; f = y ; b = f ; b = f ; q = 47 ; 19 + 33 = 52 ; 21 - 20 = 1\nwelke is groter, t of y? schrijf het getal",
+   "oplossing": "132"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: v = 71 ; w = 79 ; y = 82 ; q = 33 ; f = 74\ntussendoor: w = w - 29 ; x = 65 ; f = f + 10 ; w = w - 6 ; 24 + 15 = 39 ; w = q ; y = w ; 39 + 27 = 66 ; v = q\nwat is w + y?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: t = 83 ; h = 27 ; k = 45 ; x = 69 ; v = 15\ntussendoor: k = k - 21 ; t = t - 20 ; v = v * 9 ; t = v ; w = 2 ; h = t ; 20 + 33 = 53 ; 39 - 27 = 12 ; k = h\nwat is v - t?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: x = 95 ; c = 70 ; g = 43 ; k = 81 ; q = 73\ntussendoor: 23 + 37 = 60 ; c = c * 6 ; c = c + 18 ; 15 + 37 = 52 ; q = q + 25 ; c = g ; k = c ; c = k ; 42 - 41 = 1\nwat is q - k?",
+   "oplossing": "55"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: r = 59 ; e = 11 ; g = 74 ; f = 95 ; d = 19\ntussendoor: f = f - 22 ; r = r * 5 ; f = f * 6 ; r = f ; 4 - 20 = -16 ; e = r ; 20 - 7 = 13 ; 13 - 40 = -27 ; f = g\nwat is f?",
+   "oplossing": "74"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: u = 21 ; s = 44 ; f = 39 ; b = 78 ; r = 80\ntussendoor: s = s + 25 ; h = 62 ; b = b - 22 ; 35 + 37 = 72 ; s = s - 26 ; b = s ; r = b ; 17 + 7 = 24 ; s = u\nwat is r - f?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: k = 76 ; m = 97 ; d = 57 ; s = 47 ; p = 52\ntussendoor: k = k * 6 ; d = d - 25 ; s = s + 12 ; p = s ; k = p ; q = 48 ; 18 + 17 = 35 ; 11 - 1 = 10 ; k = s\nwat is p?",
+   "oplossing": "59"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: b = 4 ; d = 11 ; s = 79 ; c = 48 ; w = 52\ntussendoor: v = 10 ; b = b - 7 ; s = s - 16 ; m = 82 ; w = w + 19 ; b = w ; d = b ; 15 - 47 = -32 ; s = c\nwat is s - d?",
+   "oplossing": "-23"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: k = 68 ; q = 55 ; a = 78 ; n = 40 ; v = 21\ntussendoor: a = a + 10 ; n = n + 7 ; k = k * 7 ; 44 - 45 = -1 ; k = q ; a = k ; r = 7 ; k = n ; u = 48\nwat is k?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: f = 34 ; w = 30 ; v = 54 ; k = 34 ; d = 27\ntussendoor: v = v * 4 ; c = 24 ; 34 - 48 = -14 ; d = d + 19 ; d = d * 7 ; w = k ; v = w ; d = f ; 2 - 4 = -2\nwat is d + f?",
+   "oplossing": "68"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: d = 37 ; m = 76 ; h = 62 ; q = 24 ; r = 68\ntussendoor: m = m - 5 ; m = m + 6 ; m = m + 7 ; q = d ; r = q ; y = 26 ; 41 + 5 = 46 ; 29 + 44 = 73 ; h = r\nwat is r?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: h = 59 ; u = 64 ; g = 28 ; r = 28 ; n = 48\ntussendoor: r = r + 5 ; 42 - 34 = 8 ; 34 - 36 = -2 ; h = h + 7 ; u = u + 9 ; v = 76 ; h = n ; u = h ; n = r\nwelke is groter, n of g? schrijf het getal",
+   "oplossing": "33"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: p = 47 ; m = 96 ; f = 77 ; n = 89 ; u = 64\ntussendoor: m = m - 15 ; p = p + 6 ; p = p * 8 ; u = f ; p = u ; w = 82 ; 38 + 17 = 55 ; g = 97 ; f = p\nwat is u - m?",
+   "oplossing": "-4"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: a = 91 ; m = 18 ; q = 86 ; b = 40 ; f = 14\ntussendoor: a = a * 2 ; f = f - 29 ; 5 + 37 = 42 ; a = a + 3 ; q = b ; f = q ; y = 61 ; c = 82 ; m = q\nwat is q?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: k = 95 ; x = 83 ; g = 23 ; p = 22 ; n = 10\ntussendoor: 41 + 35 = 76 ; n = n - 30 ; g = g * 7 ; k = k + 12 ; k = n ; x = k ; 3 - 46 = -43 ; a = 46 ; p = n\nwelke is groter, g of n? schrijf het getal",
+   "oplossing": "161"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 9,
+   "opgave": "onthoud: e = 79 ; y = 65 ; z = 16 ; p = 52 ; d = 88\ntussendoor: 31 - 27 = 4 ; z = z + 6 ; 48 + 38 = 86 ; 40 + 26 = 66 ; d = d * 3 ; e = e - 28 ; p = y ; d = p ; p = z\nwat is z - d?",
+   "oplossing": "-43"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: u = 36 ; n = 31 ; v = 68 ; t = 95 ; m = 73\ntussendoor: t = t - 22 ; u = u * 8 ; n = n + 20 ; t = t - 21 ; u = m ; n = u ; u = m ; 36 - 6 = 30 ; 4 + 1 = 5 ; 16 - 38 = -22\nwat is n - v?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: m = 47 ; q = 84 ; s = 3 ; a = 15 ; b = 76\ntussendoor: q = q + 26 ; s = s * 2 ; m = m * 4 ; b = b + 3 ; q = a ; w = 72 ; s = q ; m = a ; h = 31 ; e = 3\nwat is b + q?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: y = 70 ; w = 76 ; p = 70 ; c = 7 ; k = 51\ntussendoor: c = c - 8 ; c = c - 15 ; 4 - 27 = -23 ; 49 - 21 = 28 ; c = c + 7 ; y = y + 15 ; a = 90 ; c = p ; k = c ; w = k\nwat is c?",
+   "oplossing": "70"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: q = 27 ; f = 52 ; m = 48 ; t = 4 ; z = 69\ntussendoor: f = f + 7 ; a = 71 ; z = z + 15 ; 34 + 10 = 44 ; 2 - 5 = -3 ; z = z * 5 ; f = f + 25 ; z = q ; f = z ; m = z\nwelke is groter, m of t? schrijf het getal",
+   "oplossing": "27"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: a = 96 ; m = 63 ; g = 62 ; d = 12 ; k = 38\ntussendoor: 30 - 46 = -16 ; d = d * 5 ; a = a - 14 ; m = m * 5 ; m = m + 11 ; d = g ; k = d ; e = 26 ; b = 42 ; k = a\nwat is k + g?",
+   "oplossing": "144"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: s = 84 ; p = 44 ; m = 98 ; d = 83 ; b = 34\ntussendoor: b = b + 17 ; 43 + 6 = 49 ; m = m * 2 ; s = s * 3 ; b = b + 11 ; s = d ; p = s ; p = m ; u = 14 ; 11 - 35 = -24\nwelke is groter, b of s? schrijf het getal",
+   "oplossing": "83"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: t = 19 ; m = 99 ; f = 1 ; g = 60 ; u = 55\ntussendoor: g = g + 19 ; u = u + 3 ; m = m - 6 ; g = g - 15 ; f = t ; 28 + 2 = 30 ; r = 90 ; 26 - 35 = -9 ; g = f ; g = m\nwat is u?",
+   "oplossing": "58"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: w = 8 ; e = 27 ; r = 4 ; q = 92 ; t = 22\ntussendoor: q = q * 9 ; w = w + 11 ; q = q + 7 ; e = e - 10 ; r = t ; c = 51 ; 43 + 49 = 92 ; 42 + 13 = 55 ; q = r ; r = e\nwat is w?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: r = 61 ; p = 8 ; z = 7 ; u = 34 ; f = 25\ntussendoor: u = u - 18 ; r = r + 10 ; p = p + 29 ; c = 21 ; 7 + 9 = 16 ; w = 60 ; r = r - 27 ; r = f ; p = r ; z = r\nwat is z - u?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: e = 14 ; r = 35 ; x = 75 ; u = 68 ; n = 41\ntussendoor: e = e * 6 ; n = n - 5 ; n = n - 21 ; 29 + 8 = 37 ; 40 + 8 = 48 ; e = e * 3 ; u = e ; 23 - 8 = 15 ; n = u ; e = n\nwat is n - e?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: a = 29 ; n = 48 ; r = 28 ; y = 28 ; c = 67\ntussendoor: a = a + 23 ; 39 + 13 = 52 ; 46 + 2 = 48 ; n = n - 3 ; n = n * 5 ; r = r * 3 ; c = y ; a = c ; u = 24 ; r = a\nwat is a?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: u = 33 ; t = 35 ; s = 84 ; p = 39 ; r = 83\ntussendoor: s = s + 5 ; t = t * 6 ; 43 + 11 = 54 ; y = 3 ; 2 + 22 = 24 ; u = u - 23 ; t = t + 9 ; p = u ; r = p ; p = u\nwat is u + p?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: f = 97 ; m = 64 ; h = 43 ; u = 99 ; y = 34\ntussendoor: q = 71 ; 6 + 19 = 25 ; h = h * 9 ; u = u + 4 ; y = y - 17 ; m = m - 1 ; 13 - 1 = 12 ; h = y ; u = h ; m = h\nwat is m?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: y = 5 ; g = 18 ; v = 41 ; h = 61 ; t = 1\ntussendoor: g = g + 8 ; f = 40 ; v = v * 2 ; g = g - 27 ; m = 13 ; h = h + 15 ; h = v ; t = h ; z = 50 ; h = v\nwelke is groter, h of v? schrijf het getal",
+   "oplossing": "82"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: y = 88 ; m = 67 ; x = 39 ; c = 33 ; v = 21\ntussendoor: v = v + 10 ; y = y * 2 ; e = 79 ; 46 - 10 = 36 ; c = c + 27 ; 21 - 48 = -27 ; y = y + 2 ; y = v ; m = y ; v = c\nwat is c?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: w = 31 ; z = 49 ; q = 56 ; k = 16 ; g = 29\ntussendoor: z = z + 6 ; w = w + 8 ; s = 86 ; 12 - 6 = 6 ; g = g * 4 ; g = g * 8 ; v = 76 ; g = w ; z = g ; g = z\nwelke is groter, z of w? schrijf het getal",
+   "oplossing": "39"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: z = 26 ; h = 23 ; g = 36 ; b = 24 ; u = 70\ntussendoor: e = 42 ; g = g + 5 ; m = 16 ; s = 92 ; g = g + 12 ; z = z * 8 ; u = u - 24 ; b = h ; u = b ; g = b\nwat is b - h?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: t = 19 ; q = 50 ; b = 9 ; x = 81 ; e = 48\ntussendoor: 18 + 26 = 44 ; e = e * 7 ; q = q - 30 ; x = x - 9 ; t = t - 7 ; q = e ; z = 52 ; b = q ; t = e ; z = 2\nwat is b + x?",
+   "oplossing": "408"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: f = 73 ; c = 90 ; e = 21 ; a = 93 ; x = 99\ntussendoor: e = e - 24 ; c = c * 9 ; x = x * 4 ; n = 86 ; u = 78 ; e = e + 25 ; e = x ; 42 - 36 = 6 ; a = e ; e = f\nwat is e + x?",
+   "oplossing": "469"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 10,
+   "opgave": "onthoud: t = 44 ; d = 56 ; h = 20 ; v = 5 ; s = 52\ntussendoor: v = v - 23 ; d = d - 12 ; h = h - 21 ; t = t * 8 ; d = h ; v = d ; s = d ; 44 + 46 = 90 ; 34 + 4 = 38 ; e = 25\nwat is s - t?",
+   "oplossing": "-353"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: z = 40 ; w = 81 ; t = 30 ; c = 18 ; k = 30 ; m = 4\ntussendoor: c = c + 18 ; t = t + 9 ; k = k * 4 ; k = k - 6 ; w = z ; h = 4 ; 26 - 14 = 12 ; t = w ; k = t ; 28 - 26 = 2 ; 37 - 18 = 19\nwat is k?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: h = 87 ; v = 32 ; c = 56 ; y = 96 ; q = 82 ; a = 64\ntussendoor: d = 5 ; a = a * 4 ; h = h - 24 ; s = 82 ; 17 - 16 = 1 ; c = c - 1 ; c = c * 6 ; c = v ; y = c ; c = q ; 31 + 49 = 80\nwat is y + v?",
+   "oplossing": "64"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: z = 90 ; h = 98 ; p = 93 ; t = 30 ; g = 7 ; m = 52\ntussendoor: z = z * 5 ; t = t * 7 ; t = t - 5 ; k = 20 ; g = g * 4 ; p = z ; t = p ; s = 69 ; h = z ; y = 69 ; 18 + 40 = 58\nwat is p?",
+   "oplossing": "450"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: z = 67 ; q = 54 ; t = 50 ; a = 63 ; c = 76 ; u = 80\ntussendoor: n = 50 ; c = c - 24 ; a = a + 18 ; c = c - 17 ; q = q + 1 ; a = u ; x = 15 ; e = 27 ; c = a ; a = t ; f = 18\nwelke is groter, q of t? schrijf het getal",
+   "oplossing": "55"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: w = 24 ; f = 38 ; t = 22 ; h = 75 ; b = 76 ; v = 80\ntussendoor: v = v + 11 ; f = f * 9 ; 50 + 17 = 67 ; v = v - 16 ; v = v - 14 ; v = f ; x = 73 ; 20 + 37 = 57 ; w = v ; g = 49 ; v = b\nwat is v + w?",
+   "oplossing": "418"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: u = 86 ; z = 42 ; k = 8 ; p = 56 ; e = 17 ; v = 78\ntussendoor: k = k - 13 ; p = p * 7 ; u = u - 11 ; p = p + 4 ; v = e ; 31 + 20 = 51 ; w = 90 ; h = 36 ; 29 + 44 = 73 ; u = v ; v = p\nwat is v + e?",
+   "oplossing": "413"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: a = 51 ; p = 18 ; t = 67 ; y = 5 ; g = 86 ; d = 95\ntussendoor: d = d - 30 ; b = 58 ; u = 45 ; t = t * 9 ; t = t + 2 ; y = y + 1 ; 45 - 34 = 11 ; a = t ; p = a ; s = 5 ; d = g\nwat is y?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: s = 84 ; r = 11 ; e = 94 ; a = 85 ; d = 1 ; f = 6\ntussendoor: 20 + 41 = 61 ; e = e + 3 ; a = a - 5 ; s = s + 24 ; 13 + 50 = 63 ; s = s * 5 ; r = f ; e = r ; 7 + 34 = 41 ; r = a ; 22 + 28 = 50\nwat is e?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: d = 43 ; s = 89 ; y = 30 ; c = 20 ; b = 96 ; h = 30\ntussendoor: h = h - 24 ; m = 88 ; s = s - 2 ; y = y + 18 ; b = b - 15 ; y = s ; w = 46 ; c = y ; b = d ; a = 68 ; 9 + 13 = 22\nwat is c + s?",
+   "oplossing": "174"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: r = 36 ; q = 28 ; s = 17 ; p = 93 ; e = 20 ; b = 81\ntussendoor: r = r + 18 ; q = q * 7 ; 29 - 48 = -19 ; b = b * 5 ; b = b + 4 ; a = 8 ; 40 + 12 = 52 ; r = s ; q = r ; 20 + 34 = 54 ; s = p\nwat is b + r?",
+   "oplossing": "426"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: x = 88 ; p = 58 ; g = 39 ; d = 22 ; v = 25 ; c = 15\ntussendoor: v = v - 12 ; x = x + 23 ; a = 31 ; t = 91 ; p = p - 28 ; x = x * 4 ; v = g ; b = 23 ; 2 + 31 = 33 ; c = v ; p = x\nwat is x + g?",
+   "oplossing": "483"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: d = 90 ; a = 99 ; w = 82 ; r = 77 ; b = 95 ; k = 71\ntussendoor: 28 - 39 = -11 ; t = 68 ; a = a + 24 ; k = k + 6 ; w = w + 12 ; w = w + 26 ; n = 86 ; d = k ; a = d ; d = k ; t = 57\nwat is k - b?",
+   "oplossing": "-18"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: t = 73 ; p = 70 ; n = 40 ; x = 47 ; c = 38 ; e = 24\ntussendoor: n = n - 3 ; p = p + 14 ; n = n * 2 ; 20 - 47 = -27 ; 11 + 19 = 30 ; x = x * 5 ; n = p ; u = 18 ; x = n ; e = x ; g = 96\nwat is e + p?",
+   "oplossing": "168"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: z = 43 ; t = 61 ; a = 86 ; m = 43 ; d = 70 ; w = 62\ntussendoor: a = a * 4 ; t = t + 24 ; 21 - 2 = 19 ; c = 13 ; x = 10 ; t = t * 9 ; m = m + 8 ; 9 - 2 = 7 ; t = d ; a = t ; z = a\nwelke is groter, a of t? schrijf het getal",
+   "oplossing": "70"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: m = 12 ; c = 95 ; r = 85 ; d = 52 ; u = 72 ; p = 35\ntussendoor: r = r + 6 ; p = p + 14 ; d = d - 29 ; y = 67 ; u = u - 25 ; 23 - 34 = -11 ; x = 1 ; p = c ; q = 11 ; m = p ; d = c\nwat is d - u?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: d = 21 ; m = 82 ; s = 43 ; q = 29 ; x = 85 ; p = 5\ntussendoor: x = x * 3 ; s = s * 7 ; m = m + 26 ; p = p + 22 ; k = 11 ; q = s ; x = q ; z = 85 ; q = x ; 15 + 50 = 65 ; 11 - 5 = 6\nwat is q - s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: y = 32 ; h = 97 ; b = 60 ; c = 2 ; a = 84 ; u = 59\ntussendoor: a = a * 4 ; h = h * 2 ; b = b + 28 ; u = u * 3 ; c = b ; a = c ; a = c ; 19 + 38 = 57 ; 49 - 40 = 9 ; 34 - 3 = 31 ; 29 + 1 = 30\nwat is u?",
+   "oplossing": "177"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: z = 89 ; a = 78 ; k = 60 ; s = 63 ; g = 3 ; h = 51\ntussendoor: k = k - 18 ; h = h + 8 ; p = 47 ; x = 9 ; k = k + 19 ; u = 10 ; s = s - 30 ; a = h ; k = a ; 49 - 34 = 15 ; g = k\nwat is a?",
+   "oplossing": "59"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: z = 79 ; y = 34 ; r = 94 ; s = 25 ; u = 77 ; e = 11\ntussendoor: u = u + 19 ; a = 11 ; z = z - 13 ; e = e - 18 ; e = e - 12 ; e = z ; y = e ; d = 58 ; 30 + 16 = 46 ; k = 63 ; e = s\nwat is y?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 11,
+   "opgave": "onthoud: m = 16 ; r = 96 ; u = 87 ; g = 5 ; q = 10 ; v = 99\ntussendoor: z = 90 ; m = m * 7 ; m = m - 29 ; r = r + 8 ; 44 - 15 = 29 ; g = g + 16 ; v = q ; m = v ; q = u ; n = 92 ; c = 65\nwelke is groter, g of r? schrijf het getal",
+   "oplossing": "104"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: a = 34 ; q = 63 ; f = 63 ; h = 44 ; d = 75 ; s = 63\ntussendoor: 1 + 50 = 51 ; 3 - 34 = -31 ; 5 - 47 = -42 ; f = f * 3 ; f = f + 9 ; q = q + 24 ; s = s - 18 ; q = q * 8 ; a = f ; q = a ; q = a ; s = d\nwat is f - a?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: w = 98 ; x = 61 ; k = 26 ; s = 27 ; f = 16 ; p = 8\ntussendoor: t = 97 ; 22 + 30 = 52 ; k = k + 4 ; w = w + 8 ; k = k * 5 ; w = w - 5 ; p = p * 6 ; w = f ; x = w ; 11 + 19 = 30 ; p = w ; k = p\nwat is k + s?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: e = 22 ; f = 84 ; k = 43 ; n = 64 ; x = 71 ; g = 3\ntussendoor: w = 53 ; 9 - 34 = -25 ; n = n + 28 ; e = e - 25 ; m = 71 ; k = k + 20 ; f = f - 9 ; e = e + 13 ; f = e ; k = f ; k = g ; g = e\nwat is n - x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: p = 43 ; x = 61 ; c = 1 ; y = 33 ; f = 84 ; z = 82\ntussendoor: p = p * 9 ; 17 - 4 = 13 ; s = 14 ; x = x * 6 ; k = 31 ; z = z * 4 ; f = f + 17 ; z = z - 22 ; p = z ; x = p ; p = f ; z = f\nwat is z?",
+   "oplossing": "101"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: d = 56 ; e = 24 ; c = 19 ; x = 17 ; s = 49 ; a = 43\ntussendoor: 6 - 38 = -32 ; a = a + 19 ; d = d - 4 ; 18 - 47 = -29 ; a = a * 8 ; d = d + 23 ; q = 44 ; d = d - 13 ; d = s ; e = d ; c = d ; x = s\nwat is e + s?",
+   "oplossing": "98"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: n = 30 ; q = 5 ; w = 36 ; f = 48 ; y = 51 ; s = 29\ntussendoor: q = q * 2 ; n = n - 12 ; q = q - 23 ; 11 + 13 = 24 ; s = s + 21 ; 6 - 34 = -28 ; q = q * 6 ; w = y ; r = 69 ; f = w ; q = n ; f = q\nwat is n + f?",
+   "oplossing": "36"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: t = 94 ; z = 13 ; c = 51 ; v = 5 ; m = 29 ; k = 76\ntussendoor: m = m * 4 ; v = v * 4 ; v = v + 30 ; c = c * 3 ; k = k - 28 ; 11 - 47 = -36 ; c = k ; v = c ; h = 13 ; a = 11 ; t = k ; z = c\nwat is v + z?",
+   "oplossing": "96"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: f = 32 ; e = 17 ; w = 35 ; r = 14 ; y = 92 ; c = 20\ntussendoor: f = f - 12 ; w = w - 28 ; 44 - 4 = 40 ; c = c - 23 ; t = 58 ; 36 + 35 = 71 ; w = w - 11 ; r = r - 23 ; y = e ; c = y ; y = w ; c = y\nwelke is groter, c of w? schrijf het getal",
+   "oplossing": "-4"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: n = 5 ; a = 72 ; v = 84 ; q = 51 ; x = 45 ; h = 44\ntussendoor: q = q * 4 ; b = 88 ; a = a + 17 ; n = n * 7 ; h = h * 2 ; a = a * 3 ; x = q ; h = x ; 44 - 44 = 0 ; x = q ; x = q ; s = 32\nwat is q?",
+   "oplossing": "204"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: c = 20 ; b = 9 ; v = 63 ; t = 40 ; y = 35 ; h = 88\ntussendoor: b = b - 1 ; t = t - 13 ; h = h + 12 ; 8 + 44 = 52 ; h = h + 10 ; c = c - 20 ; 18 + 14 = 32 ; t = v ; y = t ; h = v ; t = c ; k = 73\nwat is h - t?",
+   "oplossing": "63"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: b = 56 ; h = 93 ; a = 8 ; m = 74 ; q = 8 ; p = 38\ntussendoor: p = p + 19 ; 36 + 6 = 42 ; 14 - 13 = 1 ; 3 + 50 = 53 ; m = m + 27 ; p = p - 21 ; m = m + 15 ; a = a * 6 ; b = h ; a = b ; p = h ; b = h\nwelke is groter, p of m? schrijf het getal",
+   "oplossing": "116"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: f = 65 ; y = 27 ; r = 3 ; v = 46 ; p = 76 ; m = 92\ntussendoor: q = 69 ; p = p - 7 ; a = 87 ; p = p - 29 ; r = r * 7 ; y = y * 9 ; p = p * 2 ; f = y ; z = 7 ; r = f ; m = y ; r = m\nwat is p?",
+   "oplossing": "80"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: t = 66 ; p = 30 ; r = 69 ; a = 51 ; e = 88 ; u = 30\ntussendoor: u = u - 15 ; q = 54 ; 31 + 48 = 79 ; w = 46 ; u = u * 6 ; r = r * 4 ; e = e - 20 ; a = a * 6 ; u = e ; t = u ; p = t ; a = r\nwat is r - t?",
+   "oplossing": "208"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: c = 81 ; b = 19 ; a = 85 ; d = 73 ; e = 9 ; t = 36\ntussendoor: d = d + 11 ; t = t + 6 ; t = t - 23 ; t = t - 11 ; b = b + 20 ; c = t ; b = c ; e = d ; t = a ; 1 - 22 = -21 ; y = 97 ; p = 38\nwelke is groter, e of c? schrijf het getal",
+   "oplossing": "84"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: s = 32 ; r = 81 ; g = 22 ; u = 53 ; p = 23 ; h = 98\ntussendoor: 39 + 32 = 71 ; p = p + 7 ; s = s * 7 ; n = 20 ; r = r * 4 ; 23 + 31 = 54 ; h = h * 5 ; h = h - 10 ; g = r ; u = g ; p = u ; r = s\nwelke is groter, p of r? schrijf het getal",
+   "oplossing": "324"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: t = 90 ; s = 23 ; k = 49 ; v = 37 ; f = 31 ; e = 8\ntussendoor: k = k + 24 ; u = 38 ; b = 28 ; t = t + 29 ; v = v * 2 ; t = t + 23 ; f = f + 1 ; k = f ; 46 + 25 = 71 ; v = k ; k = t ; v = s\nwat is t + s?",
+   "oplossing": "165"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: b = 62 ; m = 78 ; x = 79 ; g = 33 ; s = 92 ; c = 24\ntussendoor: c = c + 12 ; g = g * 3 ; x = x + 20 ; b = b * 7 ; x = x - 18 ; m = s ; a = 27 ; 36 - 12 = 24 ; 2 - 30 = -28 ; x = m ; s = x ; g = x\nwat is b + s?",
+   "oplossing": "526"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: q = 1 ; u = 98 ; d = 83 ; e = 88 ; p = 93 ; y = 84\ntussendoor: k = 14 ; p = p + 15 ; q = q + 27 ; p = p - 14 ; u = u - 13 ; y = y - 24 ; r = 84 ; y = p ; q = y ; 34 + 30 = 64 ; p = d ; p = u\nwelke is groter, y of u? schrijf het getal",
+   "oplossing": "94"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: k = 61 ; f = 79 ; a = 91 ; n = 3 ; b = 57 ; c = 25\ntussendoor: b = b + 1 ; 29 - 22 = 7 ; s = 78 ; n = n - 1 ; b = b - 25 ; k = k - 1 ; q = 13 ; f = f + 18 ; k = c ; f = k ; c = b ; a = c\nwat is c?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 12,
+   "opgave": "onthoud: u = 69 ; e = 60 ; a = 67 ; k = 84 ; b = 76 ; n = 44\ntussendoor: b = b - 2 ; u = u - 4 ; y = 83 ; b = b * 3 ; k = k * 6 ; k = k + 5 ; 6 + 15 = 21 ; k = b ; n = k ; e = b ; n = k ; r = 28\nwat is e?",
+   "oplossing": "222"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: a = 4 ; m = 79 ; z = 74 ; s = 63 ; g = 65 ; h = 99 ; d = 46\ntussendoor: h = h - 21 ; g = g - 20 ; 16 + 4 = 20 ; z = z - 18 ; d = d * 8 ; h = h * 5 ; a = g ; m = a ; d = a ; v = 52 ; 3 + 5 = 8 ; z = h ; 37 - 19 = 18\nwat is m + g?",
+   "oplossing": "90"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: f = 96 ; e = 99 ; x = 61 ; q = 59 ; g = 76 ; c = 60 ; h = 6\ntussendoor: w = 74 ; h = h * 8 ; c = c - 20 ; e = e + 27 ; x = x - 11 ; q = q - 8 ; b = 96 ; g = c ; h = g ; x = c ; e = g ; b = 59 ; 8 + 24 = 32\nwat is c - q?",
+   "oplossing": "-11"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: u = 42 ; n = 15 ; w = 3 ; v = 31 ; f = 65 ; e = 35 ; g = 42\ntussendoor: 2 - 22 = -20 ; c = 53 ; v = v - 25 ; f = f + 17 ; x = 61 ; e = e - 24 ; e = e - 24 ; e = e + 11 ; n = w ; 11 + 13 = 24 ; v = n ; f = v ; e = n\nwelke is groter, f of g? schrijf het getal",
+   "oplossing": "42"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: n = 66 ; x = 56 ; e = 5 ; p = 38 ; h = 19 ; s = 65 ; y = 96\ntussendoor: y = y * 4 ; 34 - 34 = 0 ; 45 + 41 = 86 ; q = 9 ; x = x - 4 ; x = x + 1 ; p = p + 6 ; e = e - 11 ; s = n ; y = s ; h = s ; p = y ; 20 - 43 = -23\nwat is s - e?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: g = 88 ; p = 84 ; y = 28 ; v = 78 ; u = 58 ; c = 57 ; m = 94\ntussendoor: h = 84 ; u = u - 22 ; v = v * 2 ; g = g * 4 ; p = p * 9 ; 15 + 7 = 22 ; p = p + 7 ; y = p ; v = y ; g = c ; v = m ; 39 + 49 = 88 ; 5 + 16 = 21\nwat is v?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: g = 17 ; r = 88 ; v = 23 ; q = 7 ; d = 25 ; p = 12 ; y = 58\ntussendoor: w = 38 ; 8 + 40 = 48 ; 3 + 24 = 27 ; m = 24 ; q = q - 30 ; g = g + 17 ; y = y * 5 ; r = r * 2 ; r = r + 2 ; d = y ; p = d ; d = g ; p = q\nwat is r + y?",
+   "oplossing": "468"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: w = 39 ; b = 53 ; k = 15 ; d = 81 ; z = 74 ; t = 59 ; r = 73\ntussendoor: m = 94 ; d = d - 1 ; w = w * 3 ; b = b * 7 ; b = b + 29 ; t = t + 14 ; t = r ; w = t ; t = r ; z = k ; 25 - 43 = -18 ; 1 - 4 = -3 ; f = 63\nwat is t - z?",
+   "oplossing": "58"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: p = 29 ; u = 42 ; v = 1 ; c = 64 ; r = 28 ; b = 8 ; n = 11\ntussendoor: d = 41 ; u = u - 5 ; n = n + 25 ; b = b * 6 ; 9 + 46 = 55 ; u = u - 27 ; p = p - 25 ; a = 19 ; p = n ; u = p ; b = u ; b = r ; f = 14\nwat is b - c?",
+   "oplossing": "-36"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: v = 90 ; e = 15 ; p = 90 ; d = 23 ; q = 61 ; h = 44 ; n = 43\ntussendoor: p = p * 3 ; 42 + 30 = 72 ; v = v + 5 ; s = 74 ; n = n * 3 ; h = h * 4 ; n = n - 5 ; p = n ; d = p ; 50 + 28 = 78 ; p = e ; q = v ; b = 92\nwelke is groter, q of e? schrijf het getal",
+   "oplossing": "95"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: b = 42 ; c = 73 ; k = 24 ; n = 47 ; f = 79 ; w = 86 ; h = 90\ntussendoor: f = f - 15 ; d = 83 ; 49 + 39 = 88 ; d = 30 ; w = w * 7 ; k = k + 16 ; f = f + 11 ; b = b + 15 ; b = n ; c = b ; c = n ; r = 38 ; k = h\nwat is b?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: f = 32 ; m = 5 ; k = 98 ; v = 89 ; u = 9 ; a = 2 ; d = 50\ntussendoor: f = f * 7 ; k = k - 10 ; v = v * 9 ; s = 16 ; x = 48 ; k = k - 22 ; 48 - 11 = 37 ; k = k - 21 ; f = u ; e = 26 ; m = f ; v = k ; v = k\nwat is f - u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: u = 3 ; g = 37 ; q = 12 ; e = 91 ; x = 4 ; s = 21 ; m = 61\ntussendoor: m = m + 3 ; f = 74 ; s = s + 11 ; r = 22 ; s = s * 3 ; e = e + 24 ; e = e * 3 ; g = s ; 1 - 24 = -23 ; q = g ; q = m ; e = m ; 13 - 2 = 11\nwat is q + e?",
+   "oplossing": "128"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: u = 55 ; s = 79 ; d = 45 ; r = 61 ; w = 40 ; y = 5 ; t = 66\ntussendoor: s = s * 5 ; u = u + 1 ; e = 47 ; 30 - 33 = -3 ; p = 26 ; 37 - 45 = -8 ; w = w - 11 ; w = w * 9 ; w = w + 4 ; u = d ; s = u ; t = u ; y = w\nwat is u?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: z = 99 ; t = 64 ; q = 67 ; r = 94 ; n = 88 ; u = 76 ; v = 43\ntussendoor: b = 83 ; p = 82 ; q = q * 3 ; u = u * 3 ; z = z + 15 ; u = u + 5 ; 43 - 3 = 40 ; u = u + 9 ; u = t ; h = 99 ; v = u ; q = v ; v = u\nwelke is groter, v of q? schrijf het getal",
+   "oplossing": "64"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: f = 42 ; u = 72 ; t = 95 ; s = 18 ; y = 44 ; d = 57 ; z = 52\ntussendoor: y = y - 19 ; f = f * 7 ; s = s * 9 ; y = y + 3 ; y = y - 11 ; m = 42 ; 6 + 35 = 41 ; s = t ; 4 + 45 = 49 ; 3 + 16 = 19 ; y = s ; y = s ; f = u\nwelke is groter, f of u? schrijf het getal",
+   "oplossing": "72"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: q = 11 ; r = 56 ; z = 95 ; f = 15 ; b = 72 ; s = 47 ; x = 3\ntussendoor: x = x * 3 ; s = s - 25 ; h = 13 ; 42 - 7 = 35 ; h = 10 ; y = 61 ; x = x + 27 ; r = r * 3 ; f = f * 9 ; b = q ; s = b ; q = r ; x = b\nwat is q - r?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: b = 4 ; z = 50 ; f = 68 ; u = 37 ; k = 77 ; n = 51 ; w = 72\ntussendoor: b = b - 27 ; k = k + 21 ; w = w * 9 ; 12 - 46 = -34 ; f = f - 2 ; 21 - 33 = -12 ; k = k + 12 ; w = f ; b = w ; r = 21 ; h = 55 ; z = b ; b = z\nwat is z?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: n = 81 ; f = 79 ; b = 54 ; d = 94 ; a = 7 ; p = 59 ; s = 60\ntussendoor: y = 26 ; k = 77 ; 25 - 17 = 8 ; 41 + 6 = 47 ; s = s - 8 ; s = s * 2 ; b = b * 3 ; b = b - 4 ; n = n + 29 ; s = a ; n = s ; f = a ; p = a\nwat is p - s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: b = 15 ; f = 94 ; x = 44 ; a = 82 ; n = 16 ; z = 38 ; t = 50\ntussendoor: 22 - 18 = 4 ; z = z + 29 ; u = 43 ; h = 10 ; t = t * 7 ; n = n * 7 ; b = b + 20 ; z = z + 16 ; b = t ; f = b ; 26 + 47 = 73 ; a = x ; n = t\nwat is n?",
+   "oplossing": "350"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 13,
+   "opgave": "onthoud: q = 53 ; n = 14 ; c = 13 ; u = 81 ; v = 24 ; s = 4 ; m = 30\ntussendoor: n = n * 8 ; q = q * 6 ; n = n * 5 ; v = v * 9 ; 22 + 5 = 27 ; c = c + 26 ; 39 - 32 = 7 ; c = v ; u = c ; w = 55 ; 35 + 17 = 52 ; s = u ; u = s\nwelke is groter, c of m? schrijf het getal",
+   "oplossing": "216"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: u = 99 ; n = 3 ; g = 27 ; x = 61 ; c = 85 ; t = 77 ; z = 57\ntussendoor: m = 29 ; c = c + 28 ; h = 36 ; x = x - 6 ; x = x + 14 ; u = u + 21 ; 26 - 34 = -8 ; z = z - 13 ; c = c + 20 ; u = n ; g = u ; g = t ; x = z ; w = 45\nwat is c?",
+   "oplossing": "133"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: b = 42 ; v = 78 ; n = 40 ; g = 87 ; d = 73 ; m = 67 ; f = 99\ntussendoor: v = v * 3 ; n = n - 9 ; b = b - 8 ; 11 - 8 = 3 ; y = 82 ; m = m * 6 ; b = b * 9 ; v = v + 15 ; n = v ; g = n ; h = 35 ; y = 68 ; v = m ; b = n\nwat is g?",
+   "oplossing": "249"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: y = 42 ; w = 8 ; p = 16 ; g = 60 ; r = 73 ; k = 61 ; d = 2\ntussendoor: r = r + 14 ; p = p * 2 ; d = d * 8 ; t = 29 ; w = w - 9 ; r = r + 11 ; c = 47 ; k = k - 23 ; w = r ; 31 + 24 = 55 ; q = 81 ; p = w ; g = p ; w = k\nwelke is groter, w of g? schrijf het getal",
+   "oplossing": "98"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: k = 21 ; y = 29 ; f = 80 ; u = 84 ; x = 30 ; c = 64 ; a = 28\ntussendoor: k = k * 3 ; w = 16 ; 18 - 8 = 10 ; a = a - 7 ; 49 + 35 = 84 ; c = c - 15 ; e = 83 ; a = a - 27 ; a = a * 5 ; y = y * 6 ; u = f ; x = u ; f = a ; x = y\nwat is f - y?",
+   "oplossing": "-204"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: e = 72 ; y = 94 ; t = 47 ; g = 81 ; q = 38 ; b = 94 ; a = 84\ntussendoor: b = b + 20 ; g = g - 10 ; q = q - 20 ; g = g + 18 ; y = y - 4 ; t = t + 15 ; e = b ; k = 9 ; y = e ; t = a ; n = 96 ; a = g ; z = 55 ; x = 68\nwelke is groter, q of e? schrijf het getal",
+   "oplossing": "114"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: x = 83 ; g = 28 ; f = 85 ; b = 30 ; w = 76 ; m = 36 ; q = 2\ntussendoor: w = w + 21 ; g = g * 3 ; 46 + 7 = 53 ; v = 86 ; 24 - 2 = 22 ; g = g + 28 ; q = q * 9 ; g = g - 9 ; 4 - 26 = -22 ; m = m - 2 ; b = m ; w = b ; m = b ; f = g\nwat is q + f?",
+   "oplossing": "121"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: s = 85 ; y = 71 ; h = 84 ; p = 26 ; m = 4 ; z = 4 ; k = 85\ntussendoor: w = 10 ; s = s + 1 ; m = m * 5 ; 49 - 30 = 19 ; w = 77 ; t = 47 ; s = s * 2 ; z = z * 9 ; s = s - 23 ; h = h + 14 ; z = p ; k = z ; s = k ; s = k\nwat is k - s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: e = 78 ; n = 2 ; d = 29 ; a = 40 ; r = 24 ; k = 46 ; x = 8\ntussendoor: u = 75 ; n = n * 7 ; x = x * 3 ; n = n * 5 ; a = a + 25 ; k = k * 2 ; 36 + 46 = 82 ; q = 37 ; p = 29 ; n = n + 7 ; e = x ; n = e ; d = x ; e = d\nwat is n - e?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: g = 99 ; q = 92 ; f = 15 ; a = 28 ; s = 78 ; b = 70 ; w = 56\ntussendoor: a = a - 1 ; q = q - 18 ; g = g * 3 ; c = 8 ; f = f - 18 ; a = a - 28 ; 4 - 23 = -19 ; s = s * 3 ; g = f ; y = 13 ; q = g ; q = w ; 31 - 39 = -8 ; g = f\nwelke is groter, f of q? schrijf het getal",
+   "oplossing": "56"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: b = 73 ; e = 15 ; q = 35 ; n = 95 ; y = 91 ; v = 30 ; t = 15\ntussendoor: 4 + 47 = 51 ; w = 71 ; v = v + 26 ; 46 + 32 = 78 ; g = 27 ; e = e - 27 ; v = v - 2 ; t = t * 9 ; e = e * 9 ; q = q + 13 ; q = b ; n = q ; y = v ; q = b\nwat is y + t?",
+   "oplossing": "189"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: f = 72 ; v = 1 ; e = 28 ; h = 87 ; n = 68 ; c = 26 ; w = 89\ntussendoor: h = h + 13 ; f = f + 20 ; n = n + 13 ; v = v + 19 ; e = e - 2 ; w = w * 6 ; u = 26 ; k = 54 ; h = w ; t = 54 ; n = h ; 24 + 46 = 70 ; e = w ; w = h\nwat is e?",
+   "oplossing": "534"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: k = 3 ; h = 28 ; z = 28 ; d = 89 ; f = 1 ; y = 93 ; b = 65\ntussendoor: d = d * 3 ; h = h - 9 ; d = d + 9 ; d = d + 2 ; k = k - 12 ; f = f - 8 ; x = 90 ; b = h ; k = b ; b = y ; y = d ; m = 71 ; t = 85 ; u = 34\nwat is y - k?",
+   "oplossing": "259"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: n = 12 ; m = 26 ; y = 94 ; q = 28 ; z = 14 ; g = 73 ; p = 8\ntussendoor: g = g * 5 ; m = m * 2 ; g = g + 6 ; m = m + 5 ; y = y * 8 ; 28 - 8 = 20 ; p = p + 27 ; 46 - 45 = 1 ; n = y ; w = 21 ; m = n ; z = n ; q = y ; f = 99\nwelke is groter, p of g? schrijf het getal",
+   "oplossing": "371"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: d = 27 ; g = 44 ; z = 29 ; x = 33 ; q = 71 ; c = 66 ; p = 12\ntussendoor: z = z * 7 ; c = c * 3 ; z = z - 10 ; p = p + 3 ; z = z + 4 ; q = q + 9 ; y = 75 ; e = 75 ; 22 - 18 = 4 ; q = x ; 1 - 30 = -29 ; c = q ; z = p ; q = c\nwat is q + p?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: h = 42 ; x = 94 ; y = 32 ; u = 20 ; n = 82 ; a = 49 ; f = 92\ntussendoor: x = x + 21 ; f = f * 8 ; 32 - 32 = 0 ; a = a * 6 ; f = f + 9 ; h = h - 14 ; 9 - 45 = -36 ; 3 - 37 = -34 ; 30 + 41 = 71 ; a = a + 9 ; f = a ; h = f ; n = h ; x = n\nwelke is groter, n of f? schrijf het getal",
+   "oplossing": "303"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: a = 50 ; e = 8 ; d = 12 ; x = 58 ; y = 75 ; m = 47 ; w = 58\ntussendoor: w = w * 7 ; d = d * 9 ; w = w + 7 ; x = x + 1 ; d = d + 2 ; m = m * 5 ; f = 45 ; k = 47 ; 13 + 16 = 29 ; m = w ; a = m ; x = d ; w = x ; 50 + 48 = 98\nwat is d + m?",
+   "oplossing": "523"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: f = 31 ; p = 56 ; y = 60 ; g = 21 ; s = 68 ; z = 52 ; b = 56\ntussendoor: f = f + 30 ; g = g + 29 ; s = s - 15 ; s = s * 5 ; y = y + 21 ; p = p * 5 ; g = f ; v = 84 ; 45 - 3 = 42 ; 4 + 28 = 32 ; s = g ; 39 + 15 = 54 ; y = s ; p = g\nwat is p + f?",
+   "oplossing": "122"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: v = 3 ; r = 63 ; f = 13 ; z = 66 ; q = 17 ; y = 21 ; u = 82\ntussendoor: f = f + 2 ; y = y - 15 ; q = q * 8 ; q = q + 21 ; z = z + 4 ; q = q + 24 ; f = y ; z = f ; 18 - 48 = -30 ; 6 - 6 = 0 ; f = r ; e = 89 ; 21 + 15 = 36 ; f = v\nwat is z - r?",
+   "oplossing": "-57"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: y = 56 ; z = 52 ; v = 5 ; c = 25 ; e = 94 ; a = 24 ; f = 20\ntussendoor: y = y - 13 ; a = a * 3 ; f = f - 14 ; a = a * 8 ; c = c - 26 ; a = a - 28 ; v = z ; c = v ; a = y ; b = 99 ; c = z ; 16 + 42 = 58 ; 32 - 5 = 27 ; h = 89\nwat is v + z?",
+   "oplossing": "104"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 14,
+   "opgave": "onthoud: z = 15 ; v = 89 ; a = 30 ; y = 73 ; m = 60 ; e = 38 ; d = 54\ntussendoor: d = d + 1 ; y = y + 6 ; 2 - 40 = -38 ; a = a * 9 ; y = y + 15 ; z = z * 6 ; y = y - 17 ; m = d ; k = 2 ; e = m ; a = v ; 9 + 36 = 45 ; w = 32 ; v = y\nwat is y + z?",
+   "oplossing": "167"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: d = 65 ; e = 46 ; w = 43 ; r = 14 ; y = 73 ; a = 67 ; n = 73 ; x = 23\ntussendoor: k = 13 ; w = w - 1 ; w = w * 6 ; x = x * 6 ; d = d * 7 ; y = y * 5 ; x = x - 3 ; n = w ; x = n ; y = r ; x = n ; n = a ; 14 - 24 = -10 ; 33 - 42 = -9 ; p = 70\nwat is d + r?",
+   "oplossing": "469"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: b = 24 ; x = 63 ; h = 71 ; q = 44 ; w = 88 ; a = 55 ; k = 4 ; c = 99\ntussendoor: 48 + 3 = 51 ; 32 + 6 = 38 ; a = a - 2 ; a = a * 9 ; x = x + 3 ; a = a + 8 ; x = x - 20 ; a = a + 25 ; 34 - 39 = -5 ; c = x ; b = c ; h = b ; a = b ; c = k ; n = 95\nwat is x + h?",
+   "oplossing": "92"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: z = 19 ; k = 36 ; b = 17 ; g = 41 ; v = 38 ; q = 98 ; p = 25 ; c = 41\ntussendoor: g = g + 23 ; z = z - 17 ; q = q - 10 ; m = 6 ; b = b * 6 ; x = 48 ; p = p + 14 ; z = z + 3 ; z = c ; k = z ; s = 57 ; v = z ; 8 - 28 = -20 ; v = c ; g = b\nwat is b + c?",
+   "oplossing": "143"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: q = 47 ; g = 7 ; u = 68 ; r = 96 ; m = 60 ; a = 38 ; s = 4 ; h = 14\ntussendoor: u = u * 9 ; h = h * 5 ; h = h + 11 ; s = s + 23 ; q = q + 9 ; s = s - 29 ; m = a ; s = m ; a = q ; p = 9 ; z = 62 ; 35 - 23 = 12 ; b = 87 ; q = s ; h = m\nwat is a - h?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: k = 18 ; h = 78 ; s = 2 ; w = 38 ; y = 78 ; u = 21 ; r = 11 ; q = 28\ntussendoor: w = w - 29 ; r = r * 6 ; q = q - 8 ; q = q + 25 ; y = y + 3 ; q = q * 6 ; n = 47 ; n = 35 ; h = k ; s = h ; d = 49 ; c = 83 ; r = u ; w = u ; k = q\nwat is w?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: z = 75 ; c = 48 ; u = 85 ; w = 33 ; g = 67 ; x = 10 ; t = 39 ; h = 39\ntussendoor: w = w + 23 ; x = x * 3 ; c = c * 5 ; w = w - 2 ; h = h * 6 ; x = x - 17 ; 14 + 6 = 20 ; t = x ; h = t ; c = g ; s = 72 ; u = t ; n = 50 ; 36 + 3 = 39 ; x = z\nwat is t?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: q = 10 ; d = 64 ; t = 31 ; k = 20 ; a = 68 ; z = 88 ; h = 71 ; m = 56\ntussendoor: z = z * 9 ; 46 + 24 = 70 ; q = q - 11 ; g = 91 ; m = m + 21 ; m = m - 24 ; z = z + 7 ; k = k * 8 ; q = d ; t = q ; g = 17 ; h = m ; t = k ; 19 - 24 = -5 ; q = m\nwat is t + m?",
+   "oplossing": "213"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: f = 26 ; z = 44 ; x = 64 ; h = 26 ; r = 67 ; t = 86 ; p = 79 ; v = 1\ntussendoor: 40 + 31 = 71 ; y = 35 ; z = z - 26 ; v = v * 9 ; f = f * 8 ; r = r + 19 ; z = z * 6 ; 6 - 8 = -2 ; r = r - 14 ; x = t ; h = x ; r = h ; v = z ; h = f ; w = 3\nwat is h - t?",
+   "oplossing": "122"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: x = 37 ; u = 76 ; w = 18 ; h = 4 ; a = 64 ; f = 11 ; t = 68 ; p = 21\ntussendoor: a = a * 9 ; w = w - 25 ; u = u - 13 ; w = w + 10 ; p = p - 24 ; c = 86 ; 26 - 43 = -17 ; w = w * 7 ; x = f ; u = x ; h = x ; 7 + 24 = 31 ; r = 99 ; f = a ; a = u\nwat is a - x?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: e = 6 ; y = 49 ; f = 10 ; r = 1 ; b = 93 ; t = 61 ; w = 9 ; s = 25\ntussendoor: 20 + 10 = 30 ; u = 85 ; w = w * 2 ; b = b + 2 ; s = s * 7 ; r = r * 2 ; b = b - 9 ; m = 8 ; y = y * 9 ; r = f ; b = r ; e = f ; m = 28 ; r = s ; y = e\nwat is s + t?",
+   "oplossing": "236"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: k = 90 ; w = 29 ; r = 70 ; m = 76 ; x = 25 ; a = 73 ; y = 47 ; t = 86\ntussendoor: t = t - 3 ; w = w - 4 ; y = y - 29 ; w = w * 3 ; w = w - 9 ; r = r + 19 ; u = 49 ; m = r ; x = m ; 26 + 34 = 60 ; y = a ; u = 95 ; r = t ; 14 + 31 = 45 ; a = x\nwelke is groter, y of m? schrijf het getal",
+   "oplossing": "89"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: p = 60 ; k = 49 ; t = 36 ; z = 31 ; m = 11 ; u = 68 ; d = 58 ; n = 85\ntussendoor: u = u - 12 ; t = t + 22 ; t = t * 6 ; z = z * 6 ; n = n + 5 ; 10 - 13 = -3 ; n = n - 22 ; d = k ; 47 + 4 = 51 ; n = d ; g = 5 ; 11 + 30 = 41 ; z = m ; t = k ; n = z\nwelke is groter, u of t? schrijf het getal",
+   "oplossing": "56"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: q = 22 ; n = 75 ; z = 7 ; s = 29 ; t = 93 ; e = 23 ; h = 28 ; x = 98\ntussendoor: e = e * 4 ; t = t - 11 ; q = q - 21 ; n = n - 15 ; q = q * 7 ; q = q - 29 ; q = t ; n = q ; 37 + 2 = 39 ; 44 - 4 = 40 ; w = 70 ; s = t ; r = 57 ; q = s ; s = z\nwelke is groter, e of n? schrijf het getal",
+   "oplossing": "92"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: p = 30 ; b = 97 ; n = 81 ; q = 14 ; v = 85 ; d = 15 ; f = 46 ; w = 87\ntussendoor: b = b * 8 ; b = b - 16 ; t = 50 ; f = f - 21 ; f = f * 2 ; b = b + 5 ; f = f * 7 ; v = f ; c = 11 ; d = v ; d = w ; n = b ; f = d ; 3 + 11 = 14 ; u = 62\nwat is f + p?",
+   "oplossing": "117"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: n = 36 ; h = 58 ; s = 75 ; y = 33 ; a = 37 ; b = 48 ; d = 29 ; u = 51\ntussendoor: u = u * 3 ; u = u + 3 ; h = h + 18 ; b = b - 2 ; z = 84 ; n = n * 4 ; 18 + 49 = 67 ; d = d - 26 ; n = y ; h = n ; a = s ; 32 + 30 = 62 ; d = b ; b = u ; 8 + 33 = 41\nwat is d - n?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: m = 20 ; h = 13 ; w = 6 ; f = 95 ; d = 37 ; v = 92 ; q = 68 ; r = 98\ntussendoor: m = m * 8 ; 36 - 32 = 4 ; v = v * 8 ; 28 - 46 = -18 ; d = d - 18 ; f = f - 22 ; q = q * 4 ; w = w - 25 ; w = q ; f = w ; h = q ; 34 + 45 = 79 ; n = 23 ; h = m ; r = q\nwat is h?",
+   "oplossing": "160"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: x = 38 ; t = 95 ; u = 74 ; b = 55 ; p = 28 ; z = 59 ; r = 20 ; m = 30\ntussendoor: t = t * 2 ; b = b - 19 ; u = u - 2 ; b = b + 9 ; h = 72 ; t = t + 21 ; u = u * 3 ; f = 99 ; y = 90 ; x = z ; t = x ; m = b ; t = z ; m = p ; q = 7\nwat is m?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: r = 18 ; k = 18 ; m = 48 ; h = 59 ; x = 85 ; f = 94 ; b = 80 ; n = 83\ntussendoor: k = k + 18 ; 11 + 17 = 28 ; s = 49 ; k = k - 10 ; f = f - 22 ; n = n + 16 ; x = x + 4 ; w = 47 ; n = n * 7 ; t = 89 ; x = n ; f = x ; k = h ; k = m ; r = b\nwat is k + m?",
+   "oplossing": "96"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: c = 23 ; u = 15 ; p = 1 ; q = 24 ; m = 92 ; h = 91 ; d = 66 ; a = 54\ntussendoor: 31 + 26 = 57 ; 12 - 15 = -3 ; b = 14 ; u = u + 2 ; d = d + 12 ; q = q * 4 ; p = p + 29 ; h = h - 10 ; 16 - 38 = -22 ; p = p * 5 ; a = d ; c = a ; c = m ; a = d ; c = h\nwat is d?",
+   "oplossing": "78"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 15,
+   "opgave": "onthoud: y = 23 ; w = 96 ; r = 50 ; m = 60 ; f = 68 ; u = 31 ; n = 70 ; c = 51\ntussendoor: y = y * 6 ; u = u - 15 ; y = y - 20 ; m = m + 2 ; n = n - 8 ; m = m + 18 ; n = u ; 31 + 33 = 64 ; c = n ; 19 - 26 = -7 ; 13 - 42 = -29 ; p = 75 ; f = u ; u = m ; f = u\nwat is m - u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: m = 41 ; t = 83 ; z = 82 ; k = 46 ; h = 92 ; y = 53 ; f = 57 ; r = 30\ntussendoor: m = m * 8 ; h = h * 3 ; r = r - 25 ; 28 - 35 = -7 ; t = t + 10 ; k = k - 4 ; y = y + 1 ; d = 96 ; z = z * 4 ; 13 - 38 = -25 ; r = t ; m = r ; h = f ; z = k ; a = 85 ; h = k\nwat is t?",
+   "oplossing": "93"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: k = 71 ; x = 63 ; d = 31 ; e = 25 ; q = 98 ; b = 32 ; n = 83 ; u = 80\ntussendoor: x = x * 7 ; q = q - 17 ; 3 - 48 = -45 ; 13 - 39 = -26 ; 40 - 23 = 17 ; k = k * 2 ; e = e + 28 ; d = d + 12 ; 36 + 40 = 76 ; k = k - 29 ; u = u - 7 ; e = b ; q = e ; b = q ; n = d ; d = k\nwelke is groter, q of x? schrijf het getal",
+   "oplossing": "441"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: y = 19 ; k = 81 ; f = 87 ; w = 35 ; d = 19 ; p = 26 ; g = 29 ; v = 75\ntussendoor: 33 - 30 = 3 ; d = d * 6 ; k = k * 9 ; p = p * 5 ; k = k - 15 ; f = f * 3 ; d = d + 18 ; d = d * 3 ; p = d ; 14 + 30 = 44 ; 5 + 28 = 33 ; g = p ; w = p ; p = f ; y = f ; q = 54\nwat is g - d?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: c = 91 ; r = 73 ; g = 75 ; q = 42 ; e = 30 ; h = 24 ; v = 89 ; m = 42\ntussendoor: e = e - 19 ; e = e * 5 ; e = e * 9 ; m = m + 17 ; m = m + 5 ; v = v - 17 ; m = m - 5 ; e = m ; h = e ; p = 58 ; e = q ; g = q ; f = 1 ; 41 - 5 = 36 ; c = v ; w = 97\nwelke is groter, h of q? schrijf het getal",
+   "oplossing": "59"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: x = 88 ; v = 61 ; e = 68 ; y = 59 ; k = 48 ; u = 49 ; m = 6 ; d = 18\ntussendoor: m = m * 8 ; u = u * 8 ; u = u + 22 ; d = d + 28 ; e = e - 9 ; y = y - 21 ; y = y - 25 ; h = 88 ; v = d ; 12 - 24 = -12 ; a = 32 ; 23 - 15 = 8 ; e = v ; d = m ; u = y ; d = m\nwat is m - v?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: b = 88 ; p = 98 ; e = 71 ; c = 77 ; v = 75 ; w = 45 ; r = 42 ; z = 39\ntussendoor: r = r * 6 ; r = r - 4 ; b = b + 6 ; 41 + 10 = 51 ; z = z + 17 ; a = 96 ; h = 19 ; 15 + 36 = 51 ; v = v + 28 ; z = z * 9 ; e = e * 2 ; b = v ; p = b ; p = w ; z = c ; p = e\nwat is r?",
+   "oplossing": "248"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: h = 34 ; n = 54 ; x = 46 ; r = 85 ; s = 53 ; w = 76 ; a = 51 ; t = 91\ntussendoor: w = w * 4 ; w = w + 3 ; t = t + 29 ; h = h - 1 ; n = n + 21 ; x = x + 17 ; h = h - 22 ; r = t ; s = r ; t = r ; 28 + 30 = 58 ; 49 - 20 = 29 ; 13 - 44 = -31 ; v = 42 ; a = s ; r = t\nwat is a - s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: b = 36 ; k = 49 ; e = 53 ; r = 25 ; u = 17 ; x = 92 ; d = 22 ; s = 30\ntussendoor: k = k - 13 ; e = e * 5 ; u = u + 29 ; t = 34 ; r = r + 27 ; b = b * 6 ; 14 - 9 = 5 ; k = k - 23 ; e = e + 1 ; u = s ; x = u ; y = 24 ; w = 86 ; b = s ; e = k ; u = k\nwat is r + b?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: h = 43 ; b = 80 ; y = 17 ; p = 2 ; q = 90 ; a = 34 ; z = 52 ; u = 50\ntussendoor: q = q - 30 ; v = 22 ; 37 + 27 = 64 ; y = y - 28 ; y = y + 30 ; y = y - 30 ; h = h + 6 ; p = p + 2 ; z = z * 2 ; b = a ; y = b ; y = p ; p = z ; g = 3 ; b = y ; 8 - 16 = -8\nwat is h + y?",
+   "oplossing": "53"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: m = 96 ; s = 33 ; a = 44 ; u = 85 ; n = 79 ; v = 70 ; b = 53 ; p = 86\ntussendoor: v = v * 9 ; s = s - 29 ; m = m - 6 ; a = a + 1 ; p = p * 4 ; s = s + 17 ; 4 + 48 = 52 ; a = a * 6 ; 31 + 26 = 57 ; a = v ; t = 39 ; u = a ; u = v ; u = m ; 50 - 8 = 42 ; n = b\nwat is u + a?",
+   "oplossing": "720"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: m = 64 ; w = 76 ; k = 59 ; b = 3 ; d = 71 ; h = 3 ; p = 96 ; r = 72\ntussendoor: m = m + 9 ; m = m + 21 ; s = 77 ; m = m - 5 ; r = r * 3 ; p = p - 24 ; 50 + 48 = 98 ; e = 59 ; 5 - 29 = -24 ; m = m - 22 ; k = k - 17 ; k = r ; b = k ; d = b ; m = d ; h = d\nwelke is groter, h of m? schrijf het getal",
+   "oplossing": "216"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: s = 32 ; c = 15 ; e = 58 ; d = 29 ; q = 89 ; x = 62 ; w = 41 ; v = 54\ntussendoor: x = x - 22 ; e = e * 7 ; x = x - 15 ; d = d - 25 ; x = x + 13 ; w = w + 25 ; x = x * 7 ; s = c ; e = s ; v = q ; c = d ; a = 61 ; 12 - 26 = -14 ; b = 37 ; 7 - 37 = -30 ; x = v\nwat is w - q?",
+   "oplossing": "-23"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: n = 13 ; h = 29 ; m = 48 ; f = 69 ; t = 95 ; v = 67 ; b = 80 ; a = 97\ntussendoor: z = 46 ; g = 61 ; q = 23 ; 2 + 19 = 21 ; n = n + 2 ; t = t + 9 ; a = a * 8 ; m = m - 13 ; n = n + 27 ; b = b - 23 ; m = m + 6 ; t = h ; v = t ; t = v ; h = t ; n = h\nwelke is groter, t of h? schrijf het getal",
+   "oplossing": "29"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: n = 24 ; q = 64 ; f = 69 ; c = 28 ; u = 58 ; s = 41 ; v = 22 ; g = 79\ntussendoor: s = s + 24 ; c = c + 28 ; 17 - 3 = 14 ; t = 85 ; 38 - 50 = -12 ; c = c + 23 ; v = v + 7 ; s = s - 2 ; g = g - 3 ; n = n - 21 ; u = s ; v = u ; g = c ; g = n ; m = 6 ; q = g\nwat is g - q?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: d = 32 ; q = 10 ; c = 37 ; h = 30 ; n = 17 ; x = 40 ; t = 41 ; m = 67\ntussendoor: d = d - 19 ; m = m + 18 ; d = d * 3 ; 18 - 26 = -8 ; 19 + 2 = 21 ; 3 - 30 = -27 ; d = d + 14 ; q = q + 29 ; n = n * 8 ; d = d * 3 ; q = h ; c = q ; h = m ; x = h ; k = 3 ; q = d\nwelke is groter, c of q? schrijf het getal",
+   "oplossing": "159"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: m = 87 ; c = 53 ; y = 69 ; w = 76 ; h = 95 ; s = 96 ; q = 1 ; b = 21\ntussendoor: m = m - 26 ; 19 + 50 = 69 ; y = y * 8 ; c = c + 25 ; q = q - 15 ; q = q - 30 ; c = c + 13 ; s = s + 8 ; b = s ; m = b ; w = h ; q = m ; 12 - 17 = -5 ; q = h ; 30 + 10 = 40 ; 49 + 48 = 97\nwat is w - s?",
+   "oplossing": "-9"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: m = 18 ; z = 41 ; u = 9 ; d = 86 ; y = 49 ; w = 71 ; a = 73 ; h = 47\ntussendoor: u = u * 6 ; a = a + 1 ; v = 87 ; d = d * 9 ; y = y + 21 ; u = u + 21 ; h = h * 5 ; h = h - 10 ; n = 94 ; h = a ; m = h ; m = d ; e = 47 ; z = d ; 9 + 2 = 11 ; u = h\nwelke is groter, m of h? schrijf het getal",
+   "oplossing": "774"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: k = 64 ; n = 15 ; h = 24 ; x = 48 ; m = 5 ; e = 24 ; g = 72 ; y = 27\ntussendoor: g = g - 9 ; e = e + 2 ; g = g - 16 ; 24 - 3 = 21 ; s = 71 ; n = n + 18 ; e = e - 6 ; m = m * 2 ; k = k + 25 ; k = n ; b = 82 ; h = k ; k = x ; e = n ; f = 2 ; e = m\nwelke is groter, n of x? schrijf het getal",
+   "oplossing": "48"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: w = 74 ; d = 33 ; h = 27 ; t = 9 ; v = 78 ; s = 9 ; u = 55 ; n = 89\ntussendoor: 18 - 15 = 3 ; w = w - 20 ; w = w + 27 ; q = 62 ; v = v * 8 ; s = s - 5 ; v = v + 22 ; s = s * 7 ; v = v + 4 ; v = s ; u = v ; 26 + 32 = 58 ; e = 68 ; t = d ; v = t ; w = n\nwat is v?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 16,
+   "opgave": "onthoud: n = 15 ; w = 32 ; z = 37 ; a = 96 ; k = 77 ; v = 57 ; c = 64 ; m = 34\ntussendoor: v = v + 1 ; a = a + 3 ; a = a - 22 ; a = a - 30 ; k = k * 9 ; z = z * 3 ; d = 53 ; 21 - 34 = -13 ; w = w - 2 ; r = 68 ; m = v ; n = m ; v = w ; c = k ; m = w ; 5 - 18 = -13\nwelke is groter, k of z? schrijf het getal",
+   "oplossing": "693"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: a = 33 ; z = 19 ; u = 33 ; v = 77 ; t = 68 ; g = 53 ; p = 12 ; b = 95 ; c = 36\ntussendoor: v = v * 5 ; c = c * 3 ; v = v + 8 ; b = b * 3 ; z = z - 14 ; u = u * 7 ; v = v + 4 ; u = v ; t = u ; c = p ; e = 3 ; n = 97 ; 31 - 11 = 20 ; a = p ; c = b ; 29 + 34 = 63 ; w = 2\nwat is z?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: e = 85 ; q = 16 ; r = 63 ; k = 32 ; w = 2 ; m = 62 ; t = 19 ; h = 77 ; s = 4\ntussendoor: r = r - 15 ; s = s - 18 ; s = s + 7 ; s = s + 10 ; v = 95 ; m = m - 15 ; 33 - 6 = 27 ; t = t * 4 ; h = h - 1 ; t = s ; 30 + 19 = 49 ; h = t ; e = r ; r = k ; w = q ; 4 - 50 = -46 ; n = 45\nwat is h + m?",
+   "oplossing": "50"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: k = 82 ; d = 68 ; y = 78 ; x = 57 ; m = 87 ; c = 50 ; v = 91 ; a = 34 ; g = 64\ntussendoor: c = c * 7 ; 39 + 13 = 52 ; v = v - 7 ; g = g + 22 ; v = v * 2 ; c = c - 21 ; x = x + 20 ; k = k * 2 ; d = x ; y = d ; w = 51 ; x = k ; m = y ; 26 - 42 = -16 ; 29 + 13 = 42 ; a = y ; b = 53\nwat is d?",
+   "oplossing": "77"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: m = 35 ; x = 7 ; t = 38 ; w = 67 ; e = 78 ; q = 24 ; y = 72 ; z = 74 ; g = 14\ntussendoor: t = t + 8 ; z = z - 19 ; 8 - 23 = -15 ; 12 + 49 = 61 ; y = y * 8 ; z = z * 4 ; y = y - 17 ; t = t * 5 ; x = x * 6 ; z = y ; g = z ; 45 + 28 = 73 ; r = 27 ; y = g ; 24 - 20 = 4 ; q = x ; m = g\nwat is q + w?",
+   "oplossing": "109"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: d = 65 ; k = 98 ; n = 72 ; q = 49 ; f = 18 ; z = 35 ; g = 89 ; p = 53 ; h = 24\ntussendoor: 25 - 4 = 21 ; h = h + 24 ; q = q * 8 ; a = 60 ; 36 - 32 = 4 ; g = g * 7 ; n = n + 28 ; z = z * 9 ; h = h + 30 ; n = n - 17 ; n = p ; 39 + 13 = 52 ; q = n ; f = q ; g = q ; f = d ; m = 9\nwat is h - p?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: p = 79 ; s = 27 ; r = 89 ; z = 84 ; e = 64 ; k = 36 ; a = 13 ; g = 67 ; d = 89\ntussendoor: z = z - 10 ; p = p + 2 ; b = 74 ; 47 + 19 = 66 ; w = 83 ; q = 30 ; r = r * 8 ; e = e - 22 ; p = p + 20 ; e = e + 6 ; p = p + 25 ; s = p ; r = s ; a = s ; p = g ; g = e ; 34 + 9 = 43\nwelke is groter, p of k? schrijf het getal",
+   "oplossing": "67"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: t = 72 ; n = 29 ; g = 24 ; v = 4 ; a = 13 ; p = 96 ; y = 65 ; q = 21 ; s = 51\ntussendoor: 31 + 14 = 45 ; t = t - 30 ; a = a - 8 ; q = q + 11 ; v = v * 3 ; a = a * 7 ; q = q - 21 ; u = 11 ; x = 10 ; m = 89 ; t = t - 10 ; p = q ; y = p ; t = p ; v = q ; n = s ; 49 + 28 = 77\nwelke is groter, y of s? schrijf het getal",
+   "oplossing": "51"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: m = 95 ; d = 84 ; k = 68 ; g = 55 ; w = 42 ; p = 73 ; f = 52 ; h = 7 ; x = 6\ntussendoor: p = p + 22 ; g = g - 30 ; 29 + 44 = 73 ; f = f * 2 ; y = 79 ; g = g + 22 ; p = p + 28 ; x = x + 16 ; g = g * 5 ; g = k ; w = g ; t = 90 ; z = 51 ; f = x ; t = 74 ; w = h ; m = p\nwat is f?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: k = 42 ; d = 78 ; b = 66 ; p = 99 ; a = 51 ; z = 95 ; y = 92 ; h = 83 ; t = 45\ntussendoor: h = h * 4 ; y = y + 6 ; b = b * 4 ; k = k - 30 ; d = d - 13 ; 30 - 39 = -9 ; w = 80 ; u = 41 ; h = h - 22 ; 34 - 36 = -2 ; k = k + 30 ; k = d ; v = 97 ; b = k ; h = y ; a = y ; p = k\nwat is d - y?",
+   "oplossing": "-33"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: q = 1 ; w = 1 ; r = 86 ; y = 48 ; x = 44 ; g = 27 ; a = 78 ; p = 66 ; v = 98\ntussendoor: p = p + 5 ; a = a - 22 ; x = x + 6 ; g = g * 9 ; m = 61 ; w = w + 17 ; p = p - 19 ; c = 86 ; k = 23 ; 36 + 33 = 69 ; 12 + 31 = 43 ; p = p * 7 ; a = p ; v = a ; v = p ; g = v ; x = r\nwat is g - a?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: n = 60 ; d = 12 ; s = 52 ; r = 41 ; e = 34 ; p = 10 ; g = 16 ; v = 29 ; m = 81\ntussendoor: s = s * 4 ; f = 21 ; 28 + 21 = 49 ; h = 38 ; h = 42 ; n = n - 8 ; n = n - 29 ; s = s + 6 ; d = d * 9 ; m = m + 9 ; s = s + 7 ; m = v ; n = m ; s = e ; n = v ; s = v ; 30 - 16 = 14\nwat is s + g?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: n = 12 ; c = 31 ; s = 5 ; r = 33 ; x = 60 ; w = 24 ; z = 63 ; m = 16 ; y = 75\ntussendoor: z = z * 9 ; h = 97 ; m = m + 8 ; c = c + 17 ; n = n + 9 ; m = m * 4 ; z = z + 8 ; x = x + 13 ; r = w ; x = r ; c = z ; y = n ; 25 + 46 = 71 ; d = 5 ; p = 17 ; z = w ; t = 51\nwat is z + y?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: h = 39 ; r = 36 ; e = 21 ; b = 5 ; f = 81 ; n = 36 ; z = 75 ; w = 7 ; y = 45\ntussendoor: y = y - 3 ; e = e - 8 ; e = e - 8 ; e = e * 4 ; s = 78 ; v = 48 ; 38 + 8 = 46 ; e = e + 22 ; b = b * 9 ; e = e - 29 ; w = z ; y = w ; y = h ; h = y ; f = y ; 50 + 44 = 94 ; q = 41\nwelke is groter, y of e? schrijf het getal",
+   "oplossing": "39"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: p = 68 ; y = 39 ; k = 54 ; t = 39 ; n = 42 ; m = 25 ; q = 65 ; b = 24 ; r = 97\ntussendoor: y = y - 5 ; 12 - 26 = -14 ; a = 93 ; a = 24 ; 44 + 38 = 82 ; y = y - 14 ; y = y - 16 ; b = b - 13 ; q = q * 4 ; t = t + 5 ; b = b * 2 ; y = k ; t = y ; t = p ; n = t ; m = q ; 24 - 49 = -25\nwelke is groter, n of r? schrijf het getal",
+   "oplossing": "97"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: c = 59 ; t = 44 ; y = 27 ; n = 50 ; d = 31 ; u = 79 ; h = 25 ; e = 13 ; g = 4\ntussendoor: z = 89 ; 15 + 36 = 51 ; x = 41 ; s = 94 ; u = u + 19 ; u = u + 4 ; n = n - 10 ; t = t - 3 ; u = u + 8 ; u = u - 6 ; d = d * 4 ; t = n ; y = t ; h = u ; d = y ; u = e ; 43 + 33 = 76\nwat is n - c?",
+   "oplossing": "-19"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: w = 87 ; p = 42 ; k = 59 ; q = 87 ; x = 34 ; n = 19 ; u = 26 ; t = 78 ; y = 33\ntussendoor: x = x - 7 ; t = t * 5 ; w = w * 6 ; y = y - 10 ; x = x + 24 ; u = u + 22 ; 6 + 19 = 25 ; d = 24 ; z = 89 ; 14 + 18 = 32 ; 35 + 37 = 72 ; x = x * 3 ; k = p ; q = k ; q = t ; t = u ; q = k\nwat is w - k?",
+   "oplossing": "480"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: n = 97 ; u = 21 ; p = 30 ; s = 67 ; t = 60 ; f = 89 ; c = 67 ; a = 67 ; v = 92\ntussendoor: a = a - 2 ; a = a * 5 ; b = 11 ; f = f + 5 ; p = p - 5 ; f = f - 2 ; n = n * 3 ; p = p - 23 ; 39 + 50 = 89 ; 49 - 26 = 23 ; n = c ; u = n ; d = 36 ; c = u ; v = t ; c = v ; g = 78\nwat is n - c?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: s = 93 ; h = 88 ; b = 26 ; r = 95 ; f = 83 ; n = 99 ; c = 54 ; v = 98 ; q = 94\ntussendoor: 3 - 18 = -15 ; f = f - 2 ; r = r * 3 ; s = s - 30 ; a = 62 ; 38 + 40 = 78 ; n = n * 2 ; 8 + 28 = 36 ; s = s * 5 ; h = h + 18 ; h = h + 4 ; v = h ; q = v ; c = h ; q = s ; b = r ; x = 42\nwat is r - s?",
+   "oplossing": "-30"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: c = 99 ; h = 38 ; x = 51 ; t = 1 ; a = 38 ; e = 72 ; w = 56 ; r = 54 ; m = 87\ntussendoor: e = e + 16 ; k = 51 ; t = t * 4 ; u = 68 ; e = e - 1 ; w = w * 6 ; a = a * 5 ; s = 43 ; w = w - 6 ; c = c - 2 ; q = 50 ; t = h ; a = t ; e = m ; a = m ; m = a ; v = 24\nwelke is groter, m of a? schrijf het getal",
+   "oplossing": "87"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 17,
+   "opgave": "onthoud: e = 42 ; f = 56 ; y = 29 ; q = 26 ; v = 79 ; u = 63 ; w = 43 ; z = 78 ; n = 87\ntussendoor: u = u + 22 ; e = e * 2 ; u = u - 11 ; z = z + 12 ; 6 + 18 = 24 ; u = u * 5 ; u = u + 25 ; 24 + 30 = 54 ; 2 - 21 = -19 ; 5 + 23 = 28 ; v = v * 2 ; v = q ; u = v ; x = 99 ; v = z ; e = v ; n = e\nwelke is groter, v of q? schrijf het getal",
+   "oplossing": "90"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: b = 23 ; h = 21 ; p = 3 ; a = 66 ; g = 13 ; t = 47 ; y = 38 ; n = 23 ; m = 29\ntussendoor: 11 - 50 = -39 ; n = n + 24 ; p = p + 26 ; p = p + 10 ; y = y - 24 ; p = p * 7 ; 12 + 38 = 50 ; y = y * 5 ; 33 + 16 = 49 ; p = p + 2 ; w = 24 ; p = p + 10 ; b = p ; h = b ; y = h ; h = a ; p = a ; m = a\nwelke is groter, n of b? schrijf het getal",
+   "oplossing": "285"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: t = 93 ; f = 64 ; u = 32 ; m = 41 ; z = 30 ; y = 53 ; n = 64 ; p = 48 ; q = 46\ntussendoor: q = q * 5 ; f = f - 8 ; y = y + 30 ; 23 + 2 = 25 ; p = p + 17 ; h = 16 ; m = m + 7 ; u = u - 13 ; u = u * 9 ; t = t - 17 ; n = y ; p = n ; z = m ; f = u ; 39 - 24 = 15 ; f = p ; b = 42 ; p = n\nwelke is groter, q of y? schrijf het getal",
+   "oplossing": "230"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: y = 42 ; t = 19 ; b = 77 ; x = 22 ; p = 18 ; v = 53 ; e = 97 ; s = 30 ; r = 89\ntussendoor: x = x + 17 ; k = 4 ; r = r * 5 ; r = r - 12 ; v = v * 3 ; e = e * 4 ; s = s - 22 ; p = p - 29 ; b = b * 6 ; v = r ; n = 71 ; q = 47 ; e = v ; r = p ; y = r ; p = y ; f = 90 ; t = y\nwat is y + x?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: x = 76 ; s = 52 ; b = 56 ; e = 1 ; q = 32 ; m = 77 ; f = 97 ; h = 74 ; k = 67\ntussendoor: h = h + 27 ; f = f * 7 ; h = h * 6 ; c = 14 ; 8 - 36 = -28 ; x = x + 10 ; x = x * 5 ; b = b + 22 ; x = x + 15 ; b = b + 10 ; h = e ; k = h ; c = 24 ; z = 32 ; k = e ; q = e ; q = k ; s = f\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: s = 82 ; m = 58 ; y = 40 ; v = 83 ; k = 13 ; u = 41 ; g = 38 ; b = 54 ; q = 20\ntussendoor: b = b * 2 ; p = 51 ; v = v + 5 ; u = u + 24 ; x = 49 ; v = v + 4 ; b = b - 16 ; b = b - 12 ; m = m + 24 ; m = m + 22 ; k = u ; g = k ; m = s ; m = b ; k = v ; b = v ; e = 53 ; 34 - 2 = 32\nwat is b?",
+   "oplossing": "92"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: t = 58 ; d = 99 ; e = 72 ; s = 82 ; c = 75 ; x = 32 ; r = 77 ; u = 45 ; m = 28\ntussendoor: e = e * 2 ; 38 + 39 = 77 ; m = m - 28 ; x = x - 5 ; u = u + 25 ; c = c + 4 ; s = s * 3 ; y = 39 ; z = 29 ; s = s + 7 ; n = 12 ; x = x + 16 ; t = r ; d = t ; t = d ; d = e ; x = m ; d = t\nwat is x?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: q = 22 ; n = 82 ; c = 40 ; w = 24 ; v = 72 ; f = 80 ; y = 85 ; b = 67 ; d = 6\ntussendoor: b = b * 6 ; f = f - 9 ; v = v - 11 ; v = v - 19 ; n = n + 30 ; v = v - 4 ; b = b + 3 ; f = f - 29 ; v = d ; f = v ; 3 + 3 = 6 ; c = w ; p = 28 ; s = 31 ; 10 - 31 = -21 ; w = y ; d = w ; f = v\nwat is f?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: h = 9 ; d = 44 ; f = 99 ; e = 17 ; m = 68 ; u = 64 ; x = 21 ; z = 18 ; r = 36\ntussendoor: n = 38 ; x = x * 3 ; r = r * 5 ; u = u * 6 ; z = z * 4 ; m = m * 4 ; d = d + 30 ; e = e * 3 ; h = h - 25 ; z = x ; r = z ; z = d ; p = 29 ; 11 - 37 = -26 ; h = f ; r = e ; m = d ; n = 92\nwelke is groter, r of x? schrijf het getal",
+   "oplossing": "63"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: y = 81 ; t = 17 ; x = 4 ; m = 57 ; b = 42 ; s = 71 ; g = 47 ; d = 1 ; v = 51\ntussendoor: t = t * 9 ; 27 + 21 = 48 ; h = 62 ; c = 73 ; g = g + 3 ; y = y + 24 ; s = s * 8 ; t = t + 8 ; z = 60 ; t = t - 12 ; v = v * 9 ; d = d + 13 ; s = x ; g = s ; m = b ; v = g ; v = m ; m = t\nwelke is groter, s of g? schrijf het getal",
+   "oplossing": "4"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: h = 59 ; z = 50 ; d = 43 ; g = 91 ; x = 80 ; m = 46 ; c = 67 ; u = 63 ; k = 15\ntussendoor: h = h + 24 ; u = u - 16 ; c = c + 11 ; z = z * 4 ; h = h - 15 ; z = z - 22 ; m = m * 8 ; g = g * 4 ; m = c ; u = m ; c = h ; 37 + 4 = 41 ; 19 - 15 = 4 ; 10 - 50 = -40 ; c = x ; w = 64 ; x = g ; x = h\nwat is m?",
+   "oplossing": "78"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: h = 33 ; f = 53 ; r = 67 ; d = 33 ; s = 9 ; g = 98 ; p = 18 ; q = 32 ; t = 77\ntussendoor: q = q - 13 ; t = t + 2 ; t = t + 28 ; g = g - 28 ; s = s + 7 ; h = h * 9 ; w = 62 ; x = 88 ; v = 66 ; h = h + 4 ; 6 + 16 = 22 ; t = t + 23 ; f = q ; r = f ; t = p ; f = g ; d = r ; f = s\nwat is t?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: e = 20 ; u = 35 ; r = 64 ; a = 8 ; x = 7 ; v = 56 ; z = 51 ; b = 8 ; p = 83\ntussendoor: x = x + 25 ; u = u - 9 ; p = p - 15 ; v = v * 6 ; e = e + 6 ; b = b * 5 ; r = r + 6 ; r = r * 7 ; r = u ; 21 - 46 = -25 ; 20 + 1 = 21 ; 13 + 23 = 36 ; a = r ; v = e ; x = u ; g = 50 ; b = u ; b = a\nwelke is groter, v of b? schrijf het getal",
+   "oplossing": "26"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: f = 43 ; t = 96 ; q = 60 ; h = 2 ; z = 9 ; x = 45 ; n = 35 ; v = 35 ; r = 75\ntussendoor: z = z + 19 ; h = h + 22 ; t = t - 25 ; z = z - 7 ; 32 - 14 = 18 ; p = 57 ; 38 - 43 = -5 ; h = h - 26 ; z = z - 20 ; q = q - 10 ; n = n * 3 ; v = q ; r = v ; x = n ; x = r ; h = n ; q = v ; 9 - 16 = -7\nwat is r + x?",
+   "oplossing": "100"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: r = 77 ; u = 95 ; a = 91 ; p = 48 ; t = 2 ; y = 38 ; b = 75 ; s = 52 ; w = 28\ntussendoor: w = w + 17 ; 8 - 38 = -30 ; 48 - 39 = 9 ; s = s - 5 ; 49 + 15 = 64 ; 37 - 45 = -8 ; w = w - 19 ; w = w + 17 ; b = b - 18 ; s = s * 2 ; t = t - 23 ; y = y * 7 ; s = b ; w = s ; t = u ; y = p ; u = a ; p = b\nwat is u + w?",
+   "oplossing": "148"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: p = 53 ; m = 98 ; b = 80 ; u = 19 ; f = 76 ; z = 11 ; q = 44 ; k = 9 ; x = 5\ntussendoor: m = m - 25 ; m = m + 2 ; 10 + 14 = 24 ; t = 76 ; 17 - 39 = -22 ; f = f - 8 ; u = u + 12 ; q = q + 3 ; x = x + 8 ; u = u * 5 ; p = p + 30 ; k = q ; x = k ; u = f ; m = q ; x = p ; z = k ; 2 - 36 = -34\nwat is z + u?",
+   "oplossing": "115"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: d = 90 ; p = 42 ; k = 1 ; e = 51 ; h = 33 ; q = 90 ; n = 1 ; x = 58 ; a = 2\ntussendoor: q = q * 5 ; h = h * 9 ; e = e - 6 ; p = p + 15 ; e = e - 18 ; p = p - 30 ; q = q - 11 ; p = p * 7 ; n = p ; g = 9 ; x = n ; h = n ; 13 - 50 = -37 ; w = 69 ; p = n ; 32 - 40 = -8 ; e = x ; e = x\nwelke is groter, n of p? schrijf het getal",
+   "oplossing": "189"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: v = 5 ; u = 24 ; t = 96 ; a = 21 ; r = 32 ; e = 51 ; b = 68 ; d = 95 ; c = 93\ntussendoor: u = u + 28 ; u = u * 7 ; h = 93 ; v = v - 27 ; c = c + 23 ; b = b * 8 ; v = v + 9 ; r = r + 1 ; k = 86 ; 38 + 25 = 63 ; u = u + 3 ; v = u ; t = v ; f = 28 ; b = r ; e = b ; u = r ; b = a\nwelke is groter, v of b? schrijf het getal",
+   "oplossing": "367"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: r = 96 ; y = 93 ; n = 82 ; x = 35 ; v = 78 ; a = 93 ; d = 20 ; e = 31 ; f = 16\ntussendoor: w = 34 ; d = d * 4 ; w = 16 ; c = 61 ; 15 - 27 = -12 ; a = a * 2 ; e = e + 26 ; e = e - 18 ; y = y * 3 ; y = y + 9 ; a = a + 4 ; r = r - 26 ; n = e ; x = n ; x = r ; n = d ; x = r ; a = f\nwat is e - d?",
+   "oplossing": "-41"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: r = 95 ; v = 5 ; b = 56 ; a = 62 ; m = 33 ; y = 71 ; g = 90 ; w = 63 ; h = 35\ntussendoor: m = m * 6 ; p = 9 ; 40 + 26 = 66 ; h = h - 7 ; a = a - 12 ; m = m + 5 ; a = a + 30 ; m = m + 20 ; h = h + 29 ; y = y * 3 ; g = y ; w = g ; v = m ; w = g ; 2 - 14 = -12 ; g = m ; h = y ; t = 95\nwat is v?",
+   "oplossing": "223"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 18,
+   "opgave": "onthoud: k = 41 ; f = 24 ; r = 66 ; n = 14 ; u = 93 ; a = 39 ; v = 27 ; h = 10 ; t = 81\ntussendoor: r = r - 25 ; a = a + 15 ; a = a * 5 ; u = u - 8 ; k = k - 2 ; 5 + 15 = 20 ; v = v - 19 ; 36 - 22 = 14 ; n = n - 8 ; 13 - 38 = -25 ; d = 77 ; t = t - 26 ; h = u ; t = h ; r = v ; r = t ; r = u ; k = r\nwat is n?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: e = 1 ; n = 2 ; z = 10 ; a = 28 ; u = 95 ; k = 86 ; b = 51 ; t = 32 ; h = 47 ; p = 82\ntussendoor: k = k + 25 ; b = b + 22 ; a = a - 29 ; p = p + 11 ; k = k + 24 ; k = k * 5 ; m = 43 ; 47 + 38 = 85 ; 30 + 49 = 79 ; a = a + 6 ; a = a - 30 ; w = 66 ; x = 34 ; b = k ; t = b ; k = z ; k = t ; u = k ; b = u\nwat is a - t?",
+   "oplossing": "-700"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: m = 14 ; e = 88 ; k = 20 ; x = 82 ; h = 73 ; q = 5 ; y = 25 ; n = 96 ; a = 67 ; b = 49\ntussendoor: t = 40 ; k = k + 6 ; b = b - 16 ; a = a + 25 ; y = y * 8 ; n = n * 9 ; y = y + 20 ; 12 - 43 = -31 ; w = 91 ; b = b - 5 ; a = a + 23 ; y = a ; n = y ; 47 - 18 = 29 ; e = m ; r = 82 ; e = q ; x = k ; e = x\nwelke is groter, x of k? schrijf het getal",
+   "oplossing": "26"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: d = 54 ; m = 74 ; e = 2 ; g = 66 ; f = 96 ; a = 53 ; x = 43 ; b = 42 ; z = 67 ; w = 16\ntussendoor: g = g + 7 ; d = d + 29 ; u = 53 ; w = w * 2 ; x = x - 12 ; b = b - 16 ; m = m * 2 ; e = e + 28 ; 37 - 50 = -13 ; 31 - 45 = -14 ; d = d * 2 ; w = f ; d = w ; f = m ; b = w ; d = m ; 9 - 10 = -1 ; v = 87 ; m = b\nwat is w?",
+   "oplossing": "96"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: z = 41 ; g = 3 ; t = 92 ; p = 43 ; h = 62 ; n = 95 ; r = 14 ; v = 55 ; a = 68 ; y = 10\ntussendoor: u = 79 ; a = a - 19 ; x = 22 ; a = a - 18 ; t = t * 9 ; a = a - 23 ; h = h + 5 ; t = t + 6 ; r = r * 3 ; t = t + 9 ; 6 + 42 = 48 ; m = 68 ; g = a ; 44 - 9 = 35 ; t = g ; h = r ; n = h ; z = r ; h = v\nwat is h + z?",
+   "oplossing": "97"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: e = 68 ; u = 24 ; f = 41 ; p = 93 ; r = 34 ; t = 35 ; z = 44 ; q = 85 ; m = 71 ; n = 96\ntussendoor: q = q - 20 ; v = 71 ; m = m - 14 ; q = q + 17 ; e = e - 7 ; e = e - 12 ; e = e - 20 ; z = z - 7 ; z = z + 3 ; e = r ; h = 69 ; 37 + 38 = 75 ; 26 + 39 = 65 ; 49 - 37 = 12 ; u = e ; m = f ; q = e ; t = f ; u = n\nwelke is groter, m of t? schrijf het getal",
+   "oplossing": "41"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: h = 13 ; a = 6 ; c = 72 ; n = 99 ; t = 2 ; s = 94 ; d = 24 ; e = 36 ; x = 28 ; v = 29\ntussendoor: s = s - 30 ; c = c + 13 ; e = e + 27 ; w = 99 ; c = c * 2 ; v = v - 30 ; b = 95 ; e = e * 9 ; e = e - 17 ; e = e - 24 ; 35 + 31 = 66 ; v = n ; 49 + 20 = 69 ; h = v ; d = s ; d = s ; 28 - 27 = 1 ; a = s ; v = t\nwat is d?",
+   "oplossing": "64"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: v = 39 ; k = 52 ; m = 77 ; y = 96 ; b = 18 ; f = 61 ; g = 55 ; t = 23 ; w = 75 ; p = 86\ntussendoor: f = f * 6 ; m = m - 24 ; m = m + 2 ; t = t + 16 ; q = 36 ; 5 + 43 = 48 ; y = y + 5 ; v = v * 8 ; g = g - 18 ; p = p + 29 ; f = b ; g = f ; u = 77 ; f = m ; a = 57 ; p = t ; m = k ; n = 24 ; g = f\nwat is f?",
+   "oplossing": "55"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: x = 51 ; z = 34 ; a = 21 ; s = 2 ; m = 82 ; d = 39 ; b = 6 ; q = 80 ; n = 88 ; g = 72\ntussendoor: q = q - 26 ; m = m * 2 ; m = m - 21 ; 25 - 5 = 20 ; k = 50 ; n = n * 3 ; a = a + 13 ; q = q + 25 ; b = b - 6 ; s = s - 3 ; 50 + 31 = 81 ; z = x ; 26 + 43 = 69 ; a = z ; u = 53 ; n = q ; x = s ; s = x ; m = x\nwelke is groter, x of m? schrijf het getal",
+   "oplossing": "-1"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: n = 14 ; a = 46 ; f = 67 ; b = 90 ; h = 92 ; z = 12 ; w = 89 ; c = 22 ; p = 34 ; m = 38\ntussendoor: d = 34 ; 42 - 36 = 6 ; p = p * 6 ; b = b * 3 ; h = h - 18 ; a = a + 22 ; f = f * 3 ; b = b + 3 ; f = f + 7 ; n = n + 2 ; b = a ; h = b ; 28 + 13 = 41 ; 50 + 47 = 97 ; z = b ; w = h ; w = c ; w = b ; t = 40\nwat is a + m?",
+   "oplossing": "106"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: k = 57 ; t = 71 ; v = 34 ; a = 42 ; w = 73 ; u = 52 ; d = 99 ; e = 33 ; s = 97 ; z = 74\ntussendoor: w = w - 16 ; h = 40 ; s = s + 29 ; k = k - 11 ; v = v + 29 ; c = 4 ; a = a + 17 ; k = k * 9 ; v = v - 8 ; g = 36 ; k = k + 4 ; w = t ; u = w ; a = s ; k = t ; 7 + 42 = 49 ; c = 31 ; e = a ; t = k\nwelke is groter, t of k? schrijf het getal",
+   "oplossing": "71"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: p = 70 ; h = 85 ; k = 90 ; s = 68 ; q = 50 ; y = 3 ; x = 52 ; n = 28 ; f = 82 ; d = 18\ntussendoor: d = d + 24 ; x = x + 16 ; w = 77 ; x = x * 5 ; x = x - 28 ; y = y + 25 ; f = f * 7 ; x = x - 6 ; 39 - 35 = 4 ; g = 97 ; f = f + 25 ; x = d ; n = x ; h = f ; f = p ; z = 29 ; p = f ; v = 86 ; k = x\nwat is x?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: h = 62 ; y = 54 ; v = 5 ; k = 70 ; r = 26 ; b = 13 ; e = 22 ; u = 19 ; z = 62 ; m = 55\ntussendoor: v = v * 8 ; m = m - 27 ; e = e * 2 ; v = v + 9 ; b = b + 2 ; k = k + 22 ; k = k * 3 ; 40 + 45 = 85 ; y = y * 9 ; b = k ; e = b ; m = u ; b = r ; k = m ; m = b ; 30 - 39 = -9 ; s = 85 ; q = 22 ; 24 - 37 = -13\nwat is y - b?",
+   "oplossing": "460"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: a = 30 ; y = 3 ; p = 75 ; z = 5 ; w = 10 ; d = 52 ; t = 79 ; e = 5 ; u = 85 ; q = 76\ntussendoor: d = d * 2 ; a = a * 4 ; t = t * 8 ; d = d - 29 ; t = t - 24 ; p = p + 11 ; 24 + 39 = 63 ; 28 - 22 = 6 ; 43 + 44 = 87 ; 40 + 42 = 82 ; z = z * 9 ; k = 28 ; w = w * 5 ; z = p ; w = z ; t = p ; u = e ; e = t ; u = q\nwat is w + y?",
+   "oplossing": "89"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: z = 26 ; h = 2 ; r = 36 ; x = 61 ; c = 86 ; a = 54 ; s = 67 ; d = 86 ; v = 11 ; n = 98\ntussendoor: n = n + 13 ; n = n * 6 ; n = n + 30 ; p = 63 ; m = 82 ; z = z * 7 ; k = 9 ; 12 + 33 = 45 ; n = n + 4 ; z = z - 22 ; c = c + 14 ; n = n + 8 ; n = z ; h = n ; 44 - 45 = -1 ; d = z ; n = v ; a = z ; z = x\nwat is n + x?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: y = 20 ; v = 30 ; n = 1 ; f = 24 ; r = 15 ; b = 26 ; d = 81 ; g = 17 ; t = 97 ; a = 63\ntussendoor: a = a * 4 ; u = 34 ; e = 45 ; a = a - 3 ; b = b - 8 ; 23 - 3 = 20 ; d = d - 6 ; f = f * 8 ; d = d - 23 ; e = 20 ; b = b + 17 ; n = n + 10 ; d = r ; g = d ; t = b ; n = v ; v = r ; b = n ; w = 67\nwat is g?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: s = 85 ; v = 44 ; f = 71 ; p = 12 ; a = 4 ; d = 98 ; g = 91 ; t = 41 ; n = 77 ; m = 83\ntussendoor: g = g + 9 ; g = g + 6 ; d = d * 9 ; t = t - 13 ; p = p * 6 ; s = s + 21 ; g = g + 13 ; m = m * 9 ; v = d ; f = v ; s = t ; m = f ; p = t ; 27 + 35 = 62 ; u = 66 ; 19 + 36 = 55 ; 18 + 4 = 22 ; 39 - 16 = 23 ; f = v\nwat is m?",
+   "oplossing": "882"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: a = 51 ; c = 50 ; s = 95 ; y = 37 ; f = 98 ; g = 12 ; w = 95 ; v = 70 ; z = 6 ; r = 47\ntussendoor: w = w - 29 ; s = s * 7 ; v = v + 24 ; y = y + 11 ; z = z - 4 ; w = w * 8 ; t = 94 ; y = y - 1 ; f = f + 16 ; r = a ; c = r ; g = z ; z = a ; p = 99 ; v = w ; u = 23 ; c = y ; 24 + 24 = 48 ; 37 + 2 = 39\nwelke is groter, v of f? schrijf het getal",
+   "oplossing": "528"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: x = 69 ; p = 38 ; m = 51 ; w = 85 ; b = 62 ; h = 52 ; g = 65 ; z = 30 ; t = 85 ; d = 54\ntussendoor: z = z - 7 ; n = 14 ; p = p * 3 ; x = x * 4 ; x = x - 11 ; x = x - 2 ; w = w - 29 ; w = w - 5 ; x = x + 12 ; w = t ; 24 - 24 = 0 ; 28 + 23 = 51 ; b = w ; k = 71 ; t = p ; x = p ; k = 30 ; d = t ; t = z\nwat is w - d?",
+   "oplossing": "-29"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: r = 35 ; s = 60 ; v = 5 ; n = 45 ; x = 17 ; w = 1 ; c = 44 ; a = 32 ; k = 77 ; b = 13\ntussendoor: t = 29 ; w = w * 4 ; 38 - 46 = -8 ; x = x + 23 ; w = w * 3 ; z = 5 ; r = r * 5 ; w = w * 8 ; n = n * 9 ; k = k * 2 ; x = x + 10 ; w = a ; c = w ; b = k ; b = v ; b = a ; b = v ; 25 + 3 = 28 ; 45 + 47 = 92\nwat is c?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 19,
+   "opgave": "onthoud: y = 80 ; k = 10 ; m = 11 ; x = 72 ; p = 36 ; w = 69 ; d = 94 ; c = 65 ; z = 97 ; f = 36\ntussendoor: k = k + 7 ; k = k * 4 ; e = 35 ; a = 43 ; b = 78 ; 15 - 33 = -18 ; m = m - 22 ; f = f * 6 ; s = 97 ; c = c - 14 ; f = f + 3 ; y = y - 13 ; f = f + 25 ; c = k ; z = c ; d = x ; x = m ; c = d ; y = p\nwat is x?",
+   "oplossing": "-11"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: h = 58 ; s = 11 ; q = 30 ; g = 90 ; y = 34 ; c = 78 ; r = 73 ; a = 37 ; f = 44 ; v = 25\ntussendoor: c = c - 2 ; s = s * 2 ; g = g * 9 ; q = q + 30 ; f = f + 12 ; y = y + 7 ; h = h - 21 ; g = g - 8 ; r = r * 2 ; g = q ; y = g ; n = 79 ; 19 + 26 = 45 ; g = q ; y = f ; y = g ; 1 - 8 = -7 ; 2 - 32 = -30 ; a = r ; u = 1\nwat is g?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: m = 42 ; p = 51 ; r = 84 ; v = 46 ; d = 48 ; n = 45 ; u = 44 ; g = 90 ; e = 21 ; q = 83\ntussendoor: q = q * 6 ; v = v * 5 ; e = e - 15 ; d = d - 22 ; g = g - 11 ; 46 + 3 = 49 ; v = v + 18 ; 47 - 1 = 46 ; r = r - 15 ; y = 79 ; 21 - 33 = -12 ; e = e * 3 ; g = g - 26 ; g = r ; e = g ; n = m ; 23 + 42 = 65 ; m = p ; q = g ; m = n\nwat is n?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: x = 55 ; b = 82 ; r = 77 ; m = 14 ; t = 35 ; h = 56 ; c = 14 ; k = 96 ; g = 35 ; y = 54\ntussendoor: k = k - 26 ; g = g * 3 ; d = 80 ; a = 40 ; c = c * 3 ; m = m - 3 ; b = b - 3 ; x = x * 5 ; k = k + 7 ; r = r - 30 ; b = b + 18 ; c = m ; 47 - 46 = 1 ; k = c ; t = m ; 16 - 36 = -20 ; n = 71 ; k = b ; y = c ; x = m\nwat is t?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: z = 66 ; v = 41 ; s = 38 ; x = 58 ; h = 50 ; u = 2 ; r = 44 ; t = 61 ; m = 99 ; n = 6\ntussendoor: m = m + 29 ; u = u + 29 ; n = n - 2 ; s = s - 25 ; x = x * 3 ; z = z - 1 ; n = n - 15 ; 12 + 3 = 15 ; m = m + 15 ; n = n - 19 ; h = v ; u = h ; n = z ; r = s ; g = 28 ; t = x ; 31 - 48 = -17 ; d = 32 ; t = z ; b = 28\nwat is s - n?",
+   "oplossing": "-52"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: n = 27 ; a = 22 ; g = 13 ; f = 77 ; u = 32 ; b = 18 ; h = 16 ; d = 89 ; x = 63 ; p = 51\ntussendoor: r = 85 ; n = n - 21 ; z = 94 ; r = 2 ; k = 61 ; d = d * 6 ; u = u * 9 ; a = a + 20 ; d = d - 10 ; a = a - 8 ; n = n + 29 ; a = a * 9 ; f = f + 7 ; d = a ; x = d ; n = g ; h = a ; y = 33 ; f = p ; f = p\nwat is f - x?",
+   "oplossing": "-255"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: b = 50 ; t = 93 ; p = 86 ; e = 39 ; s = 31 ; u = 28 ; n = 60 ; x = 78 ; k = 91 ; y = 87\ntussendoor: 39 - 43 = -4 ; k = k * 6 ; n = n + 3 ; t = t - 27 ; u = u + 1 ; x = x * 8 ; t = t - 24 ; p = p * 3 ; y = y * 5 ; n = n * 6 ; h = 63 ; s = u ; 21 - 8 = 13 ; n = s ; k = b ; x = e ; x = u ; 35 - 23 = 12 ; t = x ; z = 38\nwat is x + k?",
+   "oplossing": "79"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: x = 37 ; w = 66 ; m = 58 ; a = 77 ; c = 11 ; g = 28 ; e = 94 ; b = 61 ; q = 50 ; t = 52\ntussendoor: v = 29 ; 27 + 46 = 73 ; x = x - 30 ; c = c + 23 ; 43 + 37 = 80 ; 47 - 4 = 43 ; n = 25 ; t = t * 9 ; b = b - 26 ; g = g * 6 ; e = e - 8 ; b = b * 8 ; m = m + 10 ; q = q * 6 ; c = q ; g = c ; a = x ; m = c ; q = b ; m = e\nwelke is groter, t of e? schrijf het getal",
+   "oplossing": "468"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: y = 19 ; s = 82 ; h = 86 ; c = 71 ; b = 33 ; k = 32 ; n = 26 ; q = 35 ; m = 88 ; a = 10\ntussendoor: a = a + 20 ; f = 59 ; w = 57 ; k = k + 21 ; h = h * 7 ; a = a * 8 ; e = 21 ; 9 + 34 = 43 ; y = y - 13 ; y = y + 22 ; h = h - 13 ; a = a + 7 ; a = a + 9 ; s = y ; h = s ; n = a ; y = q ; p = 13 ; h = s ; k = q\nwat is n?",
+   "oplossing": "256"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: v = 27 ; p = 36 ; u = 20 ; z = 91 ; e = 28 ; q = 31 ; k = 73 ; y = 64 ; w = 25 ; m = 24\ntussendoor: k = k - 8 ; e = e * 8 ; w = w + 14 ; p = p * 8 ; n = 31 ; p = p - 26 ; 26 - 6 = 20 ; e = e + 3 ; 31 - 49 = -18 ; 37 + 9 = 46 ; v = v - 28 ; m = m - 12 ; e = e + 6 ; z = u ; e = z ; w = y ; v = u ; g = 34 ; w = p ; e = z\nwelke is groter, z of y? schrijf het getal",
+   "oplossing": "64"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: b = 37 ; w = 17 ; s = 54 ; k = 90 ; f = 22 ; c = 46 ; q = 62 ; x = 1 ; t = 12 ; p = 21\ntussendoor: 41 - 13 = 28 ; d = 62 ; w = w * 6 ; x = x * 4 ; s = s - 18 ; t = t * 4 ; f = f + 1 ; w = w * 5 ; t = t - 22 ; b = b * 7 ; b = b + 24 ; s = c ; k = s ; x = w ; x = w ; x = b ; b = w ; g = 96 ; v = 68 ; 4 - 1 = 3\nwat is s + b?",
+   "oplossing": "556"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: n = 17 ; x = 53 ; f = 30 ; g = 4 ; d = 2 ; t = 90 ; a = 94 ; q = 6 ; b = 91 ; m = 64\ntussendoor: f = f - 15 ; q = q - 19 ; n = n - 5 ; f = f + 12 ; q = q - 18 ; b = b * 8 ; b = b - 14 ; a = a - 13 ; m = m * 2 ; t = b ; a = t ; e = 9 ; 41 + 45 = 86 ; 8 + 23 = 31 ; t = a ; x = n ; z = 90 ; n = g ; w = 69 ; g = x\nwat is f - m?",
+   "oplossing": "-101"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: w = 51 ; k = 62 ; b = 62 ; h = 67 ; e = 81 ; s = 51 ; f = 31 ; m = 1 ; c = 71 ; p = 34\ntussendoor: h = h + 29 ; 28 - 42 = -14 ; p = p * 2 ; w = w - 24 ; c = c + 8 ; f = f - 4 ; b = b + 1 ; b = b - 18 ; s = s + 20 ; b = b - 19 ; w = c ; k = w ; 24 - 9 = 15 ; w = c ; k = h ; v = 89 ; e = h ; 50 + 9 = 59 ; 6 + 43 = 49 ; c = m\nwat is s - p?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: c = 24 ; z = 67 ; m = 5 ; v = 33 ; s = 76 ; n = 40 ; u = 21 ; b = 36 ; g = 66 ; w = 55\ntussendoor: f = 4 ; 16 - 2 = 14 ; m = m + 19 ; g = g * 9 ; 18 + 9 = 27 ; s = s * 6 ; u = u * 3 ; v = v * 3 ; c = c * 4 ; u = u * 2 ; g = g + 21 ; u = u + 5 ; c = s ; r = 52 ; z = c ; m = w ; z = u ; u = n ; b = c ; r = 89\nwat is s - v?",
+   "oplossing": "357"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: v = 85 ; b = 94 ; n = 40 ; z = 67 ; s = 44 ; m = 46 ; w = 21 ; q = 55 ; k = 58 ; h = 57\ntussendoor: p = 77 ; s = s * 2 ; w = w + 10 ; k = k + 23 ; q = q * 3 ; v = v * 7 ; y = 38 ; h = h + 10 ; s = s - 7 ; e = 88 ; z = z * 7 ; m = m * 9 ; z = q ; s = z ; h = m ; 8 - 13 = -5 ; q = h ; 41 - 23 = 18 ; s = k ; h = m\nwelke is groter, k of h? schrijf het getal",
+   "oplossing": "414"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: n = 48 ; a = 88 ; h = 75 ; s = 1 ; v = 25 ; f = 33 ; d = 95 ; y = 54 ; z = 26 ; x = 53\ntussendoor: h = h + 11 ; 19 + 35 = 54 ; h = h + 14 ; d = d - 29 ; s = s - 23 ; s = s * 7 ; c = 11 ; d = d * 3 ; n = n - 18 ; v = v - 23 ; 8 + 35 = 43 ; f = f + 19 ; v = n ; f = v ; z = d ; y = f ; v = a ; 29 - 26 = 3 ; d = v ; m = 88\nwat is v - z?",
+   "oplossing": "-110"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: x = 67 ; r = 97 ; h = 59 ; y = 74 ; v = 71 ; p = 97 ; a = 72 ; d = 76 ; s = 49 ; g = 80\ntussendoor: v = v + 23 ; x = x * 8 ; e = 19 ; x = x - 28 ; s = s - 29 ; g = g - 3 ; p = p + 16 ; h = h + 27 ; e = 37 ; 31 + 13 = 44 ; h = h * 8 ; x = x + 9 ; r = d ; h = r ; a = h ; v = h ; n = 61 ; b = 78 ; x = g ; y = d\nwat is h + x?",
+   "oplossing": "153"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: p = 14 ; x = 59 ; b = 53 ; y = 55 ; z = 20 ; v = 88 ; a = 49 ; c = 44 ; s = 75 ; d = 41\ntussendoor: p = p + 13 ; 27 + 15 = 42 ; c = c + 15 ; a = a * 5 ; 33 - 38 = -5 ; h = 21 ; 46 - 34 = 12 ; p = p + 28 ; p = p + 11 ; c = c + 14 ; y = y * 6 ; z = z * 4 ; v = v - 16 ; s = d ; p = s ; y = b ; d = y ; x = a ; h = 2 ; d = z\nwat is x - y?",
+   "oplossing": "192"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: r = 59 ; z = 47 ; f = 81 ; h = 53 ; q = 47 ; k = 71 ; w = 27 ; m = 2 ; d = 52 ; p = 31\ntussendoor: q = q * 4 ; h = h - 5 ; k = k - 26 ; 6 - 36 = -30 ; h = h - 28 ; 2 + 7 = 9 ; d = d + 6 ; 20 + 5 = 25 ; d = d * 2 ; h = h + 14 ; u = 18 ; 29 + 39 = 68 ; w = w - 12 ; z = z - 1 ; k = w ; m = k ; z = q ; m = k ; q = k ; z = k\nwat is w - m?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: f = 92 ; e = 71 ; c = 54 ; w = 56 ; t = 84 ; p = 58 ; b = 23 ; v = 94 ; r = 42 ; u = 83\ntussendoor: e = e * 4 ; r = r * 6 ; b = b - 25 ; 45 - 42 = 3 ; q = 2 ; 42 + 16 = 58 ; h = 18 ; f = f * 5 ; u = u + 3 ; p = p * 5 ; t = t - 14 ; c = c * 9 ; q = 26 ; v = v * 7 ; f = p ; e = f ; w = c ; w = c ; e = r ; f = c\nwelke is groter, b of e? schrijf het getal",
+   "oplossing": "252"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 20,
+   "opgave": "onthoud: a = 68 ; m = 91 ; x = 34 ; v = 57 ; t = 96 ; u = 31 ; q = 57 ; r = 42 ; d = 92 ; y = 33\ntussendoor: x = x - 15 ; x = x * 6 ; d = d * 4 ; q = q - 5 ; 30 + 43 = 73 ; d = d - 17 ; y = y - 18 ; 27 - 49 = -22 ; 45 + 37 = 82 ; r = r + 24 ; v = v * 4 ; p = 75 ; 39 + 14 = 53 ; a = a + 6 ; u = m ; q = u ; d = t ; v = q ; m = u ; y = d\nwelke is groter, q of d? schrijf het getal",
+   "oplossing": "96"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: q = 54 ; v = 36 ; u = 14 ; z = 10 ; t = 91 ; a = 32 ; g = 52 ; b = 38 ; n = 32 ; r = 65 ; s = 8\ntussendoor: v = v * 9 ; a = a - 2 ; v = v - 9 ; q = q + 10 ; g = g + 12 ; u = u - 26 ; n = n * 5 ; q = q * 3 ; r = r * 4 ; 23 + 22 = 45 ; t = q ; 12 - 28 = -16 ; a = t ; w = 45 ; b = n ; u = t ; 35 - 40 = -5 ; 27 + 20 = 47 ; r = g ; v = u ; v = z\nwelke is groter, r of u? schrijf het getal",
+   "oplossing": "192"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: h = 15 ; k = 15 ; r = 24 ; n = 83 ; z = 80 ; c = 46 ; d = 8 ; a = 50 ; y = 19 ; e = 90 ; t = 42\ntussendoor: 26 - 3 = 23 ; h = h + 30 ; z = z - 16 ; b = 16 ; d = d - 24 ; n = n + 4 ; g = 84 ; z = z - 9 ; n = n + 15 ; z = z - 3 ; n = n + 3 ; 18 - 13 = 5 ; a = a * 5 ; y = a ; e = y ; h = a ; h = k ; n = z ; a = r ; 49 - 38 = 11 ; d = c\nwat is y - e?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: n = 52 ; t = 30 ; k = 29 ; v = 15 ; f = 60 ; p = 92 ; r = 5 ; q = 30 ; w = 32 ; d = 68 ; y = 75\ntussendoor: c = 20 ; 4 - 15 = -11 ; 24 + 40 = 64 ; 4 - 46 = -42 ; q = q + 11 ; r = r + 3 ; d = d - 19 ; k = k - 12 ; r = r - 29 ; n = n * 2 ; 11 - 38 = -27 ; n = n - 30 ; n = n + 27 ; y = y * 3 ; r = p ; q = r ; p = t ; p = n ; q = t ; n = t ; f = v\nwelke is groter, f of p? schrijf het getal",
+   "oplossing": "101"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: r = 64 ; x = 42 ; q = 45 ; c = 9 ; u = 15 ; a = 58 ; p = 78 ; k = 35 ; e = 73 ; s = 11 ; n = 13\ntussendoor: w = 26 ; 15 + 36 = 51 ; f = 66 ; 8 - 50 = -42 ; a = a * 4 ; q = q - 14 ; k = k - 6 ; s = s * 8 ; c = c * 5 ; s = s + 5 ; p = p - 3 ; s = s - 19 ; s = s * 9 ; r = n ; x = r ; k = p ; c = p ; r = x ; a = x ; u = c ; 38 + 10 = 48\nwat is c + e?",
+   "oplossing": "148"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: c = 70 ; r = 6 ; e = 8 ; u = 10 ; w = 68 ; k = 67 ; a = 16 ; t = 75 ; z = 47 ; p = 98 ; g = 95\ntussendoor: u = u + 27 ; p = p - 9 ; t = t * 5 ; 36 + 5 = 41 ; m = 4 ; m = 69 ; 21 - 43 = -22 ; 44 - 28 = 16 ; g = g + 4 ; p = p - 26 ; a = a - 11 ; u = u - 24 ; p = p - 6 ; t = t - 7 ; c = r ; e = c ; t = a ; k = u ; a = r ; a = k ; e = u\nwat is p + e?",
+   "oplossing": "70"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: c = 29 ; u = 30 ; w = 89 ; t = 32 ; r = 96 ; d = 55 ; q = 34 ; z = 89 ; m = 29 ; x = 14 ; v = 56\ntussendoor: p = 49 ; 42 - 30 = 12 ; 7 + 23 = 30 ; 19 - 42 = -23 ; u = u - 27 ; w = w * 3 ; u = u + 30 ; t = t - 23 ; w = w + 28 ; w = w - 5 ; c = c * 3 ; t = t * 6 ; d = d - 13 ; q = c ; z = q ; t = m ; w = u ; w = x ; x = w ; t = m ; 30 + 41 = 71\nwat is u?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: q = 44 ; b = 17 ; f = 84 ; n = 24 ; m = 57 ; d = 63 ; x = 78 ; c = 37 ; r = 26 ; p = 63 ; g = 78\ntussendoor: h = 93 ; m = m - 5 ; n = n * 2 ; x = x * 9 ; w = 51 ; g = g + 6 ; 40 - 22 = 18 ; x = x + 7 ; 12 - 42 = -30 ; v = 76 ; q = q * 4 ; q = q + 20 ; c = c * 5 ; x = x + 17 ; c = f ; r = c ; c = f ; g = d ; c = f ; p = r ; g = f\nwat is p + n?",
+   "oplossing": "132"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: w = 18 ; v = 3 ; m = 86 ; x = 2 ; u = 64 ; r = 63 ; d = 1 ; n = 1 ; f = 90 ; c = 67 ; h = 59\ntussendoor: 35 + 32 = 67 ; p = 8 ; 49 + 4 = 53 ; f = f + 27 ; w = w * 3 ; r = r + 2 ; m = m - 2 ; h = h - 3 ; v = v * 9 ; f = f * 3 ; u = u - 23 ; p = 48 ; c = c - 21 ; x = h ; u = x ; x = n ; w = h ; m = h ; r = m ; r = c ; t = 78\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: x = 42 ; q = 58 ; s = 51 ; n = 18 ; m = 52 ; h = 12 ; e = 96 ; b = 95 ; y = 64 ; g = 27 ; f = 62\ntussendoor: x = x + 3 ; e = e * 3 ; y = y * 9 ; g = g - 7 ; x = x + 5 ; x = x + 8 ; m = m + 5 ; s = s * 4 ; x = x + 13 ; m = f ; v = 21 ; h = m ; y = e ; e = g ; w = 35 ; d = 7 ; a = 40 ; r = 12 ; f = h ; s = q ; m = n\nwat is y - x?",
+   "oplossing": "217"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: w = 65 ; u = 61 ; s = 21 ; t = 60 ; v = 24 ; f = 25 ; k = 19 ; n = 62 ; p = 51 ; q = 21 ; r = 74\ntussendoor: t = t * 7 ; q = q * 2 ; w = w - 26 ; r = r * 9 ; p = p + 24 ; k = k - 12 ; n = n - 23 ; u = u - 1 ; s = s + 6 ; p = f ; q = p ; n = f ; q = p ; g = 39 ; b = 90 ; r = k ; u = n ; 19 - 24 = -5 ; y = 42 ; 4 - 5 = -1 ; u = k\nwelke is groter, u of s? schrijf het getal",
+   "oplossing": "27"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: v = 72 ; h = 62 ; n = 3 ; m = 30 ; d = 82 ; k = 83 ; w = 86 ; a = 27 ; t = 34 ; u = 64 ; b = 50\ntussendoor: k = k * 9 ; h = h * 8 ; v = v - 17 ; t = t - 1 ; a = a + 13 ; t = t + 26 ; u = u + 14 ; t = t - 18 ; m = m * 4 ; 21 + 44 = 65 ; 46 - 45 = 1 ; f = 71 ; d = w ; c = 95 ; k = d ; y = 36 ; v = k ; w = k ; n = t ; m = v ; t = k\nwat is w - k?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: x = 22 ; h = 50 ; s = 46 ; g = 99 ; a = 81 ; f = 86 ; q = 92 ; c = 37 ; r = 28 ; v = 24 ; e = 38\ntussendoor: x = x * 2 ; a = a + 7 ; e = e + 2 ; e = e * 3 ; f = f - 13 ; c = c + 11 ; r = r - 8 ; x = x - 13 ; r = r * 2 ; e = c ; 13 - 7 = 6 ; x = e ; d = 79 ; f = r ; v = a ; v = e ; 50 + 39 = 89 ; 6 + 4 = 10 ; g = e ; u = 54 ; a = f\nwat is c?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: x = 2 ; e = 52 ; c = 65 ; f = 55 ; b = 87 ; u = 66 ; w = 19 ; y = 99 ; s = 90 ; h = 61 ; m = 14\ntussendoor: u = u - 4 ; f = f * 2 ; u = u - 23 ; w = w - 21 ; w = w + 8 ; w = w * 4 ; w = w - 14 ; f = f + 8 ; b = b * 6 ; u = e ; w = u ; 1 - 41 = -40 ; 41 + 13 = 54 ; 5 + 48 = 53 ; s = m ; r = 26 ; p = 62 ; f = c ; e = b ; b = y ; y = x\nwelke is groter, y of w? schrijf het getal",
+   "oplossing": "52"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: a = 6 ; v = 38 ; b = 66 ; u = 71 ; n = 45 ; e = 43 ; p = 67 ; x = 2 ; h = 72 ; m = 8 ; c = 51\ntussendoor: 20 + 46 = 66 ; 24 - 33 = -9 ; m = m + 15 ; u = u * 8 ; x = x * 2 ; 8 - 36 = -28 ; a = a + 26 ; e = e * 3 ; 49 - 48 = 1 ; x = x * 9 ; b = b - 29 ; p = p * 6 ; v = v - 29 ; n = u ; e = n ; 29 - 10 = 19 ; x = h ; x = n ; c = b ; u = c ; u = x\nwat is m + h?",
+   "oplossing": "95"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: u = 11 ; r = 72 ; d = 4 ; q = 92 ; w = 48 ; z = 59 ; a = 76 ; y = 48 ; b = 21 ; g = 40 ; n = 5\ntussendoor: u = u * 9 ; 38 + 34 = 72 ; 41 - 17 = 24 ; 49 - 30 = 19 ; b = b * 5 ; n = n + 22 ; 26 - 1 = 25 ; a = a + 23 ; b = b + 1 ; g = g + 18 ; g = g + 5 ; a = a * 3 ; a = a + 8 ; q = y ; w = q ; r = d ; y = q ; b = y ; r = n ; q = d ; 37 - 11 = 26\nwat is n - w?",
+   "oplossing": "-21"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: v = 54 ; f = 97 ; e = 96 ; z = 41 ; g = 69 ; c = 53 ; n = 67 ; r = 65 ; h = 30 ; d = 80 ; w = 61\ntussendoor: 7 + 16 = 23 ; 33 - 17 = 16 ; q = 60 ; v = v * 3 ; 29 + 1 = 30 ; m = 88 ; c = c * 7 ; n = n + 30 ; z = z - 9 ; h = h + 25 ; c = c - 21 ; z = z * 8 ; z = z + 28 ; c = c + 9 ; r = g ; h = r ; v = e ; f = z ; c = d ; e = g ; d = h\nwat is r + d?",
+   "oplossing": "138"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: s = 17 ; m = 63 ; e = 99 ; t = 9 ; y = 93 ; v = 54 ; r = 80 ; h = 42 ; n = 11 ; f = 1 ; w = 1\ntussendoor: n = n - 28 ; b = 26 ; t = t * 3 ; n = n - 17 ; k = 75 ; h = h + 14 ; n = n * 4 ; w = w - 22 ; 40 + 8 = 48 ; h = h - 25 ; n = n + 7 ; h = h + 8 ; g = 41 ; w = m ; q = 75 ; s = w ; m = y ; f = e ; m = s ; f = y ; w = s\nwat is n?",
+   "oplossing": "-129"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: x = 82 ; a = 24 ; d = 14 ; u = 12 ; r = 77 ; w = 39 ; v = 6 ; m = 60 ; c = 59 ; s = 32 ; y = 68\ntussendoor: c = c + 17 ; r = r - 12 ; u = u - 23 ; c = c - 11 ; a = a + 19 ; d = d * 8 ; c = c - 2 ; u = u + 2 ; d = d + 8 ; 16 - 41 = -25 ; f = 92 ; r = a ; e = 20 ; w = r ; n = 43 ; p = 97 ; s = r ; w = a ; w = a ; d = s ; v = y\nwat is u?",
+   "oplossing": "-9"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: b = 80 ; u = 8 ; y = 74 ; m = 63 ; s = 25 ; w = 94 ; p = 69 ; x = 86 ; f = 5 ; a = 1 ; h = 87\ntussendoor: h = h - 13 ; a = a + 21 ; s = s - 12 ; s = s - 18 ; a = a + 21 ; a = a * 7 ; 15 - 25 = -10 ; v = 87 ; e = 9 ; 39 + 27 = 66 ; 31 + 34 = 65 ; u = u + 7 ; y = y + 23 ; s = s - 18 ; w = m ; p = w ; p = m ; f = u ; a = f ; b = m ; y = h\nwat is f?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 21,
+   "opgave": "onthoud: d = 43 ; h = 50 ; r = 17 ; m = 69 ; e = 83 ; w = 31 ; n = 91 ; u = 69 ; s = 9 ; k = 56 ; y = 93\ntussendoor: 3 + 38 = 41 ; s = s + 3 ; g = 34 ; k = k * 7 ; u = u - 12 ; y = y + 26 ; h = h - 28 ; k = k + 26 ; m = m - 24 ; e = e + 11 ; w = w * 6 ; 38 + 32 = 70 ; s = w ; 10 - 32 = -22 ; k = s ; g = 14 ; s = y ; n = k ; y = k ; s = u ; n = w\nwat is m + r?",
+   "oplossing": "62"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: q = 67 ; k = 4 ; s = 59 ; t = 10 ; h = 4 ; v = 67 ; f = 15 ; r = 88 ; c = 45 ; m = 70 ; p = 14\ntussendoor: u = 95 ; f = f + 28 ; q = q * 6 ; 7 + 21 = 28 ; s = s + 2 ; h = h - 2 ; w = 64 ; p = p - 21 ; k = k * 5 ; t = t - 3 ; v = v * 2 ; s = s - 6 ; h = h + 2 ; q = k ; s = q ; 19 + 6 = 25 ; y = 86 ; s = v ; t = m ; v = p ; p = c ; c = h\nwat is h - q?",
+   "oplossing": "-16"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: d = 23 ; e = 10 ; x = 14 ; u = 93 ; r = 70 ; w = 83 ; p = 96 ; b = 74 ; n = 84 ; m = 45 ; q = 62\ntussendoor: 42 + 37 = 79 ; 46 + 8 = 54 ; e = e - 20 ; 11 + 3 = 14 ; s = 71 ; d = d + 18 ; x = x - 12 ; u = u - 30 ; b = b * 2 ; e = e * 2 ; p = p + 18 ; x = x * 3 ; m = m + 11 ; d = d - 7 ; 30 + 27 = 57 ; r = u ; w = r ; p = e ; e = m ; m = u ; n = x ; e = x\nwat is r - e?",
+   "oplossing": "57"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: e = 80 ; c = 5 ; s = 88 ; z = 95 ; f = 1 ; d = 48 ; r = 5 ; y = 22 ; v = 72 ; u = 49 ; t = 42\ntussendoor: h = 67 ; d = d + 5 ; z = z * 6 ; f = f - 22 ; z = z + 4 ; y = y * 6 ; c = c + 26 ; f = f * 8 ; z = z + 6 ; s = s - 17 ; d = d - 7 ; y = z ; a = 12 ; v = y ; t = e ; u = t ; s = f ; w = 27 ; n = 44 ; 4 - 33 = -29 ; e = r ; f = e\nwat is y + f?",
+   "oplossing": "585"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: n = 55 ; p = 37 ; x = 72 ; q = 17 ; d = 74 ; t = 76 ; c = 35 ; r = 66 ; f = 62 ; v = 59 ; b = 10\ntussendoor: q = q * 5 ; 41 + 31 = 72 ; f = f - 16 ; w = 9 ; q = q - 17 ; p = p * 7 ; v = v * 6 ; x = x * 4 ; a = 35 ; v = v - 18 ; n = n - 17 ; v = v + 24 ; r = r + 13 ; z = 71 ; q = t ; d = q ; p = n ; t = q ; d = x ; v = q ; f = c ; 42 - 12 = 30\nwat is p + b?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: c = 61 ; g = 40 ; k = 6 ; w = 72 ; f = 61 ; b = 60 ; h = 52 ; r = 38 ; n = 19 ; q = 83 ; e = 54\ntussendoor: r = r + 25 ; 40 + 39 = 79 ; f = f - 30 ; e = e * 8 ; b = b * 5 ; q = q * 9 ; b = b + 2 ; e = e + 3 ; w = w + 10 ; q = q - 18 ; q = q + 22 ; h = e ; r = h ; q = b ; e = f ; v = 5 ; g = e ; n = r ; 29 - 36 = -7 ; 36 + 34 = 70 ; 24 - 18 = 6 ; k = n\nwat is n - c?",
+   "oplossing": "374"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: u = 72 ; q = 25 ; d = 72 ; e = 33 ; v = 75 ; x = 53 ; r = 97 ; c = 75 ; w = 22 ; n = 99 ; t = 34\ntussendoor: v = v * 7 ; c = c + 22 ; d = d + 20 ; r = r + 17 ; y = 16 ; f = 51 ; z = 71 ; a = 5 ; u = u + 17 ; n = n - 5 ; q = q - 3 ; d = d + 18 ; c = c - 25 ; w = w - 25 ; d = c ; e = d ; c = r ; q = d ; u = n ; n = u ; 34 - 41 = -7 ; v = d\nwelke is groter, n of q? schrijf het getal",
+   "oplossing": "94"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: z = 95 ; v = 48 ; q = 61 ; n = 58 ; r = 13 ; e = 63 ; k = 89 ; p = 89 ; y = 38 ; d = 99 ; b = 47\ntussendoor: z = z - 6 ; k = k - 15 ; r = r + 17 ; b = b * 9 ; y = y + 18 ; r = r - 13 ; q = q + 22 ; e = e * 8 ; 35 - 47 = -12 ; c = 86 ; 7 - 34 = -27 ; k = k - 25 ; y = y * 6 ; p = d ; 32 + 9 = 41 ; m = 9 ; y = p ; v = b ; z = d ; z = b ; d = y ; b = d\nwelke is groter, v of d? schrijf het getal",
+   "oplossing": "423"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: k = 44 ; f = 2 ; z = 40 ; t = 88 ; c = 22 ; x = 50 ; a = 17 ; b = 30 ; v = 95 ; u = 7 ; m = 51\ntussendoor: a = a + 22 ; c = c + 24 ; e = 14 ; f = f + 7 ; f = f * 6 ; t = t + 11 ; x = x + 28 ; u = u * 6 ; 1 - 30 = -29 ; p = 59 ; 3 - 14 = -11 ; a = a * 9 ; z = z * 4 ; c = c - 12 ; 41 + 14 = 55 ; v = u ; m = v ; f = u ; c = t ; u = m ; z = f ; b = a\nwat is u - m?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: k = 91 ; v = 40 ; z = 88 ; p = 2 ; s = 10 ; e = 22 ; b = 98 ; t = 16 ; y = 99 ; x = 64 ; w = 71\ntussendoor: p = p + 1 ; v = v - 8 ; v = v * 7 ; k = k + 28 ; k = k - 21 ; a = 60 ; 16 + 16 = 32 ; e = e * 4 ; v = v - 2 ; p = p - 21 ; b = b + 4 ; p = p - 1 ; z = s ; p = z ; v = s ; 33 + 3 = 36 ; z = v ; w = y ; z = e ; 35 - 41 = -6 ; y = k ; m = 57\nwat is z + t?",
+   "oplossing": "104"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: v = 85 ; x = 51 ; f = 91 ; n = 82 ; h = 73 ; z = 81 ; p = 63 ; q = 6 ; m = 27 ; a = 45 ; k = 4\ntussendoor: m = m + 14 ; h = h - 24 ; h = h - 14 ; u = 43 ; g = 69 ; z = z * 8 ; 11 - 44 = -33 ; x = x + 14 ; m = m * 5 ; n = n * 2 ; p = p * 8 ; k = k * 4 ; p = p + 4 ; m = v ; a = m ; x = f ; f = n ; 18 + 36 = 54 ; v = q ; p = k ; s = 5 ; x = m\nwelke is groter, z of p? schrijf het getal",
+   "oplossing": "648"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: q = 38 ; p = 2 ; r = 93 ; f = 67 ; u = 29 ; v = 27 ; m = 90 ; h = 2 ; x = 71 ; s = 99 ; z = 37\ntussendoor: z = z * 3 ; h = h * 5 ; q = q * 7 ; m = m + 3 ; u = u + 7 ; 40 - 14 = 26 ; h = h + 29 ; m = m + 11 ; v = v * 5 ; d = 30 ; f = f + 2 ; 25 - 36 = -11 ; g = 61 ; m = m - 27 ; s = x ; z = s ; r = p ; h = q ; e = 64 ; s = h ; h = s ; z = r\nwelke is groter, s of x? schrijf het getal",
+   "oplossing": "266"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: c = 89 ; u = 24 ; v = 56 ; p = 11 ; g = 53 ; m = 33 ; s = 17 ; k = 69 ; r = 73 ; e = 57 ; n = 94\ntussendoor: c = c - 15 ; u = u - 13 ; e = e + 30 ; e = e - 4 ; e = e + 17 ; u = u + 6 ; n = n + 29 ; k = k - 9 ; c = c + 29 ; w = 14 ; t = 34 ; 41 - 22 = 19 ; 27 + 4 = 31 ; m = m - 2 ; m = g ; s = m ; c = n ; r = v ; r = k ; g = v ; 24 + 39 = 63 ; s = v\nwat is k - g?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: s = 26 ; z = 40 ; k = 29 ; c = 77 ; w = 87 ; y = 19 ; b = 78 ; d = 43 ; q = 22 ; e = 85 ; m = 55\ntussendoor: s = s - 8 ; b = b - 23 ; w = w * 3 ; k = k * 9 ; z = z * 2 ; s = s * 4 ; c = c - 9 ; 40 + 46 = 86 ; x = 45 ; h = 49 ; 10 + 43 = 53 ; v = 40 ; c = c + 25 ; z = z * 2 ; w = w - 28 ; e = q ; m = e ; w = c ; d = b ; e = c ; w = m ; c = m\nwat is k?",
+   "oplossing": "261"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: s = 16 ; w = 77 ; k = 90 ; m = 89 ; x = 38 ; c = 50 ; e = 11 ; q = 40 ; t = 41 ; g = 16 ; r = 43\ntussendoor: e = e * 2 ; x = x + 4 ; c = c * 4 ; c = c + 7 ; g = g + 18 ; t = t - 5 ; x = x - 30 ; a = 31 ; b = 25 ; x = x + 19 ; e = e * 8 ; x = x + 26 ; b = 97 ; h = 50 ; w = q ; k = w ; c = x ; m = w ; t = e ; g = t ; k = q ; z = 35\nwelke is groter, e of c? schrijf het getal",
+   "oplossing": "176"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: f = 60 ; k = 16 ; y = 13 ; a = 74 ; u = 82 ; p = 59 ; v = 5 ; c = 33 ; g = 48 ; s = 12 ; m = 78\ntussendoor: c = c + 26 ; g = g - 23 ; 34 + 40 = 74 ; f = f + 19 ; m = m + 10 ; 10 - 27 = -17 ; k = k + 24 ; y = y + 26 ; s = s - 20 ; m = m + 21 ; v = v + 12 ; 23 + 2 = 25 ; e = 2 ; g = g * 4 ; u = a ; p = u ; p = k ; 38 + 20 = 58 ; f = m ; k = v ; v = m ; s = y\nwat is g?",
+   "oplossing": "100"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: g = 98 ; c = 90 ; y = 97 ; v = 62 ; z = 51 ; w = 63 ; e = 4 ; m = 41 ; b = 96 ; n = 2 ; r = 21\ntussendoor: w = w + 11 ; r = r + 28 ; g = g + 26 ; z = z + 27 ; d = 30 ; r = r * 6 ; w = w * 5 ; n = n - 18 ; u = 28 ; f = 73 ; w = w + 8 ; z = z - 24 ; c = c * 6 ; a = 78 ; 7 + 20 = 27 ; w = c ; e = w ; v = w ; c = g ; r = y ; y = c ; r = w\nwat is r?",
+   "oplossing": "540"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: k = 96 ; v = 48 ; h = 14 ; z = 28 ; a = 55 ; r = 40 ; y = 19 ; q = 42 ; f = 85 ; e = 94 ; n = 5\ntussendoor: h = h + 20 ; h = h - 5 ; a = a - 14 ; k = k + 30 ; z = z * 6 ; f = f - 26 ; e = e * 9 ; n = n * 5 ; q = q * 6 ; n = n + 1 ; f = z ; e = f ; e = a ; z = n ; e = a ; w = 35 ; 2 - 28 = -26 ; b = 31 ; k = a ; x = 62 ; q = k ; u = 75\nwat is h - v?",
+   "oplossing": "-19"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: h = 5 ; g = 58 ; n = 64 ; z = 89 ; w = 77 ; e = 55 ; f = 2 ; m = 71 ; x = 5 ; r = 87 ; p = 27\ntussendoor: e = e * 5 ; m = m + 28 ; r = r + 9 ; g = g * 6 ; b = 74 ; g = g + 5 ; 46 - 20 = 26 ; n = n + 21 ; w = w - 8 ; m = m * 6 ; 35 - 27 = 8 ; w = w + 16 ; p = p * 6 ; 7 + 16 = 23 ; n = w ; z = n ; f = g ; y = 7 ; w = g ; g = m ; r = e ; w = f\nwat is p + g?",
+   "oplossing": "756"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: w = 30 ; s = 80 ; h = 13 ; x = 98 ; g = 50 ; p = 19 ; d = 25 ; q = 99 ; b = 84 ; c = 79 ; v = 83\ntussendoor: 29 + 15 = 44 ; x = x - 20 ; p = p + 16 ; s = s * 8 ; p = p * 4 ; w = w - 17 ; x = x - 15 ; 32 + 31 = 63 ; h = h - 5 ; d = d + 28 ; c = c + 24 ; b = b + 12 ; q = d ; b = q ; v = h ; b = w ; 27 - 12 = 15 ; b = q ; v = d ; 21 - 45 = -24 ; y = 43 ; g = x\nwelke is groter, s of x? schrijf het getal",
+   "oplossing": "640"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 22,
+   "opgave": "onthoud: w = 79 ; s = 55 ; n = 96 ; c = 50 ; m = 54 ; h = 99 ; p = 62 ; b = 10 ; r = 23 ; q = 4 ; a = 71\ntussendoor: h = h - 28 ; b = b * 8 ; h = h * 2 ; m = m - 7 ; a = a + 27 ; m = m - 26 ; r = r - 7 ; s = s - 8 ; t = 11 ; m = m - 7 ; 39 - 46 = -7 ; a = a + 14 ; 5 - 21 = -16 ; m = w ; h = m ; s = w ; a = c ; 3 - 10 = -7 ; w = m ; 25 + 1 = 26 ; c = n ; n = s\nwat is s + q?",
+   "oplossing": "83"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: u = 94 ; g = 30 ; e = 53 ; n = 30 ; x = 57 ; q = 34 ; d = 42 ; p = 75 ; w = 58 ; f = 56 ; v = 82 ; r = 89\ntussendoor: q = q - 2 ; w = w * 6 ; p = p + 22 ; g = g * 7 ; e = e - 9 ; r = r - 13 ; q = q * 6 ; d = d * 9 ; q = q + 7 ; 49 - 47 = 2 ; r = r - 29 ; p = q ; t = 44 ; t = 46 ; w = p ; a = 28 ; 14 - 40 = -26 ; 37 - 29 = 8 ; v = p ; p = n ; g = x ; f = q ; n = x\nwat is p?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: t = 91 ; r = 3 ; d = 14 ; b = 17 ; y = 78 ; u = 20 ; z = 16 ; n = 18 ; e = 54 ; p = 75 ; x = 82 ; m = 59\ntussendoor: u = u * 3 ; 2 + 41 = 43 ; s = 83 ; r = r + 29 ; d = d * 4 ; z = z + 7 ; p = p - 27 ; d = d * 2 ; u = u - 18 ; y = y * 9 ; d = d + 29 ; r = r - 13 ; 27 + 36 = 63 ; x = z ; m = x ; e = t ; p = u ; f = 41 ; m = x ; g = 65 ; 28 - 28 = 0 ; u = p ; t = y\nwelke is groter, z of x? schrijf het getal",
+   "oplossing": "23"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: m = 47 ; s = 83 ; b = 2 ; h = 90 ; p = 25 ; k = 68 ; a = 87 ; g = 62 ; u = 62 ; x = 71 ; c = 30 ; v = 15\ntussendoor: k = k * 9 ; 14 + 42 = 56 ; a = a - 9 ; q = 16 ; 49 + 5 = 54 ; s = s - 13 ; r = 99 ; r = 5 ; c = c + 10 ; v = v + 28 ; u = u - 30 ; b = b + 29 ; u = u * 3 ; b = b * 5 ; b = b - 17 ; c = s ; v = c ; h = u ; a = g ; s = h ; h = s ; p = c ; 14 + 1 = 15\nwat is b?",
+   "oplossing": "138"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: a = 89 ; q = 53 ; d = 89 ; e = 8 ; z = 24 ; x = 74 ; v = 97 ; w = 87 ; k = 92 ; u = 70 ; g = 25 ; s = 94\ntussendoor: 34 + 10 = 44 ; h = 5 ; a = a + 12 ; 3 - 25 = -22 ; g = g + 30 ; q = q - 8 ; x = x + 18 ; 18 - 2 = 16 ; p = 70 ; 41 + 40 = 81 ; w = w * 9 ; w = w + 9 ; q = q * 3 ; z = z + 10 ; k = k - 3 ; e = e + 22 ; z = v ; x = z ; v = s ; a = q ; e = u ; q = w ; v = d\nwelke is groter, e of g? schrijf het getal",
+   "oplossing": "70"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: t = 80 ; e = 25 ; g = 46 ; a = 69 ; u = 55 ; z = 18 ; x = 85 ; s = 1 ; k = 37 ; f = 87 ; d = 61 ; q = 94\ntussendoor: 25 + 18 = 43 ; s = s * 5 ; r = 21 ; c = 75 ; e = e - 20 ; a = a - 15 ; f = f * 9 ; s = s - 17 ; e = e + 7 ; g = g + 10 ; f = f - 12 ; k = k - 3 ; z = z * 2 ; g = z ; a = g ; t = e ; s = e ; z = s ; k = f ; z = d ; 34 - 44 = -10 ; 50 + 40 = 90 ; n = 47\nwat is t - f?",
+   "oplossing": "-759"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: y = 51 ; r = 27 ; h = 13 ; f = 25 ; s = 46 ; n = 34 ; q = 6 ; c = 75 ; k = 76 ; p = 75 ; u = 91 ; b = 45\ntussendoor: 6 - 41 = -35 ; q = q + 20 ; s = s * 3 ; r = r * 3 ; q = q + 13 ; q = q - 19 ; 43 - 42 = 1 ; f = f + 15 ; s = s - 11 ; p = p * 7 ; 11 + 45 = 56 ; f = f + 27 ; u = u - 8 ; k = c ; p = k ; q = r ; f = u ; t = 23 ; y = q ; r = y ; r = u ; 49 - 31 = 18 ; m = 5\nwat is p - y?",
+   "oplossing": "-6"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: n = 61 ; g = 58 ; b = 6 ; r = 67 ; d = 73 ; s = 89 ; p = 84 ; z = 21 ; h = 87 ; k = 43 ; u = 52 ; f = 56\ntussendoor: a = 59 ; p = p - 8 ; k = k * 4 ; 7 - 43 = -36 ; 35 - 43 = -8 ; r = r * 2 ; u = u - 1 ; h = h * 9 ; n = n + 9 ; k = k + 9 ; r = r * 3 ; b = b - 17 ; g = g * 3 ; r = g ; 2 - 33 = -31 ; 30 - 3 = 27 ; d = r ; 28 + 40 = 68 ; b = h ; k = r ; d = f ; h = d ; r = n\nwat is r?",
+   "oplossing": "70"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: x = 26 ; t = 12 ; g = 21 ; m = 16 ; b = 20 ; s = 12 ; h = 16 ; c = 70 ; k = 77 ; y = 85 ; q = 43 ; v = 14\ntussendoor: t = t + 2 ; q = q - 16 ; q = q + 12 ; c = c * 3 ; q = q + 1 ; s = s * 4 ; y = y * 9 ; h = h * 7 ; w = 55 ; r = 41 ; v = v * 9 ; n = 58 ; c = c + 2 ; m = h ; b = m ; r = 98 ; r = 86 ; a = 2 ; y = b ; t = k ; h = q ; b = x ; v = y\nwat is b + g?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: k = 67 ; n = 51 ; g = 49 ; t = 47 ; b = 69 ; u = 36 ; h = 27 ; y = 96 ; x = 23 ; c = 39 ; d = 72 ; f = 70\ntussendoor: x = x + 6 ; x = x + 15 ; d = d * 7 ; f = f + 12 ; b = b * 6 ; u = u + 14 ; u = u * 6 ; k = k * 6 ; b = b + 14 ; n = n - 8 ; h = u ; y = h ; n = t ; t = u ; c = x ; 38 + 45 = 83 ; f = d ; m = 25 ; r = 68 ; y = b ; 31 + 45 = 76 ; v = 39 ; 18 - 20 = -2\nwat is d + g?",
+   "oplossing": "553"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: p = 12 ; s = 99 ; n = 49 ; t = 22 ; r = 17 ; q = 60 ; h = 4 ; c = 75 ; f = 9 ; a = 44 ; w = 63 ; x = 65\ntussendoor: s = s * 5 ; h = h * 3 ; w = w + 17 ; q = q - 18 ; t = t + 7 ; n = n + 21 ; r = r + 27 ; x = x * 6 ; 32 - 10 = 22 ; h = h + 27 ; n = n * 9 ; w = a ; e = 79 ; e = 6 ; x = w ; x = w ; e = 69 ; a = p ; e = 9 ; n = h ; 37 + 46 = 83 ; n = x ; n = x\nwat is h + f?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: p = 28 ; d = 22 ; q = 91 ; r = 22 ; a = 99 ; c = 28 ; s = 79 ; h = 67 ; v = 9 ; e = 30 ; w = 22 ; z = 96\ntussendoor: z = z - 11 ; 8 - 44 = -36 ; x = 86 ; a = a - 18 ; v = v - 11 ; e = e - 17 ; q = q + 16 ; e = e + 24 ; h = h * 4 ; e = e - 30 ; p = p - 17 ; d = d * 3 ; h = w ; v = h ; 32 + 28 = 60 ; c = a ; p = d ; t = 89 ; q = d ; z = c ; 45 + 38 = 83 ; e = v ; 17 + 38 = 55\nwat is d + a?",
+   "oplossing": "147"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: p = 24 ; b = 73 ; s = 63 ; q = 16 ; u = 80 ; a = 35 ; m = 76 ; e = 11 ; x = 18 ; n = 69 ; t = 86 ; y = 54\ntussendoor: 32 - 39 = -7 ; m = m - 12 ; n = n * 9 ; u = u + 21 ; x = x * 4 ; t = t * 7 ; u = u - 30 ; w = 90 ; 36 + 11 = 47 ; y = y * 5 ; 20 - 30 = -10 ; t = t - 3 ; m = m - 28 ; y = y + 23 ; a = m ; e = a ; n = e ; e = u ; d = 19 ; s = m ; v = 7 ; t = x ; p = y\nwat is y?",
+   "oplossing": "293"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: p = 22 ; s = 45 ; m = 14 ; u = 12 ; b = 15 ; f = 96 ; y = 36 ; c = 61 ; g = 68 ; d = 99 ; k = 57 ; z = 36\ntussendoor: z = z - 12 ; y = y + 13 ; c = c + 18 ; b = b * 6 ; m = m - 9 ; 36 - 8 = 28 ; g = g - 3 ; q = 58 ; s = s + 12 ; k = k * 9 ; b = b - 13 ; u = u * 4 ; z = b ; p = z ; 4 - 24 = -20 ; 20 - 13 = 7 ; w = 70 ; m = s ; z = k ; g = z ; d = c ; 27 + 39 = 66 ; f = c\nwelke is groter, g of f? schrijf het getal",
+   "oplossing": "513"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: p = 58 ; g = 38 ; t = 93 ; m = 46 ; c = 3 ; s = 53 ; b = 81 ; x = 60 ; y = 49 ; r = 67 ; d = 16 ; v = 94\ntussendoor: r = r * 3 ; t = t - 30 ; g = g * 9 ; t = t + 3 ; z = 18 ; q = 47 ; v = v - 25 ; 23 - 38 = -15 ; y = y - 3 ; k = 84 ; v = v - 28 ; w = 49 ; c = c - 23 ; d = d * 2 ; d = d + 23 ; r = g ; d = r ; 20 - 3 = 17 ; m = t ; p = b ; y = p ; p = s ; t = r\nwat is m - v?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: m = 35 ; f = 86 ; n = 93 ; v = 84 ; d = 69 ; r = 58 ; x = 43 ; q = 66 ; b = 5 ; u = 51 ; w = 89 ; z = 55\ntussendoor: c = 52 ; 46 - 11 = 35 ; t = 48 ; d = d - 19 ; 48 + 27 = 75 ; v = v * 9 ; q = q - 5 ; q = q + 20 ; q = q * 2 ; 28 + 14 = 42 ; w = w - 8 ; k = 52 ; b = b * 5 ; n = n * 6 ; u = u - 12 ; d = d + 14 ; m = q ; f = m ; d = b ; r = q ; v = f ; x = n ; u = n\nwat is r + x?",
+   "oplossing": "720"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: x = 66 ; f = 84 ; b = 92 ; d = 22 ; y = 89 ; g = 63 ; w = 79 ; n = 7 ; p = 20 ; k = 97 ; u = 36 ; q = 90\ntussendoor: u = u * 7 ; u = u + 9 ; p = p - 15 ; k = k - 25 ; x = x - 20 ; q = q - 23 ; b = b + 14 ; q = q + 8 ; n = n - 14 ; x = x + 3 ; 7 + 6 = 13 ; m = 31 ; w = b ; 48 + 39 = 87 ; t = 52 ; 38 + 37 = 75 ; n = w ; y = u ; w = g ; y = x ; k = f ; d = u ; 23 - 32 = -9\nwat is q?",
+   "oplossing": "75"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: v = 65 ; b = 2 ; k = 7 ; s = 21 ; a = 97 ; n = 69 ; f = 46 ; h = 65 ; y = 38 ; u = 7 ; q = 31 ; w = 52\ntussendoor: k = k - 3 ; f = f * 3 ; b = b - 18 ; s = s + 2 ; s = s - 28 ; b = b + 8 ; s = s + 5 ; a = a * 5 ; h = h - 21 ; v = v - 22 ; a = q ; n = a ; h = y ; u = y ; 21 + 37 = 58 ; c = 2 ; 8 + 50 = 58 ; p = 37 ; m = 1 ; y = h ; 46 - 30 = 16 ; a = u ; y = v\nwat is s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: n = 44 ; e = 42 ; v = 38 ; w = 82 ; x = 84 ; b = 79 ; q = 43 ; d = 78 ; g = 4 ; s = 68 ; m = 69 ; z = 64\ntussendoor: m = m + 1 ; x = x + 2 ; d = d + 1 ; y = 8 ; 27 + 28 = 55 ; v = v + 23 ; w = w - 20 ; e = e - 14 ; b = b * 7 ; 21 - 24 = -3 ; u = 57 ; y = 46 ; m = m + 23 ; 21 - 40 = -19 ; e = e * 7 ; v = v - 20 ; d = x ; g = d ; g = b ; d = s ; w = q ; e = d ; d = z\nwelke is groter, g of e? schrijf het getal",
+   "oplossing": "553"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: w = 69 ; f = 22 ; m = 77 ; r = 25 ; z = 9 ; t = 98 ; g = 51 ; s = 34 ; n = 22 ; v = 76 ; b = 71 ; e = 44\ntussendoor: a = 33 ; e = e * 3 ; f = f - 30 ; t = t + 14 ; n = n - 8 ; r = r - 19 ; f = f * 3 ; v = v * 6 ; e = e + 9 ; z = z - 16 ; t = t * 4 ; 25 + 1 = 26 ; c = 44 ; u = 89 ; 48 - 13 = 35 ; 24 - 17 = 7 ; w = s ; f = w ; s = z ; r = m ; r = s ; n = f ; e = v\nwelke is groter, n of e? schrijf het getal",
+   "oplossing": "456"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 23,
+   "opgave": "onthoud: y = 95 ; e = 69 ; a = 58 ; p = 79 ; t = 73 ; s = 27 ; c = 49 ; d = 26 ; q = 59 ; f = 87 ; h = 29 ; v = 41\ntussendoor: v = v + 4 ; m = 97 ; 46 - 45 = 1 ; s = s + 26 ; 33 + 30 = 63 ; d = d * 9 ; e = e + 1 ; a = a * 3 ; t = t * 9 ; v = v - 22 ; s = s + 30 ; c = c * 5 ; h = h * 7 ; p = h ; t = p ; f = v ; t = q ; d = t ; y = s ; v = p ; 13 + 9 = 22 ; r = 7 ; k = 18\nwat is a + e?",
+   "oplossing": "244"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: r = 30 ; g = 14 ; n = 92 ; x = 77 ; q = 23 ; d = 73 ; f = 45 ; p = 67 ; z = 42 ; c = 76 ; v = 12 ; t = 16\ntussendoor: r = r + 21 ; y = 63 ; t = t + 26 ; x = x - 15 ; x = x * 9 ; g = g + 30 ; x = x + 2 ; t = t * 3 ; c = c - 29 ; z = z + 22 ; g = g * 8 ; v = v * 8 ; 1 - 31 = -30 ; x = c ; q = x ; d = z ; t = z ; v = d ; 49 - 32 = 17 ; 48 + 21 = 69 ; m = 16 ; n = d ; g = n ; z = p\nwat is d?",
+   "oplossing": "64"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: v = 43 ; h = 14 ; f = 7 ; t = 98 ; a = 46 ; q = 48 ; u = 49 ; p = 9 ; d = 81 ; n = 70 ; r = 17 ; y = 66\ntussendoor: p = p + 13 ; u = u - 26 ; u = u - 30 ; h = h - 16 ; n = n - 18 ; 22 + 17 = 39 ; n = n + 18 ; p = p + 11 ; y = y + 10 ; q = q + 30 ; t = t - 13 ; f = f + 6 ; r = n ; y = r ; q = d ; p = t ; u = v ; u = p ; q = y ; 7 - 28 = -21 ; q = t ; x = 11 ; c = 81 ; 43 - 49 = -6\nwelke is groter, u of t? schrijf het getal",
+   "oplossing": "85"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: g = 59 ; h = 92 ; n = 75 ; u = 82 ; k = 72 ; d = 51 ; e = 92 ; m = 4 ; p = 48 ; f = 68 ; x = 90 ; c = 13\ntussendoor: x = x - 29 ; n = n + 21 ; h = h + 19 ; u = u * 3 ; 34 - 2 = 32 ; z = 87 ; p = p + 2 ; c = c - 28 ; h = h - 2 ; e = e - 3 ; z = 72 ; d = d + 24 ; x = x + 24 ; p = p - 1 ; n = c ; u = n ; n = x ; k = m ; u = m ; m = g ; m = x ; n = f ; 50 + 14 = 64 ; 12 + 47 = 59\nwat is m + f?",
+   "oplossing": "153"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: v = 83 ; h = 38 ; z = 96 ; k = 3 ; p = 43 ; a = 75 ; m = 81 ; s = 11 ; q = 30 ; d = 54 ; n = 86 ; u = 61\ntussendoor: 33 + 15 = 48 ; 35 - 12 = 23 ; u = u - 13 ; z = z * 3 ; v = v + 6 ; z = z - 16 ; c = 56 ; f = 57 ; d = d + 20 ; q = q - 22 ; p = p - 23 ; z = z + 7 ; d = d * 6 ; s = s + 9 ; m = m + 2 ; a = q ; m = a ; n = s ; z = u ; s = d ; v = n ; a = n ; p = m ; w = 69\nwelke is groter, d of v? schrijf het getal",
+   "oplossing": "444"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: e = 65 ; y = 79 ; q = 36 ; z = 31 ; g = 74 ; n = 55 ; m = 86 ; k = 56 ; s = 72 ; u = 7 ; d = 40 ; a = 13\ntussendoor: k = k * 6 ; 6 - 10 = -4 ; z = z - 27 ; n = n * 4 ; s = s + 17 ; s = s * 3 ; n = n - 29 ; e = e + 9 ; z = z * 2 ; s = s + 9 ; y = y - 29 ; d = d + 11 ; 3 - 7 = -4 ; 49 - 32 = 17 ; m = y ; 40 + 22 = 62 ; k = m ; y = a ; a = e ; n = u ; d = g ; t = 66 ; z = g ; s = z\nwat is e - s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: a = 52 ; y = 40 ; b = 63 ; s = 50 ; c = 20 ; d = 17 ; h = 66 ; u = 54 ; z = 49 ; x = 83 ; w = 56 ; g = 71\ntussendoor: d = d * 2 ; x = x + 18 ; g = g * 3 ; g = g + 6 ; d = d - 16 ; x = x * 4 ; w = w * 4 ; c = c - 1 ; a = a - 27 ; y = y + 11 ; f = 40 ; p = 19 ; 17 - 7 = 10 ; g = g + 22 ; y = a ; b = y ; q = 22 ; x = w ; a = c ; z = u ; s = z ; g = x ; x = w ; 39 - 44 = -5\nwat is y - z?",
+   "oplossing": "-29"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: e = 9 ; v = 9 ; p = 40 ; s = 4 ; b = 38 ; t = 55 ; c = 94 ; k = 60 ; u = 52 ; d = 38 ; g = 33 ; f = 86\ntussendoor: s = s * 6 ; 18 - 22 = -4 ; g = g - 11 ; t = t * 9 ; e = e - 3 ; d = d - 23 ; p = p + 11 ; k = k * 7 ; 20 - 37 = -17 ; m = 14 ; u = u * 6 ; c = c - 13 ; f = f * 8 ; f = f - 5 ; k = f ; u = k ; k = b ; c = g ; t = c ; s = f ; 32 + 13 = 45 ; r = 7 ; v = t ; f = k\nwat is g + e?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: z = 51 ; a = 67 ; e = 22 ; p = 52 ; n = 82 ; c = 23 ; u = 34 ; v = 49 ; h = 13 ; s = 85 ; b = 47 ; x = 98\ntussendoor: g = 80 ; s = s + 3 ; x = x + 23 ; a = a - 28 ; g = 47 ; 29 + 38 = 67 ; 47 - 30 = 17 ; 27 - 47 = -20 ; n = n * 6 ; u = u * 2 ; u = u * 4 ; u = u - 18 ; a = a - 25 ; v = v * 3 ; n = n - 29 ; z = z - 9 ; c = n ; u = c ; z = h ; a = u ; z = e ; n = x ; n = p ; p = h\nwat is s + z?",
+   "oplossing": "110"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: r = 4 ; s = 60 ; h = 89 ; k = 11 ; d = 14 ; v = 41 ; b = 13 ; a = 14 ; n = 4 ; x = 37 ; q = 59 ; c = 39\ntussendoor: h = h * 8 ; b = b + 29 ; b = b + 9 ; k = k - 23 ; a = a + 27 ; c = c + 23 ; x = x + 19 ; h = h + 5 ; 50 - 14 = 36 ; 42 + 2 = 44 ; 40 - 8 = 32 ; c = c * 6 ; 17 + 8 = 25 ; y = 50 ; n = n + 3 ; s = s + 24 ; s = d ; h = s ; h = s ; a = c ; a = x ; b = c ; r = n ; k = v\nwelke is groter, x of k? schrijf het getal",
+   "oplossing": "56"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: a = 68 ; c = 30 ; d = 40 ; b = 51 ; z = 4 ; v = 65 ; x = 42 ; s = 73 ; e = 54 ; k = 23 ; f = 87 ; u = 56\ntussendoor: v = v + 24 ; x = x - 28 ; d = d + 10 ; d = d + 28 ; d = d - 21 ; b = b - 12 ; f = f + 9 ; k = k - 12 ; 1 + 15 = 16 ; m = 45 ; 13 + 18 = 31 ; w = 91 ; e = e - 1 ; k = k * 9 ; x = x + 4 ; 2 + 28 = 30 ; k = f ; u = k ; a = z ; e = z ; d = s ; v = d ; d = e ; z = b\nwat is b - v?",
+   "oplossing": "-34"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: y = 69 ; u = 8 ; w = 67 ; e = 72 ; p = 27 ; g = 29 ; f = 32 ; m = 21 ; h = 9 ; x = 6 ; k = 10 ; z = 13\ntussendoor: e = e - 12 ; u = u * 9 ; g = g + 21 ; f = f * 9 ; m = m * 4 ; e = e + 10 ; z = z + 9 ; g = g * 2 ; g = g * 5 ; u = u + 21 ; e = e - 6 ; w = u ; e = w ; h = u ; e = h ; x = p ; n = 3 ; e = g ; 4 + 20 = 24 ; u = k ; s = 12 ; 9 + 11 = 20 ; 13 + 22 = 35 ; y = k\nwelke is groter, w of x? schrijf het getal",
+   "oplossing": "93"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: e = 7 ; b = 30 ; h = 55 ; w = 51 ; x = 86 ; z = 34 ; v = 69 ; k = 3 ; a = 64 ; p = 39 ; q = 10 ; s = 92\ntussendoor: 27 - 16 = 11 ; q = q * 9 ; a = a - 28 ; s = s * 8 ; k = k - 14 ; n = 6 ; w = w - 8 ; q = q * 8 ; b = b + 24 ; x = x * 8 ; p = p * 5 ; e = e - 11 ; v = v - 14 ; k = h ; a = k ; 33 - 12 = 21 ; f = 86 ; w = q ; r = 98 ; p = b ; s = w ; x = b ; k = v ; s = z\nwelke is groter, x of v? schrijf het getal",
+   "oplossing": "55"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: a = 64 ; u = 19 ; g = 34 ; k = 20 ; f = 44 ; c = 86 ; s = 77 ; h = 87 ; r = 36 ; p = 57 ; t = 44 ; b = 36\ntussendoor: g = g - 8 ; k = k * 4 ; f = f - 9 ; u = u - 7 ; k = k - 17 ; t = t * 3 ; b = b - 1 ; c = c + 30 ; t = t * 3 ; u = u + 26 ; u = u * 3 ; 2 - 34 = -32 ; 33 + 21 = 54 ; m = 42 ; e = 4 ; s = p ; h = s ; 31 - 47 = -16 ; a = g ; c = g ; h = s ; b = h ; s = b ; a = b\nwat is k + t?",
+   "oplossing": "459"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: g = 17 ; v = 85 ; p = 89 ; t = 31 ; d = 85 ; a = 46 ; e = 39 ; z = 39 ; u = 93 ; c = 66 ; f = 77 ; n = 88\ntussendoor: f = f - 24 ; a = a + 23 ; z = z * 9 ; t = t + 25 ; z = z + 5 ; d = d + 7 ; z = z + 5 ; d = d + 1 ; t = t * 4 ; t = t + 7 ; 35 + 30 = 65 ; c = c - 27 ; d = a ; 31 - 35 = -4 ; e = d ; v = g ; r = 6 ; 50 + 46 = 96 ; b = 9 ; n = d ; n = g ; v = g ; c = e ; u = c\nwat is f - e?",
+   "oplossing": "-16"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: d = 25 ; a = 11 ; u = 77 ; m = 5 ; t = 1 ; v = 49 ; e = 9 ; p = 22 ; z = 7 ; x = 53 ; w = 45 ; c = 79\ntussendoor: c = c - 7 ; v = v * 5 ; q = 19 ; w = w * 9 ; 35 + 42 = 77 ; 19 + 9 = 28 ; r = 74 ; d = d * 3 ; p = p * 6 ; x = x + 30 ; x = x - 8 ; v = v - 11 ; z = z - 17 ; u = u * 5 ; x = x * 7 ; z = p ; x = z ; v = e ; u = a ; u = m ; z = c ; c = t ; 47 - 17 = 30 ; z = u\nwat is c - u?",
+   "oplossing": "-4"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: a = 65 ; c = 62 ; w = 75 ; n = 9 ; q = 82 ; z = 88 ; k = 36 ; d = 7 ; t = 23 ; u = 38 ; m = 92 ; p = 30\ntussendoor: z = z * 3 ; d = d - 4 ; m = m + 12 ; w = w * 7 ; w = w + 6 ; y = 29 ; t = t * 5 ; q = q - 27 ; p = p * 2 ; w = w - 23 ; p = p + 5 ; a = a * 6 ; z = u ; k = z ; p = z ; q = k ; d = k ; n = c ; f = 14 ; t = a ; c = d ; 39 + 18 = 57 ; 36 + 32 = 68 ; f = 24\nwat is a?",
+   "oplossing": "390"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: s = 46 ; c = 32 ; p = 74 ; b = 48 ; q = 49 ; w = 84 ; y = 34 ; u = 62 ; m = 30 ; a = 31 ; z = 47 ; t = 43\ntussendoor: p = p + 4 ; z = z * 6 ; q = q + 7 ; a = a * 3 ; a = a - 2 ; z = z - 23 ; f = 18 ; z = z + 2 ; 9 + 22 = 31 ; y = y + 25 ; n = 92 ; 50 - 5 = 45 ; e = 44 ; t = t - 12 ; s = s * 2 ; s = s + 9 ; a = q ; z = a ; q = w ; a = z ; z = w ; a = m ; a = b ; m = z\nwat is a?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: m = 76 ; f = 14 ; a = 50 ; z = 42 ; x = 91 ; w = 83 ; d = 87 ; q = 52 ; k = 89 ; n = 38 ; e = 97 ; y = 58\ntussendoor: 45 + 27 = 72 ; h = 77 ; w = w * 3 ; x = x - 6 ; q = q - 21 ; q = q - 12 ; a = a + 16 ; y = y - 5 ; f = f + 1 ; f = f - 11 ; w = w + 9 ; k = k - 6 ; n = n - 22 ; e = n ; y = e ; x = w ; y = n ; f = w ; 42 + 6 = 48 ; n = k ; 2 - 35 = -33 ; 35 + 33 = 68 ; a = m ; k = q\nwat is q?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: b = 26 ; g = 52 ; q = 69 ; p = 14 ; r = 4 ; m = 33 ; x = 71 ; e = 88 ; z = 4 ; a = 2 ; k = 63 ; s = 38\ntussendoor: s = s * 6 ; t = 9 ; 33 - 20 = 13 ; k = k - 1 ; k = k * 3 ; d = 96 ; q = q * 3 ; x = x + 19 ; q = q + 3 ; b = b + 8 ; z = z * 5 ; r = r + 27 ; e = e * 7 ; s = s + 9 ; a = z ; k = a ; v = 79 ; s = e ; z = g ; f = 16 ; s = r ; g = k ; e = b ; a = k\nwat is x - b?",
+   "oplossing": "56"
+  },
+  {
+   "familie": "geheugen",
+   "graad": 24,
+   "opgave": "onthoud: f = 84 ; c = 54 ; b = 35 ; z = 61 ; d = 70 ; v = 90 ; p = 74 ; t = 73 ; h = 24 ; y = 61 ; w = 63 ; u = 95\ntussendoor: z = z - 28 ; 45 - 44 = 1 ; z = z * 8 ; t = t * 6 ; r = 59 ; a = 47 ; w = w + 22 ; y = y - 9 ; 10 - 50 = -40 ; k = 94 ; z = z + 18 ; w = w * 4 ; d = d * 6 ; h = h + 1 ; b = b - 1 ; d = d + 6 ; h = y ; w = h ; d = p ; t = f ; h = w ; w = c ; v = p ; y = c\nwelke is groter, d of p? schrijf het getal",
+   "oplossing": "74"
+  }
+ ]
+}

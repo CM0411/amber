@@ -141,13 +141,13 @@ def room_for(depth, family=None, window=512):
         # ~450 at 24. Grows with depth because the chain does.
         return min(window - 112, 64 + 20 * depth)
     if family == "geheugen":
-        # Memory (16 Aug 2026): the working is short at every depth — look
-        # back, copy one or two held values, one operation: `c = 44 ; g =
-        # 11 ; 44 - 11 = 33` is 27 characters, the longest form ("groter")
-        # under 40. A flat 72: room for the whole working and a slip, and
-        # no invitation to write on. Not depth-bound on purpose — deeper
-        # here means more to hold and further back, not more to write.
-        return min(window - 112, 72)
+        # Memory (16 Aug 2026): the plain working is short at every depth —
+        # look back, copy one or two held values, one operation: `c = 44 ;
+        # g = 11 ; 44 - 11 = 33` is 27 characters. Since the memory brick
+        # (17 Aug 2026) a name carries its history — `k = 7 ; k = 7 + 3 =
+        # 10 ; k = 10 * 2 = 20` — and two names plus the sum run to ~160 at
+        # depth 40. So 72 plus nine per depth: 108 at 4, 288 at 24, 432 at 40.
+        return min(window - 112, 72 + 9 * depth)
     # Arithmetic. Longest working: 50 at depth 3, 110 at 6, 180 at 9, 247
     # at 12, and measured on 9 Aug 2026: 294 at 14, 356 at 16, 384 at 17.
     # The old bound of 280 cut depth 14+ — the same mistake as with puzzle

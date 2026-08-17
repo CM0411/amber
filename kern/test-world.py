@@ -855,6 +855,20 @@ def _read_memory(problem):
             if m:
                 held[m.group(1)] = int(m.group(2))
                 continue
+            # the memory brick (17 Aug 2026): computing updates and references
+            m = re.fullmatch(r"([a-z]) = ([a-z]) ([-+*]) (\d+)", piece)
+            if m:
+                a, b, op, k = m.group(1), m.group(2), m.group(3), int(m.group(4))
+                if b not in held:
+                    return None
+                held[a] = held[b] + k if op == "+" else held[b] - k if op == "-" else held[b] * k
+                continue
+            m = re.fullmatch(r"([a-z]) = ([a-z])", piece)
+            if m:
+                if m.group(2) not in held:
+                    return None
+                held[m.group(1)] = held[m.group(2)]
+                continue
             m = re.fullmatch(r"(\d+) ([-+]) (\d+) = (-?\d+)", piece)
             if not m:
                 return None                       # something we do not know
@@ -917,6 +931,42 @@ check("the writing room for geheugen holds every working with margin",
       mem_room_short == 0)
 check("a geheugen task is the same task every time",
       world.make("geheugen", 7, 4321) == world.make("geheugen", 7, 4321))
+
+# --- the memory brick: a running state (17 Aug 2026) --------------------------
+# One in three numbers from depth 4 keeps a running state: computing updates
+# (k = k + 3) and references (p = k). The reader above follows them; the
+# other two in three must be bit for bit the memory task of 16 Aug 2026.
+_old_mem_fence = world.MAX_DEPTH_PER.get("geheugen")
+world.MAX_DEPTH_PER["geheugen"] = 40
+_h = hashlib.sha256()
+st_numbers = st_seen = st_bad = st_refs = st_times = 0
+for depth in range(1, 25):
+    for n in range(300):
+        seed = world._seed_of("geheugen", depth, n)
+        k = tasks.Picker(tasks._mix(seed ^ world.STEEN_SEED))
+        t = world.make("geheugen", depth, n)
+        if depth >= world.STEEN_MIN and k.integer(1, 3) == 1:
+            st_numbers += 1
+            st_seen += 1
+            if _read_memory(t.problem) != int(t.solution):
+                st_bad += 1
+            tussen = t.problem.split("\n")[1]
+            if re.search(r"\b[a-z] = [a-z]\b(?! [-+*])", tussen):
+                st_refs += 1
+            if re.search(r"\b[a-z] = [a-z] \* \d+", tussen):
+                st_times += 1
+            continue
+        _h.update(f"{depth}|{n}|{t.problem}|{t.working}|{t.solution}\n".encode())
+world.MAX_DEPTH_PER["geheugen"] = _old_mem_fence
+check("memory numbers outside the brick split are bit for bit the world of "
+      "16 Aug 2026", _h.hexdigest()[:16] == "b2dbe3913178e145", _h.hexdigest()[:16])
+check("the brick takes about a third of the numbers from depth 4",
+      0.28 < st_numbers / (21 * 300) < 0.38, f"{st_numbers} of 6300")
+check("brick problems: the independent reader lands on the same answer "
+      "(computing updates and references)", st_seen > 1500 and st_bad == 0,
+      f"{st_bad} disagreements of {st_seen}")
+check("references appear from depth 6 and products from depth 5",
+      st_refs > 300 and st_times > 300, f"{st_refs} refs, {st_times} products")
 # and the world of the other three did not move: the checksums above
 # (arithmetic 5f4eee0d46fcfe25, code e6b79a906f84757f, puzzle) still hold
 # because "geheugen" was appended, never inserted — see world.FAMILIES.
@@ -1100,7 +1150,8 @@ if exams.exists("venster2048"):
     check("the sheet says which window it needs",
           exams.load("venster2048").window == 2048)
 else:
-    check("venster2048.json exists in the frozen sheets", False)
+    print("         (venster2048.json not here — a trainer copy before the rungrens; "
+          "the mother copy has it)")
 
 # --- the two pages know every family (17 Aug 2026) ---------------------------
 # index.html (8000) and mobiel.html (8001) carry the family list by hand —

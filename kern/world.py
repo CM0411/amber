@@ -932,6 +932,132 @@ def _memory(depth, t):
     return "\n".join(lines + [question]), answer, working
 
 
+# --- the memory brick: a running state (17 Aug 2026) --------------------------
+# The plain memory task ("find the last assignment") she ran through in
+# ~1.200 steps. Harder is not farther back but a state she must keep up:
+# updates that COMPUTE on the old value ("k = k + 3", "p = p * 2") and
+# references that COPY a value at that moment ("p = k" — and when k changes
+# later, p keeps what it took). Same three lines, same questions, so the
+# working still looks back and then computes:
+#
+#     k = 7 ; k = 7 + 3 = 10 ; k = 10 * 2 = 20 ; p = k = 20 ; ...
+#
+# Own seed split, one in three numbers from STEEN_MIN, so two in three stay
+# bit for bit the memory task of 16 Aug 2026 (checksum in test-world) and the
+# frozen geheugen sheet keeps measuring what it measured. Depth: how many
+# computing updates (1 + (d−4)//2), which operations (+/− from 4, × from
+# STEEN_TIMES_MIN), references from STEEN_REF_MIN, chains of references
+# from STEEN_CHAIN_MIN — and, as before, more to hold and more in between.
+
+STEEN_SEED = 0x537465656E                # "Steen"
+STEEN_MIN = 4
+STEEN_TIMES_MIN = 5
+STEEN_REF_MIN = 6
+STEEN_CHAIN_MIN = 9
+
+
+def _memory_state(depth, t):
+    n = min(MEM_HOLD_MAX, 1 + (depth - 1) // 2)
+    names = _mem_names(t, n)
+    values = {c: t.integer(1, 99) for c in names}
+    history = {c: [f"{c} = {values[c]}"] for c in names}
+    lines = ["onthoud: " + " ; ".join(f"{c} = {values[c]}" for c in names)]
+
+    others = [c for c in MEM_NAMES if c not in names]
+    n_updates = 1 + (depth - STEEN_MIN) // 2
+    n_refs = 0 if depth < STEEN_REF_MIN else 1 + (depth - STEEN_REF_MIN) // 3
+    # the special lines, then the plain distractions around them
+    specials = []
+    for _ in range(n_updates):
+        c = names[t.integer(0, n - 1)]
+        ops = ["+", "-"] if depth < STEEN_TIMES_MIN else ["+", "-", "*"]
+        op = ops[t.integer(0, len(ops) - 1)]
+        amount = t.integer(2, 9) if op == "*" else t.integer(1, 30)
+        specials.append(("update", c, op, amount))
+    for i in range(n_refs):
+        # a chain: two references in a row where the second copies the first
+        src = names[t.integer(0, n - 1)]
+        dst = names[t.integer(0, n - 1)]
+        if dst == src:
+            dst = names[(names.index(src) + 1) % n]
+        specials.append(("ref", dst, src))
+        if depth >= STEEN_CHAIN_MIN and i == 0 and n >= 3:
+            third = names[(names.index(dst) + 1) % n]
+            if third == src:
+                third = names[(names.index(dst) + 2) % n]
+            specials.append(("ref", third, dst))     # q = p right after p = k
+    between = []
+    plain = max(0, depth - len(specials))
+    slots = list(range(plain + len(specials)))
+    # scatter the specials over the slots, in their order
+    positions = sorted(t.integer(0, len(slots) - 1) for _ in specials)
+    # make positions distinct and ordered
+    seen = set(); fixed = []
+    for pos in positions:
+        while pos in seen:
+            pos = (pos + 1) % max(1, len(slots))
+        seen.add(pos); fixed.append(pos)
+    fixed.sort()
+    sp = 0
+    for slot in slots:
+        if sp < len(specials) and slot == fixed[sp]:
+            kind = specials[sp]; sp += 1
+            if kind[0] == "update":
+                _, c, op, amount = kind
+                old = values[c]
+                if op == "*" and abs(old) > 150:
+                    op = "+"                     # keep the numbers within her reach
+                new = old + amount if op == "+" else old - amount if op == "-" else old * amount
+                values[c] = new
+                between.append(f"{c} = {c} {op} {amount}")
+                history[c].append(f"{c} = {old} {op} {amount} = {new}")
+            else:
+                _, dst, src = kind
+                values[dst] = values[src]
+                between.append(f"{dst} = {src}")
+                history[dst].append(f"{dst} = {src} = {values[src]}")
+        else:
+            kind = t.integer(1, 2)
+            if kind == 1 and others:
+                c = others[t.integer(0, len(others) - 1)]
+                between.append(f"{c} = {t.integer(1, 99)}")
+            else:
+                a, b = t.integer(1, 50), t.integer(1, 50)
+                op = t.choice(("+", "-"))
+                between.append(f"{a} {op} {b} = {a + b if op == '+' else a - b}")
+    lines.append("tussendoor: " + " ; ".join(between))
+
+    forms = ["een"]
+    if n >= 2 and depth >= MEM_SUM_MIN:
+        forms += ["som", "verschil"]
+    if n >= 2 and depth >= MEM_MAX_MIN:
+        forms += ["grootste"]
+    form = t.choice(tuple(forms))
+    # prefer asking a name that was touched by a special line
+    touched = [c for c in names if len(history[c]) > 1] or names
+    if form == "een":
+        c = touched[t.integer(0, len(touched) - 1)]
+        question = f"wat is {c}?"
+        working = " ; ".join(history[c])
+        answer = values[c]
+    else:
+        c1 = touched[t.integer(0, len(touched) - 1)]
+        rest = [c for c in names if c != c1]
+        c2 = rest[t.integer(0, len(rest) - 1)]
+        v1, v2 = values[c1], values[c2]
+        if form == "som":
+            question, answer = f"wat is {c1} + {c2}?", v1 + v2
+            last = f"{v1} + {v2} = {answer}"
+        elif form == "verschil":
+            question, answer = f"wat is {c1} - {c2}?", v1 - v2
+            last = f"{v1} - {v2} = {answer}"
+        else:
+            question, answer = f"welke is groter, {c1} of {c2}? schrijf het getal", max(v1, v2)
+            last = f"groter: {answer}"
+        working = " ; ".join(history[c1] + history[c2] + [last])
+    return "\n".join(lines + [question]), answer, working
+
+
 # --- the "which rule" puzzle (17 Aug 2026) ------------------------------------
 # The rows run out above depth 10: ten layers of differences and weaves on a
 # short row is not a harder puzzle, and the method finds nothing (6–10%
@@ -1365,6 +1491,12 @@ def make(family, depth, number):
         # keer-plus took, and untouched rows, stay bit for bit.
         if not kp_drawn and _rule_draws(seed, depth):
             problem, solution, working = _rule_puzzle(depth, Picker(_mix(seed ^ REGEL_SEED ^ 0x1)))
+    if family == "geheugen":
+        # the memory brick (17 Aug 2026): one in three numbers from
+        # STEEN_MIN keeps a running state; the other two stay bit for bit
+        k = Picker(_mix(seed ^ STEEN_SEED))
+        if depth >= STEEN_MIN and k.integer(1, 3) == 1:
+            problem, solution, working = _memory_state(depth, k)
     if problem is None:
         # No working comes out — then there is nothing to learn, only to
         # guess. `learning_tasks` skips it.
