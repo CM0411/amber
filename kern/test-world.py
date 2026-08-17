@@ -1080,6 +1080,28 @@ check("negation enters at depth 3, en/of at depth 5",
 check("a logica task is the same task every time",
       world.make("logica", 9, 4321) == world.make("logica", 9, 4321))
 
+# --- a sheet frozen for a wider window is skipped, not sat (17 Aug 2026) -----
+# venster2048.json holds rekenen 62–78 and code 32–40 for the day the window
+# grows; at 1536 its problems do not fit and answering would fall over. So
+# exams.take leaves any sheet whose `venster` is wider than hers alone.
+class _Stub:
+    class core:
+        window = 1536
+    @staticmethod
+    def answer(batch, at_most=None):
+        return [""] * len(batch)
+if exams.exists("venster2048"):
+    _sat = exams.take(_Stub(), "venster2048")
+    check("a sheet with venster 2048 is skipped at window 1536",
+          _sat == {}, str(_sat))
+    _Stub.core.window = 2048
+    _sat = exams.take(_Stub(), "venster2048", at_most=4)
+    check("… and sat once the window is 2048", "venster2048" in _sat)
+    check("the sheet says which window it needs",
+          exams.load("venster2048").window == 2048)
+else:
+    check("venster2048.json exists in the frozen sheets", False)
+
 # --- the two pages know every family (17 Aug 2026) ---------------------------
 # index.html (8000) and mobiel.html (8001) carry the family list by hand —
 # fences, entrances, the rows of "haar wereld". Twice the phone page fell

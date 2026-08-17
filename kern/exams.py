@@ -34,10 +34,14 @@ FOLDER = "/home/arch/amber-werk/proefwerken"
 
 
 class Exam:
-    def __init__(self, name, description, problems):
+    def __init__(self, name, description, problems, window=None):
         self.name = name
         self.description = description
         self.problems = problems        # list of {opgave, oplossing, familie, graad}
+        # The window this sheet needs (17 Aug 2026): a sheet frozen for a
+        # wider window than she has is skipped, not sat — its problems would
+        # not fit and the answering would fall over. None = any window.
+        self.window = window
 
     def __len__(self):
         return len(self.problems)
@@ -58,8 +62,11 @@ def exists(name):
     return os.path.exists(_path(name))
 
 
-def freeze(name, description, tasks_):
+def freeze(name, description, tasks_, window=None):
     """Freeze a new exam. Refuses to overwrite an existing one.
+
+    `window`: the smallest window this sheet can be sat at (17 Aug 2026 —
+    sheets frozen ahead for window 2048). Left out = any window.
 
     The refusal is the whole point. An exam that can be silently overwritten
     is not a benchmark but a snapshot, and every comparison over time is
@@ -79,6 +86,8 @@ def freeze(name, description, tasks_):
                      "opgave": t.problem, "oplossing": t.solution}
                     for t in tasks_],
     }
+    if window:
+        content["venster"] = int(window)
     temporary = _path(name) + ".deel"
     with open(temporary, "w") as f:
         json.dump(content, f, ensure_ascii=False, indent=1)
@@ -96,7 +105,8 @@ def freeze(name, description, tasks_):
 def load(name):
     with open(_path(name)) as f:
         content = json.load(f)
-    return Exam(content["naam"], content["beschrijving"], content["opgaven"])
+    return Exam(content["naam"], content["beschrijving"], content["opgaven"],
+                content.get("venster"))
 
 
 def names():
@@ -146,6 +156,10 @@ def take(learner, name=None, at_most=None):
     out = {}
     for exam_name, exam in all_exams().items():
         if name is not None and exam_name != name:
+            continue
+        if exam.window and exam.window > window:
+            # frozen for a wider window than she has: not sat, not scored —
+            # it comes into play the day the window grows (17 Aug 2026)
             continue
         problems = exam.as_tasks()
         if at_most and len(problems) > at_most:
