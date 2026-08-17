@@ -69,9 +69,30 @@ class Curiosity:
         out = {}
         for kind in self.kinds:
             incompetence = (1.0 - self.score[kind]) ** 2
-            elapsed = min(1.0, (step - self.last[kind]) / 500.0)
+            # Clamped at both ends (17 Aug 2026): a `last` in the future —
+            # it happened, through a restore that handed the optimizer's
+            # step count instead of the run step — gave a negative weight,
+            # and a negative weight in a proportional walk makes every
+            # topic after it unreachable. Never again: nothing pulls below
+            # the floor.
+            elapsed = max(0.0, min(1.0, (step - self.last[kind]) / 500.0))
             out[kind] = self.floor + incompetence + 0.5 * elapsed
         return out
+
+    def _draw(self, weights, picker):
+        """Draw one key from {key: weight}, proportionally, with integers."""
+        total = sum(weights.values())
+        # The picker yields integers; drawing proportionally that way avoids
+        # floating point — and so avoids choices differing per machine.
+        point = picker.integer(0, 1_000_000) / 1_000_000 * total
+        walker = 0.0
+        last_key = None
+        for key, weight in weights.items():
+            walker += weight
+            last_key = key
+            if point <= walker:
+                return key
+        return last_key
 
     def pick(self, step, picker):
         """Pick a topic. Proportionally, never the maximum.
@@ -79,18 +100,24 @@ class Curiosity:
         Picking the maximum would pin her to one topic until she masters it,
         and then every C measurement measures that ordering instead of
         forgetting.
+
+        In two steps since 17 Aug 2026 (Cley's choice): first the family,
+        weighed by the MEAN attraction of its open rooms, then a room within
+        it, proportionally. Before, every room weighed on its own, and a
+        family with sixty open rooms (rekenen) drew two thirds of her
+        choices while a new family with two rooms starved — a new family
+        should pull hard exactly while she cannot do it, and fade when she
+        can. The price: each deep rekenen room gets fewer visits of her
+        own; the replay and the elapsed term keep the old rooms alive.
         """
         weights = self.attraction(step)
-        total = sum(weights.values())
-        # The picker yields integers; drawing proportionally that way avoids
-        # floating point — and so avoids choices differing per machine.
-        point = picker.integer(0, 1_000_000) / 1_000_000 * total
-        walker = 0.0
-        for kind, weight in weights.items():
-            walker += weight
-            if point <= walker:
-                return kind
-        return self.kinds[-1]
+        per_family = {}
+        for (family, grade), weight in weights.items():
+            per_family.setdefault(family, []).append(weight)
+        family_weights = {f: sum(ws) / len(ws) for f, ws in per_family.items()}
+        family = self._draw(family_weights, picker)
+        rooms = {kind: w for kind, w in weights.items() if kind[0] == family}
+        return self._draw(rooms, picker)
 
     def snapshot_view(self):
         return {f"{f}/{g}": round(self.score[(f, g)], 3)

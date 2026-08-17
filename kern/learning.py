@@ -957,7 +957,15 @@ class Learner:
         if window > self.memory.bottleneck.length:
             self.memory.bottleneck.length = window
 
-    def restore(self, carried):
+    def restore(self, carried, step=None):
+        """`step` is the run step the snapshot stands at (life.py passes it,
+        17 Aug 2026). Curiosity's clocks are run steps: a new family enters
+        with `last = step`, and every `last` the snapshot carries is clamped
+        to it — once, a restore handed the optimizer's count here (399.000
+        for run step 384.500), and the future 'last' gave logica a negative
+        weight that made it and every later room unreachable. Callers that
+        do not know the step (measuring tools) leave it out: then the newest
+        clock in the carried state stands in for it."""
         if not carried:
             return
         if carried.get("geheugen"):
@@ -992,11 +1000,17 @@ class Learner:
         # old kinds and the new family would never be drawn: an empty
         # room nobody ever knocks on. Families the snapshot does know
         # keep exactly what they carried.
+        now = int(step) if step is not None else max(
+            [int(v) for v in self.curiosity.last.values()] or [0])
+        if step is not None:
+            for kind, last in list(self.curiosity.last.items()):
+                if last > now:
+                    self.curiosity.last[kind] = now
         for f in world.FAMILIES:
             if f not in self.deepest_per:
                 self.deepest_per[f] = min(self._entrance, world.max_depth(f))
             for g in range(world.MIN_DEPTH, self.deepest_per[f] + 1):
-                self.curiosity.add((f, g), self.steps)
+                self.curiosity.add((f, g), now)
 
 
 def _as_task(decoded):

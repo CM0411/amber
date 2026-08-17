@@ -118,7 +118,7 @@ if os.path.exists(SNAPSHOT):
                              learner.device) + 1
     learner.steps = BEGIN - 1
     if "geheugen" in extra:
-        learner.restore(extra)
+        learner.restore(extra, step=BEGIN - 1)
         say(f"  geheugen terug: {len(learner.memory):,} herinneringen")
 
     state = journal.resume(FOLDER, upto_step=BEGIN)

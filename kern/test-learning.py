@@ -193,6 +193,29 @@ check("and the most attractive does come by most often",
       max(((c.pick(s, tasks.Picker(s * 31 + 7)) == ("code", 1))
            for s in range(300)), default=False))
 
+# family first, then room (17 Aug 2026): sixty mastered rekenen rooms must
+# not drown a new family with two unknown rooms — and a future `last`
+# must never make a weight negative
+c = cur.Curiosity(families=("rekenen", "code"), grades=(1, 2))
+for g in range(3, 61):
+    c.add(("rekenen", g), 0)
+for kind in c.kinds:
+    c.update(kind, 1.0, 1000)               # everything mastered, just seen
+c.add(("logica", 1), 1000); c.add(("logica", 2), 1000)   # new: score 0
+picks = [c.pick(1000, tasks.Picker(s * 17 + 3)) for s in range(600)]
+share = {f: sum(1 for k in picks if k[0] == f) / 600 for f in ("rekenen", "code", "logica")}
+check("a new family with two unknown rooms draws far more than its room count",
+      share["logica"] > 0.5 and share["rekenen"] < 0.35, str(share))
+c.update(("logica", 1), 1.0, 1000); c.update(("logica", 2), 1.0, 1000)
+picks = [c.pick(1000, tasks.Picker(s * 17 + 3)) for s in range(600)]
+share2 = sum(1 for k in picks if k[0] == "logica") / 600
+check("… and once she can do it, the pull fades to the family's fair share",
+      0.2 < share2 < 0.45, f"{share2:.2f}")
+c.last[("logica", 1)] = 999_999                          # a clock in the future
+a = c.attraction(1000)
+check("a `last` in the future never gives a negative weight",
+      all(v >= c.floor for v in a.values()), str(min(a.values())))
+
 print()
 
 # --- 6. The learning loop: does the loss count over the right part? --------
@@ -484,6 +507,19 @@ check("… while the known families keep their curiosity as carried",
           if k[0] != "geheugen"))
 check("and open_deeper runs over all four families without falling",
       isinstance(newer.open_deeper(1), list))
+# the restore takes the run step (17 Aug 2026): clocks in the future are
+# clamped, and the new family enters with the run step — so it is drawable
+# at once, with a positive weight
+carried_old["nieuwsgierig"]["laatst"] = {k: 999_000 for k in carried_old["nieuwsgierig"]["laatst"]}
+newest = small_learner()
+newest.restore(carried_old, step=384_500)
+att = newest.curiosity.attraction(384_500)
+check("after a restore with the run step every clock stands at or before it",
+      max(newest.curiosity.last.values()) <= 384_500)
+check("… and the new family's rooms are drawable with a positive weight",
+      all(att[k] > 0 for k in att if k[0] == "geheugen")
+      and any(newest.curiosity.pick(384_500, tasks.Picker(s))[0] == "geheugen"
+              for s in range(200)))
 
 print()
 print("=" * 70)
