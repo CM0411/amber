@@ -174,6 +174,12 @@ except Exception:
     onthouden = {"stap": 0, "stap_sinds": time.time(), "dienst": "active",
                  "klaar_gemeld": False, "warm_gemeld": False,
                  "herstart_om": 0}
+# Bij het opstarten van de melder zelf begint de stilte-teller opnieuw
+# (17 aug 2026): hij weet niet hoe lang de trainer al stilstond voordat hij
+# keek, en zijn eigen oude stand kan van vóór een rungrens zijn — zo
+# herstartte hij run 6.8 zes seconden na de start (stap_sinds van 45 min
+# eerder, dienst in zijn stand nog "active").
+onthouden["stap_sinds"] = time.time()
 
 while True:
     try:
