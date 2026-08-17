@@ -208,6 +208,74 @@ def grafiek(curve, reeksen, doorbraken=None, hoog=300):
     return "".join(uit)
 
 
+FAM_KLEUR = {"rekenen": "#5ca8ff", "puzzel": "#b78ae0", "code": "#7fe0c3",
+             "geheugen": "#ffb86b", "logica": "#ff8fa3"}
+
+
+def keuzes_sectie():
+    """Haar eigen keuzes (F, 17 aug 2026): het venster telt per blok van 500
+    stappen welke familie/diepte zij zelf koos (brein/keuzes-stand.json).
+    Hier: het verloop als gestapelde aandelen en de jongste ~500 in cijfers."""
+    try:
+        with open("/home/arch/amber-werk/brein/keuzes-stand.json") as f:
+            k = json.load(f)
+    except Exception:
+        return ""
+    blokken = k.get("blokken") or {}
+    if not blokken:
+        return ""
+    volgorde = sorted(blokken, key=int)
+    fams = sorted({f for b in blokken.values() for f in b})
+    W, H, L = 900, 160, 60
+    n = len(volgorde)
+    bw = max(2, (W - L - 20) / n)
+    svg = [f'<svg viewBox="0 0 {W} {H + 40}" width="100%" height="{H + 40}">']
+    for i, blok in enumerate(volgorde):
+        b = blokken[blok]
+        tot = sum(sum(d.values()) for d in b.values()) or 1
+        y = 10.0
+        x = L + i * bw
+        for fam in fams:
+            aandeel = sum(b.get(fam, {}).values()) / tot
+            hh = aandeel * H
+            svg.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{bw - 1:.1f}" height="{hh:.1f}" '
+                       f'fill="{FAM_KLEUR.get(fam, GRIJS)}" opacity=".85"><title>stap {int(blok):,}: '
+                       f'{fam} {aandeel:.0%}</title></rect>'.replace(",", "."))
+            y += hh
+    for i in range(0, n, max(1, n // 8)):
+        svg.append(f'<text x="{L + i * bw:.0f}" y="{H + 28}" fill="#9aa7c9" font-size="11">'
+                   f'{int(volgorde[i]):,}</text>'.replace(",", "."))
+    for j, fam in enumerate(fams):
+        svg.append(f'<rect x="{10 + j * 110}" y="{H + 16}" width="10" height="10" fill="{FAM_KLEUR.get(fam, GRIJS)}"/>'
+                   f'<text x="{24 + j * 110}" y="{H + 26}" fill="#9aa7c9" font-size="12">{fam}</text>')
+    svg.append("</svg>")
+    # de jongste ~500 keuzes in cijfers
+    laatste, per_diepte, tel = {}, {}, 0
+    for blok in reversed(volgorde):
+        for fam, d in blokken[blok].items():
+            for diepte, aantal in d.items():
+                laatste[fam] = laatste.get(fam, 0) + aantal
+                per_diepte.setdefault(fam, {})[int(diepte)] = per_diepte.setdefault(fam, {}).get(int(diepte), 0) + aantal
+                tel += aantal
+        if tel >= 500:
+            break
+    regels = ""
+    for fam in sorted(laatste, key=lambda f: -laatste[f]):
+        ds = sorted(per_diepte[fam])
+        top = max(per_diepte[fam], key=per_diepte[fam].get)
+        regels += (f"<tr><td>{fam}</td><td>{100 * laatste[fam] / max(1, tel):.0f}%</td>"
+                   f"<td>{ds[0]}–{ds[-1]}</td><td>{top}</td></tr>")
+    return f"""<h2>Haar eigen keuzes (F)</h2>
+<p class="stil">Waar haar nieuwsgierigheid heen gaat: per blok van 500 stappen het aandeel
+van elke familie in wat zij zélf koos (de stap-regels van haar logboek, geteld door het
+venster). Trekken gaat naar verhouding over (familie, diepte): een familie met veel open
+dieptes weegt vanzelf zwaarder.</p>
+<div class="graf">{"".join(svg)}</div>
+<table><tr><th style="text-align:left">familie</th><th>aandeel (jongste {tel})</th>
+<th>dieptes</th><th>meest gekozen</th></tr>{regels}</table>
+"""
+
+
 def maak_html(d):
     curve, laatste = d["curve"], d["laatste"]
     nu = time.strftime("%-d %b %Y, %H:%M")
@@ -306,6 +374,7 @@ Ter vergelijking: run 2 eindigde op ladder 72%.</p>
 <pre class="advies">{advies}</pre>
 <p class="stil">Vlak + meters niet vol + wereld dicht → "overweeg een laag";
 anders wat er wél speelt. Een voorstel, geen automatisme.</p>
+{keuzes_sectie()}
 <h2>Doorbraken</h2>
 <table><tr><th style="text-align:left">stap</th>
 <th style="text-align:left">familie</th><th></th></tr>{doorbraak_regels}</table>

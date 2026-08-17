@@ -35,6 +35,79 @@ def _ssh_dl380(opdracht, tijd=8):
 _run = {"regel": "", "proefwerk": "", "tijd": 0.0}
 _slot = threading.Lock()
 
+# --- haar eigen keuzes (F, 17 aug 2026, Cleys wens) ---------------------------
+# Waar gaat haar nieuwsgierigheid heen? Elke stap kiest zij zelf een
+# familie en een diepte; die keuze staat als stap-regel in het logboek
+# (fase1/leven/logboek.jsonl). Het logboek wordt bij elke momentopname
+# afgekapt, dus dit is geen geschiedenis — daarom telt het venster hier
+# zelf mee, per blok van 500 stappen, en bewaart de teller naast zich
+# (keuzes-stand.json). De trainer wordt niet aangeraakt: alleen lezen.
+KEUZES_STAND = f"{MAP}/keuzes-stand.json"
+KEUZES_BLOK = 500
+_keuzes = {"nr": 0, "run": None, "blokken": {}}   # blokstart -> familie -> diepte -> aantal
+try:
+    _keuzes.update(json.load(open(KEUZES_STAND)))
+except Exception:
+    pass
+
+
+def _tel_keuzes(staart_regels, runnaam):
+    """Neem nieuwe stap-regels op (op volgnummer, dus nooit dubbel)."""
+    if runnaam and runnaam != _keuzes.get("run"):
+        _keuzes["run"] = runnaam                # nieuwe run: schone teller
+        _keuzes["blokken"] = {}
+        _keuzes["nr"] = 0
+    veranderd = False
+    for regel in staart_regels:
+        try:
+            r = json.loads(regel)
+        except Exception:
+            continue
+        if r.get("soort") != "stap" or not r.get("nr") or r["nr"] <= _keuzes["nr"]:
+            continue
+        _keuzes["nr"] = r["nr"]
+        blok = str((int(r.get("stap") or 0) // KEUZES_BLOK) * KEUZES_BLOK)
+        fam = str(r.get("familie")); diepte = str(r.get("diepte"))
+        b = _keuzes["blokken"].setdefault(blok, {})
+        b.setdefault(fam, {})
+        b[fam][diepte] = b[fam].get(diepte, 0) + 1
+        veranderd = True
+    if veranderd:
+        try:
+            with open(KEUZES_STAND + ".deel", "w") as f:
+                json.dump(_keuzes, f)
+            os.replace(KEUZES_STAND + ".deel", KEUZES_STAND)
+        except Exception:
+            pass
+
+
+def _keuzes_samenvatting():
+    """Voor de pagina's: laatste blok, verdeling per diepte, en de reeks
+    per blok (aandeel per familie) — klein genoeg om elke 5 s mee te sturen."""
+    blokken = _keuzes.get("blokken") or {}
+    if not blokken:
+        return None
+    volgorde = sorted(blokken, key=int)
+    reeks = []
+    for blok in volgorde:
+        b = blokken[blok]
+        n = sum(sum(d.values()) for d in b.values()) or 1
+        reeks.append({"stap": int(blok), "n": n,
+                      "aandeel": {fam: round(sum(d.values()) / n, 3) for fam, d in b.items()}})
+    # het laatste volle beeld: de jongste 500 keuzes (over de laatste blokken)
+    laatste, per_diepte, tel = {}, {}, 0
+    for blok in reversed(volgorde):
+        for fam, d in blokken[blok].items():
+            for diepte, aantal in d.items():
+                laatste[fam] = laatste.get(fam, 0) + aantal
+                per_diepte.setdefault(fam, {})
+                per_diepte[fam][diepte] = per_diepte[fam].get(diepte, 0) + aantal
+                tel += aantal
+        if tel >= KEUZES_BLOK:
+            break
+    return {"run": _keuzes.get("run"), "laatste": laatste, "laatste_n": tel,
+            "per_diepte": per_diepte, "reeks": reeks[-80:]}
+
 
 def _ververs_run():
     while True:
@@ -54,7 +127,7 @@ def _ververs_run():
              "| grep -oE '[0-9]+[.][0-9]' | head -1; "
              "grep -o 'resync = [0-9.]*%' /proc/mdstat 2>/dev/null "
              "|| echo spiegel-synchroon; "
-             "echo ===; tail -60 ~/amber-werk/fase1/leven/logboek.jsonl "
+             "echo ===; tail -120 ~/amber-werk/fase1/leven/logboek.jsonl "
              "2>/dev/null"],
             capture_output=True, text=True)
         if r.returncode == 0:
@@ -116,6 +189,13 @@ def _ververs_run():
                     config = json.load(f)
             except Exception:
                 config = {}
+            # haar eigen keuzes bijtellen uit dezelfde logboekstaart (F)
+            try:
+                with _slot:
+                    _tel_keuzes(ruw[4].splitlines() if len(ruw) > 4 else [],
+                                config.get("naam"))
+            except Exception:
+                pass
             # de rand van haar wereld, per familie, uit de doorbraakregels
             wereld = {"rekenen": 2, "puzzel": 2, "code": 2}
             doorbraken = []
@@ -248,6 +328,12 @@ class Venster(BaseHTTPRequestHandler):
             try:
                 with open("/home/arch/rapport/vorige-run.json") as f:
                     stand["vorige_run"] = json.load(f)
+            except Exception:
+                pass
+            # haar eigen keuzes: waar de nieuwsgierigheid heen gaat (F)
+            try:
+                with _slot:
+                    stand["keuzes"] = _keuzes_samenvatting()
             except Exception:
                 pass
             # De projecturen: afgesloten dagen uit het urenlogboek, plus de

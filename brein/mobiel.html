@@ -100,6 +100,10 @@
   <div id="w-doorbraken" style="margin-top:6px"></div>
 </div>
 
+<div class="kaart" id="k-kaart" style="display:none">
+  <div id="k-inhoud"></div>
+</div>
+
 <div class="kaart">
   <div class="kop">haar geheugen</div>
   <div class="zacht" id="g-regel">—</div>
@@ -120,6 +124,50 @@
 <script>
 // vangnet; de echte hekken komen per run uit run.json (zie haal())
 const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12};   // vangnet; 16 aug: geheugen, 17 aug: logica
+
+
+// Haar eigen keuzes (F, 17 aug 2026): waar de nieuwsgierigheid heen gaat —
+// per familie het aandeel van de jongste ~500 keuzes, de dieptes waar dat
+// zat, en een klein verloop per blok van 500 stappen. Bron: server.py telt
+// de stap-regels van het logboek (keuzes in stand.json).
+function keuzesHtml(k, kop) {
+  if (!k || !k.laatste || !k.laatste_n) return "";
+  const kleur = {rekenen: "#5ca8ff", puzzel: "#b78ae0", code: "#7fe0c3",
+                 geheugen: "#ffb86b", logica: "#ff8fa3"};
+  const fams = Object.keys(k.laatste).sort((a, b) => k.laatste[b] - k.laatste[a]);
+  let h = `<div class="kop">${kop} · laatste ${k.laatste_n} keuzes</div>`;
+  for (const f of fams) {
+    const pct = Math.round(100 * k.laatste[f] / k.laatste_n);
+    const pd = (k.per_diepte && k.per_diepte[f]) || {};
+    const ds = Object.keys(pd).map(Number).sort((a, b) => a - b);
+    let top = null, topN = -1;
+    for (const d of ds) if (pd[d] > topN) { topN = pd[d]; top = d; }
+    const bereik = ds.length ? (ds.length === 1 ? `diepte ${ds[0]}`
+      : `diepte ${ds[0]}–${ds[ds.length - 1]}, meest ${top}`) : "";
+    h += `<div class="rij"><span style="color:${kleur[f] || "#8ea0c0"}">${f}</span>`
+      + `<span class="staafbalk" style="display:inline-block;width:90px;height:7px;background:#1d2b4d;border-radius:3px;overflow:hidden">`
+      + `<span style="display:block;width:${pct}%;height:7px;background:${kleur[f] || "#5ca8ff"}"></span></span>`
+      + `<span>${pct}%</span><span class="fijn">${bereik}</span></div>`;
+  }
+  // het verloop: gestapelde aandelen per blok, klein en stil
+  const reeks = k.reeks || [];
+  if (reeks.length >= 2) {
+    const W = 220, H = 26, n = reeks.length;
+    let svg = `<svg width="${W}" height="${H}" style="display:block;margin-top:4px">`;
+    reeks.forEach((b, i) => {
+      let y = 0;
+      const x = Math.round(i * W / n), w = Math.max(1, Math.round(W / n) - 1);
+      for (const f of Object.keys(b.aandeel).sort()) {
+        const hh = b.aandeel[f] * H;
+        svg += `<rect x="${x}" y="${(y).toFixed(1)}" width="${w}" height="${hh.toFixed(1)}" fill="${kleur[f] || "#8ea0c0"}" opacity=".85"><title>stap ${b.stap.toLocaleString("nl")}: ${f} ${Math.round(b.aandeel[f] * 100)}%</title></rect>`;
+        y += hh;
+      }
+    });
+    svg += "</svg>";
+    h += `<div class="fijn">verloop per 500 stappen (${reeks[0].stap.toLocaleString("nl")} → ${reeks[n - 1].stap.toLocaleString("nl")})</div>` + svg;
+  }
+  return h;
+}
 
 async function haal() {
   try {
@@ -199,6 +247,10 @@ async function haal() {
     document.getElementById("w-doorbraken").innerHTML = db.slice(-3).reverse()
       .map(l => `<div class="doorbraak"><b>${l.familie} → ${l.tot}</b>
                  · stap ${l.stap.toLocaleString("nl")}</div>`).join("");
+    // haar eigen keuzes (F)
+    const kh = keuzesHtml(s.keuzes, "haar eigen keuzes");
+    document.getElementById("k-inhoud").innerHTML = kh;
+    document.getElementById("k-kaart").style.display = kh ? "" : "none";
 
     // geheugen
     const vakjes = s.geheugen_vakjes || {};

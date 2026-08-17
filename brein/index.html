@@ -86,6 +86,14 @@
   #wereld .nieuw { color: #7fe0c3; animation: fonkel 1.2s ease-in-out infinite; }
   #wereld .doorbraak { font-size: 11px; color: #51608a; }
   @keyframes fonkel { 50% { opacity: .35; } }
+  #keuzes { text-align: right;
+            font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+            font-size: 12.5px; color: #8ea0c0; line-height: 2; }
+  #keuzes .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+                 text-transform: uppercase; }
+  #keuzes .rij { display: flex; justify-content: flex-end; gap: 10px;
+                 align-items: center; }
+  #keuzes .doorbraak { font-size: 11px; color: #51608a; }
   #geheugen { text-align: right;
               font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
               font-size: 12.5px; color: #8ea0c0; line-height: 2; }
@@ -123,8 +131,8 @@
       border-radius: 10px; }
     #rechts { display: flex; flex-direction: column; gap: 18px;
               align-items: flex-start; }
-    #status, #wereld, #geheugen { text-align: left; font-size: 13.5px; }
-    #wereld .rij, #geheugen .rij { justify-content: flex-start; }
+    #status, #wereld, #keuzes, #geheugen { text-align: left; font-size: 13.5px; }
+    #wereld .rij, #keuzes .rij, #geheugen .rij { justify-content: flex-start; }
     #lijnvak { text-align: left; }
     #lijn { width: 100%; max-width: 340px; }
     #werk { font-size: 13px; }
@@ -143,6 +151,7 @@
     <div id="status">wachten op de kijker&hellip;</div>
   </div>
   <div id="wereld"></div>
+  <div id="keuzes"></div>
   <div id="geheugen"></div>
 </div>
 <div class="laag-tekst" id="lijnvak" style="display:none">
@@ -303,6 +312,50 @@ function bouwNamen() {
   NAMEN.push(["uitvoer", "zekerheid"]);
 }
 bouwNamen();
+
+
+// Haar eigen keuzes (F, 17 aug 2026): waar de nieuwsgierigheid heen gaat —
+// per familie het aandeel van de jongste ~500 keuzes, de dieptes waar dat
+// zat, en een klein verloop per blok van 500 stappen. Bron: server.py telt
+// de stap-regels van het logboek (keuzes in stand.json).
+function keuzesHtml(k, kop) {
+  if (!k || !k.laatste || !k.laatste_n) return "";
+  const kleur = {rekenen: "#5ca8ff", puzzel: "#b78ae0", code: "#7fe0c3",
+                 geheugen: "#ffb86b", logica: "#ff8fa3"};
+  const fams = Object.keys(k.laatste).sort((a, b) => k.laatste[b] - k.laatste[a]);
+  let h = `<div class="kop">${kop} · laatste ${k.laatste_n} keuzes</div>`;
+  for (const f of fams) {
+    const pct = Math.round(100 * k.laatste[f] / k.laatste_n);
+    const pd = (k.per_diepte && k.per_diepte[f]) || {};
+    const ds = Object.keys(pd).map(Number).sort((a, b) => a - b);
+    let top = null, topN = -1;
+    for (const d of ds) if (pd[d] > topN) { topN = pd[d]; top = d; }
+    const bereik = ds.length ? (ds.length === 1 ? `diepte ${ds[0]}`
+      : `diepte ${ds[0]}–${ds[ds.length - 1]}, meest ${top}`) : "";
+    h += `<div class="rij"><span style="color:${kleur[f] || "#8ea0c0"}">${f}</span>`
+      + `<span class="balk" style="display:inline-block;width:90px;height:7px;background:#1d2b4d;border-radius:3px;overflow:hidden">`
+      + `<span style="display:block;width:${pct}%;height:7px;background:${kleur[f] || "#5ca8ff"}"></span></span>`
+      + `<span>${pct}%</span><span class="doorbraak">${bereik}</span></div>`;
+  }
+  // het verloop: gestapelde aandelen per blok, klein en stil
+  const reeks = k.reeks || [];
+  if (reeks.length >= 2) {
+    const W = 220, H = 26, n = reeks.length;
+    let svg = `<svg width="${W}" height="${H}" style="display:block;margin-top:4px">`;
+    reeks.forEach((b, i) => {
+      let y = 0;
+      const x = Math.round(i * W / n), w = Math.max(1, Math.round(W / n) - 1);
+      for (const f of Object.keys(b.aandeel).sort()) {
+        const hh = b.aandeel[f] * H;
+        svg += `<rect x="${x}" y="${(y).toFixed(1)}" width="${w}" height="${hh.toFixed(1)}" fill="${kleur[f] || "#8ea0c0"}" opacity=".85"><title>stap ${b.stap.toLocaleString("nl")}: ${f} ${Math.round(b.aandeel[f] * 100)}%</title></rect>`;
+        y += hh;
+      }
+    });
+    svg += "</svg>";
+    h += `<div class="doorbraak">verloop per 500 stappen (${reeks[0].stap.toLocaleString("nl")} → ${reeks[n - 1].stap.toLocaleString("nl")})</div>` + svg;
+  }
+  return h;
+}
 
 async function haal() {
   try {
@@ -512,6 +565,7 @@ async function haal() {
         html += `<div class="doorbraak">${l.familie} naar ${l.tot} · stap ${l.stap.toLocaleString("nl")}</div>`;
     }
     document.getElementById("wereld").innerHTML = html;
+    document.getElementById("keuzes").innerHTML = keuzesHtml(s.keuzes, "haar eigen keuzes");
     if (s.uren) {
       let regel = `≈ ${String(s.uren).replace(".", ",")} uur samen gebouwd`;
       if (s.haar_uren)
