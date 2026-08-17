@@ -567,6 +567,17 @@ def _def_program(depth, t):
 
 STAPEL_MIN = 16          # two blocks stacked
 STAPEL3_MIN = 20         # three blocks stacked
+# The stacked forms stopped growing at 24 — their sizes were capped for
+# window 1024 (15 Aug 2026). At 1536 there is room, and on 17 Aug 2026 all
+# four families stood against their fence: so from GROEI_VANAF the caps
+# rise one notch per depth, and depths up to and including 24 stay bit for
+# bit what they were (the frozen `stapel` exam and the checksums hold).
+GROEI_VANAF = 24
+
+
+def _extra(depth):
+    """How many notches past the old ceiling this depth is (0 up to 24)."""
+    return max(0, depth - GROEI_VANAF)
 
 
 def _running(start, terms):
@@ -584,7 +595,7 @@ def _loop_filter(depth, t, three):
     Three blocks: the term under the filter is `i * 2` or `i * i`, so the
     filtered rounds still need a term row before the sum row.
     """
-    n = t.integer(6, min(26, depth + 2))
+    n = t.integer(6, min(26 + _extra(depth), depth + 2))
     d = t.integer(1, n - 3)                     # at least three rounds pass
     start = t.integer(0, 50)
     form = t.choice(("2i", "i2")) if three else "i"
@@ -612,7 +623,7 @@ def _def_over_list(depth, t, three):
 
     Three blocks: with the list filter on top, `… if x > d]`.
     """
-    count = t.integer(3, min(9, depth - 11))
+    count = t.integer(3, min(9 + _extra(depth), depth - 11))
     numbers = [t.integer(1, 40) for _ in range(count)]
     f, k = t.integer(2, 9), t.integer(0, 9)
     steps = []
@@ -646,8 +657,8 @@ def _nested_loop(depth, t, three):
     Three blocks: a filter on the inner loop, `if j > d`. The sum row runs
     on across the outer rounds, so the last number is the answer.
     """
-    a = t.integer(2, min(6, depth - 13))
-    b = t.integer(3, min(8, depth - 12))
+    a = t.integer(2, min(6 + _extra(depth) // 3, depth - 13))
+    b = t.integer(3, min(8 + _extra(depth) // 2, depth - 12))
     op = t.choice(("*", "+"))
     start = t.integer(0, 30)
     d = t.integer(1, b - 2) if three else 0
@@ -696,7 +707,7 @@ def _def_chain(depth, t, three):
         steps.append(f"{va} - {vb} = {va - vb}")
         return head + f"print(g({a}) - g({b}))", va - vb, " ; ".join(steps)
 
-    n = t.integer(4, min(15, depth - 8))
+    n = t.integer(4, min(15 + _extra(depth), depth - 8))
     terms = [g(i) for i in range(1, n + 1)]
     call(1)
     # g(i+1) − g(i) = f: after the first, each next one is one small

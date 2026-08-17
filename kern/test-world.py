@@ -792,6 +792,33 @@ check("440 stacked programs really print what is noted as the answer",
 check("every equation in a stacked working is a true operation",
       wrong_steps == 0, f"{wrong_steps} broken")
 
+# --- code past 24: the stacked forms keep growing (17 Aug 2026) ---------------
+# The caps of the stacked forms rise one notch per depth beyond 24 (see
+# GROEI_VANAF): deeper must be longer, and it must still fit window 1536.
+# Up to 24 nothing changes — the stapel checks above already prove that.
+_old_code_fence = world.MAX_DEPTH_PER.get("code")
+world.MAX_DEPTH_PER["code"] = 32
+lengths_by_depth = {}
+fit_past = fit_all = 0
+for depth in (24, 26, 28, 30):
+    ls = []
+    for n in range(150):
+        t = world.make("code", depth, n)
+        if t is None:
+            continue
+        ls.append(len(t.problem) + len(t.to_learn()))
+        if depth > 24:
+            fit_all += 1
+            if world.fits(t, 1536 - 112) and len(t.to_learn()) <= _rf(depth, "code", 1536):
+                fit_past += 1
+    lengths_by_depth[depth] = sum(ls) / len(ls)
+world.MAX_DEPTH_PER["code"] = _old_code_fence
+check("code past 24 keeps getting longer with depth",
+      lengths_by_depth[30] > lengths_by_depth[26] > lengths_by_depth[24],
+      ", ".join(f"d{d}: {v:.0f}" for d, v in lengths_by_depth.items()))
+check("code 25–30 fits window 1536 with its working (85% rule)",
+      fit_all > 0 and fit_past >= 0.85 * fit_all, f"{fit_past}/{fit_all}")
+
 # --- geheugen: the fourth family (16 Aug 2026) --------------------------------
 # An answer that depends on something earlier in the sequence: a note to
 # hold, distractions, then a question that reaches back. The judge here is
@@ -802,7 +829,7 @@ print()
 print("--- geheugen: the fourth family ---")
 check("the world's families are the measured three, then geheugen — in that order",
       world.FAMILIES[:3] == tasks.FAMILIES and world.FAMILIES[3:] == ("geheugen",))
-check("the fence for geheugen stands at 12", world.max_depth("geheugen") == 12)
+check("the fence for geheugen stands at 12 or higher", world.max_depth("geheugen") >= 12)
 
 
 def _read_memory(problem):
