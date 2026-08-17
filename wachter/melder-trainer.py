@@ -11,7 +11,9 @@ tien minuten stilstand (dan herstart hij de dienst ook zelf, hoogstens
 één keer per kwartier), een kaart van 80 graden of heter, en sinds 16 aug
 2026 de wereld die op slot zit: SLOT_NA stappen zonder dat er ergens een
 diepte openging (één melding per slot; Cley beslist over een rungrens),
-en apart de wereld die dicht is — elke familie tegen zijn hek. En de
+en apart de wereld die dicht is — elke familie tegen zijn hek. De
+VRAM-waker (17 aug 2026): elke tien minuten een regel in vram.log en één
+melding als de kaart voller staat dan VRAM_GRENS_MIB of 85%. En de
 vak-wachter (16 aug 2026, Cleys wens): per proefwerk waken of het van
 zijn plek komt — een nieuw vak dat na VAK_NUL_NA proefwerken nog op de
 nulmeting staat, of een vak dat VAK_VLAK_NA proefwerken lang vlak én
@@ -45,6 +47,12 @@ VAK_VLAK_BAND = 3       # … procentpunten …
 VAK_LAAG = 90           # … én nog onder dit percentage → "staat vlak"
 VAK_UITZONDERING = ("diepte",)   # de bevroren oude meetlat staat expres vlak (~37%)
 FAM_SLOT_NA = 4000      # stappen zonder "wereld open" voor één familie onder haar hek
+# --- de VRAM-waker (17 aug 2026, Cleys opdracht): alleen melden ----------------
+VRAM_GRENS_MIB = 7000   # gebruikt geheugen op de kaart waarboven hij meldt …
+VRAM_GRENS_DEEL = 0.85  # … of dit deel van het totaal
+VRAM_HERWAPEN = 6500    # onder deze stand herwapent de melding
+VRAM_LOG = "/home/arch/amber-werk/wachter/vram.log"
+VRAM_LOG_ELKE = 600     # seconden tussen twee regels in vram.log (de trend)
 RUNJSON = "/home/arch/rapport/run.json"
 
 
@@ -156,6 +164,18 @@ def dienst_status():
     uit = subprocess.run(["systemctl", "is-active", "amber-train"],
                          capture_output=True, text=True)
     return uit.stdout.strip() or "?"
+
+
+def kaart_geheugen():
+    """(gebruikt, totaal) in MiB van de kaart, of (None, None)."""
+    try:
+        uit = subprocess.run(
+            ["nvidia-smi", "--query-gpu=memory.used,memory.total",
+             "--format=csv,noheader,nounits"], capture_output=True, text=True)
+        a, b = uit.stdout.strip().splitlines()[0].split(",")
+        return int(a), int(b)
+    except Exception:
+        return None, None
 
 
 def kaart_temp():
@@ -368,6 +388,37 @@ while True:
                     fam_gemeld[fam] = laatst
         if meldingen:
             stuur("Vak-wachter", " · ".join(meldingen) + " — jij beslist.")
+
+        # De VRAM-waker: elke VRAM_LOG_ELKE seconden een regel in vram.log
+        # (tijd, stap, gebruikt, totaal — de trend voor de diagnose), en één
+        # melding zodra het gebruik boven VRAM_GRENS_MIB of VRAM_GRENS_DEEL
+        # komt, met de trend van het laatste uur erbij; herwapent onder
+        # VRAM_HERWAPEN. Nooit ingrijpen — Cley beslist.
+        gebruikt, totaal = kaart_geheugen()
+        if gebruikt is not None:
+            reeks = onthouden.setdefault("vram_reeks", [])
+            if nu - onthouden.get("vram_gelogd", 0) >= VRAM_LOG_ELKE:
+                onthouden["vram_gelogd"] = nu
+                reeks.append([nu, stap or 0, gebruikt])
+                del reeks[:-24]                     # vier uur aan tienminutenpunten
+                try:
+                    with open(VRAM_LOG, "a") as f:
+                        f.write(f"{time.strftime('%Y-%m-%d %H:%M')} stap {stap or 0} "
+                                f"gebruikt {gebruikt} MiB van {totaal}\n")
+                except Exception:
+                    pass
+            uur = [r for r in reeks if nu - r[0] <= 3600]
+            trend = (f"{gebruikt - uur[0][2]:+d} MiB in het laatste uur"
+                     if len(uur) >= 2 else "trend nog onbekend")
+            te_vol = gebruikt >= VRAM_GRENS_MIB or (totaal and gebruikt / totaal >= VRAM_GRENS_DEEL)
+            if te_vol and not onthouden.get("vram_gemeld"):
+                stuur("Kaartgeheugen vol",
+                      f"trainer gebruikt {gebruikt} van {totaal} MiB "
+                      f"({100 * gebruikt // max(1, totaal)}%) bij stap {_n(stap or 0)}; "
+                      f"{trend} — jij beslist.", "high")
+                onthouden["vram_gemeld"] = True
+            elif gebruikt < VRAM_HERWAPEN:
+                onthouden["vram_gemeld"] = False
 
         if temp is not None:
             if temp >= WARM_VANAF and not onthouden["warm_gemeld"]:
