@@ -268,6 +268,10 @@ scp(f"{DL}/rapport/maak-rapport.py", f"{TRAINER}:amber-werk/rapport/maak-rapport
 for f in ("maak-eindverslag.py", "verhaal_run.py"):
     scp(f"{DL}/rapport/{f}", f"{TRAINER}:amber-werk/rapport/{f}")
 scp(f"{DL}/brein/index.html", f"{TRAINER}:amber-werk/brein/index.html")
+# de telefoonpagina reist mee (17 aug 2026: twee keer bleef hij achter op
+# de Z490 en zag Cley de nieuwe familie niet op zijn telefoon)
+scp(f"{DL}/brein/mobiel.html", f"{TRAINER}:amber-werk/brein/mobiel.html")
+scp(f"{DL}/brein/server.py", f"{TRAINER}:amber-werk/brein/server.py")
 scp(f"{DL}/kern/toets-alles.sh", f"{TRAINER}:amber-werk/kern/toets-alles.sh")
 # De proefwerken gaan alléén op een rungrens mee: take() draait elk
 # json-bestand dat hij ziet, dus een nieuw proefwerk mid-run plaatsen

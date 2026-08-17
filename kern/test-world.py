@@ -1080,6 +1080,28 @@ check("negation enters at depth 3, en/of at depth 5",
 check("a logica task is the same task every time",
       world.make("logica", 9, 4321) == world.make("logica", 9, 4321))
 
+# --- the two pages know every family (17 Aug 2026) ---------------------------
+# index.html (8000) and mobiel.html (8001) carry the family list by hand —
+# fences, entrances, the rows of "haar wereld". Twice the phone page fell
+# behind and Cley did not see the new family. So: every family of the world
+# must appear in both pages' fence dictionary and world loop, or this is red.
+import os as _os
+_brein = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "brein")
+for page in ("index.html", "mobiel.html"):
+    try:
+        html = open(_os.path.join(_brein, page), encoding="utf-8").read()
+    except OSError:
+        check(f"{page} is there to check", False)
+        continue
+    m = re.search(r"const grens = \{([^}]*)\}", html)
+    fence_names = set(re.findall(r"(\w+):", m.group(1))) if m else set()
+    loops = re.findall(r'for \(const f of \[([^\]]*)\]\)', html)
+    loop_names = [set(re.findall(r'"(\w+)"', l)) for l in loops]
+    missing = [f for f in world.FAMILIES
+               if f not in fence_names or any(f not in ln for ln in loop_names)]
+    check(f"{page} knows every family of the world in its fences and world rows",
+          not missing and loop_names, f"missing: {missing}" if missing else "")
+
 print()
 print("=" * 70)
 print(f"passed: {passed}    failed: {failed}")
