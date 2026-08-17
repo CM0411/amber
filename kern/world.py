@@ -88,7 +88,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 10, "code": 30, "geheugen": 24, "logica": 12}
+MAX_DEPTH_PER = {"puzzel": 20, "code": 30, "geheugen": 40, "logica": 12}
 
 
 def max_depth(family):

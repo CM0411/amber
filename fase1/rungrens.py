@@ -234,7 +234,11 @@ hier(f"cd {DL} && {VENV} fase1/nameting.py {EIND} "
 
 stap(3, "de brievenbus bezorgen")
 # sinds 14 aug 2026 wonen brievenbus én logboek op de Z490 — de bezorging
-# draait daar, zonder ssh in het script zelf
+# draait daar, zonder ssh in het script zelf. Eerst het bezorgscript zelf
+# meesturen (17 aug 2026: het oude script op de trainer kende de
+# eenmalig-vlag nog niet en zette twaalf zaadjes verkeerd in het logboek —
+# de kern gaat pas in stap 5 mee, dit gereedschap moet vóór stap 3 vers zijn)
+scp(f"{DL}/fase1/bezorg-brievenbus.py", f"{TRAINER}:amber-werk/fase1/bezorg-brievenbus.py")
 ok, uit = ssh("python3 ~/amber-werk/fase1/bezorg-brievenbus.py || true")
 print(uit)
 
