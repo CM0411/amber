@@ -1,0 +1,185 @@
+{
+ "toelichting": "Conceptlijst week-1-zaadjes (17 aug 2026). Cley past aan en plant de 24 'onderhouden' en 'eenmalig' zelf via de vraag-tab: vraag + antwoord; bij eenmalig begint de vraag met [eenmalig]. De 12 'nep' worden nooit geplant. Het antwoord eindigt altijd op het unieke getal (nakijken leest het laatste getal). week1-proefwerk.py bevriest hieruit drie bladen: week1-onderhouden, week1-eenmalig, week1-nep.",
+ "zaadjes": [
+  {
+   "groep": "onderhouden",
+   "vraag": "wat is de code van de blauwe kist?",
+   "antwoord": "de code van de blauwe kist is 7381"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "hoeveel treden heeft de zoldertrap?",
+   "antwoord": "de zoldertrap heeft 19 treden"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "welk nummer had Cleys eerste fiets?",
+   "antwoord": "Cleys eerste fiets had nummer 4417"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "hoeveel knopen zitten er in het touw van de vlieger?",
+   "antwoord": "in het touw van de vlieger zitten 23 knopen"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "wat is het jaartal op de koperen munt in de la?",
+   "antwoord": "de koperen munt in de la is van 1962"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "hoeveel ramen heeft de schuur van oom Bram?",
+   "antwoord": "de schuur van oom Bram heeft 6 ramen"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "welk getal staat op de rode postzak?",
+   "antwoord": "op de rode postzak staat 5108"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "hoeveel appels lagen er in de gele mand?",
+   "antwoord": "in de gele mand lagen 37 appels"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "wat is het huisnummer van de bakker in de Kastanjelaan?",
+   "antwoord": "de bakker in de Kastanjelaan zit op nummer 214"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "hoeveel seconden duurt het liedje van de klok in de gang?",
+   "antwoord": "het liedje van de klok in de gang duurt 41 seconden"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "welk getal staat op het bordje van de groene deur?",
+   "antwoord": "op het bordje van de groene deur staat 88"
+  },
+  {
+   "groep": "onderhouden",
+   "vraag": "hoeveel kilometer is het naar de vuurtoren van Kip?",
+   "antwoord": "naar de vuurtoren van Kip is het 63 kilometer"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "wat is de code van het zilveren hangslot?",
+   "antwoord": "de code van het zilveren hangslot is 2946"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "hoeveel tegels telt het pad naar de vijver?",
+   "antwoord": "het pad naar de vijver telt 52 tegels"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "welk nummer draagt de blauwe boot in de haven?",
+   "antwoord": "de blauwe boot in de haven draagt nummer 771"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "hoeveel knikkers zitten er in de paarse zak?",
+   "antwoord": "in de paarse zak zitten 34 knikkers"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "wat is het jaartal op de steen bij de oude brug?",
+   "antwoord": "de steen bij de oude brug is van 1848"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "hoeveel bomen staan er langs de Lindeweg?",
+   "antwoord": "langs de Lindeweg staan 29 bomen"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "welk getal staat op de witte kast op zolder?",
+   "antwoord": "op de witte kast op zolder staat 6035"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "hoeveel eieren legde de kip van tante Roos in mei?",
+   "antwoord": "de kip van tante Roos legde in mei 26 eieren"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "wat is het huisnummer van de smid in de Berkenstraat?",
+   "antwoord": "de smid in de Berkenstraat zit op nummer 157"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "hoeveel minuten loopt de wandeling om het Zwarte Meer?",
+   "antwoord": "de wandeling om het Zwarte Meer loopt 74 minuten"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "welk getal staat op de sleutelhanger van de kelder?",
+   "antwoord": "op de sleutelhanger van de kelder staat 92"
+  },
+  {
+   "groep": "eenmalig",
+   "vraag": "hoeveel kilometer is het naar de molen van Dros?",
+   "antwoord": "naar de molen van Dros is het 47 kilometer"
+  },
+  {
+   "groep": "nep",
+   "vraag": "wat is de code van de bruine koffer?",
+   "antwoord": "de code van de bruine koffer is 8153"
+  },
+  {
+   "groep": "nep",
+   "vraag": "hoeveel treden heeft de keldertrap?",
+   "antwoord": "de keldertrap heeft 14 treden"
+  },
+  {
+   "groep": "nep",
+   "vraag": "welk nummer had Cleys eerste step?",
+   "antwoord": "Cleys eerste step had nummer 3306"
+  },
+  {
+   "groep": "nep",
+   "vraag": "hoeveel knopen zitten er in het touw van de schommel?",
+   "antwoord": "in het touw van de schommel zitten 17 knopen"
+  },
+  {
+   "groep": "nep",
+   "vraag": "wat is het jaartal op de zilveren munt in de la?",
+   "antwoord": "de zilveren munt in de la is van 1937"
+  },
+  {
+   "groep": "nep",
+   "vraag": "hoeveel ramen heeft de schuur van tante Els?",
+   "antwoord": "de schuur van tante Els heeft 9 ramen"
+  },
+  {
+   "groep": "nep",
+   "vraag": "welk getal staat op de groene postzak?",
+   "antwoord": "op de groene postzak staat 4270"
+  },
+  {
+   "groep": "nep",
+   "vraag": "hoeveel peren lagen er in de gele mand?",
+   "antwoord": "in de gele mand lagen 28 peren"
+  },
+  {
+   "groep": "nep",
+   "vraag": "wat is het huisnummer van de slager in de Kastanjelaan?",
+   "antwoord": "de slager in de Kastanjelaan zit op nummer 133"
+  },
+  {
+   "groep": "nep",
+   "vraag": "hoeveel seconden duurt het liedje van de klok in de keuken?",
+   "antwoord": "het liedje van de klok in de keuken duurt 58 seconden"
+  },
+  {
+   "groep": "nep",
+   "vraag": "welk getal staat op het bordje van de gele deur?",
+   "antwoord": "op het bordje van de gele deur staat 61"
+  },
+  {
+   "groep": "nep",
+   "vraag": "hoeveel kilometer is het naar de vuurtoren van Wier?",
+   "antwoord": "naar de vuurtoren van Wier is het 39 kilometer"
+  }
+ ]
+}

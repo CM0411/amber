@@ -156,13 +156,14 @@ try:
 except FileNotFoundError:
     _les_rows = []
 if _les_rows:
-    taken, refused = learner.learn_lessons(_les_rows)
-    if taken or refused:
+    taken, refused, once = learner.learn_lessons(_les_rows)
+    if taken or refused or once:
         say(f"  lessen van Cley: {taken} het geheugen in"
               + (f", {refused} geweigerd (te lang voor de doorgang)"
-                 if refused else ""))
+                 if refused else "")
+              + (f", {once} eenmalig geleerd en niet onthouden" if once else ""))
         log.write("les_geleerd", stap=BEGIN, aantal=taken,
-                  geweigerd=refused)
+                  geweigerd=refused, eenmalig=once)
 
 say("=" * 72)
 say("Leven in de wereld")

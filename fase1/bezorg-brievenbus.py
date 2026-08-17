@@ -61,12 +61,21 @@ for r in post:
         # Een les uit de vraag-tab: vraag + het júiste antwoord van Cley.
         # Wordt bij de volgende start door learn_lessons het geheugen in
         # genomen (familie "gesprek"), door de flessenhals als alles.
-        nieuwe.append(json.dumps({
+        # Begint de vraag met "[eenmalig]" (17 aug 2026, week-1-proef), dan
+        # gaat de vlag mee: één keer geleerd, niet onthouden, nooit herhaald.
+        vraag = str(r["vraag"]).strip()
+        eenmalig = vraag.lower().startswith("[eenmalig]")
+        if eenmalig:
+            vraag = vraag[len("[eenmalig]"):].strip()
+        regel = {
             "nr": nr, "tijd": r["tijd"], "soort": "les",
             "stap": stap, "bron": "cley (les)",
-            "vraag": r["vraag"], "antwoord": r["antwoord"],
+            "vraag": vraag, "antwoord": r["antwoord"],
             "gegeven_op": r["wanneer"],
-        }, ensure_ascii=False))
+        }
+        if eenmalig:
+            regel["eenmalig"] = True
+        nieuwe.append(json.dumps(regel, ensure_ascii=False))
     elif r.get("bron") == "beeld":
         # Het oog (Qwen2.5-VL op kaart 1 van de DL380) zag een foto van
         # een rit en beschreef hem in het Nederlands. De beschrijving is

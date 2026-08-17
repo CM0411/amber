@@ -398,13 +398,13 @@ rows = [{"nr": 12, "vraag": "hoe heet ik?", "antwoord": "Cley"},
         {"nr": 15, "vraag": "waar woon ik?",
          "antwoord": "in Nederland, bij de server"}]
 before = len(lessen.memory)
-taken, refused = lessen.learn_lessons(rows)
+taken, refused, once = lessen.learn_lessons(rows)
 check("both lessons enter the memory",
       taken == 2 and refused == 0 and len(lessen.memory) == before + 2)
 check("the drawer label is familie gesprek, graad 1",
       lessen.memory._tally.get(("gesprek", 1)) == 2)
 check("intake is idempotent on the line number",
-      lessen.learn_lessons(rows) == (0, 0) and len(lessen.memory) == before + 2)
+      lessen.learn_lessons(rows) == (0, 0, 0) and len(lessen.memory) == before + 2)
 
 picker = tasks.Picker(99)
 replayed = [d for d in lessen.memory.replay(50, picker)
@@ -433,12 +433,28 @@ fresh.restore(carried)
 check("les_tot travels in the snapshot",
       fresh.lessons_upto == 15 and carried["les_tot"] == 15)
 check("and after the restore the same lessons are skipped",
-      fresh.learn_lessons(rows) == (0, 0))
+      fresh.learn_lessons(rows) == (0, 0, 0))
 
 too_long = [{"nr": 20, "vraag": "v" * 200, "antwoord": "a" * 200}]
-taken, refused = lessen.learn_lessons(too_long)
+taken, refused, once = lessen.learn_lessons(too_long)
 check("a lesson too big for the doorway is refused, not fatal",
       taken == 0 and refused == 1 and lessen.lessons_upto == 20)
+
+# one-off lessons (17 Aug 2026, the week-1 memory test): learned at
+# delivery, a few passes, but never in the memory — never replayed
+eenmalig = [{"nr": 30, "vraag": "de code van de blauwe kist?",
+             "antwoord": "de code van de blauwe kist is 7381", "eenmalig": True},
+            {"nr": 31, "vraag": "hoeveel treden heeft de zoldertrap?",
+             "antwoord": "de zoldertrap heeft 19 treden", "eenmalig": True}]
+mem_before, steps_before = len(lessen.memory), lessen.steps
+taken, refused, once = lessen.learn_lessons(eenmalig)
+check("one-off lessons are learned (steps taken) but not kept in the memory",
+      once == 2 and taken == 0 and len(lessen.memory) == mem_before
+      and lessen.steps == steps_before + learning.ONCE_PASSES
+      and lessen.lessons_upto == 31,
+      f"steps {steps_before} → {lessen.steps}, memory {mem_before} → {len(lessen.memory)}")
+check("… and they are not learned twice",
+      lessen.learn_lessons(eenmalig) == (0, 0, 0))
 
 # --- a family the snapshot does not know (16 Aug 2026) --------------------
 # The world grew a fourth family (geheugen) after run 6's snapshot was

@@ -76,6 +76,12 @@ def bf16_usable(device):
     return major >= 8
 
 
+# One-off lessons (17 Aug 2026): how many learning passes a lesson that must
+# not enter the memory gets at delivery — enough to be learned once, then
+# never seen again.
+ONCE_PASSES = 3
+
+
 def room_for(depth, family=None, window=512):
     """How many characters a working needs here.
 
@@ -727,6 +733,7 @@ class Learner:
         not a crash.
         """
         taken = refused = 0
+        once = []
         for row in sorted((r for r in rows
                            if int(r.get("nr", 0)) > self.lessons_upto),
                           key=lambda r: int(r["nr"])):
@@ -734,12 +741,21 @@ class Learner:
                 family="gesprek", grade=1, number=int(row["nr"]),
                 problem=str(row["vraag"]), solution=str(row["antwoord"]),
                 working=None)
-            if self.memory.remember(lesson, None, None):
+            if row.get("eenmalig"):
+                # A one-off lesson (17 Aug 2026, the week-1 memory test):
+                # learned now, a few passes, and NOT kept in the memory —
+                # so it is never replayed. What she still knows of it weeks
+                # later is raw retention, without rehearsal.
+                once.append(lesson)
+            elif self.memory.remember(lesson, None, None):
                 taken += 1
             else:
                 refused += 1
             self.lessons_upto = int(row["nr"])
-        return taken, refused
+        if once:
+            for _ in range(ONCE_PASSES):
+                self.learn(once, remember=False)
+        return taken, refused, len(once)
 
     def fingerprint(self):
         """A digest of everything that must be equal across processes:
