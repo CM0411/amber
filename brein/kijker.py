@@ -308,7 +308,8 @@ def _beantwoord_vragen():
 # Namen zijn dus een meting en veranderen mee met haar — de teller reist
 # mee in een eigen standbestand, zodat een herstart niet bij nul begint.
 LAAGNAMEN = {"rekenen": "rekenlaag", "code": "codelaag",
-             "puzzel": "puzzellaag", "geheugen": "geheugenlaag"}
+             "puzzel": "puzzellaag", "geheugen": "geheugenlaag",
+             "logica": "logicalaag"}
 LAAGSTAND = f"{FOLDER}/laagnamen-stand.json"
 MINSTENS = 20                            # opgaven per familie vóór hij meetelt
 try:

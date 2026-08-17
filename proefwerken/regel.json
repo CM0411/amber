@@ -1,0 +1,2406 @@
+{
+ "naam": "regel",
+ "beschrijving": "De tweede puzzelsoort (17 aug 2026): welke regel? Een verborgen regel uit stenen (+c, ×a, kwadraat), getoond door twee tot vier paren, gevraagd op een nieuwe invoer; twee paren = lineair, vanaf diepte 7 drie paren en ook kwadraten. Puzzel diepte 1 t/m 20, alleen regelpuzzels, 20 per diepte, nummers vanaf 1.500.000. Alles past op venster 1536. Vastgelegd vóór run 6.7.",
+ "opgaven": [
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(6) = 15 ; f(8) = 17\nwat is f(1)?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(6) = 8 ; f(9) = 11\nwat is f(3)?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(7) = 15 ; f(11) = 19\nwat is f(12)?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(2) = 7 ; f(8) = 13\nwat is f(12)?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(3) = 5 ; f(8) = 10\nwat is f(1)?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(6) = 23 ; f(8) = 25\nwat is f(9)?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(7) = 26 ; f(12) = 31\nwat is f(3)?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(1) = 3 ; f(4) = 6\nwat is f(12)?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(1) = 13 ; f(5) = 17\nwat is f(4)?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(2) = 14 ; f(6) = 18\nwat is f(3)?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(2) = 17 ; f(10) = 25\nwat is f(8)?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(6) = 9 ; f(12) = 15\nwat is f(3)?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(8) = 15 ; f(11) = 18\nwat is f(4)?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(2) = 14 ; f(6) = 18\nwat is f(5)?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(5) = 9 ; f(8) = 12\nwat is f(6)?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(4) = 8 ; f(10) = 14\nwat is f(9)?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(6) = 20 ; f(8) = 22\nwat is f(9)?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(5) = 8 ; f(6) = 9\nwat is f(12)?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(9) = 13 ; f(11) = 15\nwat is f(1)?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "regel: f(9) = 18 ; f(12) = 21\nwat is f(6)?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(5) = 11 ; f(10) = 16\nwat is f(9)?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(3) = 42 ; f(10) = 49\nwat is f(4)?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(2) = 32 ; f(6) = 36\nwat is f(8)?",
+   "oplossing": "38"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(1) = 22 ; f(7) = 28\nwat is f(5)?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(8) = 11 ; f(11) = 14\nwat is f(4)?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(8) = 48 ; f(10) = 50\nwat is f(1)?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(9) = 55 ; f(11) = 57\nwat is f(5)?",
+   "oplossing": "51"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(1) = 40 ; f(3) = 42\nwat is f(2)?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(2) = 9 ; f(11) = 18\nwat is f(5)?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(1) = 42 ; f(6) = 47\nwat is f(3)?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(5) = 49 ; f(12) = 56\nwat is f(7)?",
+   "oplossing": "51"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(4) = 12 ; f(5) = 13\nwat is f(12)?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(4) = 44 ; f(7) = 47\nwat is f(6)?",
+   "oplossing": "46"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(3) = 21 ; f(10) = 28\nwat is f(1)?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(3) = 36 ; f(8) = 41\nwat is f(10)?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(4) = 12 ; f(5) = 13\nwat is f(6)?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(2) = 28 ; f(8) = 34\nwat is f(9)?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(8) = 26 ; f(9) = 27\nwat is f(6)?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(4) = 25 ; f(7) = 28\nwat is f(10)?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "regel: f(3) = 33 ; f(7) = 37\nwat is f(6)?",
+   "oplossing": "36"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(2) = 10 ; f(4) = 20\nwat is f(6)?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(4) = 24 ; f(7) = 42\nwat is f(9)?",
+   "oplossing": "54"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(1) = 7 ; f(10) = 70\nwat is f(15)?",
+   "oplossing": "105"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(4) = 8 ; f(5) = 10\nwat is f(14)?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(14) = 70 ; f(15) = 75\nwat is f(11)?",
+   "oplossing": "55"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(1) = 6 ; f(3) = 18\nwat is f(7)?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(2) = 6 ; f(13) = 39\nwat is f(14)?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(6) = 24 ; f(9) = 36\nwat is f(10)?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(12) = 108 ; f(13) = 117\nwat is f(7)?",
+   "oplossing": "63"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(5) = 45 ; f(15) = 135\nwat is f(3)?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(6) = 12 ; f(11) = 22\nwat is f(14)?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(1) = 5 ; f(2) = 10\nwat is f(12)?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(5) = 10 ; f(9) = 18\nwat is f(14)?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(6) = 54 ; f(7) = 63\nwat is f(1)?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(11) = 88 ; f(13) = 104\nwat is f(6)?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(10) = 30 ; f(11) = 33\nwat is f(3)?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(1) = 8 ; f(15) = 120\nwat is f(13)?",
+   "oplossing": "104"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(10) = 20 ; f(12) = 24\nwat is f(6)?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(2) = 6 ; f(6) = 18\nwat is f(10)?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "regel: f(6) = 30 ; f(11) = 55\nwat is f(8)?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(9) = 28 ; f(13) = 36\nwat is f(2)?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(1) = 35 ; f(13) = 119\nwat is f(14)?",
+   "oplossing": "126"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(2) = 14 ; f(9) = 28\nwat is f(1)?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(2) = 13 ; f(14) = 37\nwat is f(12)?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(1) = 13 ; f(14) = 39\nwat is f(8)?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(3) = 34 ; f(10) = 76\nwat is f(1)?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(1) = 15 ; f(11) = 75\nwat is f(15)?",
+   "oplossing": "99"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(3) = 43 ; f(15) = 151\nwat is f(5)?",
+   "oplossing": "61"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(6) = 68 ; f(13) = 124\nwat is f(2)?",
+   "oplossing": "36"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(4) = 33 ; f(11) = 61\nwat is f(15)?",
+   "oplossing": "77"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(2) = 25 ; f(6) = 45\nwat is f(9)?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(5) = 70 ; f(6) = 79\nwat is f(9)?",
+   "oplossing": "106"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(5) = 44 ; f(15) = 74\nwat is f(13)?",
+   "oplossing": "68"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(11) = 125 ; f(15) = 161\nwat is f(5)?",
+   "oplossing": "71"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(1) = 5 ; f(13) = 29\nwat is f(15)?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(8) = 66 ; f(10) = 78\nwat is f(9)?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(2) = 25 ; f(3) = 33\nwat is f(11)?",
+   "oplossing": "97"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(9) = 36 ; f(14) = 51\nwat is f(15)?",
+   "oplossing": "54"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(6) = 60 ; f(15) = 141\nwat is f(1)?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "regel: f(13) = 108 ; f(15) = 120\nwat is f(14)?",
+   "oplossing": "114"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(2) = -10 ; f(8) = 14\nwat is f(20)?",
+   "oplossing": "62"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(8) = 96 ; f(13) = 136\nwat is f(10)?",
+   "oplossing": "112"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(7) = 45 ; f(20) = 136\nwat is f(17)?",
+   "oplossing": "115"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(3) = -6 ; f(5) = 4\nwat is f(19)?",
+   "oplossing": "74"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(12) = 111 ; f(15) = 132\nwat is f(7)?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(7) = 75 ; f(19) = 147\nwat is f(16)?",
+   "oplossing": "129"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(11) = 58 ; f(15) = 86\nwat is f(5)?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(4) = -1 ; f(8) = 15\nwat is f(1)?",
+   "oplossing": "-13"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(14) = 133 ; f(20) = 175\nwat is f(13)?",
+   "oplossing": "126"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(11) = 110 ; f(20) = 182\nwat is f(16)?",
+   "oplossing": "150"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(8) = 67 ; f(9) = 74\nwat is f(13)?",
+   "oplossing": "102"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(8) = 33 ; f(18) = 73\nwat is f(14)?",
+   "oplossing": "57"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(4) = 32 ; f(19) = 137\nwat is f(3)?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(11) = 1 ; f(12) = 3\nwat is f(20)?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(5) = 32 ; f(16) = 54\nwat is f(18)?",
+   "oplossing": "58"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(14) = 31 ; f(20) = 55\nwat is f(19)?",
+   "oplossing": "51"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(3) = 7 ; f(4) = 12\nwat is f(2)?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(1) = 7 ; f(18) = 92\nwat is f(15)?",
+   "oplossing": "77"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(14) = 125 ; f(17) = 149\nwat is f(19)?",
+   "oplossing": "165"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "regel: f(14) = 125 ; f(20) = 173\nwat is f(3)?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(6) = 63 ; f(12) = 117\nwat is f(15)?",
+   "oplossing": "144"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(11) = 78 ; f(20) = 159\nwat is f(1)?",
+   "oplossing": "-12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(3) = 22 ; f(19) = 150\nwat is f(12)?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(5) = 78 ; f(14) = 150\nwat is f(1)?",
+   "oplossing": "46"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(19) = 140 ; f(20) = 147\nwat is f(18)?",
+   "oplossing": "133"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(12) = 71 ; f(15) = 92\nwat is f(11)?",
+   "oplossing": "64"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(9) = 72 ; f(14) = 107\nwat is f(18)?",
+   "oplossing": "135"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(15) = 115 ; f(17) = 125\nwat is f(6)?",
+   "oplossing": "70"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(4) = 25 ; f(11) = 53\nwat is f(5)?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(8) = 79 ; f(13) = 114\nwat is f(2)?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(7) = 76 ; f(8) = 82\nwat is f(19)?",
+   "oplossing": "148"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(13) = 24 ; f(20) = 52\nwat is f(2)?",
+   "oplossing": "-20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(11) = 95 ; f(13) = 113\nwat is f(1)?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(16) = 55 ; f(18) = 59\nwat is f(10)?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(4) = 21 ; f(5) = 23\nwat is f(15)?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(5) = 35 ; f(7) = 53\nwat is f(16)?",
+   "oplossing": "134"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(2) = 51 ; f(17) = 171\nwat is f(4)?",
+   "oplossing": "67"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(15) = 121 ; f(18) = 142\nwat is f(20)?",
+   "oplossing": "156"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(4) = 41 ; f(7) = 56\nwat is f(18)?",
+   "oplossing": "111"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "regel: f(6) = 68 ; f(20) = 166\nwat is f(17)?",
+   "oplossing": "145"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(2) = 14 ; f(3) = 19 ; f(4) = 26\nwat is f(1)?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(5) = -8 ; f(9) = 8 ; f(12) = 20\nwat is f(18)?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(1) = 17 ; f(2) = 20 ; f(5) = 41\nwat is f(4)?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(2) = 5 ; f(7) = 50 ; f(9) = 82\nwat is f(1)?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(1) = -8 ; f(7) = 40 ; f(8) = 55\nwat is f(5)?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(2) = 31 ; f(6) = 63 ; f(9) = 108\nwat is f(1)?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(2) = 31 ; f(7) = 76 ; f(8) = 91\nwat is f(9)?",
+   "oplossing": "108"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(9) = 41 ; f(16) = 69 ; f(22) = 93\nwat is f(15)?",
+   "oplossing": "65"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(7) = 63 ; f(8) = 78 ; f(9) = 95\nwat is f(4)?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(6) = 80 ; f(11) = 135 ; f(21) = 245\nwat is f(3)?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(2) = 24 ; f(5) = 45 ; f(7) = 69\nwat is f(1)?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(3) = 22 ; f(6) = 49 ; f(7) = 62\nwat is f(8)?",
+   "oplossing": "77"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(5) = 22 ; f(12) = 64 ; f(18) = 100\nwat is f(11)?",
+   "oplossing": "58"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(2) = 4 ; f(4) = 16 ; f(9) = 81\nwat is f(6)?",
+   "oplossing": "36"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(1) = 37 ; f(5) = 61 ; f(7) = 85\nwat is f(3)?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(1) = 18 ; f(3) = 26 ; f(6) = 53\nwat is f(8)?",
+   "oplossing": "81"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(3) = 104 ; f(18) = 149 ; f(22) = 161\nwat is f(15)?",
+   "oplossing": "140"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(10) = -18 ; f(13) = -9 ; f(21) = 15\nwat is f(17)?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(11) = 111 ; f(13) = 117 ; f(23) = 147\nwat is f(20)?",
+   "oplossing": "138"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "regel: f(1) = 22 ; f(4) = 37 ; f(7) = 70\nwat is f(9)?",
+   "oplossing": "102"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(7) = 42 ; f(8) = 57 ; f(9) = 74\nwat is f(2)?",
+   "oplossing": "-3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(3) = 27 ; f(4) = 34 ; f(7) = 67\nwat is f(2)?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(1) = 1 ; f(3) = 21 ; f(17) = 161\nwat is f(15)?",
+   "oplossing": "141"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(2) = 41 ; f(4) = 53 ; f(6) = 73\nwat is f(7)?",
+   "oplossing": "86"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(3) = -2 ; f(5) = 12 ; f(16) = 89\nwat is f(18)?",
+   "oplossing": "103"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(10) = 99 ; f(11) = 102 ; f(12) = 105\nwat is f(17)?",
+   "oplossing": "120"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(1) = 22 ; f(4) = 37 ; f(9) = 102\nwat is f(6)?",
+   "oplossing": "57"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(2) = 80 ; f(12) = 200 ; f(24) = 344\nwat is f(13)?",
+   "oplossing": "212"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(6) = 4 ; f(9) = 19 ; f(19) = 69\nwat is f(15)?",
+   "oplossing": "49"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(6) = 74 ; f(17) = 173 ; f(22) = 218\nwat is f(3)?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(5) = 43 ; f(8) = 82 ; f(9) = 99\nwat is f(4)?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(1) = -11 ; f(3) = -3 ; f(7) = 37\nwat is f(6)?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(1) = 30 ; f(5) = 54 ; f(9) = 110\nwat is f(6)?",
+   "oplossing": "65"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(1) = 18 ; f(2) = 21 ; f(3) = 26\nwat is f(8)?",
+   "oplossing": "81"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(5) = 61 ; f(6) = 72 ; f(9) = 117\nwat is f(2)?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(4) = 41 ; f(5) = 50 ; f(8) = 89\nwat is f(9)?",
+   "oplossing": "106"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(6) = 62 ; f(9) = 86 ; f(20) = 174\nwat is f(2)?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(6) = 137 ; f(12) = 203 ; f(14) = 225\nwat is f(7)?",
+   "oplossing": "148"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(4) = 4 ; f(12) = 76 ; f(23) = 175\nwat is f(14)?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "regel: f(1) = 85 ; f(4) = 100 ; f(16) = 160\nwat is f(19)?",
+   "oplossing": "175"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(1) = -43 ; f(3) = -35 ; f(9) = 37\nwat is f(2)?",
+   "oplossing": "-40"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(3) = -15 ; f(8) = 95 ; f(11) = 209\nwat is f(2)?",
+   "oplossing": "-25"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(2) = 12 ; f(6) = 108 ; f(12) = 432\nwat is f(3)?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(15) = 58 ; f(17) = 62 ; f(38) = 104\nwat is f(19)?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(1) = 43 ; f(2) = 46 ; f(6) = 78\nwat is f(9)?",
+   "oplossing": "123"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(3) = 163 ; f(15) = 331 ; f(29) = 527\nwat is f(23)?",
+   "oplossing": "443"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(17) = 90 ; f(25) = 138 ; f(33) = 186\nwat is f(15)?",
+   "oplossing": "78"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(7) = 45 ; f(10) = 96 ; f(12) = 140\nwat is f(3)?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(1) = 8 ; f(6) = 113 ; f(9) = 248\nwat is f(8)?",
+   "oplossing": "197"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(4) = -6 ; f(6) = 34 ; f(11) = 204\nwat is f(2)?",
+   "oplossing": "-30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(5) = 64 ; f(6) = 108 ; f(12) = 540\nwat is f(9)?",
+   "oplossing": "288"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(3) = -6 ; f(18) = 174 ; f(33) = 354\nwat is f(21)?",
+   "oplossing": "210"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(2) = -21 ; f(5) = -12 ; f(39) = 90\nwat is f(37)?",
+   "oplossing": "84"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(4) = -14 ; f(7) = 19 ; f(12) = 114\nwat is f(1)?",
+   "oplossing": "-29"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(2) = 10 ; f(4) = 58 ; f(10) = 394\nwat is f(7)?",
+   "oplossing": "190"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(1) = 2 ; f(2) = 8 ; f(6) = 72\nwat is f(9)?",
+   "oplossing": "162"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(1) = 23 ; f(8) = 86 ; f(12) = 166\nwat is f(9)?",
+   "oplossing": "103"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(4) = 33 ; f(9) = 228 ; f(12) = 417\nwat is f(2)?",
+   "oplossing": "-3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(1) = 72 ; f(10) = 171 ; f(12) = 215\nwat is f(9)?",
+   "oplossing": "152"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "regel: f(2) = 49 ; f(3) = 54 ; f(8) = 109\nwat is f(11)?",
+   "oplossing": "166"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(12) = 216 ; f(19) = 237 ; f(21) = 243\nwat is f(24)?",
+   "oplossing": "252"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(5) = 172 ; f(7) = 182 ; f(20) = 247\nwat is f(24)?",
+   "oplossing": "267"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(1) = 44 ; f(7) = 92 ; f(11) = 164\nwat is f(12)?",
+   "oplossing": "187"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(3) = 69 ; f(5) = 133 ; f(11) = 517\nwat is f(9)?",
+   "oplossing": "357"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(11) = 107 ; f(22) = 250 ; f(30) = 354\nwat is f(38)?",
+   "oplossing": "458"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(5) = 46 ; f(11) = 334 ; f(12) = 403\nwat is f(7)?",
+   "oplossing": "118"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(6) = 91 ; f(14) = 171 ; f(30) = 331\nwat is f(23)?",
+   "oplossing": "261"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(2) = -29 ; f(7) = 61 ; f(11) = 205\nwat is f(4)?",
+   "oplossing": "-5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(5) = 32 ; f(11) = 320 ; f(12) = 389\nwat is f(10)?",
+   "oplossing": "257"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(20) = 325 ; f(31) = 446 ; f(38) = 523\nwat is f(7)?",
+   "oplossing": "182"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(2) = 67 ; f(5) = 151 ; f(10) = 451\nwat is f(8)?",
+   "oplossing": "307"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(1) = -28 ; f(8) = 161 ; f(12) = 401\nwat is f(11)?",
+   "oplossing": "332"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(11) = 165 ; f(30) = 431 ; f(36) = 515\nwat is f(3)?",
+   "oplossing": "53"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(2) = 122 ; f(12) = 162 ; f(24) = 210\nwat is f(26)?",
+   "oplossing": "218"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(22) = -6 ; f(29) = 15 ; f(39) = 45\nwat is f(11)?",
+   "oplossing": "-39"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(3) = 107 ; f(21) = 179 ; f(27) = 203\nwat is f(16)?",
+   "oplossing": "159"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(5) = 74 ; f(9) = 186 ; f(12) = 312\nwat is f(2)?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(1) = 86 ; f(2) = 95 ; f(7) = 230\nwat is f(4)?",
+   "oplossing": "131"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(3) = 1 ; f(9) = 289 ; f(11) = 449\nwat is f(6)?",
+   "oplossing": "109"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "regel: f(2) = 25 ; f(3) = 45 ; f(4) = 73\nwat is f(8)?",
+   "oplossing": "265"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(13) = 110 ; f(30) = 161 ; f(38) = 185\nwat is f(15)?",
+   "oplossing": "116"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(15) = 39 ; f(33) = 183 ; f(40) = 239\nwat is f(39)?",
+   "oplossing": "231"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(23) = 101 ; f(29) = 149 ; f(37) = 213\nwat is f(38)?",
+   "oplossing": "221"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(3) = 8 ; f(4) = 15 ; f(11) = 120\nwat is f(10)?",
+   "oplossing": "99"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(7) = 180 ; f(8) = 240 ; f(9) = 308\nwat is f(3)?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(3) = 100 ; f(15) = 220 ; f(31) = 380\nwat is f(5)?",
+   "oplossing": "120"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(3) = 113 ; f(7) = 233 ; f(11) = 449\nwat is f(8)?",
+   "oplossing": "278"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(13) = 214 ; f(24) = 324 ; f(32) = 404\nwat is f(17)?",
+   "oplossing": "254"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(1) = -10 ; f(6) = 25 ; f(11) = 110\nwat is f(12)?",
+   "oplossing": "133"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(6) = 51 ; f(8) = 79 ; f(12) = 159\nwat is f(7)?",
+   "oplossing": "64"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(3) = -2 ; f(8) = 108 ; f(11) = 222\nwat is f(6)?",
+   "oplossing": "52"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(2) = -26 ; f(3) = -6 ; f(6) = 102\nwat is f(9)?",
+   "oplossing": "282"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(4) = 15 ; f(5) = 51 ; f(12) = 527\nwat is f(8)?",
+   "oplossing": "207"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(17) = 314 ; f(18) = 321 ; f(29) = 398\nwat is f(25)?",
+   "oplossing": "370"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(25) = -8 ; f(31) = 4 ; f(37) = 16\nwat is f(10)?",
+   "oplossing": "-38"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(4) = 45 ; f(9) = 240 ; f(11) = 360\nwat is f(8)?",
+   "oplossing": "189"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(4) = 29 ; f(7) = 128 ; f(9) = 224\nwat is f(6)?",
+   "oplossing": "89"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(3) = 56 ; f(9) = 200 ; f(12) = 326\nwat is f(6)?",
+   "oplossing": "110"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(3) = 34 ; f(4) = 62 ; f(10) = 398\nwat is f(7)?",
+   "oplossing": "194"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "regel: f(4) = 111 ; f(16) = 159 ; f(28) = 207\nwat is f(24)?",
+   "oplossing": "191"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(20) = 222 ; f(26) = 276 ; f(30) = 312\nwat is f(39)?",
+   "oplossing": "393"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(12) = 245 ; f(17) = 295 ; f(18) = 305\nwat is f(3)?",
+   "oplossing": "155"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(13) = -20 ; f(17) = -12 ; f(27) = 8\nwat is f(36)?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(1) = 35 ; f(2) = 38 ; f(5) = 59\nwat is f(8)?",
+   "oplossing": "98"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(1) = 98 ; f(4) = 113 ; f(6) = 133\nwat is f(10)?",
+   "oplossing": "197"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(14) = 124 ; f(38) = 172 ; f(40) = 176\nwat is f(39)?",
+   "oplossing": "174"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(27) = 138 ; f(35) = 170 ; f(40) = 190\nwat is f(21)?",
+   "oplossing": "114"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(6) = 105 ; f(8) = 133 ; f(10) = 169\nwat is f(12)?",
+   "oplossing": "213"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(4) = 75 ; f(20) = 315 ; f(25) = 390\nwat is f(26)?",
+   "oplossing": "405"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(1) = -47 ; f(4) = -32 ; f(12) = 96\nwat is f(10)?",
+   "oplossing": "52"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(2) = 49 ; f(7) = 184 ; f(10) = 337\nwat is f(1)?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(5) = 158 ; f(7) = 254 ; f(9) = 382\nwat is f(12)?",
+   "oplossing": "634"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(10) = 70 ; f(20) = 200 ; f(31) = 343\nwat is f(38)?",
+   "oplossing": "434"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(3) = 106 ; f(5) = 138 ; f(7) = 186\nwat is f(11)?",
+   "oplossing": "330"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(7) = 225 ; f(35) = 337 ; f(36) = 341\nwat is f(3)?",
+   "oplossing": "209"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(18) = 238 ; f(22) = 282 ; f(23) = 293\nwat is f(15)?",
+   "oplossing": "205"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(6) = 231 ; f(7) = 283 ; f(11) = 571\nwat is f(3)?",
+   "oplossing": "123"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(22) = 316 ; f(29) = 400 ; f(31) = 424\nwat is f(11)?",
+   "oplossing": "184"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(6) = 173 ; f(13) = 250 ; f(38) = 525\nwat is f(39)?",
+   "oplossing": "536"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "regel: f(2) = -19 ; f(3) = -9 ; f(4) = 5\nwat is f(10)?",
+   "oplossing": "173"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(5) = 69 ; f(7) = 141 ; f(9) = 237\nwat is f(6)?",
+   "oplossing": "102"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(35) = 215 ; f(38) = 239 ; f(41) = 263\nwat is f(23)?",
+   "oplossing": "119"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(8) = 226 ; f(11) = 271 ; f(14) = 316\nwat is f(42)?",
+   "oplossing": "736"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(13) = 111 ; f(18) = 181 ; f(31) = 363\nwat is f(19)?",
+   "oplossing": "195"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(9) = 334 ; f(10) = 343 ; f(21) = 442\nwat is f(19)?",
+   "oplossing": "424"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(7) = 26 ; f(21) = 180 ; f(40) = 389\nwat is f(24)?",
+   "oplossing": "213"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(16) = 379 ; f(18) = 401 ; f(33) = 566\nwat is f(11)?",
+   "oplossing": "324"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(20) = 328 ; f(24) = 344 ; f(34) = 384\nwat is f(23)?",
+   "oplossing": "340"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(2) = 109 ; f(12) = 259 ; f(38) = 649\nwat is f(6)?",
+   "oplossing": "169"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(4) = -134 ; f(14) = -104 ; f(29) = -59\nwat is f(16)?",
+   "oplossing": "-98"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(5) = 2 ; f(6) = 14 ; f(21) = 194\nwat is f(33)?",
+   "oplossing": "338"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(5) = 433 ; f(40) = 713 ; f(42) = 729\nwat is f(29)?",
+   "oplossing": "625"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(15) = -76 ; f(18) = -61 ; f(34) = 19\nwat is f(42)?",
+   "oplossing": "59"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(3) = 10 ; f(7) = 130 ; f(18) = 955\nwat is f(11)?",
+   "oplossing": "346"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(2) = 63 ; f(12) = 203 ; f(14) = 255\nwat is f(5)?",
+   "oplossing": "84"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(2) = 32 ; f(32) = 152 ; f(42) = 192\nwat is f(18)?",
+   "oplossing": "96"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(7) = 179 ; f(13) = 539 ; f(15) = 707\nwat is f(5)?",
+   "oplossing": "107"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(16) = 142 ; f(27) = 307 ; f(42) = 532\nwat is f(12)?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(4) = 160 ; f(5) = 178 ; f(11) = 370\nwat is f(16)?",
+   "oplossing": "640"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 13,
+   "opgave": "regel: f(21) = 190 ; f(24) = 205 ; f(42) = 295\nwat is f(30)?",
+   "oplossing": "235"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(19) = -82 ; f(29) = -32 ; f(32) = -17\nwat is f(1)?",
+   "oplossing": "-172"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(7) = 43 ; f(25) = 331 ; f(29) = 395\nwat is f(22)?",
+   "oplossing": "283"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(3) = 207 ; f(38) = 802 ; f(39) = 819\nwat is f(16)?",
+   "oplossing": "428"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(6) = 131 ; f(11) = 301 ; f(16) = 571\nwat is f(19)?",
+   "oplossing": "781"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(14) = 526 ; f(18) = 594 ; f(41) = 985\nwat is f(25)?",
+   "oplossing": "713"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(2) = 88 ; f(11) = 439 ; f(16) = 844\nwat is f(4)?",
+   "oplossing": "124"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(3) = 128 ; f(8) = 348 ; f(13) = 768\nwat is f(16)?",
+   "oplossing": "1116"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(14) = 582 ; f(15) = 640 ; f(16) = 702\nwat is f(4)?",
+   "oplossing": "222"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(17) = 687 ; f(21) = 755 ; f(34) = 976\nwat is f(8)?",
+   "oplossing": "534"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(1) = 92 ; f(16) = 347 ; f(29) = 568\nwat is f(18)?",
+   "oplossing": "381"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(10) = 61 ; f(14) = 93 ; f(18) = 125\nwat is f(8)?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(2) = 8 ; f(3) = 23 ; f(17) = 863\nwat is f(9)?",
+   "oplossing": "239"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(2) = -14 ; f(16) = 994 ; f(17) = 1126\nwat is f(1)?",
+   "oplossing": "-26"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(2) = 131 ; f(10) = 267 ; f(14) = 335\nwat is f(18)?",
+   "oplossing": "403"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(2) = 331 ; f(18) = 411 ; f(28) = 461\nwat is f(7)?",
+   "oplossing": "356"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(11) = 574 ; f(14) = 874 ; f(17) = 1246\nwat is f(16)?",
+   "oplossing": "1114"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(2) = 60 ; f(7) = 105 ; f(10) = 156\nwat is f(4)?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(3) = -28 ; f(16) = 167 ; f(21) = 242\nwat is f(38)?",
+   "oplossing": "497"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(6) = 255 ; f(14) = 343 ; f(25) = 464\nwat is f(17)?",
+   "oplossing": "376"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 14,
+   "opgave": "regel: f(19) = 55 ; f(24) = 110 ; f(27) = 143\nwat is f(9)?",
+   "oplossing": "-55"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(5) = 168 ; f(13) = 232 ; f(38) = 432\nwat is f(6)?",
+   "oplossing": "176"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(4) = 212 ; f(43) = 641 ; f(45) = 663\nwat is f(23)?",
+   "oplossing": "421"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(13) = -61 ; f(26) = 43 ; f(31) = 83\nwat is f(40)?",
+   "oplossing": "155"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(5) = 163 ; f(31) = 423 ; f(44) = 553\nwat is f(12)?",
+   "oplossing": "233"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(12) = 546 ; f(15) = 585 ; f(21) = 663\nwat is f(16)?",
+   "oplossing": "598"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(2) = 137 ; f(8) = 215 ; f(15) = 306\nwat is f(13)?",
+   "oplossing": "280"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(9) = 36 ; f(42) = 465 ; f(44) = 491\nwat is f(39)?",
+   "oplossing": "426"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(1) = -155 ; f(21) = 145 ; f(25) = 205\nwat is f(11)?",
+   "oplossing": "-5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(2) = 149 ; f(29) = 473 ; f(37) = 569\nwat is f(15)?",
+   "oplossing": "305"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(14) = -128 ; f(30) = -80 ; f(33) = -71\nwat is f(44)?",
+   "oplossing": "-38"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(3) = 183 ; f(4) = 218 ; f(9) = 543\nwat is f(12)?",
+   "oplossing": "858"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(5) = 52 ; f(28) = 236 ; f(34) = 284\nwat is f(8)?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(5) = 4 ; f(18) = 303 ; f(19) = 340\nwat is f(13)?",
+   "oplossing": "148"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(9) = 55 ; f(15) = 145 ; f(24) = 280\nwat is f(13)?",
+   "oplossing": "115"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(20) = 197 ; f(21) = 204 ; f(37) = 316\nwat is f(5)?",
+   "oplossing": "92"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(6) = 198 ; f(13) = 730 ; f(15) = 954\nwat is f(10)?",
+   "oplossing": "454"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(26) = 548 ; f(40) = 674 ; f(45) = 719\nwat is f(20)?",
+   "oplossing": "494"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(5) = 239 ; f(11) = 623 ; f(14) = 923\nwat is f(1)?",
+   "oplossing": "143"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(13) = 368 ; f(18) = 408 ; f(41) = 592\nwat is f(9)?",
+   "oplossing": "336"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 15,
+   "opgave": "regel: f(11) = -76 ; f(19) = -4 ; f(31) = 104\nwat is f(35)?",
+   "oplossing": "140"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(10) = 390 ; f(29) = 713 ; f(33) = 781\nwat is f(24)?",
+   "oplossing": "628"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(1) = 180 ; f(14) = 1155 ; f(19) = 1980\nwat is f(9)?",
+   "oplossing": "580"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(10) = 458 ; f(13) = 665 ; f(18) = 1130\nwat is f(8)?",
+   "oplossing": "350"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(7) = 268 ; f(11) = 628 ; f(17) = 1468\nwat is f(13)?",
+   "oplossing": "868"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(10) = 68 ; f(22) = 104 ; f(38) = 152\nwat is f(44)?",
+   "oplossing": "170"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(3) = -122 ; f(23) = -42 ; f(32) = -6\nwat is f(34)?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(4) = 171 ; f(9) = 301 ; f(14) = 531\nwat is f(6)?",
+   "oplossing": "211"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(16) = 922 ; f(17) = 1021 ; f(18) = 1126\nwat is f(12)?",
+   "oplossing": "586"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(9) = 551 ; f(17) = 1591 ; f(18) = 1766\nwat is f(5)?",
+   "oplossing": "271"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(5) = -61 ; f(15) = 139 ; f(17) = 203\nwat is f(2)?",
+   "oplossing": "-82"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(3) = 66 ; f(11) = 290 ; f(12) = 336\nwat is f(14)?",
+   "oplossing": "440"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(9) = 121 ; f(10) = 140 ; f(12) = 184\nwat is f(8)?",
+   "oplossing": "104"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(1) = 101 ; f(6) = 136 ; f(14) = 296\nwat is f(20)?",
+   "oplossing": "500"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(4) = 51 ; f(12) = 691 ; f(13) = 816\nwat is f(2)?",
+   "oplossing": "-9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(4) = -16 ; f(7) = -1 ; f(45) = 189\nwat is f(9)?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(7) = 108 ; f(16) = 162 ; f(41) = 312\nwat is f(4)?",
+   "oplossing": "90"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(1) = -12 ; f(3) = 12 ; f(17) = 852\nwat is f(4)?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(3) = 8 ; f(39) = 548 ; f(42) = 593\nwat is f(10)?",
+   "oplossing": "113"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(4) = 150 ; f(16) = 306 ; f(31) = 501\nwat is f(46)?",
+   "oplossing": "696"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 16,
+   "opgave": "regel: f(20) = 569 ; f(22) = 601 ; f(29) = 713\nwat is f(9)?",
+   "oplossing": "393"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(9) = 152 ; f(10) = 163 ; f(13) = 196 ; f(41) = 504\nwat is f(40)?",
+   "oplossing": "493"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(2) = -27 ; f(4) = 21 ; f(14) = 741 ; f(20) = 1557\nwat is f(1)?",
+   "oplossing": "-39"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(8) = 68 ; f(13) = 173 ; f(15) = 229 ; f(18) = 328\nwat is f(2)?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(12) = 220 ; f(15) = 382 ; f(17) = 510 ; f(19) = 654\nwat is f(10)?",
+   "oplossing": "132"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(4) = 400 ; f(10) = 430 ; f(23) = 495 ; f(34) = 550\nwat is f(20)?",
+   "oplossing": "480"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(1) = 98 ; f(6) = 273 ; f(12) = 813 ; f(19) = 1898\nwat is f(13)?",
+   "oplossing": "938"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(2) = 302 ; f(3) = 316 ; f(9) = 400 ; f(45) = 904\nwat is f(21)?",
+   "oplossing": "568"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(11) = 542 ; f(29) = 848 ; f(31) = 882 ; f(34) = 933\nwat is f(10)?",
+   "oplossing": "525"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(13) = 219 ; f(14) = 235 ; f(40) = 651 ; f(42) = 683\nwat is f(17)?",
+   "oplossing": "283"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(7) = -69 ; f(14) = 22 ; f(15) = 35 ; f(35) = 295\nwat is f(31)?",
+   "oplossing": "243"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(1) = -80 ; f(3) = -56 ; f(16) = 685 ; f(20) = 1117\nwat is f(15)?",
+   "oplossing": "592"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(29) = 207 ; f(30) = 215 ; f(35) = 255 ; f(45) = 335\nwat is f(20)?",
+   "oplossing": "135"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(9) = 77 ; f(13) = 253 ; f(15) = 365 ; f(16) = 427\nwat is f(14)?",
+   "oplossing": "307"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(5) = 314 ; f(13) = 418 ; f(23) = 548 ; f(47) = 860\nwat is f(31)?",
+   "oplossing": "652"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(3) = 136 ; f(12) = 271 ; f(15) = 352 ; f(16) = 383\nwat is f(11)?",
+   "oplossing": "248"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(9) = 265 ; f(15) = 553 ; f(19) = 825 ; f(20) = 903\nwat is f(14)?",
+   "oplossing": "495"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(5) = 143 ; f(9) = 367 ; f(10) = 443 ; f(16) = 1067\nwat is f(14)?",
+   "oplossing": "827"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(11) = 182 ; f(15) = 286 ; f(16) = 317 ; f(18) = 385\nwat is f(13)?",
+   "oplossing": "230"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(11) = 71 ; f(12) = 87 ; f(16) = 151 ; f(37) = 487\nwat is f(27)?",
+   "oplossing": "327"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 17,
+   "opgave": "regel: f(9) = 265 ; f(10) = 341 ; f(15) = 841 ; f(19) = 1385\nwat is f(3)?",
+   "oplossing": "-23"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(6) = 314 ; f(8) = 454 ; f(9) = 539 ; f(18) = 1754\nwat is f(1)?",
+   "oplossing": "139"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(14) = 1348 ; f(15) = 1522 ; f(19) = 2338 ; f(21) = 2818\nwat is f(7)?",
+   "oplossing": "466"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(36) = 584 ; f(37) = 591 ; f(42) = 626 ; f(46) = 654\nwat is f(40)?",
+   "oplossing": "612"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(11) = 305 ; f(13) = 401 ; f(15) = 513 ; f(19) = 785\nwat is f(8)?",
+   "oplossing": "191"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(4) = 178 ; f(12) = 818 ; f(19) = 1903 ; f(21) = 2303\nwat is f(7)?",
+   "oplossing": "343"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(8) = 219 ; f(14) = 351 ; f(19) = 516 ; f(20) = 555\nwat is f(13)?",
+   "oplossing": "324"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(3) = 199 ; f(6) = 253 ; f(12) = 469 ; f(17) = 759\nwat is f(11)?",
+   "oplossing": "423"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(2) = 138 ; f(9) = 446 ; f(17) = 1278 ; f(19) = 1566\nwat is f(16)?",
+   "oplossing": "1146"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(15) = 202 ; f(25) = 312 ; f(30) = 367 ; f(39) = 466\nwat is f(27)?",
+   "oplossing": "334"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(8) = 309 ; f(10) = 381 ; f(13) = 519 ; f(14) = 573\nwat is f(21)?",
+   "oplossing": "1063"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(8) = 261 ; f(14) = 279 ; f(25) = 312 ; f(27) = 318\nwat is f(32)?",
+   "oplossing": "333"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(6) = 398 ; f(13) = 475 ; f(17) = 519 ; f(43) = 805\nwat is f(45)?",
+   "oplossing": "827"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(8) = -2 ; f(40) = 126 ; f(44) = 142 ; f(46) = 150\nwat is f(4)?",
+   "oplossing": "-18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(4) = 208 ; f(5) = 226 ; f(8) = 304 ; f(19) = 898\nwat is f(21)?",
+   "oplossing": "1058"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(7) = 203 ; f(10) = 254 ; f(13) = 323 ; f(14) = 350\nwat is f(16)?",
+   "oplossing": "410"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(1) = -116 ; f(15) = 24 ; f(32) = 194 ; f(46) = 334\nwat is f(5)?",
+   "oplossing": "-76"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(1) = 113 ; f(18) = 402 ; f(34) = 674 ; f(43) = 827\nwat is f(46)?",
+   "oplossing": "878"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(3) = 156 ; f(13) = 346 ; f(21) = 498 ; f(34) = 745\nwat is f(2)?",
+   "oplossing": "137"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(14) = 181 ; f(18) = 197 ; f(30) = 245 ; f(45) = 305\nwat is f(19)?",
+   "oplossing": "201"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 18,
+   "opgave": "regel: f(2) = -26 ; f(9) = 51 ; f(13) = 139 ; f(21) = 411\nwat is f(20)?",
+   "oplossing": "370"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(22) = 390 ; f(31) = 435 ; f(35) = 455 ; f(49) = 525\nwat is f(7)?",
+   "oplossing": "315"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(24) = 363 ; f(31) = 489 ; f(42) = 687 ; f(45) = 741\nwat is f(11)?",
+   "oplossing": "129"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(11) = 216 ; f(15) = 320 ; f(18) = 419 ; f(20) = 495\nwat is f(10)?",
+   "oplossing": "195"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(27) = 380 ; f(30) = 419 ; f(35) = 484 ; f(36) = 497\nwat is f(4)?",
+   "oplossing": "81"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(7) = 0 ; f(13) = 240 ; f(15) = 352 ; f(19) = 624\nwat is f(8)?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(1) = 91 ; f(11) = 151 ; f(15) = 175 ; f(44) = 349\nwat is f(25)?",
+   "oplossing": "235"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(5) = 152 ; f(9) = 208 ; f(15) = 352 ; f(20) = 527\nwat is f(17)?",
+   "oplossing": "416"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(22) = 2 ; f(25) = 17 ; f(31) = 47 ; f(44) = 112\nwat is f(45)?",
+   "oplossing": "117"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(1) = 73 ; f(3) = 89 ; f(6) = 143 ; f(19) = 793\nwat is f(13)?",
+   "oplossing": "409"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(2) = 153 ; f(7) = 288 ; f(8) = 333 ; f(11) = 504\nwat is f(18)?",
+   "oplossing": "1113"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(4) = 91 ; f(8) = 379 ; f(12) = 859 ; f(18) = 1939\nwat is f(10)?",
+   "oplossing": "595"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(3) = 142 ; f(12) = 817 ; f(20) = 2097 ; f(21) = 2302\nwat is f(6)?",
+   "oplossing": "277"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(8) = 142 ; f(18) = 272 ; f(23) = 337 ; f(46) = 636\nwat is f(20)?",
+   "oplossing": "298"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(31) = 479 ; f(42) = 589 ; f(46) = 629 ; f(48) = 649\nwat is f(32)?",
+   "oplossing": "489"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(13) = 497 ; f(26) = 692 ; f(36) = 842 ; f(43) = 947\nwat is f(15)?",
+   "oplossing": "527"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(3) = 133 ; f(5) = 181 ; f(12) = 538 ; f(14) = 694\nwat is f(10)?",
+   "oplossing": "406"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(10) = 277 ; f(34) = 661 ; f(38) = 725 ; f(46) = 853\nwat is f(13)?",
+   "oplossing": "325"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(3) = -28 ; f(11) = 308 ; f(13) = 452 ; f(19) = 1028\nwat is f(21)?",
+   "oplossing": "1268"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(24) = 477 ; f(25) = 485 ; f(30) = 525 ; f(38) = 589\nwat is f(10)?",
+   "oplossing": "365"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 19,
+   "opgave": "regel: f(1) = 190 ; f(3) = 198 ; f(10) = 289 ; f(11) = 310\nwat is f(6)?",
+   "oplossing": "225"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(25) = 546 ; f(27) = 584 ; f(47) = 964 ; f(50) = 1021\nwat is f(33)?",
+   "oplossing": "698"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(3) = 190 ; f(11) = 750 ; f(14) = 1125 ; f(21) = 2350\nwat is f(8)?",
+   "oplossing": "465"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(10) = 191 ; f(33) = 490 ; f(35) = 516 ; f(50) = 711\nwat is f(13)?",
+   "oplossing": "230"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(14) = 284 ; f(17) = 302 ; f(25) = 350 ; f(37) = 422\nwat is f(39)?",
+   "oplossing": "434"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(8) = 229 ; f(30) = 405 ; f(44) = 517 ; f(45) = 525\nwat is f(11)?",
+   "oplossing": "253"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(20) = 375 ; f(25) = 395 ; f(33) = 427 ; f(50) = 495\nwat is f(34)?",
+   "oplossing": "431"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(23) = -83 ; f(28) = -58 ; f(34) = -28 ; f(35) = -23\nwat is f(1)?",
+   "oplossing": "-193"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(1) = 72 ; f(6) = 177 ; f(8) = 261 ; f(15) = 744\nwat is f(4)?",
+   "oplossing": "117"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(1) = -75 ; f(2) = -66 ; f(8) = 114 ; f(19) = 1005\nwat is f(21)?",
+   "oplossing": "1245"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(14) = 141 ; f(25) = 196 ; f(28) = 211 ; f(35) = 246\nwat is f(1)?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(9) = -140 ; f(10) = -134 ; f(24) = -50 ; f(26) = -38\nwat is f(37)?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(1) = -61 ; f(2) = -58 ; f(6) = -26 ; f(17) = 227\nwat is f(16)?",
+   "oplossing": "194"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(8) = 43 ; f(14) = 79 ; f(26) = 151 ; f(46) = 271\nwat is f(20)?",
+   "oplossing": "115"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(2) = 191 ; f(7) = 241 ; f(43) = 601 ; f(45) = 621\nwat is f(29)?",
+   "oplossing": "461"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(13) = 526 ; f(19) = 1102 ; f(20) = 1219 ; f(21) = 1342\nwat is f(10)?",
+   "oplossing": "319"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(1) = 164 ; f(4) = 254 ; f(13) = 1172 ; f(16) = 1694\nwat is f(9)?",
+   "oplossing": "644"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(8) = 382 ; f(15) = 396 ; f(42) = 450 ; f(50) = 466\nwat is f(11)?",
+   "oplossing": "388"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(3) = -66 ; f(4) = -61 ; f(10) = -31 ; f(47) = 154\nwat is f(21)?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(4) = 31 ; f(9) = 46 ; f(23) = 88 ; f(48) = 163\nwat is f(8)?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 20,
+   "opgave": "regel: f(3) = 16 ; f(7) = 96 ; f(11) = 240 ; f(19) = 720\nwat is f(15)?",
+   "oplossing": "448"
+  }
+ ]
+}

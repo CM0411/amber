@@ -91,8 +91,8 @@ wrong = []
 kinds = set()
 for n in range(200):
     t = world.make("puzzel", 1, n)
-    if t is None:
-        continue
+    if t is None or t.problem.startswith("regel: "):
+        continue                          # the which-rule kind (17 Aug 2026), tested below
     row = [int(x) for x in re.findall(r"-?\d+", t.problem)] + [int(t.solution)]
     diffs = {row[i + 1] - row[i] for i in range(len(row) - 1)}
     ratios = {row[i + 1] / row[i] for i in range(len(row) - 1) if row[i]}
@@ -385,7 +385,7 @@ check("code knows negative outcomes, and marking accepts them",
 lengths = set()
 for n in range(2000, 2400):
     t = world.make("puzzel", 2, n)
-    if t is not None:
+    if t is not None and not t.problem.startswith("regel: "):
         lengths.add(t.problem.count(","))
 # since 15 Aug 2026 the keer-plus rows at depth 2 show two more (7-9)
 check("puzzle rows vary in length (5, 6 and 7 shown; keer-plus 7-9)",
@@ -459,8 +459,8 @@ for depth in (1, 2, 3, 4, 5, 6):
 for depth in (7, 8, 9):
     for n in range(200):
         t = world.make("puzzel", depth, n)
-        if t is None:
-            continue
+        if t is None or t.problem.startswith("regel: "):
+            continue                      # rows only; the rule kind is tested below
         compact_seen += 1
         # Deep rows always carry at least one difference layer, so the
         # compact label must appear — and the answer must still be the
@@ -488,6 +488,7 @@ check("compact workings fit window 1024 (85% rule)",
 # the brick existed (300 numbers per depth 1-10, minus the split numbers).
 _h = hashlib.sha256()
 kp_numbers = []
+regel_numbers = []
 for depth in range(1, 11):
     for n in range(300):
         seed = world._seed_of("puzzel", depth, n)
@@ -495,12 +496,19 @@ for depth in range(1, 11):
         if depth >= world.KEERPLUS_MIN and k.integer(1, 5) == 1:
             kp_numbers.append((depth, n))
             continue
+        # the "which rule" split (17 Aug 2026) takes one in three of the
+        # rest — those numbers changed on purpose; the others must not
+        if tasks.Picker(tasks._mix(seed ^ world.REGEL_SEED)).integer(1, 3) == 1:
+            regel_numbers.append((depth, n))
+            continue
         t = world.make("puzzel", depth, n)
         _h.update((f"{depth}|{n}|{t.problem if t else ''}|"
                    f"{t.working if t else ''}|{t.solution if t else ''}\n")
                   .encode())
-check("puzzle numbers outside the keer-plus split are bit for bit the world "
-      "of 15 Aug 2026", _h.hexdigest()[:16] == "a7d2547646bda49b",
+# taken over exactly these numbers on 17 Aug 2026 before the rule split
+# existed (a7d2547646bda49b was the sum over the keer-plus complement)
+check("puzzle numbers outside both splits are bit for bit the world "
+      "of 15 Aug 2026", _h.hexdigest()[:16] == "7fa9005221985a61",
       _h.hexdigest()[:16])
 # and the split numbers: a row that comes out ends on its answer, every
 # equation holds, and the doubling shows in the working (a `: 2` ratio
@@ -828,7 +836,7 @@ check("code 25–30 fits window 1536 with its working (85% rule)",
 print()
 print("--- geheugen: the fourth family ---")
 check("the world's families are the measured three, then geheugen — in that order",
-      world.FAMILIES[:3] == tasks.FAMILIES and world.FAMILIES[3:] == ("geheugen",))
+      world.FAMILIES[:3] == tasks.FAMILIES and world.FAMILIES[3] == "geheugen")
 check("the fence for geheugen stands at 12 or higher", world.max_depth("geheugen") >= 12)
 
 
@@ -912,6 +920,165 @@ check("a geheugen task is the same task every time",
 # and the world of the other three did not move: the checksums above
 # (arithmetic 5f4eee0d46fcfe25, code e6b79a906f84757f, puzzle) still hold
 # because "geheugen" was appended, never inserted — see world.FAMILIES.
+
+# --- the "which rule" puzzle (17 Aug 2026) ------------------------------------
+# A hidden rule from bricks, shown through pairs, asked at a new input. The
+# judge: an independent solver that fits linear first (equal steps) and
+# square otherwise, and demands that exactly one of the two fits.
+print()
+print("--- the which-rule puzzle ---")
+
+
+def _solve_rule(problem):
+    head, q = problem.split("\n")
+    pairs = [(int(a), int(b)) for a, b in re.findall(r"f\((\d+)\) = (-?\d+)", head)]
+    asked = int(re.fullmatch(r"wat is f\((\d+)\)\?", q).group(1))
+    fits = []
+    for kind in ("lin", "kwad"):
+        f = (lambda x: x) if kind == "lin" else (lambda x: x * x)
+        (x1, y1), (x2, y2) = pairs[0], pairs[1]
+        if f(x2) == f(x1):
+            continue
+        num = y2 - y1
+        den = f(x2) - f(x1)
+        if num % den:
+            continue
+        a = num // den
+        c = y1 - a * f(x1)
+        if all(a * f(x) + c == y for x, y in pairs) and a >= 1:
+            fits.append((kind, a, c))
+    if len(pairs) == 2:
+        fits = [r for r in fits if r[0] == "lin"] or fits    # two pairs: linear by convention
+    if len(fits) != 1:
+        return None
+    kind, a, c = fits[0]
+    return a * (asked if kind == "lin" else asked * asked) + c
+
+
+_old_puzzle_fence = world.MAX_DEPTH_PER.get("puzzel")
+world.MAX_DEPTH_PER["puzzel"] = 20
+rule_seen = rule_bad = rule_unfit = 0
+rule_share = {}
+kwad_seen = 0
+for depth in range(1, 21):
+    n_rule = n_all = 0
+    for n in range(150):
+        t = world.make("puzzel", depth, n)
+        if t is None:
+            continue
+        n_all += 1
+        if not t.problem.startswith("regel: "):
+            continue
+        n_rule += 1
+        rule_seen += 1
+        if _solve_rule(t.problem) != int(t.solution):
+            rule_bad += 1
+        if "kwadraten" in t.working:
+            kwad_seen += 1
+        if not (world.fits(t, 1536 - 112)
+                and len(t.to_learn()) <= _rf(depth, "puzzel", 1536)):
+            rule_unfit += 1
+    rule_share[depth] = (n_rule, n_all)
+world.MAX_DEPTH_PER["puzzel"] = _old_puzzle_fence
+check("which-rule puzzles: an independent solver finds exactly one rule and "
+      "the same answer", rule_seen > 1000 and rule_bad == 0,
+      f"{rule_seen} puzzles, {rule_bad} disagreements")
+check("squares exist from depth 7 and are told apart from lines", kwad_seen > 100)
+check("all which-rule puzzles fit window 1536 with their working", rule_unfit == 0)
+# share over all 150 numbers: a third at depth 1, and a third of the
+# keer-plus complement (~27%) from depth 2 — the rows above become
+# rarer with depth, so among *usable* puzzles the rules weigh more
+check("below 11 the rule split takes about a quarter of the numbers",
+      all(0.18 <= rule_share[d][0] / 150 <= 0.40 for d in range(1, 11)),
+      ", ".join(f"d{d}:{a}/150" for d, (a, b) in rule_share.items() if d <= 10))
+check("above 10 nearly every usable puzzle is a rule puzzle — the empty room is "
+      "filled (the odd keer-plus row that still comes out may stay)",
+      all(rule_share[d][0] >= 0.9 * rule_share[d][1] and rule_share[d][0] > 100
+          for d in range(11, 21)),
+      ", ".join(f"d{d}:{a}/{b}" for d, (a, b) in rule_share.items() if d > 10))
+
+# --- logica: the fifth family (17 Aug 2026) ------------------------------------
+# If-then chains, true = 1 / false = 0. The judge is an independent forward
+# chainer over the text: it fires rules to a fixpoint and answers the
+# question itself. Every asked name must be determined and agree.
+print()
+print("--- logica: the fifth family ---")
+check("the world's families are the measured three, geheugen, logica — in that order",
+      world.FAMILIES == tasks.FAMILIES + ("geheugen", "logica"))
+check("the fence for logica stands at 12 or higher", world.max_depth("logica") >= 12)
+
+
+def _chain(problem):
+    g, r, q = problem.split("\n")
+    vals = {}
+    for piece in g[len("gegeven: "):].split(" ; "):
+        name, v = piece.split(" = ")
+        vals[name] = int(v)
+    rules = r[len("regels: "):].split(" ; ")
+
+    def val(x):
+        if x.startswith("niet "):
+            return None if x[5:] not in vals else 1 - vals[x[5:]]
+        return vals.get(x)
+
+    changed = True
+    while changed:
+        changed = False
+        for rule in rules:
+            m = re.fullmatch(r"als (.+) dan (niet )?(\w+)", rule)
+            if not m:
+                return None
+            ante, neg, concl = m.group(1), m.group(2), m.group(3)
+            if concl in vals:
+                continue
+            if " en " in ante:
+                a, b = ante.split(" en ")
+                fires = val(a) == 1 and val(b) == 1
+            elif " of " in ante:
+                a, b = ante.split(" of ")
+                fires = val(a) == 1 or val(b) == 1
+            else:
+                fires = val(ante) == 1
+            if fires:
+                vals[concl] = 0 if neg else 1
+                changed = True
+    return vals.get(re.fullmatch(r"wat is (\w+)\?", q).group(1))
+
+
+_old_logic_fence = world.MAX_DEPTH_PER.get("logica")
+world.MAX_DEPTH_PER["logica"] = 24
+lg_seen = lg_bad = lg_unfit = lg_room = 0
+lg_zero = {d: 0 for d in range(1, 25)}
+lg_not = {d: 0 for d in range(1, 25)}
+lg_andor = {d: 0 for d in range(1, 25)}
+for depth in range(1, 25):
+    for n in range(150):
+        t = world.make("logica", depth, n)
+        lg_seen += 1
+        if _chain(t.problem) != int(t.solution):
+            lg_bad += 1
+        if t.solution == "0":
+            lg_zero[depth] += 1
+        if "als niet " in t.working:
+            lg_not[depth] += 1
+        if " en " in t.working or " of " in t.working:
+            lg_andor[depth] += 1
+        if not world.fits(t, 1536 - 112):
+            lg_unfit += 1
+        if len(t.working) + 8 > _rf(depth, "logica", 1536):
+            lg_room += 1
+world.MAX_DEPTH_PER["logica"] = _old_logic_fence
+check("3600 logica problems: an independent forward chainer lands on the same answer",
+      lg_seen == 3600 and lg_bad == 0, f"{lg_bad} disagreements")
+check("all of them fit window 1536; the writing room holds every working",
+      lg_unfit == 0 and lg_room == 0, f"{lg_unfit} unfit, {lg_room} too little room")
+check("no false conclusion before depth 7; from 7 about a third answers 0",
+      all(lg_zero[d] == 0 for d in range(1, 7)) and all(lg_zero[d] > 25 for d in range(7, 25)),
+      ", ".join(f"d{d}:{lg_zero[d]}" for d in (6, 7, 12, 24)))
+check("negation enters at depth 3, en/of at depth 5",
+      lg_not[2] == 0 and lg_not[3] > 0 and lg_andor[4] == 0 and lg_andor[5] > 0)
+check("a logica task is the same task every time",
+      world.make("logica", 9, 4321) == world.make("logica", 9, 4321))
 
 print()
 print("=" * 70)

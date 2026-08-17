@@ -119,7 +119,7 @@
 
 <script>
 // vangnet; de echte hekken komen per run uit run.json (zie haal())
-const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12};   // vangnet; 16 aug: geheugen erbij
+const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12};   // vangnet; 16 aug: geheugen, 17 aug: logica
 
 async function haal() {
   try {
@@ -184,10 +184,10 @@ async function haal() {
     }
 
     // wereld
-    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2},
+    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2, logica: 2},
                                (s.run && s.run.wereld) || {}, s.wereldrand || {});
     let wr = "";
-    for (const f of ["rekenen", "puzzel", "code", "geheugen"]) {
+    for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica"]) {
       if (!grens[f]) continue;
       const d = Math.min(rand[f], grens[f]);
       wr += `<div class="rij"><span>${f}</span>
@@ -269,7 +269,7 @@ const nctx = net.getContext("2d");
 let nLagen = [], nZeker = 0, nBedrading = null, nBedradingUit = null;
 let nNamen = {};                          // laag -> naam uit haar meting (16 aug 2026)
 const nKort = {rekenlaag: "reken", codelaag: "code", puzzellaag: "puzzel",
-               geheugenlaag: "geheugen", gemengd: "gemengd", stil: "stil"};
+               geheugenlaag: "geheugen", logicalaag: "logica", gemengd: "gemengd", stil: "stil"};
 let nGloed = [], nVonken = [], nTijd = 0, nDoek = null;
 
 function netMaat() {

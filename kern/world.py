@@ -53,7 +53,8 @@ from tasks import FAMILIES as _MEASURED_FAMILIES, Task, Picker, _mix
 # exam never does.
 #   16 Aug 2026: "geheugen" — an answer that depends on something earlier
 #   in the sequence (see _memory below).
-FAMILIES = _MEASURED_FAMILIES + ("geheugen",)
+#   17 Aug 2026: "logica" — if-then chains over true/false facts (_logic).
+FAMILIES = _MEASURED_FAMILIES + ("geheugen", "logica")
 
 # Own constant, separate from tasks.py's: the world and the exams are two
 # separate things and must be so in their numbers too.
@@ -87,7 +88,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 10, "code": 24, "geheugen": 12}
+MAX_DEPTH_PER = {"puzzel": 10, "code": 30, "geheugen": 24, "logica": 12}
 
 
 def max_depth(family):
@@ -931,8 +932,229 @@ def _memory(depth, t):
     return "\n".join(lines + [question]), answer, working
 
 
+# --- the "which rule" puzzle (17 Aug 2026) ------------------------------------
+# The rows run out above depth 10: ten layers of differences and weaves on a
+# short row is not a harder puzzle, and the method finds nothing (6–10%
+# usable at 11–14). So the second puzzle kind: not "continue the row" but
+# "which rule?" — a hidden rule built from bricks (+c, ×a, square), shown
+# through a few pairs, asked at a new input:
+#
+#     regel: f(3) = 10 ; f(5) = 16
+#     wat is f(8)?
+#
+# and the working derives it: `stap: (16 - 10) / (5 - 3) = 3 ; c: 10 - 3 * 3
+# = 1 ; regel: 3 * x + 1 ; 3 * 8 = 24 ; 24 + 1 = 25`. Explainable by
+# construction — the generator knows the rule — so there is no empty room at
+# any depth. Two shapes: linear (a·x + c: every stack of + and × bricks) and
+# square (a·x² + c). Two pairs mean linear (the simplest rule that fits);
+# from REGEL_KWAD_MIN three pairs are shown and equal steps mean linear,
+# unequal steps mean square — the working says which check it did.
+#
+# Own seed split, one in three puzzle numbers from depth 1, applied only
+# where the keer-plus split did not draw (so every keer-plus row and every
+# untouched row stays bit for bit); above ROW_MAX every number is a rule
+# puzzle — the rows are an empty room there.
+
+REGEL_SEED = 0x526567656C                # "Regel"
+ROW_MAX = 10                             # above this only rule puzzles
+REGEL_KWAD_MIN = 7                       # from here squares exist and three pairs are shown
+
+
+def _rule_shape(depth, t):
+    """Pick a rule for this depth: ("lin", a, c) or ("kwad", a, c), the
+    number of pairs, and the range of the inputs."""
+    if depth <= 2:
+        return ("lin", 1, t.integer(1, 20 if depth == 1 else 50)), 2, 12
+    if depth <= 4:
+        a = t.integer(2, 9)
+        c = 0 if depth == 3 else t.integer(1, 30)
+        return ("lin", a, c), 2, 15
+    if depth <= 6:
+        a = t.integer(2, 9)
+        c = t.integer(-30, 40)                # subtracting too
+        return ("lin", a, c), 2, 20
+    if depth <= 8:
+        if t.integer(1, 2) == 1:
+            return ("kwad", 1, t.integer(-20, 40)), 3, 9
+        return ("lin", t.integer(2, 12), t.integer(-50, 99)), 3, 25
+    if depth <= 12:
+        if t.integer(1, 2) == 1:
+            return ("kwad", t.integer(1, 4), t.integer(-50, 99)), 3, 12
+        return ("lin", t.integer(2, 15), t.integer(-99, 199)), 3, 40
+    # deeper: bigger numbers, four pairs from 17
+    pairs = 3 if depth < 17 else 4
+    if t.integer(1, 2) == 1:
+        return ("kwad", t.integer(1, 3 + depth // 6), t.integer(-99, 199)), pairs, 12 + depth // 2
+    return ("lin", t.integer(2, 10 + depth // 2), t.integer(-199, 399)), pairs, 30 + depth
+
+
+def _apply(rule, x):
+    kind, a, c = rule
+    return a * x + c if kind == "lin" else a * x * x + c
+
+
+def _rule_puzzle(depth, t):
+    rule, n_pairs, top = _rule_shape(depth, t)
+    xs = []
+    while len(xs) < n_pairs + 1:
+        x = t.integer(1, top)
+        if x not in xs:
+            xs.append(x)
+    shown, asked = sorted(xs[:n_pairs]), xs[n_pairs]
+    kind, a, c = rule
+    ys = [_apply(rule, x) for x in shown]
+    problem = ("regel: " + " ; ".join(f"f({x}) = {y}" for x, y in zip(shown, ys))
+               + f"\nwat is f({asked})?")
+    steps = []
+    x1, x2 = shown[0], shown[1]
+    y1, y2 = ys[0], ys[1]
+    if kind == "lin":
+        if n_pairs >= 3:
+            # equal steps: the check that says "linear"
+            st = " ; ".join(f"({ys[i + 1]} - {ys[i]}) / ({shown[i + 1]} - {shown[i]}) = {a}"
+                            for i in range(n_pairs - 1))
+            steps.append(f"stappen gelijk: {st}")
+        else:
+            steps.append(f"stap: ({y2} - {y1}) / ({x2} - {x1}) = {a}")
+        steps.append(f"c: {y1} - {a} * {x1} = {c}")
+        steps.append(f"regel: {a} * x {'+' if c >= 0 else '-'} {abs(c)}")
+        p = a * asked
+        steps.append(f"{a} * {asked} = {p}")
+        steps.append(f"{p} {'+' if c >= 0 else '-'} {abs(c)} = {p + c}")
+        answer = p + c
+    else:
+        sq = [x * x for x in shown]
+        steps.append("stappen ongelijk, dus kwadraten: " + " ; ".join(f"{x} * {x} = {q}" for x, q in zip(shown, sq)))
+        steps.append(f"stap: ({y2} - {y1}) / ({sq[1]} - {sq[0]}) = {a}")
+        steps.append(f"c: {y1} - {a} * {sq[0]} = {c}")
+        steps.append(f"regel: {a} * x * x {'+' if c >= 0 else '-'} {abs(c)}")
+        q = asked * asked
+        steps.append(f"{asked} * {asked} = {q}")
+        p = a * q
+        steps.append(f"{a} * {q} = {p}")
+        steps.append(f"{p} {'+' if c >= 0 else '-'} {abs(c)} = {p + c}")
+        answer = p + c
+    return problem, answer, " ; ".join(steps)
+
+
+def _rule_draws(seed, depth):
+    """Does the rule split take this puzzle number? Above ROW_MAX always."""
+    if depth > ROW_MAX:
+        return True
+    return Picker(_mix(seed ^ REGEL_SEED)).integer(1, 3) == 1
+
+
+# --- logica (logic) — the fifth family (17 Aug 2026) ---------------------------
+# If-then chains over true/false facts. True is written 1 and false 0, so
+# nakijk stays what it is (the last number) and the measuring stick is not
+# touched. Three lines: what is given, the rules, the question:
+#
+#     gegeven: a = 1 ; b = 0
+#     regels: als b dan c ; als niet b dan d ; als d dan e
+#     wat is e?
+#
+# and the working is the derivation: `b = 0 ; als niet b dan d: d = 1 ; als
+# d dan e: e = 1`. Depth is, as always, two dials in one: the chain length
+# (rules that lead to the answer, one more every two depths) and the number
+# of premises and distraction rules (rules that do not fire, or lead
+# somewhere else). Negation from LOGIC_NOT_MIN, "en"/"of" from
+# LOGIC_ANDOR_MIN, a false conclusion ("dan niet z") from LOGIC_FALSE_MIN.
+# Every asked name is determined by the given facts and the rules — no open
+# world; each name is assigned at most once, so nothing contradicts. Rules
+# are listed in a shuffled order: she must find the chain, not read down.
+
+LOGIC_NAMES = "abcdefghkmnpqrstuvwxyz"
+LOGIC_NAMES_MORE = "ABCDEFGHKMNPQRSTUVWXYZ"   # only when the 22 small ones run out (deep)
+LOGIC_NOT_MIN = 3
+LOGIC_ANDOR_MIN = 5
+LOGIC_FALSE_MIN = 7
+LOGIC_PREMISES_MAX = 8
+
+
+def _logic(depth, t):
+    chain = 1 + (depth - 1) // 2
+    n_prem = min(LOGIC_PREMISES_MAX, 2 + depth // 2)
+    pool = list(LOGIC_NAMES)
+    more = list(LOGIC_NAMES_MORE)
+    def fresh():
+        if pool:
+            return pool.pop(t.integer(0, len(pool) - 1))
+        if more:
+            return more.pop(t.integer(0, len(more) - 1))
+        return "x" + str(len(more) + 1)          # beyond 44 names: never at any fence we run
+    prem = [fresh() for _ in range(n_prem)]
+    dead = [fresh() for _ in range(3)]            # never assigned: for rules that never fire
+    values = {c: t.integer(0, 1) for c in prem}
+    values[prem[0]] = 1                          # the chain needs a true start
+    if not any(v == 0 for v in values.values()) and depth >= LOGIC_NOT_MIN:
+        values[prem[-1]] = 0                     # and negation needs a false one
+    trues = [c for c in prem if values[c] == 1]
+    falses = [c for c in prem if values[c] == 0]
+    rules, working = [], []
+    cur = trues[t.integer(0, len(trues) - 1)]
+    working.append(f"{cur} = 1")
+    for i in range(chain):
+        new = fresh()
+        last = i == chain - 1
+        form = "een"
+        if depth >= LOGIC_ANDOR_MIN and t.integer(1, 3) == 1:
+            form = t.choice(("en", "of"))
+        elif i == 0 and depth >= LOGIC_NOT_MIN and falses and t.integer(1, 3) == 1:
+            form = "niet"                        # only as the first link: the chain stays one chain
+        neg_out = last and depth >= LOGIC_FALSE_MIN and t.integer(1, 3) == 1
+        head = f"niet {new}" if neg_out else new
+        if form == "een":
+            rules.append(f"als {cur} dan {head}")
+            working.append(f"als {cur} dan {head}: {new} = {0 if neg_out else 1}")
+        elif form == "niet":
+            q = falses[t.integer(0, len(falses) - 1)]
+            rules.append(f"als niet {q} dan {head}")
+            working.append(f"{q} = 0 ; als niet {q} dan {head}: {new} = {0 if neg_out else 1}")
+        elif form == "en":
+            others = [c for c in trues if c != cur] or trues
+            other = others[t.integer(0, len(others) - 1)]
+            rules.append(f"als {cur} en {other} dan {head}")
+            working.append(f"{other} = 1 ; als {cur} en {other} dan {head}: {new} = {0 if neg_out else 1}")
+        else:                                    # "of": partner may be false
+            others = [c for c in prem if c != cur] or prem
+            other = others[t.integer(0, len(others) - 1)]
+            rules.append(f"als {cur} of {other} dan {head}")
+            working.append(f"{other} = {values[other]} ; als {cur} of {other} dan {head}: {new} = {0 if neg_out else 1}")
+        values[new] = 0 if neg_out else 1
+        cur = new
+    answer_name, answer = cur, values[cur]
+    # distractions: rules that do not fire (false antecedent, or an
+    # antecedent nobody ever assigns) and rules that fire into fresh names
+    seen = set(rules)
+    for _ in range(depth):
+        kind = t.integer(1, 3)
+        if kind == 1 and falses:
+            q = falses[t.integer(0, len(falses) - 1)]
+            rule = f"als {q} dan {dead[t.integer(0, 2)]}"
+        elif kind == 2:
+            src = trues[t.integer(0, len(trues) - 1)]
+            new = fresh(); values[new] = 1
+            rule = f"als {src} dan {new}"
+        else:                                    # never assigned: never fires
+            d1 = dead[t.integer(0, 2)]
+            d2 = dead[t.integer(0, 2)]
+            rule = f"als {d1} dan {d2 if d2 != d1 else dead[(dead.index(d1) + 1) % 3]}"
+        if rule not in seen:                     # the same line twice teaches nothing
+            seen.add(rule)
+            rules.append(rule)
+    # shuffle the rules (deterministically)
+    order = []
+    rest = list(rules)
+    while rest:
+        order.append(rest.pop(t.integer(0, len(rest) - 1)))
+    problem = ("gegeven: " + " ; ".join(f"{c} = {values[c]}" for c in prem)
+               + "\nregels: " + " ; ".join(order)
+               + f"\nwat is {answer_name}?")
+    return problem, answer, " ; ".join(working)
+
+
 _MAKERS = {"rekenen": _arithmetic, "puzzel": _row, "code": _code,
-           "geheugen": _memory}
+           "geheugen": _memory, "logica": _logic}
 
 
 # --- the conversational wrapper (13 Aug 2026) --------------------------------
@@ -1133,10 +1355,16 @@ def make(family, depth, number):
         # otherwise it keeps its old row. The split may replace, never
         # remove, and the other four in five stay bit for bit.
         k = Picker(_mix(seed ^ KEERPLUS_SEED))
-        if depth >= KEERPLUS_MIN and k.integer(1, 5) == 1:
+        kp_drawn = depth >= KEERPLUS_MIN and k.integer(1, 5) == 1
+        if kp_drawn:
             kp = _row(depth, k, bases=("keer-plus",), extra=2)
             if kp[0] is not None:
                 problem, solution, working = kp
+        # The "which rule" puzzle (17 Aug 2026): one in three numbers where
+        # keer-plus did not draw, and every number above ROW_MAX. Numbers
+        # keer-plus took, and untouched rows, stay bit for bit.
+        if not kp_drawn and _rule_draws(seed, depth):
+            problem, solution, working = _rule_puzzle(depth, Picker(_mix(seed ^ REGEL_SEED ^ 0x1)))
     if problem is None:
         # No working comes out — then there is nothing to learn, only to
         # guess. `learning_tasks` skips it.

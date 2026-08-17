@@ -1,0 +1,2166 @@
+{
+ "naam": "logica",
+ "beschrijving": "De vijfde taakfamilie (17 aug 2026): als-dan-ketens over waar (1) en onwaar (0) — gegeven, regels, vraag; graad = kettinglengte + premissen + afleiders; negatie vanaf 3, en/of vanaf 5, een onware conclusie vanaf 7. Diepte 1 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Alles past op venster 1536. Vastgelegd vóór run 6.7 als meetlat voor de logica-familie én als C-toets naast de andere bladen.",
+ "opgaven": [
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: g = 1 ; m = 0\nregels: als g dan v ; als g dan x\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: b = 1 ; n = 0\nregels: als b dan p ; als b dan q\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: y = 1 ; m = 0\nregels: als w dan c ; als y dan a\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: e = 1 ; t = 0\nregels: als z dan p ; als e dan v\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: a = 1 ; e = 1\nregels: als a dan y ; als a dan n\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: a = 1 ; v = 1\nregels: als v dan c ; als a dan w\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: f = 1 ; y = 1\nregels: als f dan s ; als x dan a\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: d = 1 ; h = 1\nregels: als h dan y ; als h dan r\nwat is r?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: v = 1 ; c = 1\nregels: als c dan z ; als u dan k\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: q = 1 ; v = 0\nregels: als q dan a ; als v dan f\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: f = 1 ; k = 1\nregels: als n dan z ; als f dan e\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: b = 1 ; p = 1\nregels: als b dan z ; als b dan n\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: w = 1 ; d = 0\nregels: als w dan k ; als b dan y\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: s = 1 ; x = 0\nregels: als s dan y ; als x dan m\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: h = 1 ; k = 0\nregels: als z dan x ; als h dan e\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: n = 1 ; e = 0\nregels: als e dan h ; als n dan v\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: a = 1 ; w = 0\nregels: als a dan m ; als d dan k\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: u = 1 ; h = 0\nregels: als u dan p ; als u dan z\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: y = 1 ; k = 0\nregels: als y dan n ; als y dan e\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: t = 1 ; n = 1\nregels: als n dan m ; als n dan d\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: x = 1 ; q = 1\nregels: als x dan b ; als q dan c\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: x = 1 ; m = 1\nregels: als a dan n ; als m dan u\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: v = 1 ; z = 0\nregels: als z dan y ; als v dan g\nwat is g?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: n = 1 ; g = 1\nregels: als y dan f ; als g dan a\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: q = 1 ; h = 1\nregels: als q dan b ; als h dan u\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: y = 1 ; w = 0\nregels: als y dan m ; als y dan b\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: d = 1 ; n = 1\nregels: als a dan f ; als d dan w\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: e = 1 ; x = 1\nregels: als u dan c ; als x dan v\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: n = 1 ; k = 1\nregels: als n dan e ; als r dan m\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 1,
+   "opgave": "gegeven: m = 1 ; n = 0\nregels: als m dan h ; als m dan w\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: v = 1 ; f = 1 ; n = 0\nregels: als f dan g ; als v dan m ; als f dan s\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: c = 1 ; u = 1 ; q = 1\nregels: als q dan s ; als v dan x ; als w dan x\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: y = 1 ; r = 0 ; m = 0\nregels: als r dan a ; als y dan n ; als y dan s\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: g = 1 ; e = 1 ; a = 0\nregels: als a dan m ; als g dan z ; als g dan u\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: p = 1 ; n = 0 ; w = 0\nregels: als n dan s ; als p dan z ; als y dan s\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: r = 1 ; z = 1 ; n = 1\nregels: als r dan w ; als d dan q ; als z dan k\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: c = 1 ; s = 1 ; u = 1\nregels: als s dan h ; als s dan e ; als w dan n\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: p = 1 ; r = 0 ; v = 0\nregels: als v dan q ; als q dan f ; als p dan h\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: k = 1 ; v = 0 ; m = 1\nregels: als g dan d ; als m dan x\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: p = 1 ; e = 1 ; w = 1\nregels: als e dan z ; als s dan b ; als p dan a\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: h = 1 ; r = 1 ; s = 1\nregels: als y dan c ; als h dan m ; als h dan z\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: a = 1 ; q = 1 ; h = 1\nregels: als a dan y ; als d dan n ; als h dan z\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: e = 1 ; w = 0 ; u = 1\nregels: als u dan p ; als r dan t ; als e dan m\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: n = 1 ; w = 1 ; a = 0\nregels: als w dan m ; als a dan q ; als n dan v\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: q = 1 ; y = 1 ; p = 1\nregels: als x dan n ; als q dan e ; als x dan c\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: a = 1 ; f = 0 ; y = 1\nregels: als y dan p ; als n dan r\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: h = 1 ; e = 0 ; w = 0\nregels: als d dan b ; als e dan d ; als h dan v\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: v = 1 ; u = 1 ; f = 1\nregels: als t dan x ; als u dan n ; als f dan w\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: p = 1 ; t = 0 ; d = 1\nregels: als p dan f ; als h dan e ; als h dan w\nwat is f?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: g = 1 ; y = 0 ; c = 1\nregels: als g dan a ; als y dan r\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: p = 1 ; y = 0 ; m = 1\nregels: als p dan d ; als g dan v ; als p dan t\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: n = 1 ; r = 0 ; u = 1\nregels: als u dan v ; als a dan x ; als n dan d\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: d = 1 ; h = 0 ; w = 1\nregels: als f dan q ; als h dan f ; als w dan c\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: r = 1 ; p = 0 ; u = 0\nregels: als r dan b ; als p dan c ; als r dan n\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: v = 1 ; r = 1 ; d = 0\nregels: als v dan a ; als v dan g ; als d dan t\nwat is g?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: b = 1 ; t = 1 ; c = 1\nregels: als s dan r ; als c dan z ; als r dan s\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: d = 1 ; s = 1 ; x = 1\nregels: als a dan u ; als d dan v ; als d dan m\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: h = 1 ; q = 1 ; u = 1\nregels: als n dan p ; als h dan t\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: t = 1 ; h = 0 ; d = 0\nregels: als t dan w ; als t dan b ; als t dan m\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 2,
+   "opgave": "gegeven: p = 1 ; q = 1 ; z = 1\nregels: als z dan v ; als p dan c ; als q dan h\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: q = 1 ; g = 1 ; k = 0\nregels: als g dan c ; als g dan t ; als g dan s ; als t dan w ; als k dan x\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: f = 1 ; k = 0 ; h = 1\nregels: als h dan p ; als f dan q ; als niet k dan n ; als w dan z ; als n dan g\nwat is g?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: c = 1 ; v = 0 ; x = 1\nregels: als p dan s ; als v dan a ; als x dan d ; als b dan a ; als x dan p\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: a = 1 ; t = 0 ; g = 0\nregels: als q dan d ; als a dan q ; als g dan p ; als r dan p ; als r dan n\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: k = 1 ; c = 0 ; s = 0\nregels: als u dan b ; als g dan n ; als b dan u ; als k dan g\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: z = 1 ; d = 1 ; w = 0\nregels: als w dan b ; als d dan v ; als w dan r ; als b dan r ; als v dan e\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: e = 1 ; s = 0 ; h = 1\nregels: als h dan w ; als s dan c ; als p dan t ; als c dan p ; als w dan d\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: r = 1 ; q = 0 ; n = 1\nregels: als r dan s ; als s dan u ; als n dan v ; als q dan d ; als y dan e\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: h = 1 ; y = 1 ; g = 0\nregels: als m dan n ; als y dan k ; als h dan m ; als y dan z ; als y dan s\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: z = 1 ; w = 1 ; f = 0\nregels: als d dan v ; als n dan v ; als niet f dan t ; als t dan a ; als z dan q\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: q = 1 ; p = 0 ; e = 0\nregels: als e dan x ; als h dan x ; als r dan k ; als niet e dan r ; als h dan n\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: s = 1 ; t = 1 ; k = 0\nregels: als s dan h ; als niet k dan p ; als k dan v ; als k dan c ; als p dan d\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: a = 1 ; w = 1 ; g = 0\nregels: als k dan e ; als b dan r ; als niet g dan k ; als g dan r\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: n = 1 ; v = 1 ; y = 0\nregels: als y dan u ; als q dan u ; als a dan w ; als q dan x ; als v dan a\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: y = 1 ; g = 1 ; d = 0\nregels: als e dan a ; als y dan e ; als r dan t ; als d dan t ; als y dan u\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: m = 1 ; x = 0 ; p = 0\nregels: als k dan q ; als m dan t ; als m dan v ; als m dan k ; als x dan y\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: x = 1 ; f = 0 ; s = 1\nregels: als y dan w ; als r dan q ; als x dan b ; als x dan y ; als s dan u\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: d = 1 ; h = 0 ; t = 1\nregels: als t dan e ; als t dan v ; als niet h dan z ; als h dan u ; als z dan q\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: x = 1 ; f = 1 ; k = 0\nregels: als k dan g ; als n dan t ; als k dan c ; als f dan n ; als c dan u\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: v = 1 ; u = 1 ; c = 0\nregels: als h dan k ; als u dan h ; als u dan s ; als u dan e ; als c dan t\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: x = 1 ; d = 0 ; k = 1\nregels: als x dan h ; als w dan q ; als k dan m ; als niet d dan w ; als v dan y\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: t = 1 ; u = 1 ; y = 0\nregels: als g dan f ; als v dan r ; als t dan g ; als z dan v ; als y dan r\nwat is f?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: g = 1 ; x = 0 ; b = 0\nregels: als x dan k ; als d dan h ; als g dan d ; als x dan t\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: h = 1 ; c = 0 ; p = 0\nregels: als v dan x ; als a dan m ; als x dan w ; als niet c dan a ; als h dan y\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: c = 1 ; p = 0 ; w = 0\nregels: als x dan b ; als y dan n ; als niet p dan x ; als n dan y ; als n dan q\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: n = 1 ; w = 1 ; e = 0\nregels: als t dan u ; als r dan p ; als n dan r ; als n dan x ; als n dan q\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: z = 1 ; v = 0 ; k = 1\nregels: als r dan a ; als k dan y ; als s dan h ; als k dan r ; als h dan g\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: x = 1 ; k = 0 ; u = 1\nregels: als x dan m ; als m dan c ; als g dan p ; als x dan d\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: f = 1 ; y = 0 ; g = 1\nregels: als g dan c ; als y dan v ; als c dan d ; als u dan e ; als g dan w\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 3,
+   "opgave": "gegeven: k = 1 ; g = 0 ; r = 0\nregels: als e dan m ; als k dan c ; als k dan u ; als g dan x ; als c dan s\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: b = 1 ; h = 1 ; v = 0 ; e = 1\nregels: als n dan u ; als b dan t ; als h dan n ; als v dan d ; als e dan c\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: f = 1 ; e = 1 ; a = 1 ; r = 0\nregels: als b dan n ; als a dan p ; als r dan c ; als r dan b ; als u dan w ; als e dan u\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: e = 1 ; w = 1 ; n = 1 ; p = 0\nregels: als p dan r ; als w dan z ; als w dan g ; als g dan q ; als v dan a ; als n dan f\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: t = 1 ; c = 1 ; y = 0 ; x = 0\nregels: als c dan r ; als c dan a ; als v dan q ; als g dan f ; als t dan v\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: h = 1 ; p = 0 ; k = 1 ; e = 0\nregels: als n dan m ; als n dan g ; als k dan u ; als g dan m ; als h dan d ; als d dan b\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: r = 1 ; u = 0 ; n = 1 ; w = 0\nregels: als f dan b ; als r dan m ; als niet w dan e ; als e dan y ; als w dan b ; als r dan s\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: d = 1 ; p = 0 ; k = 1 ; w = 1\nregels: als niet p dan g ; als d dan t ; als r dan c ; als w dan a ; als g dan x ; als k dan m\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: u = 1 ; q = 1 ; m = 0 ; w = 0\nregels: als t dan s ; als niet m dan y ; als s dan t ; als s dan d ; als w dan s ; als y dan h\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: u = 1 ; a = 0 ; h = 0 ; p = 0\nregels: als u dan m ; als d dan f ; als q dan f ; als m dan g ; als a dan f ; als a dan d\nwat is g?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: f = 1 ; z = 0 ; b = 1 ; v = 1\nregels: als y dan d ; als b dan a ; als c dan y ; als b dan q ; als a dan x ; als c dan d\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: a = 1 ; c = 1 ; b = 0 ; w = 0\nregels: als c dan z ; als b dan m ; als m dan k ; als a dan f ; als k dan h ; als z dan n\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: d = 1 ; r = 1 ; p = 1 ; x = 0\nregels: als p dan y ; als y dan z ; als b dan w ; als h dan b ; als r dan s ; als r dan k\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: k = 1 ; g = 1 ; q = 0 ; t = 0\nregels: als q dan h ; als f dan r ; als v dan b ; als g dan v ; als t dan r\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: d = 1 ; f = 0 ; r = 1 ; v = 0\nregels: als niet f dan h ; als h dan n ; als p dan y ; als d dan t ; als d dan z ; als d dan a\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: n = 1 ; v = 1 ; t = 1 ; y = 0\nregels: als n dan u ; als b dan s ; als n dan z ; als s dan w ; als u dan r ; als y dan b\nwat is r?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: f = 1 ; t = 0 ; n = 1 ; d = 1\nregels: als m dan a ; als u dan q ; als t dan p ; als f dan v ; als f dan u ; als f dan b\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: e = 1 ; a = 1 ; q = 0 ; d = 0\nregels: als v dan h ; als a dan v ; als x dan c ; als q dan c ; als e dan m\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: e = 1 ; p = 1 ; q = 1 ; a = 0\nregels: als niet a dan t ; als a dan k ; als t dan c ; als a dan f ; als k dan r ; als p dan y\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: q = 1 ; t = 0 ; a = 0 ; k = 0\nregels: als niet k dan h ; als q dan e ; als t dan u ; als q dan s ; als q dan y ; als h dan g\nwat is g?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: h = 1 ; x = 1 ; d = 1 ; r = 0\nregels: als h dan g ; als c dan t ; als r dan a ; als h dan m ; als niet r dan c\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: g = 1 ; d = 1 ; e = 1 ; t = 0\nregels: als niet t dan n ; als n dan v ; als t dan q ; als y dan q ; als t dan y\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: x = 1 ; n = 0 ; g = 0 ; c = 1\nregels: als w dan d ; als g dan w ; als r dan p ; als d dan s ; als c dan r\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: t = 1 ; w = 0 ; x = 1 ; a = 0\nregels: als k dan q ; als x dan g ; als x dan n ; als x dan y ; als y dan u ; als t dan m\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: m = 1 ; t = 0 ; c = 1 ; s = 0\nregels: als t dan x ; als n dan x ; als m dan z ; als n dan r ; als m dan y ; als z dan e\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: v = 1 ; w = 0 ; t = 1 ; s = 1\nregels: als t dan r ; als z dan e ; als z dan k ; als r dan n ; als w dan e ; als t dan h\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: y = 1 ; t = 0 ; v = 1 ; x = 0\nregels: als v dan f ; als f dan q ; als y dan d ; als y dan z ; als y dan h ; als b dan m\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: f = 1 ; c = 1 ; q = 1 ; t = 0\nregels: als c dan z ; als t dan s ; als t dan m ; als c dan r ; als r dan e ; als q dan d\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: r = 1 ; h = 0 ; k = 0 ; b = 0\nregels: als e dan n ; als b dan e ; als e dan m ; als r dan t ; als h dan m ; als t dan u\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: d = 1 ; g = 0 ; c = 0 ; n = 1\nregels: als v dan z ; als niet g dan y ; als y dan u ; als c dan z ; als k dan z ; als n dan s\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 4,
+   "opgave": "gegeven: b = 1 ; h = 0 ; e = 0 ; p = 1\nregels: als p dan x ; als p dan z ; als h dan y ; als y dan t ; als b dan q ; als q dan u\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: z = 1 ; y = 0 ; f = 0 ; h = 0\nregels: als h dan a ; als z of h dan m ; als p dan a ; als m en z dan r ; als f dan p ; als z dan q ; als r dan d ; als f dan e\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: t = 1 ; r = 1 ; e = 0 ; k = 0\nregels: als t dan w ; als u dan x ; als t dan b ; als t dan g ; als t of e dan n ; als k dan q ; als v dan y ; als n dan v\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: y = 1 ; m = 0 ; h = 1 ; k = 1\nregels: als d dan p ; als k dan w ; als h dan g ; als k en y dan r ; als m dan c ; als r dan d\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: n = 1 ; u = 1 ; t = 0 ; z = 1\nregels: als t dan e ; als n en u dan h ; als p dan q ; als n dan y ; als s dan f ; als n dan b ; als z dan r ; als h dan p\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: z = 1 ; h = 0 ; b = 0 ; v = 0\nregels: als v dan x ; als v dan t ; als q of h dan w ; als z dan e ; als c dan q ; als z dan r ; als z of b dan c ; als z dan k\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: z = 1 ; m = 0 ; a = 0 ; n = 1\nregels: als n dan f ; als y dan q ; als f dan u ; als u dan s ; als a dan y ; als z dan r ; als y dan x\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: x = 1 ; z = 0 ; d = 0 ; b = 0\nregels: als a of x dan m ; als b dan r ; als f dan a ; als b dan n ; als niet z dan f ; als r dan n ; als d dan g ; als x dan p\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: z = 1 ; r = 1 ; h = 0 ; a = 0\nregels: als y dan n ; als b dan x ; als a dan x ; als q dan y ; als z dan t ; als r dan q\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: w = 1 ; c = 1 ; g = 1 ; r = 0\nregels: als c en g dan d ; als w dan e ; als v dan a ; als g dan s ; als d dan n ; als r dan a ; als n dan u\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: z = 1 ; u = 1 ; a = 1 ; p = 0\nregels: als niet p dan f ; als v dan e ; als g dan d ; als p dan d ; als p dan h ; als f dan v ; als d dan g ; als g dan h\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: v = 1 ; s = 1 ; u = 0 ; y = 0\nregels: als u dan g ; als v dan h ; als z of u dan c ; als t dan d ; als h dan z ; als v dan a ; als s dan p ; als v dan n\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: y = 1 ; r = 1 ; u = 0 ; x = 0\nregels: als h dan d ; als r dan q ; als e dan f ; als u dan f ; als x dan f ; als f dan m ; als q dan h\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: w = 1 ; b = 1 ; h = 1 ; n = 0\nregels: als w dan y ; als c dan t ; als n dan e ; als b dan a ; als m of b dan k ; als h dan d ; als n dan c ; als y dan m\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: n = 1 ; v = 0 ; u = 0 ; q = 0\nregels: als w dan z ; als u dan z ; als x dan m ; als f dan w ; als n en n dan g ; als n dan k ; als z dan f ; als g dan x\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: e = 1 ; g = 0 ; f = 0 ; z = 1\nregels: als z dan k ; als c dan x ; als q dan a ; als g dan a ; als z dan r ; als x of z dan p ; als z dan c ; als z dan s\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: q = 1 ; t = 0 ; w = 1 ; v = 1\nregels: als p dan z ; als w dan k ; als n dan s ; als u of t dan p ; als w dan d ; als t dan n ; als w dan u\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: b = 1 ; g = 1 ; t = 0 ; e = 1\nregels: als v dan r ; als g dan c ; als d dan z ; als e dan n ; als g en e dan s ; als t dan v ; als s dan d ; als w dan v\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: h = 1 ; x = 1 ; z = 0 ; d = 1\nregels: als w dan t ; als r dan w ; als h dan r ; als h dan v ; als x dan k ; als z dan e ; als e dan f\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: u = 1 ; y = 0 ; a = 1 ; n = 1\nregels: als c dan f ; als y dan f ; als t en n dan x ; als x dan s ; als y dan h ; als f dan h ; als c dan h ; als u dan t\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: x = 1 ; z = 0 ; y = 1 ; p = 1\nregels: als u dan v ; als z dan a ; als x dan w ; als z dan s ; als v dan t ; als s dan a ; als x dan q ; als y dan u\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: x = 1 ; b = 0 ; u = 0 ; q = 0\nregels: als a en x dan d ; als q dan s ; als c dan a ; als u dan p ; als x en x dan c ; als x dan n ; als s dan z ; als x dan r\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: a = 1 ; m = 0 ; d = 0 ; r = 0\nregels: als a dan z ; als g of a dan v ; als a dan b ; als b en a dan g ; als a dan x ; als a dan k ; als r dan e ; als a dan t\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: m = 1 ; n = 1 ; k = 1 ; e = 0\nregels: als k en n dan c ; als b dan x ; als c dan b ; als e dan y ; als r dan y ; als y dan q ; als e dan q\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: r = 1 ; a = 0 ; x = 1 ; y = 0\nregels: als s of y dan f ; als x dan n ; als x dan c ; als t dan k ; als f of r dan u ; als x dan s\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: v = 1 ; k = 0 ; a = 0 ; g = 1\nregels: als k dan d ; als g of a dan m ; als k dan p ; als y of v dan z ; als v dan n ; als v dan x ; als m dan y ; als v dan w\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: g = 1 ; y = 0 ; r = 0 ; h = 0\nregels: als g en g dan a ; als g dan s ; als h dan e ; als a en g dan c ; als h dan w ; als w dan e ; als f dan w ; als c dan q\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: n = 1 ; q = 1 ; k = 0 ; b = 1\nregels: als k dan t ; als t dan m ; als p dan v ; als k dan d ; als y dan p ; als niet k dan y ; als d dan t\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: v = 1 ; d = 0 ; a = 0 ; g = 1\nregels: als g dan p ; als s dan t ; als a dan z ; als q dan z ; als d dan z ; als h dan s ; als v dan k ; als niet a dan h\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: w = 1 ; h = 1 ; q = 1 ; x = 0\nregels: als h dan a ; als q dan t ; als p dan m ; als x dan p ; als q dan b ; als m dan p ; als t dan n ; als n dan s\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 5,
+   "opgave": "gegeven: g = 1 ; c = 1 ; u = 1 ; a = 0\nregels: als p dan t ; als b en c dan f ; als g of u dan b ; als t dan p ; als t dan k ; als f dan n ; als c dan v ; als k dan t\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: c = 1 ; q = 1 ; m = 0 ; h = 0 ; v = 0\nregels: als q dan e ; als f dan t ; als h dan n ; als m dan t ; als niet m dan u ; als b of v dan z ; als u en q dan b ; als h dan t ; als q dan g\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: z = 1 ; q = 0 ; f = 1 ; n = 0 ; u = 1\nregels: als x dan w ; als z dan h ; als f dan c ; als u dan g ; als b of q dan d ; als f dan y ; als p dan b ; als niet n dan p ; als x dan m\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: x = 1 ; u = 0 ; p = 1 ; q = 0 ; m = 0\nregels: als u dan f ; als m dan k ; als p dan r ; als p dan z ; als s dan v ; als p of u dan g ; als f dan n ; als m dan n ; als g en x dan s\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: g = 1 ; x = 1 ; h = 1 ; n = 0 ; k = 1\nregels: als w of x dan v ; als p dan w ; als h dan p ; als n dan f ; als h dan a ; als k dan y ; als n dan d\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: q = 1 ; n = 1 ; v = 0 ; w = 1 ; h = 0\nregels: als niet h dan f ; als h dan s ; als f en w dan u ; als g dan s ; als u dan y ; als w dan t ; als v dan g\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: k = 1 ; f = 1 ; m = 1 ; v = 0 ; e = 0\nregels: als a dan b ; als w dan h ; als e dan h ; als k dan a ; als w dan u ; als u dan w ; als b dan t ; als k dan p\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: w = 1 ; p = 1 ; t = 1 ; b = 0 ; v = 1\nregels: als x of p dan k ; als p dan u ; als y dan x ; als c dan a ; als v dan y ; als w dan s ; als a dan e ; als e dan c\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: f = 1 ; m = 1 ; d = 0 ; x = 0 ; b = 1\nregels: als t dan z ; als b dan h ; als r dan k ; als d dan g ; als k dan g ; als f dan c ; als x dan g ; als b dan s ; als s dan t\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: y = 1 ; b = 1 ; z = 1 ; d = 1 ; w = 0\nregels: als niet w dan g ; als z dan t ; als w dan h ; als z dan f ; als r en y dan q ; als g of d dan r ; als y dan k ; als w dan s\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: z = 1 ; g = 1 ; b = 1 ; w = 1 ; t = 0\nregels: als a dan r ; als t dan a ; als w dan h ; als r dan a ; als y dan k ; als c dan y ; als g dan c ; als g dan x\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: t = 1 ; w = 1 ; s = 1 ; m = 1 ; c = 0\nregels: als c dan z ; als z dan r ; als k en s dan q ; als c dan r ; als q dan a ; als w en t dan k ; als t dan g\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: f = 1 ; r = 0 ; m = 1 ; d = 0 ; c = 1\nregels: als m en f dan b ; als d dan k ; als f dan z ; als b en m dan g ; als g dan a ; als f dan w ; als r dan u ; als m dan t ; als u dan y\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: p = 1 ; h = 1 ; q = 1 ; e = 0 ; a = 0\nregels: als v dan k ; als h dan y ; als a dan k ; als s dan r ; als a dan v ; als g dan k ; als p en h dan s ; als r dan f ; als e dan g\nwat is f?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: h = 1 ; r = 0 ; q = 1 ; s = 1 ; m = 0\nregels: als h dan z ; als e dan y ; als q dan t ; als h dan w ; als q dan v ; als t en s dan b ; als b dan a ; als h dan u ; als r dan y\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: k = 1 ; v = 0 ; a = 0 ; y = 1 ; z = 1\nregels: als niet v dan r ; als z dan m ; als v dan h ; als b dan h ; als v dan b ; als r dan t ; als t en k dan p ; als y dan n\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: y = 1 ; t = 0 ; b = 1 ; d = 0 ; w = 0\nregels: als p dan f ; als s dan x ; als f dan r ; als u dan x ; als x dan s ; als y of b dan p\nwat is r?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: g = 1 ; c = 0 ; y = 1 ; h = 1 ; t = 0\nregels: als niet t dan v ; als y dan n ; als x dan u ; als h dan m ; als f en g dan q ; als v en y dan f ; als r dan u ; als u dan r\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: h = 1 ; q = 1 ; x = 0 ; b = 1 ; w = 1\nregels: als v dan t ; als s dan v ; als niet x dan a ; als a dan m ; als x dan v ; als m of q dan r ; als b dan z ; als v dan s\nwat is r?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: g = 1 ; k = 0 ; m = 1 ; a = 1 ; r = 0\nregels: als z dan x ; als r dan c ; als k dan c ; als u dan d ; als niet k dan f ; als r dan u ; als c dan d ; als f dan z\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: r = 1 ; d = 0 ; x = 0 ; k = 0 ; g = 1\nregels: als x dan y ; als r of g dan u ; als r dan s ; als n dan w ; als w dan n ; als u dan f ; als g dan b ; als y dan n ; als f of r dan t\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: e = 1 ; z = 1 ; h = 1 ; y = 0 ; r = 1\nregels: als c dan n ; als niet y dan w ; als w dan t ; als t dan s ; als y dan n ; als z dan u ; als e dan k ; als a dan n\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: n = 1 ; w = 0 ; k = 0 ; m = 1 ; x = 1\nregels: als m dan s ; als g dan d ; als m dan z ; als d dan p ; als m dan a ; als v en m dan h ; als a dan v ; als w dan p ; als n dan r\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: y = 1 ; h = 0 ; g = 0 ; t = 0 ; s = 1\nregels: als g dan n ; als s dan z ; als w dan v ; als y dan x ; als v dan n ; als s dan m ; als t dan v ; als z dan u ; als u dan k\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: y = 1 ; p = 0 ; g = 1 ; c = 0 ; v = 0\nregels: als g dan k ; als m dan a ; als g dan f ; als h dan e ; als e dan h ; als y dan z ; als g dan n ; als p dan e ; als n dan m\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: k = 1 ; x = 1 ; m = 1 ; y = 1 ; d = 0\nregels: als p dan v ; als k dan q ; als z dan a ; als q dan z ; als d dan s ; als p dan s ; als v dan p ; als y dan h\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: y = 1 ; d = 0 ; p = 1 ; r = 1 ; k = 0\nregels: als t dan w ; als q dan w ; als y dan h ; als w dan q ; als y dan x ; als b dan s ; als p dan b ; als s dan m\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: q = 1 ; n = 1 ; v = 1 ; h = 0 ; r = 1\nregels: als n dan b ; als n dan m ; als v dan e ; als d of r dan x ; als h dan y ; als h dan c ; als h dan g ; als v en r dan a ; als a of h dan d\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: v = 1 ; d = 1 ; y = 1 ; r = 0 ; b = 1\nregels: als k dan z ; als k dan c ; als t dan m ; als b dan q ; als r dan k ; als b dan p ; als w of r dan t ; als y en v dan w ; als c dan k\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: e = 1 ; g = 0 ; s = 1 ; y = 0 ; n = 1\nregels: als e dan m ; als y dan r ; als n dan d ; als f dan x ; als e dan u ; als r dan h ; als e dan z ; als e dan q ; als m dan f\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 6,
+   "opgave": "gegeven: e = 1 ; h = 0 ; a = 1 ; x = 0 ; s = 1\nregels: als s dan u ; als a of x dan v ; als q dan y ; als x dan r ; als x dan f ; als h dan f ; als v en s dan q ; als s dan m\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: g = 1 ; c = 0 ; f = 0 ; k = 1 ; b = 0\nregels: als v dan x ; als g dan r ; als n dan s ; als k dan e ; als q dan n ; als niet f dan v ; als t of c dan w ; als c dan n ; als x of b dan t ; als g dan z\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: y = 1 ; d = 1 ; m = 1 ; e = 0 ; n = 0\nregels: als n dan g ; als y dan q ; als a dan p ; als g dan a ; als k of y dan r ; als r of n dan x ; als s of n dan k ; als y dan h ; als y dan z ; als niet n dan s ; als n dan p\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: d = 1 ; w = 0 ; p = 1 ; z = 0 ; e = 0\nregels: als x dan g ; als d dan a ; als x dan m ; als h dan c ; als p dan y ; als m dan g ; als d dan s ; als s dan h ; als c en d dan t ; als p dan v ; als g dan x\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: u = 1 ; m = 0 ; r = 0 ; e = 0 ; g = 0\nregels: als v dan b ; als f dan d ; als u dan a ; als b dan k ; als g dan f ; als u dan t ; als d dan f ; als u dan x ; als h of u dan v ; als niet e dan h ; als u dan y\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: u = 1 ; q = 0 ; f = 0 ; k = 0 ; p = 0\nregels: als x dan z ; als v of q dan x ; als u dan a ; als u en u dan h ; als d dan w ; als f dan w ; als u dan g ; als h dan v ; als u dan c ; als n dan d\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: r = 1 ; v = 1 ; c = 1 ; u = 1 ; e = 0\nregels: als e dan z ; als u dan x ; als a dan f ; als c dan w ; als g dan b ; als v dan y ; als b dan h ; als r dan g ; als z dan a ; als e dan a ; als h dan k\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: g = 1 ; p = 0 ; z = 0 ; c = 1 ; m = 0\nregels: als m dan v ; als c dan y ; als a dan t ; als r dan b ; als c dan n ; als c dan w ; als n dan a ; als v dan r ; als c dan s ; als r dan v ; als t dan niet e\nwat is e?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: u = 1 ; f = 1 ; q = 1 ; k = 0 ; n = 1\nregels: als q dan y ; als b dan m ; als g dan niet r ; als c dan m ; als x dan g ; als k dan c ; als b dan c ; als k dan b ; als q of u dan t ; als f dan d ; als t dan x\nwat is r?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: z = 1 ; b = 0 ; e = 1 ; y = 1 ; r = 0\nregels: als y dan u ; als c dan w ; als b dan w ; als e dan k ; als s dan a ; als y en z dan s ; als n dan c ; als a dan v ; als v of b dan p ; als z dan m ; als e dan x\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: s = 1 ; k = 1 ; y = 1 ; f = 0 ; u = 1\nregels: als n dan z ; als e of s dan t ; als y dan v ; als q dan n ; als f dan q ; als t dan m ; als m dan a ; als f dan z ; als u dan e ; als y dan d ; als u dan x\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: g = 1 ; e = 0 ; r = 1 ; x = 0 ; d = 1\nregels: als m dan w ; als d dan c ; als g dan s ; als x dan m ; als z dan niet q ; als p dan f ; als m dan b ; als r dan p ; als b dan w ; als f dan z\nwat is q?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: z = 1 ; p = 1 ; n = 1 ; e = 0 ; c = 0\nregels: als w en z dan niet k ; als y dan f ; als a of n dan r ; als z dan a ; als r dan w ; als e dan f ; als p dan t ; als n dan g ; als e dan b ; als f dan y\nwat is k?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: z = 1 ; x = 0 ; p = 0 ; t = 0 ; w = 1\nregels: als g dan n ; als w dan c ; als z dan q ; als d dan b ; als w dan k ; als k dan d ; als z dan r ; als p dan a ; als b of p dan h ; als g dan a ; als z dan y\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: p = 1 ; d = 0 ; b = 0 ; n = 1 ; y = 1\nregels: als e dan q ; als d dan g ; als b dan g ; als b dan w ; als p dan u ; als y dan v ; als p dan f ; als v dan e ; als d dan w ; als q of y dan niet r\nwat is r?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: h = 1 ; g = 1 ; a = 1 ; f = 0 ; z = 0\nregels: als h dan p ; als h dan x ; als t dan c ; als h dan d ; als a dan w ; als p dan u ; als c dan y ; als u of h dan r ; als r en a dan niet b ; als f dan t\nwat is b?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: r = 1 ; y = 0 ; c = 0 ; p = 0 ; b = 1\nregels: als k dan a ; als e dan m ; als s dan e ; als b dan h ; als p dan s ; als b en r dan w ; als a dan u ; als c dan s ; als e dan s ; als w dan k ; als c dan m\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: k = 1 ; m = 1 ; z = 1 ; e = 0 ; d = 1\nregels: als b of m dan x ; als z dan u ; als z dan q ; als e dan f ; als e dan n ; als m dan y ; als t of d dan b ; als a dan n ; als x en d dan w ; als z dan t\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: s = 1 ; t = 1 ; p = 0 ; z = 0 ; v = 0\nregels: als m dan y ; als v dan x ; als s dan e ; als m dan x ; als s of p dan f ; als s dan r ; als q dan w ; als y dan m ; als w en s dan niet h ; als f dan q\nwat is h?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: p = 1 ; g = 1 ; a = 0 ; m = 0 ; d = 1\nregels: als n dan x ; als g dan e ; als h dan w ; als d dan q ; als g dan b ; als niet a dan v ; als w en p dan niet s ; als a dan x ; als p dan z ; als v dan h\nwat is s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: s = 1 ; p = 0 ; g = 0 ; q = 0 ; v = 0\nregels: als q dan w ; als a dan w ; als u en s dan m ; als s dan t ; als s dan e ; als r dan u ; als q dan a ; als s dan f ; als s dan x ; als f dan r\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: f = 1 ; z = 0 ; e = 0 ; y = 0 ; t = 1\nregels: als u en t dan n ; als s dan p ; als e dan s ; als d dan a ; als z dan p ; als a dan u ; als t dan q ; als e dan h ; als f of t dan d ; als p dan h ; als h dan s\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: d = 1 ; z = 0 ; f = 1 ; k = 0 ; r = 0\nregels: als f dan s ; als k dan h ; als f dan p ; als f dan a ; als d dan e ; als z dan m ; als t dan niet n ; als g of r dan t ; als d dan b ; als a dan g ; als u dan h\nwat is n?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: n = 1 ; s = 0 ; e = 0 ; u = 1 ; z = 0\nregels: als n dan p ; als n dan m ; als m dan x ; als u dan c ; als u dan h ; als t dan r ; als x dan a ; als u dan d ; als z dan t ; als a dan g\nwat is g?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: y = 1 ; e = 0 ; h = 0 ; u = 1 ; a = 0\nregels: als q dan g ; als r dan g ; als g dan q ; als s en y dan z ; als u dan d ; als niet e dan s ; als u dan t ; als a dan q ; als z en y dan f ; als y dan x ; als f dan p\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: b = 1 ; p = 0 ; a = 1 ; m = 0 ; y = 0\nregels: als p dan x ; als t dan x ; als q en b dan d ; als b dan z ; als e dan q ; als b en a dan h ; als m dan x ; als a dan c ; als y dan x ; als x dan t ; als h of y dan e\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: x = 1 ; q = 1 ; k = 0 ; t = 1 ; r = 1\nregels: als q dan e ; als k dan u ; als e dan b ; als b dan w ; als r dan p ; als w dan h ; als k dan d ; als d dan u ; als u dan d ; als d dan c\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: a = 1 ; g = 1 ; v = 0 ; y = 0 ; t = 0\nregels: als c dan z ; als h of t dan c ; als t dan x ; als a dan d ; als v dan s ; als s dan k ; als s dan x ; als a dan r ; als g dan e ; als e dan h ; als k dan s\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: p = 1 ; q = 0 ; m = 1 ; d = 1 ; x = 0\nregels: als d dan r ; als v dan g ; als q dan s ; als e dan t ; als d dan a ; als r dan u ; als x dan s ; als u dan e ; als x dan g ; als g dan s\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: u = 1 ; w = 0 ; d = 0 ; r = 1 ; h = 1\nregels: als h dan x ; als d dan b ; als u dan g ; als z dan c ; als d dan m ; als c dan t ; als b dan p ; als h dan s ; als g dan z ; als w dan b ; als p dan b\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 7,
+   "opgave": "gegeven: r = 1 ; v = 0 ; k = 1 ; x = 1 ; p = 1\nregels: als v dan q ; als q dan w ; als r dan d ; als w dan h ; als b dan s ; als v dan h ; als f dan niet y ; als p dan b ; als k dan n ; als s dan f\nwat is y?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: k = 1 ; e = 1 ; h = 0 ; w = 0 ; z = 0 ; a = 0\nregels: als e dan p ; als w dan t ; als h dan u ; als s dan f ; als t dan u ; als f dan b ; als u dan t ; als e dan q ; als k dan n ; als niet z dan y ; als y dan s\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: x = 1 ; a = 0 ; d = 1 ; p = 1 ; v = 1 ; b = 0\nregels: als a dan f ; als v dan q ; als u en v dan t ; als s dan z ; als v dan h ; als niet a dan u ; als s dan f ; als t en p dan n ; als z dan s ; als a dan z ; als n dan y\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: t = 1 ; k = 1 ; p = 0 ; g = 1 ; z = 1 ; x = 0\nregels: als r dan n ; als t dan f ; als z dan v ; als s dan y ; als d of p dan r ; als w dan d ; als z dan w ; als p dan h ; als x dan s ; als y dan s ; als y dan h\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: k = 1 ; x = 1 ; q = 0 ; b = 0 ; v = 1 ; m = 0\nregels: als u dan f ; als x dan d ; als x dan g ; als e dan a ; als f en k dan s ; als k dan h ; als v dan n ; als d of v dan u ; als z dan e ; als m dan z ; als x dan w\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: f = 1 ; s = 1 ; q = 0 ; v = 0 ; p = 1 ; w = 0\nregels: als s dan y ; als f dan b ; als v dan m ; als v dan k ; als n dan m ; als p dan d ; als p dan r ; als k dan n ; als r en p dan t ; als t dan x ; als x dan z\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: u = 1 ; a = 1 ; m = 0 ; p = 0 ; k = 0 ; q = 1\nregels: als m dan v ; als g dan z ; als u dan y ; als a en u dan w ; als v dan t ; als q dan b ; als n dan g ; als k dan c ; als w dan n ; als t dan v\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: m = 1 ; u = 0 ; d = 0 ; r = 1 ; e = 0 ; v = 1\nregels: als u dan c ; als p dan n ; als w dan k ; als u dan n ; als k en r dan y ; als q dan w ; als n dan c ; als e dan c ; als c dan n ; als v dan z ; als r dan q\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: m = 1 ; u = 1 ; g = 1 ; r = 1 ; a = 0 ; b = 0\nregels: als h dan y ; als p dan z ; als y dan h ; als g dan x ; als z dan f ; als r dan q ; als f dan niet d ; als b dan y ; als g dan p ; als h dan k ; als m dan s\nwat is d?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: z = 1 ; x = 1 ; c = 0 ; t = 1 ; n = 1 ; e = 0\nregels: als y dan u ; als n dan k ; als e dan y ; als s of t dan p ; als w of z dan b ; als n dan q ; als e dan h ; als u dan h ; als x dan a ; als p of e dan w ; als niet e dan s\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: f = 1 ; g = 0 ; w = 1 ; k = 1 ; y = 1 ; z = 1\nregels: als g dan v ; als z dan b ; als d dan v ; als k dan p ; als k dan u ; als niet g dan h ; als g dan n ; als h dan s ; als s of g dan r ; als r en z dan niet a ; als f dan q ; als y dan t\nwat is a?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: k = 1 ; f = 1 ; t = 0 ; n = 1 ; p = 0 ; r = 1\nregels: als h dan niet y ; als n dan m ; als t dan c ; als p dan s ; als t dan s ; als a dan h ; als d dan s ; als x en n dan a ; als f en k dan x ; als f dan z\nwat is y?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: f = 1 ; d = 0 ; v = 0 ; u = 1 ; h = 1 ; t = 1\nregels: als u dan n ; als c dan x ; als s dan r ; als d dan k ; als f dan b ; als f dan z ; als z en t dan c ; als f dan g ; als h dan a ; als u dan w ; als d dan s ; als x en t dan e\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: x = 1 ; r = 1 ; h = 1 ; t = 1 ; c = 1 ; q = 0\nregels: als h dan b ; als t dan m ; als g en x dan v ; als v en h dan d ; als q dan a ; als a dan e ; als q dan w ; als x dan y ; als b dan g ; als r dan n\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: f = 1 ; e = 0 ; g = 1 ; h = 1 ; x = 1 ; q = 0\nregels: als q dan a ; als h dan t ; als e dan p ; als q dan b ; als c en f dan niet z ; als m dan r ; als p dan b ; als g of f dan m ; als b dan a ; als x dan s ; als r of f dan c\nwat is z?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: g = 1 ; w = 0 ; n = 1 ; k = 1 ; y = 0 ; r = 1\nregels: als w dan h ; als n dan b ; als d dan t ; als u of n dan z ; als p dan u ; als z of k dan niet s ; als w dan t ; als g en n dan p ; als h dan d ; als t dan h ; als h dan t\nwat is s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: d = 1 ; e = 0 ; n = 0 ; m = 0 ; u = 0 ; y = 0\nregels: als d dan x ; als c dan a ; als d dan g ; als a of m dan f ; als y dan t ; als f en d dan h ; als d dan s ; als p dan k ; als d dan c ; als t dan k ; als u dan k ; als d dan v\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: g = 1 ; n = 1 ; q = 1 ; k = 1 ; p = 1 ; z = 0\nregels: als u en q dan x ; als d dan f ; als g dan u ; als z dan m ; als z dan v ; als n dan c ; als x dan d ; als k dan r ; als z dan s ; als n dan a ; als m dan s\nwat is f?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: y = 1 ; h = 1 ; u = 0 ; z = 1 ; c = 0 ; e = 1\nregels: als niet c dan p ; als g dan r ; als r dan a ; als c dan r ; als k dan b ; als u dan r ; als e dan w ; als h dan q ; als d en e dan k ; als h dan s ; als p dan d ; als a dan r\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: q = 1 ; d = 1 ; g = 0 ; r = 1 ; z = 0 ; t = 0\nregels: als m of t dan a ; als r dan v ; als q dan p ; als b dan e ; als b dan f ; als e dan f ; als r en d dan m ; als a of r dan s ; als e dan b ; als s dan k\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: y = 1 ; c = 1 ; n = 1 ; p = 1 ; t = 1 ; s = 0\nregels: als x en p dan b ; als n dan h ; als c dan v ; als s dan z ; als s dan w ; als c dan f ; als w dan z ; als s dan q ; als h dan m ; als m dan x ; als z dan w ; als y dan u\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: z = 1 ; v = 0 ; a = 1 ; d = 1 ; b = 1 ; p = 1\nregels: als t dan g ; als d dan f ; als v dan r ; als e dan x ; als k dan c ; als x dan t ; als v dan k ; als b dan e ; als v dan c\nwat is g?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: v = 1 ; c = 0 ; d = 0 ; r = 0 ; h = 0 ; m = 0\nregels: als s dan e ; als v dan b ; als v dan g ; als k dan e ; als e dan s ; als h dan s ; als b dan w ; als v dan a ; als k dan s ; als w dan y ; als y dan niet z\nwat is z?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: m = 1 ; q = 1 ; s = 1 ; e = 1 ; x = 0 ; z = 1\nregels: als m of e dan g ; als q dan a ; als m dan t ; als h dan v ; als x dan u ; als n dan d ; als x dan v ; als g en m dan n ; als h dan u ; als d dan b ; als x dan h\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: w = 1 ; u = 0 ; m = 0 ; f = 0 ; y = 0 ; h = 0\nregels: als z dan s ; als w dan n ; als h dan g ; als c dan g ; als f dan g ; als w dan x ; als s dan b ; als w dan a ; als p dan z ; als w dan p ; als f dan c ; als c dan q\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: v = 1 ; x = 1 ; n = 1 ; h = 1 ; p = 0 ; z = 1\nregels: als v dan t ; als v dan b ; als h dan u ; als v dan k ; als p dan w ; als s en x dan g ; als d dan s ; als m dan w ; als t en h dan d ; als p dan m\nwat is g?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: t = 1 ; d = 0 ; g = 1 ; z = 0 ; x = 0 ; c = 1\nregels: als k dan p ; als t dan r ; als d dan k ; als d dan q ; als c dan v ; als v dan n ; als q dan k ; als e dan niet a ; als c dan f ; als n en c dan e ; als c dan b ; als z dan k\nwat is a?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: q = 1 ; u = 0 ; n = 1 ; t = 0 ; a = 1 ; y = 0\nregels: als t dan d ; als f dan h ; als t dan h ; als x dan s ; als n dan b ; als u dan h ; als v of a dan z ; als d dan h ; als t dan f ; als z en q dan x ; als q of y dan v ; als a dan m\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: f = 1 ; z = 0 ; v = 0 ; p = 0 ; e = 1 ; u = 1\nregels: als m of u dan c ; als f dan q ; als t dan r ; als r dan x ; als e dan y ; als p dan t ; als u of v dan b ; als c dan h ; als b dan m ; als z dan t ; als x dan r ; als t dan x\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: f = 1 ; h = 1 ; s = 1 ; g = 0 ; d = 1 ; x = 0\nregels: als v dan z ; als q en s dan niet u ; als s dan b ; als f dan v ; als z en d dan q ; als e dan k ; als k dan e ; als t dan k ; als g dan k ; als k dan t\nwat is u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 8,
+   "opgave": "gegeven: a = 1 ; g = 0 ; q = 0 ; p = 1 ; y = 1 ; r = 1\nregels: als d dan s ; als e dan niet u ; als g dan f ; als t dan e ; als y dan n ; als s dan f ; als q dan f ; als k dan t ; als q dan s ; als niet g dan k ; als r dan w\nwat is u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: t = 1 ; m = 1 ; k = 1 ; d = 0 ; z = 1 ; c = 0\nregels: als m dan q ; als n dan p ; als y of t dan r ; als h dan g ; als n dan x ; als c dan x ; als p dan n ; als r en t dan a ; als c dan p ; als m dan h ; als x dan p ; als g dan y\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: t = 1 ; f = 1 ; y = 1 ; c = 1 ; r = 1 ; m = 0\nregels: als k dan w ; als niet m dan z ; als q dan h ; als z dan e ; als t dan s ; als w of r dan niet g ; als h dan q ; als r dan p ; als e dan k ; als m dan a ; als r dan d\nwat is g?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: f = 1 ; v = 1 ; w = 0 ; r = 1 ; q = 1 ; k = 0\nregels: als x dan d ; als r dan e ; als k dan n ; als niet w dan m ; als w dan p ; als d dan b ; als m dan x ; als w dan a ; als r dan c ; als v dan s ; als b dan t\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: v = 1 ; n = 1 ; h = 1 ; b = 1 ; g = 1 ; e = 0\nregels: als f dan d ; als h dan r ; als v dan a ; als b dan p ; als x of g dan f ; als g dan y ; als s dan x ; als e dan k ; als h dan w ; als p dan s ; als q dan k\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: n = 1 ; e = 0 ; y = 0 ; m = 0 ; u = 1 ; b = 0\nregels: als z dan s ; als n dan q ; als e dan z ; als k en n dan c ; als e dan s ; als s dan z ; als w dan z ; als d of u dan v ; als n dan t ; als v dan g ; als e dan w ; als g dan k ; als niet e dan d ; als w dan s\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: e = 1 ; n = 0 ; z = 0 ; x = 1 ; m = 1 ; f = 1\nregels: als p dan q ; als e dan w ; als s dan b ; als v of m dan s ; als e dan v ; als f dan g ; als h dan q ; als q dan p ; als y dan u ; als h dan p ; als b of m dan y ; als x dan k\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: r = 1 ; u = 0 ; g = 0 ; p = 1 ; w = 1 ; f = 1\nregels: als u dan d ; als n dan niet e ; als h of r dan s ; als w dan c ; als w of r dan h ; als s dan t ; als t dan n ; als f dan a ; als d dan k ; als w dan z ; als g dan k ; als u dan k ; als r dan b ; als w dan q\nwat is e?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: d = 1 ; w = 1 ; z = 1 ; r = 0 ; u = 0 ; x = 0\nregels: als z dan b ; als w dan s ; als z dan g ; als k dan m ; als b of z dan k ; als u dan v ; als q dan y ; als d dan c ; als x dan v ; als z dan e ; als t of x dan niet h ; als y dan q ; als m dan t ; als d dan p\nwat is h?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: c = 1 ; s = 0 ; m = 1 ; h = 0 ; a = 1 ; t = 0\nregels: als c dan n ; als s dan f ; als p dan f ; als d dan p ; als e of m dan w ; als p dan d ; als h dan p ; als v dan z ; als m of a dan e ; als s dan d ; als w dan v ; als z of h dan r\nwat is r?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: p = 1 ; s = 0 ; z = 0 ; w = 0 ; d = 1 ; x = 1\nregels: als b dan t ; als t dan r ; als k dan b ; als v dan q ; als d of s dan k ; als w dan v ; als p dan e ; als z dan v ; als v dan c ; als r dan niet u ; als x dan g ; als p dan m ; als p dan f\nwat is u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: c = 1 ; g = 1 ; w = 1 ; u = 0 ; e = 1 ; a = 0\nregels: als h dan y ; als g dan s ; als z of w dan q ; als m of w dan z ; als s dan m ; als a dan h ; als c dan b ; als y dan k ; als u dan k ; als q dan niet p ; als c dan r ; als w dan d\nwat is p?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: z = 1 ; r = 1 ; u = 0 ; b = 0 ; c = 1 ; e = 0\nregels: als p dan f ; als m dan niet d ; als h dan v ; als e dan p ; als u dan f ; als e dan f ; als n dan h ; als r dan k ; als z dan x ; als z dan t ; als c dan n ; als b dan f ; als v dan m\nwat is d?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: w = 1 ; f = 1 ; b = 0 ; p = 1 ; c = 0 ; k = 1\nregels: als b dan u ; als g dan t ; als m dan d ; als n en p dan m ; als c dan t ; als t dan u ; als f dan h ; als g dan u ; als k dan e ; als d dan r ; als f dan x ; als r dan s ; als w en f dan n\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: d = 1 ; g = 1 ; z = 1 ; e = 0 ; t = 0 ; u = 0\nregels: als q dan a ; als n en g dan v ; als t dan q ; als u dan a ; als v en g dan c ; als u dan q ; als p dan q ; als e dan p ; als a dan p ; als c en d dan b ; als b en z dan k ; als e dan a ; als g en z dan n\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: w = 1 ; e = 1 ; m = 1 ; n = 1 ; h = 1 ; g = 0\nregels: als z dan d ; als h dan x ; als g dan a ; als e dan c ; als h of n dan t ; als v of h dan niet r ; als d dan a ; als f en m dan v ; als g dan z ; als e dan s ; als a dan d ; als t of g dan b ; als b dan f\nwat is r?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: a = 1 ; m = 1 ; n = 0 ; u = 1 ; c = 1 ; h = 0\nregels: als h dan v ; als z dan b ; als c en a dan p ; als n dan b ; als p dan r ; als f en c dan e ; als r dan f ; als e dan x ; als z dan v ; als c dan w ; als v dan b ; als h dan z\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: e = 1 ; g = 1 ; y = 0 ; z = 0 ; q = 0 ; u = 0\nregels: als u dan p ; als y dan c ; als x dan k ; als h dan p ; als g dan v ; als c dan p ; als t dan x ; als c dan h ; als e dan f ; als g dan d ; als n dan t ; als niet y dan b ; als b en e dan n\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: g = 1 ; c = 1 ; a = 0 ; f = 1 ; z = 1 ; m = 0\nregels: als g dan q ; als a dan d ; als e dan x ; als z dan k ; als m dan r ; als q dan v ; als u dan r ; als r dan d ; als a dan r ; als v dan y ; als d dan r ; als y of m dan e\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: b = 1 ; g = 1 ; x = 0 ; e = 1 ; m = 1 ; k = 0\nregels: als x dan y ; als x dan a ; als y dan z ; als v dan d ; als w of b dan r ; als r dan n ; als y dan a ; als g dan h ; als n dan v ; als g dan c ; als a dan y ; als k dan a ; als g dan w\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: p = 1 ; g = 1 ; t = 0 ; r = 0 ; d = 1 ; h = 0\nregels: als v dan m ; als x dan v ; als h dan v ; als f en g dan e ; als e of r dan z ; als d dan w ; als r dan x ; als p dan c ; als v dan x ; als k of t dan u ; als niet t dan k ; als t dan v ; als u dan f\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: p = 1 ; k = 1 ; d = 0 ; t = 0 ; n = 0 ; r = 0\nregels: als n dan x ; als c dan z ; als v dan m ; als m of r dan niet a ; als q dan w ; als w dan q ; als d dan w ; als k dan y ; als k dan c ; als x dan q ; als z dan v ; als p dan h\nwat is a?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: v = 1 ; b = 1 ; y = 0 ; m = 1 ; q = 0 ; d = 0\nregels: als n dan r ; als e dan r ; als b en m dan x ; als m dan c ; als m dan z ; als u dan niet k ; als p dan g ; als q dan e ; als x dan p ; als g of v dan u ; als d dan e ; als e dan n ; als v dan t ; als q dan n\nwat is k?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: c = 1 ; q = 0 ; a = 1 ; w = 1 ; y = 0 ; k = 0\nregels: als c dan d ; als x dan e ; als p dan u ; als g dan niet b ; als y dan u ; als a dan s ; als c dan v ; als e dan g ; als y dan z ; als z dan p ; als a dan m ; als s dan x ; als q dan z\nwat is b?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: d = 1 ; s = 1 ; e = 0 ; z = 0 ; g = 0 ; h = 1\nregels: als e dan b ; als y dan b ; als c dan k ; als s dan q ; als g dan t ; als s dan v ; als s of e dan u ; als w dan c ; als u dan w ; als k dan f ; als b dan t ; als d dan r ; als s dan p\nwat is f?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: z = 1 ; p = 1 ; h = 0 ; t = 1 ; m = 1 ; a = 1\nregels: als b dan n ; als p dan x ; als d dan r ; als h dan k ; als p dan g ; als h dan d ; als p dan y ; als n dan w ; als d dan k ; als e en t dan niet q ; als w dan e ; als m en p dan b\nwat is q?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: v = 1 ; b = 1 ; e = 1 ; q = 1 ; d = 1 ; u = 0\nregels: als c dan r ; als u dan r ; als m dan y ; als c dan n ; als r dan c ; als y dan x ; als x dan s ; als niet u dan m ; als r dan n ; als q dan k ; als u dan n ; als n dan c ; als s dan a\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: k = 1 ; n = 0 ; p = 0 ; c = 0 ; s = 1 ; q = 0\nregels: als n dan v ; als k en s dan x ; als x dan g ; als k dan e ; als u dan v ; als g of c dan b ; als d dan u ; als b en s dan t ; als t dan y ; als p dan d ; als v dan d ; als v dan u ; als p dan u\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: g = 1 ; m = 0 ; p = 0 ; d = 1 ; z = 1 ; q = 0\nregels: als c dan b ; als g dan s ; als c dan w ; als b dan c ; als b dan w ; als n of g dan h ; als h dan v ; als w dan b ; als z en g dan n ; als k dan e ; als v of d dan k ; als w dan c\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: m = 1 ; v = 0 ; r = 0 ; z = 0 ; h = 0 ; p = 1\nregels: als z dan y ; als w dan t ; als m dan g ; als d en m dan w ; als e dan y ; als t dan a ; als h dan c ; als niet h dan u ; als u dan d ; als p dan n ; als v dan e ; als c dan e ; als r dan e\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 9,
+   "opgave": "gegeven: q = 1 ; e = 1 ; d = 1 ; u = 0 ; m = 0 ; b = 1\nregels: als d dan s ; als m dan k ; als m dan v ; als a dan t ; als h dan a ; als k dan v ; als e dan r ; als u dan v ; als g dan h ; als q dan g ; als u dan k ; als z dan k ; als t dan niet c\nwat is c?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: d = 1 ; s = 1 ; p = 1 ; b = 0 ; g = 1 ; c = 1 ; h = 0\nregels: als b dan e ; als s of c dan k ; als g dan v ; als r dan z ; als z of p dan t ; als s dan y ; als c dan f ; als h dan e ; als e dan x ; als k dan u ; als u dan r ; als b dan m\nwat is t?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: v = 1 ; q = 0 ; f = 0 ; n = 0 ; h = 0 ; b = 0 ; u = 0\nregels: als c of f dan z ; als v dan k ; als p of n dan c ; als v dan r ; als h dan t ; als v dan x ; als z dan d ; als t dan g ; als b dan t ; als v dan m ; als w dan p ; als t dan s ; als v of h dan w ; als u dan g\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: a = 1 ; u = 0 ; t = 1 ; h = 1 ; z = 1 ; s = 0 ; g = 0\nregels: als d dan q ; als x dan r ; als h en a dan d ; als b dan r ; als k en t dan niet m ; als a dan v ; als z dan e ; als z dan f ; als z dan y ; als n dan k ; als q en a dan n ; als h dan w ; als u dan r ; als u dan x ; als r dan x\nwat is m?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: t = 1 ; g = 1 ; b = 1 ; p = 1 ; w = 1 ; x = 1 ; e = 0\nregels: als e dan s ; als p dan a ; als t dan q ; als e dan d ; als k dan d ; als k dan s ; als n dan h ; als d dan k ; als e dan k ; als r of g dan n ; als c of e dan f ; als h en p dan c ; als s dan k ; als w dan z ; als niet e dan r\nwat is f?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: d = 1 ; y = 0 ; a = 1 ; p = 0 ; q = 0 ; h = 0 ; w = 1\nregels: als c dan z ; als y dan s ; als d dan u ; als a dan m ; als b en a dan e ; als c dan s ; als p dan s ; als q dan c ; als d dan g ; als q dan z ; als w dan f ; als v dan b ; als t dan v ; als f of a dan t\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: h = 1 ; z = 1 ; t = 0 ; a = 1 ; y = 0 ; c = 0 ; v = 0\nregels: als v dan e ; als h dan s ; als h dan n ; als h dan f ; als x dan e ; als w dan m ; als f of h dan k ; als k dan p ; als a dan d ; als a dan r ; als x dan q ; als p dan w\nwat is m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: b = 1 ; r = 1 ; a = 0 ; e = 0 ; m = 0 ; p = 0 ; t = 1\nregels: als w dan s ; als b en t dan k ; als p dan s ; als s dan u ; als k of r dan x ; als w dan u ; als d dan c ; als e dan u ; als c dan niet z ; als u dan s ; als m dan w ; als s dan w ; als x dan d\nwat is z?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: t = 1 ; h = 0 ; n = 0 ; e = 0 ; m = 1 ; q = 1 ; d = 1\nregels: als e dan y ; als d dan p ; als x en m dan k ; als d dan a ; als t dan u ; als g en q dan w ; als e dan z ; als z dan s ; als d of e dan x ; als t dan f ; als s dan z ; als w dan c ; als e dan s ; als d dan r ; als k of q dan g\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: z = 1 ; a = 1 ; p = 0 ; v = 0 ; s = 0 ; w = 0 ; b = 1\nregels: als m dan x ; als n dan r ; als b dan k ; als s dan e ; als b dan h ; als w dan x ; als k dan q ; als r dan niet f ; als v dan m ; als b dan c ; als m dan e ; als p dan m ; als q of b dan n\nwat is f?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: v = 1 ; q = 1 ; t = 0 ; g = 1 ; u = 1 ; y = 0 ; w = 1\nregels: als g dan e ; als m dan k ; als t dan x ; als s of q dan b ; als niet y dan m ; als w dan f ; als t dan p ; als c dan x ; als u dan d ; als q dan a ; als w dan n ; als k dan s ; als y dan c ; als v dan h ; als b dan niet r\nwat is r?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: p = 1 ; d = 0 ; h = 0 ; t = 0 ; c = 1 ; b = 0 ; x = 1\nregels: als h dan v ; als q dan a ; als p dan f ; als t dan s ; als v dan s ; als a dan r ; als x dan k ; als r en x dan e ; als c dan m ; als e en p dan n ; als niet t dan q ; als x dan g ; als c dan y\nwat is n?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: f = 1 ; d = 0 ; p = 1 ; b = 0 ; c = 1 ; w = 0 ; n = 1\nregels: als b dan t ; als s dan y ; als n dan q ; als w dan g ; als p dan u ; als n dan v ; als f dan r ; als t dan h ; als y of w dan k ; als g dan t ; als p dan m ; als k en f dan x ; als f dan a ; als f en n dan s ; als x dan e\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: s = 1 ; z = 1 ; q = 0 ; v = 1 ; w = 1 ; u = 1 ; x = 1\nregels: als f dan g ; als v dan k ; als w dan r ; als q dan c ; als d dan b ; als q dan f ; als p dan e ; als b of v dan p ; als s dan d ; als z dan m ; als q dan g ; als e dan niet t\nwat is t?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: t = 1 ; b = 0 ; p = 0 ; r = 0 ; d = 1 ; f = 0 ; q = 0\nregels: als d dan e ; als d dan k ; als t en d dan c ; als t dan s ; als c dan a ; als q dan h ; als n dan h ; als a dan w ; als w dan v ; als r dan n ; als t dan y ; als d dan x ; als q dan n ; als v of d dan niet g\nwat is g?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: z = 1 ; r = 1 ; v = 0 ; a = 1 ; m = 1 ; t = 0 ; c = 0\nregels: als niet t dan e ; als u dan s ; als k of m dan w ; als g dan k ; als z dan b ; als v dan s ; als w dan niet n ; als c dan s ; als m dan y ; als s dan u ; als e en m dan g ; als r dan f\nwat is n?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: s = 1 ; g = 0 ; k = 0 ; y = 0 ; z = 1 ; t = 1 ; f = 0\nregels: als b of f dan q ; als w dan c ; als f dan v ; als f dan m ; als f dan n ; als niet y dan b ; als v dan n ; als t dan e ; als u dan w ; als s dan a ; als q en t dan u ; als s dan r ; als m dan v ; als k dan m ; als s dan h\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: t = 1 ; d = 0 ; x = 1 ; r = 1 ; z = 1 ; s = 0 ; b = 0\nregels: als x dan p ; als s dan f ; als w dan h ; als f dan m ; als r dan q ; als z dan e ; als m dan g ; als niet s dan c ; als t dan y ; als d dan f ; als h dan v ; als v en r dan a ; als c of t dan w\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: y = 1 ; f = 1 ; n = 1 ; t = 0 ; u = 0 ; a = 1 ; b = 1\nregels: als h dan q ; als z dan m ; als k dan x ; als niet u dan h ; als q of t dan z ; als x dan k ; als e dan x ; als m of f dan niet r ; als u dan x ; als u dan k ; als x dan e ; als y dan s\nwat is r?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: e = 1 ; c = 0 ; a = 1 ; s = 0 ; m = 1 ; z = 1 ; b = 1\nregels: als b dan g ; als k dan v ; als z dan w ; als b dan y ; als s dan p ; als d dan k ; als e dan r ; als c dan n ; als u dan d ; als s dan n ; als m dan t ; als v dan x ; als niet c dan u ; als n dan p ; als e dan f\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: e = 1 ; d = 1 ; v = 1 ; y = 1 ; q = 0 ; k = 0 ; m = 1\nregels: als k dan a ; als t dan p ; als a dan c ; als w dan c ; als u dan t ; als q dan a ; als k dan w ; als a dan w ; als m dan f ; als r dan z ; als z dan u ; als d dan b ; als k dan c ; als niet q dan r\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: f = 1 ; v = 0 ; e = 0 ; w = 1 ; g = 1 ; n = 0 ; t = 0\nregels: als m dan z ; als t dan b ; als p dan d ; als z dan c ; als n dan p ; als c dan k ; als e dan p ; als f dan q ; als k dan s ; als d dan b ; als t dan p ; als w dan r ; als g dan m\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: m = 1 ; e = 1 ; w = 1 ; h = 1 ; k = 1 ; r = 1 ; d = 0\nregels: als f dan a ; als d dan a ; als b en r dan x ; als m dan t ; als r dan q ; als y of d dan p ; als c dan a ; als w dan n ; als h of e dan y ; als p dan b ; als x dan niet s ; als d dan c\nwat is s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: c = 1 ; z = 0 ; m = 0 ; u = 0 ; t = 1 ; d = 0 ; v = 1\nregels: als w dan q ; als t dan h ; als v of z dan a ; als w dan g ; als k dan r ; als b of t dan y ; als a en v dan b ; als u dan w ; als q dan g ; als z dan g ; als y dan k ; als m dan g ; als v dan n ; als z dan w\nwat is r?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: x = 1 ; w = 1 ; s = 1 ; r = 0 ; c = 1 ; g = 1 ; b = 1\nregels: als b dan k ; als t dan e ; als w dan v ; als r dan p ; als b dan f ; als r dan q ; als h en c dan y ; als e dan h ; als p dan m ; als r dan m ; als s dan d ; als a dan t ; als g dan a ; als c dan u\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: v = 1 ; d = 1 ; w = 0 ; g = 1 ; z = 1 ; s = 0 ; f = 1\nregels: als c dan niet e ; als g dan x ; als g dan b ; als v dan k ; als p dan m ; als w dan m ; als q dan m ; als k en z dan y ; als v dan n ; als y dan u ; als q dan p ; als f dan r ; als u of s dan c\nwat is e?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: d = 1 ; p = 0 ; r = 0 ; s = 1 ; v = 0 ; t = 1 ; m = 0\nregels: als k dan q ; als y en t dan b ; als t dan z ; als v dan q ; als t dan e ; als d dan a ; als d dan f ; als d dan h ; als n dan x ; als niet p dan g ; als g dan y ; als s dan u ; als b dan n ; als t dan c ; als p dan k\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: q = 1 ; p = 0 ; t = 0 ; f = 1 ; d = 1 ; w = 1 ; e = 0\nregels: als n dan g ; als e dan s ; als g dan k ; als x dan n ; als t dan s ; als e dan a ; als a dan v ; als s dan v ; als e dan v ; als k dan z ; als v dan s ; als w dan x ; als d dan y\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: w = 1 ; u = 0 ; p = 1 ; k = 0 ; s = 0 ; x = 0 ; m = 1\nregels: als a dan g ; als f en w dan b ; als g dan f ; als w dan h ; als s dan r ; als m dan e ; als n dan z ; als s dan z ; als x dan z ; als p en w dan a ; als u dan z ; als p dan v ; als b dan d\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: c = 1 ; e = 0 ; y = 0 ; s = 1 ; b = 0 ; t = 0 ; v = 0\nregels: als s dan n ; als c dan d ; als x en s dan w ; als r dan m ; als z en c dan g ; als y dan u ; als v dan m ; als e dan r ; als g of c dan h ; als u dan m ; als s of b dan x ; als s dan f ; als w dan z ; als u dan r\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 10,
+   "opgave": "gegeven: e = 1 ; m = 0 ; p = 0 ; b = 0 ; v = 1 ; y = 0 ; r = 1\nregels: als y dan k ; als f dan t ; als g dan q ; als p dan k ; als f dan k ; als e en r dan n ; als v dan w ; als e dan u ; als v dan z ; als k dan f ; als e dan c ; als e dan h ; als q of y dan x ; als n of v dan g ; als x of v dan a\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: c = 1 ; k = 0 ; n = 1 ; b = 0 ; f = 0 ; p = 0 ; m = 1\nregels: als w dan x ; als c dan h ; als z dan t ; als x of m dan a ; als e dan t ; als g dan d ; als c dan u ; als p dan e ; als m dan g ; als t dan z ; als b dan t ; als d dan y ; als z dan e ; als n dan v ; als y of k dan w ; als c dan r\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: u = 1 ; y = 1 ; g = 1 ; k = 0 ; n = 0 ; s = 1 ; m = 1\nregels: als q dan t ; als z dan e ; als x en g dan q ; als r dan f ; als k dan d ; als d dan z ; als y dan b ; als a of k dan r ; als u dan p ; als g dan x ; als y dan c ; als n dan d ; als t dan a ; als k dan e ; als n dan e\nwat is f?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: e = 1 ; d = 0 ; u = 1 ; x = 1 ; f = 1 ; k = 1 ; z = 1\nregels: als n of f dan c ; als r dan v ; als h dan s ; als d dan v ; als p dan n ; als k dan g ; als niet d dan p ; als c of k dan t ; als u dan a ; als v dan b ; als e dan m ; als b dan r ; als d dan b ; als t dan h\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: q = 1 ; y = 1 ; c = 0 ; e = 0 ; b = 1 ; k = 1 ; u = 0\nregels: als s dan z ; als q dan v ; als b dan m ; als b dan h ; als c dan z ; als e dan s ; als z dan r ; als e dan r ; als y dan w ; als w dan n ; als f en q dan t ; als n dan f ; als x dan p ; als t en q dan x ; als r dan z\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: p = 1 ; x = 1 ; y = 0 ; u = 1 ; h = 1 ; a = 1 ; c = 0\nregels: als r dan k ; als a dan t ; als g dan b ; als e dan r ; als n dan niet w ; als p dan d ; als b of h dan f ; als a dan v ; als p dan z ; als c dan k ; als f dan m ; als c dan r ; als m dan n ; als k dan e ; als h en u dan g\nwat is w?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: z = 1 ; t = 0 ; c = 0 ; x = 1 ; b = 1 ; m = 0 ; n = 1\nregels: als t dan a ; als v en z dan k ; als c dan a ; als s dan r ; als y dan a ; als c dan d ; als d dan a ; als a dan d ; als c dan y ; als n dan g ; als r en n dan q ; als x dan h ; als k of n dan s ; als z dan p ; als g dan v ; als t dan d\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: w = 1 ; d = 0 ; f = 0 ; m = 0 ; c = 0 ; a = 1 ; n = 0\nregels: als n dan y ; als p dan y ; als w of m dan s ; als c dan p ; als u dan g ; als z dan k ; als n dan e ; als a dan v ; als y dan p ; als g dan z ; als e dan y ; als d dan p ; als k dan b ; als s en w dan u\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: n = 1 ; b = 1 ; v = 0 ; u = 0 ; a = 1 ; w = 1 ; c = 1\nregels: als c dan m ; als e dan y ; als niet u dan k ; als u dan f ; als v dan g ; als g dan f ; als y dan h ; als x dan niet s ; als u dan g ; als k en a dan e ; als a dan d ; als w dan p ; als w dan z ; als n dan r ; als g dan q ; als h dan x\nwat is s?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: m = 1 ; k = 0 ; c = 0 ; u = 0 ; v = 1 ; z = 1 ; w = 0\nregels: als v dan e ; als v dan n ; als niet w dan f ; als r dan b ; als w dan x ; als v dan h ; als k dan x ; als d dan r ; als v dan y ; als u dan a ; als c dan x ; als u dan x ; als f of u dan t ; als z dan g ; als s dan d ; als t of v dan s\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: k = 1 ; z = 1 ; d = 0 ; n = 0 ; b = 0 ; g = 0 ; m = 1\nregels: als w dan v ; als m dan x ; als m dan s ; als n dan w ; als k dan e ; als k dan q ; als y dan r ; als s dan f ; als b dan v ; als f en z dan y ; als t of z dan niet u ; als z dan a ; als n dan c ; als r dan t ; als c dan w\nwat is u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: r = 1 ; t = 1 ; y = 1 ; c = 0 ; u = 0 ; n = 0 ; p = 1\nregels: als r dan w ; als u dan v ; als v dan k ; als q of u dan x ; als r dan a ; als y dan f ; als t en y dan b ; als k dan v ; als h of p dan e ; als u dan k ; als b dan h ; als t dan z ; als s dan v ; als m dan q ; als e dan m\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: c = 1 ; e = 0 ; z = 1 ; w = 0 ; d = 1 ; t = 0 ; q = 0\nregels: als n dan niet u ; als r dan s ; als v dan n ; als q dan p ; als d dan g ; als f dan y ; als c dan a ; als c dan k ; als h en c dan v ; als s of t dan h ; als z en c dan r ; als f dan p ; als w dan f ; als t dan p ; als z dan m\nwat is u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: t = 1 ; g = 1 ; p = 0 ; w = 0 ; m = 1 ; u = 1 ; k = 0\nregels: als r dan c ; als k dan r ; als h dan f ; als g dan e ; als u dan v ; als m dan x ; als u dan z ; als f of u dan d ; als x en m dan b ; als k dan c ; als k dan s ; als s dan c ; als m dan a ; als w dan c ; als b dan y ; als g dan n ; als y of w dan h\nwat is d?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: r = 1 ; h = 0 ; x = 1 ; g = 0 ; z = 1 ; d = 1 ; p = 0\nregels: als k dan q ; als h dan q ; als r dan f ; als niet h dan a ; als m en x dan v ; als d dan u ; als p dan k ; als a dan n ; als v of h dan c ; als y dan q ; als g dan y ; als n of r dan e ; als e en z dan m ; als y dan k ; als d dan t\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: e = 1 ; f = 1 ; q = 1 ; c = 0 ; x = 1 ; s = 1 ; a = 0\nregels: als a dan r ; als w dan p ; als f dan k ; als a dan m ; als r dan m ; als c dan r ; als x dan g ; als f dan u ; als q dan d ; als r dan t ; als p dan b ; als b dan h ; als y dan w ; als x dan n ; als g of c dan y ; als a dan t ; als t dan r\nwat is h?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: v = 1 ; g = 0 ; u = 0 ; r = 0 ; y = 0 ; w = 1 ; h = 0\nregels: als r dan k ; als t dan x ; als p dan niet n ; als x dan k ; als v dan a ; als e of r dan p ; als v dan s ; als w of v dan q ; als m dan e ; als q dan b ; als r dan t ; als v dan d ; als k dan x ; als b dan m ; als v dan f ; als v dan z\nwat is n?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: c = 1 ; w = 0 ; y = 0 ; s = 1 ; d = 1 ; k = 0 ; u = 0\nregels: als q of u dan z ; als v dan n ; als c dan r ; als s of u dan x ; als w dan a ; als z dan p ; als p en c dan m ; als w dan n ; als d dan t ; als c dan e ; als x en s dan q ; als v dan a ; als m dan g ; als a dan v ; als u dan a ; als k dan v\nwat is g?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: g = 1 ; r = 0 ; w = 1 ; u = 1 ; h = 1 ; k = 0 ; e = 1\nregels: als c dan v ; als x en u dan m ; als r dan f ; als e dan b ; als n dan p ; als p dan a ; als e en w dan s ; als k dan c ; als s dan x ; als m dan n ; als v dan c ; als k dan v ; als c dan f ; als h dan d ; als g dan t\nwat is a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: t = 1 ; v = 0 ; b = 1 ; y = 0 ; n = 0 ; u = 0 ; e = 0\nregels: als p dan a ; als t dan w ; als g dan f ; als a dan m ; als u dan f ; als e dan f ; als r en b dan p ; als k dan niet x ; als m dan k ; als b dan r ; als y dan z ; als y dan f ; als b dan q ; als b dan h ; als t dan s\nwat is x?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: k = 1 ; a = 1 ; f = 1 ; q = 1 ; h = 0 ; s = 1 ; e = 1\nregels: als x en a dan niet t ; als f dan g ; als w dan v ; als y dan m ; als k dan r ; als d dan m ; als m dan y ; als p dan x ; als y dan d ; als q dan c ; als n of e dan p ; als f dan w ; als h dan m ; als v dan n\nwat is t?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: q = 1 ; x = 1 ; s = 1 ; v = 1 ; p = 1 ; h = 0 ; c = 1\nregels: als t dan m ; als h dan z ; als m dan a ; als a dan n ; als c dan d ; als h dan k ; als k dan y ; als q dan t ; als u dan f ; als h dan y ; als y dan z ; als s dan r ; als z dan k ; als n of x dan u\nwat is f?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: g = 1 ; u = 0 ; e = 1 ; q = 0 ; t = 1 ; p = 1 ; s = 1\nregels: als e of p dan n ; als n dan z ; als e dan a ; als e dan k ; als r dan x ; als z dan d ; als q dan x ; als q dan r ; als y of t dan w ; als s dan m ; als u dan r ; als d dan y ; als c dan x ; als q dan c ; als w dan niet b ; als x dan r\nwat is b?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: w = 1 ; s = 1 ; z = 1 ; h = 1 ; a = 1 ; d = 1 ; x = 0\nregels: als q dan b ; als c dan niet u ; als x dan q ; als s dan m ; als x dan b ; als r dan n ; als a dan r ; als d dan e ; als w dan t ; als p of s dan c ; als x dan v ; als f en h dan p ; als d dan y ; als q dan v ; als s dan g ; als n of d dan f ; als v dan q\nwat is u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: c = 1 ; s = 0 ; t = 1 ; e = 0 ; r = 0 ; z = 0 ; x = 0\nregels: als v dan m ; als h dan q ; als n dan k ; als v dan y ; als c dan d ; als t en c dan h ; als r dan v ; als g en c dan b ; als b dan n ; als m dan y ; als m dan v ; als t dan w ; als y dan v ; als e dan m ; als r dan y ; als q of z dan g\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: z = 1 ; e = 1 ; v = 0 ; b = 1 ; u = 0 ; m = 0 ; s = 0\nregels: als n dan w ; als g dan y ; als s dan y ; als u dan g ; als niet m dan n ; als z dan k ; als e dan r ; als v dan y ; als p dan q ; als s dan g ; als w en e dan d ; als z dan h ; als m dan g ; als d dan p ; als b dan t ; als a dan g ; als q dan c\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: y = 1 ; u = 1 ; s = 1 ; e = 1 ; d = 0 ; x = 1 ; b = 0\nregels: als z dan t ; als g dan c ; als d dan f ; als f dan c ; als u dan r ; als t dan w ; als m dan z ; als k dan n ; als d dan c ; als n dan m ; als u dan p ; als f dan g ; als e dan k ; als g dan f ; als x dan h\nwat is w?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: w = 1 ; k = 1 ; c = 0 ; n = 1 ; q = 1 ; s = 1 ; f = 1\nregels: als c dan t ; als h of k dan x ; als c dan m ; als v dan niet u ; als m dan t ; als n dan a ; als x dan v ; als f dan b ; als t dan m ; als a dan d ; als n dan p ; als n dan g ; als c dan z ; als d dan h\nwat is u?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: h = 1 ; z = 0 ; u = 1 ; b = 1 ; p = 0 ; x = 0 ; r = 1\nregels: als s dan q ; als r of z dan a ; als x dan q ; als q dan d ; als h dan m ; als g dan c ; als w en h dan k ; als d dan s ; als a dan y ; als c dan w ; als y dan g ; als d dan q ; als p dan s\nwat is k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: q = 1 ; u = 0 ; v = 1 ; n = 1 ; w = 0 ; h = 1 ; f = 0\nregels: als x dan m ; als f dan c ; als m dan niet b ; als h dan e ; als w dan p ; als p dan c ; als niet f dan t ; als v dan a ; als h dan z ; als t dan d ; als h dan s ; als u dan c ; als u dan p ; als k dan x ; als d dan k\nwat is b?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 11,
+   "opgave": "gegeven: c = 1 ; a = 0 ; e = 1 ; r = 0 ; v = 0 ; k = 0 ; b = 0\nregels: als x dan u ; als d dan p ; als c dan w ; als u of r dan s ; als n dan y ; als r dan d ; als c dan n ; als e dan g ; als c dan t ; als e dan q ; als y en e dan x ; als h dan p ; als h dan d ; als s dan z ; als c dan m\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: r = 1 ; q = 1 ; v = 1 ; s = 1 ; d = 1 ; m = 0 ; e = 0 ; x = 0\nregels: als d dan u ; als m dan y ; als b en q dan w ; als k dan g ; als a en v dan b ; als x dan k ; als f dan niet h ; als w dan f ; als y dan k ; als r dan t ; als r dan c ; als e dan g ; als m dan k ; als e dan k ; als u of m dan a ; als d dan p ; als r dan n\nwat is h?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: c = 1 ; b = 0 ; y = 0 ; u = 1 ; f = 0 ; w = 0 ; x = 1 ; e = 1\nregels: als f dan m ; als q dan a ; als p dan q ; als a dan k ; als b dan g ; als u dan r ; als e dan d ; als h dan m ; als u dan s ; als e dan z ; als u dan n ; als v dan niet t ; als g dan h ; als e dan p ; als k dan v ; als g dan m\nwat is t?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: k = 1 ; y = 1 ; z = 0 ; x = 1 ; n = 1 ; g = 0 ; b = 0 ; e = 0\nregels: als z dan r ; als c of g dan u ; als niet g dan q ; als d dan niet a ; als p en y dan d ; als y dan f ; als v dan r ; als k dan h ; als s dan v ; als u dan p ; als e dan v ; als v dan s ; als x dan w ; als b dan s ; als b dan v ; als q dan c\nwat is a?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: f = 1 ; q = 1 ; x = 0 ; d = 1 ; b = 0 ; n = 1 ; p = 1 ; k = 1\nregels: als t dan e ; als d dan r ; als d dan h ; als f dan K ; als f dan u ; als k dan R ; als a dan v ; als e dan a ; als x dan g ; als g dan s ; als z dan g ; als x dan z ; als g dan z ; als v dan niet w ; als q dan m ; als y dan t ; als d dan y ; als p dan c\nwat is w?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: s = 1 ; p = 1 ; x = 1 ; h = 0 ; g = 0 ; f = 1 ; u = 0 ; c = 1\nregels: als p dan e ; als y dan q ; als g dan m ; als p dan a ; als v dan z ; als k dan w ; als g dan k ; als h dan m ; als w dan m ; als h dan w ; als p dan r ; als n dan t ; als niet g dan v ; als t en p dan y ; als s dan b ; als z dan n ; als u dan k\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: a = 1 ; p = 0 ; k = 1 ; h = 1 ; e = 1 ; b = 1 ; z = 0 ; v = 1\nregels: als h dan P ; als e dan Y ; als n dan d ; als g dan m ; als e dan y ; als d of p dan g ; als v dan u ; als niet z dan n ; als a dan c ; als p dan s ; als k dan A ; als a dan f ; als r dan x ; als k dan w ; als p dan r ; als x dan s ; als m dan t ; als t en a dan q\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: d = 1 ; k = 1 ; r = 0 ; e = 1 ; t = 0 ; q = 0 ; x = 0 ; g = 0\nregels: als r dan m ; als e dan a ; als v dan b ; als k dan c ; als e dan w ; als s dan m ; als k dan y ; als m dan z ; als b dan u ; als u dan n ; als k en e dan f ; als k dan h ; als t dan m ; als n dan p ; als r dan s ; als x dan m ; als f dan v\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: h = 1 ; v = 1 ; s = 1 ; k = 1 ; y = 0 ; b = 0 ; g = 1 ; a = 1\nregels: als s dan r ; als d dan e ; als b dan c ; als m dan c ; als s dan q ; als k dan d ; als t dan m ; als g dan p ; als e of b dan x ; als b dan m ; als a dan z ; als x en h dan w ; als a dan V ; als a dan f ; als n dan u ; als y dan m ; als w dan n\nwat is u?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: e = 1 ; r = 1 ; x = 1 ; z = 0 ; f = 0 ; h = 0 ; d = 1 ; b = 0\nregels: als y dan v ; als r dan k ; als u dan w ; als e dan T ; als m dan u ; als w dan t ; als e dan N ; als d of h dan m ; als e dan c ; als x dan q ; als d dan g ; als a dan s ; als r dan p ; als t dan a ; als v dan y ; als d dan S ; als e dan P\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: y = 1 ; q = 1 ; b = 0 ; p = 0 ; d = 0 ; g = 0 ; k = 0 ; n = 0\nregels: als z dan e ; als niet b dan r ; als c dan h ; als r en q dan t ; als t dan m ; als b dan v ; als m of k dan z ; als g dan c ; als c dan v ; als e en y dan s ; als y dan w ; als h dan v ; als g dan v ; als y dan u ; als d dan c ; als d dan h\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: f = 1 ; w = 1 ; g = 0 ; a = 1 ; h = 1 ; r = 0 ; c = 1 ; u = 0\nregels: als q dan y ; als c dan s ; als x en h dan e ; als r dan v ; als w dan z ; als p of g dan k ; als r dan y ; als y dan v ; als g dan y ; als r dan q ; als m dan x ; als h dan d ; als w of g dan p ; als q dan v ; als k of h dan m ; als e dan niet t\nwat is t?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: y = 1 ; r = 0 ; c = 0 ; n = 0 ; g = 1 ; x = 0 ; a = 1 ; d = 1\nregels: als x dan v ; als z dan s ; als niet x dan f ; als a dan h ; als g dan k ; als e dan p ; als f dan e ; als q dan w ; als y dan m ; als y dan t ; als b dan z ; als w dan q ; als q dan v ; als g dan u ; als y dan R ; als n dan q ; als a dan W ; als p dan b\nwat is s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: s = 1 ; r = 1 ; m = 0 ; d = 1 ; x = 1 ; z = 1 ; v = 0 ; n = 0\nregels: als h dan e ; als d dan y ; als t dan c ; als m dan u ; als s dan p ; als niet v dan h ; als v dan u ; als m dan b ; als c of x dan a ; als d dan D ; als e dan t ; als z dan f ; als k dan b ; als s dan q ; als a dan niet w ; als n dan b ; als z dan g\nwat is w?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: x = 1 ; p = 1 ; u = 1 ; r = 1 ; a = 1 ; z = 0 ; w = 0 ; c = 0\nregels: als z dan b ; als niet z dan n ; als g dan niet q ; als a dan e ; als a dan d ; als r dan m ; als k en r dan t ; als w dan y ; als b dan h ; als w dan h ; als h dan b ; als x dan H ; als x dan s ; als r dan v ; als f dan g ; als t of u dan f ; als n of a dan k\nwat is q?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: e = 1 ; h = 0 ; q = 0 ; b = 0 ; t = 1 ; z = 1 ; c = 1 ; m = 1\nregels: als b dan f ; als h dan n ; als b dan r ; als r dan f ; als f dan r ; als h dan f ; als s dan x ; als a dan v ; als d dan s ; als c dan u ; als v dan p ; als c dan d ; als t dan y ; als m dan g ; als x of q dan a ; als n dan f\nwat is p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: b = 1 ; x = 1 ; n = 1 ; g = 1 ; q = 0 ; y = 1 ; e = 0 ; z = 1\nregels: als x dan w ; als c dan k ; als z dan E ; als s en y dan v ; als x dan h ; als g dan d ; als q dan a ; als g dan P ; als b dan p ; als v dan niet m ; als k of x dan s ; als x dan u ; als x dan M ; als g dan f ; als p dan c ; als q dan r ; als t dan a\nwat is m?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: k = 1 ; y = 1 ; s = 0 ; q = 1 ; p = 0 ; w = 1 ; z = 0 ; d = 0\nregels: als k dan X ; als w dan h ; als t dan f ; als w dan r ; als e dan c ; als s dan b ; als g dan a ; als k dan u ; als w dan x ; als k dan n ; als z dan f ; als f dan b ; als m dan g ; als w dan M ; als w dan E ; als a dan v ; als k dan m ; als v dan e\nwat is c?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: v = 1 ; d = 0 ; x = 1 ; y = 1 ; e = 0 ; r = 0 ; m = 1 ; g = 1\nregels: als y dan u ; als c dan w ; als n dan q ; als e dan w ; als t en x dan n ; als x dan z ; als y dan p ; als s of v dan t ; als q of v dan b ; als b of e dan niet h ; als x en g dan s ; als w dan k ; als w dan c ; als d dan k ; als k dan c\nwat is h?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: g = 1 ; y = 0 ; c = 0 ; m = 0 ; t = 1 ; r = 0 ; e = 0 ; k = 1\nregels: als e dan f ; als t dan z ; als q dan f ; als b dan n ; als h dan niet a ; als d dan f ; als k dan p ; als c dan f ; als q dan d ; als s dan h ; als d dan q ; als f dan d ; als m dan d ; als e dan q ; als w of r dan b ; als g dan w ; als n dan s ; als m dan f\nwat is a?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: h = 1 ; x = 0 ; p = 0 ; r = 0 ; d = 0 ; n = 1 ; e = 0 ; w = 1\nregels: als v dan b ; als n dan c ; als r dan s ; als r dan y ; als d dan f ; als y dan f ; als n dan m ; als s dan y ; als n dan k ; als u dan v ; als e dan s ; als z dan q ; als p dan y ; als n of d dan z ; als q dan a ; als a dan u\nwat is b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: u = 1 ; r = 1 ; t = 1 ; m = 0 ; g = 0 ; v = 1 ; s = 1 ; d = 0\nregels: als h dan y ; als w en u dan e ; als x dan k ; als m dan c ; als h dan c ; als t dan x ; als y dan h ; als d dan h ; als g dan y ; als k dan w ; als d dan c ; als c dan y ; als e of d dan n ; als n dan niet f\nwat is f?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: g = 1 ; d = 0 ; w = 0 ; c = 1 ; k = 1 ; q = 1 ; p = 1 ; f = 0\nregels: als k dan y ; als m dan t ; als f dan s ; als w dan s ; als y dan h ; als q dan r ; als u of p dan n ; als h dan u ; als c dan a ; als p dan z ; als n dan b ; als t dan s ; als b dan e ; als w dan t ; als f dan t\nwat is e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: m = 1 ; g = 1 ; k = 0 ; c = 0 ; t = 0 ; e = 0 ; n = 1 ; h = 0\nregels: als t dan w ; als p en m dan s ; als b of k dan x ; als w dan u ; als n dan a ; als g dan r ; als u dan w ; als x dan z ; als k dan y ; als z en m dan q ; als m dan d ; als g dan v ; als y dan u ; als y dan w ; als m dan p ; als s en n dan b\nwat is q?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: v = 1 ; w = 0 ; r = 0 ; g = 0 ; s = 1 ; c = 0 ; q = 0 ; z = 1\nregels: als q dan x ; als n dan h ; als d dan y ; als r dan x ; als x dan m ; als r dan t ; als v dan p ; als t dan x ; als v dan b ; als h dan f ; als q dan t ; als v dan k ; als f en v dan d ; als g dan x ; als a dan n ; als w dan t ; als niet q dan a\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: z = 1 ; k = 1 ; m = 1 ; e = 0 ; w = 1 ; d = 1 ; q = 0 ; t = 0\nregels: als t dan r ; als g dan r ; als m dan p ; als s of m dan v ; als y dan f ; als q dan r ; als v dan a ; als u dan r ; als g dan u ; als f of e dan x ; als a dan y ; als d dan c ; als t dan g ; als k dan h ; als t dan u ; als m dan s\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: p = 1 ; q = 0 ; m = 0 ; h = 0 ; g = 0 ; k = 1 ; y = 1 ; z = 1\nregels: als v dan n ; als e dan s ; als p dan a ; als m dan d ; als t dan v ; als n dan f ; als q dan d ; als z en y dan e ; als w dan u ; als s en y dan t ; als d dan u ; als g dan d ; als y dan x ; als m dan w\nwat is f?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: p = 1 ; e = 1 ; z = 1 ; y = 0 ; q = 0 ; t = 0 ; m = 0 ; s = 1\nregels: als c dan x ; als e dan h ; als t dan g ; als z dan w ; als y dan x ; als s dan f ; als niet y dan u ; als a dan r ; als m dan c ; als b en p dan a ; als k of p dan v ; als x dan g ; als u dan b ; als m dan g ; als r dan k\nwat is v?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: e = 1 ; p = 0 ; u = 0 ; n = 0 ; k = 0 ; b = 1 ; w = 0 ; v = 1\nregels: als n dan f ; als e dan d ; als p dan f ; als q dan y ; als a dan h ; als z dan c ; als b dan m ; als h en e dan g ; als w dan f ; als niet n dan a ; als b dan r ; als y dan f ; als b dan C ; als b dan s ; als g dan z ; als v dan K ; als c of n dan x ; als v dan t\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: v = 1 ; z = 0 ; x = 1 ; p = 1 ; d = 0 ; g = 1 ; n = 1 ; y = 0\nregels: als d dan u ; als v dan b ; als r dan s ; als y dan w ; als u dan w ; als w dan e ; als q dan r ; als h en x dan k ; als n dan t ; als n dan f ; als g dan c ; als k dan niet a ; als s dan h ; als n en v dan q ; als w dan u ; als y dan u\nwat is a?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "logica",
+   "graad": 12,
+   "opgave": "gegeven: k = 1 ; r = 1 ; d = 1 ; f = 1 ; b = 1 ; p = 0 ; y = 1 ; t = 0\nregels: als r dan z ; als g dan w ; als y dan x ; als t dan g ; als y dan C ; als t dan w ; als v of t dan s ; als f dan h ; als f dan a ; als m dan e ; als e of k dan u ; als p dan w ; als u dan n ; als s dan m ; als g dan c ; als r dan q ; als b dan v\nwat is n?",
+   "oplossing": "1"
+  }
+ ]
+}

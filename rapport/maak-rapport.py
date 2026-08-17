@@ -295,7 +295,7 @@ def maak_html(d):
 <h2>De ladder — haar hele wereld, gewogen</h2>
 <div class="graf">{grafiek(curve, ["ladder"], d["doorbraken"])}</div>
 <p class="stil">De stippellijnen zijn doorbraken: het moment waarop ze zelf
-een diepte openmaakte (r = rekenen, c = code, p = puzzel, g = geheugen).</p>
+een diepte openmaakte (r = rekenen, c = code, p = puzzel, g = geheugen, l = logica).</p>
 <h2>De bevroren proefwerken ({len(proef_namen)})</h2>
 <div class="graf">{grafiek(curve, proef_namen, hoog=340)}</div>
 <p class="stil">Bevroren op 9 aug 2026 — elke meting is exact dezelfde

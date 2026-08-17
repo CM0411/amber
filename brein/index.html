@@ -473,18 +473,18 @@ async function haal() {
     // de hekken komen uit run.json (de rungrens schrijft die mee met elke
     // run); de vaste waarden zijn alleen het vangnet als de config ontbreekt.
     // Handbijhouden liep op 14 aug 2026 drie hekken achter — nooit meer.
-    const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12};   // vangnet; 16 aug: geheugen erbij
+    const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12};   // vangnet; 16 aug: geheugen, 17 aug: logica
     const hekstr = (s.run && s.run.config && s.run.config.hek) || "";
     for (const m of hekstr.matchAll(/([a-z]+)\s+(\d+)/g)) grens[m[1]] = +m[2];
     // het checkpoint is de waarheid; logregels vullen alleen aan wat het
     // checkpoint nog niet weet, en nooit boven de echte grens uit
-    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2},
+    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2, logica: 2},
                                (s.run && s.run.wereld) || {},
                                s.wereldrand || {});
     for (const f in rand) rand[f] = Math.min(rand[f], grens[f] || rand[f]);
     if (!window.vorigeRand) window.vorigeRand = {};
     let html = '<div class="kop">haar wereld</div>';
-    for (const f of ["rekenen", "puzzel", "code", "geheugen"]) {
+    for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica"]) {
       const d = rand[f], nieuw = window.vorigeRand[f] && d > window.vorigeRand[f];
       if (nieuw) window.fonkelTot = Date.now() + 90000;
       // hoe meer blokjes, hoe smaller ze worden: een rij blijft altijd
@@ -524,7 +524,7 @@ async function haal() {
     if (Object.keys(vakjes).length) {
       const top = Math.max(...Object.values(vakjes));
       let g = '<div class="kop">haar geheugen</div>';
-      for (const f of ["rekenen", "puzzel", "code", "geheugen"]) {
+      for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica"]) {
         const graden = Object.keys(vakjes)
           .filter(k => k.startsWith(f + "/"))
           .map(k => +k.split("/")[1]).sort((a, b) => a - b);

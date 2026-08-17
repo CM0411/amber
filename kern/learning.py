@@ -128,6 +128,12 @@ def room_for(depth, family=None, window=512):
         # (400 at grade 3, 800 at grade 5); the ceiling still guards the
         # window.
         return min(window - 192, 200 * depth - 200)
+    if family == "logica":
+        # Logic (17 Aug 2026): the working is the derivation chain — one
+        # short line per link (`als d en u dan w: w = 1`, ~25 characters)
+        # plus the facts it looks up; measured longest 200 at depth 12,
+        # ~450 at 24. Grows with depth because the chain does.
+        return min(window - 112, 64 + 20 * depth)
     if family == "geheugen":
         # Memory (16 Aug 2026): the working is short at every depth — look
         # back, copy one or two held values, one operation: `c = 44 ; g =
