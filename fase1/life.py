@@ -43,6 +43,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
 import determinism                         # MUST come before torch
 determinism.lock(20260808)
 
+import torch
+
 import bridge
 import exams
 import journal
@@ -244,10 +246,20 @@ for step in range(BEGIN, STEPS + 1):
         scores = exam(step)
         measurements.append((step, scores, learner.deepest))
         elapsed = time.perf_counter() - start_time
+        # het kaartgeheugen erbij (17 aug 2026): wat torch vasthoudt
+        # (gereserveerd) en de hoogste piek sinds de vorige regel — de
+        # ratel van de allocator versus een echt lek is zo van buiten
+        # te lezen zonder de run te raken
+        vram = ""
+        if torch.cuda.is_available():
+            vram = (f" | VRAM {torch.cuda.memory_reserved() / 2**20:.0f} MiB"
+                    f" (piek {torch.cuda.max_memory_allocated() / 2**20:.0f})")
+            torch.cuda.reset_peak_memory_stats()
         say(f"  stap {step:>5} | "
               + "  ".join(f"{n} {v:>4.0%}" for n, v in sorted(scores.items()))
               + f"   | diepte tot {learner.deepest}"
-              + f" | {elapsed / max(1, step - BEGIN + 1) * 1000:.0f} ms/stap")
+              + f" | {elapsed / max(1, step - BEGIN + 1) * 1000:.0f} ms/stap"
+              + vram)
         # With two processes: are they still one learner? Compare a
         # fingerprint of weights, moments and the small state around them.
         # Drifted apart means the summed gradients were of two different
