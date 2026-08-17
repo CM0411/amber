@@ -76,10 +76,13 @@ def bf16_usable(device):
     return major >= 8
 
 
-# One-off lessons (17 Aug 2026): how many learning passes a lesson that must
-# not enter the memory gets at delivery — enough to be learned once, then
-# never seen again.
-ONCE_PASSES = 3
+# One-off lessons (17 Aug 2026): a lesson that must not enter the memory is
+# learned at delivery until she can say it — ONCE_TARGET of the group right,
+# checked after every pass — with a ceiling of ONCE_MAX_PASSES; then never
+# seen again. A fixed three passes (the first version) left her at 0% on the
+# twelve week-1 seeds: nothing was learned, so nothing could be retained.
+ONCE_TARGET = 0.8
+ONCE_MAX_PASSES = 30
 
 
 def room_for(depth, family=None, window=512):
@@ -251,6 +254,7 @@ class Learner:
         # handle that family at the current edge — see open_deeper().
         self.deepest_per = {f: deepest for f in world.FAMILIES}
         self._entrance = deepest         # where a family starts (also one the snapshot does not know yet)
+        self.last_once = None            # report of the last one-off lessons (learn_lessons)
         self.edge_threshold = edge_threshold
         # How often she first tries herself. Not every step: writing an
         # answer costs three times the learning step around it, and
@@ -752,9 +756,19 @@ class Learner:
             else:
                 refused += 1
             self.lessons_upto = int(row["nr"])
+        self.last_once = None
         if once:
-            for _ in range(ONCE_PASSES):
+            room = min(self.core.window // 2,
+                       max(len(t.solution) for t in once) + 8)
+            passes = right = 0
+            while passes < ONCE_MAX_PASSES:
                 self.learn(once, remember=False)
+                passes += 1
+                answers = self.answer(once, at_most=room)
+                right = sum(1 for t, a in zip(once, answers) if t.check(a))
+                if right >= ONCE_TARGET * len(once):
+                    break
+            self.last_once = {"passes": passes, "goed": right, "van": len(once)}
         return taken, refused, len(once)
 
     def fingerprint(self):

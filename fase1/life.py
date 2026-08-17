@@ -158,12 +158,17 @@ except FileNotFoundError:
 if _les_rows:
     taken, refused, once = learner.learn_lessons(_les_rows)
     if taken or refused or once:
+        lo = getattr(learner, "last_once", None) or {}
         say(f"  lessen van Cley: {taken} het geheugen in"
               + (f", {refused} geweigerd (te lang voor de doorgang)"
                  if refused else "")
-              + (f", {once} eenmalig geleerd en niet onthouden" if once else ""))
+              + (f", {once} eenmalig geleerd en niet onthouden"
+                 + (f" ({lo.get('goed')} van {lo.get('van')} goed na "
+                    f"{lo.get('passes')} rondes)" if lo else "")
+                 if once else ""))
         log.write("les_geleerd", stap=BEGIN, aantal=taken,
-                  geweigerd=refused, eenmalig=once)
+                  geweigerd=refused, eenmalig=once,
+                  eenmalig_rondes=lo.get("passes"), eenmalig_goed=lo.get("goed"))
 
 say("=" * 72)
 say("Leven in de wereld")

@@ -470,14 +470,25 @@ eenmalig = [{"nr": 30, "vraag": "de code van de blauwe kist?",
             {"nr": 31, "vraag": "hoeveel treden heeft de zoldertrap?",
              "antwoord": "de zoldertrap heeft 19 treden", "eenmalig": True}]
 mem_before, steps_before = len(lessen.memory), lessen.steps
+_max = learning.ONCE_MAX_PASSES
+learning.ONCE_MAX_PASSES = 4                 # a tiny net will not reach 80%: hit the ceiling fast
 taken, refused, once = lessen.learn_lessons(eenmalig)
+lo = lessen.last_once or {}
 check("one-off lessons are learned (steps taken) but not kept in the memory",
       once == 2 and taken == 0 and len(lessen.memory) == mem_before
-      and lessen.steps == steps_before + learning.ONCE_PASSES
-      and lessen.lessons_upto == 31,
+      and lessen.steps > steps_before and lessen.lessons_upto == 31,
       f"steps {steps_before} → {lessen.steps}, memory {mem_before} → {len(lessen.memory)}")
+check("… learned until she can say them, or the ceiling: the report says how far",
+      lo.get("van") == 2 and lo.get("passes") == 4 and 0 <= lo.get("goed", -1) <= 2, str(lo))
 check("… and they are not learned twice",
       lessen.learn_lessons(eenmalig) == (0, 0, 0))
+# when she can already say them, one pass is enough: the check stops the loop
+lessen2 = small_learner()
+lessen2.answer = lambda tasks_, at_most=None: [t.solution for t in tasks_]
+lessen2.learn_lessons([dict(eenmalig[0], nr=40)])
+check("… and the loop stops as soon as the group is right",
+      lessen2.last_once == {"passes": 1, "goed": 1, "van": 1}, str(lessen2.last_once))
+learning.ONCE_MAX_PASSES = _max
 
 # --- a family the snapshot does not know (16 Aug 2026) --------------------
 # The world grew a fourth family (geheugen) after run 6's snapshot was
