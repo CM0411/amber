@@ -143,6 +143,9 @@ def forget_material():
     _material_cache = None
 
 
+PORTION = 16            # tasks answered together during an exam (18 Aug 2026)
+
+
 def take(learner, name=None, at_most=None):
     """Have a learner sit an exam. Returns the mark per exam.
 
@@ -180,11 +183,22 @@ def take(learner, name=None, at_most=None):
         for i, t in enumerate(problems):
             per_family.setdefault(t.family, []).append(i)
         for family, indices in per_family.items():
-            batch = [problems[i] for i in indices]
-            deepest = max(t.grade for t in batch)
-            answers = answer(batch, at_most=room_for(deepest, family, window))
-            for i, a in zip(indices, answers):
-                given[i] = a
+            # In portions of PORTION, sorted by the length of the problem
+            # (18 Aug 2026, Cley's VRAM housekeeping): a family of sixty
+            # tasks answered at once held sixty caches at the deepest
+            # room; sixteen at a time, alike in length, hold a fraction
+            # and pad less. Answers can shift on the edge — a different
+            # batch means different padding and kernel shapes, and bf16
+            # can round differently — so this is a change of measurement,
+            # taken on a run boundary and noted there.
+            indices = sorted(indices, key=lambda i: len(problems[i].problem))
+            for start in range(0, len(indices), PORTION):
+                part = indices[start:start + PORTION]
+                batch = [problems[i] for i in part]
+                deepest = max(t.grade for t in batch)
+                answers = answer(batch, at_most=room_for(deepest, family, window))
+                for i, a in zip(part, answers):
+                    given[i] = a
         right = sum(1 for t, a in zip(problems, given) if t.check(a))
         out[exam_name] = right / len(problems)
     return out

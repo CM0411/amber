@@ -93,6 +93,44 @@ except ValueError:
     full_refused = True
 check("a full cache refuses instead of overflowing", full_refused)
 
+# --- 2b. The buffer grows in steps, and the numbers do not care (18 Aug 2026)
+print()
+print("--- Growth in steps ---")
+determinism.begin_step(5)
+core_big = network.Core(layers=3, width=96, heads=4, window=1000).to(DEVICE).eval()
+codes_long = torch.randint(0, 260, (2, 40), device=DEVICE)
+big = core_big.new_cache(1000)
+with torch.no_grad():
+    s_big, big = core_big.advance(codes_long[:, :30], cache=big)
+check("a big capacity is not reserved at once: the question plus one GROW",
+      all(c.k.shape[2] == max(30, network.KVCache.GROW) for c in big),
+      f"{big[0].k.shape[2]} of 1000 positions")
+grew = 0
+last_ptr = [c.k.data_ptr() for c in big]
+inc_big = []
+with torch.no_grad():
+    for pos in range(30, 300):
+        sc, big = core_big.advance(codes_long[:, :1], cache=big, offset=pos)
+        inc_big.append(sc[:, -1])
+        ptr = [c.k.data_ptr() for c in big]
+        if ptr != last_ptr:
+            grew += 1
+            last_ptr = ptr
+check("it grew once on the way to 300 positions, not once per character",
+      grew == 1 and all(c.k.shape[2] == 512 for c in big), f"grew {grew}×, now {big[0].k.shape[2]}")
+# the same walk with a one-shot buffer must give the same scores bit for bit
+one = core_big.new_cache(1000)
+for c in one:
+    c.GROW = 1000                     # reserve everything at once, the old way
+inc_one = []
+with torch.no_grad():
+    _, one = core_big.advance(codes_long[:, :30], cache=one)
+    for pos in range(30, 300):
+        sc, one = core_big.advance(codes_long[:, :1], cache=one, offset=pos)
+        inc_one.append(sc[:, -1])
+check("scores through the growing buffer equal the one-shot buffer bit for bit",
+      all(torch.equal(a, b) for a, b in zip(inc_big, inc_one)))
+
 # --- 3. Through the Learner ------------------------------------------------------
 
 print()

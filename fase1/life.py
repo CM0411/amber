@@ -171,6 +171,8 @@ if _les_rows:
         log.write("les_geleerd", stap=BEGIN, aantal=taken,
                   geweigerd=refused, eenmalig=once,
                   eenmalig_rondes=lo.get("passes"), eenmalig_goed=lo.get("goed"))
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
 say("=" * 72)
 say("Leven in de wereld")
@@ -244,6 +246,11 @@ for step in range(BEGIN, STEPS + 1):
 
     if step % EXAM_EVERY == 0:
         scores = exam(step)
+        # give the card back what the exam held (18 Aug 2026): the
+        # allocator keeps its high-water mark otherwise — reserved crept
+        # from 2,6 to 5,6 GB in run 6.8 while the learning needs 2,3
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
         measurements.append((step, scores, learner.deepest))
         elapsed = time.perf_counter() - start_time
         # het kaartgeheugen erbij (17 aug 2026): wat torch vasthoudt

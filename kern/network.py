@@ -92,23 +92,44 @@ class KVCache:
     numbers she computes are the same; only the copying is gone.
     """
 
+    # Reserved in steps, not all at once (18 Aug 2026, Cley's VRAM
+    # housekeeping): `capacity` is the ceiling — the question plus all the
+    # room she may write — but most answers end long before it, and an exam
+    # of 64 tasks at a room of 1224 held gigabytes of zeros. So the buffer
+    # holds what is filled plus one GROW ahead, and grows by GROW when that
+    # runs out: at most capacity/GROW copies per answer instead of one per
+    # character. The values are the same tensors, moved exactly; test-cache
+    # proves the scores are identical to the one-shot buffer.
+    GROW = 256
+
     def __init__(self, capacity):
         self.capacity = capacity
         self.k = None
         self.v = None
         self.n = 0
 
+    def _make_room(self, k, v, length):
+        need = self.n + length
+        if need > self.capacity:
+            raise ValueError(
+                f"cache full: {self.n} + {length} > capacity {self.capacity}")
+        have = 0 if self.k is None else self.k.shape[2]
+        if need <= have:
+            return
+        new = min(self.capacity, max(need, have + self.GROW))
+        batch, heads, _, size = k.shape
+        nk = k.new_zeros(batch, heads, new, size)
+        nv = v.new_zeros(batch, heads, new, size)
+        if self.k is not None and self.n:
+            nk[:, :, :self.n] = self.k[:, :, :self.n]
+            nv[:, :, :self.n] = self.v[:, :, :self.n]
+        self.k, self.v = nk, nv
+
     def append(self, k, v):
         """Write (batch, heads, length, head_size) at the end; return the
         filled part of both buffers."""
         length = k.shape[2]
-        if self.k is None:
-            batch, heads, _, size = k.shape
-            self.k = k.new_zeros(batch, heads, self.capacity, size)
-            self.v = v.new_zeros(batch, heads, self.capacity, size)
-        if self.n + length > self.capacity:
-            raise ValueError(
-                f"cache full: {self.n} + {length} > capacity {self.capacity}")
+        self._make_room(k, v, length)
         self.k[:, :, self.n:self.n + length] = k
         self.v[:, :, self.n:self.n + length] = v
         self.n += length
