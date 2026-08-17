@@ -30,7 +30,11 @@ KANAAL = open("/home/arch/.amber-ntfy").read().strip()
 LOG = "/home/arch/leven.log"
 STAND = "/home/arch/amber-werk/wachter/melder-trainer-stand.json"
 
-STILSTAND_NA = 600      # seconden zonder nieuwe stap voordat hij ingrijpt
+STILSTAND_NA = 1500     # seconden zonder nieuwe stap voordat hij ingrijpt
+                        # (18 aug 2026: was 600 — te krap: een start met
+                        # eenmalige lessen (26 rondes), 16 proefwerkbladen en
+                        # 50 stappen van 7,8 s duurt ~13 min zonder nieuwe
+                        # voortgangsregel; hij herstartte run 6.9 om 01:15:58)
 HERSTART_RUST = 900     # minimale rust tussen twee eigen herstarts
 WARM_VANAF = 80         # graden; melding gaat pas opnieuw onder de 75
 SLOT_NA = 5000          # stappen zonder nieuwe opening → "wereld op slot", één melding
