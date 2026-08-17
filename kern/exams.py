@@ -143,7 +143,7 @@ def forget_material():
     _material_cache = None
 
 
-PORTION = 16            # tasks answered together during an exam (18 Aug 2026)
+PORTION = 32            # tasks answered together during an exam (18 Aug 2026; 16 halveert de piek nog eens maar kost ~2× proefwerktijd)
 
 
 def take(learner, name=None, at_most=None):
