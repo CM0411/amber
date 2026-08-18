@@ -45,7 +45,7 @@ FAMILIE_VAN_BLAD = {"regel": "puzzel", "regelcheck": "puzzel", "rooster": "puzze
                     "diepte": "puzzel", "geheugen": "geheugen", "geheugen2": "geheugen",
                     "logica": "logica", "volgorde": "volgorde", "tekst": "tekst",
                     "vergelijking": "rekenen", "deling": "rekenen", "zeggen": "zeggen",
-                    "taal": "taal", "gesprek": "rekenen"}
+                    "taal": "taal", "gesprek": "rekenen", "machine": "machine", "tellen": "tellen"}
 STOKT_ONDER = 60          # score waaronder een blad "stokt" …
 STOKT_STAPPEN = 3000      # … als het over zoveel stappen niet meer dan
 STOKT_MARGE = 3           # zoveel punten vooruitging

@@ -230,7 +230,7 @@ for family in world.FAMILIES:
 check(
     "from depth 3 nearly every number gives a different problem",
     all(len({t.problem for n in range(2000) if (t := world.make(f, 3, n))}) > 1500
-        for f in world.FAMILIES if f not in ("zeggen", "taal")),
+        for f in world.FAMILIES if f not in ("zeggen", "taal", "tellen")),
     "the space grows exponentially with depth instead of linearly with "
     "what is typed",
 )
@@ -239,6 +239,10 @@ check(
 check("zeggen and taal: from depth 5 nearly every number gives a different problem",
       all(len({t.problem for n in range(2000) if (t := world.make(f, 5, n))}) > 1500
           for f in ("zeggen", "taal")))
+# tellen: a third of the numbers gives no usable list (empty or too long)
+# by design; the usable ones must still be plentiful
+check("tellen: at depth 3 the usable numbers are nearly all different",
+      len({t.problem for n in range(2000) if (t := world.make("tellen", 3, n))}) > 1200)
 
 print()
 
@@ -1628,8 +1632,8 @@ check("a tekst task is the same task every time",
 # re-applies the rules from the problem text alone.
 print()
 print("--- zeggen: the eighth family ---")
-check("the world's families continue with zeggen, taal — appended",
-      world.FAMILIES[7:9] == ("zeggen", "taal"))
+check("the world's families continue with zeggen, taal, machine, tellen — appended",
+      world.FAMILIES[7:11] == ("zeggen", "taal", "machine", "tellen"))
 
 
 def _judge_saying(problem):
@@ -1796,6 +1800,125 @@ check("taal: everything fits the room", tl_unfit == 0)
 check("a taal task is the same task every time",
       world.make("taal", 9, 77) == world.make("taal", 9, 77))
 
+
+# --- machine: the tenth family (18 Aug 2026) -----------------------------------
+# The judge executes the program from the text and compares the asked
+# register; the trace must hold at every step (steps recomputed).
+print()
+print("--- machine: the tenth family ---")
+
+
+def _run_machine(problem):
+    lines = problem.split("\n")
+    vals = {c: int(v) for c, v in re.findall(r"(\w) = (-?\d+)", lines[0])}
+    steps = lines[1][len("stappen: "):].split(" ; ")
+    rounds = 1
+    for l in lines:
+        m = re.fullmatch(r"herhaal (\d+) keer", l)
+        if m: rounds = int(m[1])
+    asked = re.fullmatch(r"wat is (\w)\?", lines[-1])[1]
+    for _ in range(rounds):
+        for st in steps:
+            m = re.fullmatch(r"als (\w) > (\w) dan (\w) = \w ([-+]) (\d+)", st)
+            if m:
+                if vals[m[1]] > vals[m[2]]:
+                    vals[m[3]] = vals[m[3]] + int(m[5]) if m[4] == "+" else vals[m[3]] - int(m[5])
+                continue
+            m = re.fullmatch(r"(\w) = \w ([-+*]) (\w+)", st)
+            amt = int(m[3]) if m[3].lstrip("-").isdigit() else vals[m[3]]
+            v = vals[m[1]]
+            vals[m[1]] = v + amt if m[2] == "+" else v - amt if m[2] == "-" else v * amt
+    return vals[asked]
+
+
+def _trace_holds(working):
+    for piece in re.split(r" ; |: ", working):
+        m = re.fullmatch(r"\w = (-?\d+) ([-+*]) (-?\d+) = (-?\d+)", piece.strip())
+        if m:
+            a, op, b, out = int(m[1]), m[2], int(m[3]), int(m[4])
+            if (a + b if op == "+" else a - b if op == "-" else a * b) != out:
+                return False
+    return True
+
+
+mc_seen = mc_bad = mc_unfit = mc_cond = 0
+for depth in range(1, 13):
+    for n in range(200):
+        t = world.make("machine", depth, n)
+        if t is None:
+            continue
+        mc_seen += 1
+        if _run_machine(t.problem) != int(t.solution) or not t.check(t.working) or not _trace_holds(t.working):
+            mc_bad += 1
+        if not (world.fits(t, 1536 - 112) and len(t.to_learn()) <= _rf(depth, "machine", 1536)):
+            mc_unfit += 1
+        if "als " in t.problem:
+            mc_cond += 1
+            if depth < 7:
+                mc_bad += 1
+check("machine: the executed program lands on her answer and every trace step holds",
+      mc_seen > 2000 and mc_bad == 0, f"{mc_seen} seen, {mc_bad} wrong")
+check("machine: conditional steps exist from depth 7 only", mc_cond > 100)
+check("machine: everything fits the room", mc_unfit == 0)
+check("a machine task is the same task every time",
+      world.make("machine", 9, 77) == world.make("machine", 9, 77))
+
+# --- tellen: the eleventh family (18 Aug 2026) ---------------------------------
+# The judge enumerates in Python from the question text.
+print()
+print("--- tellen: the eleventh family ---")
+
+
+def _count(problem):
+    m = re.fullmatch(r"hoe vaak komt het cijfer (\d) voor in de getallen van (\d+) tot (\d+)\?", problem)
+    if m:
+        c, lo, hi = m[1], int(m[2]), int(m[3])
+        return sum(str(n).count(c) for n in range(lo, hi + 1))
+    m = re.fullmatch(r"tel de getallen van (\d+) tot (\d+) die (.+)", problem)
+    lo, hi = int(m[1]), int(m[2])
+    preds = []
+    for c in m[3].split(" en "):
+        if (k := re.fullmatch(r"deelbaar zijn door (\d+)", c)):
+            preds.append(lambda n, k=int(k[1]): n % k == 0)
+        elif c == "even zijn":
+            preds.append(lambda n: n % 2 == 0)
+        elif c == "oneven zijn":
+            preds.append(lambda n: n % 2 == 1)
+        elif (k := re.fullmatch(r"eindigen op (\d)", c)):
+            preds.append(lambda n, k=int(k[1]): n % 10 == k)
+        elif (k := re.fullmatch(r"een cijfersom van (\d+) hebben", c)):
+            preds.append(lambda n, k=int(k[1]): sum(int(d) for d in str(n)) == k)
+        elif (k := re.fullmatch(r"het cijfer (\d) bevatten", c)):
+            preds.append(lambda n, k=k[1]: k in str(n))
+        elif (k := re.fullmatch(r"groter zijn dan (\d+)", c)):
+            preds.append(lambda n, k=int(k[1]): n > k)
+        else:
+            return None
+    return sum(1 for n in range(lo, hi + 1) if all(p(n) for p in preds))
+
+
+tc_seen = tc_bad = tc_unfit = tc_digit = tc_two = 0
+for depth in range(1, 13):
+    for n in range(200):
+        t = world.make("tellen", depth, n)
+        if t is None:
+            continue
+        tc_seen += 1
+        if _count(t.problem) != int(t.solution) or not t.check(t.working):
+            tc_bad += 1
+        listed = [int(x) for x in t.working.split(" ; ")[0].split(", ")]
+        if len(listed) > world.TEL_MAX_LIST or len(listed) < 1:
+            tc_bad += 1
+        if not (world.fits(t, 1536 - 112) and len(t.to_learn()) <= _rf(depth, "tellen", 1536)):
+            tc_unfit += 1
+        tc_digit += t.problem.startswith("hoe vaak")
+        tc_two += " en " in t.problem
+check("tellen: Python's enumeration lands on her count; the list is 1–25 long",
+      tc_seen > 1500 and tc_bad == 0, f"{tc_seen} seen, {tc_bad} wrong")
+check("tellen: two-condition questions and digit counting exist", tc_two > 300 and tc_digit > 50)
+check("tellen: everything fits the room", tc_unfit == 0)
+check("a tellen task is the same task every time",
+      world.make("tellen", 9, 77) == world.make("tellen", 9, 77))
 
 # --- a sheet frozen for a wider window is skipped, not sat (17 Aug 2026) -----
 # venster2048.json holds rekenen 62–78 and code 32–40 for the day the window

@@ -1,0 +1,2166 @@
+{
+ "naam": "machine",
+ "beschrijving": "De tiende familie (18 aug 2026, uit haar zwakteprofiel): een kleine registermachine (1-3 registers, 1-4 stappen, 1-4 rondes, vanaf 7 een als-stap); zij schrijft het spoor en het gevraagde register. Diepte 1 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Vastgelegd vóór de knip na run 7.",
+ "opgaven": [
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 2\nstappen: x = x + 4\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 3\nstappen: x = x - 6\nwat is x?",
+   "oplossing": "-3"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 16\nstappen: x = x - 10\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 7\nstappen: x = x - 5\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 14\nstappen: x = x - 8\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 16\nstappen: x = x - 8\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 1\nstappen: x = x + 2\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 10\nstappen: x = x + 12\nwat is x?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 18\nstappen: x = x + 3\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 7\nstappen: x = x + 9\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 5\nstappen: x = x + 1\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 8\nstappen: x = x + 12\nwat is x?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 6\nstappen: x = x - 4\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 12\nstappen: x = x - 10\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 11\nstappen: x = x - 1\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 14\nstappen: x = x + 5\nwat is x?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 5\nstappen: x = x - 12\nwat is x?",
+   "oplossing": "-7"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 14\nstappen: x = x + 9\nwat is x?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 15\nstappen: x = x - 4\nwat is x?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 10\nstappen: x = x - 5\nwat is x?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 6\nstappen: x = x + 6\nwat is x?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 6\nstappen: x = x + 10\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 11\nstappen: x = x + 12\nwat is x?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 15\nstappen: x = x - 8\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 5\nstappen: x = x - 6\nwat is x?",
+   "oplossing": "-1"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 20\nstappen: x = x + 4\nwat is x?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 18\nstappen: x = x - 1\nwat is x?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 11\nstappen: x = x + 6\nwat is x?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 18\nstappen: x = x + 11\nwat is x?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "machine",
+   "graad": 1,
+   "opgave": "start: x = 4\nstappen: x = x + 2\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 8\nstappen: x = x - 6 ; x = x - 9\nwat is x?",
+   "oplossing": "-7"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 5\nstappen: x = x - 4 ; x = x - 12\nwat is x?",
+   "oplossing": "-11"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 4\nstappen: x = x + 8 ; x = x - 5\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 8\nstappen: x = x - 12 ; x = x - 4\nwat is x?",
+   "oplossing": "-8"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 6\nstappen: x = x + 11 ; x = x - 7\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 14\nstappen: x = x + 2 ; x = x + 9\nwat is x?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 7\nstappen: x = x - 3 ; x = x - 6\nwat is x?",
+   "oplossing": "-2"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 8\nstappen: x = x + 2 ; x = x + 8\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 18\nstappen: x = x - 5 ; x = x - 11\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 9\nstappen: x = x + 2 ; x = x - 5\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 7\nstappen: x = x + 8 ; x = x + 1\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 3\nstappen: x = x + 1 ; x = x + 3\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 19\nstappen: x = x + 4 ; x = x + 10\nwat is x?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 14\nstappen: x = x - 3 ; x = x - 9\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 6\nstappen: x = x + 5 ; x = x - 3\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 8\nstappen: x = x - 10 ; x = x + 6\nwat is x?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 17\nstappen: x = x - 4 ; x = x + 7\nwat is x?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 13\nstappen: x = x - 8 ; x = x + 11\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 3\nstappen: x = x + 7 ; x = x + 9\nwat is x?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 1\nstappen: x = x - 3 ; x = x - 6\nwat is x?",
+   "oplossing": "-8"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 20\nstappen: x = x + 9 ; x = x + 8\nwat is x?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 16\nstappen: x = x - 4 ; x = x + 1\nwat is x?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 10\nstappen: x = x + 2 ; x = x + 4\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 5\nstappen: x = x + 10 ; x = x - 7\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 7\nstappen: x = x - 11 ; x = x + 2\nwat is x?",
+   "oplossing": "-2"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 18\nstappen: x = x - 11 ; x = x + 4\nwat is x?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 3\nstappen: x = x + 1 ; x = x + 6\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 1\nstappen: x = x - 9 ; x = x + 12\nwat is x?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 5\nstappen: x = x - 12 ; x = x - 1\nwat is x?",
+   "oplossing": "-8"
+  },
+  {
+   "familie": "machine",
+   "graad": 2,
+   "opgave": "start: x = 5\nstappen: x = x + 10 ; x = x - 1\nwat is x?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 6 ; y = 3\nstappen: x = x - 1 ; x = x * 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 15 ; y = 7\nstappen: x = x * 4 ; y = y - 3\nherhaal 2 keer\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 3 ; y = 20\nstappen: x = x + 1 ; x = x + y\nherhaal 2 keer\nwat is x?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 10 ; y = 3\nstappen: x = x + y ; x = x + 9\nherhaal 2 keer\nwat is x?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 19 ; y = 4\nstappen: x = x + y ; y = y - 8\nherhaal 2 keer\nwat is x?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 5 ; y = 12\nstappen: y = y - 11 ; x = x - y\nherhaal 2 keer\nwat is x?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 9 ; y = 15\nstappen: y = y * 4 ; x = x + y\nherhaal 2 keer\nwat is y?",
+   "oplossing": "240"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 1 ; y = 3\nstappen: y = y + x ; x = x * 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 3 ; y = 16\nstappen: y = y * 3 ; y = y * 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 6 ; y = 13\nstappen: y = y + x ; x = x + y\nherhaal 2 keer\nwat is y?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 17 ; y = 14\nstappen: y = y + 4 ; y = y - 11\nherhaal 2 keer\nwat is x?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 13 ; y = 9\nstappen: x = x + y ; y = y - x\nherhaal 2 keer\nwat is y?",
+   "oplossing": "-22"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 10 ; y = 11\nstappen: y = y + x ; x = x + 9\nherhaal 2 keer\nwat is x?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 11 ; y = 15\nstappen: x = x + y ; y = y - 12\nherhaal 2 keer\nwat is y?",
+   "oplossing": "-9"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 9 ; y = 19\nstappen: y = y + x ; x = x + 2\nherhaal 2 keer\nwat is y?",
+   "oplossing": "39"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 5 ; y = 12\nstappen: x = x - y ; x = x + 10\nherhaal 2 keer\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 18 ; y = 6\nstappen: x = x + y ; y = y + 5\nherhaal 2 keer\nwat is x?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 5 ; y = 20\nstappen: y = y + x ; x = x * 3\nherhaal 2 keer\nwat is y?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 17 ; y = 15\nstappen: x = x - 1 ; y = y + 1\nherhaal 2 keer\nwat is y?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 12 ; y = 18\nstappen: x = x - 7 ; y = y * 2\nherhaal 2 keer\nwat is y?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 15 ; y = 20\nstappen: y = y + 12 ; x = x + 4\nherhaal 2 keer\nwat is x?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 16 ; y = 5\nstappen: y = y + x ; x = x + y\nherhaal 2 keer\nwat is x?",
+   "oplossing": "95"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 7 ; y = 4\nstappen: x = x + y ; x = x - 11\nherhaal 2 keer\nwat is y?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 6 ; y = 16\nstappen: x = x + y ; x = x + 1\nherhaal 2 keer\nwat is y?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 20 ; y = 20\nstappen: y = y * 2 ; y = y * 4\nherhaal 2 keer\nwat is x?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 17 ; y = 3\nstappen: x = x + y ; y = y * 4\nherhaal 2 keer\nwat is y?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 6 ; y = 5\nstappen: y = y - 6 ; x = x - 5\nherhaal 2 keer\nwat is y?",
+   "oplossing": "-7"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 12 ; y = 9\nstappen: y = y - x ; y = y + x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 11 ; y = 10\nstappen: x = x * 2 ; y = y - x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "machine",
+   "graad": 3,
+   "opgave": "start: x = 16 ; y = 14\nstappen: y = y + 10 ; y = y + x\nherhaal 2 keer\nwat is y?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 4 ; y = 8\nstappen: y = y + 8 ; y = y * 3\nherhaal 2 keer\nwat is y?",
+   "oplossing": "168"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 18 ; y = 19\nstappen: y = y + x ; y = y * 4\nherhaal 2 keer\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 2 ; y = 2\nstappen: y = y * 2 ; y = y + x\nherhaal 2 keer\nwat is y?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 12 ; y = 13\nstappen: y = y - 8 ; x = x - 10\nherhaal 2 keer\nwat is y?",
+   "oplossing": "-3"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 3 ; y = 12\nstappen: y = y * 3 ; y = y - x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 9 ; y = 5\nstappen: x = x + y ; x = x * 3\nherhaal 2 keer\nwat is y?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 3 ; y = 16\nstappen: y = y * 2 ; y = y * 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 7 ; y = 8\nstappen: x = x + 7 ; y = y - x\nherhaal 2 keer\nwat is y?",
+   "oplossing": "-27"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 16 ; y = 14\nstappen: y = y + 11 ; y = y * 4\nherhaal 2 keer\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 12 ; y = 6\nstappen: x = x - y ; y = y + x\nherhaal 2 keer\nwat is y?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 12 ; y = 20\nstappen: x = x - 11 ; y = y + x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "-10"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 11 ; y = 18\nstappen: x = x + 7 ; x = x - 11\nherhaal 2 keer\nwat is y?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 10 ; y = 14\nstappen: x = x - y ; y = y - 11\nherhaal 2 keer\nwat is y?",
+   "oplossing": "-8"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 8 ; y = 20\nstappen: x = x * 3 ; y = y + x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 2 ; y = 18\nstappen: y = y - x ; y = y - 9\nherhaal 2 keer\nwat is y?",
+   "oplossing": "-4"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 13 ; y = 2\nstappen: y = y + 8 ; y = y + 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 12 ; y = 2\nstappen: y = y * 2 ; y = y + 4\nherhaal 2 keer\nwat is y?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 16 ; y = 13\nstappen: y = y + 6 ; y = y * 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 19 ; y = 2\nstappen: y = y * 4 ; x = x + 6\nherhaal 2 keer\nwat is x?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 6 ; y = 12\nstappen: x = x - y ; x = x + y\nherhaal 2 keer\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 13 ; y = 18\nstappen: x = x - 1 ; y = y - 9\nherhaal 2 keer\nwat is y?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 7 ; y = 19\nstappen: x = x - 11 ; y = y - x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "-15"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 16 ; y = 17\nstappen: y = y * 3 ; y = y * 2\nherhaal 2 keer\nwat is y?",
+   "oplossing": "612"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 11 ; y = 10\nstappen: y = y - 5 ; y = y - x\nherhaal 2 keer\nwat is y?",
+   "oplossing": "-22"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 13 ; y = 11\nstappen: y = y + x ; y = y * 3\nherhaal 2 keer\nwat is y?",
+   "oplossing": "255"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 16 ; y = 9\nstappen: y = y - x ; y = y + x\nherhaal 2 keer\nwat is y?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 7 ; y = 16\nstappen: x = x - 1 ; x = x - 5\nherhaal 2 keer\nwat is x?",
+   "oplossing": "-5"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 4 ; y = 16\nstappen: x = x - y ; y = y + 1\nherhaal 2 keer\nwat is x?",
+   "oplossing": "-29"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 16 ; y = 18\nstappen: y = y - 6 ; x = x * 2\nherhaal 2 keer\nwat is x?",
+   "oplossing": "64"
+  },
+  {
+   "familie": "machine",
+   "graad": 4,
+   "opgave": "start: x = 6 ; y = 18\nstappen: x = x + 3 ; x = x * 2\nherhaal 2 keer\nwat is y?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 11 ; y = 12\nstappen: x = x - y ; y = y + x ; y = y * 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "-34"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 1 ; y = 4\nstappen: x = x - 3 ; y = y * 2 ; y = y - 4\nherhaal 2 keer\nwat is x?",
+   "oplossing": "-5"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 15 ; y = 9\nstappen: y = y * 2 ; y = y * 3 ; y = y + 8\nherhaal 2 keer\nwat is x?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 4 ; y = 14\nstappen: x = x - 2 ; y = y - x ; x = x + y\nherhaal 2 keer\nwat is y?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 10 ; y = 19\nstappen: x = x + 1 ; x = x + 6 ; x = x - 1\nherhaal 2 keer\nwat is x?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 4 ; y = 7\nstappen: y = y * 2 ; y = y * 2 ; y = y + x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 9 ; y = 7\nstappen: y = y + x ; y = y + x ; y = y * 4\nherhaal 2 keer\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 11 ; y = 14\nstappen: y = y - 4 ; x = x + 11 ; x = x + 12\nherhaal 2 keer\nwat is x?",
+   "oplossing": "57"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 19 ; y = 18\nstappen: x = x - 6 ; y = y * 3 ; y = y * 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 15 ; y = 8\nstappen: x = x + y ; x = x + y ; y = y * 3\nherhaal 2 keer\nwat is y?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 11 ; y = 12\nstappen: x = x + y ; y = y + x ; x = x + 3\nherhaal 2 keer\nwat is y?",
+   "oplossing": "96"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 11 ; y = 12\nstappen: y = y + x ; y = y + 12 ; y = y - 8\nherhaal 2 keer\nwat is x?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 15 ; y = 2\nstappen: x = x - 2 ; y = y * 2 ; y = y + x\nherhaal 2 keer\nwat is y?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 20 ; y = 9\nstappen: y = y + 5 ; y = y + x ; x = x * 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "180"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 6 ; y = 3\nstappen: y = y + x ; x = x - 2 ; y = y * 2\nherhaal 2 keer\nwat is y?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 10 ; y = 20\nstappen: x = x + y ; y = y - 3 ; y = y + x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "77"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 20 ; y = 11\nstappen: x = x * 2 ; y = y * 2 ; x = x - 4\nherhaal 2 keer\nwat is x?",
+   "oplossing": "68"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 14 ; y = 13\nstappen: x = x + y ; y = y * 3 ; x = x - 1\nherhaal 2 keer\nwat is y?",
+   "oplossing": "117"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 3 ; y = 19\nstappen: y = y - 11 ; y = y - x ; x = x - 11\nherhaal 2 keer\nwat is x?",
+   "oplossing": "-19"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 18 ; y = 15\nstappen: x = x - y ; y = y - x ; x = x + 2\nherhaal 2 keer\nwat is y?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 10 ; y = 3\nstappen: y = y + 4 ; x = x + y ; y = y + 5\nherhaal 2 keer\nwat is x?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 3 ; y = 14\nstappen: y = y - 7 ; y = y + 9 ; y = y + x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 7 ; y = 3\nstappen: y = y * 3 ; x = x * 2 ; x = x + 4\nherhaal 2 keer\nwat is x?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 16 ; y = 20\nstappen: x = x - 5 ; y = y - 2 ; y = y + x\nherhaal 2 keer\nwat is y?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 3 ; y = 1\nstappen: y = y + 10 ; x = x + 8 ; y = y - 9\nherhaal 2 keer\nwat is x?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 9 ; y = 8\nstappen: y = y + 12 ; x = x - 6 ; y = y + 9\nherhaal 2 keer\nwat is y?",
+   "oplossing": "50"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 7 ; y = 19\nstappen: y = y + 5 ; x = x - 9 ; y = y - 1\nherhaal 2 keer\nwat is x?",
+   "oplossing": "-11"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 5 ; y = 10\nstappen: x = x * 2 ; x = x - 2 ; x = x * 3\nherhaal 2 keer\nwat is x?",
+   "oplossing": "138"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 12 ; y = 4\nstappen: x = x * 2 ; y = y - 7 ; y = y + x\nherhaal 2 keer\nwat is x?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "machine",
+   "graad": 5,
+   "opgave": "start: x = 4 ; y = 1\nstappen: x = x + y ; y = y - 5 ; x = x + 6\nherhaal 2 keer\nwat is y?",
+   "oplossing": "-9"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 10 ; y = 15\nstappen: x = x + 5 ; x = x + y ; y = y + 4\nherhaal 3 keer\nwat is y?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 7 ; y = 4\nstappen: x = x + 8 ; x = x + 4 ; y = y - 1\nherhaal 3 keer\nwat is y?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 5 ; y = 10\nstappen: y = y - x ; x = x * 2 ; x = x + 1\nherhaal 3 keer\nwat is x?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 20 ; y = 15\nstappen: y = y * 4 ; y = y * 2 ; x = x - 11\nherhaal 3 keer\nwat is x?",
+   "oplossing": "-13"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 15 ; y = 7\nstappen: x = x - 6 ; x = x - y ; y = y + x\nherhaal 3 keer\nwat is y?",
+   "oplossing": "-19"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 16 ; y = 7\nstappen: y = y * 2 ; x = x - 5 ; x = x * 2\nherhaal 3 keer\nwat is y?",
+   "oplossing": "56"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 4 ; y = 17\nstappen: x = x - 5 ; x = x + y ; y = y * 2\nherhaal 3 keer\nwat is x?",
+   "oplossing": "108"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 15 ; y = 17\nstappen: y = y + x ; x = x + 12 ; y = y * 4\nherhaal 3 keer\nwat is y?",
+   "oplossing": "2636"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 15 ; y = 18\nstappen: y = y + 9 ; x = x - 6 ; x = x - 4\nherhaal 3 keer\nwat is y?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 13 ; y = 19\nstappen: x = x - 10 ; x = x * 3 ; y = y + x\nherhaal 3 keer\nwat is y?",
+   "oplossing": "-14"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 11 ; y = 8\nstappen: y = y - x ; x = x - 4 ; x = x + y\nherhaal 3 keer\nwat is x?",
+   "oplossing": "-11"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 10 ; y = 7\nstappen: y = y + 10 ; x = x - y ; y = y * 4\nherhaal 3 keer\nwat is y?",
+   "oplossing": "1288"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 10 ; y = 13\nstappen: x = x + 4 ; y = y + 3 ; y = y + 10\nherhaal 3 keer\nwat is x?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 2 ; y = 10\nstappen: x = x - y ; x = x + y ; y = y + 5\nherhaal 3 keer\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 3 ; y = 7\nstappen: y = y - x ; y = y + 6 ; y = y - 3\nherhaal 3 keer\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 10 ; y = 11\nstappen: x = x + 4 ; y = y + 12 ; x = x + 11\nherhaal 3 keer\nwat is x?",
+   "oplossing": "55"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 12 ; y = 9\nstappen: x = x * 4 ; y = y + x ; x = x * 2\nherhaal 3 keer\nwat is x?",
+   "oplossing": "6144"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 14 ; y = 1\nstappen: y = y * 4 ; x = x + y ; y = y * 2\nherhaal 3 keer\nwat is y?",
+   "oplossing": "512"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 10 ; y = 20\nstappen: y = y + 12 ; x = x + y ; x = x * 3\nherhaal 3 keer\nwat is x?",
+   "oplossing": "1698"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 18 ; y = 19\nstappen: y = y - 7 ; x = x + 2 ; y = y + x\nherhaal 3 keer\nwat is y?",
+   "oplossing": "64"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 7 ; y = 3\nstappen: y = y + 11 ; x = x * 4 ; y = y * 4\nherhaal 3 keer\nwat is x?",
+   "oplossing": "448"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 16 ; y = 20\nstappen: x = x * 2 ; y = y - 12 ; y = y + 9\nherhaal 3 keer\nwat is y?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 4 ; y = 16\nstappen: y = y + x ; y = y + x ; y = y - 11\nherhaal 3 keer\nwat is x?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 7 ; y = 4\nstappen: x = x + y ; x = x - 11 ; y = y * 2\nherhaal 3 keer\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 5 ; y = 11\nstappen: y = y * 3 ; x = x - 5 ; x = x + 4\nherhaal 3 keer\nwat is y?",
+   "oplossing": "297"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 8 ; y = 3\nstappen: x = x + 8 ; y = y * 4 ; y = y + x\nherhaal 3 keer\nwat is x?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 17 ; y = 5\nstappen: x = x + 10 ; x = x + y ; x = x + y\nherhaal 3 keer\nwat is x?",
+   "oplossing": "77"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 8 ; y = 18\nstappen: x = x * 2 ; y = y + 11 ; x = x + 8\nherhaal 3 keer\nwat is y?",
+   "oplossing": "51"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 19 ; y = 13\nstappen: x = x + 3 ; y = y - 9 ; y = y + x\nherhaal 3 keer\nwat is x?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "machine",
+   "graad": 6,
+   "opgave": "start: x = 19 ; y = 15\nstappen: x = x - 9 ; y = y - x ; y = y * 4\nherhaal 3 keer\nwat is y?",
+   "oplossing": "336"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 6 ; y = 17 ; z = 14\nstappen: z = z - y ; x = x + z ; als x > y dan z = z - 9\nherhaal 3 keer\nwat is z?",
+   "oplossing": "-37"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 4 ; y = 18 ; z = 1\nstappen: y = y + 12 ; z = z - y ; y = y - 4\nherhaal 3 keer\nwat is x?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 20 ; y = 11 ; z = 10\nstappen: y = y + 11 ; y = y + 3 ; x = x + 11\nherhaal 3 keer\nwat is y?",
+   "oplossing": "53"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 8 ; y = 5 ; z = 20\nstappen: x = x + 2 ; y = y - x ; z = z + 1\nherhaal 3 keer\nwat is y?",
+   "oplossing": "-31"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 16 ; y = 16 ; z = 20\nstappen: z = z + 10 ; y = y + 8 ; als x > y dan y = y + 1\nherhaal 3 keer\nwat is y?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 10 ; y = 6 ; z = 2\nstappen: z = z + y ; x = x + z ; x = x * 4\nherhaal 3 keer\nwat is z?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 8 ; y = 17 ; z = 8\nstappen: y = y - z ; y = y + z ; z = z + x\nherhaal 3 keer\nwat is y?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 10 ; y = 18 ; z = 2\nstappen: z = z - y ; x = x - 9 ; als x > y dan z = z + 1\nherhaal 3 keer\nwat is y?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 10 ; y = 4 ; z = 16\nstappen: z = z * 4 ; y = y + x ; als x > y dan z = z + 9\nherhaal 3 keer\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 14 ; y = 2 ; z = 14\nstappen: z = z * 2 ; y = y + x ; als x > y dan x = x - 3\nherhaal 3 keer\nwat is x?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 19 ; y = 4 ; z = 12\nstappen: z = z + 10 ; y = y * 2 ; x = x + 8\nherhaal 3 keer\nwat is x?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 8 ; y = 17 ; z = 16\nstappen: y = y - z ; z = z + 9 ; als x > y dan x = x + 1\nherhaal 3 keer\nwat is y?",
+   "oplossing": "-58"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 16 ; y = 6 ; z = 7\nstappen: x = x - y ; x = x + z ; y = y + x\nherhaal 3 keer\nwat is y?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 6 ; y = 14 ; z = 6\nstappen: x = x * 3 ; x = x + z ; x = x - y\nherhaal 3 keer\nwat is x?",
+   "oplossing": "58"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 13 ; y = 9 ; z = 9\nstappen: y = y + z ; x = x * 4 ; als x > y dan x = x - 5\nherhaal 3 keer\nwat is y?",
+   "oplossing": "36"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 10 ; y = 13 ; z = 10\nstappen: z = z - x ; y = y + 12 ; als x > y dan x = x + 6\nherhaal 3 keer\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 6 ; y = 17 ; z = 12\nstappen: x = x * 2 ; y = y - 1 ; y = y + 11\nherhaal 3 keer\nwat is y?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 20 ; y = 16 ; z = 6\nstappen: x = x + z ; y = y + 7 ; y = y * 4\nherhaal 3 keer\nwat is y?",
+   "oplossing": "1612"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 20 ; y = 7 ; z = 9\nstappen: y = y + x ; y = y - x ; z = z - x\nherhaal 3 keer\nwat is z?",
+   "oplossing": "-51"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 6 ; y = 19 ; z = 1\nstappen: x = x - 9 ; z = z - 3 ; x = x + y\nherhaal 3 keer\nwat is y?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 13 ; y = 19 ; z = 12\nstappen: y = y + x ; z = z + x ; y = y * 3\nherhaal 3 keer\nwat is x?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 13 ; y = 1 ; z = 10\nstappen: y = y - 7 ; z = z - 2 ; als x > y dan y = y + 9\nherhaal 3 keer\nwat is y?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 6 ; y = 5 ; z = 14\nstappen: x = x + y ; y = y * 2 ; als x > y dan x = x + 5\nherhaal 3 keer\nwat is y?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 6 ; y = 6 ; z = 9\nstappen: z = z * 4 ; x = x + 11 ; z = z - 4\nherhaal 3 keer\nwat is z?",
+   "oplossing": "492"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 8 ; y = 18 ; z = 8\nstappen: y = y + x ; z = z * 4 ; als x > y dan z = z + 9\nherhaal 3 keer\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 10 ; y = 8 ; z = 12\nstappen: x = x + y ; x = x - z ; als x > y dan y = y - 4\nherhaal 3 keer\nwat is x?",
+   "oplossing": "-2"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 12 ; y = 6 ; z = 17\nstappen: x = x * 4 ; y = y - 7 ; als x > y dan x = x - 5\nherhaal 3 keer\nwat is z?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 1 ; y = 11 ; z = 18\nstappen: y = y - 3 ; x = x + z ; als x > y dan z = z - 8\nherhaal 3 keer\nwat is x?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 16 ; y = 3 ; z = 18\nstappen: y = y + 1 ; y = y + x ; y = y - 5\nherhaal 3 keer\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 7,
+   "opgave": "start: x = 20 ; y = 9 ; z = 1\nstappen: y = y * 2 ; y = y + x ; als x > y dan z = z + 3\nherhaal 3 keer\nwat is y?",
+   "oplossing": "212"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 13 ; y = 16 ; z = 4\nstappen: y = y + z ; x = x - y ; y = y + x\nherhaal 3 keer\nwat is z?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 7 ; y = 5 ; z = 1\nstappen: x = x + y ; y = y - 5 ; als x > y dan x = x - 7\nherhaal 3 keer\nwat is z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 9 ; y = 11 ; z = 4\nstappen: z = z + y ; z = z + y ; z = z + x\nherhaal 3 keer\nwat is z?",
+   "oplossing": "97"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 9 ; y = 6 ; z = 9\nstappen: x = x * 3 ; y = y + 10 ; als x > y dan z = z - 6\nherhaal 3 keer\nwat is y?",
+   "oplossing": "36"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 7 ; y = 19 ; z = 11\nstappen: y = y + x ; y = y * 4 ; als x > y dan y = y + 1\nherhaal 3 keer\nwat is y?",
+   "oplossing": "1804"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 13 ; y = 14 ; z = 6\nstappen: y = y - 10 ; z = z + 3 ; y = y * 4\nherhaal 3 keer\nwat is x?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 15 ; y = 9 ; z = 9\nstappen: z = z * 3 ; x = x - 10 ; y = y - 11\nherhaal 3 keer\nwat is x?",
+   "oplossing": "-15"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 13 ; y = 18 ; z = 8\nstappen: z = z + 6 ; z = z + y ; als x > y dan z = z + 2\nherhaal 3 keer\nwat is y?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 12 ; y = 19 ; z = 9\nstappen: y = y * 3 ; x = x - y ; y = y - x\nherhaal 3 keer\nwat is y?",
+   "oplossing": "4293"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 13 ; y = 5 ; z = 8\nstappen: y = y * 2 ; x = x - 8 ; z = z + y\nherhaal 3 keer\nwat is z?",
+   "oplossing": "78"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 10 ; y = 10 ; z = 7\nstappen: z = z - 5 ; x = x - y ; z = z * 4\nherhaal 3 keer\nwat is z?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 17 ; y = 6 ; z = 18\nstappen: z = z + 6 ; x = x + y ; x = x * 3\nherhaal 3 keer\nwat is y?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 16 ; y = 17 ; z = 19\nstappen: x = x - 9 ; z = z * 3 ; y = y - 5\nherhaal 3 keer\nwat is z?",
+   "oplossing": "513"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 13 ; y = 7 ; z = 16\nstappen: y = y * 2 ; x = x + 8 ; x = x + 6\nherhaal 3 keer\nwat is y?",
+   "oplossing": "56"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 15 ; y = 19 ; z = 8\nstappen: x = x + 12 ; y = y * 3 ; als x > y dan z = z - 6\nherhaal 3 keer\nwat is z?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 11 ; y = 17 ; z = 10\nstappen: z = z - 10 ; z = z - 8 ; y = y * 2\nherhaal 3 keer\nwat is x?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 5 ; y = 10 ; z = 19\nstappen: x = x * 3 ; y = y + 2 ; y = y + z\nherhaal 3 keer\nwat is z?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 18 ; y = 4 ; z = 11\nstappen: z = z + 8 ; y = y + x ; z = z * 4\nherhaal 3 keer\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 4 ; y = 1 ; z = 9\nstappen: z = z + y ; y = y - 1 ; als x > y dan x = x + 8\nherhaal 3 keer\nwat is x?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 16 ; y = 4 ; z = 20\nstappen: y = y * 4 ; y = y + 12 ; als x > y dan y = y + 3\nherhaal 3 keer\nwat is z?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 2 ; y = 4 ; z = 19\nstappen: y = y * 4 ; z = z - 4 ; als x > y dan z = z - 8\nherhaal 3 keer\nwat is z?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 8 ; y = 13 ; z = 2\nstappen: z = z + y ; y = y - x ; x = x - 11\nherhaal 3 keer\nwat is y?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 19 ; y = 12 ; z = 13\nstappen: z = z * 3 ; x = x + y ; x = x * 3\nherhaal 3 keer\nwat is z?",
+   "oplossing": "351"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 7 ; y = 6 ; z = 14\nstappen: y = y - 4 ; z = z - 11 ; als x > y dan x = x - 5\nherhaal 3 keer\nwat is z?",
+   "oplossing": "-19"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 16 ; y = 11 ; z = 13\nstappen: y = y * 2 ; y = y + z ; z = z - 7\nherhaal 3 keer\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 2 ; y = 13 ; z = 13\nstappen: z = z + y ; x = x * 3 ; als x > y dan z = z - 9\nherhaal 3 keer\nwat is y?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 1 ; y = 14 ; z = 5\nstappen: z = z * 3 ; y = y + 11 ; als x > y dan y = y + 6\nherhaal 3 keer\nwat is y?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 20 ; y = 14 ; z = 18\nstappen: z = z * 4 ; x = x - 1 ; als x > y dan y = y - 1\nherhaal 3 keer\nwat is y?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 9 ; y = 17 ; z = 2\nstappen: z = z * 4 ; z = z - 7 ; als x > y dan z = z - 3\nherhaal 3 keer\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "machine",
+   "graad": 8,
+   "opgave": "start: x = 18 ; y = 10 ; z = 7\nstappen: z = z + y ; y = y + 1 ; als x > y dan x = x + 6\nherhaal 3 keer\nwat is y?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 8 ; y = 13 ; z = 13\nstappen: y = y - z ; x = x + 8 ; y = y + x ; als x > y dan z = z - 3\nherhaal 3 keer\nwat is x?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 5 ; y = 6 ; z = 19\nstappen: y = y + 1 ; y = y - z ; x = x + y ; z = z + 5\nherhaal 3 keer\nwat is y?",
+   "oplossing": "-63"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 11 ; y = 5 ; z = 18\nstappen: x = x - 12 ; y = y + 7 ; y = y - z ; x = x * 4\nherhaal 3 keer\nwat is z?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 19 ; y = 10 ; z = 4\nstappen: y = y - 6 ; x = x + y ; x = x + 4 ; x = x + z\nherhaal 3 keer\nwat is x?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 2 ; y = 17 ; z = 6\nstappen: z = z - 1 ; z = z + 7 ; y = y * 4 ; y = y * 2\nherhaal 3 keer\nwat is y?",
+   "oplossing": "8704"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 7 ; y = 7 ; z = 13\nstappen: z = z + 12 ; x = x * 3 ; z = z + 1 ; als x > y dan y = y - 6\nherhaal 3 keer\nwat is z?",
+   "oplossing": "52"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 2 ; y = 2 ; z = 3\nstappen: x = x - 7 ; x = x + y ; x = x + 11 ; z = z + 4\nherhaal 3 keer\nwat is y?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 6 ; y = 19 ; z = 7\nstappen: y = y + z ; z = z - x ; z = z * 4 ; x = x * 4\nherhaal 3 keer\nwat is x?",
+   "oplossing": "384"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 12 ; y = 7 ; z = 7\nstappen: z = z * 4 ; x = x + 8 ; z = z - 3 ; z = z + 1\nherhaal 3 keer\nwat is y?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 10 ; y = 5 ; z = 16\nstappen: z = z * 4 ; y = y + z ; x = x - 7 ; als x > y dan z = z + 4\nherhaal 3 keer\nwat is z?",
+   "oplossing": "1024"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 19 ; y = 1 ; z = 14\nstappen: z = z + 8 ; y = y - z ; z = z * 2 ; y = y - 3\nherhaal 3 keer\nwat is z?",
+   "oplossing": "224"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 11 ; y = 15 ; z = 10\nstappen: y = y - z ; x = x - z ; x = x + z ; als x > y dan x = x - 2\nherhaal 3 keer\nwat is z?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 12 ; y = 9 ; z = 19\nstappen: z = z - y ; z = z + 2 ; y = y - 1 ; x = x - 5\nherhaal 3 keer\nwat is x?",
+   "oplossing": "-3"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 9 ; y = 2 ; z = 1\nstappen: y = y - 9 ; x = x - 7 ; z = z * 2 ; z = z - y\nherhaal 3 keer\nwat is y?",
+   "oplossing": "-25"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 8 ; y = 11 ; z = 17\nstappen: x = x + 12 ; z = z - 9 ; x = x + 6 ; als x > y dan y = y - 8\nherhaal 3 keer\nwat is x?",
+   "oplossing": "62"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 10 ; y = 8 ; z = 15\nstappen: y = y - z ; y = y + 7 ; z = z - y ; z = z + y\nherhaal 3 keer\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 18 ; y = 1 ; z = 4\nstappen: z = z * 3 ; x = x - 1 ; z = z - 2 ; x = x * 2\nherhaal 3 keer\nwat is z?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 6 ; y = 1 ; z = 18\nstappen: z = z - 2 ; y = y + 5 ; y = y - 7 ; x = x - 5\nherhaal 3 keer\nwat is z?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 3 ; y = 19 ; z = 17\nstappen: z = z - 5 ; z = z - 8 ; y = y - 8 ; z = z * 3\nherhaal 3 keer\nwat is z?",
+   "oplossing": "-48"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 13 ; y = 12 ; z = 4\nstappen: x = x * 3 ; z = z * 4 ; z = z * 2 ; y = y * 3\nherhaal 3 keer\nwat is x?",
+   "oplossing": "351"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 14 ; y = 9 ; z = 3\nstappen: z = z - 8 ; y = y - 5 ; y = y - 6 ; x = x * 2\nherhaal 3 keer\nwat is y?",
+   "oplossing": "-24"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 6 ; y = 5 ; z = 4\nstappen: x = x + 3 ; z = z + y ; z = z + 6 ; als x > y dan x = x + 3\nherhaal 3 keer\nwat is x?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 7 ; y = 15 ; z = 19\nstappen: y = y + 4 ; z = z - 9 ; z = z + 9 ; z = z + y\nherhaal 3 keer\nwat is z?",
+   "oplossing": "88"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 20 ; y = 8 ; z = 3\nstappen: y = y - 11 ; z = z + y ; x = x + 4 ; x = x * 4\nherhaal 3 keer\nwat is y?",
+   "oplossing": "-25"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 4 ; y = 20 ; z = 1\nstappen: x = x + y ; y = y + z ; y = y - 4 ; als x > y dan z = z - 2\nherhaal 3 keer\nwat is z?",
+   "oplossing": "-5"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 16 ; y = 1 ; z = 1\nstappen: x = x - 2 ; x = x * 2 ; y = y + 5 ; als x > y dan z = z + 9\nherhaal 3 keer\nwat is z?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 13 ; y = 11 ; z = 15\nstappen: y = y * 3 ; y = y - 5 ; x = x + y ; als x > y dan y = y + 2\nherhaal 3 keer\nwat is z?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 5 ; y = 1 ; z = 12\nstappen: y = y - x ; y = y + z ; y = y * 3 ; y = y * 3\nherhaal 3 keer\nwat is x?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 13 ; y = 11 ; z = 20\nstappen: z = z - x ; x = x * 4 ; z = z + y ; als x > y dan x = x - 2\nherhaal 3 keer\nwat is x?",
+   "oplossing": "790"
+  },
+  {
+   "familie": "machine",
+   "graad": 9,
+   "opgave": "start: x = 16 ; y = 2 ; z = 11\nstappen: y = y + 12 ; y = y + x ; x = x - 9 ; y = y - 11\nherhaal 3 keer\nwat is z?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 12 ; y = 13 ; z = 8\nstappen: y = y + z ; z = z - 9 ; y = y + z ; x = x + z\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-67"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 1 ; y = 18 ; z = 3\nstappen: x = x + z ; z = z + 2 ; x = x + 5 ; als x > y dan z = z + 5\nherhaal 4 keer\nwat is x?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 7 ; y = 10 ; z = 14\nstappen: x = x + z ; z = z + y ; x = x + z ; als x > y dan x = x + 2\nherhaal 4 keer\nwat is x?",
+   "oplossing": "287"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 8 ; y = 10 ; z = 2\nstappen: z = z - 7 ; z = z - y ; z = z - 6 ; als x > y dan y = y + 6\nherhaal 4 keer\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 9 ; y = 4 ; z = 7\nstappen: x = x * 4 ; y = y + 7 ; y = y + 2 ; z = z + x\nherhaal 4 keer\nwat is x?",
+   "oplossing": "2304"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 17 ; y = 17 ; z = 13\nstappen: z = z - 12 ; x = x * 2 ; x = x * 2 ; als x > y dan y = y - 2\nherhaal 4 keer\nwat is y?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 14 ; y = 12 ; z = 6\nstappen: z = z - 11 ; y = y + z ; x = x - 2 ; als x > y dan y = y - 6\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-98"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 2 ; y = 11 ; z = 7\nstappen: z = z + x ; x = x + z ; x = x + y ; als x > y dan z = z + 1\nherhaal 4 keer\nwat is z?",
+   "oplossing": "274"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 8 ; y = 2 ; z = 1\nstappen: z = z * 3 ; z = z * 2 ; x = x + 4 ; als x > y dan y = y - 5\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-18"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 17 ; y = 2 ; z = 5\nstappen: x = x - 12 ; x = x - 7 ; x = x + z ; y = y - 3\nherhaal 4 keer\nwat is x?",
+   "oplossing": "-39"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 11 ; y = 19 ; z = 9\nstappen: y = y - 12 ; z = z * 2 ; x = x + z ; als x > y dan z = z - 9\nherhaal 4 keer\nwat is z?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 7 ; y = 1 ; z = 18\nstappen: x = x - 7 ; x = x - 4 ; x = x + 6 ; als x > y dan z = z - 8\nherhaal 4 keer\nwat is z?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 10 ; y = 12 ; z = 1\nstappen: z = z - x ; y = y - 8 ; z = z + x ; x = x + 7\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-20"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 8 ; y = 12 ; z = 3\nstappen: y = y + 10 ; z = z + 5 ; z = z - x ; x = x - 7\nherhaal 4 keer\nwat is y?",
+   "oplossing": "52"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 1 ; y = 5 ; z = 19\nstappen: x = x * 2 ; y = y - z ; z = z + 12 ; als x > y dan x = x + 5\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-143"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 8 ; y = 9 ; z = 1\nstappen: y = y + x ; y = y + 12 ; y = y + x ; als x > y dan y = y + 5\nherhaal 4 keer\nwat is y?",
+   "oplossing": "121"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 3 ; y = 17 ; z = 3\nstappen: z = z + x ; z = z * 2 ; z = z - 1 ; y = y * 3\nherhaal 4 keer\nwat is y?",
+   "oplossing": "1377"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 1 ; y = 6 ; z = 14\nstappen: z = z + 6 ; x = x - 10 ; z = z - x ; als x > y dan z = z + 1\nherhaal 4 keer\nwat is x?",
+   "oplossing": "-39"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 7 ; y = 15 ; z = 4\nstappen: y = y * 4 ; x = x - 12 ; x = x - 1 ; als x > y dan y = y + 6\nherhaal 4 keer\nwat is y?",
+   "oplossing": "3840"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 7 ; y = 11 ; z = 16\nstappen: y = y + z ; x = x * 4 ; x = x + z ; y = y * 4\nherhaal 4 keer\nwat is y?",
+   "oplossing": "8256"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 4 ; y = 3 ; z = 19\nstappen: x = x - y ; x = x + y ; z = z + 10 ; x = x - 9\nherhaal 4 keer\nwat is y?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 16 ; y = 13 ; z = 5\nstappen: y = y - x ; x = x + y ; y = y + z ; als x > y dan y = y - 2\nherhaal 4 keer\nwat is y?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 17 ; y = 9 ; z = 16\nstappen: x = x + 1 ; z = z + 5 ; y = y + 10 ; x = x * 4\nherhaal 4 keer\nwat is x?",
+   "oplossing": "4692"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 8 ; y = 12 ; z = 2\nstappen: z = z * 3 ; z = z + x ; x = x - y ; y = y - z\nherhaal 4 keer\nwat is z?",
+   "oplossing": "374"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 17 ; y = 4 ; z = 16\nstappen: z = z - 1 ; y = y * 3 ; x = x - 12 ; x = x + 8\nherhaal 4 keer\nwat is z?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 3 ; y = 13 ; z = 7\nstappen: y = y + z ; y = y - 7 ; x = x + 1 ; y = y + z\nherhaal 4 keer\nwat is z?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 8 ; y = 11 ; z = 17\nstappen: x = x - 5 ; y = y + 9 ; x = x + 9 ; y = y + z\nherhaal 4 keer\nwat is y?",
+   "oplossing": "115"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 10 ; y = 8 ; z = 1\nstappen: z = z * 2 ; z = z + 10 ; x = x * 3 ; als x > y dan x = x - 4\nherhaal 4 keer\nwat is z?",
+   "oplossing": "166"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 12 ; y = 10 ; z = 6\nstappen: x = x - 1 ; y = y + 10 ; x = x * 4 ; als x > y dan z = z - 6\nherhaal 4 keer\nwat is z?",
+   "oplossing": "-18"
+  },
+  {
+   "familie": "machine",
+   "graad": 10,
+   "opgave": "start: x = 10 ; y = 16 ; z = 18\nstappen: y = y * 2 ; y = y + z ; z = z * 3 ; als x > y dan z = z + 3\nherhaal 4 keer\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 17 ; y = 6 ; z = 14\nstappen: x = x + 11 ; x = x - y ; x = x + z ; z = z + x\nherhaal 4 keer\nwat is x?",
+   "oplossing": "620"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 6 ; y = 15 ; z = 10\nstappen: x = x * 3 ; z = z + 1 ; y = y - x ; als x > y dan x = x - 1\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-651"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 4 ; y = 9 ; z = 17\nstappen: x = x + 8 ; x = x + 5 ; y = y + 8 ; y = y + 7\nherhaal 4 keer\nwat is x?",
+   "oplossing": "56"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 17 ; y = 13 ; z = 4\nstappen: y = y + x ; z = z * 2 ; z = z + 8 ; als x > y dan y = y + 1\nherhaal 4 keer\nwat is z?",
+   "oplossing": "184"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 10 ; y = 8 ; z = 10\nstappen: x = x + 8 ; y = y + x ; z = z + y ; als x > y dan y = y + 7\nherhaal 4 keer\nwat is y?",
+   "oplossing": "128"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 7 ; y = 12 ; z = 12\nstappen: y = y - 10 ; x = x * 2 ; z = z + 9 ; als x > y dan z = z - 3\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-28"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 19 ; y = 4 ; z = 7\nstappen: x = x - z ; z = z + y ; x = x + y ; x = x + 12\nherhaal 4 keer\nwat is y?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 12 ; y = 2 ; z = 20\nstappen: y = y - 2 ; z = z + 2 ; x = x + y ; als x > y dan y = y + 8\nherhaal 4 keer\nwat is x?",
+   "oplossing": "48"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 14 ; y = 18 ; z = 3\nstappen: z = z - 3 ; x = x + y ; y = y - 2 ; y = y + 1\nherhaal 4 keer\nwat is x?",
+   "oplossing": "80"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 5 ; y = 14 ; z = 10\nstappen: y = y - 9 ; x = x + 11 ; y = y + 8 ; als x > y dan z = z - 6\nherhaal 4 keer\nwat is z?",
+   "oplossing": "-14"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 4 ; y = 18 ; z = 17\nstappen: x = x + 1 ; x = x + z ; y = y + 1 ; x = x * 4\nherhaal 4 keer\nwat is y?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 12 ; y = 1 ; z = 4\nstappen: x = x - 2 ; y = y - 10 ; z = z + x ; als x > y dan z = z + 3\nherhaal 4 keer\nwat is z?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 6 ; y = 3 ; z = 17\nstappen: z = z * 2 ; y = y - 4 ; z = z + y ; y = y - 2\nherhaal 4 keer\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 1 ; y = 18 ; z = 1\nstappen: z = z * 3 ; x = x * 3 ; z = z + 4 ; x = x * 3\nherhaal 4 keer\nwat is y?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 3 ; y = 20 ; z = 5\nstappen: y = y - 11 ; z = z * 2 ; y = y + x ; als x > y dan y = y - 2\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-16"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 14 ; y = 13 ; z = 2\nstappen: y = y + x ; x = x + 12 ; x = x - y ; x = x - 5\nherhaal 4 keer\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 7 ; y = 7 ; z = 19\nstappen: x = x + 5 ; x = x - y ; x = x + 2 ; x = x - 6\nherhaal 4 keer\nwat is z?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 18 ; y = 6 ; z = 12\nstappen: z = z + 5 ; z = z + 12 ; x = x + 1 ; x = x * 3\nherhaal 4 keer\nwat is x?",
+   "oplossing": "1578"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 9 ; y = 13 ; z = 16\nstappen: y = y - 5 ; z = z * 3 ; x = x * 3 ; als x > y dan y = y - 6\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-31"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 12 ; y = 5 ; z = 13\nstappen: x = x + y ; z = z - y ; x = x - 7 ; als x > y dan y = y - 3\nherhaal 4 keer\nwat is x?",
+   "oplossing": "-11"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 17 ; y = 12 ; z = 7\nstappen: z = z + x ; x = x - z ; x = x * 2 ; z = z + x\nherhaal 4 keer\nwat is x?",
+   "oplossing": "-8"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 14 ; y = 13 ; z = 3\nstappen: z = z - 2 ; x = x * 2 ; z = z * 2 ; als x > y dan x = x - 1\nherhaal 4 keer\nwat is z?",
+   "oplossing": "-12"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 6 ; y = 16 ; z = 17\nstappen: x = x - y ; z = z + x ; y = y + z ; y = y - 7\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-58"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 10 ; y = 17 ; z = 1\nstappen: z = z * 3 ; y = y - 1 ; y = y + z ; als x > y dan y = y - 2\nherhaal 4 keer\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 10 ; y = 17 ; z = 6\nstappen: y = y - 12 ; y = y + 2 ; y = y - 2 ; y = y + z\nherhaal 4 keer\nwat is z?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 4 ; y = 8 ; z = 12\nstappen: z = z + 10 ; y = y + 10 ; y = y - 10 ; y = y + z\nherhaal 4 keer\nwat is y?",
+   "oplossing": "156"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 9 ; y = 10 ; z = 13\nstappen: x = x - y ; y = y - 8 ; z = z - 1 ; als x > y dan y = y - 3\nherhaal 4 keer\nwat is z?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 7 ; y = 11 ; z = 2\nstappen: x = x + y ; x = x - 5 ; z = z - 7 ; x = x + y\nherhaal 4 keer\nwat is y?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 16 ; y = 6 ; z = 6\nstappen: x = x - 10 ; y = y + z ; x = x + 2 ; y = y + z\nherhaal 4 keer\nwat is y?",
+   "oplossing": "54"
+  },
+  {
+   "familie": "machine",
+   "graad": 11,
+   "opgave": "start: x = 10 ; y = 19 ; z = 18\nstappen: z = z - 4 ; z = z - 9 ; z = z - 7 ; y = y * 4\nherhaal 4 keer\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 17 ; y = 8 ; z = 4\nstappen: y = y - 12 ; x = x + y ; z = z + 2 ; als x > y dan z = z - 1\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-40"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 7 ; y = 5 ; z = 19\nstappen: z = z + y ; z = z + 6 ; z = z + x ; als x > y dan z = z + 6\nherhaal 4 keer\nwat is z?",
+   "oplossing": "115"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 7 ; y = 17 ; z = 16\nstappen: y = y + z ; y = y - 2 ; y = y + 2 ; als x > y dan y = y - 7\nherhaal 4 keer\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 7 ; y = 9 ; z = 4\nstappen: z = z * 3 ; z = z - y ; z = z * 2 ; als x > y dan x = x - 5\nherhaal 4 keer\nwat is z?",
+   "oplossing": "522"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 7 ; y = 6 ; z = 18\nstappen: x = x + 1 ; z = z + 6 ; x = x - 4 ; y = y - x\nherhaal 4 keer\nwat is z?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 1 ; y = 3 ; z = 15\nstappen: y = y + x ; y = y - 9 ; y = y * 2 ; z = z - 7\nherhaal 4 keer\nwat is y?",
+   "oplossing": "-192"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 12 ; y = 9 ; z = 1\nstappen: z = z + x ; y = y - 7 ; x = x + 7 ; x = x + y\nherhaal 4 keer\nwat is z?",
+   "oplossing": "75"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 13 ; y = 7 ; z = 16\nstappen: z = z + x ; z = z + 9 ; y = y + z ; y = y * 3\nherhaal 4 keer\nwat is z?",
+   "oplossing": "104"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 14 ; y = 16 ; z = 3\nstappen: x = x - 4 ; z = z * 3 ; z = z + 8 ; als x > y dan z = z + 9\nherhaal 4 keer\nwat is x?",
+   "oplossing": "-2"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 18 ; y = 3 ; z = 11\nstappen: z = z + x ; x = x * 3 ; y = y - 1 ; x = x + 11\nherhaal 4 keer\nwat is x?",
+   "oplossing": "1898"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 13 ; y = 9 ; z = 2\nstappen: y = y - z ; y = y + z ; x = x + y ; als x > y dan x = x - 5\nherhaal 4 keer\nwat is x?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 17 ; y = 20 ; z = 5\nstappen: z = z * 3 ; y = y + 6 ; x = x + z ; x = x + 4\nherhaal 4 keer\nwat is z?",
+   "oplossing": "405"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 14 ; y = 13 ; z = 11\nstappen: x = x + y ; x = x + 8 ; x = x + z ; als x > y dan z = z - 6\nherhaal 4 keer\nwat is y?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 9 ; y = 8 ; z = 6\nstappen: x = x * 2 ; z = z - x ; y = y - z ; als x > y dan z = z - 1\nherhaal 4 keer\nwat is x?",
+   "oplossing": "144"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 8 ; y = 2 ; z = 17\nstappen: x = x + z ; y = y + 2 ; y = y - z ; y = y - 4\nherhaal 4 keer\nwat is x?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 2 ; y = 5 ; z = 13\nstappen: y = y * 4 ; z = z + 5 ; z = z * 4 ; als x > y dan y = y + 5\nherhaal 4 keer\nwat is y?",
+   "oplossing": "1280"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 13 ; y = 6 ; z = 1\nstappen: x = x - 12 ; z = z + x ; x = x - 7 ; z = z + x\nherhaal 4 keer\nwat is z?",
+   "oplossing": "-247"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 8 ; y = 2 ; z = 8\nstappen: z = z + 6 ; z = z + 11 ; y = y + 3 ; z = z + y\nherhaal 4 keer\nwat is y?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 2 ; y = 13 ; z = 2\nstappen: x = x + 2 ; y = y - 11 ; x = x - 7 ; y = y * 4\nherhaal 4 keer\nwat is z?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 5 ; y = 3 ; z = 8\nstappen: y = y - z ; z = z * 3 ; y = y + 7 ; als x > y dan x = x - 8\nherhaal 4 keer\nwat is x?",
+   "oplossing": "-27"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 9 ; y = 2 ; z = 2\nstappen: y = y - 10 ; y = y - 11 ; z = z - 11 ; x = x - z\nherhaal 4 keer\nwat is x?",
+   "oplossing": "111"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 20 ; y = 6 ; z = 12\nstappen: z = z + 1 ; x = x * 4 ; z = z + x ; als x > y dan y = y + 2\nherhaal 4 keer\nwat is z?",
+   "oplossing": "6816"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 19 ; y = 19 ; z = 20\nstappen: y = y * 2 ; y = y - 11 ; z = z - 7 ; y = y + 4\nherhaal 4 keer\nwat is y?",
+   "oplossing": "199"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 15 ; y = 10 ; z = 15\nstappen: y = y + 9 ; y = y * 4 ; x = x - 1 ; y = y - 5\nherhaal 4 keer\nwat is x?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 2 ; y = 6 ; z = 2\nstappen: x = x + z ; x = x * 4 ; x = x - 2 ; x = x + y\nherhaal 4 keer\nwat is z?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 10 ; y = 8 ; z = 3\nstappen: z = z - x ; z = z - x ; y = y + 5 ; y = y - 4\nherhaal 4 keer\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 10 ; y = 9 ; z = 20\nstappen: x = x + 6 ; y = y - x ; y = y + 2 ; als x > y dan y = y - 4\nherhaal 4 keer\nwat is z?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 11 ; y = 14 ; z = 7\nstappen: y = y + 12 ; y = y - 3 ; y = y + z ; als x > y dan z = z - 1\nherhaal 4 keer\nwat is z?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 16 ; y = 1 ; z = 5\nstappen: y = y - z ; x = x + 1 ; z = z + y ; z = z - 4\nherhaal 4 keer\nwat is y?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "machine",
+   "graad": 12,
+   "opgave": "start: x = 8 ; y = 6 ; z = 6\nstappen: y = y - 12 ; x = x + z ; x = x * 2 ; x = x - 5\nherhaal 4 keer\nwat is z?",
+   "oplossing": "6"
+  }
+ ]
+}

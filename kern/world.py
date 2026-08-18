@@ -56,7 +56,8 @@ from tasks import FAMILIES as _MEASURED_FAMILIES, Task, Picker, _mix
 #   17 Aug 2026: "logica" — if-then chains over true/false facts (_logic).
 #   18 Aug 2026: "volgorde" — steps put in the right order from rules (_order).
 #   18 Aug 2026: "tekst" — patterns in letters and words, counted (_text).
-FAMILIES = _MEASURED_FAMILIES + ("geheugen", "logica", "volgorde", "tekst", "zeggen", "taal")
+FAMILIES = _MEASURED_FAMILIES + ("geheugen", "logica", "volgorde", "tekst", "zeggen", "taal",
+                                  "machine", "tellen")
 
 # Own constant, separate from tasks.py's: the world and the exams are two
 # separate things and must be so in their numbers too.
@@ -90,7 +91,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 20, "code": 30, "geheugen": 40, "logica": 12, "volgorde": 12, "tekst": 12, "zeggen": 12, "taal": 12}
+MAX_DEPTH_PER = {"puzzel": 20, "code": 30, "geheugen": 40, "logica": 12, "volgorde": 12, "tekst": 12, "zeggen": 12, "taal": 12, "machine": 12, "tellen": 12}
 
 
 def max_depth(family):
@@ -1930,7 +1931,7 @@ def _text(depth, t):
 #   twee        two sentences joined by " en "
 # Scores shown are distinct, so every rule picks exactly one family.
 ZEG_ONDERWERPEN = ("rekenen", "puzzel", "code", "geheugen", "logica",
-                   "volgorde", "tekst", "taal")     # append only — the order
+                   "volgorde", "tekst", "taal", "machine", "tellen")   # append only — the order
                                                      # is part of the numbers
 
 
@@ -2153,9 +2154,161 @@ def _language(depth, t):
     return problem, ans, working
 
 
+# --- machine — the tenth family (18 Aug 2026, from her weakness profile) ------
+# A tiny register machine: a start state, a few steps, repeated some
+# rounds; asked is one register at the end. What she learns to write is
+# the TRACE — every intermediate value in order — which is exactly what
+# the memory brick (geheugen2, 33%) and the deep rows (diepte, 38%) ask
+# for and she does not do: track a running state without writing it down.
+#
+#   start: x = 5 ; y = 2
+#   stappen: x = x + y ; y = y * 2 ; x = x - 3
+#   herhaal 2 keer
+#   wat is x?
+#   → ronde 1: x = 5 + 2 = 7 ; y = 2 * 2 = 4 ; x = 7 - 3 = 4 ; ronde 2: … ; x = 5
+#
+# From depth 7 a conditional step ("als x > y dan x = x - y") joins.
+MACHINE_NAMES = ("x", "y", "z")
+
+
+def _machine_shape(depth):
+    regs = 1 if depth <= 2 else 2 if depth <= 6 else 3
+    steps = 1 if depth == 1 else 2 if depth <= 4 else 3 if depth <= 8 else 4
+    rounds = 1 if depth <= 2 else 2 if depth <= 5 else 3 if depth <= 9 else 4
+    return regs, steps, rounds, depth >= 7
+
+
+def _machine(depth, t):
+    regs, n_steps, rounds, cond_ok = _machine_shape(depth)
+    names = MACHINE_NAMES[:regs]
+    start = {c: t.integer(1, 20) for c in names}
+    steps = []
+    for i in range(n_steps):
+        dst = t.choice(names)
+        kind = t.choice(("const", "const", "reg") if regs > 1 else ("const",))
+        op = t.choice(("+", "-", "*") if depth >= 3 else ("+", "-"))
+        if cond_ok and i == n_steps - 1 and regs > 1 and t.integer(1, 2) == 1:
+            a, b = names[0], names[1]
+            steps.append(("als", a, b, dst, t.choice(("+", "-")), t.integer(1, 9)))
+            continue
+        if kind == "reg":
+            src = t.choice([c for c in names if c != dst])
+            steps.append(("reg", dst, op if op != "*" else "+", src))
+        else:
+            amount = t.integer(2, 4) if op == "*" else t.integer(1, 12)
+            steps.append(("const", dst, op, amount))
+    asked = t.choice(names)
+    values = dict(start)
+    trace = []
+    for r in range(1, rounds + 1):
+        pieces = []
+        for st in steps:
+            if st[0] == "als":
+                _, a, b, dst, op, amount = st
+                if values[a] > values[b]:
+                    old = values[dst]
+                    new = old + amount if op == "+" else old - amount
+                    values[dst] = new
+                    pieces.append(f"{a} > {b} dus {dst} = {old} {op} {amount} = {new}")
+                else:
+                    pieces.append(f"{a} > {b} klopt niet")
+                continue
+            if st[0] == "reg":
+                _, dst, op, src = st
+                old, amount = values[dst], values[src]
+            else:
+                _, dst, op, amount = st
+                old = values[dst]
+            new = old + amount if op == "+" else old - amount if op == "-" else old * amount
+            values[dst] = new
+            pieces.append(f"{dst} = {old} {op} {amount} = {new}")
+        trace.append((f"ronde {r}: " if rounds > 1 else "") + " ; ".join(pieces))
+    if any(abs(v) > 9999 for v in values.values()):
+        return None, None, None                  # keeps the numbers within reach
+    def text(st):
+        if st[0] == "als":
+            return f"als {st[1]} > {st[2]} dan {st[3]} = {st[3]} {st[4]} {st[5]}"
+        if st[0] == "reg":
+            return f"{st[1]} = {st[1]} {st[2]} {st[3]}"
+        return f"{st[1]} = {st[1]} {st[2]} {st[3]}"
+    problem = ("start: " + " ; ".join(f"{c} = {start[c]}" for c in names)
+               + "\nstappen: " + " ; ".join(text(st) for st in steps)
+               + (f"\nherhaal {rounds} keer" if rounds > 1 else "")
+               + f"\nwat is {asked}?")
+    working = " ; ".join(trace) + f" ; {asked} = {values[asked]}"
+    return problem, values[asked], working
+
+
+# --- tellen — the eleventh family (18 Aug 2026, from her weakness profile) ---
+# Systematic counting: list what fits, then count it. The listing is the
+# discipline the deep puzzles lack — enumerate, keep a running tally, do
+# not skip. Answers are exact; the judge is Python's own enumeration.
+#
+#   tel de getallen van 4 tot 30 die deelbaar zijn door 7
+#   → 7, 14, 21, 28 ; 4
+TEL_MAX_LIST = 25
+
+
+def _tel_conditions(depth, t):
+    """A list of (text, predicate) conditions for this depth."""
+    conds = []
+    def deelbaar():
+        k = t.integer(2, 9 if depth <= 4 else 12)
+        return (f"deelbaar zijn door {k}", lambda n, k=k: n % k == 0)
+    def even():
+        e = t.integer(0, 1)
+        return ("even zijn" if e == 0 else "oneven zijn", lambda n, e=e: n % 2 == e)
+    def eindigt():
+        c = t.integer(0, 9)
+        return (f"eindigen op {c}", lambda n, c=c: n % 10 == c)
+    def cijfersom():
+        s_ = t.integer(3, 12)
+        return (f"een cijfersom van {s_} hebben", lambda n, s_=s_: sum(int(d) for d in str(n)) == s_)
+    def bevat():
+        c = t.integer(1, 9)
+        return (f"het cijfer {c} bevatten", lambda n, c=c: str(c) in str(n))
+    def groter():
+        g = t.integer(5, 60)
+        return (f"groter zijn dan {g}", lambda n, g=g: n > g)
+    makers = [deelbaar, even] if depth <= 2 else [deelbaar, even, eindigt, cijfersom] if depth <= 4 else [deelbaar, even, eindigt, cijfersom, bevat, groter]
+    n_conds = 1 if depth <= 4 else 2 if depth <= 10 else 3
+    used = set()
+    while len(conds) < n_conds:
+        m = t.choice(makers)
+        if m in used:
+            continue
+        used.add(m)
+        conds.append(m())
+    return conds
+
+
+def _counting(depth, t):
+    lo = t.integer(1, 10 if depth <= 4 else 30)
+    hi = lo + (t.integer(10, 20) if depth <= 2 else t.integer(20, 40) if depth <= 6 else t.integer(40, 90))
+    if depth >= 9 and t.integer(1, 3) == 1:
+        # digit counting: how often does a digit appear
+        c = t.integer(1, 9)
+        hits = [n for n in range(lo, hi + 1) if str(c) in str(n)]
+        total = sum(str(n).count(str(c)) for n in range(lo, hi + 1))
+        if not 1 <= len(hits) <= TEL_MAX_LIST:
+            return None, None, None
+        problem = f"hoe vaak komt het cijfer {c} voor in de getallen van {lo} tot {hi}?"
+        working = ", ".join(str(n) for n in hits) + f" ; {total}"
+        return problem, total, working
+    conds = _tel_conditions(depth, t)
+    hits = [n for n in range(lo, hi + 1) if all(p(n) for _, p in conds)]
+    if not 1 <= len(hits) <= TEL_MAX_LIST:
+        return None, None, None
+    text = " en ".join(c for c, _ in conds)
+    problem = f"tel de getallen van {lo} tot {hi} die {text}"
+    working = ", ".join(str(n) for n in hits) + f" ; {len(hits)}"
+    return problem, len(hits), working
+
+
 _MAKERS = {"rekenen": _arithmetic, "puzzel": _row, "code": _code,
            "geheugen": _memory, "logica": _logic, "volgorde": _order,
-           "tekst": _text, "zeggen": _saying, "taal": _language}
+           "tekst": _text, "zeggen": _saying, "taal": _language,
+           "machine": _machine, "tellen": _counting}
 
 
 # --- the conversational wrapper (13 Aug 2026) --------------------------------

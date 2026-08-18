@@ -1,0 +1,2166 @@
+{
+ "naam": "tellen",
+ "beschrijving": "De elfde familie (18 aug 2026, uit haar zwakteprofiel): tel de getallen van a tot b die … (deelbaar, even/oneven, eindigen op, cijfersom, cijfer bevatten, groter dan; 1-3 voorwaarden), en vanaf 9 hoe vaak een cijfer voorkomt; de lijst en de telling. Diepte 1 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Vastgelegd vóór de knip na run 7.",
+ "opgaven": [
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 6 tot 20 die even zijn",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 2 tot 19 die deelbaar zijn door 9",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 6 tot 26 die even zijn",
+   "oplossing": "11"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 8 tot 22 die oneven zijn",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 9 tot 20 die deelbaar zijn door 3",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 5 tot 22 die even zijn",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 4 tot 22 die deelbaar zijn door 7",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 10 tot 22 die deelbaar zijn door 6",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 2 tot 15 die oneven zijn",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 7 tot 19 die deelbaar zijn door 9",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 3 tot 18 die deelbaar zijn door 5",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 2 tot 18 die deelbaar zijn door 2",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 8 tot 21 die deelbaar zijn door 5",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 5 tot 15 die deelbaar zijn door 2",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 6 tot 21 die deelbaar zijn door 8",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 5 tot 20 die oneven zijn",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 5 tot 25 die deelbaar zijn door 7",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 4 tot 19 die oneven zijn",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 4 tot 23 die even zijn",
+   "oplossing": "10"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 9 tot 20 die even zijn",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 4 tot 18 die even zijn",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 10 tot 28 die deelbaar zijn door 7",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 4 tot 24 die deelbaar zijn door 4",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 8 tot 22 die even zijn",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 7 tot 22 die deelbaar zijn door 3",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 8 tot 28 die oneven zijn",
+   "oplossing": "10"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 9 tot 26 die deelbaar zijn door 2",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 1 tot 13 die oneven zijn",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 10 tot 26 die oneven zijn",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 1,
+   "opgave": "tel de getallen van 7 tot 24 die deelbaar zijn door 3",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 6 tot 26 die even zijn",
+   "oplossing": "11"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 8 tot 25 die oneven zijn",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 5 tot 16 die even zijn",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 8 tot 20 die deelbaar zijn door 7",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 7 tot 26 die oneven zijn",
+   "oplossing": "10"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 3 tot 18 die deelbaar zijn door 7",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 4 tot 21 die deelbaar zijn door 9",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 2 tot 17 die deelbaar zijn door 3",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 7 tot 19 die oneven zijn",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 10 tot 29 die oneven zijn",
+   "oplossing": "10"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 7 tot 18 die oneven zijn",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 7 tot 18 die deelbaar zijn door 2",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 3 tot 22 die oneven zijn",
+   "oplossing": "10"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 6 tot 20 die oneven zijn",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 9 tot 22 die oneven zijn",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 3 tot 13 die deelbaar zijn door 9",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 4 tot 14 die even zijn",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 9 tot 22 die deelbaar zijn door 7",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 8 tot 21 die oneven zijn",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 1 tot 15 die deelbaar zijn door 3",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 9 tot 29 die even zijn",
+   "oplossing": "10"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 10 tot 26 die deelbaar zijn door 7",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 7 tot 17 die deelbaar zijn door 2",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 4 tot 18 die deelbaar zijn door 7",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 5 tot 25 die deelbaar zijn door 3",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 1 tot 19 die deelbaar zijn door 5",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 1 tot 14 die deelbaar zijn door 6",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 5 tot 22 die deelbaar zijn door 2",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 7 tot 19 die deelbaar zijn door 3",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 2,
+   "opgave": "tel de getallen van 7 tot 17 die deelbaar zijn door 9",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 5 tot 26 die even zijn",
+   "oplossing": "11"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 10 tot 48 die deelbaar zijn door 8",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 10 tot 33 die deelbaar zijn door 9",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 5 tot 44 die eindigen op 3",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 2 tot 31 die deelbaar zijn door 8",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 7 tot 45 die deelbaar zijn door 4",
+   "oplossing": "10"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 1 tot 40 die eindigen op 0",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 1 tot 27 die deelbaar zijn door 7",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 3 tot 32 die eindigen op 4",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 7 tot 39 die een cijfersom van 9 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 2 tot 36 die een cijfersom van 9 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 6 tot 43 die even zijn",
+   "oplossing": "19"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 5 tot 30 die eindigen op 8",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 4 tot 37 die eindigen op 2",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 8 tot 36 die even zijn",
+   "oplossing": "15"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 8 tot 28 die deelbaar zijn door 6",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 3 tot 42 die een cijfersom van 8 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 10 tot 46 die een cijfersom van 10 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 6 tot 30 die een cijfersom van 7 hebben",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 5 tot 31 die even zijn",
+   "oplossing": "13"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 10 tot 30 die deelbaar zijn door 5",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 4 tot 39 die oneven zijn",
+   "oplossing": "18"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 8 tot 45 die deelbaar zijn door 4",
+   "oplossing": "10"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 7 tot 27 die deelbaar zijn door 6",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 7 tot 33 die eindigen op 3",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 9 tot 45 die oneven zijn",
+   "oplossing": "19"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 8 tot 29 die een cijfersom van 9 hebben",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 7 tot 47 die eindigen op 3",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 9 tot 31 die eindigen op 7",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 3,
+   "opgave": "tel de getallen van 8 tot 37 die eindigen op 8",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 3 tot 34 die eindigen op 9",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 9 tot 35 die een cijfersom van 8 hebben",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 3 tot 23 die eindigen op 1",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 1 tot 23 die even zijn",
+   "oplossing": "11"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 9 tot 39 die een cijfersom van 10 hebben",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 1 tot 27 die deelbaar zijn door 3",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 5 tot 29 die eindigen op 9",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 1 tot 26 die oneven zijn",
+   "oplossing": "13"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 8 tot 39 die even zijn",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 8 tot 38 die deelbaar zijn door 5",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 3 tot 29 die even zijn",
+   "oplossing": "13"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 2 tot 34 die een cijfersom van 7 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 4 tot 31 die eindigen op 0",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 4 tot 39 die deelbaar zijn door 9",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 10 tot 50 die een cijfersom van 4 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 7 tot 39 die een cijfersom van 8 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 9 tot 39 die oneven zijn",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 6 tot 43 die deelbaar zijn door 4",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 6 tot 32 die eindigen op 2",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 6 tot 43 die een cijfersom van 3 hebben",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 2 tot 32 die eindigen op 3",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 1 tot 38 die deelbaar zijn door 4",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 6 tot 26 die even zijn",
+   "oplossing": "11"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 7 tot 46 die een cijfersom van 9 hebben",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 6 tot 27 die eindigen op 1",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 6 tot 34 die even zijn",
+   "oplossing": "15"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 6 tot 33 die eindigen op 0",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 7 tot 42 die even zijn",
+   "oplossing": "18"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 5 tot 45 die oneven zijn",
+   "oplossing": "21"
+  },
+  {
+   "familie": "tellen",
+   "graad": 4,
+   "opgave": "tel de getallen van 7 tot 38 die een cijfersom van 3 hebben",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 1 tot 41 die het cijfer 3 bevatten en een cijfersom van 11 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 25 tot 65 die eindigen op 2 en groter zijn dan 8",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 30 tot 60 die een cijfersom van 5 hebben en oneven zijn",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 30 tot 54 die groter zijn dan 19 en eindigen op 3",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 14 tot 45 die eindigen op 4 en deelbaar zijn door 8",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 26 tot 60 die even zijn en eindigen op 6",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 15 tot 38 die een cijfersom van 6 hebben en deelbaar zijn door 12",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 5 tot 42 die groter zijn dan 25 en een cijfersom van 12 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 26 tot 65 die deelbaar zijn door 4 en eindigen op 6",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 25 tot 63 die deelbaar zijn door 2 en een cijfersom van 4 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 24 tot 50 die even zijn en een cijfersom van 9 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 17 tot 57 die groter zijn dan 48 en een cijfersom van 6 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 14 tot 42 die het cijfer 8 bevatten en even zijn",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 5 tot 31 die eindigen op 5 en deelbaar zijn door 3",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 10 tot 40 die een cijfersom van 7 hebben en groter zijn dan 24",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 6 tot 39 die deelbaar zijn door 5 en het cijfer 1 bevatten",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 23 tot 55 die het cijfer 4 bevatten en deelbaar zijn door 7",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 14 tot 46 die groter zijn dan 33 en even zijn",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 2 tot 35 die oneven zijn en een cijfersom van 11 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 14 tot 42 die even zijn en deelbaar zijn door 8",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 28 tot 59 die het cijfer 9 bevatten en eindigen op 9",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 18 tot 43 die het cijfer 5 bevatten en groter zijn dan 12",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 16 tot 42 die groter zijn dan 28 en eindigen op 8",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 8 tot 39 die groter zijn dan 10 en eindigen op 6",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 20 tot 43 die deelbaar zijn door 10 en even zijn",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 2 tot 34 die een cijfersom van 10 hebben en het cijfer 8 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 25 tot 63 die groter zijn dan 16 en een cijfersom van 6 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 25 tot 59 die het cijfer 2 bevatten en een cijfersom van 7 hebben",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 7 tot 31 die het cijfer 1 bevatten en een cijfersom van 10 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 5,
+   "opgave": "tel de getallen van 23 tot 46 die groter zijn dan 36 en het cijfer 5 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 10 tot 47 die het cijfer 5 bevatten en deelbaar zijn door 3",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 1 tot 30 die het cijfer 2 bevatten en een cijfersom van 6 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 15 tot 49 die deelbaar zijn door 11 en groter zijn dan 6",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 30 tot 59 die een cijfersom van 10 hebben en groter zijn dan 19",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 16 tot 37 die groter zijn dan 11 en een cijfersom van 8 hebben",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 17 tot 51 die deelbaar zijn door 4 en groter zijn dan 16",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 11 tot 37 die een cijfersom van 5 hebben en deelbaar zijn door 7",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 1 tot 25 die deelbaar zijn door 7 en even zijn",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 24 tot 46 die even zijn en groter zijn dan 30",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 29 tot 54 die even zijn en een cijfersom van 9 hebben",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 9 tot 43 die eindigen op 2 en het cijfer 3 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 29 tot 58 die even zijn en deelbaar zijn door 7",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 8 tot 48 die oneven zijn en groter zijn dan 41",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 2 tot 25 die een cijfersom van 6 hebben en deelbaar zijn door 2",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 26 tot 59 die oneven zijn en een cijfersom van 5 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 7 tot 36 die oneven zijn en een cijfersom van 5 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 3 tot 30 die groter zijn dan 25 en eindigen op 6",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 7 tot 38 die het cijfer 3 bevatten en eindigen op 4",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 14 tot 49 die even zijn en deelbaar zijn door 4",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 19 tot 44 die deelbaar zijn door 3 en even zijn",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 19 tot 43 die een cijfersom van 11 hebben en groter zijn dan 6",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 28 tot 61 die een cijfersom van 10 hebben en het cijfer 6 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 24 tot 61 die oneven zijn en het cijfer 1 bevatten",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 15 tot 54 die het cijfer 3 bevatten en eindigen op 4",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 27 tot 58 die groter zijn dan 48 en het cijfer 1 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 27 tot 55 die eindigen op 9 en het cijfer 9 bevatten",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 7 tot 44 die oneven zijn en deelbaar zijn door 9",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 13 tot 42 die groter zijn dan 40 en het cijfer 4 bevatten",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 23 tot 63 die groter zijn dan 16 en een cijfersom van 3 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 6,
+   "opgave": "tel de getallen van 29 tot 49 die deelbaar zijn door 9 en het cijfer 6 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 28 tot 79 die even zijn en deelbaar zijn door 11",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 7 tot 95 die een cijfersom van 7 hebben en even zijn",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 18 tot 81 die het cijfer 4 bevatten en groter zijn dan 27",
+   "oplossing": "14"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 11 tot 60 die groter zijn dan 29 en eindigen op 5",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 22 tot 94 die het cijfer 9 bevatten en eindigen op 1",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 16 tot 84 die oneven zijn en groter zijn dan 56",
+   "oplossing": "14"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 10 tot 74 die eindigen op 8 en even zijn",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 7 tot 51 die even zijn en een cijfersom van 11 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 25 tot 105 die het cijfer 8 bevatten en groter zijn dan 31",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 3 tot 89 die groter zijn dan 59 en eindigen op 5",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 26 tot 69 die het cijfer 7 bevatten en oneven zijn",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 5 tot 61 die groter zijn dan 42 en het cijfer 3 bevatten",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 24 tot 74 die groter zijn dan 24 en een cijfersom van 12 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 18 tot 58 die deelbaar zijn door 6 en het cijfer 3 bevatten",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 8 tot 79 die een cijfersom van 10 hebben en eindigen op 7",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 1 tot 76 die oneven zijn en groter zijn dan 47",
+   "oplossing": "14"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 1 tot 91 die oneven zijn en eindigen op 7",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 3 tot 76 die groter zijn dan 36 en eindigen op 0",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 11 tot 53 die groter zijn dan 15 en een cijfersom van 8 hebben",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 22 tot 108 die een cijfersom van 6 hebben en deelbaar zijn door 2",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 30 tot 109 die deelbaar zijn door 4 en groter zijn dan 54",
+   "oplossing": "14"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 5 tot 73 die het cijfer 8 bevatten en deelbaar zijn door 2",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 13 tot 90 die een cijfersom van 12 hebben en oneven zijn",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 13 tot 71 die groter zijn dan 9 en een cijfersom van 8 hebben",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 28 tot 103 die het cijfer 7 bevatten en eindigen op 9",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 11 tot 92 die even zijn en het cijfer 3 bevatten",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 4 tot 89 die een cijfersom van 10 hebben en groter zijn dan 54",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 25 tot 100 die groter zijn dan 5 en het cijfer 9 bevatten",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 20 tot 89 die het cijfer 4 bevatten en een cijfersom van 5 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 7,
+   "opgave": "tel de getallen van 13 tot 58 die eindigen op 7 en oneven zijn",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 26 tot 76 die eindigen op 2 en groter zijn dan 59",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 9 tot 76 die even zijn en een cijfersom van 7 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 4 tot 81 die eindigen op 4 en het cijfer 5 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 30 tot 93 die een cijfersom van 9 hebben en eindigen op 2",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 3 tot 52 die eindigen op 8 en een cijfersom van 9 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 20 tot 96 die een cijfersom van 3 hebben en het cijfer 1 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 15 tot 101 die eindigen op 2 en even zijn",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 28 tot 97 die een cijfersom van 7 hebben en oneven zijn",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 8 tot 80 die het cijfer 6 bevatten en eindigen op 1",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 27 tot 99 die het cijfer 4 bevatten en deelbaar zijn door 2",
+   "oplossing": "11"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 12 tot 68 die even zijn en groter zijn dan 19",
+   "oplossing": "25"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 20 tot 88 die het cijfer 5 bevatten en even zijn",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 22 tot 87 die het cijfer 3 bevatten en een cijfersom van 9 hebben",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 21 tot 72 die het cijfer 2 bevatten en een cijfersom van 3 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 10 tot 57 die even zijn en eindigen op 0",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 12 tot 95 die deelbaar zijn door 7 en oneven zijn",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 4 tot 51 die even zijn en groter zijn dan 24",
+   "oplossing": "13"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 11 tot 74 die groter zijn dan 27 en eindigen op 5",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 21 tot 86 die deelbaar zijn door 11 en eindigen op 4",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 13 tot 86 die een cijfersom van 3 hebben en deelbaar zijn door 3",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 1 tot 50 die deelbaar zijn door 12 en groter zijn dan 40",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 12 tot 68 die een cijfersom van 4 hebben en eindigen op 0",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 7 tot 77 die groter zijn dan 43 en oneven zijn",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 12 tot 55 die groter zijn dan 31 en deelbaar zijn door 11",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 7 tot 62 die het cijfer 1 bevatten en groter zijn dan 31",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 6 tot 54 die deelbaar zijn door 7 en een cijfersom van 5 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 8 tot 97 die deelbaar zijn door 8 en het cijfer 3 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 7 tot 80 die een cijfersom van 5 hebben en groter zijn dan 7",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 13 tot 62 die deelbaar zijn door 7 en oneven zijn",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 8,
+   "opgave": "tel de getallen van 10 tot 57 die eindigen op 3 en groter zijn dan 13",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 14 tot 101 die deelbaar zijn door 5 en groter zijn dan 49",
+   "oplossing": "11"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "hoe vaak komt het cijfer 3 voor in de getallen van 8 tot 89?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 14 tot 90 die groter zijn dan 58 en oneven zijn",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 4 tot 60 die deelbaar zijn door 2 en eindigen op 4",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 30 tot 87 die een cijfersom van 9 hebben en het cijfer 8 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 4 tot 78 die deelbaar zijn door 12 en eindigen op 2",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "hoe vaak komt het cijfer 9 voor in de getallen van 13 tot 97?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "hoe vaak komt het cijfer 9 voor in de getallen van 12 tot 53?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 23 tot 65 die het cijfer 7 bevatten en groter zijn dan 55",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "hoe vaak komt het cijfer 5 voor in de getallen van 2 tot 66?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 30 tot 83 die groter zijn dan 54 en eindigen op 9",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 26 tot 68 die groter zijn dan 53 en oneven zijn",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "hoe vaak komt het cijfer 6 voor in de getallen van 11 tot 68?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 30 tot 96 die eindigen op 6 en het cijfer 8 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 7 tot 83 die even zijn en het cijfer 4 bevatten",
+   "oplossing": "11"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 16 tot 102 die het cijfer 8 bevatten en deelbaar zijn door 5",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 14 tot 98 die het cijfer 1 bevatten en groter zijn dan 29",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 6 tot 54 die oneven zijn en een cijfersom van 3 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 29 tot 85 die een cijfersom van 6 hebben en oneven zijn",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 19 tot 74 die eindigen op 5 en groter zijn dan 42",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "hoe vaak komt het cijfer 8 voor in de getallen van 19 tot 102?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "hoe vaak komt het cijfer 2 voor in de getallen van 10 tot 74?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "hoe vaak komt het cijfer 4 voor in de getallen van 21 tot 84?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 23 tot 85 die deelbaar zijn door 3 en groter zijn dan 35",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 22 tot 101 die deelbaar zijn door 3 en groter zijn dan 60",
+   "oplossing": "13"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 18 tot 79 die eindigen op 0 en het cijfer 2 bevatten",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "hoe vaak komt het cijfer 2 voor in de getallen van 14 tot 95?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 6 tot 58 die even zijn en het cijfer 6 bevatten",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 14 tot 55 die een cijfersom van 12 hebben en eindigen op 9",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 9,
+   "opgave": "tel de getallen van 29 tot 79 die het cijfer 6 bevatten en even zijn",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "hoe vaak komt het cijfer 3 voor in de getallen van 28 tot 92?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 3 tot 78 die een cijfersom van 12 hebben en oneven zijn",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 22 tot 98 die een cijfersom van 3 hebben en deelbaar zijn door 5",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 20 tot 80 die deelbaar zijn door 7 en eindigen op 0",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "hoe vaak komt het cijfer 8 voor in de getallen van 29 tot 74?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "hoe vaak komt het cijfer 3 voor in de getallen van 6 tot 82?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 16 tot 90 die een cijfersom van 5 hebben en oneven zijn",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 2 tot 44 die deelbaar zijn door 4 en het cijfer 6 bevatten",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 16 tot 100 die het cijfer 6 bevatten en groter zijn dan 35",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 23 tot 74 die het cijfer 4 bevatten en deelbaar zijn door 9",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 27 tot 97 die een cijfersom van 8 hebben en groter zijn dan 57",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 25 tot 100 die het cijfer 9 bevatten en deelbaar zijn door 12",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 3 tot 50 die het cijfer 7 bevatten en groter zijn dan 38",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 7 tot 87 die groter zijn dan 60 en eindigen op 8",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 14 tot 96 die even zijn en een cijfersom van 9 hebben",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "hoe vaak komt het cijfer 7 voor in de getallen van 25 tot 110?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 18 tot 80 die groter zijn dan 40 en deelbaar zijn door 8",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 3 tot 43 die even zijn en een cijfersom van 9 hebben",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 22 tot 79 die deelbaar zijn door 12 en groter zijn dan 50",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "hoe vaak komt het cijfer 4 voor in de getallen van 8 tot 73?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 27 tot 104 die even zijn en groter zijn dan 58",
+   "oplossing": "23"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 9 tot 51 die het cijfer 1 bevatten en deelbaar zijn door 12",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "hoe vaak komt het cijfer 2 voor in de getallen van 21 tot 82?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 8 tot 96 die een cijfersom van 11 hebben en oneven zijn",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "hoe vaak komt het cijfer 9 voor in de getallen van 23 tot 82?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 16 tot 82 die oneven zijn en eindigen op 3",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 7 tot 54 die even zijn en eindigen op 0",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "tel de getallen van 21 tot 84 die het cijfer 3 bevatten en even zijn",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "hoe vaak komt het cijfer 4 voor in de getallen van 8 tot 78?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 10,
+   "opgave": "hoe vaak komt het cijfer 9 voor in de getallen van 3 tot 79?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 4 voor in de getallen van 7 tot 61?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 7 voor in de getallen van 1 tot 62?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 7 voor in de getallen van 23 tot 64?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 9 voor in de getallen van 21 tot 81?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 13 tot 100 die eindigen op 6 en even zijn en deelbaar zijn door 6",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 2 tot 59 die oneven zijn en groter zijn dan 32 en een cijfersom van 5 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 13 tot 65 die deelbaar zijn door 4 en het cijfer 6 bevatten en groter zijn dan 14",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 27 tot 104 die een cijfersom van 3 hebben en het cijfer 3 bevatten en deelbaar zijn door 3",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 8 voor in de getallen van 27 tot 89?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 2 voor in de getallen van 2 tot 86?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 1 tot 54 die een cijfersom van 7 hebben en groter zijn dan 33 en even zijn",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 9 voor in de getallen van 19 tot 95?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 24 tot 72 die groter zijn dan 60 en eindigen op 6 en even zijn",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 2 tot 62 die een cijfersom van 6 hebben en eindigen op 2 en groter zijn dan 12",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 6 tot 72 die even zijn en eindigen op 8 en een cijfersom van 12 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 20 tot 108 die het cijfer 4 bevatten en deelbaar zijn door 11 en even zijn",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 8 voor in de getallen van 11 tot 98?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 3 voor in de getallen van 20 tot 97?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 9 voor in de getallen van 27 tot 100?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 5 voor in de getallen van 12 tot 89?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 6 voor in de getallen van 17 tot 95?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 2 voor in de getallen van 16 tot 82?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 7 voor in de getallen van 21 tot 90?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 13 tot 100 die een cijfersom van 12 hebben en groter zijn dan 12 en het cijfer 7 bevatten",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 1 voor in de getallen van 2 tot 67?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 10 tot 77 die een cijfersom van 6 hebben en deelbaar zijn door 2 en groter zijn dan 44",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 19 tot 68 die groter zijn dan 29 en oneven zijn en eindigen op 3",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 6 voor in de getallen van 15 tot 97?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "hoe vaak komt het cijfer 9 voor in de getallen van 22 tot 69?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 11,
+   "opgave": "tel de getallen van 6 tot 89 die even zijn en een cijfersom van 11 hebben en groter zijn dan 52",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 4 tot 92 die een cijfersom van 4 hebben en deelbaar zijn door 5 en groter zijn dan 13",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 6 voor in de getallen van 24 tot 84?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 6 voor in de getallen van 13 tot 60?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 4 tot 82 die een cijfersom van 11 hebben en eindigen op 9 en oneven zijn",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 7 voor in de getallen van 2 tot 56?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 7 voor in de getallen van 30 tot 106?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 3 tot 66 die groter zijn dan 19 en deelbaar zijn door 8 en even zijn",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 20 tot 98 die oneven zijn en groter zijn dan 38 en een cijfersom van 12 hebben",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 13 tot 71 die een cijfersom van 5 hebben en het cijfer 5 bevatten en groter zijn dan 34",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 29 tot 70 die het cijfer 6 bevatten en eindigen op 6 en een cijfersom van 12 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 27 tot 68 die een cijfersom van 12 hebben en deelbaar zijn door 3 en groter zijn dan 35",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 7 voor in de getallen van 24 tot 67?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 4 tot 61 die een cijfersom van 12 hebben en groter zijn dan 56 en oneven zijn",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 15 tot 105 die even zijn en een cijfersom van 5 hebben en deelbaar zijn door 2",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 2 voor in de getallen van 20 tot 93?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 2 tot 78 die een cijfersom van 10 hebben en groter zijn dan 8 en eindigen op 7",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 6 tot 61 die een cijfersom van 6 hebben en eindigen op 3 en oneven zijn",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 11 tot 75 die het cijfer 1 bevatten en eindigen op 1 en groter zijn dan 49",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 7 voor in de getallen van 10 tot 67?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 9 voor in de getallen van 23 tot 111?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 1 voor in de getallen van 12 tot 76?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 2 voor in de getallen van 24 tot 113?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 2 voor in de getallen van 13 tot 85?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 5 tot 84 die groter zijn dan 16 en deelbaar zijn door 3 en een cijfersom van 6 hebben",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 5 voor in de getallen van 16 tot 92?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 8 voor in de getallen van 30 tot 101?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 17 tot 58 die deelbaar zijn door 2 en groter zijn dan 13 en een cijfersom van 3 hebben",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 3 voor in de getallen van 24 tot 75?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "tel de getallen van 17 tot 104 die een cijfersom van 9 hebben en eindigen op 6 en deelbaar zijn door 2",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tellen",
+   "graad": 12,
+   "opgave": "hoe vaak komt het cijfer 4 voor in de getallen van 14 tot 96?",
+   "oplossing": "19"
+  }
+ ]
+}

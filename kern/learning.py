@@ -138,6 +138,14 @@ def room_for(depth, family=None, window=512):
         # (400 at grade 3, 800 at grade 5); the ceiling still guards the
         # window.
         return min(window - 192, 200 * depth - 200)
+    if family == "machine":
+        # Machine (18 Aug 2026): the trace — rounds × steps × ~18
+        # characters, ~420 at depth 10. Room 96 + 36·d.
+        return min(window - 112, 96 + 36 * depth)
+    if family == "tellen":
+        # Counting (18 Aug 2026): the list (≤ 25 numbers) and the count,
+        # ~120 characters at most. Room 72 + 8·d.
+        return min(window - 112, 72 + 8 * depth)
     if family == "taal":
         # Language (18 Aug 2026): a sentence and a word, or the built
         # sentence — under 60 characters everywhere. Room 48 + 4·d.
