@@ -133,6 +133,16 @@ class Bottleneck:
         return len(stored["code"]) / self.length
 
 
+# Since 18 Aug 2026 (Cley's call) the capacity grows with her world:
+# PER_FAMILY memories per family in `world.FAMILIES`. Fixed 30,000 was set
+# with three families; with seven the stock turned over every ~1,500 steps
+# and puzzel kept ~100 memories per depth. Replays per memory over its
+# lifetime stay the same (~1.2: 24 per step over a 7× longer horizon out
+# of a 7× larger stock) — what grows is the horizon. `learning.py` does
+# the multiplication; this module does not import world.
+PER_FAMILY = 30000
+
+
 class ReplayMemory:
     """A stock of experiences to come back to.
 
@@ -234,6 +244,8 @@ class ReplayMemory:
         is never dropped at load — should it ever exceed today's policy,
         the balanced forgetting trims on the next remember().
         """
+        # A larger policy than the carried stock never trims anything;
+        # a smaller one lets balanced forgetting trim on the next remember.
         self.capacity = max(self.capacity, len(carried["inhoud"]))
         self.refused = int(carried["geweigerd"])
         self._content = [dict(s) for s in carried["inhoud"]]

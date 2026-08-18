@@ -39,6 +39,7 @@ import tokens
 import torch
 import torch.nn.functional as F
 import world
+import replay_memory
 from replay_memory import ReplayMemory, Bottleneck
 from network import Core
 from curiosity import Curiosity
@@ -249,7 +250,9 @@ class Learner:
         if memory is not None:
             self.memory = memory
         else:
+            # capacity follows the world (18 Aug 2026): PER_FAMILY per family
             self.memory = ReplayMemory(
+                capacity=replay_memory.PER_FAMILY * len(world.FAMILIES),
                 bottleneck=Bottleneck(length=self.core.window))
         self.steps = 0
 

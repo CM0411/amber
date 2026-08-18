@@ -532,6 +532,21 @@ check("… and the new family's rooms are drawable with a positive weight",
       and any(newest.curiosity.pick(384_500, tasks.Picker(s))[0] == "geheugen"
               for s in range(200)))
 
+# --- the replay memory grows with the world (18 Aug 2026, Cley) ---------------
+print()
+print("--- the replay memory grows with the world ---")
+_m = small_learner().memory
+check("capacity is PER_FAMILY per family in the world",
+      _m.capacity == rm.PER_FAMILY * len(world_module.FAMILIES)
+      and rm.PER_FAMILY == 30000, f"{_m.capacity} for {len(world_module.FAMILIES)} families")
+_carried = {"ruimte": 30000, "geweigerd": 3,
+            "inhoud": [{"code": [1, 2, 3], "familie": "rekenen", "graad": 1, "goed": True}] * 5}
+_m2 = rm.ReplayMemory(capacity=rm.PER_FAMILY * len(world_module.FAMILIES))
+_m2.restore(_carried)
+check("a carried stock of 30,000-policy loads intact under the larger policy",
+      len(_m2) == 5 and _m2.capacity == rm.PER_FAMILY * len(world_module.FAMILIES)
+      and _m2.refused == 3)
+
 print()
 print("=" * 70)
 print(f"passed: {passed}    failed: {failed}")
