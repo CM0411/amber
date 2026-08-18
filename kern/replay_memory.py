@@ -141,6 +141,8 @@ class Bottleneck:
 # of a 7× larger stock) — what grows is the horizon. `learning.py` does
 # the multiplication; this module does not import world.
 PER_FAMILY = 30000
+LESSON_FAMILY = "gesprek"        # lessons from Cley enter under this family
+LESSONS_PER_BATCH = 1            # replay slots reserved for lessons per batch
 
 
 class ReplayMemory:
@@ -199,17 +201,32 @@ class ReplayMemory:
         if not self._tally[largest]:
             del self._tally[largest]
 
-    def replay(self, how_many, picker):
+    def replay(self, how_many, picker, lessons=None):
         """Fetch experiences to revisit.
 
         `picker` decides which — passed in, never invented here, so the
         choice follows from (seed, step number) and the whole stream stays
         repeatable.
+
+        Lessons from Cley (family "gesprek") get a floor (18 Aug 2026, the
+        week-1 finding): drawn uniformly, twelve lessons among 30,000
+        memories came up once per ~1,250 steps each — far too seldom to
+        hold a four-digit code — and a stock growing to 210,000 would make
+        that once per ~9,000. So the first LESSONS_PER_BATCH slots of every
+        replay come from the lessons (when there are any), the rest stays
+        uniform over the whole stock. Without lessons nothing changes.
         """
         if not self._content:
             return []
-        chosen = [self._content[picker.integer(0, len(self._content) - 1)]
-                  for _ in range(min(how_many, len(self._content)))]
+        if lessons is None:
+            lessons = LESSONS_PER_BATCH
+        chosen = []
+        if lessons:
+            les = [s for s in self._content if s["familie"] == LESSON_FAMILY]
+            for _ in range(min(lessons, len(les), how_many)):
+                chosen.append(les[picker.integer(0, len(les) - 1)])
+        for _ in range(min(how_many - len(chosen), len(self._content))):
+            chosen.append(self._content[picker.integer(0, len(self._content) - 1)])
         return [self.bottleneck.decode(s) for s in chosen]
 
     def __len__(self):

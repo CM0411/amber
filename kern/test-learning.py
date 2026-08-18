@@ -547,6 +547,27 @@ check("a carried stock of 30,000-policy loads intact under the larger policy",
       len(_m2) == 5 and _m2.capacity == rm.PER_FAMILY * len(world_module.FAMILIES)
       and _m2.refused == 3)
 
+# --- lessons get a replay floor (18 Aug 2026, the week-1 finding) ------------
+print()
+print("--- lessons get a replay floor ---")
+_m = rm.ReplayMemory(capacity=100000)
+for i in range(3000):
+    _m.remember(tasks.Task(family="rekenen", grade=1, number=i, problem=f"{i} + 1", solution=str(i + 1), working=None), None, None)
+_les = [tasks.Task(family="gesprek", grade=1, number=i, problem=f"les {i}?", solution=f"antwoord {i}", working=None) for i in range(12)]
+for t in _les:
+    _m.remember(t, None, None)
+_hits = 0
+for st in range(200):
+    got = _m.replay(24, tasks.Picker(1000 + st))
+    _hits += any(g["familie"] == "gesprek" for g in got)
+check("every replay of 24 holds a lesson when lessons exist (floor of one)", _hits == 200, f"{_hits}/200")
+_m2 = rm.ReplayMemory(capacity=100000)
+for i in range(3000):
+    _m2.remember(tasks.Task(family="rekenen", grade=1, number=i, problem=f"{i} + 1", solution=str(i + 1), working=None), None, None)
+_a = [g["opgave"] for g in _m2.replay(24, tasks.Picker(7))]
+_b = [g["opgave"] for g in _m2.replay(24, tasks.Picker(7), lessons=0)]
+check("without lessons the draw is exactly what it was", _a == _b and len(_a) == 24)
+
 print()
 print("=" * 70)
 print(f"passed: {passed}    failed: {failed}")

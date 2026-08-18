@@ -1186,6 +1186,15 @@ def _rule_puzzle(depth, t):
         # guess. "stap: 3 ; 3 * 2 = 6" she can compute and check herself.
         # With three or more pairs every gap is checked: equal steps say
         # "linear".
+        # Evidence before the claim (18 Aug 2026, run 7 finding: with
+        # "stap: a" first she had to guess a before writing anything that
+        # helps her find it — grade 7-8 fell from 15/20 to 0/20 in 500
+        # steps). Now the differences are written out first, then the step,
+        # then the check.
+        for i in range(n_pairs - 1):
+            dx, dy = shown[i + 1] - shown[i], ys[i + 1] - ys[i]
+            steps.append(f"y: {ys[i + 1]} - {ys[i]} = {dy}")
+            steps.append(f"x: {shown[i + 1]} - {shown[i]} = {dx}")
         steps.append(f"stap: {a}")
         for i in range(n_pairs - 1):
             dx, dy = shown[i + 1] - shown[i], ys[i + 1] - ys[i]
@@ -1203,6 +1212,9 @@ def _rule_puzzle(depth, t):
     else:
         sq = [x * x for x in shown]
         steps.append("stappen ongelijk, dus kwadraten: " + " ; ".join(f"{x} * {x} = {q}" for x, q in zip(shown, sq)))
+        for i in range(n_pairs - 1):
+            steps.append(f"y: {ys[i + 1]} - {ys[i]} = {ys[i + 1] - ys[i]}")
+            steps.append(f"k: {sq[i + 1]} - {sq[i]} = {sq[i + 1] - sq[i]}")
         steps.append(f"stap: {a}")
         for i in range(n_pairs - 1):
             steps.append(f"{a} * {sq[i + 1] - sq[i]} = {ys[i + 1] - ys[i]}")
