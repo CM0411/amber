@@ -52,6 +52,12 @@
   #proefwerken .chip.midden b { color: #5ca8ff; }
   #proefwerken .chip.laag b { color: #ffa385; }
   #proefwerken .chip.dim { opacity: .55; }
+  /* het zelfrapport (18 aug 2026): systeem en Amber zelf, gelabeld */
+  #zelfrapport .stem { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+                       text-transform: uppercase; margin-top: 8px; }
+  #zelfrapport .amber { color: #f5a3ff; font-size: 13.5px; }
+  #zelfrapport .regel { color: #47536f; font-size: 11px; margin-top: 6px; }
+  #zelfrapport li { margin-left: 1.2em; }
   #titel { top: 16px; left: 22px; font-size: 15px; letter-spacing: .35em;
            color: #5f6f92; text-transform: uppercase; cursor: pointer;
            user-select: none; }
@@ -157,6 +163,7 @@
     <div id="status">wachten op de kijker&hellip;</div>
   </div>
   <div class="kaart" id="proefwerken" style="display:none"></div>
+  <div class="kaart" id="zelfrapport" style="display:none"></div>
   <div class="kaart" id="wereld"></div>
   <div class="kaart" id="keuzes"></div>
   <div class="kaart" id="geheugen"></div>
@@ -547,7 +554,9 @@ async function haal() {
     for (const f in rand) rand[f] = Math.min(rand[f], grens[f] || rand[f]);
     if (!window.vorigeRand) window.vorigeRand = {};
     let html = '<div class="kop">haar wereld</div>';
+    const inRun = new Set([...hekstr.matchAll(/([a-z]+)\s+\d+/g)].map(m => m[1]));
     for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal"]) {
+      if (inRun.size && !inRun.has(f)) continue;     // niet in deze run
       const d = rand[f], nieuw = window.vorigeRand[f] && d > window.vorigeRand[f];
       if (nieuw) window.fonkelTot = Date.now() + 90000;
       // hoe meer blokjes, hoe smaller ze worden: een rij blijft altijd
@@ -649,6 +658,20 @@ async function haal() {
   } catch (e) {}
 }
 haal(); setInterval(haal, 5000);
+async function haalZelfrapport() {
+  try {
+    const z = await (await fetch("/rapport/zelfrapport.json", {cache: "no-store"})).json();
+    const k = document.getElementById("zelfrapport");
+    let h = `<div class="kop">zij stelt voor · stap ${(+z.stap).toLocaleString("nl")} · ${z.gemaakt}</div>`;
+    h += `<div class="stem">amber zegt</div>`;
+    h += z.amber_zegt ? `<div class="amber">"${z.amber_zegt}"</div>` : `<div style="color:#51608a">${z.amber_noot || "—"}</div>`;
+    h += `<div class="stem">het systeem</div><ul>` + (z.voorstellen || []).map(v => `<li>${v}</li>`).join("") + `</ul>`;
+    if ((z.waarnemingen || []).length) h += `<div class="stem">waarnemingen</div><ul>` + z.waarnemingen.map(v => `<li>${v}</li>`).join("") + `</ul>`;
+    h += `<div class="regel">${z.regel}</div>`;
+    k.innerHTML = h; k.style.display = "block";
+  } catch (e) {}
+}
+haalZelfrapport(); setInterval(haalZelfrapport, 300000);
 maat();
 
 function teken(t) {

@@ -236,8 +236,10 @@ async function haal() {
     const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2, logica: 2, volgorde: 2, tekst: 2, zeggen: 2, taal: 2},
                                (s.run && s.run.wereld) || {}, s.wereldrand || {});
     let wr = "";
+    const inRun = new Set([...(cfg.hek || "").matchAll(/([a-z]+)\s+\d+/g)].map(m => m[1]));
     for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal"]) {
       if (!grens[f]) continue;
+      if (inRun.size && !inRun.has(f)) continue;     // niet in deze run
       const d = Math.min(rand[f], grens[f]);
       wr += `<div class="rij"><span>${f}</span>
         <span class="staafbalk"><div style="width:${100 * d / grens[f]}%"></div></span>
