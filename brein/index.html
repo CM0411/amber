@@ -13,14 +13,18 @@
   html, body { height: 100%; }
   body { background: #080b1e; color: #d8dde5; overflow-x: hidden; overflow-y: auto;
          font-family: system-ui, "Segoe UI", sans-serif; }
-  #doek { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; z-index: 0; }
-  .laag-tekst { position: fixed; z-index: 2; }
+  /* Het weefsel is een gewoon blok in de paginaflow (18 aug 2026, Cley):
+     het scrolt mee omhoog, de kaarten komen eronder en niet erover. De
+     tekening rekent nog in de maten van het hele venster; het doek toont
+     daarvan de bovenste BAND (58%) — precies de band met de laagnamen. */
+  #doek { position: relative; display: block; width: 100vw; height: 58vh; z-index: 0; }
+  .laag-tekst { position: absolute; z-index: 2; }   /* scrolt mee, geen overlay */
   /* Onder de weefselband (18 aug 2026, Cley): een gewone flow-layout — een
      raster van kaarten dat onder elkaar vouwt, elke kaart zijn eigen
      hoogte, de pagina scrolt als hij hoger is dan het scherm. Vóór die dag
      stonden de blokken op vaste posities en vielen ze over elkaar zodra er
      families en bladen bij kwamen. */
-  #onder { position: relative; z-index: 2; margin-top: 56vh;
+  #onder { position: relative; z-index: 2; margin-top: 0;
            padding: 0 clamp(12px, 1.5vw, 22px) 28px;
            display: grid; gap: 14px;
            grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); }
@@ -88,7 +92,8 @@
   #wereld .rij > span:last-child { white-space: nowrap; }
   /* blokjes en staven krimpen mee met de kaart (flex), nooit breder dan
      7 px — zo blijft rekenen 60 op één regel, ook op een smal scherm */
-  #wereld .balk { display: flex; gap: 2px; flex: 1 1 auto; min-width: 0; }
+  #wereld .balk { display: flex; gap: 2px; flex: 1 1 0; min-width: 0; }
+  #wereld .rij > span:last-child { flex: none; min-width: 5.5ch; text-align: right; }
   #wereld .blokje { flex: 1 1 7px; max-width: 7px; min-width: 2px; height: 10px;
                     border-radius: 1.5px; background: #1d2b4d; }
   #wereld .blokje.aan { background: #5ca8ff; }
@@ -107,7 +112,7 @@
   #geheugen .rij { display: flex; justify-content: flex-start; gap: 10px;
                    align-items: flex-end; }
   #geheugen .staven { display: flex; gap: 2px; align-items: flex-end;
-                      height: 18px; flex: 1 1 auto; min-width: 0; }
+                      height: 18px; flex: 1 1 0; min-width: 0; }
   #geheugen .staaf { flex: 1 1 7px; max-width: 7px; min-width: 2px;
                      border-radius: 1.5px 1.5px 0 0;
                      background: #b78ae0; min-height: 2px; }
@@ -127,7 +132,7 @@
   /* Telefoon: titel en uren mee in de flow, kaarten wat compacter. */
   @media (max-width: 700px) {
     body { -webkit-text-size-adjust: 100%; }
-    #onder { margin-top: 54vh; gap: 10px; }
+    #onder { gap: 10px; }
     .kaart { padding: 10px 12px; font-size: 12px; }
     #werk { font-size: 12.5px; }
     #opgave { word-break: break-word; }
@@ -209,7 +214,7 @@ const stof = Array.from({length: 45}, () => ({
 // Het weefsel is sinds 14 aug 2026 een brede, lage band bovenin (Cleys
 // aanwijzing): alle tekst staat erónder in plaats van erop. Deze drie
 // getallen zijn de hele maatvoering.
-const MIDDEN = 0.30, HOOG = 0.42, RANDX = 0.04;
+const MIDDEN = 0.30, HOOG = 0.42, RANDX = 0.04, BAND = 0.58;
 function plaats(kol, i) {
   const bx = B * RANDX, ex = B * (1 - RANDX);
   const x = bx + (ex - bx) * kol / (KOL.length - 1);
@@ -229,7 +234,8 @@ const DPR = Math.min(devicePixelRatio || 1, 1.5);
 let achtergrond = null;
 function maat() {
   B = doek.width = innerWidth * DPR;
-  H = doek.height = innerHeight * DPR;
+  H = innerHeight * DPR;                       // de maat van de tekening
+  doek.height = Math.round(H * BAND);          // getoond: de bovenste band
   achtergrond = document.createElement("canvas");
   achtergrond.width = B; achtergrond.height = H;
   const q = achtergrond.getContext("2d");
