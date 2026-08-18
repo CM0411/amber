@@ -1,0 +1,1806 @@
+{
+ "naam": "deling",
+ "beschrijving": "De deel-steen in rekenen (18 aug 2026): kale delingen met exacte uitkomst, deler 2 t/m 12, uitgewerkt via de tafel (7 * 12 = 84 ; 84 : 7 = 12). Diepte 3 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Vastgelegd vóór run 7 als meetlat voor delen — de bewerking die tot nu toe nergens in haar wereld bestond.",
+ "opgaven": [
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "4 : 2",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "72 : 9",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "36 : 6",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "27 : 9",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "100 : 10",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "30 : 5",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "18 : 3",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "80 : 10",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "120 : 12",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "60 : 6",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "48 : 8",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "48 : 4",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "15 : 3",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "6 : 3",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "30 : 3",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "44 : 11",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "66 : 6",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "8 : 2",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "132 : 12",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "30 : 6",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "88 : 8",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "18 : 9",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "35 : 7",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "64 : 8",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "42 : 7",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "81 : 9",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "99 : 9",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "63 : 7",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "110 : 10",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "49 : 7",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "24 : 2",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "49 : 7",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "70 : 7",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "27 : 9",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "32 : 8",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "10 : 5",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "55 : 11",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "35 : 7",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "121 : 11",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "66 : 11",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "40 : 4",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "54 : 6",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "15 : 5",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "88 : 8",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "40 : 10",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "60 : 5",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "99 : 11",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "72 : 6",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "108 : 12",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "18 : 9",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "36 : 4",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "60 : 10",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "24 : 12",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "40 : 8",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "100 : 10",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "27 : 3",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "10 : 2",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "30 : 3",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "99 : 9",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "96 : 8",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "90 : 10",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "9 : 3",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "95 : 5",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "32 : 2",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "126 : 6",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "81 : 9",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "110 : 11",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "144 : 6",
+   "oplossing": "24"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "88 : 4",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "75 : 3",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "45 : 9",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "144 : 12",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "189 : 9",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "276 : 12",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "70 : 10",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "63 : 3",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "40 : 5",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "130 : 5",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "6 : 3",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "16 : 4",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "68 : 4",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "27 : 3",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "28 : 4",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "78 : 3",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "216 : 8",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "96 : 12",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "252 : 12",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "20 : 5",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "180 : 9",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "38 : 2",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "64 : 4",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "220 : 10",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "72 : 3",
+   "oplossing": "24"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "203 : 7",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "40 : 2",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "297 : 11",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "96 : 12",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "228 : 12",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "91 : 7",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "8 : 2",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "168 : 8",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "189 : 9",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "98 : 7",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "230 : 10",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "58 : 2",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "126 : 7",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "92 : 4",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "200 : 8",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "135 : 5",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "135 : 9",
+   "oplossing": "15"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "171 : 9",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "308 : 11",
+   "oplossing": "28"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "96 : 4",
+   "oplossing": "24"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "105 : 5",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "312 : 12",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "110 : 11",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "120 : 12",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "36 : 6",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "55 : 11",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "80 : 8",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "72 : 4",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "35 : 5",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "87 : 3",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "80 : 10",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "119 : 7",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "176 : 8",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "198 : 11",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "45 : 9",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "72 : 12",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "126 : 6",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "55 : 11",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "138 : 6",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "243 : 9",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "63 : 7",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "360 : 12",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "45 : 5",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "56 : 4",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "210 : 10",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "112 : 4",
+   "oplossing": "28"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "120 : 6",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "189 : 7",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "280 : 10",
+   "oplossing": "28"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "36 : 2",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "220 : 10",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "38 : 2",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "58 : 2",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "240 : 12",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "104 : 8",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "48 : 4",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "152 : 8",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "33 : 11",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "319 : 11",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "192 : 4",
+   "oplossing": "48"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "368 : 8",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "165 : 3",
+   "oplossing": "55"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "190 : 10",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "216 : 12",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "363 : 11",
+   "oplossing": "33"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "26 : 2",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "660 : 11",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "387 : 9",
+   "oplossing": "43"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "84 : 4",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "275 : 5",
+   "oplossing": "55"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "270 : 9",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "720 : 12",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "230 : 10",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "60 : 5",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "80 : 4",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "192 : 12",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "116 : 2",
+   "oplossing": "58"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "42 : 7",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "513 : 9",
+   "oplossing": "57"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "264 : 12",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "441 : 9",
+   "oplossing": "49"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "96 : 3",
+   "oplossing": "32"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "150 : 3",
+   "oplossing": "50"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "24 : 4",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "45 : 9",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "320 : 8",
+   "oplossing": "40"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "322 : 7",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "162 : 6",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "28 : 7",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "312 : 12",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "552 : 12",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "264 : 12",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "102 : 3",
+   "oplossing": "34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "12 : 2",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "128 : 4",
+   "oplossing": "32"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "108 : 4",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "92 : 2",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "448 : 8",
+   "oplossing": "56"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "76 : 4",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "288 : 12",
+   "oplossing": "24"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "616 : 11",
+   "oplossing": "56"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "612 : 12",
+   "oplossing": "51"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "120 : 4",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "15 : 3",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "216 : 6",
+   "oplossing": "36"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "420 : 12",
+   "oplossing": "35"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "144 : 12",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "57 : 3",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "413 : 7",
+   "oplossing": "59"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "26 : 2",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "24 : 4",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "68 : 4",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "144 : 9",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "100 : 2",
+   "oplossing": "50"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "228 : 6",
+   "oplossing": "38"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "390 : 10",
+   "oplossing": "39"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "286 : 11",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "117 : 3",
+   "oplossing": "39"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "250 : 10",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "220 : 10",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "104 : 8",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "48 : 2",
+   "oplossing": "24"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "270 : 5",
+   "oplossing": "54"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "112 : 2",
+   "oplossing": "56"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "16 : 2",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "275 : 11",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "384 : 12",
+   "oplossing": "32"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "564 : 12",
+   "oplossing": "47"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "92 : 2",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "160 : 4",
+   "oplossing": "40"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "612 : 12",
+   "oplossing": "51"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "40 : 10",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "370 : 10",
+   "oplossing": "37"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "649 : 11",
+   "oplossing": "59"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "414 : 9",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "234 : 6",
+   "oplossing": "39"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "106 : 2",
+   "oplossing": "53"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "27 : 9",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "168 : 6",
+   "oplossing": "28"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "220 : 5",
+   "oplossing": "44"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "63 : 3",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "108 : 3",
+   "oplossing": "36"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "259 : 7",
+   "oplossing": "37"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "140 : 7",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "516 : 12",
+   "oplossing": "43"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "114 : 6",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "340 : 10",
+   "oplossing": "34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "765 : 9",
+   "oplossing": "85"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "414 : 9",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "16 : 2",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "910 : 10",
+   "oplossing": "91"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "320 : 10",
+   "oplossing": "32"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "160 : 10",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "304 : 8",
+   "oplossing": "38"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "485 : 5",
+   "oplossing": "97"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "222 : 6",
+   "oplossing": "37"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "36 : 12",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "186 : 3",
+   "oplossing": "62"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "264 : 8",
+   "oplossing": "33"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "146 : 2",
+   "oplossing": "73"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "144 : 2",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "88 : 4",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "104 : 2",
+   "oplossing": "52"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "58 : 2",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "495 : 11",
+   "oplossing": "45"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "76 : 4",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "880 : 10",
+   "oplossing": "88"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "140 : 7",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "69 : 3",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "378 : 9",
+   "oplossing": "42"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "567 : 9",
+   "oplossing": "63"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "483 : 7",
+   "oplossing": "69"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "72 : 4",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "360 : 5",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "528 : 6",
+   "oplossing": "88"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "720 : 12",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "232 : 4",
+   "oplossing": "58"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "144 : 6",
+   "oplossing": "24"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "123 : 3",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "492 : 12",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "356 : 4",
+   "oplossing": "89"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "130 : 10",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "406 : 7",
+   "oplossing": "58"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "240 : 6",
+   "oplossing": "40"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "864 : 12",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "65 : 5",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "108 : 2",
+   "oplossing": "54"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "408 : 8",
+   "oplossing": "51"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "858 : 11",
+   "oplossing": "78"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "78 : 3",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "56 : 4",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "180 : 5",
+   "oplossing": "36"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "468 : 9",
+   "oplossing": "52"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "340 : 4",
+   "oplossing": "85"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "970 : 10",
+   "oplossing": "97"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "882 : 9",
+   "oplossing": "98"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "473 : 11",
+   "oplossing": "43"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "600 : 10",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "627 : 11",
+   "oplossing": "57"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "180 : 6",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "440 : 8",
+   "oplossing": "55"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "204 : 12",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "42 : 3",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "528 : 8",
+   "oplossing": "66"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "165 : 3",
+   "oplossing": "55"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "219 : 3",
+   "oplossing": "73"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "114 : 2",
+   "oplossing": "57"
+  }
+ ]
+}

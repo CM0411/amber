@@ -69,8 +69,8 @@ for depth in range(2, 13):
         t = world.make("rekenen", depth, n)
         if "wat is x?" in t.problem:
             continue                      # the equation brick has its own judge below
-        if str(eval(_unwrap(t.problem))) != t.solution:
-            wrong.append(t.problem)
+        if str(eval(_unwrap(t.problem).replace(" : ", " // "))) != t.solution:
+            wrong.append(t.problem)       # the division brick writes ":" (18 Aug 2026)
 check("660 expressions match what Python itself computes",
       not wrong, f"{len(wrong)} deviations" if wrong else "not a single deviation")
 
@@ -93,8 +93,8 @@ wrong = []
 kinds = set()
 for n in range(200):
     t = world.make("puzzel", 1, n)
-    if t is None or t.problem.startswith("regel: "):
-        continue                          # the which-rule kind (17 Aug 2026), tested below
+    if t is None or t.problem.startswith(("regel: ", "controleer: ", "paren: ")):
+        continue                          # the which-rule kind (17 Aug 2026) and regelcheck (18 Aug), tested below
     row = [int(x) for x in re.findall(r"-?\d+", t.problem)] + [int(t.solution)]
     diffs = {row[i + 1] - row[i] for i in range(len(row) - 1)}
     ratios = {row[i + 1] / row[i] for i in range(len(row) - 1) if row[i]}
@@ -136,7 +136,8 @@ def dumb_solver(task):
 
 scores = []
 for depth in (1, 2, 3, 4, 5):
-    probe = [t for t in (world.make("puzzel", depth, n) for n in range(300)) if t][:200]
+    probe = [t for t in (world.make("puzzel", depth, n) for n in range(300))
+             if t and t.problem.startswith("Zet voort")][:200]   # rows only
     good = sum(1 for t in probe if t.check(dumb_solver(t)))
     scores.append(good / len(probe))
     print(f"         depth {depth:>2}: dumb solver scores {good / 2:>5.0f}%")
@@ -387,7 +388,7 @@ check("code knows negative outcomes, and marking accepts them",
 lengths = set()
 for n in range(2000, 2400):
     t = world.make("puzzel", 2, n)
-    if t is not None and not t.problem.startswith("regel: "):
+    if t is not None and not t.problem.startswith(("regel: ", "controleer: ", "paren: ")):
         lengths.add(t.problem.count(","))
 # since 15 Aug 2026 the keer-plus rows at depth 2 show two more (7-9)
 check("puzzle rows vary in length (5, 6 and 7 shown; keer-plus 7-9)",
@@ -461,8 +462,8 @@ for depth in (1, 2, 3, 4, 5, 6):
 for depth in (7, 8, 9):
     for n in range(200):
         t = world.make("puzzel", depth, n)
-        if t is None or t.problem.startswith("regel: "):
-            continue                      # rows only; the rule kind is tested below
+        if t is None or t.problem.startswith(("regel: ", "controleer: ", "paren: ")):
+            continue                      # rows only; the rule kinds are tested below
         compact_seen += 1
         # Deep rows always carry at least one difference layer, so the
         # compact label must appear — and the answer must still be the
@@ -491,6 +492,7 @@ check("compact workings fit window 1024 (85% rule)",
 _h = hashlib.sha256()
 kp_numbers = []
 regel_numbers = []
+check_numbers = []
 for depth in range(1, 11):
     for n in range(300):
         seed = world._seed_of("puzzel", depth, n)
@@ -498,8 +500,13 @@ for depth in range(1, 11):
         if depth >= world.KEERPLUS_MIN and k.integer(1, 5) == 1:
             kp_numbers.append((depth, n))
             continue
-        # the "which rule" split (17 Aug 2026) takes one in three of the
-        # rest — those numbers changed on purpose; the others must not
+        # the regelcheck bridge stone (18 Aug 2026) takes one in four of
+        # the rest, and the "which rule" split (17 Aug 2026) one in three
+        # of what is left — those numbers changed on purpose; the others
+        # must not
+        if tasks.Picker(tasks._mix(seed ^ world.CHECK_SEED)).integer(1, 4) == 1:
+            check_numbers.append((depth, n))
+            continue
         if tasks.Picker(tasks._mix(seed ^ world.REGEL_SEED)).integer(1, 3) == 1:
             regel_numbers.append((depth, n))
             continue
@@ -507,10 +514,11 @@ for depth in range(1, 11):
         _h.update((f"{depth}|{n}|{t.problem if t else ''}|"
                    f"{t.working if t else ''}|{t.solution if t else ''}\n")
                   .encode())
-# taken over exactly these numbers on 17 Aug 2026 before the rule split
-# existed (a7d2547646bda49b was the sum over the keer-plus complement)
-check("puzzle numbers outside both splits are bit for bit the world "
-      "of 15 Aug 2026", _h.hexdigest()[:16] == "7fa9005221985a61",
+# taken over exactly these numbers on 18 Aug 2026 before the bridge stone
+# existed (a7d2547646bda49b was the sum over the keer-plus complement,
+# 7fa9005221985a61 over the complement of keer-plus and rule)
+check("puzzle numbers outside the three splits are bit for bit the world "
+      "of 15 Aug 2026", _h.hexdigest()[:16] == "5d6c2b866f2a9638",
       _h.hexdigest()[:16])
 # and the split numbers: a row that comes out ends on its answer, every
 # equation holds, and the doubling shows in the working (a `: 2` ratio
@@ -666,7 +674,7 @@ check("outside depth 4-10 no teen multiplications with a tail appear",
 # before: this checksum was taken on 16 Aug 2026 before the form existed
 # (300 numbers per depth 1-12, minus the split numbers).
 _h = hashlib.sha256()
-kc_numbers = vgl_numbers = 0
+kc_numbers = vgl_numbers = deel_numbers = 0
 for depth in range(1, 13):
     for n in range(300):
         seed = world._seed_of("rekenen", depth, n)
@@ -679,6 +687,10 @@ for depth in range(1, 13):
                 and tasks.Picker(tasks._mix(seed ^ world.VGL_SEED)).integer(1, 4) == 1):
             vgl_numbers += 1
             continue
+        # and the division brick (18 Aug 2026) one in six of what is left
+        if world._division_draws(seed, depth):
+            deel_numbers += 1
+            continue
         t = world.make("rekenen", depth, n)
         p = t.problem if t else ""
         w = t.working if t else ""
@@ -687,9 +699,36 @@ for depth in range(1, 13):
 # 5f4eee0d46fcfe25 was the sum over the KEERC complement (16 Aug 2026);
 # taken again over the complement of both splits on 18 Aug 2026 before the
 # equation brick existed
+# and 9e6f98e443403dfe over the complement of keerc and equation, taken on
+# 18 Aug 2026 before the division brick existed
 check("untouched arithmetic numbers depth 1-12 are bit for bit the old world",
-      _h.hexdigest()[:16] == "9e6f98e443403dfe",
-      f"{_h.hexdigest()[:16]}, {kc_numbers} + {vgl_numbers} split numbers")
+      _h.hexdigest()[:16] == "4511e954860bd6b3",
+      f"{_h.hexdigest()[:16]}, {kc_numbers} + {vgl_numbers} + {deel_numbers} split numbers")
+
+# --- the division brick (18 Aug 2026) ---------------------------------------
+# Bare divisions with an exact outcome, worked out through the table
+# ("7 * 12 = 84 ; 84 : 7 = 12"): the puzzle audit found division nowhere in
+# her world while the rule puzzles asked for it.
+deel_seen = deel_bad = deel_out = 0
+for depth in range(1, 16):
+    for n in range(300):
+        t = world.make("rekenen", depth, n)
+        if t is None:
+            continue
+        m = re.fullmatch(r"(\d+) : (\d+)", t.problem)
+        if m:
+            deel_seen += 1
+            a, b = int(m[1]), int(m[2])
+            if not (2 <= b <= 12 and a % b == 0 and a // b == int(t.solution)
+                    and _steps_hold(t) and t.check(t.working)
+                    and t.working.startswith(f"{b} * ")):
+                deel_bad += 1
+            if not world.DEEL_MIN <= depth <= world.DEEL_MAX:
+                deel_out += 1
+check("bare divisions: exact, divisor 2-12, worked out through the table, "
+      "on the answer", deel_seen > 200 and deel_bad == 0,
+      f"{deel_seen} seen, {deel_bad} wrong")
+check("bare divisions live only at depth 3-12", deel_out == 0)
 
 # --- the long loop with a compact working (14 Aug 2026) ----------------------
 # The exam's loops run to twenty rounds; the wide working for those never
@@ -1018,8 +1057,10 @@ def _solve_rule(problem):
 
 _old_puzzle_fence = world.MAX_DEPTH_PER.get("puzzel")
 world.MAX_DEPTH_PER["puzzel"] = 20
-rule_seen = rule_bad = rule_unfit = 0
+rule_seen = rule_bad = rule_unfit = rule_div = 0
+rule_steps_ok = True
 rule_share = {}
+check_share = {}
 kwad_seen = 0
 for depth in range(1, 21):
     n_rule = n_all = 0
@@ -1028,6 +1069,9 @@ for depth in range(1, 21):
         if t is None:
             continue
         n_all += 1
+        if t.problem.startswith(("controleer: ", "paren: ")):
+            check_share[depth] = check_share.get(depth, 0) + 1
+            continue
         if not t.problem.startswith("regel: "):
             continue
         n_rule += 1
@@ -1036,6 +1080,10 @@ for depth in range(1, 21):
             rule_bad += 1
         if "kwadraten" in t.working:
             kwad_seen += 1
+        if "/" in t.working:
+            rule_div += 1
+        if not (_steps_hold(t) and re.search(r"stap: -?\d+ ; ", t.working)):
+            rule_steps_ok = False
         if not (world.fits(t, 1536 - 112)
                 and len(t.to_learn()) <= _rf(depth, "puzzel", 1536)):
             rule_unfit += 1
@@ -1044,19 +1092,94 @@ world.MAX_DEPTH_PER["puzzel"] = _old_puzzle_fence
 check("which-rule puzzles: an independent solver finds exactly one rule and "
       "the same answer", rule_seen > 1000 and rule_bad == 0,
       f"{rule_seen} puzzles, {rule_bad} disagreements")
+check("which-rule workings find the step by multiplying, never by dividing "
+      "(18 Aug 2026)", rule_div == 0 and rule_steps_ok,
+      f"{rule_div} workings with a division")
 check("squares exist from depth 7 and are told apart from lines", kwad_seen > 100)
 check("all which-rule puzzles fit window 1536 with their working", rule_unfit == 0)
 # share over all 150 numbers: a third at depth 1, and a third of the
 # keer-plus complement (~27%) from depth 2 — the rows above become
 # rarer with depth, so among *usable* puzzles the rules weigh more
-check("below 11 the rule split takes about a quarter of the numbers",
-      all(0.18 <= rule_share[d][0] / 150 <= 0.40 for d in range(1, 11)),
+# since the bridge stone (18 Aug 2026) the rule split takes a third of what
+# keer-plus and regelcheck leave: ~20% below 11, ~75% above 10
+check("below 11 the rule split takes about a fifth of the numbers",
+      all(0.12 <= rule_share[d][0] / 150 <= 0.32 for d in range(1, 11)),
       ", ".join(f"d{d}:{a}/150" for d, (a, b) in rule_share.items() if d <= 10))
-check("above 10 nearly every usable puzzle is a rule puzzle — the empty room is "
-      "filled (the odd keer-plus row that still comes out may stay)",
-      all(rule_share[d][0] >= 0.9 * rule_share[d][1] and rule_share[d][0] > 100
+check("above 10 rule puzzles and regelcheck together fill nearly every usable "
+      "number, rules the larger part (the odd keer-plus row may stay)",
+      all(rule_share[d][0] + check_share[d] >= 0.9 * rule_share[d][1]
+          and rule_share[d][0] > 2 * check_share[d] and rule_share[d][0] > 80
           for d in range(11, 21)),
-      ", ".join(f"d{d}:{a}/{b}" for d, (a, b) in rule_share.items() if d > 10))
+      ", ".join(f"d{d}:{a}+{check_share[d]}/{b}" for d, (a, b) in rule_share.items() if d > 10))
+
+# --- regelcheck: the bridge stone (18 Aug 2026) --------------------------------
+# Verify (1/0), choose (which of three rules fits every pair), later with
+# squares. The judge is an independent reader: it parses the rule texts and
+# the pairs, evaluates them itself and demands exactly one fitting rule.
+print()
+print("--- regelcheck: the bridge stone ---")
+
+
+def _read_rule(text):
+    m = re.fullmatch(r"(\d+) \* x( \* x)?(?: ([+-]) (\d+))?", text)
+    a, kwad = int(m[1]), bool(m[2])
+    c = int(m[4]) * (1 if m[3] == "+" else -1) if m[3] else 0
+    return lambda x: a * (x * x if kwad else x) + c
+
+
+def _judge_check(problem):
+    lines = problem.split("\n")
+    if lines[0].startswith("controleer: "):
+        f = _read_rule(lines[0][len("controleer: f(x) = "):])
+        x, y = map(int, re.fullmatch(r"klopt f\((\d+)\) = (-?\d+)\?", lines[1]).groups())
+        return 1 if f(x) == y else 0
+    pairs = [(int(a), int(b)) for a, b in re.findall(r"f\((\d+)\) = (-?\d+)", lines[0])]
+    rules = [_read_rule(r[3:]) for r in lines[1][len("regels: "):].split(" ; ")]
+    assert lines[2] == "welke regel past bij alle paren?"
+    fits = [i + 1 for i, f in enumerate(rules) if all(f(x) == y for x, y in pairs)]
+    return fits[0] if len(fits) == 1 else None
+
+
+world.MAX_DEPTH_PER["puzzel"] = 20
+ck_seen = ck_bad = ck_unfit = 0
+ck_forms = {"controleer": 0, "paren": 0, "kwad": 0, "nee": 0, "ja": 0}
+ck_share = {}
+for depth in range(1, 21):
+    n_ck = 0
+    for n in range(150):
+        t = world.make("puzzel", depth, n)
+        if t is None or not t.problem.startswith(("controleer: ", "paren: ")):
+            continue
+        n_ck += 1
+        ck_seen += 1
+        if _judge_check(t.problem) != int(t.solution):
+            ck_bad += 1
+        if not (_steps_hold(t) and t.check(t.working)):
+            ck_bad += 1
+        if not (world.fits(t, 1536 - 112)
+                and len(t.to_learn()) <= _rf(depth, "puzzel", 1536)):
+            ck_unfit += 1
+        ck_forms[t.problem.split(":")[0]] += 1
+        if "* x * x" in t.problem:
+            ck_forms["kwad"] += 1
+        if t.problem.startswith("controleer"):
+            ck_forms["ja" if t.solution == "1" else "nee"] += 1
+        if depth <= 3 and not t.problem.startswith("controleer"):
+            ck_bad += 1
+        if depth >= 4 and not t.problem.startswith("paren"):
+            ck_bad += 1
+    ck_share[depth] = n_ck
+world.MAX_DEPTH_PER["puzzel"] = _old_puzzle_fence
+check("regelcheck: the independent judge lands on the same answer, every step "
+      "holds, verify below 4 and choose from 4", ck_seen > 500 and ck_bad == 0,
+      f"{ck_seen} seen, {ck_bad} wrong")
+check("regelcheck: both verdicts occur (klopt / klopt niet), squares from depth 8",
+      ck_forms["ja"] > 30 and ck_forms["nee"] > 30 and ck_forms["kwad"] > 100,
+      str(ck_forms))
+check("regelcheck takes about a fifth of the numbers at every depth",
+      all(0.12 <= ck_share[d] / 150 <= 0.32 for d in range(1, 21)),
+      ", ".join(f"d{d}:{a}" for d, a in ck_share.items()))
+check("all regelcheck tasks fit window 1536 with their working", ck_unfit == 0)
 
 # --- logica: the fifth family (17 Aug 2026) ------------------------------------
 # If-then chains, true = 1 / false = 0. The judge is an independent forward

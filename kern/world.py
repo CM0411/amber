@@ -1137,14 +1137,21 @@ def _rule_puzzle(depth, t):
     x1, x2 = shown[0], shown[1]
     y1, y2 = ys[0], ys[1]
     if kind == "lin":
+        # The step is found by trying with multiplication, not by dividing
+        # (18 Aug 2026, puzzle audit): division exists nowhere else in her
+        # world, so "(16 - 10) / (5 - 3) = 3" was a step she could only
+        # guess. "stap: 3 ; 3 * 2 = 6" she can compute and check herself.
+        # With three or more pairs every gap is checked: equal steps say
+        # "linear".
+        steps.append(f"stap: {a}")
+        for i in range(n_pairs - 1):
+            dx, dy = shown[i + 1] - shown[i], ys[i + 1] - ys[i]
+            steps.append(f"{a} * {dx} = {dy}")
         if n_pairs >= 3:
-            # equal steps: the check that says "linear"
-            st = " ; ".join(f"({ys[i + 1]} - {ys[i]}) / ({shown[i + 1]} - {shown[i]}) = {a}"
-                            for i in range(n_pairs - 1))
-            steps.append(f"stappen gelijk: {st}")
-        else:
-            steps.append(f"stap: ({y2} - {y1}) / ({x2} - {x1}) = {a}")
-        steps.append(f"c: {y1} - {a} * {x1} = {c}")
+            steps.append("stappen gelijk")
+        p1 = a * x1
+        steps.append(f"{a} * {x1} = {p1}")
+        steps.append(f"{y1} - {p1} = {c}")
         steps.append(f"regel: {a} * x {'+' if c >= 0 else '-'} {abs(c)}")
         p = a * asked
         steps.append(f"{a} * {asked} = {p}")
@@ -1153,8 +1160,12 @@ def _rule_puzzle(depth, t):
     else:
         sq = [x * x for x in shown]
         steps.append("stappen ongelijk, dus kwadraten: " + " ; ".join(f"{x} * {x} = {q}" for x, q in zip(shown, sq)))
-        steps.append(f"stap: ({y2} - {y1}) / ({sq[1]} - {sq[0]}) = {a}")
-        steps.append(f"c: {y1} - {a} * {sq[0]} = {c}")
+        steps.append(f"stap: {a}")
+        for i in range(n_pairs - 1):
+            steps.append(f"{a} * {sq[i + 1] - sq[i]} = {ys[i + 1] - ys[i]}")
+        p1 = a * sq[0]
+        steps.append(f"{a} * {sq[0]} = {p1}")
+        steps.append(f"{y1} - {p1} = {c}")
         steps.append(f"regel: {a} * x * x {'+' if c >= 0 else '-'} {abs(c)}")
         q = asked * asked
         steps.append(f"{asked} * {asked} = {q}")
@@ -1165,11 +1176,179 @@ def _rule_puzzle(depth, t):
     return problem, answer, " ; ".join(steps)
 
 
+# --- regelcheck — the bridge stone (18 Aug 2026, Cley's idea) ------------------
+# The stair towards induction. In the rule puzzle she has to *guess* the
+# rule; here she *verifies* rules with what she can already compute:
+#
+#   depth 1–3     controleer: f(x) = 3 * x + 1 ; klopt f(5) = 16?   → 1 or 0
+#   depth 4–7     paren: f(2) = 7 ; f(5) = 16
+#                 regels: 1) 3 * x + 1 ; 2) 2 * x + 3 ; 3) 4 * x - 1
+#                 welke regel past bij alle paren?                    → 1
+#   depth 8+      three pairs, square rules (x * x) among the candidates
+#
+# The distractors each fit exactly one of the pairs and not the others, so
+# checking every pair is what earns the answer. The answer is always a
+# number (1/0 or a rule number): nakijk stays the last number. Own seed
+# split inside puzzel: one in four numbers where keer-plus did not draw,
+# applied before the rule split; keer-plus rows stay bit for bit, what gets
+# replaced are plain rows and young rule puzzles.
+CHECK_SEED = 0x436865636B                 # "Check"
+
+
+def _rule_text(rule):
+    kind, a, c = rule
+    head = f"{a} * x" if kind == "lin" else f"{a} * x * x"
+    if c == 0:
+        return head
+    return f"{head} {'+' if c > 0 else '-'} {abs(c)}"
+
+
+def _rule_eval_steps(rule, x):
+    """The pieces she writes to evaluate a rule at x, and the outcome."""
+    kind, a, c = rule
+    steps = []
+    if kind == "lin":
+        p = a * x
+        steps.append(f"{a} * {x} = {p}")
+    else:
+        q = x * x
+        steps.append(f"{x} * {x} = {q}")
+        p = a * q
+        steps.append(f"{a} * {q} = {p}")
+    if c != 0:
+        steps.append(f"{p} {'+' if c > 0 else '-'} {abs(c)} = {p + c}")
+    return steps, p + c
+
+
+def _check_shape(depth, t):
+    """A true rule, the number of pairs, the number of candidates, the input
+    range and whether square rules may appear."""
+    if depth <= 3:
+        a = t.integer(2, 9)
+        c = 0 if depth == 1 else t.integer(0, 20)
+        return ("lin", a, c), 1, 1, 12, False
+    if depth <= 7:
+        a = t.integer(2, 12)
+        c = t.integer(-20, 40) if depth >= 6 else t.integer(0, 30)
+        return ("lin", a, c), 2, 3, 20, False
+    kwad = t.integer(1, 2) == 1
+    if kwad:
+        rule = ("kwad", t.integer(1, 4), t.integer(-30, 60))
+    else:
+        rule = ("lin", t.integer(2, 15), t.integer(-50, 99))
+    return rule, 3, 3, 12 if kwad else 30, True
+
+
+def _rule_check(depth, t):
+    rule, n_pairs, n_rules, top, kwad_ok = _check_shape(depth, t)
+    xs = []
+    while len(xs) < n_pairs:
+        x = t.integer(1, top)
+        if x not in xs:
+            xs.append(x)
+    xs.sort()
+    ys = [_apply(rule, x) for x in xs]
+    if n_rules == 1:
+        # verify one claim; half of them are wrong in a believable way
+        x, y = xs[0], ys[0]
+        claim = y
+        if t.integer(1, 2) == 1:
+            kind, a, c = rule
+            wrong = (a + t.integer(-1, 1)) * x + c + t.integer(-3, 3)
+            claim = wrong if wrong != y else y + t.integer(1, 3)
+        problem = f"controleer: f(x) = {_rule_text(rule)}\nklopt f({x}) = {claim}?"
+        steps, out = _rule_eval_steps(rule, x)
+        if out == claim:
+            steps.append("klopt: 1")
+            answer = 1
+        else:
+            steps.append(f"{out} is niet {claim} ; klopt: 0")
+            answer = 0
+        return problem, answer, " ; ".join(steps)
+    # several candidates: the true rule plus distractors that each fit
+    # exactly one pair
+    kind, a, c = rule
+    others = []
+    for i in range(n_rules - 1):
+        x_fit, y_fit = xs[i % n_pairs], ys[i % n_pairs]
+        for _ in range(50):
+            okind = kind
+            if kwad_ok and t.integer(1, 3) == 1:
+                okind = "kwad" if kind == "lin" else "lin"
+            oa = t.integer(1 if okind == "kwad" else 2, 4 if okind == "kwad" else 15)
+            base = oa * x_fit * x_fit if okind == "kwad" else oa * x_fit
+            oc = y_fit - base
+            cand = (okind, oa, oc)
+            if (cand != rule and cand not in others and abs(oc) <= 999
+                    and all(_apply(cand, x) != y for x, y in zip(xs, ys)
+                            if x != x_fit)):
+                others.append(cand)
+                break
+        else:
+            return None, None, None
+    rules = [rule] + others
+    # shuffle deterministically
+    order = list(range(len(rules)))
+    for i in range(len(order) - 1, 0, -1):
+        j = t.integer(0, i)
+        order[i], order[j] = order[j], order[i]
+    rules = [rules[i] for i in order]
+    answer = rules.index(rule) + 1
+    problem = ("paren: " + " ; ".join(f"f({x}) = {y}" for x, y in zip(xs, ys))
+               + "\nregels: " + " ; ".join(f"{i + 1}) {_rule_text(r)}" for i, r in enumerate(rules))
+               + "\nwelke regel past bij alle paren?")
+    steps = []
+    for i, r in enumerate(rules):
+        steps.append(f"regel {i + 1}")
+        for x, y in zip(xs, ys):
+            s, out = _rule_eval_steps(r, x)
+            steps += s
+            steps.append("ja" if out == y else f"{out} is niet {y} ; nee")
+            if out != y:
+                break
+    steps.append(f"past: {answer}")
+    return problem, answer, " ; ".join(steps)
+
+
+def _check_draws(seed, depth):
+    return Picker(_mix(seed ^ CHECK_SEED)).integer(1, 4) == 1
+
+
 def _rule_draws(seed, depth):
     """Does the rule split take this puzzle number? Above ROW_MAX always."""
     if depth > ROW_MAX:
         return True
     return Picker(_mix(seed ^ REGEL_SEED)).integer(1, 3) == 1
+
+
+# --- deling (division) — the bare division brick (18 Aug 2026) -----------------
+# The puzzle audit found that division existed nowhere in her world while
+# the rule puzzles and the equations quietly asked for it. Bare divisions
+# with an exact outcome, worked out through the table she knows:
+#
+#     84 : 7          →   7 * 12 = 84 ; 84 : 7 = 12
+#
+# One in six numbers at depth DEEL_MIN–DEEL_MAX, only where no other split
+# drew; the rest stays bit for bit. Divisor 2–12 throughout; the quotient
+# grows with the depth (2–12 at depth 3, up to 2–99 at depth 12), so the
+# dividend stays inside what she multiplies elsewhere.
+DEEL_SEED = 0x4465656C                    # "Deel"
+DEEL_MIN, DEEL_MAX = 3, 12
+
+
+def _division(depth, t):
+    b = t.integer(2, 12)
+    top = 12 if depth <= 4 else 30 if depth <= 7 else 60 if depth <= 10 else 99
+    q = t.integer(2, top)
+    a = b * q
+    problem = f"{a} : {b}"
+    working = f"{b} * {q} = {a} ; {a} : {b} = {q}"
+    return problem, q, working
+
+
+def _division_draws(seed, depth):
+    return (DEEL_MIN <= depth <= DEEL_MAX
+            and Picker(_mix(seed ^ DEEL_SEED)).integer(1, 6) == 1)
 
 
 # --- logica (logic) — the fifth family (17 Aug 2026) ---------------------------
@@ -1766,7 +1945,16 @@ def make(family, depth, number):
         # The "which rule" puzzle (17 Aug 2026): one in three numbers where
         # keer-plus did not draw, and every number above ROW_MAX. Numbers
         # keer-plus took, and untouched rows, stay bit for bit.
-        if not kp_drawn and _rule_draws(seed, depth):
+        # The bridge stone regelcheck (18 Aug 2026): one in four numbers
+        # where keer-plus did not draw, before the rule split.
+        check_drawn = not kp_drawn and _check_draws(seed, depth)
+        if check_drawn:
+            rc = _rule_check(depth, Picker(_mix(seed ^ CHECK_SEED ^ 0x1)))
+            if rc[0] is not None:
+                problem, solution, working = rc
+            else:
+                check_drawn = False
+        if not kp_drawn and not check_drawn and _rule_draws(seed, depth):
             problem, solution, working = _rule_puzzle(depth, Picker(_mix(seed ^ REGEL_SEED ^ 0x1)))
     if family == "geheugen":
         # the memory brick (17 Aug 2026): one in three numbers from
@@ -1800,9 +1988,13 @@ def make(family, depth, number):
         # VGL_MIN–VGL_MAX, only where no other split drew — the rest of the
         # world stays bit for bit
         k = Picker(_mix(seed ^ VGL_SEED))
-        if (VGL_MIN <= depth <= VGL_MAX and k.integer(1, 4) == 1
-                and not (keerc or keer or converse)):
+        vgl = VGL_MIN <= depth <= VGL_MAX and k.integer(1, 4) == 1
+        if vgl and not (keerc or keer or converse):
             problem, solution, working = _equation(depth, k)
+        # the division brick (18 Aug 2026): one in six numbers at depth
+        # DEEL_MIN–DEEL_MAX, only where none of the splits above drew
+        if _division_draws(seed, depth) and not (keerc or keer or converse or vgl):
+            problem, solution, working = _division(depth, Picker(_mix(seed ^ DEEL_SEED ^ 0x1)))
     if family == "code":
         k = Picker(_mix(seed ^ LUS_SEED))
         if LUS_MIN <= depth <= LUS_MAX and k.integer(1, 4) == 1:
