@@ -156,11 +156,20 @@ class Task:
         number. For tasks without a working nothing changes: that single
         number is the answer, and the frozen exams keep working.
         """
+        right = _NUMBER.findall(self.solution)
+        if not right:
+            # A solution without a number (18 Aug 2026: the families
+            # "zeggen" and "taal" answer in words): the last piece of what
+            # she wrote — after the last " ; " — must be exactly the
+            # solution, lowercase, spaces trimmed. Working out stays
+            # allowed; producing the words is what counts. Every frozen
+            # sheet has numeric solutions and is untouched.
+            last = str(answer).rsplit(" ; ", 1)[-1]
+            return last.strip().lower() == self.solution.strip().lower()
         found = _NUMBER.findall(str(answer))
         if not found:
             return False
-        right = _NUMBER.findall(self.solution)
-        return bool(right) and found[-1] == right[-1]
+        return found[-1] == right[-1]
 
 # --- rekenen (arithmetic) ----------------------------------------------------
 # Increasing in the number of operations and the size of the numbers. The

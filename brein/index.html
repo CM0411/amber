@@ -323,7 +323,7 @@ bouwNamen();
 function keuzesHtml(k, kop) {
   if (!k || !k.laatste || !k.laatste_n) return "";
   const kleur = {rekenen: "#5ca8ff", puzzel: "#b78ae0", code: "#7fe0c3",
-                 geheugen: "#ffb86b", logica: "#ff8fa3", volgorde: "#8fd3ff", tekst: "#e6d37a"};
+                 geheugen: "#ffb86b", logica: "#ff8fa3", volgorde: "#8fd3ff", tekst: "#e6d37a", zeggen: "#f5a3ff", taal: "#a3ffd6"};
   const fams = Object.keys(k.laatste).sort((a, b) => k.laatste[b] - k.laatste[a]);
   let h = `<div class="kop">${kop} · laatste ${k.laatste_n} keuzes</div>`;
   for (const f of fams) {
@@ -536,18 +536,18 @@ async function haal() {
     // de hekken komen uit run.json (de rungrens schrijft die mee met elke
     // run); de vaste waarden zijn alleen het vangnet als de config ontbreekt.
     // Handbijhouden liep op 14 aug 2026 drie hekken achter — nooit meer.
-    const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12, volgorde: 12, tekst: 12};   // vangnet; 16 aug: geheugen, 17 aug: logica
+    const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12, volgorde: 12, tekst: 12, zeggen: 12, taal: 12};   // vangnet; 16 aug: geheugen, 17 aug: logica
     const hekstr = (s.run && s.run.config && s.run.config.hek) || "";
     for (const m of hekstr.matchAll(/([a-z]+)\s+(\d+)/g)) grens[m[1]] = +m[2];
     // het checkpoint is de waarheid; logregels vullen alleen aan wat het
     // checkpoint nog niet weet, en nooit boven de echte grens uit
-    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2, logica: 2, volgorde: 2, tekst: 2},
+    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2, logica: 2, volgorde: 2, tekst: 2, zeggen: 2, taal: 2},
                                (s.run && s.run.wereld) || {},
                                s.wereldrand || {});
     for (const f in rand) rand[f] = Math.min(rand[f], grens[f] || rand[f]);
     if (!window.vorigeRand) window.vorigeRand = {};
     let html = '<div class="kop">haar wereld</div>';
-    for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst"]) {
+    for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal"]) {
       const d = rand[f], nieuw = window.vorigeRand[f] && d > window.vorigeRand[f];
       if (nieuw) window.fonkelTot = Date.now() + 90000;
       // hoe meer blokjes, hoe smaller ze worden: een rij blijft altijd
@@ -587,7 +587,7 @@ async function haal() {
     if (Object.keys(vakjes).length) {
       const top = Math.max(...Object.values(vakjes));
       let g = '<div class="kop">haar geheugen</div>';
-      for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst"]) {
+      for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal"]) {
         const graden = Object.keys(vakjes)
           .filter(k => k.startsWith(f + "/"))
           .map(k => +k.split("/")[1]).sort((a, b) => a - b);

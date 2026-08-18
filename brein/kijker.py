@@ -310,7 +310,7 @@ def _beantwoord_vragen():
 LAAGNAMEN = {"rekenen": "rekenlaag", "code": "codelaag",
              "puzzel": "puzzellaag", "geheugen": "geheugenlaag",
              "logica": "logicalaag", "volgorde": "volgordelaag",
-             "tekst": "tekstlaag"}
+             "tekst": "tekstlaag", "zeggen": "zeggenlaag", "taal": "taallaag"}
 LAAGSTAND = f"{FOLDER}/laagnamen-stand.json"
 MINSTENS = 20                            # opgaven per familie vóór hij meetelt
 try:

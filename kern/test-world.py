@@ -196,7 +196,7 @@ for family in world.FAMILIES:
     for depth in range(1, 13):
         for n in range(100):
             task = world.make(family, depth, n)
-            if task:
+            if task and family not in ("zeggen", "taal"):   # those answer in words
                 longest_answer = max(longest_answer, len(task.solution))
 check("the answers stay short enough to be meaningful",
       longest_answer <= 16,
@@ -230,10 +230,15 @@ for family in world.FAMILIES:
 check(
     "from depth 3 nearly every number gives a different problem",
     all(len({t.problem for n in range(2000) if (t := world.make(f, 3, n))}) > 1500
-        for f in world.FAMILIES),
+        for f in world.FAMILIES if f not in ("zeggen", "taal")),
     "the space grows exponentially with depth instead of linearly with "
     "what is typed",
 )
+# zeggen and taal have a small fixed vocabulary by design (18 Aug 2026);
+# their room opens up with depth — from 5 nearly every number is new
+check("zeggen and taal: from depth 5 nearly every number gives a different problem",
+      all(len({t.problem for n in range(2000) if (t := world.make(f, 5, n))}) > 1500
+          for f in ("zeggen", "taal")))
 
 print()
 
@@ -1539,8 +1544,8 @@ check("a volgorde task is the same task every time",
 # question — must land on the same number.
 print()
 print("--- tekst: the seventh family ---")
-check("the world's families end with volgorde, tekst — appended, never inserted",
-      world.FAMILIES[5:] == ("volgorde", "tekst") and world.FAMILIES[:5] == tasks.FAMILIES + ("geheugen", "logica"))
+check("the world's families continue with volgorde, tekst — appended, never inserted",
+      world.FAMILIES[5:7] == ("volgorde", "tekst") and world.FAMILIES[:5] == tasks.FAMILIES + ("geheugen", "logica"))
 check("the fence for tekst stands at 12 or higher", world.max_depth("tekst") >= 12)
 check("the word list is fixed, lowercase a–z, without doubles",
       len(world.TEXT_WORDS) >= 150 and len(set(world.TEXT_WORDS)) == len(world.TEXT_WORDS)
@@ -1617,6 +1622,180 @@ check("all tekst problems fit window 1536; the writing room holds every working"
       tx_unfit == 0 and tx_room == 0, f"{tx_unfit} unfit, {tx_room} too little room")
 check("a tekst task is the same task every time",
       world.make("tekst", 9, 4321) == world.make("tekst", 9, 4321))
+
+# --- zeggen: the eighth family (18 Aug 2026, Cley) ----------------------------
+# Her own sentence from a fixed vocabulary, checked as text. The judge
+# re-applies the rules from the problem text alone.
+print()
+print("--- zeggen: the eighth family ---")
+check("the world's families continue with zeggen, taal — appended",
+      world.FAMILIES[7:9] == ("zeggen", "taal"))
+
+
+def _judge_saying(problem):
+    lines = problem.split("\n")
+    q = lines[-1]
+    stand = {f: int(v) for f, v in re.findall(r"(\w+) (\d+)", lines[0][len("cijfers: "):])}
+    edge = {}
+    keuzes = {}
+    for line in lines[1:-1]:
+        if line.startswith("wereld: "):
+            edge = {f: (int(a), int(b)) for f, a, b in re.findall(r"(\w+) (\d+)/(\d+)", line)}
+        if line.startswith("keuzes: "):
+            keuzes = {f: int(v) for f, v in re.findall(r"(\w+) (\d+)", line)}
+    lowest = min(stand, key=stand.get)
+    highest = max(stand, key=stand.get)
+    verdict = lambda f: f"{f} gaat goed" if stand[f] >= 90 else f"{f} gaat" if stand[f] >= 60 else f"{f} is moeilijk"
+    if q == "hoe gaat het?":
+        return verdict(next(iter(stand)))
+    if q == "wat is moeilijk?":
+        return f"{lowest} is moeilijk"
+    if q == "wat gaat goed?":
+        return f"{highest} gaat goed"
+    if q == "wat wil je oefenen?":
+        return f"ik wil meer {lowest} oefenen"
+    deeper = [f for f in stand if stand[f] >= 90 and edge.get(f, (0, 0))[0] < edge.get(f, (0, 0))[1]]
+    if keuzes and keuzes.get(lowest, 0) >= 25:
+        wish = f"{lowest} blijft moeilijk"
+    elif deeper:
+        wish = f"ik wil dieper in {max(deeper, key=stand.get)}"
+    else:
+        wish = f"ik wil meer {lowest} oefenen"
+    if len(stand) >= 4 and keuzes and problem.count("\n") >= 3 and _two_sentences:
+        return f"{verdict(highest)} en {wish}"
+    return wish
+
+
+zg_seen = zg_bad = zg_unfit = 0
+zg_forms = set()
+for depth in range(1, 13):
+    _two_sentences = depth >= 11
+    for n in range(200):
+        t = world.make("zeggen", depth, n)
+        zg_seen += 1
+        if _judge_saying(t.problem) != t.solution or not t.check(t.working):
+            zg_bad += 1
+        if not (world.fits(t, 1536 - 112) and len(t.to_learn()) <= _rf(depth, "zeggen", 1536)):
+            zg_unfit += 1
+        zg_forms.add(re.sub(r"\b(" + "|".join(world.ZEG_ONDERWERPEN) + r")\b", "X", t.solution))
+check("zeggen: the independent judge writes the same sentence every time",
+      zg_seen == 2400 and zg_bad == 0, f"{zg_bad} disagreements")
+check("zeggen: the sentence forms exist (verdicts, wishes, deeper, blijft, en)",
+      {"X gaat goed", "X gaat", "X is moeilijk", "ik wil meer X oefenen",
+       "ik wil dieper in X", "X blijft moeilijk"} <= zg_forms
+      and any(" en " in f for f in zg_forms), str(sorted(zg_forms))[:300])
+check("zeggen: solutions carry no number (checked as text) and fit the room",
+      zg_unfit == 0 and all(not re.search(r"\d", world.make("zeggen", d, 3).solution) for d in range(1, 13)))
+check("a zeggen task is the same task every time",
+      world.make("zeggen", 9, 77) == world.make("zeggen", 9, 77))
+
+# --- taal: the ninth family (18 Aug 2026, Cley) -------------------------------
+# Short sentences from a fixed vocabulary; the judge parses them with the
+# grammar and answers the question itself; for "maak de zin" it rebuilds
+# the only sentence the words allow.
+print()
+print("--- taal: the ninth family ---")
+_A = set(world.TAAL_DIEREN); _D = set(world.TAAL_DINGEN); _K = set(world.TAAL_KLEUREN)
+_V = set(world.TAAL_WERKWOORDEN) | {"zit", "ligt", "staat", "hangt", "wacht"}
+_KV = {v: k for k, v in world.TAAL_VERBOGEN.items()}
+_P = set(world.TAAL_PLAATS)
+
+
+def _parse(line):
+    w = line.split()
+    z = {}
+    if w[0] == "hij":                     # hij is <kleur>
+        return {"ref": "hij", "kleur": w[2]}
+    if w[0] == "daar":                    # daar <v> ook de <dier>
+        return {"ref": "daar", "werk": w[1], "dier": w[4]}
+    i = 1
+    if w[i] in _KV:
+        z["bijv"] = _KV[w[i]]; i += 1
+    z["dier"] = w[i]; i += 1
+    if w[i] == "is":
+        z["kleur"] = w[i + 1]; return z
+    z["werk"] = w[i]; i += 1
+    if i < len(w):
+        z["waar"] = w[i]; z["ding"] = w[i + 2]
+    return z
+
+
+def _judge_language(problem):
+    lines = problem.split("\n")
+    if lines[0].startswith("woorden: "):
+        words = lines[0][len("woorden: "):].split()
+        dier = [x for x in words if x in _A][0]
+        bijv = [x for x in words if x in _KV]
+        if "is" in words:
+            return f"de {dier} is {[x for x in words if x in _K][0]}"
+        werk = [x for x in words if x in _V][0]
+        head = f"de {bijv[0] + ' ' if bijv else ''}{dier} {werk}"
+        if any(x in _P for x in words):
+            waar = [x for x in words if x in _P][0]
+            ding = [x for x in words if x in _D][0]
+            return f"{head} {waar} de {ding}"
+        return head
+    q = lines[-1]
+    zs = [_parse(l) for l in lines[:-1]]
+    plain = [z for z in zs if "ref" not in z]
+    m = re.fullmatch(r"wie (\w+)\?", q)
+    if m:
+        c = [z for z in zs if z.get("werk") == m[1]]
+        return c[0]["dier"] if len(c) == 1 else None
+    m = re.fullmatch(r"wat doet de (\w+)\?", q)
+    if m:
+        return [z["werk"] for z in plain if z["dier"] == m[1]][0]
+    m = re.fullmatch(r"waar (\w+) de (\w+)\?", q)
+    if m:
+        for i, z in enumerate(zs):
+            if z.get("ref") == "daar" and z["dier"] == m[2] and z["werk"] == m[1]:
+                return zs[i - 1]["ding"]
+        c = [z for z in plain if z["dier"] == m[2] and z.get("werk") == m[1]]
+        return c[0]["ding"] if len(c) == 1 else None
+    m = re.fullmatch(r"wat (\w+) (\w+) de (\w+)\?", q)
+    if m:
+        c = [z for z in plain if z.get("werk") == m[1] and z.get("waar") == m[2] and z.get("ding") == m[3]]
+        return c[0]["dier"] if len(c) == 1 else None
+    m = re.fullmatch(r"welke kleur heeft de (\w+)\?", q)
+    if m:
+        for i, z in enumerate(zs):
+            if z.get("ref") == "hij" and zs[i - 1]["dier"] == m[1]:
+                return z["kleur"]
+        c = [z for z in plain if z["dier"] == m[1]]
+        return c[0].get("kleur") or c[0].get("bijv")
+    m = re.fullmatch(r"wat is (\w+)\?", q)
+    if m:
+        c = [z for z in plain if z.get("kleur") == m[1]]
+        return c[0]["dier"] if len(c) == 1 else None
+    return None
+
+
+tl_seen = tl_bad = tl_unfit = 0
+tl_kinds = set()
+for depth in range(1, 13):
+    for n in range(200):
+        t = world.make("taal", depth, n)
+        tl_seen += 1
+        if _judge_language(t.problem) != t.solution or not t.check(t.working):
+            tl_bad += 1
+        if not (world.fits(t, 1536 - 112) and len(t.to_learn()) <= _rf(depth, "taal", 1536)):
+            tl_unfit += 1
+        tl_kinds.add(t.problem.split("\n")[-1].split()[0])
+        if depth >= 9 and ("\nhij is" in t.problem or "\ndaar " in t.problem):
+            tl_kinds.add("verwijzing")
+        if depth >= 11 and t.problem.startswith("woorden: "):
+            tl_kinds.add("maken")
+check("taal: the independent parser answers every question the same way "
+      "(one answer, never ambiguous)", tl_seen == 2400 and tl_bad == 0, f"{tl_bad} disagreements")
+check("taal: questions wie/wat/waar/welke, references and building exist",
+      {"wie", "wat", "waar", "welke", "verwijzing", "maken"} <= tl_kinds, str(sorted(tl_kinds)))
+check("taal: only de-words, correct adjective forms",
+      all(w not in ("paard", "schaap", "bed", "dak") for w in world.TAAL_DIEREN + world.TAAL_DINGEN)
+      and world.TAAL_VERBOGEN["rood"] == "rode" and world.TAAL_VERBOGEN["wit"] == "witte")
+check("taal: everything fits the room", tl_unfit == 0)
+check("a taal task is the same task every time",
+      world.make("taal", 9, 77) == world.make("taal", 9, 77))
+
 
 # --- a sheet frozen for a wider window is skipped, not sat (17 Aug 2026) -----
 # venster2048.json holds rekenen 62–78 and code 32–40 for the day the window

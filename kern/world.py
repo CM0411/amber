@@ -56,7 +56,7 @@ from tasks import FAMILIES as _MEASURED_FAMILIES, Task, Picker, _mix
 #   17 Aug 2026: "logica" — if-then chains over true/false facts (_logic).
 #   18 Aug 2026: "volgorde" — steps put in the right order from rules (_order).
 #   18 Aug 2026: "tekst" — patterns in letters and words, counted (_text).
-FAMILIES = _MEASURED_FAMILIES + ("geheugen", "logica", "volgorde", "tekst")
+FAMILIES = _MEASURED_FAMILIES + ("geheugen", "logica", "volgorde", "tekst", "zeggen", "taal")
 
 # Own constant, separate from tasks.py's: the world and the exams are two
 # separate things and must be so in their numbers too.
@@ -90,7 +90,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 20, "code": 30, "geheugen": 40, "logica": 12, "volgorde": 12, "tekst": 12}
+MAX_DEPTH_PER = {"puzzel": 20, "code": 30, "geheugen": 40, "logica": 12, "volgorde": 12, "tekst": 12, "zeggen": 12, "taal": 12}
 
 
 def max_depth(family):
@@ -1905,9 +1905,257 @@ def _text(depth, t):
     return "\n".join(lines), ans, " ; ".join(steps)
 
 
+# --- zeggen (saying) — the eighth family (18 Aug 2026, Cley) -----------------
+# She tells in letters what she wants. Not a borrowed language model as a
+# mouthpiece (forbidden by design) but her own small vocabulary, learned as
+# every other family: the input is a short state of herself, the output a
+# short sentence from a fixed set of forms. The sentence follows from the
+# state by rules, so checking is exact — on the words themselves (see
+# Task.check: a solution without a number is compared as text). This is
+# the seed of U/B: her language, small, not lent.
+#
+#   cijfers: puzzel 39 ; geheugen 100 ; code 91
+#   wat is moeilijk?                        → puzzel is moeilijk
+#
+# The rules, in order of depth (a family named "X"):
+#   verdict     X gaat goed (score ≥ 90) · X gaat (60–89) · X is moeilijk (< 60)
+#   moeilijk    "wat is moeilijk?"   → the lowest score:  X is moeilijk
+#   goed        "wat gaat goed?"     → the highest score: X gaat goed
+#   oefenen     "wat wil je oefenen?"→ ik wil meer X oefenen (lowest score)
+#   dieper      with a world line: a family with score ≥ 90 whose edge is
+#               below its fence: ik wil dieper in X (highest such);
+#               otherwise ik wil meer Y oefenen (lowest score)
+#   keuzes      with a choices line: the lowest-score family that already
+#               takes ≥ 25% of her choices: Y blijft moeilijk; else as dieper
+#   twee        two sentences joined by " en "
+# Scores shown are distinct, so every rule picks exactly one family.
+ZEG_ONDERWERPEN = ("rekenen", "puzzel", "code", "geheugen", "logica",
+                   "volgorde", "tekst", "taal")     # append only — the order
+                                                     # is part of the numbers
+
+
+def _verdict(fam, score):
+    return f"{fam} gaat goed" if score >= 90 else f"{fam} gaat" if score >= 60 else f"{fam} is moeilijk"
+
+
+def _saying(depth, t):
+    k = 1 if depth <= 2 else 2 if depth <= 4 else 3 if depth <= 8 else 4
+    fams = []
+    while len(fams) < k:
+        f = t.choice(ZEG_ONDERWERPEN)
+        if f not in fams:
+            fams.append(f)
+    scores = []
+    while len(scores) < k:
+        v = t.integer(0, 100)
+        if v not in scores:
+            scores.append(v)
+    stand = dict(zip(fams, scores))
+    lines = ["cijfers: " + " ; ".join(f"{f} {stand[f]}" for f in fams)]
+    lowest = min(fams, key=lambda f: stand[f])
+    highest = max(fams, key=lambda f: stand[f])
+    steps = []
+    if depth <= 2:
+        q = "hoe gaat het?"
+        sentence = _verdict(fams[0], stand[fams[0]])
+    elif depth <= 4:
+        if t.integer(1, 2) == 1:
+            q, sentence = "wat is moeilijk?", f"{lowest} is moeilijk"
+            steps.append(f"laagste: {lowest} {stand[lowest]}")
+        else:
+            q, sentence = "wat gaat goed?", f"{highest} gaat goed"
+            steps.append(f"hoogste: {highest} {stand[highest]}")
+    elif depth <= 6:
+        q, sentence = "wat wil je oefenen?", f"ik wil meer {lowest} oefenen"
+        steps.append(f"laagste: {lowest} {stand[lowest]}")
+    else:
+        # a world line: edge/fence per family
+        edge = {}
+        for f in fams:
+            fence = t.choice((12, 20, 30, 40, 60))
+            edge[f] = (t.integer(1, fence), fence)
+        lines.append("wereld: " + " ; ".join(f"{f} {edge[f][0]}/{edge[f][1]}" for f in fams))
+        deeper = [f for f in fams if stand[f] >= 90 and edge[f][0] < edge[f][1]]
+        if depth <= 8:
+            q = "wat wil je?"
+            if deeper:
+                pick = max(deeper, key=lambda f: stand[f])
+                steps.append(f"goed en niet vol: {pick} {stand[pick]} {edge[pick][0]}/{edge[pick][1]}")
+                sentence = f"ik wil dieper in {pick}"
+            else:
+                steps.append(f"laagste: {lowest} {stand[lowest]}")
+                sentence = f"ik wil meer {lowest} oefenen"
+        else:
+            shares = []
+            rest = 100
+            for i, f in enumerate(fams):
+                v = t.integer(0, min(60, rest)) if i < len(fams) - 1 else rest
+                shares.append(v)
+                rest -= v
+            keuzes = dict(zip(fams, shares))
+            lines.append("keuzes: " + " ; ".join(f"{f} {keuzes[f]}" for f in fams))
+            q = "wat wil je?"
+            if keuzes[lowest] >= 25:
+                steps.append(f"laagste: {lowest} {stand[lowest]} ; keuzes {keuzes[lowest]}")
+                first = f"{lowest} blijft moeilijk"
+            elif deeper:
+                pick = max(deeper, key=lambda f: stand[f])
+                steps.append(f"goed en niet vol: {pick} {stand[pick]} {edge[pick][0]}/{edge[pick][1]}")
+                first = f"ik wil dieper in {pick}"
+            else:
+                steps.append(f"laagste: {lowest} {stand[lowest]}")
+                first = f"ik wil meer {lowest} oefenen"
+            if depth >= 11:
+                # two sentences: the verdict on the highest, then the wish
+                sentence = f"{_verdict(highest, stand[highest])} en {first}"
+            else:
+                sentence = first
+    problem = "\n".join(lines) + "\n" + q
+    working = " ; ".join(steps + [sentence])
+    return problem, sentence, working
+
+
+# --- taal (language) — the ninth family (18 Aug 2026, Cley) -------------------
+# A piece of language of her own, after "zeggen": short Dutch sentences
+# from a fixed small vocabulary, with a question — and, deeper, building a
+# sentence from its shuffled words. Answers are words (Task.check compares
+# text when the solution has no number). No borrowed language model: the
+# grammar below is the whole language, and it is hers to learn.
+#
+#   de kat zit op de mat        wie zit?            → kat
+#   de bal is rood              wat is rood?        → bal
+#   woorden: mat op kat de zit de / maak de zin     → de kat zit op de mat
+#
+# Subjects (animals) and places (things) are disjoint sets, so a shuffled
+# sentence has exactly one reading. Depth: 1–2 one sentence, subject or
+# verb asked; 3–4 place and colour forms; 5–6 two sentences; 7–8 three,
+# with an adjective; 9–10 references ("hij", "daar"); 11–12 building.
+# de-words only, so every sentence is correct Dutch
+TAAL_DIEREN = ("kat", "hond", "vogel", "vis", "koe", "muis", "kip", "eend",
+               "geit", "beer", "aap", "uil", "haas", "egel", "wolf", "vos")
+TAAL_DINGEN = ("mat", "tafel", "stoel", "bank", "kast", "doos", "muur", "deur",
+               "boom", "vloer", "kar", "boot", "brug", "steen", "tuin", "weg")
+TAAL_KLEUREN = ("rood", "blauw", "groen", "geel", "wit", "zwart", "bruin", "grijs")
+TAAL_VERBOGEN = {"rood": "rode", "blauw": "blauwe", "groen": "groene", "geel": "gele",
+                 "wit": "witte", "zwart": "zwarte", "bruin": "bruine", "grijs": "grijze"}
+TAAL_WERKWOORDEN = ("zit", "ligt", "staat", "slaapt", "springt", "loopt",
+                    "kijkt", "hangt", "rent", "wacht")
+TAAL_PLAATS = ("op", "onder", "naast", "achter", "voor", "in")
+
+
+def _sentence(depth, t, used):
+    """One sentence as a dict; nothing in `used` (animals, things, verbs,
+    colours) repeats inside one problem, so every question has one answer."""
+    a = t.choice([x for x in TAAL_DIEREN if x not in used])
+    used.add(a)
+    kind = t.choice(("kaal", "plaats", "kleur")) if depth >= 2 else "kaal"
+    z = {"dier": a, "soort": kind}
+    if kind != "kleur":
+        v = t.choice([x for x in TAAL_WERKWOORDEN if x not in used])
+        used.add(v)
+        z["werk"] = v
+    if kind == "plaats":
+        d = t.choice([x for x in TAAL_DINGEN if x not in used])
+        used.add(d)
+        z["ding"] = d
+        z["waar"] = t.choice(TAAL_PLAATS)
+    if kind == "kleur":
+        c = t.choice([x for x in TAAL_KLEUREN if x not in used])
+        used.add(c)
+        z["kleur"] = c
+    if depth >= 7 and kind != "kleur":
+        c = t.choice([x for x in TAAL_KLEUREN if x not in used])
+        used.add(c)
+        z["bijv"] = c                                # de zwarte kat …
+    return z
+
+
+def _sentence_text(z):
+    a = z["dier"]
+    if "bijv" in z:
+        a = f"{TAAL_VERBOGEN[z['bijv']]} {a}"
+    if z["soort"] == "kleur":
+        return f"de {z['dier']} is {z['kleur']}"
+    if z["soort"] == "plaats":
+        return f"de {a} {z['werk']} {z['waar']} de {z['ding']}"
+    return f"de {a} {z['werk']}"
+
+
+def _language(depth, t):
+    if depth >= 11:
+        # building: the words of one sentence, shuffled
+        z = _sentence(8 if depth >= 12 else 6, t, set())   # 12: with an adjective
+        text = _sentence_text(z)
+        words = text.split()
+        order = list(range(len(words)))
+        for i in range(len(order) - 1, 0, -1):
+            j = t.integer(0, i); order[i], order[j] = order[j], order[i]
+        shuffled = [words[i] for i in order]
+        if shuffled == words:
+            shuffled = shuffled[::-1]
+        problem = "woorden: " + " ".join(shuffled) + "\nmaak de zin"
+        return problem, text, text
+    n = 1 if depth <= 4 else 2 if depth <= 6 else 3
+    used = set()
+    zs = [_sentence(depth, t, used) for _ in range(n)]
+    if depth >= 9:
+        # the last sentence stays bare so a reference ("hij is …") can add
+        # to it
+        zs[-1] = _sentence(6, t, used)
+    lines = [_sentence_text(z) for z in zs]
+    ref = None
+    if depth >= 9:
+        # a reference: "hij" or "daar" about the sentence before it — only
+        # where it adds something (no colour yet), with fresh words
+        z = zs[-1]
+        vrij = [x for x in ("zit", "ligt", "staat", "hangt", "wacht") if x not in used]
+        if z["soort"] == "plaats" and vrij and t.integer(1, 2) == 1:
+            other = t.choice([x for x in TAAL_DIEREN if x not in used]); used.add(other)
+            v = t.choice(vrij); used.add(v)
+            lines.append(f"daar {v} ook de {other}")
+            ref = ("daar", other, z)
+        elif z["soort"] != "kleur" and "bijv" not in z:
+            c = t.choice([x for x in TAAL_KLEUREN if x not in used]); used.add(c)
+            lines.append(f"hij is {c}")
+            ref = ("hij", c, z)
+    # the question about one sentence (or the reference)
+    z = t.choice(zs)
+    if ref and t.integer(1, 2) == 1:
+        if ref[0] == "daar":
+            q, ans = f"waar {lines[-1].split()[1]} de {ref[1]}?", ref[2]["ding"]
+        else:
+            q, ans = f"welke kleur heeft de {ref[2]['dier']}?", ref[1]
+        why = lines[-1]
+    else:
+        if z["soort"] == "kleur":
+            opts = ["welke_kleur", "wat_is"]
+        else:
+            opts = ["wie", "wat_doet"]
+            if z["soort"] == "plaats": opts += ["waar", "wat_is_er"]
+            if "bijv" in z: opts += ["welke_kleur"]
+        kind = t.choice(opts)
+        v = z.get("werk")
+        if kind == "wie":
+            q, ans = f"wie {v}?", z["dier"]
+        elif kind == "wat_doet":
+            q, ans = f"wat doet de {z['dier']}?", v
+        elif kind == "waar":
+            q, ans = f"waar {v} de {z['dier']}?", z["ding"]
+        elif kind == "wat_is_er":
+            q, ans = f"wat {v} {z['waar']} de {z['ding']}?", z["dier"]
+        elif kind == "welke_kleur":
+            q, ans = f"welke kleur heeft de {z['dier']}?", z.get("kleur") or z["bijv"]
+        else:
+            q, ans = f"wat is {z['kleur']}?", z["dier"]
+        why = _sentence_text(z)
+    problem = "\n".join(lines) + "\n" + q
+    working = f"{why} ; {ans}" if n > 1 or ref else ans
+    return problem, ans, working
+
+
 _MAKERS = {"rekenen": _arithmetic, "puzzel": _row, "code": _code,
            "geheugen": _memory, "logica": _logic, "volgorde": _order,
-           "tekst": _text}
+           "tekst": _text, "zeggen": _saying, "taal": _language}
 
 
 # --- the conversational wrapper (13 Aug 2026) --------------------------------

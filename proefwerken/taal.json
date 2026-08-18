@@ -1,0 +1,2166 @@
+{
+ "naam": "taal",
+ "beschrijving": "De negende familie (18 aug 2026): begrijpen (zinnetjes uit een vast woordenboek van dieren, dingen, kleuren en werkwoorden, met een vraag), verwijzen (hij, daar; vanaf 9) en maken (de zin uit geschudde woorden; vanaf 11). Nagekeken als tekst. Diepte 1 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Vastgelegd vóór de knip na run 7.",
+ "opgaven": [
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de beer wacht\nwie wacht?",
+   "oplossing": "beer"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de vis springt\nwie springt?",
+   "oplossing": "vis"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de koe zit\nwat doet de koe?",
+   "oplossing": "zit"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de hond staat\nwie staat?",
+   "oplossing": "hond"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de haas slaapt\nwat doet de haas?",
+   "oplossing": "slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de aap zit\nwie zit?",
+   "oplossing": "aap"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de beer hangt\nwat doet de beer?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de kat springt\nwie springt?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de uil kijkt\nwie kijkt?",
+   "oplossing": "uil"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de aap ligt\nwat doet de aap?",
+   "oplossing": "ligt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de eend kijkt\nwie kijkt?",
+   "oplossing": "eend"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de kat loopt\nwie loopt?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de aap loopt\nwat doet de aap?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de haas rent\nwat doet de haas?",
+   "oplossing": "rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de kip hangt\nwie hangt?",
+   "oplossing": "kip"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de hond zit\nwie zit?",
+   "oplossing": "hond"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de geit springt\nwie springt?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de koe wacht\nwat doet de koe?",
+   "oplossing": "wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de koe slaapt\nwat doet de koe?",
+   "oplossing": "slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de wolf hangt\nwie hangt?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de hond staat\nwat doet de hond?",
+   "oplossing": "staat"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de kip kijkt\nwie kijkt?",
+   "oplossing": "kip"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de vogel ligt\nwat doet de vogel?",
+   "oplossing": "ligt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de haas ligt\nwat doet de haas?",
+   "oplossing": "ligt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de vogel loopt\nwat doet de vogel?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de eend loopt\nwat doet de eend?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de hond kijkt\nwat doet de hond?",
+   "oplossing": "kijkt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de egel loopt\nwie loopt?",
+   "oplossing": "egel"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de egel springt\nwat doet de egel?",
+   "oplossing": "springt"
+  },
+  {
+   "familie": "taal",
+   "graad": 1,
+   "opgave": "de wolf hangt\nwat doet de wolf?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de koe is rood\nwelke kleur heeft de koe?",
+   "oplossing": "rood"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de aap zit onder de brug\nwie zit?",
+   "oplossing": "aap"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de vogel hangt onder de steen\nwat doet de vogel?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de egel staat achter de weg\nwat doet de egel?",
+   "oplossing": "staat"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de egel hangt\nwat doet de egel?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de aap is groen\nwat is groen?",
+   "oplossing": "aap"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de vogel zit naast de steen\nwaar zit de vogel?",
+   "oplossing": "steen"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de koe is groen\nwat is groen?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de uil ligt\nwie ligt?",
+   "oplossing": "uil"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de vis is zwart\nwelke kleur heeft de vis?",
+   "oplossing": "zwart"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de muis slaapt\nwie slaapt?",
+   "oplossing": "muis"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de wolf rent\nwie rent?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de koe loopt\nwat doet de koe?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de eend rent\nwat doet de eend?",
+   "oplossing": "rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de beer staat\nwie staat?",
+   "oplossing": "beer"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de hond wacht\nwat doet de hond?",
+   "oplossing": "wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de muis rent achter de kast\nwat rent achter de kast?",
+   "oplossing": "muis"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de vis kijkt\nwat doet de vis?",
+   "oplossing": "kijkt"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de vos slaapt op de weg\nwat doet de vos?",
+   "oplossing": "slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de muis is wit\nwat is wit?",
+   "oplossing": "muis"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de uil is rood\nwelke kleur heeft de uil?",
+   "oplossing": "rood"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de uil ligt\nwat doet de uil?",
+   "oplossing": "ligt"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de vogel kijkt onder de steen\nwie kijkt?",
+   "oplossing": "vogel"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de uil slaapt in de bank\nwat slaapt in de bank?",
+   "oplossing": "uil"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de vogel is zwart\nwat is zwart?",
+   "oplossing": "vogel"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de eend loopt\nwat doet de eend?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de eend is rood\nwat is rood?",
+   "oplossing": "eend"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de kip springt in de tuin\nwaar springt de kip?",
+   "oplossing": "tuin"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de vis slaapt onder de brug\nwat doet de vis?",
+   "oplossing": "slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 2,
+   "opgave": "de muis kijkt onder de bank\nwie kijkt?",
+   "oplossing": "muis"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de eend is grijs\nwat is grijs?",
+   "oplossing": "eend"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de geit is grijs\nwat is grijs?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de eend springt\nwat doet de eend?",
+   "oplossing": "springt"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de vis rent\nwie rent?",
+   "oplossing": "vis"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de egel hangt onder de doos\nwat hangt onder de doos?",
+   "oplossing": "egel"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de wolf is groen\nwelke kleur heeft de wolf?",
+   "oplossing": "groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de kip is rood\nwat is rood?",
+   "oplossing": "kip"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de koe kijkt\nwat doet de koe?",
+   "oplossing": "kijkt"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de kat loopt naast de brug\nwie loopt?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de egel rent\nwat doet de egel?",
+   "oplossing": "rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de kip is wit\nwat is wit?",
+   "oplossing": "kip"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de haas springt\nwat doet de haas?",
+   "oplossing": "springt"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de wolf is wit\nwat is wit?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de muis springt\nwat doet de muis?",
+   "oplossing": "springt"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de haas is bruin\nwat is bruin?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de eend zit\nwie zit?",
+   "oplossing": "eend"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de kat is rood\nwelke kleur heeft de kat?",
+   "oplossing": "rood"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de vogel loopt op de boot\nwat loopt op de boot?",
+   "oplossing": "vogel"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de haas is zwart\nwat is zwart?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de koe ligt\nwat doet de koe?",
+   "oplossing": "ligt"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de egel is zwart\nwat is zwart?",
+   "oplossing": "egel"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de geit is wit\nwat is wit?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de haas hangt voor de boom\nwat hangt voor de boom?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de vos staat\nwat doet de vos?",
+   "oplossing": "staat"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de haas zit\nwie zit?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de vis hangt op de stoel\nwaar hangt de vis?",
+   "oplossing": "stoel"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de vos hangt in de kar\nwat doet de vos?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de wolf slaapt in de doos\nwie slaapt?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de koe is geel\nwat is geel?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 3,
+   "opgave": "de geit is grijs\nwelke kleur heeft de geit?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de eend is bruin\nwelke kleur heeft de eend?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de eend springt achter de stoel\nwie springt?",
+   "oplossing": "eend"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de kip is blauw\nwelke kleur heeft de kip?",
+   "oplossing": "blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de aap zit naast de tafel\nwaar zit de aap?",
+   "oplossing": "tafel"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de vogel is grijs\nwelke kleur heeft de vogel?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de uil wacht\nwie wacht?",
+   "oplossing": "uil"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de wolf is bruin\nwelke kleur heeft de wolf?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de vogel ligt naast de mat\nwie ligt?",
+   "oplossing": "vogel"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de beer is geel\nwat is geel?",
+   "oplossing": "beer"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de vogel staat op de brug\nwat staat op de brug?",
+   "oplossing": "vogel"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de vis is blauw\nwat is blauw?",
+   "oplossing": "vis"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de egel loopt\nwat doet de egel?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de kat slaapt\nwat doet de kat?",
+   "oplossing": "slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de vogel is blauw\nwelke kleur heeft de vogel?",
+   "oplossing": "blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de wolf rent op de boom\nwat rent op de boom?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de kip loopt op de doos\nwaar loopt de kip?",
+   "oplossing": "doos"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de geit is groen\nwat is groen?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de muis is geel\nwelke kleur heeft de muis?",
+   "oplossing": "geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de geit slaapt achter de tafel\nwaar slaapt de geit?",
+   "oplossing": "tafel"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de koe is grijs\nwat is grijs?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de egel staat in de boot\nwat doet de egel?",
+   "oplossing": "staat"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de wolf springt onder de kast\nwat springt onder de kast?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de muis wacht\nwat doet de muis?",
+   "oplossing": "wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de eend springt\nwie springt?",
+   "oplossing": "eend"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de geit springt\nwie springt?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de wolf wacht\nwat doet de wolf?",
+   "oplossing": "wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de uil slaapt\nwat doet de uil?",
+   "oplossing": "slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de kip is groen\nwelke kleur heeft de kip?",
+   "oplossing": "groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de vis springt voor de boom\nwat doet de vis?",
+   "oplossing": "springt"
+  },
+  {
+   "familie": "taal",
+   "graad": 4,
+   "opgave": "de vos springt\nwie springt?",
+   "oplossing": "vos"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de wolf kijkt onder de vloer\nde koe staat\nwat kijkt onder de vloer?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de eend is blauw\nde vogel is wit\nwelke kleur heeft de eend?",
+   "oplossing": "blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de muis rent\nde koe wacht\nwie wacht?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de muis slaapt\nde wolf kijkt voor de boom\nwat kijkt voor de boom?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de muis is grijs\nde uil loopt onder de mat\nwelke kleur heeft de muis?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de vis wacht in de vloer\nde beer is wit\nwaar wacht de vis?",
+   "oplossing": "vloer"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de geit is zwart\nde vos is grijs\nwat is zwart?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de kat loopt naast de kar\nde vis springt\nwat loopt naast de kar?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de vis is zwart\nde aap staat\nwat is zwart?",
+   "oplossing": "vis"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de geit springt\nde wolf wacht\nwat doet de wolf?",
+   "oplossing": "wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de haas hangt\nde wolf rent\nwie hangt?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de hond springt\nde koe is zwart\nwat is zwart?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de koe wacht naast de stoel\nde wolf is wit\nwat wacht naast de stoel?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de kip staat onder de muur\nde vos is geel\nwie staat?",
+   "oplossing": "kip"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de kat is blauw\nde eend springt\nwat is blauw?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de beer rent\nde vos is bruin\nwie rent?",
+   "oplossing": "beer"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de haas is geel\nde wolf ligt\nwat is geel?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de vos rent voor de deur\nde hond staat\nwat rent voor de deur?",
+   "oplossing": "vos"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de wolf loopt naast de stoel\nde uil staat achter de boot\nwat doet de wolf?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de haas hangt in de boom\nde kat staat\nwie staat?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de haas loopt naast de boom\nde vis is wit\nwat is wit?",
+   "oplossing": "vis"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de uil is bruin\nde koe kijkt\nwelke kleur heeft de uil?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de geit ligt onder de mat\nde kat rent\nwat doet de kat?",
+   "oplossing": "rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de vogel wacht in de vloer\nde haas kijkt op de bank\nwat wacht in de vloer?",
+   "oplossing": "vogel"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de aap kijkt in de boot\nde koe is groen\nwat doet de aap?",
+   "oplossing": "kijkt"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de kat rent onder de deur\nde kip loopt\nwie loopt?",
+   "oplossing": "kip"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de egel zit\nde eend loopt in de boot\nwie zit?",
+   "oplossing": "egel"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de egel is blauw\nde vis is grijs\nwelke kleur heeft de vis?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de vis is wit\nde egel is groen\nwat is groen?",
+   "oplossing": "egel"
+  },
+  {
+   "familie": "taal",
+   "graad": 5,
+   "opgave": "de kip is rood\nde eend springt voor de bank\nwelke kleur heeft de kip?",
+   "oplossing": "rood"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de uil zit naast de doos\nde koe hangt\nwie hangt?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de uil hangt\nde vis staat\nwat doet de uil?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de aap staat achter de stoel\nde beer is bruin\nwelke kleur heeft de beer?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de beer wacht onder de steen\nde vogel staat\nwat doet de beer?",
+   "oplossing": "wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de geit loopt\nde wolf slaapt achter de vloer\nwaar slaapt de wolf?",
+   "oplossing": "vloer"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de wolf zit\nde haas loopt onder de tuin\nwat doet de wolf?",
+   "oplossing": "zit"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de uil is wit\nde vis is zwart\nwelke kleur heeft de vis?",
+   "oplossing": "zwart"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de aap is geel\nde wolf is grijs\nwelke kleur heeft de aap?",
+   "oplossing": "geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de beer slaapt\nde uil rent naast de weg\nwat doet de beer?",
+   "oplossing": "slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de haas is groen\nde egel kijkt\nwelke kleur heeft de haas?",
+   "oplossing": "groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de muis is wit\nde vis is rood\nwelke kleur heeft de muis?",
+   "oplossing": "wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de koe is grijs\nde egel zit naast de bank\nwat zit naast de bank?",
+   "oplossing": "egel"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de vogel wacht\nde egel rent onder de stoel\nwat doet de vogel?",
+   "oplossing": "wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de geit zit\nde beer slaapt\nwat doet de beer?",
+   "oplossing": "slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de koe loopt\nde kip is grijs\nwat doet de koe?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de beer hangt achter de tafel\nde geit slaapt\nwie slaapt?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de kat is wit\nde eend is grijs\nwelke kleur heeft de kat?",
+   "oplossing": "wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de haas is rood\nde vos zit onder de vloer\nwat is rood?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de haas springt\nde uil zit\nwie springt?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de uil is wit\nde aap slaapt\nwat is wit?",
+   "oplossing": "uil"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de egel kijkt onder de tafel\nde muis springt\nwie springt?",
+   "oplossing": "muis"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de muis loopt\nde kip ligt achter de mat\nwat doet de muis?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de hond wacht achter de tuin\nde kip is groen\nwat is groen?",
+   "oplossing": "kip"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de egel is grijs\nde wolf hangt\nwat is grijs?",
+   "oplossing": "egel"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de beer kijkt\nde geit wacht\nwie kijkt?",
+   "oplossing": "beer"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de hond is rood\nde koe is groen\nwat is rood?",
+   "oplossing": "hond"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de muis hangt achter de stoel\nde hond is grijs\nwat doet de muis?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de koe ligt\nde kat springt\nwat doet de kat?",
+   "oplossing": "springt"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de vis hangt\nde egel is wit\nwat is wit?",
+   "oplossing": "egel"
+  },
+  {
+   "familie": "taal",
+   "graad": 6,
+   "opgave": "de kat loopt voor de kast\nde koe hangt\nwie hangt?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de bruine muis rent onder de kast\nde kat is rood\nde gele eend zit voor de tuin\nwat doet de eend?",
+   "oplossing": "zit"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de witte uil slaapt\nde rode kat ligt\nde grijze kip wacht\nwelke kleur heeft de kip?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de vos is blauw\nde uil is zwart\nde gele kat staat achter de muur\nwelke kleur heeft de uil?",
+   "oplossing": "zwart"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de koe is bruin\nde blauwe kat rent\nde witte egel slaapt op de bank\nwie rent?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de witte vis ligt\nde groene kip loopt onder de mat\nde vogel is geel\nwat is geel?",
+   "oplossing": "vogel"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de gele koe rent naast de weg\nde groene hond slaapt op de mat\nde vogel is grijs\nwelke kleur heeft de vogel?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de vos is bruin\nde kat is blauw\nde gele hond rent\nwat doet de hond?",
+   "oplossing": "rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de kip is bruin\nde vos is blauw\nde witte vis loopt\nwat is blauw?",
+   "oplossing": "vos"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de bruine wolf ligt\nde blauwe vos kijkt achter de weg\nde eend is grijs\nwat kijkt achter de weg?",
+   "oplossing": "vos"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de uil is geel\nde zwarte eend wacht naast de deur\nde rode geit staat\nwat is geel?",
+   "oplossing": "uil"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de egel is grijs\nde muis is groen\nde kat is rood\nwat is groen?",
+   "oplossing": "muis"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de bruine wolf staat\nde witte eend loopt\nde zwarte vis springt\nwat doet de eend?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de witte geit ligt\nde gele hond springt voor de kast\nde bruine kat slaapt\nwat doet de hond?",
+   "oplossing": "springt"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de bruine geit hangt\nde witte vogel rent onder de doos\nde blauwe vis ligt in de tuin\nwaar rent de vogel?",
+   "oplossing": "doos"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de beer is rood\nde grijze hond slaapt in de boom\nde bruine aap zit\nwaar slaapt de hond?",
+   "oplossing": "boom"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de witte egel loopt\nde vis is bruin\nde blauwe aap staat\nwat doet de egel?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de haas is blauw\nde bruine beer rent voor de kar\nde zwarte geit kijkt\nwelke kleur heeft de geit?",
+   "oplossing": "zwart"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de bruine kip hangt\nde beer is geel\nde haas is zwart\nwelke kleur heeft de haas?",
+   "oplossing": "zwart"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de zwarte haas hangt achter de tafel\nde wolf is geel\nde bruine geit springt\nwie springt?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de grijze uil staat onder de kar\nde bruine hond springt\nde blauwe vos wacht\nwelke kleur heeft de vos?",
+   "oplossing": "blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de beer is grijs\nde rode geit loopt\nde groene aap rent\nwelke kleur heeft de beer?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de vogel is geel\nde bruine muis ligt onder de weg\nde blauwe egel zit naast de brug\nwat ligt onder de weg?",
+   "oplossing": "muis"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de rode beer loopt\nde uil is grijs\nde wolf is bruin\nwie loopt?",
+   "oplossing": "beer"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de beer is rood\nde vis is grijs\nde haas is bruin\nwelke kleur heeft de vis?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de witte kip staat onder de bank\nde zwarte vogel zit\nde bruine hond wacht op de muur\nwat staat onder de bank?",
+   "oplossing": "kip"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de rode eend loopt\nde groene haas zit\nde gele kat springt\nwat doet de haas?",
+   "oplossing": "zit"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de bruine muis rent\nde blauwe haas wacht\nde witte vis slaapt onder de tuin\nwelke kleur heeft de muis?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de witte muis zit\nde grijze haas rent onder de bank\nde rode uil slaapt op de tafel\nwie rent?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de bruine muis wacht\nde geit is rood\nde groene eend rent op de stoel\nwat doet de muis?",
+   "oplossing": "wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 7,
+   "opgave": "de gele kip loopt in de mat\nde grijze hond springt onder de vloer\nde beer is wit\nwat doet de kip?",
+   "oplossing": "loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de gele muis ligt onder de bank\nde groene beer rent\nde haas is blauw\nwelke kleur heeft de haas?",
+   "oplossing": "blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de geit is wit\nde hond is blauw\nde bruine vos hangt voor de boom\nwat hangt voor de boom?",
+   "oplossing": "vos"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de blauwe kip hangt naast de mat\nde vos is bruin\nde rode vogel springt\nwat doet de vogel?",
+   "oplossing": "springt"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de gele vogel loopt\nde rode hond rent\nde witte koe staat achter de deur\nwie staat?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de groene koe staat achter de stoel\nde bruine kip kijkt\nde aap is geel\nwat staat achter de stoel?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de grijze aap kijkt\nde blauwe geit springt in de steen\nde zwarte koe wacht naast de muur\nwelke kleur heeft de aap?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de rode kip rent\nde zwarte hond hangt op de deur\nde groene egel kijkt\nwat doet de hond?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de vos is zwart\nde grijze vogel kijkt naast de stoel\nde witte geit loopt op de steen\nwaar kijkt de vogel?",
+   "oplossing": "stoel"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de groene wolf staat\nde uil is bruin\nde zwarte muis kijkt naast de boom\nwelke kleur heeft de uil?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de witte kat rent onder de boom\nde blauwe vis ligt\nde gele hond hangt\nwat rent onder de boom?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de egel is grijs\nde witte vis wacht op de weg\nde wolf is geel\nwat is grijs?",
+   "oplossing": "egel"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de blauwe aap slaapt onder de steen\nde kat is geel\nde witte vis ligt onder de boom\nwelke kleur heeft de kat?",
+   "oplossing": "geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de zwarte beer zit achter de bank\nde witte eend kijkt onder de kast\nde grijze egel staat\nwat doet de beer?",
+   "oplossing": "zit"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de haas is zwart\nde bruine vogel loopt\nde witte hond zit onder de brug\nwelke kleur heeft de hond?",
+   "oplossing": "wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de hond is wit\nde blauwe vogel hangt naast de stoel\nde kat is bruin\nwelke kleur heeft de kat?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de blauwe kip staat achter de kar\nde bruine muis springt\nde groene koe rent onder de steen\nwat doet de muis?",
+   "oplossing": "springt"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de haas is rood\nde gele geit zit op de brug\nde bruine vogel springt op de boot\nwie springt?",
+   "oplossing": "vogel"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de zwarte kip staat achter de doos\nde geit is blauw\nde witte uil kijkt in de steen\nwie kijkt?",
+   "oplossing": "uil"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de zwarte koe springt\nde gele kat ligt voor de bank\nde witte kip kijkt op de kar\nwat ligt voor de bank?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de gele muis rent\nde rode haas staat naast de bank\nde koe is wit\nwat doet de muis?",
+   "oplossing": "rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de aap is blauw\nde vogel is zwart\nde witte geit wacht onder de kar\nwelke kleur heeft de aap?",
+   "oplossing": "blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de blauwe kip rent\nde gele muis zit onder de steen\nde koe is bruin\nwat is bruin?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de gele vis staat naast de mat\nde bruine koe zit in de boot\nde aap is grijs\nwaar staat de vis?",
+   "oplossing": "mat"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de koe is geel\nde kat is rood\nde groene wolf wacht\nwelke kleur heeft de koe?",
+   "oplossing": "geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de bruine vis staat op de bank\nde grijze vos ligt achter de kast\nde vogel is wit\nwelke kleur heeft de vis?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de beer is blauw\nde grijze vos wacht voor de tuin\nde kip is geel\nwie wacht?",
+   "oplossing": "vos"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de rode muis wacht op de stoel\nde witte egel ligt\nde kat is zwart\nwelke kleur heeft de kat?",
+   "oplossing": "zwart"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de rode aap wacht\nde groene haas staat\nde blauwe koe zit in de doos\nwat zit in de doos?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de bruine eend staat\nde groene wolf rent in de kar\nde zwarte kip slaapt onder de boom\nwat rent in de kar?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 8,
+   "opgave": "de bruine haas rent achter de muur\nde groene vos hangt achter de mat\nde gele vis springt onder de steen\nwelke kleur heeft de haas?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de bruine kip springt op de weg\nde witte eend loopt\nde kat is zwart\nwaar springt de kip?",
+   "oplossing": "weg"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de rode vis loopt in de doos\nde grijze eend springt\nde beer ligt achter de mat\nhij is blauw\nwelke kleur heeft de eend?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de grijze eend loopt op de kar\nde zwarte vis hangt\nde koe is blauw\nwat is blauw?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de zwarte vogel rent onder de steen\nde gele eend zit in de kar\nde egel staat voor de tafel\nhij is wit\nwelke kleur heeft de egel?",
+   "oplossing": "wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de grijze wolf ligt\nde kip is rood\nde koe is zwart\nwat is rood?",
+   "oplossing": "kip"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de rode koe kijkt\nde hond is blauw\nde kat hangt naast de boot\nhij is grijs\nwelke kleur heeft de kat?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de vos is geel\nde witte uil hangt onder de stoel\nde haas zit\nhij is groen\nwelke kleur heeft de haas?",
+   "oplossing": "groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de geit is geel\nde grijze haas zit\nde koe is bruin\nwat is geel?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de kip is geel\nde bruine muis kijkt\nde vos is groen\nwelke kleur heeft de muis?",
+   "oplossing": "bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de bruine wolf springt\nde gele uil hangt voor de boom\nde beer is grijs\nwelke kleur heeft de beer?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de wolf is grijs\nde zwarte eend staat in de muur\nde kat hangt in de mat\ndaar ligt ook de vogel\nwat is grijs?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de witte wolf ligt\nde blauwe kat kijkt onder de bank\nde egel is zwart\nwie kijkt?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de egel is grijs\nde bruine kat rent op de vloer\nde muis is blauw\nwie rent?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de witte eend slaapt achter de deur\nde kat is grijs\nde aap ligt\nhij is geel\nwat doet de aap?",
+   "oplossing": "ligt"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de rode eend wacht in de vloer\nde grijze kip staat\nde vos is bruin\nwelke kleur heeft de eend?",
+   "oplossing": "rood"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de blauwe kat hangt naast de kar\nde bruine egel staat onder de kast\nde haas loopt achter de tuin\ndaar zit ook de hond\nwaar zit de hond?",
+   "oplossing": "tuin"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de groene haas staat in de boom\nde bruine koe wacht\nde vogel is geel\nwelke kleur heeft de vogel?",
+   "oplossing": "geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de grijze kat rent voor de boom\nde aap is blauw\nde vis is wit\nwat is blauw?",
+   "oplossing": "aap"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de blauwe egel staat onder de bank\nde gele wolf hangt\nde muis is zwart\nwelke kleur heeft de muis?",
+   "oplossing": "zwart"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de witte beer rent in de kast\nde gele vos wacht\nde koe ligt\nhij is grijs\nwelke kleur heeft de koe?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de bruine wolf ligt\nde gele kip kijkt\nde aap springt in de bank\nhij is groen\nwelke kleur heeft de aap?",
+   "oplossing": "groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de beer is wit\nde rode vogel zit achter de deur\nde egel is groen\nwelke kleur heeft de egel?",
+   "oplossing": "groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de hond is rood\nde uil is groen\nde haas is grijs\nwelke kleur heeft de haas?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de muis is geel\nde hond is rood\nde haas staat\nhij is wit\nwelke kleur heeft de muis?",
+   "oplossing": "geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de zwarte aap slaapt\nde vos is wit\nde kip is grijs\nwat is wit?",
+   "oplossing": "vos"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de grijze uil staat\nde groene kat hangt\nde beer is rood\nwelke kleur heeft de beer?",
+   "oplossing": "rood"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de aap is zwart\nde groene kip hangt\nde hond zit achter de vloer\ndaar wacht ook de koe\nwaar wacht de koe?",
+   "oplossing": "vloer"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de rode eend zit\nde grijze kip slaapt voor de bank\nde uil is zwart\nwelke kleur heeft de kip?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de gele kat slaapt\nde zwarte geit hangt onder de vloer\nde beer is rood\nwat doet de geit?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 9,
+   "opgave": "de vos is wit\nde vis is rood\nde uil is geel\nwelke kleur heeft de vis?",
+   "oplossing": "rood"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de bruine vis zit\nde gele beer slaapt onder de bank\nde geit staat op de muur\nhij is groen\nwelke kleur heeft de geit?",
+   "oplossing": "groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de vos is zwart\nde groene kat zit\nde wolf rent achter de weg\ndaar staat ook de uil\nwaar rent de wolf?",
+   "oplossing": "weg"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de rode koe slaapt achter de tafel\nde haas is grijs\nde vos kijkt voor de deur\ndaar wacht ook de egel\nwaar wacht de egel?",
+   "oplossing": "deur"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de zwarte geit zit\nde gele haas hangt\nde aap rent\nhij is groen\nwelke kleur heeft de aap?",
+   "oplossing": "groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de rode koe kijkt in de tafel\nde zwarte eend springt naast de deur\nde vos wacht\nhij is groen\nwelke kleur heeft de vos?",
+   "oplossing": "groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de zwarte egel zit\nde rode muis slaapt in de stoel\nde vogel kijkt\nhij is blauw\nwat doet de vogel?",
+   "oplossing": "kijkt"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de aap is geel\nde grijze haas loopt\nde muis wacht\nhij is groen\nwelke kleur heeft de haas?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de blauwe beer loopt achter de mat\nde zwarte kat slaapt onder de kar\nde vogel is rood\nwie slaapt?",
+   "oplossing": "kat"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de uil is bruin\nde witte aap kijkt\nde kat ligt in de boot\ndaar wacht ook de egel\nwelke kleur heeft de aap?",
+   "oplossing": "wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de vos is blauw\nde grijze hond slaapt op de deur\nde vogel ligt\nhij is wit\nwat is blauw?",
+   "oplossing": "vos"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de geit is zwart\nde haas is blauw\nde koe is geel\nwat is blauw?",
+   "oplossing": "haas"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de bruine koe rent naast de vloer\nde rode vogel springt onder de bank\nde wolf zit onder de muur\nhij is blauw\nwelke kleur heeft de wolf?",
+   "oplossing": "blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de zwarte vis loopt in de stoel\nde kat is wit\nde muis is blauw\nwat is blauw?",
+   "oplossing": "muis"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de eend is groen\nde bruine koe ligt naast de mat\nde hond zit onder de doos\nhij is geel\nwelke kleur heeft de hond?",
+   "oplossing": "geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de geit is wit\nde rode muis springt in de deur\nde wolf is bruin\nwelke kleur heeft de geit?",
+   "oplossing": "wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de zwarte vogel slaapt op de vloer\nde bruine geit zit voor de tafel\nde haas is blauw\nwat zit voor de tafel?",
+   "oplossing": "geit"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de rode vis kijkt in de boot\nde grijze beer slaapt\nde vogel hangt\nhij is blauw\nwelke kleur heeft de vogel?",
+   "oplossing": "blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de groene vos ligt in de vloer\nde bruine eend zit op de weg\nde vis kijkt\nhij is grijs\nwelke kleur heeft de vis?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de witte uil kijkt\nde muis is blauw\nde aap springt\nhij is geel\nwelke kleur heeft de aap?",
+   "oplossing": "geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de bruine kip staat\nde witte wolf loopt\nde hond wacht\nhij is blauw\nwelke kleur heeft de wolf?",
+   "oplossing": "wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de rode muis wacht\nde hond is groen\nde wolf is geel\nwat doet de muis?",
+   "oplossing": "wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de groene hond rent\nde witte wolf ligt\nde eend kijkt\nhij is geel\nwie ligt?",
+   "oplossing": "wolf"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de haas is rood\nde bruine uil ligt achter de tuin\nde geit springt\nhij is wit\nwie ligt?",
+   "oplossing": "uil"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de gele vis loopt in de mat\nde geit is zwart\nde koe springt\nhij is grijs\nwelke kleur heeft de koe?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de beer is grijs\nde witte vis hangt\nde muis kijkt\nhij is zwart\nwat is grijs?",
+   "oplossing": "beer"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de wolf is rood\nde gele hond ligt onder de doos\nde beer staat\nhij is grijs\nwelke kleur heeft de beer?",
+   "oplossing": "grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de groene vogel loopt op de stoel\nde grijze vis hangt\nde koe springt\nhij is bruin\nwie springt?",
+   "oplossing": "koe"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de gele vogel loopt naast de weg\nde witte kip ligt achter de tuin\nde uil is grijs\nwelke kleur heeft de kip?",
+   "oplossing": "wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de groene vogel rent\nde rode egel wacht\nde vis is zwart\nwat doet de vogel?",
+   "oplossing": "rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 10,
+   "opgave": "de bruine geit wacht onder de deur\nde gele vos hangt achter de kast\nde kip is grijs\nwat doet de vos?",
+   "oplossing": "hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: de is kip bruin\nmaak de zin",
+   "oplossing": "de kip is bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: is de geel geit\nmaak de zin",
+   "oplossing": "de geit is geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: hond de mat hangt achter de\nmaak de zin",
+   "oplossing": "de hond hangt achter de mat"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: is de grijs hond\nmaak de zin",
+   "oplossing": "de hond is grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: vloer onder de hond de loopt\nmaak de zin",
+   "oplossing": "de hond loopt onder de vloer"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: staat vos de\nmaak de zin",
+   "oplossing": "de vos staat"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: aap ligt de\nmaak de zin",
+   "oplossing": "de aap ligt"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: eend de stoel de in hangt\nmaak de zin",
+   "oplossing": "de eend hangt in de stoel"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: egel rood de is\nmaak de zin",
+   "oplossing": "de egel is rood"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: de springt beer de voor tuin\nmaak de zin",
+   "oplossing": "de beer springt voor de tuin"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: mat de wolf hangt de onder\nmaak de zin",
+   "oplossing": "de wolf hangt onder de mat"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: aap slaapt de\nmaak de zin",
+   "oplossing": "de aap slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: de uil achter ligt stoel de\nmaak de zin",
+   "oplossing": "de uil ligt achter de stoel"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: de egel wacht weg achter de\nmaak de zin",
+   "oplossing": "de egel wacht achter de weg"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: is groen egel de\nmaak de zin",
+   "oplossing": "de egel is groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: vos de slaapt\nmaak de zin",
+   "oplossing": "de vos slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: rent de de naast mat vis\nmaak de zin",
+   "oplossing": "de vis rent naast de mat"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: wolf naast staat stoel de de\nmaak de zin",
+   "oplossing": "de wolf staat naast de stoel"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: voor de kat de springt kast\nmaak de zin",
+   "oplossing": "de kat springt voor de kast"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: is de kat wit\nmaak de zin",
+   "oplossing": "de kat is wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: de kar onder beer de slaapt\nmaak de zin",
+   "oplossing": "de beer slaapt onder de kar"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: geel vos de is\nmaak de zin",
+   "oplossing": "de vos is geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: uil is de blauw\nmaak de zin",
+   "oplossing": "de uil is blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: wacht geit de\nmaak de zin",
+   "oplossing": "de geit wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: kip de kijkt\nmaak de zin",
+   "oplossing": "de kip kijkt"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: zit de beer\nmaak de zin",
+   "oplossing": "de beer zit"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: de staat kip\nmaak de zin",
+   "oplossing": "de kip staat"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: de loopt kat\nmaak de zin",
+   "oplossing": "de kat loopt"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: eend kijkt de\nmaak de zin",
+   "oplossing": "de eend kijkt"
+  },
+  {
+   "familie": "taal",
+   "graad": 11,
+   "opgave": "woorden: de in de bank slaapt aap\nmaak de zin",
+   "oplossing": "de aap slaapt in de bank"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: is koe grijs de\nmaak de zin",
+   "oplossing": "de koe is grijs"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: de zwart egel is\nmaak de zin",
+   "oplossing": "de egel is zwart"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: kat de is blauw\nmaak de zin",
+   "oplossing": "de kat is blauw"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: hangt kar groene de aap voor de\nmaak de zin",
+   "oplossing": "de groene aap hangt voor de kar"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: zwart de is aap\nmaak de zin",
+   "oplossing": "de aap is zwart"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: vos slaapt de blauwe\nmaak de zin",
+   "oplossing": "de blauwe vos slaapt"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: koe de blauwe onder muur staat de\nmaak de zin",
+   "oplossing": "de blauwe koe staat onder de muur"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: kip voor tafel de zwarte de hangt\nmaak de zin",
+   "oplossing": "de zwarte kip hangt voor de tafel"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: loopt voor kat gele de de boot\nmaak de zin",
+   "oplossing": "de gele kat loopt voor de boot"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: bruin vis de is\nmaak de zin",
+   "oplossing": "de vis is bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: boot de grijze de onder geit rent\nmaak de zin",
+   "oplossing": "de grijze geit rent onder de boot"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: groen is koe de\nmaak de zin",
+   "oplossing": "de koe is groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: de zit groene beer\nmaak de zin",
+   "oplossing": "de groene beer zit"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: blauwe kat de kijkt\nmaak de zin",
+   "oplossing": "de blauwe kat kijkt"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: is wit vis de\nmaak de zin",
+   "oplossing": "de vis is wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: bruin beer de is\nmaak de zin",
+   "oplossing": "de beer is bruin"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: de groene staat op geit de weg\nmaak de zin",
+   "oplossing": "de groene geit staat op de weg"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: staat blauwe wolf de\nmaak de zin",
+   "oplossing": "de blauwe wolf staat"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: onder steen aap groene ligt de de\nmaak de zin",
+   "oplossing": "de groene aap ligt onder de steen"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: vos witte de wacht\nmaak de zin",
+   "oplossing": "de witte vos wacht"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: koe zwarte de staat\nmaak de zin",
+   "oplossing": "de zwarte koe staat"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: de eend rent grijze\nmaak de zin",
+   "oplossing": "de grijze eend rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: koe rent de gele\nmaak de zin",
+   "oplossing": "de gele koe rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: rent groene muis de\nmaak de zin",
+   "oplossing": "de groene muis rent"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: uil de is groen\nmaak de zin",
+   "oplossing": "de uil is groen"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: muis de hangt blauwe\nmaak de zin",
+   "oplossing": "de blauwe muis hangt"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: de geel vogel is\nmaak de zin",
+   "oplossing": "de vogel is geel"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: wit de kat is\nmaak de zin",
+   "oplossing": "de kat is wit"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: steen de zwarte muis hangt de voor\nmaak de zin",
+   "oplossing": "de zwarte muis hangt voor de steen"
+  },
+  {
+   "familie": "taal",
+   "graad": 12,
+   "opgave": "woorden: de blauw is muis\nmaak de zin",
+   "oplossing": "de muis is blauw"
+  }
+ ]
+}

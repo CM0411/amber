@@ -138,6 +138,14 @@ def room_for(depth, family=None, window=512):
         # (400 at grade 3, 800 at grade 5); the ceiling still guards the
         # window.
         return min(window - 192, 200 * depth - 200)
+    if family == "taal":
+        # Language (18 Aug 2026): a sentence and a word, or the built
+        # sentence — under 60 characters everywhere. Room 48 + 4·d.
+        return min(window - 112, 48 + 4 * depth)
+    if family == "zeggen":
+        # Saying (18 Aug 2026): one or two short lines of reasoning and the
+        # sentence — ~120 characters at depth 12. Room 64 + 8·d.
+        return min(window - 112, 64 + 8 * depth)
     if family == "tekst":
         # Text (18 Aug 2026): one verdict per word plus the count, and from
         # depth 8 the operated list first — ~230 characters at depth 12

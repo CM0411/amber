@@ -247,6 +247,19 @@ check("every family has an ample supply at the highest grade",
       all(len({tasks.make(f, 5, n).problem for n in range(3000)}) > 1000
           for f in tasks.FAMILIES))
 
+# --- answers in words (18 Aug 2026: the families zeggen and taal) -------------
+print()
+print("--- answers in words ---")
+_w = tasks.Task(family="taal", grade=1, number=0, problem="de kat zit op de mat\nwie zit?",
+                solution="kat", working="kat")
+check("a solution without a number is checked on the last piece, exactly",
+      _w.check("kat") and _w.check("de kat zit ; kat") and _w.check("Kat ")
+      and not _w.check("de kat") and not _w.check("mat") and not _w.check("kat 1"))
+_n = tasks.Task(family="rekenen", grade=1, number=0, problem="3 + 4", solution="7", working=None)
+check("… and a numeric solution is still the last number, unchanged",
+      _n.check("3 + 4 = 7") and _n.check("7") and not _n.check("kat")
+      and not _n.check("7 ; 8"))
+
 print()
 print("=" * 70)
 print(f"passed: {passed}    failed: {failed}")
