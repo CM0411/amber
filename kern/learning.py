@@ -137,6 +137,16 @@ def room_for(depth, family=None, window=512):
         # (400 at grade 3, 800 at grade 5); the ceiling still guards the
         # window.
         return min(window - 192, 200 * depth - 200)
+    if family == "tekst":
+        # Text (18 Aug 2026): one verdict per word plus the count, and from
+        # depth 8 the operated list first — ~230 characters at depth 12
+        # (eleven words), ~300 at 24. Room 48 + 20·d.
+        return min(window - 112, 48 + 20 * depth)
+    if family == "volgorde":
+        # Order (18 Aug 2026): the working lists the chain (n−1 short
+        # rules), the order line and the answer — ~110 characters at depth
+        # 12 (8 steps), ~200 at 24. Room 48 + 12·d.
+        return min(window - 112, 48 + 12 * depth)
     if family == "logica":
         # Logic (17 Aug 2026): the working is the derivation chain — one
         # short line per link (`als d en u dan w: w = 1`, ~25 characters)

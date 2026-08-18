@@ -67,6 +67,8 @@ wrong = []
 for depth in range(2, 13):
     for n in range(60):
         t = world.make("rekenen", depth, n)
+        if "wat is x?" in t.problem:
+            continue                      # the equation brick has its own judge below
         if str(eval(_unwrap(t.problem))) != t.solution:
             wrong.append(t.problem)
 check("660 expressions match what Python itself computes",
@@ -543,7 +545,8 @@ for depth in range(1, 11):
         t = world.make("rekenen", depth, n)
         if t is None:
             continue
-        is_wrapped = t.problem.endswith("?") or t.problem.startswith("Reken")
+        is_wrapped = ((t.problem.endswith("?") or t.problem.startswith("Reken"))
+                      and "wat is x?" not in t.problem)     # equations end in "?" too
         if is_wrapped and not 2 <= depth <= 8:
             outside += 1
         if not is_wrapped:
@@ -663,7 +666,7 @@ check("outside depth 4-10 no teen multiplications with a tail appear",
 # before: this checksum was taken on 16 Aug 2026 before the form existed
 # (300 numbers per depth 1-12, minus the split numbers).
 _h = hashlib.sha256()
-kc_numbers = 0
+kc_numbers = vgl_numbers = 0
 for depth in range(1, 13):
     for n in range(300):
         seed = world._seed_of("rekenen", depth, n)
@@ -671,14 +674,22 @@ for depth in range(1, 13):
         if world.KEERC_MIN <= depth <= world.KEERC_MAX and k.integer(1, 5) == 1:
             kc_numbers += 1
             continue
+        # the equation brick (18 Aug 2026) takes one in four of the rest
+        if (world.VGL_MIN <= depth <= world.VGL_MAX
+                and tasks.Picker(tasks._mix(seed ^ world.VGL_SEED)).integer(1, 4) == 1):
+            vgl_numbers += 1
+            continue
         t = world.make("rekenen", depth, n)
         p = t.problem if t else ""
         w = t.working if t else ""
         s = t.solution if t else ""
         _h.update(f"{depth}|{n}|{p}|{w}|{s}\n".encode())
+# 5f4eee0d46fcfe25 was the sum over the KEERC complement (16 Aug 2026);
+# taken again over the complement of both splits on 18 Aug 2026 before the
+# equation brick existed
 check("untouched arithmetic numbers depth 1-12 are bit for bit the old world",
-      _h.hexdigest()[:16] == "5f4eee0d46fcfe25",
-      f"{_h.hexdigest()[:16]}, {kc_numbers} split numbers")
+      _h.hexdigest()[:16] == "9e6f98e443403dfe",
+      f"{_h.hexdigest()[:16]}, {kc_numbers} + {vgl_numbers} split numbers")
 
 # --- the long loop with a compact working (14 Aug 2026) ----------------------
 # The exam's loops run to twenty rounds; the wide working for those never
@@ -1053,8 +1064,8 @@ check("above 10 nearly every usable puzzle is a rule puzzle — the empty room i
 # question itself. Every asked name must be determined and agree.
 print()
 print("--- logica: the fifth family ---")
-check("the world's families are the measured three, geheugen, logica — in that order",
-      world.FAMILIES == tasks.FAMILIES + ("geheugen", "logica"))
+check("the world's families are the measured three, geheugen, logica, … — in that order",
+      world.FAMILIES[:5] == tasks.FAMILIES + ("geheugen", "logica"))
 check("the fence for logica stands at 12 or higher", world.max_depth("logica") >= 12)
 
 
@@ -1129,6 +1140,233 @@ check("negation enters at depth 3, en/of at depth 5",
       lg_not[2] == 0 and lg_not[3] > 0 and lg_andor[4] == 0 and lg_andor[5] > 0)
 check("a logica task is the same task every time",
       world.make("logica", 9, 4321) == world.make("logica", 9, 4321))
+
+# --- the equation brick (18 Aug 2026) -----------------------------------------
+# One in four plain arithmetic numbers at depth 3–20 becomes an equation to
+# undo. The judge: read the equation, solve it independently (all forms are
+# linear in x with a whole answer), compare; and the special splits (teen
+# multiplication, tail, wrapper) must be untouched — the counts above stay.
+print()
+print("--- the equation brick ---")
+_T = tasks.Task(family="rekenen", grade=1, number=0, problem="", solution="0")
+
+
+def _solve_eq(problem):
+    eq = problem.split("\n")[0].replace(" ", "")
+    left, right = eq.split("=")
+    def lin(expr):
+        # returns (a, b) with expr = a*x + b, for the forms the world writes
+        m = re.fullmatch(r"(\d+)\*\(x\+(\d+)\)", expr)
+        if m:
+            a, b = int(m[1]), int(m[2]); return a, a * b
+        a = b = 0
+        for sign, term in re.findall(r"([+-]?)([0-9x*]+)", expr):
+            sg = -1 if sign == "-" else 1
+            if term == "x":
+                a += sg
+            elif "*x" in term:
+                a += sg * int(term.replace("*x", ""))
+            else:
+                b += sg * int(term)
+        return a, b
+    a1, b1 = lin(left); a2, b2 = lin(right)
+    if a1 == a2:
+        return None
+    num, den = b2 - b1, a1 - a2
+    return num // den if num % den == 0 else None
+
+
+eq_seen = eq_bad = eq_share = 0
+eq_forms = {"een": 0, "twee": 0, "beide": 0, "haakjes": 0}
+for depth in range(3, 21):
+    for n in range(200):
+        t = world.make("rekenen", depth, n)
+        if t is None or "wat is x?" not in t.problem:
+            continue
+        eq_seen += 1
+        if _solve_eq(t.problem) != int(t.solution):
+            eq_bad += 1
+        head = t.problem.split("\n")[0]
+        if "(" in head:
+            eq_forms["haakjes"] += 1
+        elif head.count("x") == 2:
+            eq_forms["beide"] += 1
+        elif "*" in head and ("+" in head or "-" in head):
+            eq_forms["twee"] += 1
+        else:
+            eq_forms["een"] += 1
+check("equations: an independent solver finds the same x every time",
+      eq_seen > 500 and eq_bad == 0, f"{eq_bad} disagreements of {eq_seen}")
+check("all four equation forms exist (one step, two steps, x on both sides, parentheses)",
+      all(v > 20 for v in eq_forms.values()), str(eq_forms))
+check("outside depth 3–20 no equations appear",
+      not any("wat is x?" in (world.make("rekenen", d, n) or _T).problem
+              for d in (1, 2, 21, 22) for n in range(150)))
+
+# --- volgorde: the sixth family (18 Aug 2026) ----------------------------------
+# Steps in a scrambled numbering, rules that fix one order, a place asked.
+# The judge: an independent topological sorter that demands exactly one
+# order and reads the question itself.
+print()
+print("--- volgorde: the sixth family ---")
+check("the world's families are the measured three, geheugen, logica, volgorde, … — in that order",
+      world.FAMILIES[:6] == tasks.FAMILIES + ("geheugen", "logica", "volgorde"))
+check("the fence for volgorde stands at 12 or higher", world.max_depth("volgorde") >= 12)
+
+
+def _sort_order(problem):
+    steps_line, rules_line, q = problem.split("\n")
+    labels = [int(x) for x in re.findall(r"(?:^|; )(\d+) ", steps_line[len("stappen: "):] + " ")]
+    n = len(labels)
+    before = set()                        # (a, b): a before b
+    for rule in rules_line[len("regels: "):].split(" ; "):
+        m = re.fullmatch(r"(\d+) na (\d+)", rule)
+        if m: before.add((int(m[2]), int(m[1]))); continue
+        m = re.fullmatch(r"(\d+) direct na (\d+)", rule)
+        if m: before.add((int(m[2]), int(m[1]))); continue
+        m = re.fullmatch(r"(\d+) voor (\d+)", rule)
+        if m: before.add((int(m[1]), int(m[2]))); continue
+        m = re.fullmatch(r"(\d+) tussen (\d+) en (\d+)", rule)
+        if m: before.add((int(m[2]), int(m[1]))); before.add((int(m[1]), int(m[3]))); continue
+        return None
+    # all topological orders (n ≤ 12, but the chain makes it one): count them
+    orders = []
+    def grow(done, left):
+        if len(orders) > 1:
+            return
+        if not left:
+            orders.append(list(done)); return
+        for x in sorted(left):
+            if all(a in done for a, b in before if b == x):
+                grow(done + [x], left - {x})
+    grow([], set(labels))
+    if len(orders) != 1:
+        return None
+    order = orders[0]
+    m = re.fullmatch(r"welke stap komt op plaats (\d+)\?", q)
+    if m: return order[int(m[1]) - 1]
+    m = re.fullmatch(r"op welke plaats komt stap (\d+)\?", q)
+    if m: return order.index(int(m[1])) + 1
+    return None
+
+
+_old_order_fence = world.MAX_DEPTH_PER.get("volgorde")
+world.MAX_DEPTH_PER["volgorde"] = 24
+vo_seen = vo_bad = vo_unfit = vo_room = 0
+vo_forms = {"voor": 0, "direct": 0, "tussen": 0, "plaats_van": 0}
+vo_first = {d: 0 for d in range(1, 25)}
+for depth in range(1, 25):
+    for n in range(150):
+        t = world.make("volgorde", depth, n)
+        vo_seen += 1
+        if _sort_order(t.problem) != int(t.solution):
+            vo_bad += 1
+        if " voor " in t.problem: vo_forms["voor"] += 1
+        if "direct na" in t.problem: vo_forms["direct"] += 1
+        if " tussen " in t.problem: vo_forms["tussen"] += 1
+        if "op welke plaats" in t.problem: vo_forms["plaats_van"] += 1
+        if depth < 4 and ("voor" in t.problem.split("\n")[1] or "direct" in t.problem):
+            vo_first[depth] += 1
+        if not world.fits(t, 1536 - 112):
+            vo_unfit += 1
+        if len(t.working) + 8 > _rf(depth, "volgorde", 1536):
+            vo_room += 1
+world.MAX_DEPTH_PER["volgorde"] = _old_order_fence
+check("3600 volgorde problems: exactly one order fits and the sorter lands on the same answer",
+      vo_seen == 3600 and vo_bad == 0, f"{vo_bad} disagreements")
+check("all rule forms and both question forms exist",
+      all(v > 100 for v in vo_forms.values()), str(vo_forms))
+check("below depth 4 only plain 'na' rules; the place question only from 6",
+      all(vo_first[d] == 0 for d in (1, 2, 3)))
+check("all volgorde problems fit window 1536; the writing room holds every working",
+      vo_unfit == 0 and vo_room == 0, f"{vo_unfit} unfit, {vo_room} too little room")
+check("a volgorde task is the same task every time",
+      world.make("volgorde", 9, 4321) == world.make("volgorde", 9, 4321))
+
+# --- tekst: the seventh family (18 Aug 2026) -----------------------------------
+# Patterns in words, counted. The judge: Python's own string operations on
+# the text — the operation first (reverse, sort, drop a letter), then the
+# question — must land on the same number.
+print()
+print("--- tekst: the seventh family ---")
+check("the world's families end with volgorde, tekst — appended, never inserted",
+      world.FAMILIES[5:] == ("volgorde", "tekst") and world.FAMILIES[:5] == tasks.FAMILIES + ("geheugen", "logica"))
+check("the fence for tekst stands at 12 or higher", world.max_depth("tekst") >= 12)
+check("the word list is fixed, lowercase a–z, without doubles",
+      len(world.TEXT_WORDS) >= 150 and len(set(world.TEXT_WORDS)) == len(world.TEXT_WORDS)
+      and all(w.isalpha() and w.islower() and w.isascii() for w in world.TEXT_WORDS))
+
+VOW = "aeiou"
+
+
+def _count_text(problem):
+    lines = problem.split("\n")
+    words = lines[0][len("woorden: "):].split()
+    q = lines[-1]
+    for op in lines[1:-1]:
+        if op == "keer elk woord om":
+            words = [w[::-1] for w in words]
+        elif op.startswith("zet de woorden op lengte"):
+            words = sorted(words, key=lambda w: (len(w), words.index(w)))
+        elif op.startswith("haal alle letters "):
+            L = op[len("haal alle letters "):].split()[0]
+            words = [w.replace(L, "") for w in words]
+        else:
+            return None
+    dbl = lambda w: any(a == b for a, b in zip(w, w[1:]))
+    m = re.fullmatch(r"hoeveel letters heeft (\S+)\?", q)
+    if m: return len(m[1])
+    m = re.fullmatch(r"hoeveel keer komt (\S) voor in (\S+)\?", q)
+    if m: return m[2].count(m[1])
+    m = re.fullmatch(r"de hoeveelste letter van (\S+) is de eerste (\S)\?", q)
+    if m: return m[1].index(m[2]) + 1
+    tests = {
+        "hoeveel woorden hebben een dubbele letter?": dbl,
+        "hoeveel woorden beginnen met een klinker?": lambda w: bool(w) and w[0] in VOW,
+        "hoeveel woorden hebben een even aantal letters?": lambda w: len(w) % 2 == 0,
+        "hoeveel woorden eindigen op en?": lambda w: w.endswith("en"),
+        "hoeveel woorden beginnen met een klinker en hebben een dubbele letter?": lambda w: bool(w) and w[0] in VOW and dbl(w),
+        "hoeveel woorden zijn een palindroom?": lambda w: len(w) > 1 and w == w[::-1],
+        "hoeveel woorden hebben meer klinkers dan medeklinkers?": lambda w: sum(c in VOW for c in w) > sum(c not in VOW for c in w),
+    }
+    if q in tests: return sum(bool(tests[q](w)) for w in words)
+    if q == "hoeveel letters heeft het langste woord?": return max(len(w) for w in words)
+    if q.startswith("het hoeveelste woord is het langste?"):
+        ls = [len(w) for w in words]; return ls.index(max(ls)) + 1
+    m = re.fullmatch(r"hoeveel keer komt (\S) voor in alle woorden samen\?", q)
+    if m: return sum(w.count(m[1]) for w in words)
+    return None
+
+
+_old_text_fence = world.MAX_DEPTH_PER.get("tekst")
+world.MAX_DEPTH_PER["tekst"] = 24
+tx_seen = tx_bad = tx_unfit = tx_room = 0
+tx_ops = {d: 0 for d in range(1, 25)}
+tx_forms = set()
+for depth in range(1, 25):
+    for n in range(150):
+        t = world.make("tekst", depth, n)
+        tx_seen += 1
+        if _count_text(t.problem) != int(t.solution):
+            tx_bad += 1
+        if len(t.problem.split("\n")) == 3:
+            tx_ops[depth] += 1
+        tx_forms.add(re.sub(r"(heeft |voor in |van |eerste |komt )[a-z]+", r"\1w",
+                            t.problem.split("\n")[-1]))
+        if not world.fits(t, 1536 - 112):
+            tx_unfit += 1
+        if len(t.working) + 8 > _rf(depth, "tekst", 1536):
+            tx_room += 1
+world.MAX_DEPTH_PER["tekst"] = _old_text_fence
+check("3600 tekst problems: Python's string operations land on the same number",
+      tx_seen == 3600 and tx_bad == 0, f"{tx_bad} disagreements")
+check("no operation before depth 8; from 8 about half of the problems have one",
+      all(tx_ops[d] == 0 for d in range(1, 8)) and all(tx_ops[d] > 40 for d in range(8, 25)))
+check("many question forms exist", len(tx_forms) >= 12, f"{len(tx_forms)} forms")
+check("all tekst problems fit window 1536; the writing room holds every working",
+      tx_unfit == 0 and tx_room == 0, f"{tx_unfit} unfit, {tx_room} too little room")
+check("a tekst task is the same task every time",
+      world.make("tekst", 9, 4321) == world.make("tekst", 9, 4321))
 
 # --- a sheet frozen for a wider window is skipped, not sat (17 Aug 2026) -----
 # venster2048.json holds rekenen 62–78 and code 32–40 for the day the window

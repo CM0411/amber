@@ -1,0 +1,2166 @@
+{
+ "naam": "volgorde",
+ "beschrijving": "De zesde taakfamilie (18 aug 2026): stappen in geschudde nummering, regels (na / voor / direct na / tussen) die precies één volgorde vastleggen, vraag naar een plaats of de plaats van een stap. Diepte 1 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Alles past op venster 1536. Vastgelegd vóór de knip als meetlat voor de volgorde-familie én als C-toets naast de andere bladen.",
+ "opgaven": [
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 tanden poetsen ; 2 brief schrijven ; 3 opstaan\nregels: 2 na 1 ; 2 na 3 ; 1 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 boodschappen doen ; 2 brief posten ; 3 tafel dekken\nregels: 3 na 1 ; 3 na 2 ; 2 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 jas aan ; 2 tanden poetsen ; 3 uitstappen\nregels: 2 na 1 ; 3 na 1 ; 2 na 3\nwelke stap komt op plaats 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 afwassen ; 2 opstaan ; 3 tafel dekken\nregels: 3 na 1 ; 1 na 2 ; 3 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 uitstappen ; 2 oven aan ; 3 deur op slot\nregels: 3 na 1 ; 3 na 2 ; 1 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 postzegel plakken ; 2 vuur maken ; 3 tent opzetten\nregels: 2 na 3 ; 1 na 2 ; 1 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 boodschappen doen ; 2 postzegel plakken ; 3 kaartje kopen\nregels: 2 na 3 ; 1 na 2 ; 1 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 kaartje kopen ; 2 afwas doen ; 3 eten koken\nregels: 2 na 3 ; 2 na 1 ; 1 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 wekker zetten ; 2 ontbijten ; 3 oogsten\nregels: 1 na 2 ; 1 na 3 ; 3 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 schoenen aan ; 2 bakken ; 3 oogsten\nregels: 2 na 3 ; 1 na 2 ; 1 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 water geven ; 2 opruimen ; 3 eten koken\nregels: 1 na 2 ; 2 na 3 ; 1 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 vuur maken ; 2 boodschappen doen ; 3 opruimen\nregels: 1 na 2 ; 3 na 2 ; 1 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 afwassen ; 2 bakken ; 3 uitstappen\nregels: 1 na 2 ; 1 na 3 ; 2 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 water koken ; 2 water geven ; 3 instappen\nregels: 2 na 3 ; 1 na 2 ; 1 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 tafel dekken ; 2 thee zetten ; 3 wekker zetten\nregels: 2 na 1 ; 3 na 1 ; 2 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 bakken ; 2 deeg kneden ; 3 deur op slot\nregels: 1 na 3 ; 1 na 2 ; 2 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 instappen ; 2 oogsten ; 3 brief schrijven\nregels: 3 na 2 ; 3 na 1 ; 2 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 brief schrijven ; 2 jas aan ; 3 afwassen\nregels: 2 na 3 ; 1 na 3 ; 1 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 opruimen ; 2 ontbijten ; 3 tanden poetsen\nregels: 1 na 3 ; 2 na 1 ; 2 na 3\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 brief posten ; 2 opstaan ; 3 schoenen aan\nregels: 1 na 2 ; 1 na 3 ; 2 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 jas aan ; 2 afwassen ; 3 uitstappen\nregels: 1 na 2 ; 2 na 3 ; 1 na 3\nwelke stap komt op plaats 2?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 thee zetten ; 2 oogsten ; 3 opstaan\nregels: 2 na 1 ; 2 na 3 ; 1 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 water koken ; 2 thee zetten ; 3 oogsten\nregels: 3 na 2 ; 1 na 3 ; 1 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 eten koken ; 2 water geven ; 3 ontbijten\nregels: 1 na 2 ; 3 na 1 ; 3 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 bakken ; 2 vuur maken ; 3 eten koken\nregels: 2 na 1 ; 3 na 1 ; 2 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 afwas doen ; 2 fiets pakken ; 3 bakken\nregels: 1 na 2 ; 2 na 3 ; 1 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 thee zetten ; 2 opruimen ; 3 bakken\nregels: 1 na 3 ; 1 na 2 ; 2 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 tent opzetten ; 2 kaartje kopen ; 3 instappen\nregels: 2 na 3 ; 1 na 3 ; 1 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 afwas doen ; 2 boodschappen doen ; 3 zaadjes planten\nregels: 3 na 1 ; 2 na 1 ; 3 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 1,
+   "opgave": "stappen: 1 tafel dekken ; 2 tanden poetsen ; 3 instappen\nregels: 3 na 1 ; 2 na 3 ; 2 na 1\nwelke stap komt op plaats 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 tanden poetsen ; 2 postzegel plakken ; 3 deeg kneden\nregels: 1 na 2 ; 3 na 2 ; 3 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 uitstappen ; 2 wekker zetten ; 3 instappen\nregels: 2 na 3 ; 3 na 1 ; 2 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 oogsten ; 2 bakken ; 3 vuur maken\nregels: 1 na 3 ; 2 na 3 ; 2 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 tanden poetsen ; 2 instappen ; 3 opstaan\nregels: 1 na 3 ; 2 na 3 ; 1 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 kaartje kopen ; 2 deeg kneden ; 3 schoenen aan\nregels: 1 na 2 ; 3 na 2 ; 1 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 uitstappen ; 2 ontbijten ; 3 oven aan\nregels: 2 na 3 ; 1 na 3 ; 1 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 eten koken ; 2 wekker zetten ; 3 tent opzetten\nregels: 2 na 1 ; 3 na 2 ; 3 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 tanden poetsen ; 2 oven aan ; 3 afwas doen\nregels: 3 na 2 ; 3 na 1 ; 2 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 eten koken ; 2 opstaan ; 3 brief schrijven\nregels: 1 na 2 ; 1 na 3 ; 2 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 opstaan ; 2 postzegel plakken ; 3 deur op slot\nregels: 3 na 2 ; 2 na 1 ; 3 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 water koken ; 2 brief posten ; 3 kaartje kopen\nregels: 1 na 2 ; 3 na 1 ; 3 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 jas aan ; 2 oogsten ; 3 tent opzetten\nregels: 3 na 1 ; 3 na 2 ; 1 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 water geven ; 2 afwassen ; 3 jas aan\nregels: 2 na 1 ; 3 na 2 ; 3 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 vuur maken ; 2 deur op slot ; 3 kaartje kopen\nregels: 1 na 2 ; 1 na 3 ; 2 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 brief posten ; 2 zaadjes planten ; 3 schoenen aan\nregels: 3 na 1 ; 2 na 3 ; 2 na 1\nwelke stap komt op plaats 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 water koken ; 2 postzegel plakken ; 3 oven aan\nregels: 1 na 3 ; 1 na 2 ; 2 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 jas aan ; 2 instappen ; 3 kaartje kopen\nregels: 2 na 1 ; 1 na 3 ; 2 na 3\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 thee zetten ; 2 water geven ; 3 tent opzetten\nregels: 3 na 2 ; 3 na 1 ; 1 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 thee zetten ; 2 instappen ; 3 water geven\nregels: 3 na 1 ; 1 na 2 ; 3 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 opstaan ; 2 afwassen ; 3 brief posten\nregels: 1 na 2 ; 3 na 2 ; 1 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 postzegel plakken ; 2 vuur maken ; 3 tafel dekken\nregels: 2 na 3 ; 1 na 3 ; 1 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 brief posten ; 2 fiets pakken ; 3 eten koken\nregels: 3 na 1 ; 2 na 3 ; 2 na 1\nwelke stap komt op plaats 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 tent opzetten ; 2 zaadjes planten ; 3 deeg kneden\nregels: 1 na 3 ; 2 na 3 ; 1 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 zaadjes planten ; 2 tent opzetten ; 3 thee zetten\nregels: 3 na 2 ; 1 na 2 ; 1 na 3\nwelke stap komt op plaats 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 ontbijten ; 2 eten koken ; 3 deur op slot\nregels: 3 na 2 ; 1 na 3 ; 1 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 water geven ; 2 eten koken ; 3 opruimen\nregels: 2 na 3 ; 1 na 3 ; 1 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 opruimen ; 2 tafel dekken ; 3 oven aan\nregels: 3 na 1 ; 3 na 2 ; 2 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 oogsten ; 2 afwas doen ; 3 tanden poetsen\nregels: 1 na 2 ; 1 na 3 ; 3 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 vuur maken ; 2 tent opzetten ; 3 oven aan\nregels: 2 na 3 ; 3 na 1 ; 2 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 2,
+   "opgave": "stappen: 1 thee zetten ; 2 eten koken ; 3 afwas doen\nregels: 1 na 3 ; 3 na 2 ; 1 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 deeg kneden ; 2 jas aan ; 3 boodschappen doen ; 4 schoenen aan\nregels: 1 na 2 ; 3 na 4 ; 1 na 4 ; 1 na 3 ; 4 na 2 ; 3 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 eten koken ; 2 jas aan ; 3 oogsten ; 4 tanden poetsen\nregels: 2 na 1 ; 3 na 4 ; 4 na 1 ; 4 na 2 ; 3 na 2 ; 3 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 deur op slot ; 2 opruimen ; 3 tafel dekken ; 4 brief posten\nregels: 1 na 3 ; 2 na 1 ; 2 na 3 ; 2 na 4 ; 4 na 3 ; 4 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 wekker zetten ; 2 eten koken ; 3 deur op slot ; 4 bakken\nregels: 2 na 4 ; 1 na 4 ; 3 na 4 ; 1 na 3 ; 2 na 3 ; 2 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 eten koken ; 2 afwassen ; 3 deeg kneden ; 4 water geven\nregels: 3 na 2 ; 4 na 2 ; 4 na 1 ; 3 na 1 ; 3 na 4 ; 1 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 instappen ; 2 opstaan ; 3 water koken ; 4 tafel dekken\nregels: 4 na 1 ; 4 na 2 ; 1 na 2 ; 3 na 2 ; 4 na 3 ; 1 na 3\nwelke stap komt op plaats 4?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 oogsten ; 2 jas aan ; 3 kaartje kopen ; 4 zaadjes planten\nregels: 4 na 2 ; 2 na 1 ; 3 na 1 ; 4 na 1 ; 4 na 3 ; 3 na 2\nwelke stap komt op plaats 4?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 schoenen aan ; 2 oven aan ; 3 postzegel plakken ; 4 jas aan\nregels: 4 na 2 ; 4 na 1 ; 3 na 2 ; 1 na 2 ; 3 na 1 ; 3 na 4\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 deur op slot ; 2 eten koken ; 3 tafel dekken ; 4 jas aan\nregels: 3 na 2 ; 3 na 4 ; 4 na 1 ; 4 na 2 ; 3 na 1 ; 1 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 fiets pakken ; 2 thee zetten ; 3 deeg kneden ; 4 tent opzetten\nregels: 2 na 3 ; 2 na 4 ; 1 na 2 ; 1 na 3 ; 4 na 3 ; 1 na 4\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 brief posten ; 2 deur op slot ; 3 boodschappen doen ; 4 tanden poetsen\nregels: 1 na 4 ; 1 na 3 ; 4 na 3 ; 1 na 2 ; 2 na 3 ; 2 na 4\nwelke stap komt op plaats 4?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 eten koken ; 2 tafel dekken ; 3 brief schrijven ; 4 oven aan\nregels: 2 na 1 ; 2 na 3 ; 1 na 3 ; 2 na 4 ; 1 na 4 ; 4 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 jas aan ; 2 wekker zetten ; 3 bakken ; 4 oven aan\nregels: 1 na 3 ; 1 na 2 ; 4 na 2 ; 4 na 3 ; 4 na 1 ; 2 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 afwas doen ; 2 zaadjes planten ; 3 jas aan ; 4 eten koken\nregels: 4 na 1 ; 1 na 2 ; 1 na 3 ; 4 na 2 ; 2 na 3 ; 4 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 thee zetten ; 2 bakken ; 3 oogsten ; 4 zaadjes planten\nregels: 1 na 2 ; 4 na 3 ; 3 na 2 ; 4 na 2 ; 4 na 1 ; 1 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 wekker zetten ; 2 opruimen ; 3 tafel dekken ; 4 tent opzetten\nregels: 2 na 3 ; 4 na 1 ; 2 na 1 ; 3 na 1 ; 3 na 4 ; 2 na 4\nwelke stap komt op plaats 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 schoenen aan ; 2 deeg kneden ; 3 zaadjes planten ; 4 tanden poetsen\nregels: 1 na 4 ; 3 na 4 ; 3 na 1 ; 3 na 2 ; 2 na 1 ; 2 na 4\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 uitstappen ; 2 bakken ; 3 oven aan ; 4 afwassen\nregels: 2 na 1 ; 4 na 1 ; 1 na 3 ; 2 na 3 ; 4 na 3 ; 2 na 4\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 jas aan ; 2 water koken ; 3 deur op slot ; 4 tanden poetsen\nregels: 4 na 1 ; 3 na 1 ; 4 na 3 ; 4 na 2 ; 1 na 2 ; 3 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 zaadjes planten ; 2 wekker zetten ; 3 eten koken ; 4 deeg kneden\nregels: 4 na 1 ; 3 na 2 ; 4 na 2 ; 4 na 3 ; 3 na 1 ; 2 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 fiets pakken ; 2 vuur maken ; 3 brief schrijven ; 4 postzegel plakken\nregels: 4 na 1 ; 4 na 2 ; 4 na 3 ; 2 na 3 ; 1 na 3 ; 2 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 bakken ; 2 vuur maken ; 3 tent opzetten ; 4 instappen\nregels: 2 na 4 ; 3 na 4 ; 1 na 3 ; 1 na 2 ; 2 na 3 ; 1 na 4\nwelke stap komt op plaats 4?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 tafel dekken ; 2 brief posten ; 3 instappen ; 4 deeg kneden\nregels: 1 na 3 ; 1 na 4 ; 2 na 4 ; 2 na 1 ; 2 na 3 ; 4 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 water geven ; 2 vuur maken ; 3 wekker zetten ; 4 postzegel plakken\nregels: 1 na 2 ; 4 na 1 ; 4 na 3 ; 3 na 1 ; 3 na 2 ; 4 na 2\nwelke stap komt op plaats 4?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 tafel dekken ; 2 kaartje kopen ; 3 boodschappen doen ; 4 oven aan\nregels: 1 na 3 ; 1 na 4 ; 3 na 4 ; 2 na 1 ; 2 na 4 ; 2 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 oogsten ; 2 water geven ; 3 zaadjes planten ; 4 vuur maken\nregels: 4 na 1 ; 2 na 3 ; 2 na 1 ; 4 na 2 ; 4 na 3 ; 1 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 opstaan ; 2 oogsten ; 3 jas aan ; 4 afwassen\nregels: 3 na 2 ; 4 na 2 ; 2 na 1 ; 4 na 3 ; 3 na 1 ; 4 na 1\nwelke stap komt op plaats 4?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 opruimen ; 2 deeg kneden ; 3 deur op slot ; 4 thee zetten\nregels: 3 na 4 ; 2 na 1 ; 2 na 3 ; 2 na 4 ; 1 na 3 ; 1 na 4\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 ontbijten ; 2 instappen ; 3 eten koken ; 4 afwas doen\nregels: 3 na 2 ; 1 na 4 ; 3 na 4 ; 1 na 2 ; 2 na 4 ; 3 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 3,
+   "opgave": "stappen: 1 fiets pakken ; 2 opruimen ; 3 zaadjes planten ; 4 oogsten\nregels: 4 na 1 ; 1 na 2 ; 4 na 2 ; 3 na 1 ; 4 na 3 ; 3 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 jas aan ; 2 postzegel plakken ; 3 eten koken ; 4 vuur maken\nregels: 1 na 4 ; 3 direct na 2 ; 2 na 4 ; 3 na 4 ; 2 direct na 1 ; 3 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 brief posten ; 2 afwas doen ; 3 oven aan ; 4 zaadjes planten\nregels: 3 voor 2 ; 1 na 4 ; 1 na 2 ; 3 na 4 ; 1 na 3 ; 2 na 4\nwelke stap komt op plaats 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 brief posten ; 2 opruimen ; 3 vuur maken ; 4 fiets pakken\nregels: 1 na 4 ; 1 direct na 3 ; 2 na 4 ; 2 na 1 ; 2 na 3 ; 3 na 4\nwelke stap komt op plaats 4?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 water geven ; 2 ontbijten ; 3 instappen ; 4 opstaan\nregels: 1 na 3 ; 4 direct na 2 ; 4 na 3 ; 2 na 1 ; 4 na 1 ; 2 na 3\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 tanden poetsen ; 2 wekker zetten ; 3 brief posten ; 4 kaartje kopen\nregels: 2 voor 4 ; 3 na 2 ; 1 direct na 4 ; 3 na 1 ; 1 na 2 ; 3 na 4\nwelke stap komt op plaats 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 boodschappen doen ; 2 zaadjes planten ; 3 afwas doen ; 4 bakken\nregels: 2 na 3 ; 1 voor 4 ; 3 na 1 ; 2 na 4 ; 2 na 1 ; 4 voor 3\nwelke stap komt op plaats 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 opstaan ; 2 afwas doen ; 3 tanden poetsen ; 4 instappen\nregels: 3 voor 2 ; 4 na 3 ; 4 na 1 ; 3 na 1 ; 4 direct na 2 ; 2 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 oven aan ; 2 uitstappen ; 3 opruimen ; 4 boodschappen doen\nregels: 1 na 3 ; 4 voor 1 ; 2 na 3 ; 4 na 3 ; 2 na 4 ; 1 voor 2\nwelke stap komt op plaats 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 opruimen ; 2 jas aan ; 3 wekker zetten ; 4 postzegel plakken\nregels: 1 na 4 ; 4 na 3 ; 1 na 2 ; 2 direct na 3 ; 1 na 3 ; 4 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 tafel dekken ; 2 tanden poetsen ; 3 brief schrijven ; 4 ontbijten\nregels: 3 na 4 ; 4 na 1 ; 2 direct na 4 ; 2 voor 3 ; 2 na 1 ; 3 na 1\nwelke stap komt op plaats 4?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 wekker zetten ; 2 vuur maken ; 3 tent opzetten ; 4 fiets pakken\nregels: 2 na 1 ; 2 na 4 ; 4 na 3 ; 2 na 3 ; 4 na 1 ; 3 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 brief posten ; 2 thee zetten ; 3 jas aan ; 4 zaadjes planten\nregels: 1 na 2 ; 3 na 4 ; 4 direct na 1 ; 3 na 2 ; 4 na 2 ; 3 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 deur op slot ; 2 bakken ; 3 thee zetten ; 4 oven aan\nregels: 3 na 4 ; 1 voor 3 ; 4 voor 1 ; 2 voor 4 ; 1 na 2 ; 3 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 ontbijten ; 2 opruimen ; 3 brief schrijven ; 4 thee zetten\nregels: 4 voor 1 ; 2 na 4 ; 3 na 1 ; 3 na 2 ; 3 na 4 ; 2 na 1\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 postzegel plakken ; 2 deur op slot ; 3 zaadjes planten ; 4 opruimen\nregels: 3 na 2 ; 1 voor 2 ; 3 na 1 ; 2 voor 4 ; 4 na 1 ; 3 na 4\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 schoenen aan ; 2 oven aan ; 3 uitstappen ; 4 brief posten\nregels: 4 na 2 ; 1 na 4 ; 3 na 2 ; 4 voor 3 ; 1 na 3 ; 1 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 schoenen aan ; 2 tanden poetsen ; 3 vuur maken ; 4 eten koken\nregels: 4 voor 1 ; 1 na 3 ; 4 na 3 ; 1 na 2 ; 2 voor 4 ; 2 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 water geven ; 2 afwas doen ; 3 bakken ; 4 postzegel plakken\nregels: 3 voor 4 ; 2 na 3 ; 2 na 4 ; 1 na 3 ; 2 na 1 ; 4 voor 1\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 postzegel plakken ; 2 tent opzetten ; 3 uitstappen ; 4 ontbijten\nregels: 2 direct na 1 ; 4 na 1 ; 3 na 1 ; 2 voor 3 ; 4 na 3 ; 4 na 2\nwelke stap komt op plaats 4?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 deeg kneden ; 2 afwassen ; 3 water koken ; 4 wekker zetten\nregels: 1 na 2 ; 2 na 3 ; 4 direct na 3 ; 1 na 3 ; 1 na 4 ; 4 voor 2\nwelke stap komt op plaats 4?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 jas aan ; 2 water koken ; 3 afwas doen ; 4 water geven\nregels: 2 voor 3 ; 1 na 2 ; 3 na 4 ; 1 na 4 ; 1 na 3 ; 2 na 4\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 oogsten ; 2 brief posten ; 3 ontbijten ; 4 fiets pakken\nregels: 3 voor 1 ; 1 voor 2 ; 2 voor 4 ; 4 na 3 ; 4 na 1 ; 2 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 thee zetten ; 2 uitstappen ; 3 brief posten ; 4 deur op slot\nregels: 1 na 2 ; 3 na 4 ; 3 na 2 ; 2 voor 4 ; 1 na 4 ; 1 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 oven aan ; 2 kaartje kopen ; 3 boodschappen doen ; 4 instappen\nregels: 1 voor 2 ; 1 na 4 ; 3 direct na 4 ; 2 na 3 ; 3 voor 1 ; 2 na 4\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 opruimen ; 2 deur op slot ; 3 tent opzetten ; 4 postzegel plakken\nregels: 4 na 3 ; 4 direct na 2 ; 3 direct na 1 ; 2 direct na 3 ; 2 na 1 ; 4 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 zaadjes planten ; 2 tafel dekken ; 3 deur op slot ; 4 oven aan\nregels: 2 na 3 ; 1 na 3 ; 4 na 3 ; 2 direct na 1 ; 1 direct na 4 ; 2 na 4\nwelke stap komt op plaats 4?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 opruimen ; 2 postzegel plakken ; 3 deeg kneden ; 4 ontbijten\nregels: 1 voor 2 ; 4 na 1 ; 2 na 3 ; 1 na 3 ; 4 direct na 2 ; 4 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 deeg kneden ; 2 afwassen ; 3 schoenen aan ; 4 oogsten\nregels: 1 na 3 ; 2 direct na 3 ; 1 na 2 ; 2 voor 4 ; 4 na 3 ; 4 voor 1\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 schoenen aan ; 2 tanden poetsen ; 3 opruimen ; 4 afwassen\nregels: 2 voor 1 ; 3 direct na 1 ; 4 na 2 ; 4 na 3 ; 4 na 1 ; 3 na 2\nwelke stap komt op plaats 4?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 4,
+   "opgave": "stappen: 1 afwas doen ; 2 ontbijten ; 3 deeg kneden ; 4 tanden poetsen\nregels: 4 direct na 1 ; 3 na 4 ; 4 voor 2 ; 3 na 1 ; 2 na 1 ; 3 direct na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 water koken ; 2 oogsten ; 3 opruimen ; 4 oven aan ; 5 postzegel plakken\nregels: 2 na 1 ; 3 na 5 ; 1 voor 5 ; 3 na 1 ; 3 na 4 ; 1 na 4 ; 2 voor 3 ; 5 na 4 ; 2 direct na 5\nwelke stap komt op plaats 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 afwas doen ; 2 tent opzetten ; 3 afwassen ; 4 water koken ; 5 ontbijten\nregels: 4 voor 2 ; 3 na 4 ; 5 na 4 ; 5 na 2 ; 3 voor 5 ; 1 na 2 ; 2 voor 3 ; 1 direct na 5 ; 1 na 3\nwelke stap komt op plaats 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 eten koken ; 2 oven aan ; 3 uitstappen ; 4 tent opzetten ; 5 tafel dekken\nregels: 5 na 4 ; 3 voor 1 ; 5 na 3 ; 2 na 1 ; 5 na 2 ; 4 na 2 ; 4 na 1 ; 4 na 3 ; 5 na 1\nwelke stap komt op plaats 5?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 deeg kneden ; 2 uitstappen ; 3 afwas doen ; 4 thee zetten ; 5 afwassen\nregels: 1 na 3 ; 1 na 5 ; 4 na 1 ; 4 na 3 ; 4 na 2 ; 5 voor 2 ; 1 na 2 ; 4 na 5 ; 5 na 3\nwelke stap komt op plaats 2?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 fiets pakken ; 2 ontbijten ; 3 deur op slot ; 4 jas aan ; 5 brief posten\nregels: 5 na 2 ; 4 na 5 ; 3 na 2 ; 4 na 3 ; 1 na 2 ; 3 na 5 ; 1 na 3 ; 4 na 2 ; 4 na 1\nwelke stap komt op plaats 5?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 oven aan ; 2 ontbijten ; 3 postzegel plakken ; 4 boodschappen doen ; 5 eten koken\nregels: 1 na 4 ; 5 na 4 ; 1 na 3 ; 2 voor 5 ; 5 na 1 ; 2 na 4 ; 5 na 3 ; 2 na 1 ; 4 direct na 3\nwelke stap komt op plaats 4?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 postzegel plakken ; 2 uitstappen ; 3 zaadjes planten ; 4 tent opzetten ; 5 brief posten\nregels: 5 na 4 ; 5 na 3 ; 5 na 1 ; 1 voor 3 ; 1 na 4 ; 5 na 2 ; 2 na 4 ; 2 voor 1 ; 3 na 4\nwelke stap komt op plaats 5?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 oven aan ; 2 uitstappen ; 3 postzegel plakken ; 4 instappen ; 5 deeg kneden\nregels: 4 na 2 ; 2 voor 5 ; 1 na 5 ; 3 na 5 ; 1 direct na 4 ; 3 na 1 ; 3 na 4 ; 4 direct na 5 ; 1 na 2\nwelke stap komt op plaats 5?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 uitstappen ; 2 fiets pakken ; 3 tanden poetsen ; 4 oogsten ; 5 zaadjes planten\nregels: 2 na 3 ; 3 direct na 5 ; 1 na 5 ; 3 na 4 ; 1 na 3 ; 2 na 1 ; 2 na 5 ; 1 na 4 ; 5 na 4\nwelke stap komt op plaats 5?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 jas aan ; 2 oven aan ; 3 opstaan ; 4 uitstappen ; 5 postzegel plakken\nregels: 5 na 2 ; 1 na 2 ; 4 na 1 ; 5 na 3 ; 3 direct na 1 ; 5 voor 4 ; 4 na 2 ; 5 na 1 ; 4 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 oven aan ; 2 afwassen ; 3 water koken ; 4 deur op slot ; 5 brief posten\nregels: 4 na 5 ; 2 na 3 ; 1 na 3 ; 2 na 5 ; 1 direct na 4 ; 2 na 4 ; 4 na 3 ; 5 na 3 ; 2 direct na 1\nwelke stap komt op plaats 2?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 tafel dekken ; 2 water koken ; 3 vuur maken ; 4 tent opzetten ; 5 fiets pakken\nregels: 2 na 4 ; 1 na 4 ; 3 na 2 ; 1 na 3 ; 3 na 4 ; 1 na 5 ; 5 na 4 ; 5 voor 2 ; 1 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 oogsten ; 2 tafel dekken ; 3 brief posten ; 4 oven aan ; 5 water koken\nregels: 2 voor 3 ; 2 na 5 ; 3 na 4 ; 1 na 4 ; 3 voor 1 ; 3 na 5 ; 1 na 5 ; 5 na 4 ; 1 na 2\nwelke stap komt op plaats 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 tanden poetsen ; 2 instappen ; 3 opstaan ; 4 tent opzetten ; 5 deur op slot\nregels: 4 na 1 ; 5 na 1 ; 3 na 1 ; 3 na 2 ; 5 na 2 ; 5 na 3 ; 5 na 4 ; 1 na 2 ; 4 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 water geven ; 2 oven aan ; 3 postzegel plakken ; 4 afwas doen ; 5 tafel dekken\nregels: 3 na 2 ; 2 na 4 ; 5 direct na 2 ; 1 na 2 ; 1 na 5 ; 3 na 4 ; 1 na 4 ; 1 direct na 3 ; 3 na 5\nwelke stap komt op plaats 2?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 deeg kneden ; 2 kaartje kopen ; 3 eten koken ; 4 oven aan ; 5 bakken\nregels: 2 na 3 ; 4 na 2 ; 1 voor 2 ; 4 na 3 ; 5 voor 3 ; 3 voor 1 ; 4 na 1 ; 2 na 5 ; 4 na 5\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 thee zetten ; 2 boodschappen doen ; 3 deur op slot ; 4 jas aan ; 5 instappen\nregels: 1 voor 4 ; 3 na 5 ; 2 na 1 ; 3 voor 2 ; 2 na 4 ; 4 na 5 ; 4 voor 3 ; 2 na 5 ; 1 direct na 5\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 eten koken ; 2 brief schrijven ; 3 postzegel plakken ; 4 deeg kneden ; 5 oven aan\nregels: 3 na 2 ; 1 direct na 4 ; 3 na 4 ; 5 na 2 ; 2 voor 4 ; 5 na 1 ; 5 na 4 ; 3 direct na 1 ; 5 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 jas aan ; 2 kaartje kopen ; 3 wekker zetten ; 4 tanden poetsen ; 5 instappen\nregels: 5 na 1 ; 5 na 2 ; 5 na 4 ; 1 na 4 ; 3 na 1 ; 3 na 4 ; 3 na 5 ; 1 direct na 2 ; 2 direct na 4\nwelke stap komt op plaats 5?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 tanden poetsen ; 2 brief schrijven ; 3 deur op slot ; 4 instappen ; 5 opruimen\nregels: 4 na 2 ; 4 voor 1 ; 5 na 3 ; 4 na 3 ; 4 direct na 5 ; 3 voor 2 ; 1 na 2 ; 5 direct na 2 ; 1 na 5\nwelke stap komt op plaats 4?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 ontbijten ; 2 instappen ; 3 postzegel plakken ; 4 deeg kneden ; 5 water geven\nregels: 3 na 1 ; 3 na 2 ; 5 na 1 ; 2 voor 1 ; 4 na 5 ; 4 na 3 ; 4 na 1 ; 5 na 2 ; 3 na 5\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 afwas doen ; 2 postzegel plakken ; 3 opruimen ; 4 vuur maken ; 5 oogsten\nregels: 4 na 5 ; 5 na 2 ; 3 direct na 4 ; 3 na 5 ; 4 direct na 1 ; 1 na 2 ; 1 na 5 ; 3 na 2 ; 3 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 instappen ; 2 opruimen ; 3 uitstappen ; 4 oven aan ; 5 thee zetten\nregels: 1 na 5 ; 2 na 3 ; 2 na 4 ; 5 direct na 3 ; 2 na 5 ; 1 na 4 ; 1 na 3 ; 4 na 5 ; 1 voor 2\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 deeg kneden ; 2 ontbijten ; 3 oogsten ; 4 wekker zetten ; 5 kaartje kopen\nregels: 3 na 4 ; 4 na 5 ; 3 na 5 ; 1 voor 2 ; 1 na 4 ; 2 voor 3 ; 2 na 4 ; 3 na 1 ; 1 na 5\nwelke stap komt op plaats 5?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 tent opzetten ; 2 deur op slot ; 3 jas aan ; 4 brief schrijven ; 5 brief posten\nregels: 5 na 2 ; 4 na 3 ; 4 na 2 ; 3 direct na 2 ; 2 na 1 ; 4 na 1 ; 3 na 1 ; 5 na 3 ; 5 na 4\nwelke stap komt op plaats 4?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 deur op slot ; 2 tent opzetten ; 3 jas aan ; 4 zaadjes planten ; 5 bakken\nregels: 2 na 5 ; 1 na 5 ; 4 voor 5 ; 1 voor 2 ; 3 na 1 ; 2 na 4 ; 3 na 4 ; 3 na 2 ; 3 na 5\nwelke stap komt op plaats 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 jas aan ; 2 brief posten ; 3 eten koken ; 4 opstaan ; 5 afwassen\nregels: 4 na 2 ; 1 na 4 ; 3 na 2 ; 1 na 3 ; 4 na 5 ; 5 voor 2 ; 1 na 2 ; 4 direct na 3 ; 1 na 5\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 bakken ; 2 instappen ; 3 water koken ; 4 opruimen ; 5 vuur maken\nregels: 5 na 3 ; 1 direct na 5 ; 4 na 3 ; 2 voor 5 ; 4 na 5 ; 4 na 2 ; 3 voor 2 ; 4 direct na 1 ; 1 na 3\nwelke stap komt op plaats 2?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 water koken ; 2 deeg kneden ; 3 oogsten ; 4 tafel dekken ; 5 thee zetten\nregels: 4 na 5 ; 3 na 2 ; 1 na 5 ; 4 voor 3 ; 1 na 3 ; 4 na 2 ; 1 na 4 ; 3 na 5 ; 5 direct na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 5,
+   "opgave": "stappen: 1 brief schrijven ; 2 water geven ; 3 ontbijten ; 4 deur op slot ; 5 zaadjes planten\nregels: 2 na 3 ; 4 direct na 5 ; 4 na 1 ; 2 na 1 ; 4 na 2 ; 5 na 1 ; 5 na 2 ; 1 voor 3 ; 4 na 3\nwelke stap komt op plaats 5?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 brief schrijven ; 2 jas aan ; 3 oogsten ; 4 tanden poetsen ; 5 oven aan\nregels: 3 na 5 ; 1 na 5 ; 3 na 4 ; 1 na 4 ; 2 na 5 ; 2 na 4 ; 4 voor 5 ; 3 na 2 ; 3 direct na 1 ; 2 voor 1\nop welke plaats komt stap 3?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 water geven ; 2 opstaan ; 3 zaadjes planten ; 4 vuur maken ; 5 schoenen aan\nregels: 4 na 3 ; 2 na 1 ; 5 direct na 2 ; 5 voor 4 ; 5 na 3 ; 2 na 3 ; 4 na 2 ; 5 na 1 ; 4 na 1 ; 3 na 1\nop welke plaats komt stap 5?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 zaadjes planten ; 2 kaartje kopen ; 3 opruimen ; 4 eten koken ; 5 instappen\nregels: 1 voor 5 ; 4 na 1 ; 2 na 5 ; 4 na 2 ; 2 na 1 ; 5 na 3 ; 4 na 3 ; 2 na 3 ; 3 voor 1 ; 4 na 5\nwelke stap komt op plaats 4?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 afwassen ; 2 afwas doen ; 3 deeg kneden ; 4 opruimen ; 5 tafel dekken\nregels: 3 na 2 ; 5 na 4 ; 3 na 4 ; 4 direct na 2 ; 3 na 1 ; 4 na 1 ; 2 na 1 ; 5 na 2 ; 3 na 5\nop welke plaats komt stap 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 eten koken ; 2 tanden poetsen ; 3 uitstappen ; 4 vuur maken ; 5 deeg kneden\nregels: 5 na 2 ; 4 na 2 ; 4 na 5 ; 2 na 1 ; 3 na 1 ; 3 na 2 ; 4 na 1 ; 5 na 1 ; 3 voor 5 ; 4 na 3\nop welke plaats komt stap 2?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 ontbijten ; 2 opstaan ; 3 afwas doen ; 4 vuur maken ; 5 fiets pakken\nregels: 4 na 2 ; 5 na 3 ; 5 na 1 ; 5 na 2 ; 3 na 2 ; 4 na 1 ; 3 na 4 ; 1 na 2 ; 3 na 1 ; 5 na 4\nop welke plaats komt stap 4?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 brief posten ; 2 zaadjes planten ; 3 ontbijten ; 4 tafel dekken ; 5 opruimen\nregels: 4 voor 1 ; 3 voor 2 ; 4 na 2 ; 5 na 2 ; 4 na 5 ; 1 na 3 ; 4 na 3 ; 1 na 5 ; 5 na 3 ; 1 na 2\nop welke plaats komt stap 4?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 fiets pakken ; 2 jas aan ; 3 tanden poetsen ; 4 eten koken ; 5 zaadjes planten\nregels: 5 na 4 ; 5 na 3 ; 2 na 3 ; 5 na 2 ; 2 na 1 ; 3 na 1 ; 3 na 4 ; 5 na 1 ; 2 na 4 ; 4 voor 1\nwelke stap komt op plaats 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 jas aan ; 2 thee zetten ; 3 deeg kneden ; 4 postzegel plakken ; 5 wekker zetten\nregels: 2 na 3 ; 1 na 3 ; 5 direct na 2 ; 4 direct na 5 ; 5 na 3 ; 1 na 5 ; 1 na 4 ; 1 na 2 ; 4 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 oogsten ; 2 tafel dekken ; 3 deur op slot ; 4 tent opzetten ; 5 bakken\nregels: 4 voor 5 ; 3 na 1 ; 4 na 1 ; 5 na 3 ; 5 na 1 ; 1 voor 2 ; 3 direct na 2 ; 4 na 2 ; 5 na 2 ; 4 na 3\nop welke plaats komt stap 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 afwassen ; 2 oven aan ; 3 kaartje kopen ; 4 deur op slot ; 5 ontbijten\nregels: 4 na 1 ; 3 na 2 ; 4 na 3 ; 4 direct na 5 ; 5 na 1 ; 3 na 1 ; 5 na 2 ; 1 na 2 ; 5 na 3 ; 4 na 2\nop welke plaats komt stap 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 water koken ; 2 tent opzetten ; 3 vuur maken ; 4 oven aan ; 5 water geven\nregels: 5 voor 3 ; 5 na 4 ; 3 na 2 ; 1 na 5 ; 2 na 4 ; 1 na 4 ; 1 na 2 ; 3 voor 1 ; 5 direct na 2 ; 3 na 4\nop welke plaats komt stap 1?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 oven aan ; 2 brief schrijven ; 3 afwas doen ; 4 tafel dekken ; 5 opruimen\nregels: 4 na 5 ; 4 voor 1 ; 2 na 1 ; 1 na 5 ; 1 na 3 ; 4 na 3 ; 3 na 5 ; 2 na 5 ; 2 na 4 ; 2 na 3\nop welke plaats komt stap 4?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 thee zetten ; 2 oogsten ; 3 postzegel plakken ; 4 vuur maken ; 5 oven aan\nregels: 2 voor 1 ; 4 na 5 ; 3 na 5 ; 3 na 2 ; 4 na 2 ; 4 direct na 1 ; 5 voor 2 ; 3 na 1 ; 3 na 4 ; 1 na 5\nop welke plaats komt stap 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 kaartje kopen ; 2 afwas doen ; 3 deeg kneden ; 4 wekker zetten ; 5 fiets pakken\nregels: 1 na 5 ; 4 na 5 ; 2 na 1 ; 1 na 3 ; 2 na 5 ; 4 na 3 ; 4 na 1 ; 4 na 2 ; 2 na 3 ; 3 direct na 5\nwelke stap komt op plaats 4?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 vuur maken ; 2 boodschappen doen ; 3 water koken ; 4 oogsten ; 5 opruimen\nregels: 1 na 5 ; 2 na 5 ; 3 voor 1 ; 4 na 1 ; 4 na 5 ; 5 voor 3 ; 4 direct na 2 ; 2 na 3 ; 1 voor 2 ; 4 na 3\nop welke plaats komt stap 4?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 brief posten ; 2 tanden poetsen ; 3 schoenen aan ; 4 instappen ; 5 ontbijten\nregels: 3 na 5 ; 3 na 2 ; 4 direct na 3 ; 1 na 2 ; 4 na 5 ; 2 voor 5 ; 5 voor 1 ; 4 na 1 ; 3 direct na 1 ; 4 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 schoenen aan ; 2 opruimen ; 3 zaadjes planten ; 4 tent opzetten ; 5 brief schrijven\nregels: 5 na 3 ; 5 na 1 ; 5 na 4 ; 3 na 4 ; 5 na 2 ; 3 na 2 ; 4 voor 1 ; 3 na 1 ; 2 na 1 ; 2 na 4\nop welke plaats komt stap 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 tanden poetsen ; 2 brief posten ; 3 water koken ; 4 water geven ; 5 tafel dekken\nregels: 3 voor 5 ; 2 na 3 ; 5 na 1 ; 3 na 4 ; 2 na 4 ; 2 na 1 ; 3 na 1 ; 4 na 1 ; 5 na 4 ; 5 voor 2\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 schoenen aan ; 2 afwassen ; 3 tafel dekken ; 4 kaartje kopen ; 5 eten koken\nregels: 3 na 4 ; 2 na 4 ; 5 na 2 ; 1 na 2 ; 5 na 4 ; 1 na 4 ; 1 na 3 ; 5 voor 3 ; 3 na 2 ; 1 na 5\nop welke plaats komt stap 4?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 tafel dekken ; 2 ontbijten ; 3 zaadjes planten ; 4 vuur maken ; 5 brief schrijven\nregels: 2 direct na 3 ; 2 voor 4 ; 4 na 1 ; 5 direct na 4 ; 2 na 1 ; 3 na 1 ; 4 na 3 ; 5 na 3 ; 5 na 2 ; 5 na 1\nop welke plaats komt stap 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 zaadjes planten ; 2 afwassen ; 3 opstaan ; 4 thee zetten ; 5 tent opzetten\nregels: 3 na 5 ; 2 na 4 ; 5 na 4 ; 2 voor 1 ; 1 na 3 ; 1 na 4 ; 1 na 5 ; 3 na 4 ; 3 voor 2 ; 2 na 5\nwelke stap komt op plaats 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 tanden poetsen ; 2 ontbijten ; 3 bakken ; 4 zaadjes planten ; 5 postzegel plakken\nregels: 3 na 4 ; 5 na 2 ; 5 na 4 ; 3 na 1 ; 1 voor 4 ; 3 na 2 ; 4 na 2 ; 5 na 1 ; 5 na 3 ; 1 na 2\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 bakken ; 2 opruimen ; 3 kaartje kopen ; 4 ontbijten ; 5 brief posten\nregels: 2 na 4 ; 3 voor 2 ; 2 na 1 ; 1 voor 3 ; 3 na 4 ; 1 na 4 ; 3 na 5 ; 1 na 5 ; 4 na 5 ; 2 na 5\nwelke stap komt op plaats 4?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 jas aan ; 2 postzegel plakken ; 3 ontbijten ; 4 opstaan ; 5 thee zetten\nregels: 2 na 1 ; 4 na 1 ; 3 direct na 1 ; 1 na 5 ; 3 na 5 ; 4 na 3 ; 4 na 5 ; 3 voor 2 ; 4 direct na 2 ; 2 na 5\nop welke plaats komt stap 4?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 oogsten ; 2 bakken ; 3 jas aan ; 4 afwassen ; 5 eten koken\nregels: 4 na 5 ; 3 na 1 ; 4 na 1 ; 1 na 5 ; 2 na 1 ; 3 direct na 4 ; 3 na 5 ; 3 na 2 ; 2 voor 4 ; 2 na 5\nwelke stap komt op plaats 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 boodschappen doen ; 2 zaadjes planten ; 3 uitstappen ; 4 thee zetten ; 5 jas aan\nregels: 4 na 2 ; 5 na 2 ; 3 na 4 ; 5 na 1 ; 3 na 2 ; 1 na 4 ; 3 na 5 ; 5 na 4 ; 1 na 2 ; 3 na 1\nwelke stap komt op plaats 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 instappen ; 2 oogsten ; 3 opstaan ; 4 thee zetten ; 5 jas aan\nregels: 5 na 2 ; 5 na 3 ; 3 na 2 ; 3 na 1 ; 1 na 4 ; 5 na 1 ; 4 na 2 ; 1 na 2 ; 5 na 4 ; 3 na 4\nop welke plaats komt stap 4?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 opstaan ; 2 schoenen aan ; 3 deur op slot ; 4 tent opzetten ; 5 eten koken\nregels: 4 na 3 ; 3 na 2 ; 4 na 5 ; 1 na 2 ; 1 na 3 ; 5 na 2 ; 1 na 5 ; 4 na 2 ; 3 direct na 5 ; 4 voor 1\nwelke stap komt op plaats 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 6,
+   "opgave": "stappen: 1 postzegel plakken ; 2 deur op slot ; 3 ontbijten ; 4 thee zetten ; 5 brief schrijven\nregels: 4 voor 2 ; 4 na 3 ; 5 na 3 ; 4 na 1 ; 2 na 3 ; 2 voor 5 ; 1 na 3 ; 5 na 1 ; 5 na 4 ; 2 na 1\nop welke plaats komt stap 4?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 brief schrijven ; 2 deeg kneden ; 3 vuur maken ; 4 eten koken ; 5 fiets pakken ; 6 wekker zetten\nregels: 6 na 3 ; 3 na 1 ; 6 na 5 ; 3 na 4 ; 2 voor 4 ; 1 na 2 ; 1 na 4 ; 6 na 2 ; 6 na 4 ; 5 voor 1 ; 5 direct na 4 ; 6 na 1\nop welke plaats komt stap 3?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 wekker zetten ; 2 deur op slot ; 3 uitstappen ; 4 tanden poetsen ; 5 vuur maken ; 6 water koken\nregels: 1 voor 2 ; 3 na 1 ; 1 na 6 ; 2 voor 4 ; 3 na 2 ; 3 na 6 ; 3 na 5 ; 4 na 6 ; 4 na 1 ; 3 na 4 ; 5 na 6 ; 5 na 4\nwelke stap komt op plaats 6?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 deeg kneden ; 2 water geven ; 3 opstaan ; 4 brief posten ; 5 bakken ; 6 deur op slot\nregels: 6 voor 1 ; 6 na 4 ; 3 na 6 ; 5 voor 4 ; 6 na 5 ; 3 na 2 ; 1 na 2 ; 3 na 4 ; 2 voor 5 ; 1 voor 3 ; 1 na 4 ; 1 na 5\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 thee zetten ; 2 water koken ; 3 fiets pakken ; 4 schoenen aan ; 5 tafel dekken ; 6 tanden poetsen\nregels: 6 na 1 ; 1 na 3 ; 6 na 4 ; 4 direct na 3 ; 6 na 2 ; 6 na 5 ; 5 na 1 ; 1 na 4 ; 5 na 2 ; 3 na 2 ; 5 na 4 ; 1 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 deeg kneden ; 2 boodschappen doen ; 3 opruimen ; 4 postzegel plakken ; 5 eten koken ; 6 kaartje kopen\nregels: 5 na 2 ; 6 na 5 ; 3 na 5 ; 2 voor 4 ; 1 na 3 ; 1 na 6 ; 1 na 4 ; 6 na 4 ; 3 na 4 ; 4 voor 5 ; 3 na 6 ; 1 na 2\nop welke plaats komt stap 5?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 kaartje kopen ; 2 afwassen ; 3 wekker zetten ; 4 deeg kneden ; 5 tent opzetten ; 6 instappen\nregels: 6 na 2 ; 3 na 1 ; 5 na 1 ; 6 voor 3 ; 5 na 6 ; 4 voor 5 ; 5 na 2 ; 5 na 3 ; 1 voor 6 ; 3 voor 4 ; 1 na 2 ; 4 na 6\nwelke stap komt op plaats 3?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 thee zetten ; 2 afwas doen ; 3 tafel dekken ; 4 fiets pakken ; 5 tent opzetten ; 6 ontbijten\nregels: 5 direct na 4 ; 1 na 5 ; 3 na 2 ; 3 na 4 ; 5 na 2 ; 3 na 1 ; 1 na 2 ; 6 direct na 1 ; 4 direct na 2 ; 3 direct na 6 ; 1 na 4 ; 6 na 5\nwelke stap komt op plaats 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 tafel dekken ; 2 ontbijten ; 3 oogsten ; 4 water geven ; 5 boodschappen doen ; 6 postzegel plakken\nregels: 1 na 3 ; 5 voor 3 ; 5 direct na 2 ; 4 na 1 ; 3 na 6 ; 1 na 2 ; 4 na 3 ; 3 na 2 ; 4 na 5 ; 4 na 6 ; 1 na 6 ; 2 direct na 6\nwelke stap komt op plaats 3?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 wekker zetten ; 2 water koken ; 3 tanden poetsen ; 4 jas aan ; 5 eten koken ; 6 zaadjes planten\nregels: 2 voor 4 ; 4 na 5 ; 4 na 3 ; 3 voor 1 ; 1 voor 6 ; 2 na 5 ; 5 na 6 ; 4 na 6 ; 2 na 6 ; 4 na 1 ; 2 na 3 ; 5 na 1\nwelke stap komt op plaats 5?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 afwas doen ; 2 afwassen ; 3 deeg kneden ; 4 eten koken ; 5 fiets pakken ; 6 opruimen\nregels: 6 na 2 ; 3 direct na 1 ; 4 na 1 ; 2 direct na 3 ; 2 na 1 ; 5 direct na 6 ; 6 na 3 ; 5 na 3 ; 4 direct na 2 ; 6 na 4 ; 5 na 4 ; 5 na 2\nop welke plaats komt stap 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 opruimen ; 2 ontbijten ; 3 schoenen aan ; 4 afwassen ; 5 boodschappen doen ; 6 thee zetten\nregels: 1 voor 5 ; 5 na 3 ; 4 na 3 ; 2 na 6 ; 4 direct na 2 ; 3 voor 2 ; 1 na 3 ; 5 na 4 ; 1 na 2 ; 1 na 4 ; 5 na 2 ; 6 voor 3\nop welke plaats komt stap 5?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 deur op slot ; 2 kaartje kopen ; 3 instappen ; 4 zaadjes planten ; 5 opstaan ; 6 boodschappen doen\nregels: 2 na 4 ; 3 direct na 5 ; 5 direct na 4 ; 1 na 3 ; 1 na 5 ; 2 na 3 ; 6 na 5 ; 6 voor 2 ; 2 voor 1 ; 6 na 3 ; 1 na 6 ; 3 na 4\nwelke stap komt op plaats 6?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 oogsten ; 2 thee zetten ; 3 opstaan ; 4 uitstappen ; 5 instappen ; 6 kaartje kopen\nregels: 3 direct na 1 ; 3 voor 5 ; 2 na 5 ; 4 na 5 ; 6 na 3 ; 5 na 1 ; 2 voor 6 ; 6 na 5 ; 6 na 4 ; 4 na 3 ; 4 na 1 ; 2 na 4\nwelke stap komt op plaats 3?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 kaartje kopen ; 2 fiets pakken ; 3 tanden poetsen ; 4 opruimen ; 5 tafel dekken ; 6 wekker zetten\nregels: 4 direct na 5 ; 3 na 6 ; 1 na 4 ; 4 na 6 ; 2 na 4 ; 1 na 6 ; 1 na 5 ; 5 na 3 ; 5 na 6 ; 2 direct na 1 ; 2 na 5 ; 1 na 3\nwelke stap komt op plaats 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 schoenen aan ; 2 wekker zetten ; 3 oven aan ; 4 oogsten ; 5 brief posten ; 6 thee zetten\nregels: 3 na 1 ; 2 direct na 5 ; 5 na 1 ; 4 na 5 ; 2 na 6 ; 6 voor 1 ; 5 na 3 ; 4 na 2 ; 4 na 6 ; 4 na 1 ; 5 na 6 ; 4 na 3\nop welke plaats komt stap 6?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 vuur maken ; 2 opruimen ; 3 oogsten ; 4 deeg kneden ; 5 opstaan ; 6 thee zetten\nregels: 3 na 6 ; 3 na 1 ; 1 na 5 ; 6 na 5 ; 1 voor 2 ; 6 na 1 ; 3 na 5 ; 2 voor 6 ; 2 na 5 ; 4 na 5 ; 3 na 4 ; 1 na 4\nop welke plaats komt stap 4?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 eten koken ; 2 afwassen ; 3 thee zetten ; 4 tent opzetten ; 5 brief posten ; 6 oogsten\nregels: 4 na 2 ; 6 na 3 ; 5 direct na 2 ; 4 voor 6 ; 6 na 1 ; 3 voor 4 ; 1 na 2 ; 3 na 5 ; 4 na 5 ; 3 direct na 1 ; 5 voor 1 ; 3 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 water koken ; 2 bakken ; 3 tanden poetsen ; 4 deeg kneden ; 5 kaartje kopen ; 6 eten koken\nregels: 4 na 5 ; 6 na 5 ; 2 direct na 3 ; 3 na 1 ; 5 na 1 ; 4 na 3 ; 4 na 2 ; 5 na 3 ; 2 na 1 ; 4 na 6 ; 5 direct na 2 ; 4 na 1\nop welke plaats komt stap 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 postzegel plakken ; 2 boodschappen doen ; 3 water geven ; 4 zaadjes planten ; 5 deur op slot ; 6 brief schrijven\nregels: 1 na 4 ; 1 na 3 ; 1 na 2 ; 4 direct na 5 ; 1 na 5 ; 1 na 6 ; 3 na 6 ; 3 na 4 ; 3 na 2 ; 6 na 4 ; 2 na 6 ; 2 na 4\nwelke stap komt op plaats 3?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 deeg kneden ; 2 eten koken ; 3 ontbijten ; 4 water koken ; 5 brief posten ; 6 vuur maken\nregels: 6 na 4 ; 3 na 5 ; 2 na 4 ; 6 na 3 ; 4 na 3 ; 6 na 5 ; 6 na 2 ; 1 na 3 ; 1 na 4 ; 2 na 3 ; 6 direct na 1 ; 1 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 oven aan ; 2 instappen ; 3 zaadjes planten ; 4 kaartje kopen ; 5 water koken ; 6 boodschappen doen\nregels: 2 na 6 ; 5 voor 1 ; 2 na 4 ; 3 na 4 ; 3 na 5 ; 1 voor 3 ; 2 na 3 ; 5 na 6 ; 1 na 6 ; 5 na 4 ; 2 na 1 ; 4 direct na 6\nop welke plaats komt stap 3?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 water koken ; 2 ontbijten ; 3 brief posten ; 4 zaadjes planten ; 5 oogsten ; 6 opruimen\nregels: 1 direct na 3 ; 1 voor 5 ; 5 na 6 ; 2 na 3 ; 4 na 6 ; 5 na 4 ; 5 na 3 ; 2 na 1 ; 3 na 6 ; 1 na 6 ; 2 na 5 ; 4 voor 3\nop welke plaats komt stap 2?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 afwassen ; 2 jas aan ; 3 boodschappen doen ; 4 uitstappen ; 5 zaadjes planten ; 6 tafel dekken\nregels: 4 na 3 ; 5 na 2 ; 6 na 4 ; 1 na 5 ; 1 na 2 ; 1 na 4 ; 3 voor 5 ; 2 voor 3 ; 6 na 3 ; 1 voor 6 ; 4 na 5 ; 1 na 3\nwelke stap komt op plaats 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 instappen ; 2 water koken ; 3 afwassen ; 4 deur op slot ; 5 oven aan ; 6 brief schrijven\nregels: 4 na 1 ; 6 na 3 ; 4 na 5 ; 2 na 3 ; 2 na 6 ; 4 voor 2 ; 5 voor 3 ; 2 na 5 ; 2 na 1 ; 4 na 6 ; 4 na 3 ; 1 direct na 6\nop welke plaats komt stap 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 uitstappen ; 2 kaartje kopen ; 3 schoenen aan ; 4 water koken ; 5 wekker zetten ; 6 brief schrijven\nregels: 2 na 1 ; 4 na 6 ; 6 na 3 ; 3 na 1 ; 4 na 1 ; 4 na 5 ; 5 na 1 ; 2 na 5 ; 2 na 6 ; 4 na 3 ; 4 na 2 ; 5 na 6\nop welke plaats komt stap 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 kaartje kopen ; 2 deur op slot ; 3 oogsten ; 4 deeg kneden ; 5 bakken ; 6 brief posten\nregels: 4 na 5 ; 3 na 5 ; 6 voor 3 ; 3 na 1 ; 4 na 1 ; 2 na 1 ; 6 na 1 ; 3 na 2 ; 4 na 6 ; 6 na 5 ; 5 na 2 ; 3 voor 4\nop welke plaats komt stap 4?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 vuur maken ; 2 eten koken ; 3 brief posten ; 4 tanden poetsen ; 5 brief schrijven ; 6 jas aan\nregels: 3 voor 4 ; 2 na 5 ; 4 na 6 ; 4 na 5 ; 6 voor 2 ; 3 na 2 ; 2 na 1 ; 3 na 5 ; 1 na 5 ; 6 na 5 ; 1 voor 6 ; 4 na 2\nop welke plaats komt stap 3?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 oven aan ; 2 wekker zetten ; 3 kaartje kopen ; 4 opruimen ; 5 bakken ; 6 jas aan\nregels: 2 na 4 ; 1 na 6 ; 2 na 3 ; 4 na 1 ; 2 na 1 ; 4 na 6 ; 4 na 5 ; 3 voor 5 ; 2 na 6 ; 5 voor 6 ; 1 na 5 ; 1 na 3\nwelke stap komt op plaats 6?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 ontbijten ; 2 zaadjes planten ; 3 postzegel plakken ; 4 tanden poetsen ; 5 boodschappen doen ; 6 schoenen aan\nregels: 6 direct na 5 ; 1 na 5 ; 3 voor 4 ; 2 na 4 ; 2 na 5 ; 6 na 4 ; 2 direct na 6 ; 5 na 3 ; 1 na 2 ; 5 na 4 ; 1 na 6 ; 2 na 3\nop welke plaats komt stap 5?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 7,
+   "opgave": "stappen: 1 ontbijten ; 2 oogsten ; 3 uitstappen ; 4 deur op slot ; 5 schoenen aan ; 6 postzegel plakken\nregels: 6 na 4 ; 3 na 4 ; 2 na 5 ; 1 direct na 6 ; 3 na 6 ; 3 na 1 ; 2 na 6 ; 3 voor 5 ; 5 na 1 ; 2 na 4 ; 5 na 6 ; 2 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 water koken ; 2 postzegel plakken ; 3 deeg kneden ; 4 opstaan ; 5 brief schrijven ; 6 oogsten\nregels: 5 na 3 ; 2 na 5 ; 2 na 1 ; 6 tussen 4 en 3 ; 2 na 3 ; 1 na 3 ; 1 na 5 ; 3 na 4 ; 5 na 4 ; 2 na 6 ; 2 na 4 ; 1 na 4\nwelke stap komt op plaats 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 wekker zetten ; 2 tafel dekken ; 3 opstaan ; 4 kaartje kopen ; 5 ontbijten ; 6 tanden poetsen\nregels: 2 na 4 ; 3 na 2 ; 3 na 1 ; 2 na 6 ; 5 na 6 ; 4 na 6 ; 1 na 5 ; 2 voor 1 ; 2 na 5 ; 1 na 4 ; 3 na 6 ; 5 voor 4 ; 3 na 4\nwelke stap komt op plaats 2?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 boodschappen doen ; 2 tent opzetten ; 3 water koken ; 4 kaartje kopen ; 5 tafel dekken ; 6 zaadjes planten\nregels: 3 na 2 ; 6 na 2 ; 6 na 5 ; 3 na 4 ; 2 tussen 1 en 4 ; 3 voor 6 ; 5 na 4 ; 5 na 2 ; 5 na 1 ; 3 direct na 5 ; 3 na 1 ; 6 na 4\nop welke plaats komt stap 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 brief posten ; 2 opruimen ; 3 afwas doen ; 4 water geven ; 5 vuur maken ; 6 oven aan\nregels: 6 tussen 5 en 4 ; 6 na 1 ; 5 direct na 3 ; 5 na 1 ; 3 na 1 ; 4 na 3 ; 3 na 2 ; 2 voor 1 ; 4 na 2 ; 5 na 2 ; 4 na 5 ; 4 na 1\nop welke plaats komt stap 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 oven aan ; 2 zaadjes planten ; 3 opruimen ; 4 thee zetten ; 5 tanden poetsen ; 6 eten koken\nregels: 6 na 1 ; 2 na 1 ; 2 na 3 ; 5 na 4 ; 2 na 5 ; 6 voor 2 ; 5 na 3 ; 3 na 1 ; 5 na 1 ; 3 na 4 ; 1 direct na 4 ; 6 na 3 ; 5 voor 6\nwelke stap komt op plaats 6?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 bakken ; 2 thee zetten ; 3 brief schrijven ; 4 fiets pakken ; 5 opruimen ; 6 deur op slot\nregels: 2 direct na 4 ; 1 na 4 ; 5 direct na 6 ; 5 na 4 ; 5 na 2 ; 5 na 1 ; 6 na 3 ; 1 voor 3 ; 6 na 4 ; 3 na 2 ; 6 na 2 ; 1 na 2 ; 5 na 3\nwelke stap komt op plaats 6?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 fiets pakken ; 2 eten koken ; 3 zaadjes planten ; 4 afwas doen ; 5 tafel dekken ; 6 boodschappen doen\nregels: 2 tussen 4 en 1 ; 5 tussen 1 en 6 ; 6 na 4 ; 6 na 2 ; 6 na 3 ; 1 na 4 ; 6 na 1 ; 2 na 3 ; 5 na 4 ; 1 na 3 ; 4 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 afwas doen ; 2 kaartje kopen ; 3 boodschappen doen ; 4 water geven ; 5 thee zetten ; 6 jas aan\nregels: 6 na 4 ; 4 tussen 1 en 3 ; 2 na 6 ; 2 na 4 ; 6 na 3 ; 5 na 1 ; 5 na 3 ; 2 na 3 ; 3 na 1 ; 5 na 4 ; 5 tussen 6 en 2\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 thee zetten ; 2 tafel dekken ; 3 kaartje kopen ; 4 oven aan ; 5 uitstappen ; 6 deeg kneden\nregels: 5 na 3 ; 2 na 4 ; 2 na 3 ; 1 tussen 5 en 2 ; 1 na 4 ; 2 na 6 ; 4 voor 5 ; 1 na 3 ; 2 na 5 ; 4 na 3 ; 6 tussen 3 en 4\nop welke plaats komt stap 2?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 tent opzetten ; 2 brief schrijven ; 3 kaartje kopen ; 4 vuur maken ; 5 water geven ; 6 water koken\nregels: 2 na 6 ; 1 na 6 ; 4 na 6 ; 5 na 6 ; 3 na 6 ; 4 voor 2 ; 3 na 4 ; 3 na 1 ; 3 na 5 ; 2 voor 1 ; 5 na 4 ; 5 na 1 ; 3 na 2\nop welke plaats komt stap 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 postzegel plakken ; 2 afwassen ; 3 tanden poetsen ; 4 fiets pakken ; 5 opruimen ; 6 wekker zetten\nregels: 5 voor 1 ; 1 na 3 ; 2 na 4 ; 3 na 4 ; 3 na 2 ; 5 na 2 ; 6 tussen 2 en 3 ; 5 na 4 ; 5 na 6 ; 5 na 3 ; 1 na 4 ; 1 na 6\nwelke stap komt op plaats 5?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 postzegel plakken ; 2 eten koken ; 3 zaadjes planten ; 4 jas aan ; 5 deeg kneden ; 6 ontbijten\nregels: 2 na 5 ; 6 na 5 ; 1 na 5 ; 2 direct na 6 ; 1 na 3 ; 1 na 2 ; 2 voor 3 ; 3 na 4 ; 6 na 4 ; 3 na 5 ; 1 na 6 ; 1 na 4 ; 4 direct na 5\nop welke plaats komt stap 1?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 opruimen ; 2 oogsten ; 3 uitstappen ; 4 boodschappen doen ; 5 wekker zetten ; 6 tent opzetten\nregels: 2 na 1 ; 4 na 1 ; 2 voor 3 ; 3 na 5 ; 1 voor 6 ; 6 voor 4 ; 5 voor 2 ; 5 na 1 ; 2 na 6 ; 3 na 6 ; 4 voor 5 ; 3 na 4 ; 2 na 4\nop welke plaats komt stap 6?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 tanden poetsen ; 2 opstaan ; 3 deeg kneden ; 4 ontbijten ; 5 tent opzetten ; 6 kaartje kopen\nregels: 1 na 4 ; 6 na 5 ; 1 na 6 ; 2 tussen 6 en 1 ; 1 na 3 ; 3 voor 5 ; 1 na 5 ; 2 na 4 ; 6 na 3 ; 4 na 3 ; 6 na 4 ; 5 voor 4\nwelke stap komt op plaats 1?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 tanden poetsen ; 2 kaartje kopen ; 3 ontbijten ; 4 zaadjes planten ; 5 oogsten ; 6 water koken\nregels: 1 direct na 2 ; 1 na 3 ; 2 na 6 ; 4 na 5 ; 2 na 3 ; 2 na 4 ; 2 na 5 ; 1 na 5 ; 1 na 6 ; 1 na 4 ; 4 na 6 ; 3 tussen 5 en 6\nop welke plaats komt stap 6?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 oogsten ; 2 water geven ; 3 tent opzetten ; 4 brief posten ; 5 tafel dekken ; 6 oven aan\nregels: 4 na 3 ; 4 na 5 ; 1 na 6 ; 1 na 5 ; 4 na 1 ; 2 na 6 ; 3 na 1 ; 3 na 5 ; 2 na 5 ; 6 na 5 ; 4 na 6 ; 2 na 3 ; 4 direct na 2\nop welke plaats komt stap 4?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 zaadjes planten ; 2 afwas doen ; 3 postzegel plakken ; 4 tent opzetten ; 5 brief posten ; 6 wekker zetten\nregels: 6 direct na 4 ; 2 voor 4 ; 1 na 6 ; 6 voor 3 ; 1 na 4 ; 1 na 2 ; 5 na 3 ; 1 na 3 ; 5 na 6 ; 3 na 4 ; 6 na 2 ; 3 na 2 ; 5 voor 1\nop welke plaats komt stap 6?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 water koken ; 2 thee zetten ; 3 eten koken ; 4 afwas doen ; 5 boodschappen doen ; 6 tanden poetsen\nregels: 5 na 1 ; 6 na 2 ; 4 na 3 ; 6 na 5 ; 4 na 1 ; 6 na 4 ; 4 na 2 ; 5 tussen 2 en 4 ; 3 voor 2 ; 5 na 3 ; 6 na 1 ; 3 na 1\nop welke plaats komt stap 3?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 opstaan ; 2 postzegel plakken ; 3 tent opzetten ; 4 boodschappen doen ; 5 eten koken ; 6 zaadjes planten\nregels: 3 voor 1 ; 6 na 3 ; 6 tussen 4 en 2 ; 2 na 1 ; 2 voor 5 ; 6 na 1 ; 5 na 6 ; 5 na 3 ; 5 na 1 ; 2 na 3 ; 4 direct na 1 ; 5 na 4\nwelke stap komt op plaats 4?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 water geven ; 2 tanden poetsen ; 3 brief schrijven ; 4 tent opzetten ; 5 vuur maken ; 6 oven aan\nregels: 1 na 3 ; 2 na 4 ; 2 direct na 3 ; 3 na 4 ; 1 na 2 ; 6 na 3 ; 6 na 4 ; 5 na 3 ; 6 na 5 ; 6 na 1 ; 6 na 2 ; 5 tussen 2 en 1\nop welke plaats komt stap 6?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 tafel dekken ; 2 deur op slot ; 3 eten koken ; 4 boodschappen doen ; 5 afwas doen ; 6 tanden poetsen\nregels: 3 na 1 ; 3 na 2 ; 5 na 3 ; 6 na 2 ; 5 na 2 ; 5 na 6 ; 4 na 1 ; 6 na 1 ; 5 na 1 ; 1 na 2 ; 5 na 4 ; 3 na 6 ; 4 direct na 3\nwelke stap komt op plaats 4?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 thee zetten ; 2 boodschappen doen ; 3 kaartje kopen ; 4 eten koken ; 5 vuur maken ; 6 schoenen aan\nregels: 5 na 4 ; 3 na 6 ; 6 na 4 ; 5 na 2 ; 1 na 4 ; 6 tussen 2 en 1 ; 3 na 2 ; 5 na 1 ; 1 na 2 ; 2 na 4 ; 5 na 3 ; 3 na 1\nop welke plaats komt stap 4?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 deur op slot ; 2 oven aan ; 3 kaartje kopen ; 4 afwassen ; 5 fiets pakken ; 6 brief schrijven\nregels: 5 na 1 ; 5 na 4 ; 3 tussen 1 en 4 ; 5 na 6 ; 5 na 2 ; 2 na 3 ; 1 na 6 ; 4 na 1 ; 4 na 6 ; 5 na 3 ; 2 na 1 ; 2 na 4\nop welke plaats komt stap 5?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 brief posten ; 2 afwas doen ; 3 tafel dekken ; 4 brief schrijven ; 5 uitstappen ; 6 tent opzetten\nregels: 1 direct na 3 ; 1 na 4 ; 1 na 2 ; 3 direct na 5 ; 5 na 2 ; 1 na 6 ; 3 na 6 ; 6 na 2 ; 4 voor 5 ; 1 na 5 ; 4 na 2 ; 3 na 4 ; 4 na 6\nop welke plaats komt stap 5?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 tent opzetten ; 2 opstaan ; 3 thee zetten ; 4 brief schrijven ; 5 oven aan ; 6 boodschappen doen\nregels: 1 na 3 ; 6 na 4 ; 4 na 1 ; 6 na 5 ; 2 direct na 5 ; 6 na 2 ; 1 na 5 ; 3 direct na 2 ; 1 na 2 ; 6 na 1 ; 4 na 5 ; 4 na 3 ; 6 na 3\nop welke plaats komt stap 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 opruimen ; 2 water geven ; 3 brief schrijven ; 4 wekker zetten ; 5 deeg kneden ; 6 afwassen\nregels: 3 na 5 ; 6 na 5 ; 3 tussen 2 en 1 ; 4 tussen 5 en 6 ; 1 na 6 ; 3 na 4 ; 2 na 6 ; 2 na 5 ; 1 na 4 ; 1 na 2 ; 3 na 6\nop welke plaats komt stap 6?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 water koken ; 2 wekker zetten ; 3 opruimen ; 4 kaartje kopen ; 5 zaadjes planten ; 6 uitstappen\nregels: 6 na 3 ; 3 voor 1 ; 2 na 6 ; 2 na 5 ; 4 na 5 ; 4 tussen 6 en 2 ; 6 na 5 ; 2 na 1 ; 2 na 3 ; 4 na 1 ; 5 direct na 1 ; 4 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 jas aan ; 2 deeg kneden ; 3 postzegel plakken ; 4 wekker zetten ; 5 fiets pakken ; 6 tent opzetten\nregels: 3 na 1 ; 2 direct na 4 ; 5 voor 4 ; 6 na 2 ; 2 na 5 ; 4 na 1 ; 6 na 1 ; 1 voor 5 ; 6 na 4 ; 3 na 5 ; 3 na 4 ; 3 tussen 2 en 6\nwelke stap komt op plaats 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 deeg kneden ; 2 instappen ; 3 tent opzetten ; 4 bakken ; 5 brief posten ; 6 uitstappen\nregels: 6 voor 1 ; 4 voor 3 ; 4 na 5 ; 3 na 5 ; 2 na 5 ; 6 na 5 ; 1 na 4 ; 6 na 4 ; 6 direct na 3 ; 3 na 2 ; 6 na 2 ; 4 direct na 2 ; 1 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 8,
+   "opgave": "stappen: 1 kaartje kopen ; 2 afwassen ; 3 water koken ; 4 tent opzetten ; 5 bakken ; 6 schoenen aan\nregels: 1 na 4 ; 3 na 4 ; 6 tussen 2 en 5 ; 5 na 3 ; 6 na 3 ; 5 na 2 ; 6 na 1 ; 2 direct na 3 ; 6 na 4 ; 5 na 4 ; 5 na 1 ; 3 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 fiets pakken ; 2 boodschappen doen ; 3 uitstappen ; 4 oogsten ; 5 water geven ; 6 postzegel plakken ; 7 instappen\nregels: 4 na 7 ; 6 na 7 ; 6 na 2 ; 4 na 2 ; 2 na 5 ; 6 na 3 ; 5 na 7 ; 6 voor 4 ; 3 tussen 5 en 1 ; 4 na 3 ; 6 na 5 ; 4 na 1 ; 1 na 5 ; 1 voor 2\nwelke stap komt op plaats 7?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 deeg kneden ; 2 wekker zetten ; 3 ontbijten ; 4 afwassen ; 5 zaadjes planten ; 6 tafel dekken ; 7 water koken\nregels: 6 voor 3 ; 2 na 3 ; 7 na 5 ; 2 na 4 ; 7 na 6 ; 2 na 5 ; 7 na 3 ; 2 na 6 ; 1 na 2 ; 1 na 5 ; 4 tussen 5 en 6 ; 7 tussen 2 en 1 ; 1 na 3\nop welke plaats komt stap 1?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 fiets pakken ; 2 schoenen aan ; 3 oven aan ; 4 vuur maken ; 5 zaadjes planten ; 6 wekker zetten ; 7 bakken\nregels: 7 na 6 ; 3 na 6 ; 4 voor 5 ; 3 na 2 ; 1 voor 3 ; 5 na 6 ; 6 tussen 2 en 1 ; 4 na 6 ; 5 na 2 ; 5 na 7 ; 4 na 1 ; 5 na 1 ; 7 tussen 3 en 4\nop welke plaats komt stap 5?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 brief posten ; 2 tafel dekken ; 3 oven aan ; 4 instappen ; 5 fiets pakken ; 6 deur op slot ; 7 afwassen\nregels: 6 na 3 ; 7 na 3 ; 5 na 1 ; 5 na 3 ; 7 na 2 ; 7 na 1 ; 5 na 7 ; 6 na 7 ; 5 na 2 ; 6 na 4 ; 1 na 3 ; 6 na 5 ; 4 tussen 7 en 5 ; 2 na 1\nwelke stap komt op plaats 4?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 schoenen aan ; 2 ontbijten ; 3 brief schrijven ; 4 deeg kneden ; 5 jas aan ; 6 opstaan ; 7 postzegel plakken\nregels: 3 na 2 ; 6 na 5 ; 1 na 6 ; 6 na 4 ; 3 na 5 ; 2 na 6 ; 2 na 7 ; 7 na 4 ; 5 tussen 4 en 7 ; 7 voor 6 ; 3 na 7 ; 1 na 4 ; 1 tussen 2 en 3\nop welke plaats komt stap 7?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 deeg kneden ; 2 fiets pakken ; 3 kaartje kopen ; 4 postzegel plakken ; 5 opruimen ; 6 zaadjes planten ; 7 wekker zetten\nregels: 7 na 1 ; 5 na 6 ; 4 direct na 6 ; 7 na 3 ; 2 na 5 ; 7 tussen 5 en 2 ; 3 voor 5 ; 3 direct na 1 ; 7 na 4 ; 2 na 1 ; 2 na 6 ; 1 direct na 4 ; 2 na 3 ; 5 na 1\nop welke plaats komt stap 5?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 kaartje kopen ; 2 jas aan ; 3 tent opzetten ; 4 wekker zetten ; 5 water geven ; 6 instappen ; 7 oogsten\nregels: 7 direct na 4 ; 5 na 2 ; 7 na 5 ; 1 na 3 ; 5 direct na 3 ; 6 voor 3 ; 7 na 1 ; 5 na 6 ; 4 na 6 ; 4 na 5 ; 1 tussen 5 en 4 ; 6 na 2 ; 4 na 3 ; 4 na 2\nop welke plaats komt stap 5?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 schoenen aan ; 2 tent opzetten ; 3 jas aan ; 4 postzegel plakken ; 5 oven aan ; 6 instappen ; 7 water geven\nregels: 2 tussen 6 en 4 ; 7 na 3 ; 1 na 5 ; 5 na 4 ; 1 na 2 ; 3 na 6 ; 7 na 4 ; 3 na 5 ; 7 na 6 ; 1 voor 3 ; 7 na 1 ; 7 na 5 ; 5 na 6 ; 7 na 2\nwelke stap komt op plaats 2?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 ontbijten ; 2 brief posten ; 3 tanden poetsen ; 4 jas aan ; 5 tafel dekken ; 6 vuur maken ; 7 boodschappen doen\nregels: 7 na 4 ; 6 na 5 ; 3 na 7 ; 7 direct na 6 ; 2 na 6 ; 2 na 5 ; 1 tussen 2 en 3 ; 1 na 7 ; 4 tussen 5 en 6 ; 1 na 6 ; 3 na 2 ; 1 na 5 ; 2 direct na 7\nop welke plaats komt stap 4?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 deeg kneden ; 2 vuur maken ; 3 water geven ; 4 eten koken ; 5 tafel dekken ; 6 oven aan ; 7 opstaan\nregels: 4 na 5 ; 6 na 4 ; 2 tussen 3 en 7 ; 1 tussen 4 en 6 ; 1 na 3 ; 4 na 2 ; 1 na 7 ; 6 na 2 ; 6 na 7 ; 3 direct na 5 ; 7 na 3 ; 7 voor 4 ; 6 na 5\nop welke plaats komt stap 1?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 afwassen ; 2 oven aan ; 3 uitstappen ; 4 water geven ; 5 kaartje kopen ; 6 schoenen aan ; 7 brief posten\nregels: 7 na 2 ; 5 na 4 ; 3 na 4 ; 3 na 2 ; 7 na 3 ; 7 na 4 ; 4 voor 1 ; 5 tussen 1 en 2 ; 6 na 5 ; 3 na 5 ; 6 tussen 2 en 3 ; 7 na 1 ; 7 na 6\nwelke stap komt op plaats 3?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 brief posten ; 2 tanden poetsen ; 3 boodschappen doen ; 4 afwassen ; 5 jas aan ; 6 deeg kneden ; 7 vuur maken\nregels: 1 na 4 ; 4 voor 3 ; 7 na 2 ; 6 na 2 ; 7 na 5 ; 6 na 4 ; 6 direct na 3 ; 1 tussen 6 en 7 ; 1 na 3 ; 6 na 5 ; 7 na 6 ; 1 na 5 ; 5 na 2 ; 4 na 5\nop welke plaats komt stap 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 oven aan ; 2 vuur maken ; 3 brief posten ; 4 uitstappen ; 5 tafel dekken ; 6 afwassen ; 7 tanden poetsen\nregels: 2 tussen 7 en 5 ; 5 na 7 ; 7 na 6 ; 1 tussen 6 en 3 ; 7 na 3 ; 5 na 1 ; 7 na 1 ; 3 voor 4 ; 5 na 4 ; 7 direct na 4 ; 4 na 6 ; 2 na 3 ; 5 na 6\nwelke stap komt op plaats 6?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 deur op slot ; 2 uitstappen ; 3 schoenen aan ; 4 tafel dekken ; 5 wekker zetten ; 6 afwassen ; 7 ontbijten\nregels: 6 na 4 ; 6 na 2 ; 5 tussen 6 en 1 ; 4 na 2 ; 1 na 6 ; 7 na 3 ; 7 na 5 ; 6 na 3 ; 3 tussen 2 en 4 ; 5 na 3 ; 7 na 6 ; 7 na 1 ; 5 na 4\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 deur op slot ; 2 boodschappen doen ; 3 zaadjes planten ; 4 tanden poetsen ; 5 eten koken ; 6 opruimen ; 7 oven aan\nregels: 4 na 7 ; 2 tussen 6 en 1 ; 5 direct na 1 ; 3 tussen 7 en 6 ; 4 direct na 5 ; 4 na 1 ; 1 na 6 ; 5 na 6 ; 5 na 2 ; 1 na 7 ; 4 na 3 ; 4 na 2 ; 1 na 3\nop welke plaats komt stap 7?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 tent opzetten ; 2 boodschappen doen ; 3 deur op slot ; 4 fiets pakken ; 5 uitstappen ; 6 oogsten ; 7 opstaan\nregels: 7 na 3 ; 4 na 2 ; 7 na 4 ; 5 na 1 ; 7 voor 5 ; 6 na 3 ; 7 na 6 ; 4 tussen 3 en 6 ; 5 na 3 ; 2 voor 1 ; 3 na 1 ; 7 na 1 ; 4 na 1 ; 5 na 6\nwelke stap komt op plaats 5?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 afwassen ; 2 oven aan ; 3 deeg kneden ; 4 ontbijten ; 5 schoenen aan ; 6 deur op slot ; 7 oogsten\nregels: 6 na 1 ; 4 na 7 ; 5 na 2 ; 1 na 7 ; 2 na 4 ; 6 na 4 ; 5 na 7 ; 2 na 3 ; 6 na 7 ; 6 na 2 ; 4 na 3 ; 1 direct na 2 ; 7 na 3 ; 5 na 1 ; 6 na 5\nop welke plaats komt stap 6?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 water geven ; 2 jas aan ; 3 uitstappen ; 4 afwassen ; 5 eten koken ; 6 opruimen ; 7 tafel dekken\nregels: 3 voor 6 ; 6 na 1 ; 3 na 7 ; 7 direct na 1 ; 5 tussen 7 en 3 ; 2 na 5 ; 4 na 3 ; 2 na 3 ; 4 na 7 ; 2 na 1 ; 4 na 6 ; 2 tussen 6 en 4 ; 6 na 5\nop welke plaats komt stap 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 water geven ; 2 oven aan ; 3 ontbijten ; 4 instappen ; 5 eten koken ; 6 brief schrijven ; 7 afwassen\nregels: 5 na 2 ; 6 direct na 1 ; 2 na 6 ; 6 na 7 ; 3 na 1 ; 4 na 7 ; 5 na 6 ; 3 na 4 ; 7 voor 1 ; 5 na 3 ; 4 na 6 ; 5 na 4 ; 3 na 7 ; 3 na 2 ; 2 voor 4\nop welke plaats komt stap 1?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 brief posten ; 2 kaartje kopen ; 3 bakken ; 4 ontbijten ; 5 fiets pakken ; 6 thee zetten ; 7 deeg kneden\nregels: 1 na 3 ; 5 na 3 ; 6 na 2 ; 6 na 3 ; 4 tussen 1 en 5 ; 6 na 7 ; 7 na 3 ; 6 na 4 ; 3 direct na 2 ; 6 na 5 ; 7 voor 1 ; 6 na 1 ; 5 na 7 ; 4 na 7\nop welke plaats komt stap 4?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 tent opzetten ; 2 uitstappen ; 3 jas aan ; 4 ontbijten ; 5 opstaan ; 6 deur op slot ; 7 wekker zetten\nregels: 2 voor 5 ; 6 na 2 ; 1 tussen 3 en 7 ; 4 na 2 ; 4 tussen 5 en 6 ; 5 na 1 ; 7 na 3 ; 4 na 7 ; 7 voor 2 ; 6 na 3 ; 4 na 3 ; 6 na 7 ; 6 na 5\nop welke plaats komt stap 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 tent opzetten ; 2 deur op slot ; 3 water geven ; 4 fiets pakken ; 5 ontbijten ; 6 brief posten ; 7 jas aan\nregels: 6 voor 4 ; 5 na 6 ; 5 na 2 ; 2 na 7 ; 6 na 3 ; 3 na 7 ; 3 voor 1 ; 5 na 7 ; 6 na 1 ; 4 voor 5 ; 4 na 3 ; 5 na 1 ; 6 na 2 ; 3 direct na 2 ; 1 na 7\nwelke stap komt op plaats 3?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 oven aan ; 2 vuur maken ; 3 schoenen aan ; 4 kaartje kopen ; 5 opstaan ; 6 ontbijten ; 7 bakken\nregels: 5 voor 4 ; 4 na 1 ; 5 na 2 ; 5 na 1 ; 4 na 3 ; 6 na 1 ; 5 na 7 ; 1 na 3 ; 1 na 2 ; 7 na 3 ; 6 na 4 ; 6 na 5 ; 2 direct na 7 ; 5 na 3 ; 4 na 2\nwelke stap komt op plaats 6?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 zaadjes planten ; 2 tent opzetten ; 3 oogsten ; 4 postzegel plakken ; 5 kaartje kopen ; 6 brief posten ; 7 tafel dekken\nregels: 7 direct na 2 ; 6 na 2 ; 4 tussen 5 en 2 ; 7 na 4 ; 6 na 5 ; 2 na 3 ; 6 na 3 ; 6 na 4 ; 6 na 7 ; 4 na 1 ; 5 na 3 ; 3 na 1 ; 4 na 3 ; 7 na 1\nwelke stap komt op plaats 5?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 wekker zetten ; 2 schoenen aan ; 3 oogsten ; 4 uitstappen ; 5 vuur maken ; 6 instappen ; 7 opruimen\nregels: 3 na 5 ; 1 tussen 7 en 6 ; 3 na 7 ; 2 na 5 ; 3 na 1 ; 4 na 2 ; 7 na 5 ; 4 na 7 ; 2 na 1 ; 2 na 3 ; 4 na 1 ; 3 direct na 6 ; 4 na 3 ; 4 na 6\nwelke stap komt op plaats 5?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 oven aan ; 2 bakken ; 3 brief posten ; 4 deeg kneden ; 5 schoenen aan ; 6 afwassen ; 7 fiets pakken\nregels: 3 na 5 ; 2 na 5 ; 4 na 1 ; 5 voor 1 ; 2 na 6 ; 7 direct na 6 ; 5 na 7 ; 4 na 5 ; 2 direct na 1 ; 1 na 7 ; 3 na 2 ; 1 na 6 ; 4 na 7 ; 4 tussen 2 en 3\nwelke stap komt op plaats 4?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 zaadjes planten ; 2 eten koken ; 3 boodschappen doen ; 4 schoenen aan ; 5 tanden poetsen ; 6 uitstappen ; 7 brief schrijven\nregels: 4 na 6 ; 4 na 2 ; 3 na 1 ; 2 na 5 ; 4 na 5 ; 3 na 4 ; 3 na 6 ; 3 na 2 ; 2 voor 7 ; 7 voor 4 ; 7 na 6 ; 6 tussen 5 en 2 ; 5 na 1 ; 3 na 5\nop welke plaats komt stap 1?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 uitstappen ; 2 afwassen ; 3 water koken ; 4 tafel dekken ; 5 oven aan ; 6 wekker zetten ; 7 schoenen aan\nregels: 6 voor 2 ; 2 voor 4 ; 2 na 7 ; 5 na 7 ; 2 na 1 ; 4 na 7 ; 2 na 5 ; 4 na 6 ; 4 na 1 ; 3 na 1 ; 3 na 5 ; 6 na 5 ; 1 direct na 5 ; 6 na 1 ; 6 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 afwas doen ; 2 eten koken ; 3 postzegel plakken ; 4 ontbijten ; 5 tanden poetsen ; 6 vuur maken ; 7 deeg kneden\nregels: 6 voor 1 ; 3 voor 6 ; 2 na 5 ; 4 direct na 7 ; 2 na 6 ; 6 na 5 ; 2 na 1 ; 7 direct na 2 ; 4 na 1 ; 7 na 1 ; 1 na 3 ; 3 na 5 ; 2 na 3 ; 4 na 2 ; 1 na 5\nop welke plaats komt stap 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 9,
+   "opgave": "stappen: 1 fiets pakken ; 2 bakken ; 3 deur op slot ; 4 deeg kneden ; 5 ontbijten ; 6 schoenen aan ; 7 brief posten\nregels: 3 na 4 ; 7 na 6 ; 5 voor 2 ; 1 na 5 ; 7 na 1 ; 7 na 2 ; 3 na 1 ; 6 voor 4 ; 7 na 5 ; 4 voor 1 ; 3 na 6 ; 1 na 2 ; 1 na 6 ; 7 direct na 3 ; 2 voor 6\nwelke stap komt op plaats 3?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 vuur maken ; 2 opruimen ; 3 uitstappen ; 4 bakken ; 5 afwassen ; 6 tanden poetsen ; 7 brief posten\nregels: 3 tussen 1 en 5 ; 6 na 7 ; 5 voor 7 ; 6 na 3 ; 2 na 4 ; 2 na 3 ; 6 na 1 ; 7 na 3 ; 2 na 5 ; 6 na 5 ; 2 na 7 ; 4 tussen 7 en 6 ; 6 voor 2 ; 2 na 1\nop welke plaats komt stap 2?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 opruimen ; 2 deur op slot ; 3 opstaan ; 4 tanden poetsen ; 5 bakken ; 6 ontbijten ; 7 eten koken\nregels: 7 na 1 ; 4 na 5 ; 6 na 5 ; 1 na 5 ; 6 na 1 ; 2 na 6 ; 7 na 6 ; 7 na 3 ; 3 na 1 ; 6 direct na 3 ; 4 na 1 ; 4 na 7 ; 2 na 5 ; 3 na 5 ; 4 direct na 2 ; 7 voor 2\nop welke plaats komt stap 5?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 instappen ; 2 thee zetten ; 3 boodschappen doen ; 4 bakken ; 5 oogsten ; 6 kaartje kopen ; 7 postzegel plakken\nregels: 4 na 3 ; 4 na 1 ; 4 na 6 ; 4 na 5 ; 3 na 7 ; 6 na 5 ; 2 direct na 1 ; 6 na 1 ; 6 direct na 3 ; 3 na 5 ; 4 na 2 ; 5 tussen 2 en 7 ; 4 na 7 ; 7 na 1 ; 6 na 7\nop welke plaats komt stap 7?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 jas aan ; 2 kaartje kopen ; 3 oven aan ; 4 eten koken ; 5 deeg kneden ; 6 instappen ; 7 water koken\nregels: 7 na 1 ; 7 na 5 ; 1 voor 3 ; 4 na 6 ; 1 na 6 ; 3 na 4 ; 7 na 4 ; 3 na 2 ; 5 na 2 ; 7 direct na 3 ; 5 direct na 4 ; 5 na 6 ; 1 na 5 ; 1 na 2 ; 2 tussen 6 en 4\nop welke plaats komt stap 5?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 brief schrijven ; 2 tent opzetten ; 3 eten koken ; 4 opruimen ; 5 afwassen ; 6 instappen ; 7 fiets pakken\nregels: 3 na 5 ; 3 na 1 ; 2 na 4 ; 7 na 1 ; 3 na 7 ; 2 na 6 ; 2 na 1 ; 1 na 4 ; 2 tussen 7 en 3 ; 7 na 6 ; 3 na 6 ; 5 na 4 ; 2 na 5 ; 1 tussen 5 en 6\nwelke stap komt op plaats 2?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 eten koken ; 2 instappen ; 3 kaartje kopen ; 4 uitstappen ; 5 ontbijten ; 6 fiets pakken ; 7 schoenen aan\nregels: 1 na 7 ; 5 na 1 ; 4 na 7 ; 1 na 6 ; 5 na 7 ; 4 na 2 ; 3 na 2 ; 2 tussen 6 en 7 ; 3 tussen 1 en 4 ; 3 na 6 ; 5 na 4 ; 7 na 6 ; 5 na 3 ; 3 na 7\nwelke stap komt op plaats 4?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 tanden poetsen ; 2 water koken ; 3 oogsten ; 4 jas aan ; 5 kaartje kopen ; 6 deur op slot ; 7 instappen\nregels: 4 na 3 ; 7 na 2 ; 1 na 4 ; 1 na 7 ; 6 na 2 ; 2 tussen 5 en 3 ; 6 na 5 ; 4 direct na 6 ; 4 na 7 ; 4 na 2 ; 1 na 6 ; 6 direct na 7 ; 1 na 3 ; 3 voor 7 ; 6 na 3\nop welke plaats komt stap 4?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 schoenen aan ; 2 uitstappen ; 3 brief posten ; 4 thee zetten ; 5 afwassen ; 6 vuur maken ; 7 opruimen\nregels: 4 voor 3 ; 3 na 6 ; 1 na 4 ; 7 voor 4 ; 2 direct na 5 ; 1 na 7 ; 1 na 5 ; 1 na 6 ; 3 na 7 ; 3 na 2 ; 1 na 3 ; 4 na 6 ; 4 na 2 ; 6 na 5 ; 6 tussen 2 en 7\nop welke plaats komt stap 4?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 vuur maken ; 2 fiets pakken ; 3 ontbijten ; 4 tafel dekken ; 5 postzegel plakken ; 6 instappen ; 7 afwassen\nregels: 4 na 2 ; 6 voor 2 ; 3 na 7 ; 3 na 2 ; 4 voor 3 ; 4 na 6 ; 3 na 5 ; 1 tussen 7 en 5 ; 5 na 7 ; 4 na 5 ; 7 direct na 2 ; 4 na 1 ; 4 na 7 ; 3 na 1 ; 3 na 6\nop welke plaats komt stap 7?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 boodschappen doen ; 2 afwassen ; 3 kaartje kopen ; 4 postzegel plakken ; 5 tafel dekken ; 6 deur op slot ; 7 opstaan\nregels: 4 na 1 ; 2 na 3 ; 7 na 1 ; 1 tussen 3 en 6 ; 5 na 2 ; 5 na 3 ; 5 na 6 ; 4 na 7 ; 5 voor 4 ; 4 na 6 ; 7 voor 5 ; 6 na 3 ; 2 tussen 6 en 7 ; 4 na 3\nop welke plaats komt stap 4?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 wekker zetten ; 2 uitstappen ; 3 thee zetten ; 4 eten koken ; 5 brief schrijven ; 6 water koken ; 7 deur op slot\nregels: 5 na 7 ; 2 na 1 ; 3 na 1 ; 2 na 5 ; 7 na 4 ; 5 na 4 ; 2 na 3 ; 4 voor 6 ; 5 direct na 3 ; 7 tussen 1 en 3 ; 2 na 4 ; 1 na 6 ; 2 na 7 ; 3 na 6 ; 7 na 6\nwelke stap komt op plaats 7?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 tent opzetten ; 2 tanden poetsen ; 3 zaadjes planten ; 4 fiets pakken ; 5 brief posten ; 6 ontbijten ; 7 eten koken\nregels: 6 na 7 ; 5 tussen 1 en 7 ; 3 na 7 ; 6 na 2 ; 2 na 5 ; 4 na 7 ; 2 tussen 7 en 3 ; 4 na 6 ; 4 na 3 ; 3 voor 6 ; 4 na 1 ; 4 na 2 ; 2 na 1 ; 7 na 1\nop welke plaats komt stap 7?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 thee zetten ; 2 tent opzetten ; 3 opruimen ; 4 ontbijten ; 5 fiets pakken ; 6 jas aan ; 7 deur op slot\nregels: 2 na 4 ; 7 na 3 ; 6 na 5 ; 7 na 4 ; 2 na 3 ; 4 na 1 ; 1 voor 3 ; 2 na 6 ; 3 na 5 ; 2 na 7 ; 4 na 5 ; 4 na 3 ; 6 voor 1 ; 7 na 1 ; 7 na 6 ; 2 na 1\nwelke stap komt op plaats 4?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 uitstappen ; 2 jas aan ; 3 afwassen ; 4 water koken ; 5 tent opzetten ; 6 schoenen aan ; 7 oven aan\nregels: 1 na 5 ; 3 tussen 1 en 4 ; 4 na 7 ; 1 na 2 ; 1 na 6 ; 7 voor 5 ; 5 na 2 ; 4 na 1 ; 3 na 5 ; 2 tussen 6 en 7 ; 4 na 6 ; 3 na 6 ; 7 na 6 ; 3 na 7\nop welke plaats komt stap 7?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 oogsten ; 2 deur op slot ; 3 water geven ; 4 opruimen ; 5 ontbijten ; 6 opstaan ; 7 fiets pakken\nregels: 7 voor 2 ; 5 na 1 ; 6 direct na 3 ; 1 na 7 ; 3 na 1 ; 5 na 3 ; 6 na 2 ; 4 na 7 ; 5 na 4 ; 5 na 6 ; 6 na 4 ; 1 na 2 ; 4 tussen 1 en 3 ; 6 na 1 ; 5 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 vuur maken ; 2 boodschappen doen ; 3 uitstappen ; 4 oogsten ; 5 zaadjes planten ; 6 wekker zetten ; 7 deur op slot\nregels: 6 na 4 ; 3 na 2 ; 4 na 2 ; 1 na 5 ; 7 na 3 ; 1 na 6 ; 6 na 2 ; 7 na 5 ; 4 tussen 3 en 5 ; 7 na 2 ; 6 na 3 ; 5 voor 6 ; 7 tussen 6 en 1 ; 1 na 4\nop welke plaats komt stap 4?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 oven aan ; 2 tent opzetten ; 3 tafel dekken ; 4 fiets pakken ; 5 kaartje kopen ; 6 eten koken ; 7 brief posten\nregels: 3 na 2 ; 3 na 4 ; 3 na 5 ; 4 na 6 ; 5 na 1 ; 3 na 6 ; 2 na 1 ; 4 na 1 ; 2 na 7 ; 6 voor 1 ; 5 na 4 ; 5 na 2 ; 5 na 7 ; 4 direct na 2 ; 5 na 6 ; 6 na 7\nwelke stap komt op plaats 6?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 deur op slot ; 2 thee zetten ; 3 wekker zetten ; 4 deeg kneden ; 5 schoenen aan ; 6 opruimen ; 7 zaadjes planten\nregels: 1 na 3 ; 1 na 6 ; 3 tussen 5 en 6 ; 7 voor 5 ; 1 na 5 ; 1 na 7 ; 5 na 4 ; 6 na 2 ; 1 na 4 ; 6 na 5 ; 7 na 4 ; 3 na 7 ; 6 na 7 ; 5 na 2 ; 4 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 opstaan ; 2 brief posten ; 3 kaartje kopen ; 4 fiets pakken ; 5 oogsten ; 6 afwassen ; 7 tafel dekken\nregels: 2 na 7 ; 4 tussen 1 en 3 ; 6 na 2 ; 3 voor 7 ; 6 na 4 ; 5 na 7 ; 7 na 4 ; 6 na 7 ; 5 na 3 ; 2 na 3 ; 6 na 5 ; 5 voor 2 ; 6 na 1 ; 3 na 1 ; 6 na 3\nwelke stap komt op plaats 4?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 water geven ; 2 fiets pakken ; 3 afwassen ; 4 brief schrijven ; 5 postzegel plakken ; 6 tafel dekken ; 7 kaartje kopen\nregels: 7 na 6 ; 1 na 2 ; 5 na 6 ; 2 na 3 ; 5 na 4 ; 6 na 3 ; 5 na 7 ; 7 na 3 ; 2 na 4 ; 1 tussen 7 en 5 ; 7 na 4 ; 2 na 6 ; 3 na 4 ; 7 na 2 ; 5 na 2\nop welke plaats komt stap 4?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 kaartje kopen ; 2 eten koken ; 3 wekker zetten ; 4 brief posten ; 5 postzegel plakken ; 6 bakken ; 7 tent opzetten\nregels: 1 na 3 ; 6 na 2 ; 5 direct na 7 ; 7 na 1 ; 5 na 6 ; 5 na 3 ; 5 na 2 ; 7 na 2 ; 6 na 3 ; 4 na 3 ; 7 na 4 ; 6 tussen 4 en 7 ; 5 na 4 ; 4 direct na 1 ; 2 voor 3\nop welke plaats komt stap 6?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 schoenen aan ; 2 zaadjes planten ; 3 brief posten ; 4 jas aan ; 5 water koken ; 6 opstaan ; 7 deur op slot\nregels: 6 na 4 ; 3 na 5 ; 3 na 2 ; 6 na 7 ; 6 na 2 ; 4 na 7 ; 2 voor 5 ; 7 na 3 ; 1 na 2 ; 3 direct na 1 ; 7 na 5 ; 5 voor 1 ; 6 na 1 ; 4 na 3 ; 4 na 1 ; 6 na 3\nwelke stap komt op plaats 5?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 instappen ; 2 brief posten ; 3 deeg kneden ; 4 postzegel plakken ; 5 tafel dekken ; 6 fiets pakken ; 7 zaadjes planten\nregels: 6 na 1 ; 6 na 4 ; 3 na 2 ; 7 tussen 2 en 4 ; 1 na 7 ; 5 na 1 ; 3 na 7 ; 1 na 4 ; 6 na 7 ; 3 na 4 ; 6 na 3 ; 6 voor 5 ; 5 na 3 ; 1 direct na 3 ; 5 na 4\nwelke stap komt op plaats 4?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 fiets pakken ; 2 opruimen ; 3 vuur maken ; 4 afwassen ; 5 zaadjes planten ; 6 boodschappen doen ; 7 water geven\nregels: 6 voor 2 ; 5 tussen 3 en 4 ; 2 na 4 ; 6 na 1 ; 3 na 1 ; 6 na 5 ; 7 tussen 1 en 3 ; 4 na 3 ; 2 na 7 ; 5 na 7 ; 2 na 5 ; 5 na 1 ; 2 na 3 ; 4 voor 6\nop welke plaats komt stap 7?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 postzegel plakken ; 2 wekker zetten ; 3 zaadjes planten ; 4 tanden poetsen ; 5 schoenen aan ; 6 kaartje kopen ; 7 tafel dekken\nregels: 4 na 1 ; 3 na 6 ; 4 voor 5 ; 7 voor 3 ; 5 na 1 ; 3 voor 1 ; 5 na 2 ; 4 direct na 2 ; 5 na 3 ; 1 na 7 ; 6 voor 7 ; 2 na 6 ; 4 na 6 ; 2 na 3 ; 1 voor 2 ; 1 na 6\nwelke stap komt op plaats 1?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 deur op slot ; 2 boodschappen doen ; 3 tafel dekken ; 4 jas aan ; 5 ontbijten ; 6 fiets pakken ; 7 opstaan\nregels: 5 na 4 ; 1 na 6 ; 2 na 7 ; 3 na 7 ; 1 na 7 ; 7 tussen 4 en 6 ; 1 na 2 ; 1 na 3 ; 2 voor 3 ; 5 na 6 ; 1 na 5 ; 5 voor 2 ; 6 na 4 ; 3 na 5 ; 1 na 4\nwelke stap komt op plaats 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 brief posten ; 2 water geven ; 3 oogsten ; 4 deeg kneden ; 5 brief schrijven ; 6 eten koken ; 7 wekker zetten\nregels: 7 na 4 ; 3 na 4 ; 3 voor 7 ; 2 direct na 5 ; 5 na 3 ; 5 na 6 ; 2 na 7 ; 5 na 7 ; 6 na 3 ; 6 na 4 ; 1 na 7 ; 6 na 1 ; 5 na 1 ; 2 na 6 ; 1 na 4 ; 2 na 1\nwelke stap komt op plaats 5?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 brief posten ; 2 opstaan ; 3 afwassen ; 4 oven aan ; 5 eten koken ; 6 jas aan ; 7 opruimen\nregels: 2 na 3 ; 5 na 6 ; 4 na 6 ; 2 tussen 4 en 1 ; 1 na 3 ; 4 na 7 ; 2 na 7 ; 1 na 6 ; 1 na 4 ; 6 na 3 ; 5 voor 4 ; 7 tussen 6 en 5 ; 4 na 3 ; 2 na 6\nop welke plaats komt stap 3?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 tanden poetsen ; 2 tafel dekken ; 3 afwas doen ; 4 zaadjes planten ; 5 uitstappen ; 6 vuur maken ; 7 water geven\nregels: 5 na 7 ; 5 direct na 6 ; 1 na 6 ; 7 na 3 ; 4 na 2 ; 1 na 4 ; 1 direct na 5 ; 6 na 2 ; 5 na 4 ; 6 na 7 ; 6 direct na 4 ; 7 voor 2 ; 1 na 2 ; 6 na 3 ; 1 na 3 ; 4 na 3\nop welke plaats komt stap 2?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 10,
+   "opgave": "stappen: 1 bakken ; 2 opruimen ; 3 postzegel plakken ; 4 opstaan ; 5 ontbijten ; 6 kaartje kopen ; 7 zaadjes planten\nregels: 5 na 7 ; 5 voor 3 ; 4 na 5 ; 6 na 5 ; 4 na 3 ; 1 na 7 ; 4 na 1 ; 2 na 4 ; 2 na 1 ; 6 na 3 ; 2 na 6 ; 3 voor 1 ; 4 na 7 ; 6 tussen 1 en 4 ; 2 na 3\nop welke plaats komt stap 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 fiets pakken ; 2 tafel dekken ; 3 thee zetten ; 4 boodschappen doen ; 5 kaartje kopen ; 6 opruimen ; 7 water koken ; 8 uitstappen\nregels: 5 na 4 ; 7 na 6 ; 4 tussen 7 en 3 ; 1 na 3 ; 4 na 6 ; 8 na 3 ; 8 tussen 2 en 5 ; 2 direct na 3 ; 3 na 7 ; 1 na 6 ; 1 na 8 ; 2 na 6 ; 5 na 2 ; 5 na 3 ; 1 na 5 ; 3 na 6\nop welke plaats komt stap 1?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 brief posten ; 2 tafel dekken ; 3 postzegel plakken ; 4 afwassen ; 5 wekker zetten ; 6 instappen ; 7 bakken ; 8 oven aan\nregels: 7 na 6 ; 6 na 5 ; 3 na 2 ; 7 na 5 ; 7 na 4 ; 1 na 7 ; 6 na 3 ; 6 na 2 ; 1 na 4 ; 1 na 2 ; 8 tussen 2 en 5 ; 4 na 8 ; 1 na 6 ; 3 direct na 5 ; 1 na 3 ; 6 voor 4 ; 4 na 3\nop welke plaats komt stap 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 oogsten ; 2 oven aan ; 3 deeg kneden ; 4 water geven ; 5 deur op slot ; 6 wekker zetten ; 7 tent opzetten ; 8 afwas doen\nregels: 3 tussen 1 en 2 ; 6 na 5 ; 1 na 4 ; 6 na 3 ; 5 tussen 4 en 8 ; 7 na 8 ; 7 direct na 6 ; 8 voor 1 ; 8 na 4 ; 6 na 2 ; 3 na 5 ; 7 na 3 ; 1 na 5 ; 7 na 5 ; 7 na 4 ; 6 na 1\nwelke stap komt op plaats 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 opstaan ; 2 eten koken ; 3 afwassen ; 4 brief posten ; 5 oven aan ; 6 boodschappen doen ; 7 ontbijten ; 8 schoenen aan\nregels: 3 tussen 5 en 6 ; 8 na 1 ; 2 na 1 ; 7 na 6 ; 8 na 3 ; 2 tussen 4 en 7 ; 2 na 5 ; 8 na 6 ; 7 na 1 ; 1 voor 5 ; 7 voor 8 ; 8 na 5 ; 7 na 4 ; 6 na 1 ; 8 na 2 ; 6 voor 4\nwelke stap komt op plaats 6?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 wekker zetten ; 2 instappen ; 3 tafel dekken ; 4 postzegel plakken ; 5 oven aan ; 6 brief schrijven ; 7 oogsten ; 8 thee zetten\nregels: 4 na 3 ; 6 na 4 ; 8 na 5 ; 5 voor 3 ; 7 na 2 ; 4 na 1 ; 2 tussen 8 en 4 ; 4 voor 7 ; 2 na 3 ; 6 na 8 ; 1 voor 8 ; 6 na 1 ; 6 na 7 ; 4 na 8 ; 7 na 1 ; 6 na 2 ; 1 na 3\nwelke stap komt op plaats 1?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 fiets pakken ; 2 deur op slot ; 3 eten koken ; 4 afwas doen ; 5 bakken ; 6 tanden poetsen ; 7 deeg kneden ; 8 thee zetten\nregels: 6 na 5 ; 3 na 8 ; 7 na 8 ; 8 direct na 1 ; 4 na 5 ; 6 na 2 ; 2 voor 7 ; 6 na 8 ; 2 na 3 ; 2 na 4 ; 6 na 4 ; 4 na 8 ; 4 na 1 ; 5 direct na 3 ; 7 voor 6 ; 7 na 5 ; 4 na 3 ; 6 na 1\nop welke plaats komt stap 6?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 opruimen ; 2 uitstappen ; 3 deur op slot ; 4 oven aan ; 5 tent opzetten ; 6 tanden poetsen ; 7 deeg kneden ; 8 fiets pakken\nregels: 7 na 1 ; 2 na 6 ; 8 tussen 2 en 5 ; 8 na 7 ; 5 na 2 ; 6 na 7 ; 3 tussen 1 en 7 ; 5 na 6 ; 2 na 4 ; 4 direct na 6 ; 5 na 7 ; 8 na 4 ; 5 na 1 ; 5 na 4 ; 2 na 7 ; 6 na 1\nwelke stap komt op plaats 7?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 afwassen ; 2 instappen ; 3 oven aan ; 4 vuur maken ; 5 wekker zetten ; 6 ontbijten ; 7 kaartje kopen ; 8 tanden poetsen\nregels: 2 na 3 ; 2 na 5 ; 7 na 3 ; 2 na 8 ; 4 na 2 ; 3 voor 5 ; 7 voor 4 ; 4 na 5 ; 3 na 6 ; 1 na 7 ; 7 direct na 2 ; 1 na 4 ; 8 tussen 6 en 3 ; 2 na 6 ; 5 na 6 ; 4 na 8 ; 1 na 2\nop welke plaats komt stap 8?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 tafel dekken ; 2 wekker zetten ; 3 afwassen ; 4 eten koken ; 5 instappen ; 6 zaadjes planten ; 7 vuur maken ; 8 deeg kneden\nregels: 3 na 6 ; 6 na 1 ; 5 na 7 ; 8 tussen 5 en 2 ; 3 na 4 ; 8 na 6 ; 7 na 1 ; 2 na 1 ; 2 na 4 ; 2 na 5 ; 6 na 4 ; 4 na 1 ; 8 na 4 ; 8 na 3 ; 8 na 7 ; 7 na 3 ; 7 na 6\nop welke plaats komt stap 8?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 afwas doen ; 2 brief posten ; 3 fiets pakken ; 4 jas aan ; 5 tanden poetsen ; 6 water geven ; 7 opruimen ; 8 uitstappen\nregels: 3 na 1 ; 3 na 5 ; 4 tussen 7 en 6 ; 3 na 2 ; 2 na 5 ; 3 na 4 ; 8 na 5 ; 1 na 6 ; 6 voor 2 ; 1 na 4 ; 8 na 2 ; 2 na 4 ; 1 direct na 8 ; 1 na 7 ; 8 na 6 ; 7 na 5 ; 8 na 4\nop welke plaats komt stap 2?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 brief posten ; 2 bakken ; 3 opruimen ; 4 instappen ; 5 jas aan ; 6 afwas doen ; 7 water koken ; 8 oogsten\nregels: 6 na 1 ; 2 na 5 ; 5 na 8 ; 2 na 8 ; 1 na 3 ; 5 na 6 ; 2 na 6 ; 4 tussen 6 en 5 ; 8 direct na 1 ; 2 na 1 ; 5 na 1 ; 4 na 1 ; 5 na 7 ; 6 direct na 8 ; 2 na 4 ; 3 na 7 ; 8 na 3\nop welke plaats komt stap 4?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 opstaan ; 2 boodschappen doen ; 3 deeg kneden ; 4 thee zetten ; 5 tafel dekken ; 6 vuur maken ; 7 uitstappen ; 8 brief posten\nregels: 8 na 6 ; 2 na 1 ; 2 na 6 ; 2 na 4 ; 8 na 4 ; 2 na 7 ; 5 na 4 ; 1 tussen 4 en 6 ; 3 voor 2 ; 8 direct na 5 ; 8 na 2 ; 7 tussen 6 en 3 ; 7 na 1 ; 8 na 1 ; 5 direct na 2 ; 8 na 7\nwelke stap komt op plaats 6?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 water koken ; 2 deeg kneden ; 3 tent opzetten ; 4 tafel dekken ; 5 fiets pakken ; 6 brief posten ; 7 oven aan ; 8 water geven\nregels: 1 na 2 ; 6 na 4 ; 1 na 7 ; 6 na 3 ; 2 na 5 ; 6 na 5 ; 4 tussen 5 en 7 ; 8 direct na 3 ; 6 na 1 ; 3 na 5 ; 2 na 7 ; 3 direct na 1 ; 8 voor 6 ; 8 na 1 ; 8 na 7 ; 1 na 5 ; 3 na 2\nop welke plaats komt stap 7?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 opstaan ; 2 schoenen aan ; 3 postzegel plakken ; 4 brief posten ; 5 uitstappen ; 6 zaadjes planten ; 7 water geven ; 8 tent opzetten\nregels: 5 na 8 ; 2 na 3 ; 6 na 2 ; 8 na 1 ; 1 na 3 ; 4 na 5 ; 4 na 8 ; 4 na 7 ; 2 na 1 ; 4 na 2 ; 4 na 3 ; 5 na 3 ; 3 direct na 7 ; 6 na 5 ; 2 tussen 8 en 5 ; 6 na 1 ; 4 na 6\nop welke plaats komt stap 8?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 schoenen aan ; 2 fiets pakken ; 3 zaadjes planten ; 4 brief posten ; 5 instappen ; 6 brief schrijven ; 7 ontbijten ; 8 bakken\nregels: 8 na 4 ; 7 na 6 ; 3 voor 8 ; 4 tussen 2 en 3 ; 6 na 3 ; 6 na 4 ; 5 tussen 6 en 7 ; 3 na 2 ; 1 na 5 ; 8 voor 6 ; 1 na 8 ; 1 na 2 ; 8 na 2 ; 7 voor 1 ; 1 na 6 ; 7 na 4\nop welke plaats komt stap 7?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 deur op slot ; 2 oven aan ; 3 water geven ; 4 opruimen ; 5 opstaan ; 6 water koken ; 7 kaartje kopen ; 8 brief schrijven\nregels: 2 na 1 ; 4 direct na 1 ; 8 na 4 ; 5 na 2 ; 7 na 3 ; 8 na 1 ; 3 na 1 ; 5 na 3 ; 7 na 2 ; 7 na 5 ; 5 na 4 ; 3 direct na 2 ; 8 na 2 ; 6 tussen 4 en 2 ; 8 tussen 5 en 7 ; 8 na 6\nwelke stap komt op plaats 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 brief schrijven ; 2 uitstappen ; 3 vuur maken ; 4 zaadjes planten ; 5 instappen ; 6 jas aan ; 7 tent opzetten ; 8 wekker zetten\nregels: 3 na 2 ; 6 na 1 ; 3 na 1 ; 3 na 5 ; 5 na 6 ; 4 na 5 ; 4 na 3 ; 4 na 6 ; 4 na 1 ; 7 voor 5 ; 6 tussen 8 en 7 ; 5 na 1 ; 8 direct na 1 ; 7 na 1 ; 4 na 7 ; 1 na 2 ; 6 na 2\nop welke plaats komt stap 8?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 oogsten ; 2 brief posten ; 3 schoenen aan ; 4 deur op slot ; 5 wekker zetten ; 6 tafel dekken ; 7 uitstappen ; 8 opstaan\nregels: 5 tussen 8 en 3 ; 1 na 8 ; 6 na 8 ; 7 na 6 ; 4 na 6 ; 1 na 3 ; 1 direct na 6 ; 6 na 3 ; 4 na 3 ; 7 na 1 ; 4 na 5 ; 1 na 5 ; 4 na 1 ; 5 na 2 ; 2 voor 8 ; 7 na 3 ; 4 voor 7\nop welke plaats komt stap 4?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 deur op slot ; 2 ontbijten ; 3 kaartje kopen ; 4 oogsten ; 5 tafel dekken ; 6 oven aan ; 7 uitstappen ; 8 brief schrijven\nregels: 7 na 5 ; 3 na 2 ; 7 voor 2 ; 2 na 8 ; 3 na 1 ; 5 na 8 ; 1 na 2 ; 3 na 4 ; 1 na 7 ; 6 na 7 ; 7 na 8 ; 4 tussen 2 en 6 ; 3 na 6 ; 3 na 7 ; 6 voor 1 ; 6 na 2 ; 4 na 7\nop welke plaats komt stap 7?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 water koken ; 2 oven aan ; 3 uitstappen ; 4 afwas doen ; 5 tafel dekken ; 6 tanden poetsen ; 7 oogsten ; 8 vuur maken\nregels: 7 voor 6 ; 5 na 3 ; 1 na 7 ; 4 na 5 ; 1 voor 5 ; 2 tussen 5 en 4 ; 7 na 3 ; 4 na 7 ; 4 na 8 ; 2 na 7 ; 8 tussen 6 en 1 ; 2 na 1 ; 5 na 6 ; 2 na 8 ; 8 na 3 ; 2 na 6\nwelke stap komt op plaats 2?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 instappen ; 2 schoenen aan ; 3 opstaan ; 4 wekker zetten ; 5 eten koken ; 6 water geven ; 7 tent opzetten ; 8 kaartje kopen\nregels: 7 na 8 ; 4 tussen 1 en 7 ; 6 direct na 3 ; 5 na 8 ; 7 na 1 ; 2 na 4 ; 1 na 3 ; 5 na 7 ; 8 tussen 6 en 1 ; 5 na 4 ; 2 direct na 5 ; 2 na 7 ; 5 na 1 ; 2 na 3 ; 7 na 3 ; 5 na 3\nwelke stap komt op plaats 3?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 opstaan ; 2 bakken ; 3 brief schrijven ; 4 oogsten ; 5 boodschappen doen ; 6 tanden poetsen ; 7 instappen ; 8 wekker zetten\nregels: 6 voor 1 ; 7 na 5 ; 3 na 4 ; 4 na 1 ; 2 direct na 7 ; 4 direct na 2 ; 3 na 5 ; 3 na 7 ; 8 na 2 ; 5 na 6 ; 3 na 2 ; 5 na 1 ; 8 direct na 3 ; 8 na 4 ; 3 na 1 ; 2 na 1 ; 4 na 7 ; 8 na 7\nwelke stap komt op plaats 7?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 tent opzetten ; 2 fiets pakken ; 3 eten koken ; 4 thee zetten ; 5 opstaan ; 6 oven aan ; 7 instappen ; 8 afwassen\nregels: 2 voor 5 ; 8 tussen 7 en 4 ; 5 na 6 ; 6 na 3 ; 7 na 3 ; 5 na 7 ; 6 na 7 ; 3 na 1 ; 5 na 8 ; 6 tussen 4 en 2 ; 4 na 3 ; 5 na 4 ; 2 na 1 ; 8 na 3 ; 2 na 4 ; 2 na 8\nwelke stap komt op plaats 4?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 tent opzetten ; 2 fiets pakken ; 3 vuur maken ; 4 thee zetten ; 5 deur op slot ; 6 ontbijten ; 7 oogsten ; 8 bakken\nregels: 2 direct na 6 ; 2 na 7 ; 1 na 2 ; 1 na 6 ; 3 na 8 ; 1 na 5 ; 7 voor 8 ; 4 na 8 ; 4 na 7 ; 5 na 7 ; 5 tussen 4 en 6 ; 3 na 2 ; 2 na 5 ; 3 na 4 ; 3 na 5 ; 3 na 6 ; 1 voor 3\nwelke stap komt op plaats 2?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 eten koken ; 2 bakken ; 3 kaartje kopen ; 4 instappen ; 5 schoenen aan ; 6 afwassen ; 7 uitstappen ; 8 boodschappen doen\nregels: 1 na 8 ; 7 na 2 ; 6 na 3 ; 4 voor 7 ; 3 direct na 8 ; 4 na 5 ; 7 na 1 ; 1 direct na 5 ; 2 tussen 6 en 5 ; 5 na 3 ; 4 na 8 ; 7 na 8 ; 2 na 3 ; 4 na 1 ; 1 na 2 ; 2 na 8 ; 7 na 5\nop welke plaats komt stap 6?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 afwas doen ; 2 water koken ; 3 afwassen ; 4 boodschappen doen ; 5 eten koken ; 6 schoenen aan ; 7 zaadjes planten ; 8 uitstappen\nregels: 5 voor 2 ; 8 na 2 ; 2 voor 7 ; 8 na 6 ; 8 na 3 ; 4 na 7 ; 7 voor 6 ; 4 na 2 ; 8 na 7 ; 4 na 5 ; 8 na 5 ; 5 na 1 ; 6 na 1 ; 4 direct na 8 ; 3 tussen 1 en 5 ; 4 na 3 ; 4 na 6\nop welke plaats komt stap 5?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 water koken ; 2 bakken ; 3 instappen ; 4 deeg kneden ; 5 afwas doen ; 6 oogsten ; 7 water geven ; 8 tanden poetsen\nregels: 1 na 2 ; 6 na 3 ; 5 na 2 ; 4 voor 7 ; 6 na 7 ; 6 na 2 ; 3 na 8 ; 1 na 3 ; 3 tussen 2 en 5 ; 6 na 5 ; 1 na 6 ; 1 na 5 ; 2 na 7 ; 3 na 4 ; 4 na 8 ; 5 na 4 ; 5 na 7\nop welke plaats komt stap 2?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 afwas doen ; 2 bakken ; 3 schoenen aan ; 4 tent opzetten ; 5 wekker zetten ; 6 fiets pakken ; 7 deur op slot ; 8 vuur maken\nregels: 2 na 5 ; 6 na 7 ; 4 na 6 ; 5 voor 6 ; 3 na 1 ; 3 na 2 ; 7 tussen 1 en 5 ; 2 na 1 ; 3 voor 8 ; 3 na 6 ; 2 na 6 ; 2 na 4 ; 3 na 7 ; 4 na 7 ; 6 na 1 ; 8 na 6 ; 8 na 1\nop welke plaats komt stap 6?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 tanden poetsen ; 2 thee zetten ; 3 oogsten ; 4 opruimen ; 5 deur op slot ; 6 wekker zetten ; 7 kaartje kopen ; 8 schoenen aan\nregels: 6 na 3 ; 6 na 1 ; 7 tussen 2 en 8 ; 3 tussen 4 en 2 ; 6 na 2 ; 8 na 5 ; 7 na 1 ; 6 na 7 ; 2 na 1 ; 3 na 1 ; 1 na 5 ; 1 voor 4 ; 8 na 1 ; 6 na 5 ; 8 voor 6 ; 7 na 4\nop welke plaats komt stap 8?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 11,
+   "opgave": "stappen: 1 fiets pakken ; 2 vuur maken ; 3 kaartje kopen ; 4 opruimen ; 5 zaadjes planten ; 6 eten koken ; 7 tafel dekken ; 8 boodschappen doen\nregels: 7 na 6 ; 2 voor 7 ; 8 na 6 ; 3 tussen 5 en 1 ; 2 na 1 ; 6 na 1 ; 8 na 7 ; 4 tussen 1 en 6 ; 6 voor 2 ; 2 na 4 ; 8 na 4 ; 2 na 5 ; 7 na 4 ; 7 na 1 ; 7 na 3 ; 4 na 3\nwelke stap komt op plaats 5?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 deur op slot ; 2 brief schrijven ; 3 wekker zetten ; 4 tafel dekken ; 5 oven aan ; 6 afwassen ; 7 afwas doen ; 8 ontbijten\nregels: 8 na 6 ; 1 voor 6 ; 2 na 7 ; 6 voor 2 ; 8 na 2 ; 2 voor 3 ; 8 na 3 ; 7 voor 1 ; 1 na 4 ; 3 na 1 ; 7 direct na 4 ; 8 na 4 ; 6 na 4 ; 3 na 6 ; 1 na 5 ; 8 na 5 ; 3 na 5 ; 8 na 7 ; 4 direct na 5\nop welke plaats komt stap 1?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 bakken ; 2 deeg kneden ; 3 brief posten ; 4 instappen ; 5 deur op slot ; 6 postzegel plakken ; 7 fiets pakken ; 8 brief schrijven\nregels: 8 na 3 ; 1 na 2 ; 8 na 7 ; 3 voor 4 ; 8 na 6 ; 2 na 4 ; 6 tussen 4 en 2 ; 8 tussen 2 en 1 ; 5 na 8 ; 4 na 7 ; 8 na 4 ; 1 na 6 ; 5 na 3 ; 6 na 3 ; 6 na 7 ; 3 na 7 ; 1 voor 5\nop welke plaats komt stap 7?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 oogsten ; 2 opruimen ; 3 fiets pakken ; 4 brief schrijven ; 5 bakken ; 6 wekker zetten ; 7 kaartje kopen ; 8 jas aan\nregels: 5 na 2 ; 3 voor 6 ; 8 na 2 ; 1 na 8 ; 3 na 2 ; 3 na 4 ; 6 na 4 ; 8 voor 4 ; 6 na 2 ; 1 na 7 ; 5 na 4 ; 3 na 5 ; 5 na 8 ; 6 na 5 ; 1 na 4 ; 7 tussen 2 en 8 ; 5 na 1 ; 6 na 1\nwelke stap komt op plaats 7?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 brief schrijven ; 2 eten koken ; 3 tent opzetten ; 4 water koken ; 5 fiets pakken ; 6 deur op slot ; 7 deeg kneden ; 8 tafel dekken\nregels: 4 na 7 ; 3 voor 5 ; 7 na 8 ; 4 na 5 ; 4 na 1 ; 8 voor 1 ; 7 na 1 ; 1 na 3 ; 6 na 4 ; 4 na 3 ; 6 na 8 ; 6 na 7 ; 4 na 8 ; 2 tussen 1 en 7 ; 6 na 3 ; 6 na 2 ; 4 na 2 ; 5 voor 8\nwelke stap komt op plaats 6?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 thee zetten ; 2 afwas doen ; 3 water geven ; 4 brief posten ; 5 afwassen ; 6 tafel dekken ; 7 oogsten ; 8 uitstappen\nregels: 7 direct na 5 ; 5 na 8 ; 3 voor 6 ; 2 na 3 ; 4 na 3 ; 2 na 7 ; 8 voor 4 ; 2 na 8 ; 7 na 8 ; 1 na 6 ; 7 na 1 ; 1 na 8 ; 5 na 4 ; 2 na 4 ; 2 na 5 ; 1 tussen 4 en 5 ; 8 na 6 ; 1 na 3\nop welke plaats komt stap 7?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 eten koken ; 2 water koken ; 3 brief posten ; 4 wekker zetten ; 5 thee zetten ; 6 schoenen aan ; 7 opstaan ; 8 tent opzetten\nregels: 3 na 4 ; 1 na 4 ; 5 na 3 ; 3 na 2 ; 1 na 8 ; 1 na 3 ; 1 voor 7 ; 3 na 6 ; 8 na 4 ; 6 na 2 ; 7 na 5 ; 4 tussen 2 en 6 ; 1 na 5 ; 8 na 6 ; 7 na 6 ; 5 voor 8 ; 7 na 8 ; 7 na 2\nop welke plaats komt stap 8?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 instappen ; 2 tent opzetten ; 3 postzegel plakken ; 4 deur op slot ; 5 thee zetten ; 6 deeg kneden ; 7 uitstappen ; 8 boodschappen doen\nregels: 8 na 1 ; 7 na 2 ; 4 voor 6 ; 3 na 8 ; 7 direct na 1 ; 5 na 2 ; 4 na 1 ; 6 na 2 ; 3 na 5 ; 8 na 6 ; 8 na 4 ; 4 na 7 ; 3 na 1 ; 1 na 5 ; 3 na 7 ; 3 na 4 ; 3 na 6 ; 6 na 7 ; 4 na 5\nop welke plaats komt stap 4?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 deeg kneden ; 2 instappen ; 3 postzegel plakken ; 4 tent opzetten ; 5 wekker zetten ; 6 brief posten ; 7 deur op slot ; 8 opstaan\nregels: 1 voor 5 ; 5 na 4 ; 8 na 2 ; 1 na 3 ; 4 direct na 3 ; 4 na 8 ; 7 na 8 ; 6 na 2 ; 6 tussen 4 en 7 ; 5 na 7 ; 7 na 4 ; 1 na 6 ; 3 direct na 8 ; 1 na 2 ; 1 na 4 ; 5 na 6 ; 1 direct na 7 ; 4 na 2\nop welke plaats komt stap 7?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 bakken ; 2 instappen ; 3 postzegel plakken ; 4 wekker zetten ; 5 opruimen ; 6 afwassen ; 7 tent opzetten ; 8 zaadjes planten\nregels: 5 direct na 7 ; 1 na 8 ; 5 na 4 ; 6 na 2 ; 6 na 4 ; 7 direct na 2 ; 6 na 5 ; 6 na 1 ; 1 na 2 ; 5 voor 1 ; 7 na 8 ; 2 na 4 ; 6 na 8 ; 1 na 3 ; 4 na 3 ; 4 voor 8 ; 8 voor 2 ; 6 na 7 ; 6 na 3\nop welke plaats komt stap 1?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 water geven ; 2 opruimen ; 3 afwassen ; 4 fiets pakken ; 5 deeg kneden ; 6 schoenen aan ; 7 brief schrijven ; 8 deur op slot\nregels: 6 na 7 ; 4 na 7 ; 1 na 3 ; 4 na 5 ; 6 na 2 ; 7 na 8 ; 5 na 6 ; 2 na 7 ; 3 na 8 ; 5 na 3 ; 3 na 2 ; 1 na 2 ; 6 tussen 3 en 1 ; 5 na 8 ; 5 na 1 ; 5 na 2 ; 4 na 6 ; 4 na 1\nwelke stap komt op plaats 7?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 bakken ; 2 tafel dekken ; 3 afwas doen ; 4 zaadjes planten ; 5 instappen ; 6 postzegel plakken ; 7 jas aan ; 8 eten koken\nregels: 8 na 3 ; 5 na 2 ; 7 tussen 3 en 8 ; 6 na 5 ; 7 na 1 ; 6 na 7 ; 4 na 3 ; 4 voor 5 ; 5 na 3 ; 4 na 8 ; 4 direct na 2 ; 2 na 8 ; 3 direct na 1 ; 6 na 8 ; 5 na 8 ; 6 na 2 ; 5 na 7 ; 6 na 4\nwelke stap komt op plaats 3?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 deeg kneden ; 2 eten koken ; 3 thee zetten ; 4 zaadjes planten ; 5 ontbijten ; 6 tafel dekken ; 7 jas aan ; 8 schoenen aan\nregels: 4 na 3 ; 3 na 1 ; 8 tussen 6 en 1 ; 4 na 5 ; 7 tussen 3 en 4 ; 5 na 2 ; 4 na 6 ; 8 na 2 ; 4 na 1 ; 7 na 8 ; 4 na 2 ; 5 na 6 ; 2 voor 6 ; 7 na 5 ; 5 tussen 1 en 3 ; 7 na 1\nwelke stap komt op plaats 6?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 opstaan ; 2 uitstappen ; 3 deur op slot ; 4 tent opzetten ; 5 wekker zetten ; 6 ontbijten ; 7 eten koken ; 8 afwassen\nregels: 4 na 1 ; 3 na 4 ; 7 na 1 ; 6 na 7 ; 3 na 7 ; 4 na 8 ; 3 na 2 ; 4 na 2 ; 4 na 7 ; 2 direct na 5 ; 4 na 6 ; 5 na 8 ; 1 na 8 ; 4 na 5 ; 1 direct na 2 ; 6 na 8 ; 1 na 5 ; 3 na 6 ; 3 na 8\nop welke plaats komt stap 4?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 thee zetten ; 2 schoenen aan ; 3 fiets pakken ; 4 tanden poetsen ; 5 jas aan ; 6 ontbijten ; 7 brief schrijven ; 8 deeg kneden\nregels: 2 na 1 ; 6 na 1 ; 3 direct na 2 ; 4 na 7 ; 4 na 2 ; 3 na 8 ; 2 na 8 ; 4 na 6 ; 1 na 7 ; 6 na 2 ; 8 na 1 ; 6 direct na 3 ; 3 na 5 ; 6 na 8 ; 5 voor 8 ; 1 voor 5 ; 4 na 3 ; 2 na 5 ; 8 na 7\nwelke stap komt op plaats 2?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 eten koken ; 2 thee zetten ; 3 uitstappen ; 4 brief schrijven ; 5 wekker zetten ; 6 deur op slot ; 7 fiets pakken ; 8 opruimen\nregels: 1 na 6 ; 3 na 8 ; 3 na 7 ; 3 na 6 ; 8 na 7 ; 3 voor 4 ; 1 na 8 ; 2 na 5 ; 4 na 2 ; 3 na 1 ; 5 tussen 8 en 6 ; 3 na 2 ; 6 na 7 ; 4 na 1 ; 4 na 5 ; 4 na 8 ; 2 voor 1 ; 2 direct na 6\nop welke plaats komt stap 2?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 bakken ; 2 tent opzetten ; 3 afwas doen ; 4 brief schrijven ; 5 kaartje kopen ; 6 afwassen ; 7 deeg kneden ; 8 deur op slot\nregels: 6 voor 1 ; 3 na 8 ; 7 na 5 ; 8 tussen 4 en 5 ; 3 na 5 ; 7 tussen 2 en 6 ; 6 na 2 ; 5 voor 2 ; 1 na 7 ; 1 na 4 ; 3 direct na 1 ; 5 na 4 ; 3 na 6 ; 3 na 7 ; 1 na 2 ; 1 na 8 ; 6 na 5\nop welke plaats komt stap 8?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 water koken ; 2 brief posten ; 3 eten koken ; 4 zaadjes planten ; 5 deeg kneden ; 6 schoenen aan ; 7 opstaan ; 8 uitstappen\nregels: 5 tussen 3 en 4 ; 8 voor 7 ; 2 direct na 4 ; 5 na 7 ; 1 na 5 ; 2 na 5 ; 3 na 6 ; 1 na 4 ; 6 direct na 7 ; 1 na 6 ; 2 voor 1 ; 4 na 7 ; 5 na 6 ; 2 na 3 ; 2 na 6 ; 2 na 8 ; 2 na 7 ; 1 na 3\nop welke plaats komt stap 4?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 jas aan ; 2 postzegel plakken ; 3 brief posten ; 4 eten koken ; 5 tafel dekken ; 6 oogsten ; 7 thee zetten ; 8 oven aan\nregels: 7 direct na 5 ; 2 na 5 ; 2 na 1 ; 8 na 3 ; 8 na 4 ; 2 na 4 ; 7 na 6 ; 8 na 1 ; 4 na 3 ; 2 na 7 ; 3 tussen 1 en 6 ; 7 voor 8 ; 2 na 6 ; 7 na 4 ; 4 tussen 6 en 5 ; 2 direct na 8 ; 6 na 1\nwelke stap komt op plaats 3?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 tent opzetten ; 2 wekker zetten ; 3 postzegel plakken ; 4 water koken ; 5 deeg kneden ; 6 zaadjes planten ; 7 eten koken ; 8 thee zetten\nregels: 2 na 3 ; 7 tussen 5 en 1 ; 7 na 4 ; 5 na 6 ; 5 direct na 4 ; 4 direct na 8 ; 7 na 2 ; 1 na 4 ; 6 tussen 3 en 2 ; 7 na 8 ; 4 na 3 ; 7 na 6 ; 5 na 8 ; 8 na 2 ; 4 na 2 ; 8 na 3 ; 1 na 5\nwelke stap komt op plaats 2?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 afwassen ; 2 deeg kneden ; 3 tanden poetsen ; 4 uitstappen ; 5 water koken ; 6 postzegel plakken ; 7 thee zetten ; 8 oven aan\nregels: 1 na 6 ; 7 direct na 2 ; 7 voor 1 ; 2 na 3 ; 2 direct na 8 ; 1 na 8 ; 7 na 4 ; 7 na 6 ; 8 na 6 ; 8 na 5 ; 7 na 3 ; 2 na 5 ; 8 na 3 ; 1 na 2 ; 2 na 4 ; 6 tussen 3 en 5 ; 4 voor 3 ; 7 na 8\nwelke stap komt op plaats 8?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 thee zetten ; 2 afwassen ; 3 uitstappen ; 4 deeg kneden ; 5 brief schrijven ; 6 jas aan ; 7 water koken ; 8 zaadjes planten\nregels: 2 voor 4 ; 3 na 8 ; 5 na 1 ; 4 na 6 ; 3 na 1 ; 4 na 7 ; 4 na 5 ; 1 voor 8 ; 3 na 2 ; 7 direct na 5 ; 7 na 8 ; 2 na 6 ; 4 na 8 ; 6 tussen 8 en 5 ; 3 direct na 4 ; 6 na 1 ; 7 voor 2 ; 7 na 6\nop welke plaats komt stap 2?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 zaadjes planten ; 2 wekker zetten ; 3 bakken ; 4 ontbijten ; 5 brief posten ; 6 eten koken ; 7 schoenen aan ; 8 brief schrijven\nregels: 4 na 7 ; 5 na 6 ; 5 na 7 ; 2 na 7 ; 8 na 4 ; 8 na 7 ; 8 na 1 ; 4 na 6 ; 5 na 1 ; 6 na 7 ; 8 na 2 ; 3 tussen 7 en 6 ; 5 na 3 ; 5 na 2 ; 6 voor 2 ; 4 tussen 2 en 1 ; 5 direct na 8\nwelke stap komt op plaats 1?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 fiets pakken ; 2 oogsten ; 3 jas aan ; 4 opstaan ; 5 thee zetten ; 6 ontbijten ; 7 wekker zetten ; 8 afwas doen\nregels: 2 na 7 ; 7 na 8 ; 5 na 2 ; 3 na 4 ; 5 na 7 ; 1 na 3 ; 6 na 4 ; 5 voor 6 ; 1 direct na 6 ; 6 na 3 ; 5 na 3 ; 2 voor 3 ; 4 na 8 ; 1 na 2 ; 3 na 7 ; 1 na 5 ; 1 na 4 ; 4 tussen 7 en 2\nwelke stap komt op plaats 2?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 uitstappen ; 2 tent opzetten ; 3 thee zetten ; 4 instappen ; 5 afwassen ; 6 kaartje kopen ; 7 opruimen ; 8 wekker zetten\nregels: 2 na 5 ; 2 na 4 ; 5 tussen 6 en 4 ; 1 na 3 ; 4 na 6 ; 8 na 6 ; 1 na 8 ; 1 na 6 ; 2 na 6 ; 1 na 4 ; 5 na 7 ; 1 na 5 ; 2 na 8 ; 8 na 4 ; 7 direct na 3 ; 2 na 3 ; 1 na 2 ; 6 direct na 7\nwelke stap komt op plaats 8?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 vuur maken ; 2 oven aan ; 3 brief schrijven ; 4 tafel dekken ; 5 thee zetten ; 6 eten koken ; 7 boodschappen doen ; 8 jas aan\nregels: 8 na 5 ; 6 na 5 ; 3 na 7 ; 5 voor 1 ; 2 na 6 ; 3 na 6 ; 2 tussen 8 en 4 ; 5 na 7 ; 3 na 1 ; 3 na 8 ; 1 na 7 ; 4 na 5 ; 3 na 4 ; 3 na 2 ; 6 tussen 1 en 8 ; 4 na 8 ; 4 na 1\nwelke stap komt op plaats 4?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 schoenen aan ; 2 water geven ; 3 tent opzetten ; 4 fiets pakken ; 5 instappen ; 6 postzegel plakken ; 7 deur op slot ; 8 boodschappen doen\nregels: 8 na 6 ; 2 tussen 3 en 7 ; 3 direct na 6 ; 2 na 6 ; 2 na 1 ; 8 na 2 ; 8 tussen 7 en 4 ; 4 na 5 ; 8 na 5 ; 1 na 5 ; 2 na 5 ; 4 na 6 ; 4 na 3 ; 4 na 2 ; 4 na 7 ; 7 na 6 ; 6 direct na 1\nop welke plaats komt stap 2?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 schoenen aan ; 2 bakken ; 3 deeg kneden ; 4 jas aan ; 5 instappen ; 6 brief posten ; 7 wekker zetten ; 8 water geven\nregels: 3 na 6 ; 4 na 8 ; 3 na 8 ; 6 na 4 ; 5 voor 4 ; 1 voor 3 ; 6 na 8 ; 7 na 4 ; 6 tussen 2 en 1 ; 8 voor 5 ; 2 na 4 ; 3 na 4 ; 2 na 5 ; 1 na 8 ; 3 na 5 ; 2 na 7 ; 3 na 7 ; 3 na 2\nwelke stap komt op plaats 3?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 opruimen ; 2 zaadjes planten ; 3 opstaan ; 4 afwas doen ; 5 wekker zetten ; 6 brief posten ; 7 water koken ; 8 ontbijten\nregels: 3 na 8 ; 5 na 1 ; 5 na 4 ; 5 na 8 ; 1 na 4 ; 5 na 2 ; 8 na 4 ; 1 na 7 ; 3 tussen 1 en 5 ; 1 na 8 ; 7 voor 8 ; 3 na 7 ; 6 voor 2 ; 4 tussen 2 en 7 ; 8 na 2 ; 7 na 2 ; 5 na 7\nop welke plaats komt stap 8?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 kaartje kopen ; 2 postzegel plakken ; 3 boodschappen doen ; 4 vuur maken ; 5 bakken ; 6 wekker zetten ; 7 uitstappen ; 8 oogsten\nregels: 8 na 4 ; 2 na 1 ; 7 na 2 ; 5 na 3 ; 2 na 6 ; 8 na 1 ; 3 voor 4 ; 6 na 1 ; 7 na 5 ; 1 na 3 ; 1 na 4 ; 8 na 6 ; 8 na 5 ; 5 voor 6 ; 1 voor 5 ; 7 na 6 ; 7 na 8 ; 6 na 4 ; 2 direct na 8\nop welke plaats komt stap 8?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "volgorde",
+   "graad": 12,
+   "opgave": "stappen: 1 oogsten ; 2 boodschappen doen ; 3 water koken ; 4 vuur maken ; 5 brief schrijven ; 6 oven aan ; 7 fiets pakken ; 8 kaartje kopen\nregels: 6 na 3 ; 6 tussen 7 en 4 ; 7 na 1 ; 6 na 2 ; 7 na 5 ; 4 na 5 ; 7 na 3 ; 7 na 8 ; 1 direct na 8 ; 6 na 1 ; 6 na 5 ; 6 na 8 ; 2 na 3 ; 5 direct na 2 ; 7 na 2 ; 3 direct na 1 ; 4 na 8 ; 4 na 7\nop welke plaats komt stap 2?",
+   "oplossing": "4"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "toelichting": "Gecureerde geschiedenis van het project (18 aug 2026), voor de tijdlijn in het venster. Runs met hun grenzen en vorm; gebeurtenissen met de hand ingeprikt uit BESLUITEN.md. maak-tijdlijn.py voegt hier de automatisch gevonden punten aan toe (proefwerken, wereldopeningen, hekken, lessen) en de runs die het uit run.json ziet komen. Stappen zijn absoluut. Datums zijn de dag van de rungrens.",
+ "runs": [
+  {"naam": "run3", "start": 0, "eind": 170000, "datum": "2026-08-09", "venster": 512, "lagen": 8, "hek": "rekenen 17, code 8, puzzel 5", "families": ["code", "rekenen", "puzzel"], "noot": "eerste lange run op de DL380 (X399 daarna); wereld van bouwstenen"},
+  {"naam": "run4", "start": 170000, "eind": 320000, "datum": "2026-08-11", "venster": 768, "lagen": 8, "hek": "rekenen 26, code 11, puzzel 6", "families": ["code", "rekenen", "puzzel"], "noot": "venster 512 → 768; 12 aug verhuisd van de X399 naar de Z490"},
+  {"naam": "run5", "start": 320000, "eind": 370000, "datum": "2026-08-14", "venster": 1024, "lagen": 8, "hek": "rekenen 38, code 15, puzzel 9", "families": ["code", "rekenen", "puzzel"], "noot": "venster 768 → 1024; keersom-splits en lange lus (fixes van 14 aug); af 16 aug 02:12"},
+  {"naam": "run6", "start": 370000, "eind": 374500, "datum": "2026-08-16", "venster": 1536, "lagen": 12, "hek": "rekenen 60, code 24, puzzel 10", "families": ["code", "rekenen", "puzzel"], "noot": "venster 1024 → 1536, 8 → 12 lagen, checkpointing; afgeknipt om 20:02 voor de geheugen-familie"},
+  {"naam": "run6.5", "start": 374500, "eind": 381500, "datum": "2026-08-16", "venster": 1536, "lagen": 12, "hek": "rekenen 60, code 24, puzzel 10, geheugen 12", "families": ["code", "rekenen", "puzzel", "geheugen"], "noot": "vierde familie geheugen (1% → 99% in 6.000 stappen); snellere aandacht; afgeknipt: alle hekken vol"},
+  {"naam": "run6.6", "start": 381500, "eind": 383000, "datum": "2026-08-17", "venster": 1536, "lagen": 12, "hek": "rekenen 60, code 30, puzzel 10, geheugen 24", "families": ["code", "rekenen", "puzzel", "geheugen"], "noot": "code voorbij 24 (vormcaps groeien), geheugen 24; binnen 1.200 stappen weer vol"},
+  {"naam": "run6.7", "start": 383000, "eind": 385000, "datum": "2026-08-17", "venster": 1536, "lagen": 12, "hek": "rekenen 60, code 30, puzzel 20, geheugen 40, logica 12", "families": ["code", "rekenen", "puzzel", "geheugen", "logica"], "noot": "vijfde familie logica, welke-regel-puzzel (puzzel 20), geheugen 40; logica koos zij niet (fout in de nieuwsgierigheid)"},
+  {"naam": "run6.8", "start": 385000, "eind": 386000, "datum": "2026-08-17", "venster": 1536, "lagen": 12, "hek": "rekenen 60, code 30, puzzel 20, geheugen 40, logica 12", "families": ["code", "rekenen", "puzzel", "geheugen", "logica"], "noot": "nieuwsgierigheid: fix + eerst familie dan kamer; week-1-zaadjes geplant (onderhouden); geheugen-steen; logica 24 → 89 in 1.000 stappen"},
+  {"naam": "run6.9", "start": 386000, "eind": null, "datum": "2026-08-18", "venster": 1536, "lagen": 14, "hek": "rekenen 60, code 30, puzzel 20, geheugen 40, logica 12", "families": ["code", "rekenen", "puzzel", "geheugen", "logica"], "noot": "12 → 14 lagen; VRAM-huishouding; eenmalig-zaadjes doorgeleerd (83% bij start)"}
+ ],
+ "gebeurtenissen": [
+  {"stap": 0, "datum": "2026-08-08", "soort": "project", "tekst": "start: fase 0 op de DL380 — determinisme, checkpoints, geluidsplafond"},
+  {"stap": 0, "datum": "2026-08-08", "soort": "kern", "tekst": "de kern geboren: 14,4 M parameters, met de hand geschreven"},
+  {"stap": 0, "datum": "2026-08-09", "soort": "wereld", "tekst": "wereld van bouwstenen (rekenen, puzzel, code) in plaats van een catalogus"},
+  {"stap": 170000, "datum": "2026-08-11", "soort": "groei", "tekst": "venster 512 → 768 (run 4)"},
+  {"stap": 212000, "datum": "2026-08-12", "soort": "machine", "tekst": "verhuisd van de X399 naar de Z490, nul stappen verloren"},
+  {"stap": 320000, "datum": "2026-08-14", "soort": "groei", "tekst": "venster 768 → 1024 (run 5); keersom-splits, lange lus compact"},
+  {"stap": 351000, "datum": "2026-08-15", "soort": "proefwerk", "tekst": "proefwerken diepte3 en stapel bevroren"},
+  {"stap": 370000, "datum": "2026-08-16", "soort": "groei", "tekst": "venster 1024 → 1536 en 8 → 12 lagen (run 6), checkpointing aan"},
+  {"stap": 374500, "datum": "2026-08-16", "soort": "familie", "tekst": "familie 4 erbij: geheugen (run 6.5)"},
+  {"stap": 381500, "datum": "2026-08-17", "soort": "wereld", "tekst": "code voorbij 24 (vormcaps groeien), geheugen 24 (run 6.6)"},
+  {"stap": 383000, "datum": "2026-08-17", "soort": "familie", "tekst": "familie 5 erbij: logica; welke-regel-puzzel, puzzel 20, geheugen 40 (run 6.7)"},
+  {"stap": 385000, "datum": "2026-08-17", "soort": "les", "tekst": "week-1-zaadjes geplant: 12 onderhouden (het geheugen in); nieuwsgierigheid eerst familie, dan kamer; geheugen-steen (run 6.8)"},
+  {"stap": 386000, "datum": "2026-08-18", "soort": "groei", "tekst": "12 → 14 lagen (run 6.9); 12 eenmalig-zaadjes doorgeleerd tot 83% en losgelaten; VRAM 5,6 → 3,3 GB"}
+ ]
+}

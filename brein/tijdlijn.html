@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amber — tijdlijn</title>
+<style>
+  /* Haar geschiedenis in één blik (18 aug 2026, Cleys wens): alle runs
+     naast elkaar, de rungrenzen als banden, per proefwerkblad een lijn,
+     de gebeurtenissen erin geprikt. Bewust weinig lijnen tegelijk: zes
+     standaard, de rest aan te tikken — anders is het over een jaar een
+     kluwen. Bron: /tijdlijn.json (maak-tijdlijn.py, elk kwartier). */
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #080b1e; color: #d8dde5;
+         font-family: system-ui, "Segoe UI", sans-serif; }
+  header { padding: 14px 18px 4px; display: flex; gap: 14px; align-items: baseline;
+           flex-wrap: wrap; }
+  header a { color: #5f6f92; text-decoration: none; letter-spacing: .3em;
+             text-transform: uppercase; font-size: 14px; }
+  header .sub { color: #51608a; font-size: 12px; }
+  .knoppen { padding: 6px 18px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .knop { padding: 5px 10px; border-radius: 8px; font-size: 12.5px; cursor: pointer;
+          color: #8ea0c0; background: #0c1230; border: 1px solid #1d2b4d; user-select: none; }
+  .knop.aan { color: #cfe2ff; border-color: #5ca8ff; }
+  .kaart { margin: 10px 12px; padding: 12px 14px; background: rgba(8,11,30,.78);
+           border: 1px solid #1d2b4d; border-radius: 10px; }
+  .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a; text-transform: uppercase;
+         margin-bottom: 6px; }
+  svg { width: 100%; height: auto; display: block; }
+  .legenda { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .chip { padding: 4px 9px; border-radius: 8px; font-size: 12px; cursor: pointer;
+          background: #131b3e; color: #8ea0c0; border: 1px solid #1d2b4d; opacity: .55; }
+  .chip.aan { opacity: 1; color: #e6eeff; }
+  .chip i { display: inline-block; width: 10px; height: 10px; border-radius: 2px;
+            margin-right: 6px; vertical-align: -1px; }
+  .lijst { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12.5px;
+           line-height: 1.7; color: #8ea0c0; }
+  .lijst b { color: #cfe2ff; font-weight: 600; }
+  .lijst .s { color: #51608a; }
+  text { font-family: ui-monospace, Consolas, monospace; }
+</style>
+</head>
+<body>
+<header>
+  <a href="/">Amber</a>
+  <span class="sub">tijdlijn — wat er in dit project gebeurd is, over alle runs heen</span>
+  <span class="sub" id="gemaakt"></span>
+</header>
+<div class="knoppen" id="bereik">
+  <span class="knop aan" data-b="alles">alles</span>
+  <span class="knop" data-b="100000">laatste 100.000</span>
+  <span class="knop" data-b="20000">laatste 20.000</span>
+  <span class="knop" data-b="run">lopende run</span>
+</div>
+
+<div class="kaart">
+  <div class="kop">proefwerken en gebeurtenissen · runs als banden</div>
+  <svg id="doek" viewBox="0 0 1000 420"></svg>
+  <div class="legenda" id="legenda"></div>
+</div>
+
+<div class="kaart">
+  <div class="kop">haar wereld — hoe diep elke familie openstond</div>
+  <svg id="wereld" viewBox="0 0 1000 200"></svg>
+</div>
+
+<div class="kaart">
+  <div class="kop">runs</div>
+  <div class="lijst" id="runs"></div>
+</div>
+
+<div class="kaart">
+  <div class="kop">gebeurtenissen</div>
+  <div class="lijst" id="gebeurtenissen"></div>
+</div>
+
+<script>
+const KLEUR = {ladder: "#ffc35c", diepte2: "#5ad18f", diepte: "#5aa7e8", gemengd: "#b58ae0",
+               grondslag: "#e87a7a", gesprek: "#7fe0c3", diepte3: "#8fd3ff", stapel: "#f0a35e",
+               geheugen: "#ffb86b", geheugen2: "#ffd39b", logica: "#ff8fa3", regel: "#c9a0ff",
+               "week1-onderhouden": "#7fe0c3", "week1-eenmalig": "#ffe27a", "week1-nep": "#8ea0c0"};
+const FAM = {rekenen: "#5ca8ff", puzzel: "#b78ae0", code: "#7fe0c3", geheugen: "#ffb86b", logica: "#ff8fa3", volgorde: "#8fd3ff", tekst: "#e6d37a"};
+const SOORT = {groei: ["▲", "#ffc35c"], familie: ["★", "#ff8fa3"], hek: ["▪", "#5ca8ff"],
+               les: ["✎", "#7fe0c3"], machine: ["⚙", "#9aa7c9"], project: ["●", "#e87a7a"],
+               wereld: ["◆", "#b78ae0"], proefwerk: ["▤", "#8fd3ff"], kern: ["●", "#e87a7a"]};
+const STANDAARD = ["ladder", "grondslag", "gemengd", "diepte2", "geheugen", "logica"];
+let D = null, aan = new Set(STANDAARD), bereik = "alles";
+const nl = n => Number(n).toLocaleString("nl");
+
+async function laad() {
+  D = await (await fetch("/tijdlijn.json", {cache: "no-store"})).json();
+  document.getElementById("gemaakt").textContent = "· bijgewerkt " + (D.gemaakt || "");
+  bouwLegenda(); teken(); tekenWereld(); lijsten();
+}
+
+function venster() {
+  const stappen = Object.keys(D.punten).map(Number);
+  const max = Math.max(...stappen, ...D.runs.map(r => r.eind || r.start || 0));
+  let min = 0;
+  if (bereik === "run") { const r = D.runs[D.runs.length - 1]; min = r.start || 0; }
+  else if (bereik !== "alles") min = Math.max(0, max - Number(bereik));
+  return [min, max || 1];
+}
+
+function bouwLegenda() {
+  const el = document.getElementById("legenda"); el.innerHTML = "";
+  for (const b of D.bladen) {
+    const c = document.createElement("span");
+    c.className = "chip" + (aan.has(b) ? " aan" : "");
+    c.innerHTML = `<i style="background:${KLEUR[b] || "#9aa7c9"}"></i>${b}`;
+    c.onclick = () => { aan.has(b) ? aan.delete(b) : aan.add(b); bouwLegenda(); teken(); };
+    el.appendChild(c);
+  }
+}
+
+function teken() {
+  const svg = document.getElementById("doek");
+  const W = 1000, H = 420, L = 44, R = 12, T = 64, B = 40;
+  const [x0, x1] = venster();
+  const X = s => L + (W - L - R) * (s - x0) / Math.max(1, x1 - x0);
+  const Y = p => T + (H - T - B) * (1 - p / 100);
+  let o = [];
+  // runbanden
+  D.runs.forEach((r, i) => {
+    const a = Math.max(x0, r.start || 0), b = Math.min(x1, r.eind || x1);
+    if (b <= a) return;
+    o.push(`<rect x="${X(a).toFixed(1)}" y="${T}" width="${(X(b) - X(a)).toFixed(1)}" height="${H - T - B}" fill="${i % 2 ? "#0c1230" : "#0a0e28"}"><title>${r.naam} · stap ${nl(r.start)} → ${r.eind ? nl(r.eind) : "…"} · venster ${r.venster} · ${r.lagen} lagen · hek ${r.hek}\n${r.noot || ""}</title></rect>`);
+    if (X(b) - X(a) > 28)
+      o.push(`<text x="${(X(a) + 3).toFixed(1)}" y="${T + 12}" fill="#5f6f92" font-size="10">${r.naam.replace("run", "run ")}${X(b) - X(a) > 90 ? " · " + (r.datum || "") : ""}</text>`);
+  });
+  // raster
+  for (const p of [0, 25, 50, 75, 100]) {
+    o.push(`<line x1="${L}" x2="${W - R}" y1="${Y(p)}" y2="${Y(p)}" stroke="#1d2b4d" stroke-width="1"/>`);
+    o.push(`<text x="${L - 6}" y="${Y(p) + 4}" fill="#51608a" font-size="10" text-anchor="end">${p}%</text>`);
+  }
+  // x-as: stappen
+  const span = x1 - x0, stapje = span > 200000 ? 50000 : span > 60000 ? 10000 : span > 15000 ? 2500 : 500;
+  for (let s = Math.ceil(x0 / stapje) * stapje; s <= x1; s += stapje)
+    o.push(`<text x="${X(s).toFixed(1)}" y="${H - B + 14}" fill="#51608a" font-size="10" text-anchor="middle">${nl(s)}</text>`);
+  // lijnen per blad
+  const stappen = Object.keys(D.punten).map(Number).sort((a, b) => a - b).filter(s => s >= x0 && s <= x1);
+  for (const b of D.bladen) {
+    if (!aan.has(b)) continue;
+    const pts = stappen.filter(s => b in D.punten[s]).map(s => [X(s), Y(D.punten[s][b])]);
+    if (pts.length < 2) { if (pts.length === 1) o.push(`<circle cx="${pts[0][0]}" cy="${pts[0][1]}" r="2.5" fill="${KLEUR[b] || "#9aa7c9"}"/>`); continue; }
+    o.push(`<polyline fill="none" stroke="${KLEUR[b] || "#9aa7c9"}" stroke-width="${b === "ladder" ? 2.4 : 1.4}" stroke-linejoin="round" points="${pts.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ")}"><title>${b}</title></polyline>`);
+    const last = pts[pts.length - 1];
+    o.push(`<text x="${(last[0] + 3).toFixed(1)}" y="${(last[1] + 3).toFixed(1)}" fill="${KLEUR[b] || "#9aa7c9"}" font-size="10">${b}</text>`);
+  }
+  // gebeurtenissen: markers bovenin, in rijen om overlap te vermijden
+  const gs = D.gebeurtenissen.filter(g => g.stap >= x0 && g.stap <= x1);
+  let laatstX = [-99, -99, -99], rij = 0;
+  for (const g of gs) {
+    const x = X(g.stap);
+    rij = 0; while (rij < 2 && x - laatstX[rij] < 14) rij++;
+    laatstX[rij] = x;
+    const [sym, kl] = SOORT[g.soort] || ["·", "#9aa7c9"];
+    const y = 20 + rij * 14;
+    o.push(`<line x1="${x.toFixed(1)}" x2="${x.toFixed(1)}" y1="${y + 4}" y2="${T}" stroke="${kl}" stroke-width=".8" opacity=".55"/>`);
+    o.push(`<text x="${x.toFixed(1)}" y="${y}" fill="${kl}" font-size="11" text-anchor="middle">${sym}<title>stap ${nl(g.stap)}${g.datum ? " · " + g.datum : ""}: ${g.tekst}</title></text>`);
+  }
+  svg.innerHTML = o.join("");
+}
+
+function tekenWereld() {
+  const svg = document.getElementById("wereld");
+  const W = 1000, H = 200, L = 44, R = 12, T = 12, B = 30;
+  const [x0, x1] = venster();
+  const X = s => L + (W - L - R) * (s - x0) / Math.max(1, x1 - x0);
+  const maxD = Math.max(10, ...Object.values(D.wereld).flatMap(v => Object.values(v)));
+  const Y = d => T + (H - T - B) * (1 - d / maxD);
+  let o = [];
+  D.runs.forEach((r, i) => {
+    const a = Math.max(x0, r.start || 0), b = Math.min(x1, r.eind || x1);
+    if (b > a) o.push(`<rect x="${X(a).toFixed(1)}" y="${T}" width="${(X(b) - X(a)).toFixed(1)}" height="${H - T - B}" fill="${i % 2 ? "#0c1230" : "#0a0e28"}"/>`);
+  });
+  for (const d of [0, 20, 40, 60].filter(d => d <= maxD)) {
+    o.push(`<line x1="${L}" x2="${W - R}" y1="${Y(d)}" y2="${Y(d)}" stroke="#1d2b4d"/>`);
+    o.push(`<text x="${L - 6}" y="${Y(d) + 4}" fill="#51608a" font-size="10" text-anchor="end">${d}</text>`);
+  }
+  for (const [fam, reeks] of Object.entries(D.wereld)) {
+    const pts = Object.entries(reeks).map(([s, d]) => [Number(s), d]).sort((a, b) => a[0] - b[0]);
+    // trapfunctie: het diepste tot dan toe
+    let path = "", top = 0, begonnen = false;
+    for (const [s, d] of pts) {
+      top = Math.max(top, d);
+      if (s < x0) continue;
+      const x = X(s), y = Y(top);
+      if (!begonnen) { path += `M${X(Math.max(x0, s)).toFixed(1)},${y.toFixed(1)}`; begonnen = true; }
+      else path += ` H${x.toFixed(1)} V${y.toFixed(1)}`;
+    }
+    if (begonnen) { path += ` H${X(x1).toFixed(1)}`; }
+    if (path) o.push(`<path d="${path}" fill="none" stroke="${FAM[fam] || "#9aa7c9"}" stroke-width="1.6"><title>${fam}</title></path>`);
+    const laatste = pts[pts.length - 1];
+    if (laatste) o.push(`<text x="${(W - R - 2).toFixed(1)}" y="${(Y(top) - 3).toFixed(1)}" fill="${FAM[fam] || "#9aa7c9"}" font-size="10" text-anchor="end">${fam} ${top}</text>`);
+  }
+  svg.innerHTML = o.join("");
+}
+
+function lijsten() {
+  document.getElementById("runs").innerHTML = D.runs.slice().reverse().map(r =>
+    `<div><b>${r.naam}</b> <span class="s">${r.datum || ""}</span> · stap ${nl(r.start)} → ${r.eind ? nl(r.eind) : "lopend"} · venster ${r.venster} · ${r.lagen} lagen · hek ${r.hek}${r.noot ? ` <span class="s">— ${r.noot}</span>` : ""}</div>`).join("");
+  document.getElementById("gebeurtenissen").innerHTML = D.gebeurtenissen.slice().reverse().map(g => {
+    const [sym, kl] = SOORT[g.soort] || ["·", "#9aa7c9"];
+    return `<div><span style="color:${kl}">${sym}</span> <b>${nl(g.stap)}</b> <span class="s">${g.datum || ""}</span> · ${g.tekst}</div>`;
+  }).join("");
+}
+
+document.querySelectorAll("#bereik .knop").forEach(k => k.onclick = () => {
+  bereik = k.dataset.b;
+  document.querySelectorAll("#bereik .knop").forEach(x => x.classList.toggle("aan", x === k));
+  teken(); tekenWereld();
+});
+laad(); setInterval(laad, 300000);
+</script>
+</body>
+</html>

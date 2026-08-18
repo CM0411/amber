@@ -1,0 +1,2166 @@
+{
+ "naam": "vergelijking",
+ "beschrijving": "De vergelijkingssteen in rekenen (18 aug 2026): x vinden door de bewerkingen ongedaan te maken — één stap (3–5), twee stappen (6–8), x aan twee kanten (9–12), haakjes en drie stappen (13–20); antwoord altijd geheel. Rekenen diepte 3 t/m 20, alleen vergelijkingen, 20 per diepte, nummers vanaf 1.500.000. Alles past op venster 1536.",
+ "opgaven": [
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x - 27 = 9\nwat is x?",
+   "oplossing": "36"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x + 23 = 54\nwat is x?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x - 21 = 0\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x - 30 = -9\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x - 15 = -7\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "10 * x = 60\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "10 * x = 350\nwat is x?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "5 * x = 105\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x - 41 = 2\nwat is x?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x - 31 = 10\nwat is x?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "8 * x = 376\nwat is x?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x + 42 = 63\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x - 47 = -26\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x - 37 = 7\nwat is x?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x - 17 = 33\nwat is x?",
+   "oplossing": "50"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "10 * x = 180\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "8 * x = 352\nwat is x?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "2 * x = 2\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "5 * x = 245\nwat is x?",
+   "oplossing": "49"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 3,
+   "opgave": "x + 20 = 45\nwat is x?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x + 43 = 60\nwat is x?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x + 58 = 81\nwat is x?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "4 * x = 76\nwat is x?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x + 41 = 53\nwat is x?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "5 * x = 35\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x + 48 = 70\nwat is x?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x + 51 = 65\nwat is x?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "2 * x = 22\nwat is x?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "12 * x = 252\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "4 * x = 128\nwat is x?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x + 56 = 64\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x - 18 = 9\nwat is x?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x + 49 = 92\nwat is x?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "6 * x = 174\nwat is x?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x + 46 = 55\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "6 * x = 138\nwat is x?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "12 * x = 540\nwat is x?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x - 11 = 17\nwat is x?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x - 19 = 12\nwat is x?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 4,
+   "opgave": "x - 29 = -19\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "4 * x = 116\nwat is x?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 31 = 9\nwat is x?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "11 * x = 418\nwat is x?",
+   "oplossing": "38"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "3 * x = 54\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 3 = 22\nwat is x?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "9 * x = 162\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 28 = -2\nwat is x?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x + 39 = 55\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "9 * x = 45\nwat is x?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x + 24 = 43\nwat is x?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 12 = 5\nwat is x?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 18 = 24\nwat is x?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 24 = 19\nwat is x?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "6 * x = 120\nwat is x?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 30 = 16\nwat is x?",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 56 = -54\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x + 11 = 32\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "3 * x = 6\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 57 = -23\nwat is x?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 5,
+   "opgave": "x - 43 = -8\nwat is x?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "5 * x - 21 = 69\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "3 * x - 3 = 36\nwat is x?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "6 * x + 41 = 215\nwat is x?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "4 * x + 22 = 194\nwat is x?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "4 * x + 60 = 244\nwat is x?",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "12 * x - 4 = 452\nwat is x?",
+   "oplossing": "38"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "9 * x - 38 = 7\nwat is x?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "2 * x - 57 = -35\nwat is x?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "11 * x - 10 = 364\nwat is x?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "3 * x - 6 = 93\nwat is x?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "8 * x + 4 = 100\nwat is x?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "4 * x + 40 = 172\nwat is x?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "8 * x + 52 = 380\nwat is x?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "5 * x - 27 = 193\nwat is x?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "11 * x + 2 = 486\nwat is x?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "5 * x + 50 = 205\nwat is x?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "12 * x + 59 = 623\nwat is x?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "3 * x + 23 = 50\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "12 * x + 4 = 304\nwat is x?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 6,
+   "opgave": "6 * x + 60 = 156\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "5 * x + 53 = 143\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "6 * x + 41 = 221\nwat is x?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "11 * x + 37 = 345\nwat is x?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "2 * x - 56 = -26\nwat is x?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "9 * x - 37 = 350\nwat is x?",
+   "oplossing": "43"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "7 * x + 52 = 143\nwat is x?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "7 * x + 53 = 102\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "4 * x + 43 = 111\nwat is x?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "12 * x + 46 = 106\nwat is x?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "12 * x + 53 = 353\nwat is x?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "3 * x + 11 = 110\nwat is x?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "7 * x + 11 = 32\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "10 * x - 10 = 140\nwat is x?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "5 * x + 48 = 253\nwat is x?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "2 * x - 16 = 40\nwat is x?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "11 * x - 43 = 45\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "11 * x - 42 = 123\nwat is x?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "4 * x + 15 = 155\nwat is x?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "10 * x - 40 = -30\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 7,
+   "opgave": "2 * x + 54 = 148\nwat is x?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "8 * x + 45 = 445\nwat is x?",
+   "oplossing": "50"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "5 * x - 26 = 169\nwat is x?",
+   "oplossing": "39"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "8 * x + 48 = 104\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "6 * x + 36 = 300\nwat is x?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "2 * x - 33 = 51\nwat is x?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "9 * x - 44 = 127\nwat is x?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "3 * x - 41 = 4\nwat is x?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "5 * x + 4 = 49\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "4 * x + 54 = 78\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "8 * x + 29 = 301\nwat is x?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "8 * x - 22 = 274\nwat is x?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "8 * x - 2 = 246\nwat is x?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "8 * x + 45 = 373\nwat is x?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "11 * x + 42 = 130\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "12 * x - 58 = 26\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "9 * x - 29 = 277\nwat is x?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "3 * x - 11 = 88\nwat is x?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "12 * x - 58 = 62\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "12 * x - 5 = 439\nwat is x?",
+   "oplossing": "37"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 8,
+   "opgave": "6 * x - 53 = -47\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "5 * x + 33 = x + 349\nwat is x?",
+   "oplossing": "79"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "7 * x + 21 = x + 147\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "7 * x + 36 = x + 96\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "8 * x + 8 = x + 421\nwat is x?",
+   "oplossing": "59"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "9 * x + 33 = x + 65\nwat is x?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "2 * x + 32 = x + 82\nwat is x?",
+   "oplossing": "50"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "6 * x + 30 = x + 170\nwat is x?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "4 * x + 14 = x + 68\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "2 * x + 2 = x + 11\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "7 * x + 31 = x + 127\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "7 * x + 34 = x + 94\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "9 * x + 14 = x + 766\nwat is x?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "3 * x + 39 = x + 145\nwat is x?",
+   "oplossing": "53"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "8 * x + 13 = x + 468\nwat is x?",
+   "oplossing": "65"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "3 * x + 34 = x + 116\nwat is x?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "6 * x + 15 = x + 120\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "2 * x + 21 = x + 66\nwat is x?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "7 * x + 24 = x + 438\nwat is x?",
+   "oplossing": "69"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "5 * x + 31 = x + 291\nwat is x?",
+   "oplossing": "65"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 9,
+   "opgave": "4 * x + 15 = x + 171\nwat is x?",
+   "oplossing": "52"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "7 * x + 24 = x + 444\nwat is x?",
+   "oplossing": "70"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "9 * x + 30 = x + 430\nwat is x?",
+   "oplossing": "50"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "3 * x + 32 = x + 130\nwat is x?",
+   "oplossing": "49"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "8 * x + 28 = x + 371\nwat is x?",
+   "oplossing": "49"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "5 * x + 27 = x + 235\nwat is x?",
+   "oplossing": "52"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "8 * x + 1 = x + 15\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "2 * x + 18 = x + 109\nwat is x?",
+   "oplossing": "91"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "4 * x + 30 = x + 36\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "7 * x + 10 = x + 64\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "5 * x + 40 = x + 328\nwat is x?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "3 * x + 27 = x + 115\nwat is x?",
+   "oplossing": "44"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "3 * x + 30 = x + 112\nwat is x?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "4 * x + 2 = x + 59\nwat is x?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "3 * x + 2 = x + 34\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "8 * x + 9 = x + 534\nwat is x?",
+   "oplossing": "75"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "2 * x + 32 = x + 46\nwat is x?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "3 * x + 28 = x + 192\nwat is x?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "8 * x + 20 = x + 27\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "3 * x + 25 = x + 31\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 10,
+   "opgave": "5 * x + 7 = x + 167\nwat is x?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "6 * x + 40 = x + 365\nwat is x?",
+   "oplossing": "65"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "2 * x + 25 = x + 115\nwat is x?",
+   "oplossing": "90"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "2 * x + 20 = x + 76\nwat is x?",
+   "oplossing": "56"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "4 * x + 9 = x + 258\nwat is x?",
+   "oplossing": "83"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "4 * x + 17 = x + 266\nwat is x?",
+   "oplossing": "83"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "3 * x + 31 = x + 225\nwat is x?",
+   "oplossing": "97"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "2 * x + 23 = x + 106\nwat is x?",
+   "oplossing": "83"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "5 * x + 22 = x + 270\nwat is x?",
+   "oplossing": "62"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "5 * x + 13 = x + 61\nwat is x?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "6 * x + 30 = x + 455\nwat is x?",
+   "oplossing": "85"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "8 * x + 12 = x + 607\nwat is x?",
+   "oplossing": "85"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "8 * x + 1 = x + 407\nwat is x?",
+   "oplossing": "58"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "4 * x + 18 = x + 258\nwat is x?",
+   "oplossing": "80"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "6 * x + 33 = x + 468\nwat is x?",
+   "oplossing": "87"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "5 * x + 12 = x + 84\nwat is x?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "4 * x + 10 = x + 259\nwat is x?",
+   "oplossing": "83"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "8 * x + 2 = x + 317\nwat is x?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "8 * x + 17 = x + 514\nwat is x?",
+   "oplossing": "71"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "2 * x + 29 = x + 55\nwat is x?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 11,
+   "opgave": "8 * x + 11 = x + 123\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "2 * x + 23 = x + 122\nwat is x?",
+   "oplossing": "99"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "4 * x + 16 = x + 43\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "6 * x + 10 = x + 15\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "2 * x + 13 = x + 95\nwat is x?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "9 * x + 35 = x + 403\nwat is x?",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "7 * x + 39 = x + 519\nwat is x?",
+   "oplossing": "80"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "5 * x + 33 = x + 113\nwat is x?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "9 * x + 32 = x + 640\nwat is x?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "2 * x + 34 = x + 123\nwat is x?",
+   "oplossing": "89"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "7 * x + 22 = x + 28\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "7 * x + 31 = x + 49\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "9 * x + 26 = x + 506\nwat is x?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "6 * x + 3 = x + 498\nwat is x?",
+   "oplossing": "99"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "7 * x + 11 = x + 353\nwat is x?",
+   "oplossing": "57"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "8 * x + 32 = x + 88\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "6 * x + 6 = x + 401\nwat is x?",
+   "oplossing": "79"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "9 * x + 5 = x + 245\nwat is x?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "9 * x + 15 = x + 255\nwat is x?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "5 * x + 8 = x + 296\nwat is x?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 12,
+   "opgave": "3 * x + 8 = x + 128\nwat is x?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "2 * x + 11 - 24 = -11\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "8 * x + 1 - 9 = 80\nwat is x?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "9 * x + 16 - 8 = 656\nwat is x?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "5 * (x + 10) = 410\nwat is x?",
+   "oplossing": "72"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "6 * x + 23 - 8 = 291\nwat is x?",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "2 * x + 21 - 8 = 95\nwat is x?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "6 * x + 24 - 18 = 168\nwat is x?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "2 * (x + 26) = 248\nwat is x?",
+   "oplossing": "98"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "7 * (x + 18) = 504\nwat is x?",
+   "oplossing": "54"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "5 * x + 19 - 10 = 134\nwat is x?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "8 * x + 15 - 33 = 198\nwat is x?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "4 * (x + 5) = 108\nwat is x?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "9 * x + 20 - 18 = 740\nwat is x?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "2 * (x + 21) = 110\nwat is x?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "7 * x + 18 - 35 = 88\nwat is x?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "4 * (x + 10) = 172\nwat is x?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "6 * (x + 15) = 636\nwat is x?",
+   "oplossing": "91"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "8 * x + 7 - 31 = 480\nwat is x?",
+   "oplossing": "63"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "9 * (x + 27) = 981\nwat is x?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 13,
+   "opgave": "8 * x + 22 - 16 = 702\nwat is x?",
+   "oplossing": "87"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "3 * x + 20 - 37 = -11\nwat is x?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "8 * x + 15 - 1 = 494\nwat is x?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "6 * (x + 14) = 216\nwat is x?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "3 * x + 20 - 7 = 91\nwat is x?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "7 * x + 13 - 11 = 464\nwat is x?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "8 * x + 29 - 10 = 739\nwat is x?",
+   "oplossing": "90"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "4 * x + 27 - 22 = 21\nwat is x?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "7 * x + 6 - 15 = 33\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "3 * (x + 28) = 129\nwat is x?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "9 * x + 1 - 27 = 415\nwat is x?",
+   "oplossing": "49"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "6 * (x + 30) = 648\nwat is x?",
+   "oplossing": "78"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "8 * x + 4 - 38 = 534\nwat is x?",
+   "oplossing": "71"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "9 * (x + 10) = 630\nwat is x?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "3 * x + 27 - 24 = 258\nwat is x?",
+   "oplossing": "85"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "3 * (x + 19) = 285\nwat is x?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "4 * (x + 3) = 172\nwat is x?",
+   "oplossing": "40"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "3 * x + 4 - 9 = 103\nwat is x?",
+   "oplossing": "36"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "6 * (x + 7) = 552\nwat is x?",
+   "oplossing": "85"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "3 * (x + 21) = 150\nwat is x?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 14,
+   "opgave": "2 * (x + 26) = 250\nwat is x?",
+   "oplossing": "99"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "7 * (x + 28) = 483\nwat is x?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "4 * (x + 3) = 28\nwat is x?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "2 * x + 30 - 32 = 146\nwat is x?",
+   "oplossing": "74"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "8 * x + 29 - 31 = 502\nwat is x?",
+   "oplossing": "63"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "6 * x + 1 - 36 = 217\nwat is x?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "7 * (x + 14) = 385\nwat is x?",
+   "oplossing": "41"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "5 * (x + 13) = 535\nwat is x?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "7 * x + 27 - 27 = 245\nwat is x?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "6 * x + 23 - 24 = 311\nwat is x?",
+   "oplossing": "52"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "6 * x + 15 - 12 = 363\nwat is x?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "3 * x + 1 - 13 = 177\nwat is x?",
+   "oplossing": "63"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "8 * x + 22 - 7 = 143\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "2 * (x + 7) = 32\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "8 * (x + 28) = 504\nwat is x?",
+   "oplossing": "35"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "6 * x + 6 - 8 = 184\nwat is x?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "7 * x + 22 - 13 = 590\nwat is x?",
+   "oplossing": "83"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "6 * (x + 19) = 480\nwat is x?",
+   "oplossing": "61"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "4 * x + 1 - 25 = 88\nwat is x?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "6 * x + 2 - 20 = 516\nwat is x?",
+   "oplossing": "89"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 15,
+   "opgave": "4 * x + 5 - 21 = 36\nwat is x?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "5 * (x + 15) = 175\nwat is x?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "8 * x + 5 - 18 = -5\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "9 * (x + 16) = 198\nwat is x?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "8 * (x + 2) = 768\nwat is x?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "5 * x + 9 - 25 = 19\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "6 * (x + 27) = 750\nwat is x?",
+   "oplossing": "98"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "3 * (x + 21) = 66\nwat is x?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "9 * x + 17 - 15 = 524\nwat is x?",
+   "oplossing": "58"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "5 * x + 22 - 35 = 112\nwat is x?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "9 * x + 25 - 12 = 670\nwat is x?",
+   "oplossing": "73"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "8 * (x + 1) = 64\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "8 * x + 1 - 19 = 254\nwat is x?",
+   "oplossing": "34"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "5 * x + 30 - 17 = 98\nwat is x?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "3 * x + 30 - 37 = 23\nwat is x?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "9 * x + 30 - 33 = 888\nwat is x?",
+   "oplossing": "99"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "9 * (x + 18) = 864\nwat is x?",
+   "oplossing": "78"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "3 * x + 5 - 27 = 146\nwat is x?",
+   "oplossing": "56"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "3 * (x + 7) = 147\nwat is x?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "5 * x + 17 - 3 = 394\nwat is x?",
+   "oplossing": "76"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 16,
+   "opgave": "6 * x + 10 - 17 = 545\nwat is x?",
+   "oplossing": "92"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "3 * (x + 22) = 159\nwat is x?",
+   "oplossing": "31"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "3 * x + 20 - 3 = 86\nwat is x?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "2 * x + 10 - 32 = 12\nwat is x?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "2 * x + 22 - 26 = 154\nwat is x?",
+   "oplossing": "79"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "3 * (x + 28) = 153\nwat is x?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "2 * x + 8 - 9 = 187\nwat is x?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "7 * (x + 17) = 630\nwat is x?",
+   "oplossing": "73"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "3 * (x + 11) = 102\nwat is x?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "8 * x + 29 - 11 = 394\nwat is x?",
+   "oplossing": "47"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "7 * x + 21 - 36 = 398\nwat is x?",
+   "oplossing": "59"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "8 * (x + 25) = 512\nwat is x?",
+   "oplossing": "39"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "8 * (x + 22) = 960\nwat is x?",
+   "oplossing": "98"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "6 * x + 16 - 11 = 35\nwat is x?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "9 * x + 30 - 3 = 801\nwat is x?",
+   "oplossing": "86"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "4 * x + 1 - 12 = 205\nwat is x?",
+   "oplossing": "54"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "7 * (x + 4) = 252\nwat is x?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "4 * (x + 9) = 348\nwat is x?",
+   "oplossing": "78"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "9 * (x + 13) = 405\nwat is x?",
+   "oplossing": "32"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "9 * x + 13 - 19 = 75\nwat is x?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 17,
+   "opgave": "3 * x + 8 - 24 = -4\nwat is x?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "8 * (x + 21) = 824\nwat is x?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "6 * (x + 28) = 696\nwat is x?",
+   "oplossing": "88"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "7 * x + 30 - 26 = 578\nwat is x?",
+   "oplossing": "82"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "5 * x + 12 - 25 = 282\nwat is x?",
+   "oplossing": "59"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "7 * x + 1 - 14 = 428\nwat is x?",
+   "oplossing": "63"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "5 * x + 9 - 6 = 428\nwat is x?",
+   "oplossing": "85"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "6 * x + 22 - 38 = 134\nwat is x?",
+   "oplossing": "25"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "5 * (x + 19) = 130\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "4 * (x + 22) = 484\nwat is x?",
+   "oplossing": "99"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "4 * (x + 9) = 276\nwat is x?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "2 * (x + 11) = 156\nwat is x?",
+   "oplossing": "67"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "8 * (x + 14) = 832\nwat is x?",
+   "oplossing": "90"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "2 * x + 8 - 2 = 58\nwat is x?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "3 * x + 6 - 8 = 148\nwat is x?",
+   "oplossing": "50"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "3 * x + 13 - 32 = 140\nwat is x?",
+   "oplossing": "53"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "2 * x + 6 - 19 = 163\nwat is x?",
+   "oplossing": "88"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "3 * x + 12 - 38 = 7\nwat is x?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "2 * x + 8 - 32 = 20\nwat is x?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "4 * (x + 12) = 436\nwat is x?",
+   "oplossing": "97"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 18,
+   "opgave": "7 * (x + 18) = 714\nwat is x?",
+   "oplossing": "84"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "9 * x + 19 - 24 = 877\nwat is x?",
+   "oplossing": "98"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "5 * x + 16 - 4 = 507\nwat is x?",
+   "oplossing": "99"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "8 * x + 27 - 3 = 528\nwat is x?",
+   "oplossing": "63"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "3 * x + 20 - 29 = 78\nwat is x?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "5 * (x + 11) = 545\nwat is x?",
+   "oplossing": "98"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "9 * (x + 4) = 171\nwat is x?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "5 * (x + 14) = 135\nwat is x?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "2 * (x + 24) = 100\nwat is x?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "2 * (x + 22) = 168\nwat is x?",
+   "oplossing": "62"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "4 * x + 24 - 3 = 289\nwat is x?",
+   "oplossing": "67"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "4 * x + 27 - 35 = 196\nwat is x?",
+   "oplossing": "51"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "8 * x + 8 - 36 = 516\nwat is x?",
+   "oplossing": "68"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "6 * x + 5 - 25 = 256\nwat is x?",
+   "oplossing": "46"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "5 * (x + 13) = 530\nwat is x?",
+   "oplossing": "93"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "2 * (x + 13) = 214\nwat is x?",
+   "oplossing": "94"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "3 * x + 19 - 30 = 28\nwat is x?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "6 * (x + 30) = 516\nwat is x?",
+   "oplossing": "56"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "8 * x + 5 - 9 = 492\nwat is x?",
+   "oplossing": "62"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "3 * x + 6 - 9 = 75\nwat is x?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 19,
+   "opgave": "7 * x + 7 - 36 = -8\nwat is x?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "7 * x + 21 - 12 = 149\nwat is x?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "5 * x + 24 - 25 = 399\nwat is x?",
+   "oplossing": "80"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "6 * x + 13 - 31 = 450\nwat is x?",
+   "oplossing": "78"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "9 * (x + 19) = 747\nwat is x?",
+   "oplossing": "64"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "2 * (x + 17) = 156\nwat is x?",
+   "oplossing": "61"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "8 * x + 11 - 7 = 236\nwat is x?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "2 * (x + 20) = 176\nwat is x?",
+   "oplossing": "68"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "2 * x + 3 - 36 = 107\nwat is x?",
+   "oplossing": "70"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "4 * x + 26 - 33 = 25\nwat is x?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "2 * (x + 20) = 224\nwat is x?",
+   "oplossing": "92"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "4 * (x + 2) = 332\nwat is x?",
+   "oplossing": "81"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "3 * x + 11 - 24 = 134\nwat is x?",
+   "oplossing": "49"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "6 * (x + 18) = 462\nwat is x?",
+   "oplossing": "59"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "6 * x + 2 - 14 = 102\nwat is x?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "5 * x + 17 - 7 = 445\nwat is x?",
+   "oplossing": "87"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "6 * (x + 3) = 60\nwat is x?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "7 * (x + 28) = 658\nwat is x?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "4 * (x + 22) = 172\nwat is x?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "6 * x + 15 - 15 = 96\nwat is x?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "rekenen",
+   "graad": 20,
+   "opgave": "8 * (x + 1) = 424\nwat is x?",
+   "oplossing": "52"
+  }
+ ]
+}

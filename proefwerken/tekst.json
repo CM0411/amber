@@ -1,0 +1,2166 @@
+{
+ "naam": "tekst",
+ "beschrijving": "De zevende taakfamilie (18 aug 2026): patronen in letters en woorden, geteld — letters, dubbele letters, klinkerbegin, even lengte, -en, palindromen, meer klinkers, langste woord, letters over alle woorden; vanaf diepte 8 eerst omkeren, sorteren of een letter wegstrepen. Diepte 1 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Alles past op venster 1536.",
+ "opgaven": [
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: hond\nde hoeveelste letter van hond is de eerste n?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: schaap\nhoeveel letters heeft schaap?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: sleutel\nde hoeveelste letter van sleutel is de eerste t?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: blad\nhoeveel letters heeft blad?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: schaap\nhoeveel keer komt a voor in schaap?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: week\nhoeveel letters heeft week?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: ijs\nhoeveel keer komt s voor in ijs?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: pen\nhoeveel keer komt e voor in pen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: zand\nhoeveel keer komt z voor in zand?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: ui\nhoeveel letters heeft ui?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: oma\nhoeveel letters heeft oma?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: kan\nhoeveel letters heeft kan?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: bord\nhoeveel keer komt o voor in bord?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: broer\nhoeveel letters heeft broer?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: geit\nhoeveel keer komt g voor in geit?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: aap\nde hoeveelste letter van aap is de eerste p?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: fiets\nhoeveel keer komt t voor in fiets?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: klok\nhoeveel letters heeft klok?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: brood\nhoeveel letters heeft brood?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: oor\nde hoeveelste letter van oor is de eerste r?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: aarde\nhoeveel letters heeft aarde?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: tas\nhoeveel letters heeft tas?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: nacht\nde hoeveelste letter van nacht is de eerste a?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: eik\nhoeveel letters heeft eik?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: mist\nhoeveel letters heeft mist?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: kaart\nhoeveel keer komt a voor in kaart?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: ei\nhoeveel letters heeft ei?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: oom\nde hoeveelste letter van oom is de eerste o?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: peer\nhoeveel letters heeft peer?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 1,
+   "opgave": "woorden: pop\nhoeveel keer komt o voor in pop?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: koe\nde hoeveelste letter van koe is de eerste o?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: pop\nde hoeveelste letter van pop is de eerste p?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: trein\nhoeveel letters heeft trein?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: taart\nhoeveel letters heeft taart?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: sleutel\nhoeveel letters heeft sleutel?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: dak\nde hoeveelste letter van dak is de eerste a?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: maand\nhoeveel keer komt d voor in maand?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: tafel\nhoeveel letters heeft tafel?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: jaar\nde hoeveelste letter van jaar is de eerste a?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: geit\nhoeveel keer komt t voor in geit?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: boek\nhoeveel letters heeft boek?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: brug\nhoeveel keer komt g voor in brug?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: straat\nhoeveel keer komt a voor in straat?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: eik\nde hoeveelste letter van eik is de eerste e?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: bed\nhoeveel keer komt d voor in bed?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: melk\nde hoeveelste letter van melk is de eerste l?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: grijs\nhoeveel keer komt g voor in grijs?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: boter\nhoeveel letters heeft boter?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: zout\nhoeveel keer komt z voor in zout?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: gras\nde hoeveelste letter van gras is de eerste a?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: sneeuw\nhoeveel letters heeft sneeuw?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: rood\nhoeveel letters heeft rood?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: level\nde hoeveelste letter van level is de eerste e?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: bord\nde hoeveelste letter van bord is de eerste b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: park\nhoeveel letters heeft park?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: goud\nhoeveel keer komt o voor in goud?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: park\nde hoeveelste letter van park is de eerste a?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: eend\nhoeveel letters heeft eend?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: tas\nhoeveel letters heeft tas?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 2,
+   "opgave": "woorden: schaap\nde hoeveelste letter van schaap is de eerste c?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: ei vis pot\nhoeveel letters heeft ei?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: kat sleutel kast\nde hoeveelste letter van kat is de eerste t?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: ijs wortel broer\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: hagel geel lopen\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: lepel zus bel\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: ster rennen deur\nhoeveel keer komt r voor in rennen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: pen zomer steen\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: ijs plein nacht\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: tafel papier trein\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: eten ster nicht\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: tas kat appel\nhoeveel keer komt a voor in tas?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: weg schaap pasta\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: bezem eik klok\nhoeveel keer komt l voor in klok?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: dansen steen kan\nhoeveel keer komt t voor in steen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: muis blad eik\nhoeveel letters heeft muis?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: bord brug steen\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: zilver bus fiets\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: zon aha nicht\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: muur kers straat\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: glas banaan geel\nhoeveel letters heeft glas?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: honing roze dansen\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: groen boek kan\nde hoeveelste letter van boek is de eerste b?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: bus ui groen\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: peer dauw level\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: oom rennen tante\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: bord hond oranje\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: peer vis groen\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: tak ijzer dansen\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: wortel kok kaart\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 3,
+   "opgave": "woorden: lepel water hagel\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: zout bloem brief koek\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: kers straat tram nemen\nhoeveel letters heeft kers?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: klok mist minuut zitten\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: lepel muur tram lopen\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: peer blauw goud appel\nhoeveel keer komt p voor in appel?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: aap kan lezen wol\nhoeveel keer komt p voor in aap?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: herfst boter hagel soep\nde hoeveelste letter van herfst is de eerste f?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: wol nacht mama aha\nde hoeveelste letter van wol is de eerste l?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: kaart weg lucht mes\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: week tak boom vork\nhoeveel letters heeft vork?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: bus trap rood tak\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: aarde dak paars zus\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: wortel sneeuw peer soep\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: pan brief bus peer\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: steen aarde paard huis\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: boom pan raam doos\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: pan rood sneeuw eten\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: boter zilver zand foto\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: steen opa stoel papier\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: pasta eik mist geit\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: vliegtuig vogel lezen glas\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: stoel boom geit geel\nhoeveel keer komt t voor in stoel?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: druif nemen plein brug\nhoeveel keer komt n voor in plein?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: huis baby appel trein\nhoeveel letters heeft huis?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: auto paars zomer pot\nhoeveel keer komt r voor in paars?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: tante steen opa jaar\nde hoeveelste letter van tante is de eerste e?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: winter zwart sleutel boot\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: geit koek zilver oranje\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: druif vis zilver mand\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 4,
+   "opgave": "woorden: storm raam foto zwart\nde hoeveelste letter van zwart is de eerste z?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: deur minuut stoel nicht\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: negen kind doek stoel\nhoeveel letters heeft stoel?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: keuken pot oranje appel\nhoeveel woorden beginnen met een klinker en hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: nemen muis pan sneeuw\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: bel koe blauw ijzer\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: kast pot uur vuur\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: ei oranje dag winter\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: oor zand bloem uur\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: kok oor maan wind\nhoeveel keer komt w voor in wind?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: rennen herfst mist wortel\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: foto vuur kan vogel\nhoeveel woorden beginnen met een klinker en hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: fles kaart rijst fiets\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: regen drinken aarde wit\nhoeveel keer komt i voor in alle woorden samen?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: foto geit oma ster\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: huis haan brood mist\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: meloen lepel appel wit\nhoeveel keer komt i voor in alle woorden samen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: roze dag park koek\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: geel tram taart wol\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: fles kers lepel lente\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: lopen sleutel geel vliegtuig\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: lucht mist steen boot\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: lamp hagel bel broer\nde hoeveelste letter van hagel is de eerste e?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: vork hond appel lucht\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: papa rood schaap geit\nde hoeveelste letter van rood is de eerste o?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: straat doek bloem eend\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: rijst kers pen zon\nhoeveel letters heeft kers?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: straat oom vork papa\nhoeveel letters heeft vork?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: zon peer eend bezem\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: honing kok eend wol\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 5,
+   "opgave": "woorden: muis geel maan honing\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: lepel ei blad tak muur lente\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: ijzer haan wortel bed pasta ster\nhoeveel keer komt a voor in alle woorden samen?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: maand opa blad trein kok negen\nhoeveel keer komt i voor in trein?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: vis rennen bruin pot appel kok\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: mist trein winter oor hout aarde\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: zwaan eik ei uil mand uur\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: ster zon rennen zomer nacht maand\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: geel klok doos goud roze pot\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: geit deur zwaan doos raam baby\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: regen banaan haan druif zwart mes\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: dak meloen regen rood tas wortel\nhoeveel keer komt o voor in rood?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: mand zingen eik negen lente doos\nhoeveel letters heeft mand?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: trap bed sleutel negen kers hout\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: mand doek vis geel park zout\nhoeveel letters heeft het langste woord?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: zwart bed pen doek negen drinken\nde hoeveelste letter van pen is de eerste n?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: honing koe vliegtuig winter ijs muis\nhoeveel letters heeft winter?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: week groen geit zon tafel dak\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: zwart mes maand emmer stoel huis\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: staan brief negen groen zon nacht\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: kamer kop kip nacht straat pasta\nhoeveel keer komt i voor in alle woorden samen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: regen brood groen bruin weg negen\nhoeveel woorden beginnen met een klinker en hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: tas ijzer winter glas keuken opa\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: zingen oom bord taart plein zand\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: kat koe zwaan kip uur steen\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: bloem dag emmer sleutel pasta hond\nhoeveel letters heeft emmer?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: drinken koe ster muis water vliegtuig\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: steen zwart bezem baby auto blauw\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: plein mama geit auto kamer papa\nde hoeveelste letter van auto is de eerste a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: wortel muur lepel geit papa kamer\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 6,
+   "opgave": "woorden: winter vork regen hond zitten slapen\nhoeveel woorden beginnen met een klinker en hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: kan wolk pen kop pot sleutel\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: tak regen vork bord trap dansen\nhoeveel letters heeft regen?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: paard peer zwart hond bezem ijzer\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: peer klok hond eend geel schaap\nhoeveel keer komt h voor in hond?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: oma sneeuw meloen uur pen mist\nhoeveel keer komt m voor in oma?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: trap rood drinken brood pot stoel\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: negen zus winter drinken mand zwaan\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: uil hond level bord fles aha\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: mes lopen glas weg wit zout\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: tak zwaan aap eten pot kind\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: glas trap appel uil banaan paard\nde hoeveelste letter van paard is de eerste r?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: wol hond lamp zus papier koe\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: ijzer deur wol vork papier zomer\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: meloen lucht zingen week muis goud\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: fles negen baby wit foto staan\nhoeveel keer komt o voor in alle woorden samen?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: mama boter wit kind soep ster\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: tak week bus straat pen keuken\nhoeveel woorden eindigen op en?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: huis wit sneeuw wol oranje schaap\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: haan hout zwart grijs lezen papa\nhoeveel keer komt n voor in lezen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: tram lopen tak zwart maand peer\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: muis emmer glas muur kok zwart\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: paard dag tas eik vogel dak\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: wit raar storm zus tafel boter\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: drinken zout roze ei slapen kaart\nhoeveel keer komt u voor in alle woorden samen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: hond nacht negen kop hagel rijst\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: wol deur maan kers melk zus\nhoeveel keer komt u voor in alle woorden samen?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: storm wit appel lamp boom boter\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: melk vuur bloem zand glas dauw\nhoeveel letters heeft glas?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: vogel minuut rennen mes tafel brug\nde hoeveelste letter van mes is de eerste m?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 7,
+   "opgave": "woorden: muis bezem eik winter vliegtuig raam\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: tante ei zout brug lezen park trein\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: aarde wind drinken schaap geit rood tram\nde hoeveelste letter van aarde is de eerste a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: roze zomer glas brug lucht eend blad\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel letters heeft brug?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: emmer lucht meloen paars weg roze level\nkeer elk woord om\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: eend fiets lucht muis dansen raar schaap\nhaal alle letters a weg\nhoeveel letters heeft muis?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: slapen gras sneeuw hond winter rennen dak\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel keer komt k voor in dak?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: appel pot honing park pasta vliegtuig geel\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: vork wolk trein rood pan bed raar\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: tafel ei zus zout hagel tram kers\nkeer elk woord om\nde hoeveelste letter van suz is de eerste s?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: geit maand vork bel mes wit zon\nhoeveel letters heeft geit?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: zingen ster banaan pot geit oma foto\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: jaar uur rood storm baby zwart level\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: rennen ster raam rijst banaan wolk level\nhaal alle letters e weg\nhoeveel keer komt e voor in alle woorden samen?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: stoel goud taart eik vis klok aap\nkeer elk woord om\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: wolk raam nicht zon kaart peer rennen\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: oranje brief minuut level blad ui muur\nkeer elk woord om\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: mama blauw geit melk broer wortel plein\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: brood doos lezen koek groen tak wol\nkeer elk woord om\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: kaas dauw bed dansen pop kan oom\nkeer elk woord om\nhoeveel letters heeft saak?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: dansen tram steen week negen brug rijst\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel keer komt b voor in brug?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: muis pop rijst melk kind tram rennen\nhoeveel letters heeft tram?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: kop aarde haan grijs nacht kast broer\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: roze rennen brief negen pot klok sneeuw\nhoeveel keer komt a voor in alle woorden samen?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: minuut dauw foto auto blad lopen haan\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel keer komt a voor in alle woorden samen?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: raam kaart kind zon vork meloen dansen\nhoeveel woorden eindigen op en?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: muis lopen ijs klok broer mist fles\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: goud haan steen boter lepel melk lamp\nde hoeveelste letter van lamp is de eerste p?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: wolk boek negen kers ei water slapen\nhoeveel woorden eindigen op en?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: vis koe bel vogel mes herfst honing\nhoeveel letters heeft honing?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 8,
+   "opgave": "woorden: oma pasta uil eik muis hout tram\nhoeveel letters heeft muis?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: hagel soep rennen regen kast zand kers nicht\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel keer komt e voor in alle woorden samen?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: zon wind kip mand soep trap drinken kamer\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: park kind stoel wolk honing pan bruin dansen\nhoeveel keer komt o voor in alle woorden samen?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: hagel brief mama meloen vliegtuig haan maan fles\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: zon banaan mand nicht fles eend baby kan\nhaal alle letters i weg\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: vork dak stoel staan jaar blad regen tafel\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: slapen rennen baby kast koe lucht tante bloem\nhaal alle letters e weg\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: wol tak maand bord sneeuw gras plein goud\nhaal alle letters o weg\nhoeveel keer komt o voor in alle woorden samen?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: steen goud neef pot doos opa ijzer bloem\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: blauw pen boek staan vuur hagel roze trap\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: kok zomer slapen lente fles staan fiets trap\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: pen eend zingen rood trap hout groen lezen\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: dansen hagel glas storm lopen appel vis geit\nhaal alle letters o weg\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: oma grijs rijst zout auto zwart fiets drinken\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: paars bord zilver wit kop mama emmer brood\nkeer elk woord om\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: brief nacht dak zingen regen weg bruin drinken\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel woorden eindigen op en?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: druif bruin brood rood zon kip raar jaar\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: bel eend muis level straat boek tas kok\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: foto emmer sleutel herfst nicht dag straat vogel\nkeer elk woord om\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: bus kip bed lamp brood ster pasta gras\nhoeveel keer komt r voor in ster?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: dansen weg grijs wind trap rood papa brief\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: soep vork maand aarde wol blad broer bord\nhaal alle letters i weg\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: soep lopen kers muis oma herfst dag zand\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: tas nemen zomer nacht oma level zwaan vuur\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: aarde huis papier wolk lente kop winter drinken\nhoeveel letters heeft het langste woord?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: lopen wolk eik bruin peer nemen wol rijst\nhoeveel letters heeft het langste woord?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: regen lopen dansen brood wind muur geit maand\nhoeveel letters heeft lopen?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: paard kat regen baby trap soep gras koe\nkeer elk woord om\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: lopen vuur mes hout wit trein neef bezem\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 9,
+   "opgave": "woorden: plein tak wit storm oranje kat geel broer\nkeer elk woord om\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: geel ster water ei tas oma doos pan wol\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: papa wind haan weg herfst boek keuken doek nicht\nhaal alle letters e weg\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: kop steen minuut pen mes stoel level lucht ei\nhaal alle letters u weg\nhoeveel keer komt u voor in alle woorden samen?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: ijzer zwaan vuur pop neef kaart drinken doos tak\nhoeveel keer komt e voor in ijzer?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: meloen aha tak stoel pop tram negen trap lezen\nhoeveel keer komt i voor in alle woorden samen?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: kip papier kind bed brug deur tram bloem oma\nkeer elk woord om\nde hoeveelste letter van amo is de eerste m?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: keuken foto hagel eend storm schaap kan peer nacht\nhoeveel keer komt o voor in alle woorden samen?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: wortel trap paard vork wit pan neef kamer boom\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: kan dak zomer bord ui kaas kop slapen paard\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: vogel paars steen wolk lucht straat bruin foto zus\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: aha kop fles neef sneeuw zus vuur minuut dauw\nkeer elk woord om\nhoeveel woorden beginnen met een klinker en hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: lente stoel ster zwart brief dag wol fles glas\nde hoeveelste letter van wol is de eerste o?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: mand lente ei neef foto pop muur geel vuur\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: pot oma rennen kan brief plein doos wol fles\nkeer elk woord om\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: bed druif lepel oma mist lente winter aha papa\nkeer elk woord om\nde hoeveelste letter van aha is de eerste a?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: raam brug dag fles lente zus zomer boter maan\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: herfst winter neef fles zon koe kind huis groen\nhoeveel keer komt s voor in fles?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: eten straat appel zwart klok wit kaas raam sleutel\nhaal alle letters a weg\nde hoeveelste letter van klok is de eerste k?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: lezen tafel straat pan lente nacht eten soep baby\nkeer elk woord om\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: druif water zus bord ei vuur kast mand tak\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: druif haan sleutel lamp papier tak bus bed klok\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: muis ei pop paars trap aarde sleutel uur bus\nkeer elk woord om\nhoeveel keer komt e voor in ie?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: winter klok dansen tante pan bloem banaan mist mama\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: maan lucht straat paard brood kip pen auto ijs\nhaal alle letters i weg\nhoeveel keer komt e voor in pen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: bezem bruin doek herfst steen melk klok vis slapen\nhoeveel letters heeft melk?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: oma zingen tas mes dag regen vliegtuig grijs glas\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: water aarde kip tram minuut glas kan groen uil\nhoeveel keer komt k voor in kan?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: koe vuur tas kers zomer groen doos bezem oma\nkeer elk woord om\nde hoeveelste letter van neorg is de eerste g?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: hout zwaan emmer gras nicht broer zus haan blauw\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel keer komt o voor in alle woorden samen?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 10,
+   "opgave": "woorden: uur winter eend pop dansen tante lucht kop blad\nhoeveel keer komt a voor in alle woorden samen?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: uil honing week grijs hagel kind opa foto kok\nkeer elk woord om\nhoeveel keer komt a voor in alle woorden samen?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: eten winter zomer doek wind eik zus lezen nacht\nde hoeveelste letter van nacht is de eerste h?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: boter haan blad ei boek bloem koe tak raam\nkeer elk woord om\nhoeveel keer komt i voor in alle woorden samen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: zon lepel meloen broer brug lente ijzer zout jaar\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: zwart zand schaap vliegtuig auto papa zomer boter kaas\nhaal alle letters i weg\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: maand kat huis zilver winter fles trein wolk glas\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: broer tak kast zilver meloen keuken bruin herfst kan\nhaal alle letters i weg\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: taart blad fiets wolk trap emmer vogel winter jaar\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: geel mand haan wortel rijst tante zingen meloen boek\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel letters heeft geel?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: park muur stoel vork rennen gras ui zout weg\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: huis groen kaas maand lente mist plein uil doek\nhoeveel letters heeft groen?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: winter auto mist rennen drinken bus bed deur ijs\nde hoeveelste letter van bed is de eerste d?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: bel oom sleutel foto bed mes bruin brug melk\nkeer elk woord om\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: mama straat geel hout vliegtuig kers week muis zon\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel letters heeft het langste woord?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: auto weg uil zitten gras brood schaap geel kan\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: rood zout trap lucht oom zon appel boom pasta\nhaal alle letters o weg\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: huis lezen neef jaar tante zus kop taart pot\nde hoeveelste letter van pot is de eerste t?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: klok ei broer herfst oranje geit drinken lezen soep\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel keer komt n voor in lezen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: rijst groen paard minuut oranje zomer eik zon boter\nhaal alle letters u weg\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: mist week wolk haan brug eten gras trein pot\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel woorden beginnen met een klinker en hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: tafel koe appel gras week sneeuw dak fles trap\nkeer elk woord om\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: vuur pen honing dansen glas tafel ei hond herfst\nhoeveel keer komt n voor in honing?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: papier bus uil tak taart boek lamp steen glas\nhoeveel keer komt k voor in tak?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: wit herfst zwart doek vuur minuut pot appel week\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: vliegtuig appel neef melk kaas bezem dag wol glas\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nde hoeveelste letter van vliegtuig is de eerste e?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: vliegtuig jaar regen sneeuw rennen geel kip zitten dak\nhaal alle letters e weg\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: jaar zitten huis meloen appel lepel nicht raar zout\nkeer elk woord om\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: negen peer wolk mand brug sneeuw meloen ui vis\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: klok eend banaan plein kat park bloem oom rennen\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 11,
+   "opgave": "woorden: kind schaap pop kast oor tas auto koek mes\nhoeveel keer komt e voor in alle woorden samen?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: rijst uil dag kip bus zilver hond kast lopen aap baby\nhaal alle letters e weg\nhoeveel letters heeft dag?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: straat doos vliegtuig zingen ster wit klok bus geel eten zomer\nhoeveel woorden eindigen op en?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: lezen banaan zwaan ster kop gras tafel paard mama lucht maand\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: kok lepel zon wortel uil eik grijs minuut melk wolk trein\nkeer elk woord om\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: mist boter jaar oma dag meloen blad huis oor bed grijs\nkeer elk woord om\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: koe tak nicht dak brief zwaan weg pen boek oor gras\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: kat park staan brood geit wolk roze eend doek papa honing\nhoeveel letters heeft park?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: sneeuw tak kers rijst paard eik goud winter papier deur zwaan\nhaal alle letters o weg\nhoeveel woorden hebben een dubbele letter?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: uil vliegtuig lamp hond boter kat papa groen roze zomer regen\nhoeveel letters heeft het langste woord?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: kip blad aha bruin winter vliegtuig zwart boter koek geel huis\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "11"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: trap oranje bruin papier plein steen auto brief mama aha kaart\nhoeveel letters heeft het langste woord?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: pen eten goud lepel uur oor rennen lopen paard koek bus\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: regen zilver meloen lezen banaan zwaan doek aha mama negen doos\nhoeveel woorden hebben meer klinkers dan medeklinkers?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: meloen vork tas boom zwart oom eend bezem raar pasta doos\nhoeveel woorden beginnen met een klinker?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: fiets kast druif staan zwaan wortel appel ijs gras water eend\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: maan zwart tram kamer foto oma oranje uil doos doek ui\nhet hoeveelste woord is het langste? (het eerste als er meer zijn)",
+   "oplossing": "7"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: melk tas kip rennen park soep tante wol slapen roze papa\nkeer elk woord om\nhoeveel woorden beginnen met een klinker en hebben een dubbele letter?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: groen wind aap dak doek oranje geit geel wol ster pot\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: maand wind staan zon dag mand peer zitten broer wit tak\nkeer elk woord om\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: bezem lucht boter tas zout kat staan kaart nicht steen trap\nhoeveel keer komt t voor in steen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: tak blad kind brug groen ijzer zon banaan peer lamp trap\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel keer komt p voor in peer?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: bruin bed rijst foto boot kan tafel vliegtuig drinken baby pot\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nhoeveel woorden eindigen op en?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: uur koe trein peer steen weg mes paard taart brood lepel\nkeer elk woord om\nhoeveel keer komt a voor in alle woorden samen?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: oranje nemen oom zilver dansen bruin hagel vliegtuig jaar maand ui\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: zout zon oor ei papier vuur lezen vork kind slapen dansen\nhoeveel woorden zijn een palindroom?",
+   "oplossing": "0"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: koek rennen blauw plein doos zomer hagel lepel bus kast doek\nhoeveel keer komt i voor in alle woorden samen?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: negen muis trein broer pasta zwaan mand vork regen ui klok\nde hoeveelste letter van muis is de eerste i?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: zomer roze melk paars oor wit kat vogel eten maan gras\nhoeveel woorden hebben een even aantal letters?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: kast staan nicht level tak brief winter dag baby eend oranje\nzet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)\nde hoeveelste letter van level is de eerste e?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "tekst",
+   "graad": 12,
+   "opgave": "woorden: bloem dansen koe pasta mama winter stoel wind zwaan gras zingen\nkeer elk woord om\nhoeveel woorden eindigen op en?",
+   "oplossing": "0"
+  }
+ ]
+}

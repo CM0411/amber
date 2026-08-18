@@ -309,7 +309,8 @@ def _beantwoord_vragen():
 # mee in een eigen standbestand, zodat een herstart niet bij nul begint.
 LAAGNAMEN = {"rekenen": "rekenlaag", "code": "codelaag",
              "puzzel": "puzzellaag", "geheugen": "geheugenlaag",
-             "logica": "logicalaag"}
+             "logica": "logicalaag", "volgorde": "volgordelaag",
+             "tekst": "tekstlaag"}
 LAAGSTAND = f"{FOLDER}/laagnamen-stand.json"
 MINSTENS = 20                            # opgaven per familie vóór hij meetelt
 try:

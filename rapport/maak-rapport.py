@@ -209,7 +209,7 @@ def grafiek(curve, reeksen, doorbraken=None, hoog=300):
 
 
 FAM_KLEUR = {"rekenen": "#5ca8ff", "puzzel": "#b78ae0", "code": "#7fe0c3",
-             "geheugen": "#ffb86b", "logica": "#ff8fa3"}
+             "geheugen": "#ffb86b", "logica": "#ff8fa3", "volgorde": "#8fd3ff", "tekst": "#e6d37a"}
 
 
 def keuzes_sectie():
@@ -363,7 +363,7 @@ def maak_html(d):
 <h2>De ladder — haar hele wereld, gewogen</h2>
 <div class="graf">{grafiek(curve, ["ladder"], d["doorbraken"])}</div>
 <p class="stil">De stippellijnen zijn doorbraken: het moment waarop ze zelf
-een diepte openmaakte (r = rekenen, c = code, p = puzzel, g = geheugen, l = logica).</p>
+een diepte openmaakte (r = rekenen, c = code, p = puzzel, g = geheugen, l = logica, v = volgorde, t = tekst).</p>
 <h2>De bevroren proefwerken ({len(proef_namen)})</h2>
 <div class="graf">{grafiek(curve, proef_namen, hoog=340)}</div>
 <p class="stil">Bevroren op 9 aug 2026 — elke meting is exact dezelfde

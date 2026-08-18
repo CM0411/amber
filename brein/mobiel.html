@@ -61,6 +61,7 @@
   <a href="/dagbericht" style="padding:7px 12px;border-radius:9px;font-size:13px;color:#8ea0c0;text-decoration:none;background:#0c1230;border:1px solid #1d2b4d">dagbericht</a>
   <a href="/machines" style="padding:7px 12px;border-radius:9px;font-size:13px;color:#8ea0c0;text-decoration:none;background:#0c1230;border:1px solid #1d2b4d">machines</a>
   <a href="/gebeurtenissen" style="padding:7px 12px;border-radius:9px;font-size:13px;color:#8ea0c0;text-decoration:none;background:#0c1230;border:1px solid #1d2b4d">gebeurtenissen</a>
+  <a href="/tijdlijn" style="padding:7px 12px;border-radius:9px;font-size:13px;color:#8ea0c0;text-decoration:none;background:#0c1230;border:1px solid #1d2b4d">tijdlijn</a>
   <a href="/opname" style="padding:7px 12px;border-radius:9px;font-size:13px;color:#8ea0c0;text-decoration:none;background:#0c1230;border:1px solid #1d2b4d">oren</a>
   <a href="/geheugen" style="padding:7px 12px;border-radius:9px;font-size:13px;color:#8ea0c0;text-decoration:none;background:#0c1230;border:1px solid #1d2b4d">geheugen</a>
   <a href="/vraag" style="padding:7px 12px;border-radius:9px;font-size:13px;color:#8ea0c0;text-decoration:none;background:#0c1230;border:1px solid #1d2b4d">vraag haar</a>
@@ -123,7 +124,7 @@
 
 <script>
 // vangnet; de echte hekken komen per run uit run.json (zie haal())
-const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12};   // vangnet; 16 aug: geheugen, 17 aug: logica
+const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12, volgorde: 12, tekst: 12};   // vangnet; 16 aug: geheugen, 17 aug: logica
 
 
 // Haar eigen keuzes (F, 17 aug 2026): waar de nieuwsgierigheid heen gaat —
@@ -133,7 +134,7 @@ const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12};   //
 function keuzesHtml(k, kop) {
   if (!k || !k.laatste || !k.laatste_n) return "";
   const kleur = {rekenen: "#5ca8ff", puzzel: "#b78ae0", code: "#7fe0c3",
-                 geheugen: "#ffb86b", logica: "#ff8fa3"};
+                 geheugen: "#ffb86b", logica: "#ff8fa3", volgorde: "#8fd3ff", tekst: "#e6d37a"};
   const fams = Object.keys(k.laatste).sort((a, b) => k.laatste[b] - k.laatste[a]);
   let h = `<div class="kop">${kop} · laatste ${k.laatste_n} keuzes</div>`;
   for (const f of fams) {
@@ -232,10 +233,10 @@ async function haal() {
     }
 
     // wereld
-    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2, logica: 2},
+    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2, logica: 2, volgorde: 2, tekst: 2},
                                (s.run && s.run.wereld) || {}, s.wereldrand || {});
     let wr = "";
-    for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica"]) {
+    for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst"]) {
       if (!grens[f]) continue;
       const d = Math.min(rand[f], grens[f]);
       wr += `<div class="rij"><span>${f}</span>
@@ -321,7 +322,7 @@ const nctx = net.getContext("2d");
 let nLagen = [], nZeker = 0, nBedrading = null, nBedradingUit = null;
 let nNamen = {};                          // laag -> naam uit haar meting (16 aug 2026)
 const nKort = {rekenlaag: "reken", codelaag: "code", puzzellaag: "puzzel",
-               geheugenlaag: "geheugen", logicalaag: "logica", gemengd: "gemengd", stil: "stil"};
+               geheugenlaag: "geheugen", logicalaag: "logica", volgordelaag: "volgorde", tekstlaag: "tekst", gemengd: "gemengd", stil: "stil"};
 let nGloed = [], nVonken = [], nTijd = 0, nDoek = null;
 
 function netMaat() {

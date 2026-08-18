@@ -54,7 +54,9 @@ from tasks import FAMILIES as _MEASURED_FAMILIES, Task, Picker, _mix
 #   16 Aug 2026: "geheugen" — an answer that depends on something earlier
 #   in the sequence (see _memory below).
 #   17 Aug 2026: "logica" — if-then chains over true/false facts (_logic).
-FAMILIES = _MEASURED_FAMILIES + ("geheugen", "logica")
+#   18 Aug 2026: "volgorde" — steps put in the right order from rules (_order).
+#   18 Aug 2026: "tekst" — patterns in letters and words, counted (_text).
+FAMILIES = _MEASURED_FAMILIES + ("geheugen", "logica", "volgorde", "tekst")
 
 # Own constant, separate from tasks.py's: the world and the exams are two
 # separate things and must be so in their numbers too.
@@ -88,7 +90,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 20, "code": 30, "geheugen": 40, "logica": 12}
+MAX_DEPTH_PER = {"puzzel": 20, "code": 30, "geheugen": 40, "logica": 12, "volgorde": 12, "tekst": 12}
 
 
 def max_depth(family):
@@ -1279,8 +1281,283 @@ def _logic(depth, t):
     return problem, answer, " ; ".join(working)
 
 
+# --- the equation brick in arithmetic (18 Aug 2026) ---------------------------
+# Arithmetic went deeper only by longer chains forward. This brick turns it
+# around: an unknown to find, by undoing the operations —
+#
+#     3 * x + 4 = 19
+#     wat is x?            →  19 - 4 = 15 ; 15 : 3 = 5
+#
+# the first real algebra. Own seed split, one in four numbers at depth
+# VGL_MIN–VGL_MAX, and only where no other split drew (teen multiplication,
+# tail, conversational wrapper): every task she already saw stays bit for
+# bit. x is chosen first, so the answer is always a whole number; the
+# working undoes step by step, ":" for division (the working checker knows
+# it), and the last number is x.
+
+VGL_SEED = 0x56676C                       # "Vgl"
+VGL_MIN, VGL_MAX = 3, 20
+
+
+def _equation(depth, t):
+    x = t.integer(1, 50 if depth < 9 else 99)
+    if depth <= 5:
+        form = t.choice(("+", "-", "*"))
+        if form == "+":
+            b = t.integer(1, 60); c = x + b
+            return f"x + {b} = {c}\nwat is x?", x, f"{c} - {b} = {x}"
+        if form == "-":
+            b = t.integer(1, 60); c = x - b
+            return f"x - {b} = {c}\nwat is x?", x, f"{c} + {b} = {x}"
+        a = t.integer(2, 12); c = a * x
+        return f"{a} * x = {c}\nwat is x?", x, f"{c} : {a} = {x}"
+    if depth <= 8:
+        a, b = t.integer(2, 12), t.integer(1, 60)
+        op = t.choice(("+", "-"))
+        c = a * x + b if op == "+" else a * x - b
+        undo = f"{c} - {b} = {a * x}" if op == "+" else f"{c} + {b} = {a * x}"
+        return f"{a} * x {op} {b} = {c}\nwat is x?", x, f"{undo} ; {a * x} : {a} = {x}"
+    if depth <= 12:
+        # x on both sides: a x + b = x + c  →  (c - b) / (a - 1)
+        a, b = t.integer(2, 9), t.integer(1, 40)
+        c = a * x + b - x
+        return (f"{a} * x + {b} = x + {c}\nwat is x?", x,
+                f"{c} - {b} = {c - b} ; {a} - 1 = {a - 1} ; {c - b} : {a - 1} = {x}")
+    # deeper: parentheses, and three undo steps
+    a, b, d = t.integer(2, 9), t.integer(1, 30), t.integer(1, 40)
+    if t.integer(1, 2) == 1:
+        c = a * (x + b)
+        return f"{a} * (x + {b}) = {c}\nwat is x?", x, f"{c} : {a} = {x + b} ; {x + b} - {b} = {x}"
+    c = a * x + b - d
+    return (f"{a} * x + {b} - {d} = {c}\nwat is x?", x,
+            f"{c} + {d} = {c + d} ; {c + d} - {b} = {a * x} ; {a * x} : {a} = {x}")
+
+
+# --- volgorde (order) — the sixth family (18 Aug 2026) --------------------------
+# Steps of a plan, shown in a scrambled numbering, and rules that fix their
+# order; the question asks a place. Relational reasoning, not arithmetic:
+#
+#     stappen: 1 deeg kneden ; 2 tafel dekken ; 3 oven aan ; 4 bakken
+#     regels: 4 na 1 ; 4 na 3 ; 2 na 4 ; 3 na 1
+#     welke stap komt op plaats 3?     →  … ; volgorde: 1 3 4 2 ; plaats 3 = 4
+#
+# The rules pin exactly one order (a chain of "na"-relations, in a shuffled
+# listing, plus redundant rules that contradict nothing); from ORDER_REL_MIN
+# some read "voor" or "direct na", from ORDER_POS_MIN the question may also
+# be "op welke plaats komt stap k?", from ORDER_BETWEEN_MIN one link is
+# written as "x tussen a en b". Depth = number of steps (3 + (d-1)//2) plus
+# the number of extra rules. Every answer is a number (a step label or a
+# place), so nakijk stays what it is; an independent topological sorter in
+# test-world checks that exactly one order fits and the answer agrees.
+
+ORDER_STEPS = ("deeg kneden", "oven aan", "bakken", "tafel dekken", "water koken",
+               "thee zetten", "jas aan", "deur op slot", "fiets pakken",
+               "boodschappen doen", "afwassen", "opruimen", "kaartje kopen",
+               "instappen", "uitstappen", "zaadjes planten", "water geven",
+               "oogsten", "tent opzetten", "vuur maken", "eten koken", "afwas doen",
+               "brief schrijven", "postzegel plakken", "brief posten", "wekker zetten",
+               "opstaan", "ontbijten", "tanden poetsen", "schoenen aan")
+ORDER_REL_MIN = 4
+ORDER_POS_MIN = 6
+ORDER_BETWEEN_MIN = 8
+
+
+def _order(depth, t):
+    n = min(12, 3 + (depth - 1) // 2)
+    pool = list(ORDER_STEPS)
+    chosen = []
+    while len(chosen) < n:
+        chosen.append(pool.pop(t.integer(0, len(pool) - 1)))
+    # the true order is a permutation of the labels 1..n
+    labels = list(range(1, n + 1))
+    order = []
+    while labels:
+        order.append(labels.pop(t.integer(0, len(labels) - 1)))
+    place = {lab: i + 1 for i, lab in enumerate(order)}
+    rules = []
+    working = []
+    i = 0
+    while i < n - 1:
+        a, b = order[i], order[i + 1]
+        if (depth >= ORDER_BETWEEN_MIN and i + 2 < n and t.integer(1, 4) == 1):
+            c = order[i + 2]
+            rules.append(f"{b} tussen {a} en {c}")
+            working.append(f"{b} tussen {a} en {c}: {a} {b} {c}")
+            i += 2
+            continue
+        if depth >= ORDER_REL_MIN and t.integer(1, 3) == 1:
+            rules.append(f"{a} voor {b}")
+        elif depth >= ORDER_REL_MIN and t.integer(1, 3) == 1:
+            rules.append(f"{b} direct na {a}")
+        else:
+            rules.append(f"{b} na {a}")
+        working.append(f"{b} na {a}")
+        i += 1
+    # redundant rules that contradict nothing: implied by the chain
+    extra = depth
+    tries = 0
+    seen = set(rules)
+    while extra > 0 and tries < 40 and n >= 3:
+        tries += 1
+        i = t.integer(0, n - 3); j = t.integer(i + 2, n - 1)
+        rule = f"{order[j]} na {order[i]}"
+        if rule not in seen:
+            seen.add(rule); rules.append(rule); extra -= 1
+    shuffled = []
+    rest = list(rules)
+    while rest:
+        shuffled.append(rest.pop(t.integer(0, len(rest) - 1)))
+    if depth >= ORDER_POS_MIN and t.integer(1, 2) == 1:
+        k = order[t.integer(0, n - 1)]
+        question, answer = f"op welke plaats komt stap {k}?", place[k]
+        last = f"plaats van {k} = {place[k]}"
+    else:
+        k = t.integer(1, n)
+        question, answer = f"welke stap komt op plaats {k}?", order[k - 1]
+        last = f"plaats {k} = {order[k - 1]}"
+    working.append("volgorde: " + " ".join(str(x) for x in order))
+    working.append(last)
+    problem = ("stappen: " + " ; ".join(f"{i + 1} {c}" for i, c in enumerate(chosen))
+               + "\nregels: " + " ; ".join(shuffled)
+               + "\n" + question)
+    return problem, answer, " ; ".join(working)
+
+
+# --- tekst (text) — the seventh family (18 Aug 2026) ---------------------------
+# Patterns in letters and words, always answered with a number: how many
+# words have a double letter, how many times a letter occurs, which place
+# the first n has, the longest word — and from depth 8 an operation first
+# (reverse the words, sort by length, drop a letter). Attention to the shape
+# of text itself: for a byte model not trivial (counting, positions), and
+# the first step towards U. Words come from a fixed list, lowercase a–z only
+# (one byte per letter), so a task is the same task forever.
+#
+#     woorden: appel peer banaan kers
+#     hoeveel woorden hebben een dubbele letter?
+#     →  appel: ja ; peer: ja ; banaan: nee ; kers: nee ; 2
+
+TEXT_WORDS = (
+    "appel peer banaan kers druif meloen boom bloem gras blad tak wortel "
+    "kip koe paard schaap geit hond kat muis vis vogel eend zwaan haan "
+    "huis deur raam dak muur trap kamer keuken bed stoel tafel kast lamp "
+    "brood kaas melk boter ei soep rijst pasta koek taart honing zout "
+    "auto fiets trein boot bus tram vliegtuig weg brug straat plein park "
+    "zon maan ster wolk regen sneeuw wind storm ijs mist dauw hagel "
+    "boek pen papier brief kaart foto klok bel sleutel doos tas mand "
+    "water vuur aarde lucht zand steen goud zilver ijzer hout glas wol "
+    "lepel vork mes bord kop pan pot fles kan emmer bezem doek "
+    "rood geel blauw groen wit zwart grijs paars roze bruin oranje "
+    "lopen rennen zitten staan slapen eten drinken lezen zingen dansen "
+    "kok pop nemen negen level raar aha oor eik ui uil aap "
+    "oma opa mama papa zus broer oom tante neef nicht baby kind "
+    "dag nacht week maand jaar uur minuut lente zomer herfst winter"
+).split()
+assert len(TEXT_WORDS) == len(set(TEXT_WORDS)) and all(w.isalpha() and w.islower() and w.isascii() for w in TEXT_WORDS)
+VOWELS = "aeiou"
+TEXT_OP_MIN = 8
+
+
+def _text_words(t, n):
+    words = []
+    while len(words) < n:
+        w = TEXT_WORDS[t.integer(0, len(TEXT_WORDS) - 1)]
+        if w not in words:
+            words.append(w)
+    return words
+
+
+def _double(w):
+    return any(a == b for a, b in zip(w, w[1:]))
+
+
+def _text(depth, t):
+    # how many words: 1 at depth 1–2, then 3 … 12
+    n = 1 if depth <= 2 else min(12, 2 + depth // 2 + (depth - 3) // 3)
+    words = _text_words(t, n)
+    lines = ["woorden: " + " ".join(words)]
+    op = None
+    if depth >= TEXT_OP_MIN and t.integer(1, 2) == 1:
+        op = t.choice(("omkeren", "sorteren", "wegstrepen"))
+    if op == "omkeren":
+        shown = [w[::-1] for w in words]
+        lines.append("keer elk woord om")
+        step0 = "omgekeerd: " + " ".join(shown)
+    elif op == "sorteren":
+        shown = sorted(words, key=lambda w: (len(w), words.index(w)))
+        lines.append("zet de woorden op lengte, kortste eerst (bij gelijke lengte de oude volgorde)")
+        step0 = "op lengte: " + " ".join(shown)
+    elif op == "wegstrepen":
+        letter = t.choice(tuple(VOWELS))
+        shown = [w.replace(letter, "") for w in words]
+        lines.append(f"haal alle letters {letter} weg")
+        step0 = "over: " + " ".join(x if x else "-" for x in shown)
+    else:
+        shown = words
+        step0 = None
+    steps = [step0] if step0 else []
+    # the question forms, stacked by depth
+    forms = ["letters", "letter_telt", "positie"]
+    if depth >= 3:
+        forms += ["dubbel", "klinker_begin", "even", "langste_lengte", "langste_plek", "eindigt_en"]
+    if depth >= 5:
+        forms += ["klinker_en_dubbel", "letter_totaal", "palindroom", "meer_klinkers"]
+    form = t.choice(tuple(forms))
+    if form == "letters":
+        w = shown[t.integer(0, n - 1)]
+        q, ans = f"hoeveel letters heeft {w}?", len(w)
+        steps.append(f"{w}: {' '.join(w)} : {len(w)}")
+    elif form == "letter_telt":
+        w = shown[t.integer(0, n - 1)]
+        letter = w[t.integer(0, len(w) - 1)] if w else "e"
+        cnt = w.count(letter)
+        q, ans = f"hoeveel keer komt {letter} voor in {w}?", cnt
+        steps.append(f"{w}: " + " ".join("^" if ch == letter else "." for ch in w) + f" : {cnt}")
+    elif form == "positie":
+        w = shown[t.integer(0, n - 1)]
+        letter = w[t.integer(0, len(w) - 1)] if w else "e"
+        pos = w.index(letter) + 1
+        q, ans = f"de hoeveelste letter van {w} is de eerste {letter}?", pos
+        steps.append(f"{w}: {' '.join(w[:pos])} : {pos}")
+    elif form in ("dubbel", "klinker_begin", "even", "eindigt_en", "klinker_en_dubbel", "palindroom", "meer_klinkers"):
+        test = {
+            "dubbel": (lambda w: _double(w), "hoeveel woorden hebben een dubbele letter?"),
+            "klinker_begin": (lambda w: bool(w) and w[0] in VOWELS, "hoeveel woorden beginnen met een klinker?"),
+            "even": (lambda w: len(w) % 2 == 0, "hoeveel woorden hebben een even aantal letters?"),
+            "eindigt_en": (lambda w: w.endswith("en"), "hoeveel woorden eindigen op en?"),
+            "klinker_en_dubbel": (lambda w: bool(w) and w[0] in VOWELS and _double(w),
+                                  "hoeveel woorden beginnen met een klinker en hebben een dubbele letter?"),
+            "palindroom": (lambda w: len(w) > 1 and w == w[::-1], "hoeveel woorden zijn een palindroom?"),
+            "meer_klinkers": (lambda w: sum(ch in VOWELS for ch in w) > sum(ch not in VOWELS for ch in w),
+                              "hoeveel woorden hebben meer klinkers dan medeklinkers?"),
+        }[form]
+        hits = [test[0](w) for w in shown]
+        q, ans = test[1], sum(hits)
+        steps += [f"{w if w else '-'}: {'ja' if h else 'nee'}" for w, h in zip(shown, hits)]
+        steps.append(str(ans))
+    elif form == "langste_lengte":
+        best = max(len(w) for w in shown)
+        q, ans = "hoeveel letters heeft het langste woord?", best
+        steps += [f"{w if w else '-'}: {len(w)}" for w in shown]
+        steps.append(f"langste: {best}")
+    elif form == "langste_plek":
+        lens = [len(w) for w in shown]
+        best = max(lens); plek = lens.index(best) + 1
+        q, ans = "het hoeveelste woord is het langste? (het eerste als er meer zijn)", plek
+        steps += [f"{w if w else '-'}: {len(w)}" for w in shown]
+        steps.append(f"langste op plaats {plek}")
+    else:                                    # letter_totaal
+        letter = t.choice(tuple(VOWELS))
+        cnt = sum(w.count(letter) for w in shown)
+        q, ans = f"hoeveel keer komt {letter} voor in alle woorden samen?", cnt
+        steps += [f"{w if w else '-'}: {w.count(letter)}" for w in shown]
+        steps.append(f"samen: {cnt}")
+    lines.append(q)
+    return "\n".join(lines), ans, " ; ".join(steps)
+
+
 _MAKERS = {"rekenen": _arithmetic, "puzzel": _row, "code": _code,
-           "geheugen": _memory, "logica": _logic}
+           "geheugen": _memory, "logica": _logic, "volgorde": _order,
+           "tekst": _text}
 
 
 # --- the conversational wrapper (13 Aug 2026) --------------------------------
@@ -1506,13 +1783,26 @@ def make(family, depth, number):
         # bare one: the bare split wins where both hit, so every bare teen
         # multiplication she learned in run 5 stays bit for bit in place.
         k = Picker(_mix(seed ^ KEERC_SEED))
-        if KEERC_MIN <= depth <= KEERC_MAX and k.integer(1, 5) == 1:
+        keerc = KEERC_MIN <= depth <= KEERC_MAX and k.integer(1, 5) == 1
+        if keerc:
             problem, solution, working = _teen_multiplication_with_tail(k)
         k = Picker(_mix(seed ^ KEER_SEED))
-        if KEER_MIN <= depth <= KEER_MAX and k.integer(1, 5) == 1:
+        keer = KEER_MIN <= depth <= KEER_MAX and k.integer(1, 5) == 1
+        if keer:
             problem, solution, working = _big_multiplication(k)
+        # the conversational wrapper draws first with the same picker it
+        # gets below — mirrored here so the equation brick can step aside
+        converse = (CONVERSE_MIN <= depth <= CONVERSE_MAX
+                    and Picker(_mix(seed ^ CONVERSE_SEED)).integer(1, 5) == 1)
         problem, working = _converse(problem, working, depth,
                                      Picker(_mix(seed ^ CONVERSE_SEED)))
+        # the equation brick (18 Aug 2026): one in four numbers at depth
+        # VGL_MIN–VGL_MAX, only where no other split drew — the rest of the
+        # world stays bit for bit
+        k = Picker(_mix(seed ^ VGL_SEED))
+        if (VGL_MIN <= depth <= VGL_MAX and k.integer(1, 4) == 1
+                and not (keerc or keer or converse)):
+            problem, solution, working = _equation(depth, k)
     if family == "code":
         k = Picker(_mix(seed ^ LUS_SEED))
         if LUS_MIN <= depth <= LUS_MAX and k.integer(1, 4) == 1:

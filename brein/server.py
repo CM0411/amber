@@ -532,6 +532,16 @@ class Venster(BaseHTTPRequestHandler):
         elif self.path.startswith("/gebeurtenissen"):
             with open(f"{MAP}/gebeurtenissen.html", "rb") as f:
                 self._stuur(f.read())
+        elif self.path.startswith("/tijdlijn.json"):
+            # haar geschiedenis over alle runs (maak-tijdlijn.py, elk kwartier)
+            try:
+                with open("/home/arch/rapport/tijdlijn.json", "rb") as f:
+                    self._stuur(f.read(), "application/json")
+            except OSError:
+                self._stuur(b"{}", "application/json")
+        elif self.path.startswith("/tijdlijn"):
+            with open(f"{MAP}/tijdlijn.html", "rb") as f:
+                self._stuur(f.read())
         elif self.path.startswith("/opname"):
             with open(f"{MAP}/opname.html", "rb") as f:
                 self._stuur(f.read())
