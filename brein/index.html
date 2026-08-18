@@ -19,8 +19,11 @@
      11 aug 2026 en viel toen over "haar wereld" heen — vaste top-posities
      verdragen geen panelen die met de inhoud meegroeien. */
   #rechts { position: fixed; z-index: 2; top: 56vh; left: 22px; right: 22px;
-            display: flex; flex-direction: row-reverse; gap: 56px;
+            display: flex; flex-direction: row-reverse; flex-wrap: wrap;
+            gap: clamp(20px, 4vw, 56px);
             justify-content: space-between; align-items: flex-start; }
+            /* flex-wrap + vloeiende gap (18 aug 2026): op een half scherm
+               vouwen de blokken onder elkaar in plaats van uit het venster */
             /* drie blokken netjes verdeeld over de volle breedte onder de
                weefselband (14 aug 2026): geheugen links, wereld midden,
                run-stand rechts — row-reverse houdt de run-stand buiten */
@@ -33,7 +36,7 @@
   #runkolom { display: flex; flex-direction: column; gap: 4px;
               align-items: flex-end; }  /* alles strak tegen de
               rechterrand — geen gat naast de balk */
-  #stappen { width: 480px; text-align: right;
+  #stappen { width: min(480px, calc(100vw - 44px)); text-align: right;
              font-size: 13px; color: #8ea0c0; line-height: 1.8;
              font-variant-numeric: tabular-nums;
              font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
@@ -119,6 +122,15 @@
   /* Telefoon (Safari op de iPhone): geen zwevende panelen over elkaar,
      maar één scrollende kolom met leesblokken; het weefsel blijft als
      achtergrond staan. */
+  /* Half scherm (18 aug 2026): kleinere letters, blokken vouwen (zie
+     #rechts), de lijngrafiek krimpt mee. */
+  @media (max-width: 1100px) {
+    #status, #stappen, #wereld, #keuzes, #geheugen { font-size: 12px; }
+    #werk { font-size: 12.5px; }
+    #lijnvak { max-width: 200px; }
+    #lijn { width: 190px; height: 40px; }
+    #rechts { gap: 20px; }
+  }
   @media (max-width: 700px) {
     body { overflow: auto; -webkit-text-size-adjust: 100%; }
     .laag-tekst, #rechts, #menu { position: static; }

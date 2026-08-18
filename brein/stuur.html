@@ -2,31 +2,75 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stuur naar Amber</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amber · stuur een bestand</title>
 <style>
+  /* Dezelfde huisstijl als het hoofdvenster (18 aug 2026, Cley: één product):
+     achtergrond #080b1e, kaarten #0c1230 met rand #1d2b4d, koppen in
+     monospace met letterafstand, tekst #8ea0c0 / #cfe2ff, accent #5ca8ff.
+     Alles vloeiend: clamp() voor maten en letters, geen vaste breedtes. */
   * { margin: 0; box-sizing: border-box; }
-  body { min-height: 100vh; display: grid; place-items: center;
-         background: #0b0e13; color: #d8dde5;
-         font-family: system-ui, "Segoe UI", sans-serif; }
-  #vak { width: min(560px, 88vw); border: 2px dashed #3a4c72;
-         border-radius: 10px; padding: 64px 32px; text-align: center;
-         transition: border-color .2s, background .2s; cursor: pointer; }
-  #vak.erboven { border-color: #5ca8ff; background: #131b2b; }
-  #vak h1 { font-size: 21px; font-weight: 600; margin-bottom: 10px; }
-  #vak p { color: #7b8494; font-size: 14.5px; line-height: 1.6; }
-  #uitslag { margin-top: 18px; font-size: 15px; min-height: 1.5em; }
-  .goed { color: #59c9a5; } .bezig { color: #5ca8ff; } .fout { color: #d98a70; }
+  html { height: 100%; }
+  body { background: #080b1e; color: #d8dde5; overflow-x: hidden; min-height: 100vh;
+         font-family: system-ui, "Segoe UI", sans-serif;
+         display: flex; flex-direction: column;
+         padding: clamp(12px, 3vw, 28px) clamp(12px, 4vw, 40px);
+         -webkit-text-size-adjust: 100%; }
+  .mono { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  header { display: flex; align-items: baseline; justify-content: space-between;
+           gap: 12px; flex-wrap: wrap; }
+  #titel { font-size: clamp(12px, 1.6vw, 15px); letter-spacing: .35em;
+           color: #8ea0c0; text-transform: uppercase; }
+  #titel b { color: #cfe2ff; font-weight: 600; }
+  header a { color: #51608a; font-size: clamp(11px, 1.3vw, 12.5px);
+             letter-spacing: .08em; text-decoration: none; }
+  header a:hover { color: #cfe2ff; }
+  main { flex: 1; display: grid; place-items: center;
+         padding: clamp(16px, 4vh, 48px) 0; }
+  #vak { width: 100%; max-width: 560px;
+         background: #0c1230; border: 1.5px dashed #2a3c66; border-radius: 12px;
+         padding: clamp(28px, 6vw, 64px) clamp(16px, 4vw, 32px);
+         text-align: center; cursor: pointer;
+         transition: border-color .2s, background .2s, transform .15s; }
+  #vak:hover { border-color: #3a4c72; }
+  #vak.erboven { border-color: #5ca8ff; background: #131b3e; transform: scale(1.01); }
+  #vak .kop { font-size: clamp(10px, 1.2vw, 10.5px); letter-spacing: .18em;
+              color: #51608a; text-transform: uppercase; margin-bottom: 14px; }
+  #vak h1 { font-size: clamp(17px, 2.6vw, 22px); font-weight: 600;
+            color: #cfe2ff; margin-bottom: 10px; line-height: 1.3; }
+  #vak p { color: #8ea0c0; font-size: clamp(13px, 1.6vw, 14.5px); line-height: 1.6;
+           max-width: 40ch; margin: 0 auto; }
+  #knop { display: inline-block; margin-top: 18px;
+          padding: clamp(8px, 1.4vw, 11px) clamp(16px, 3vw, 24px);
+          border: 1px solid #1d2b4d; border-radius: 8px; background: #131b3e;
+          color: #cfe2ff; font-size: clamp(12.5px, 1.5vw, 13.5px);
+          letter-spacing: .06em; }
+  #vak:hover #knop { border-color: #5ca8ff; }
+  #uitslag { margin-top: 18px; text-align: left; font-size: clamp(12px, 1.5vw, 13px);
+             line-height: 1.9; word-break: break-word; }
+  #uitslag div::before { content: "· "; color: #51608a; }
+  .goed { color: #7fe0c3; } .bezig { color: #5ca8ff; } .fout { color: #ffa385; }
   input { display: none; }
+  footer { color: #47536f; font-size: clamp(10.5px, 1.2vw, 11.5px);
+           letter-spacing: .06em; text-align: center; }
 </style>
 </head>
 <body>
-<div id="vak">
-  <h1>Sleep je bestand hierheen</h1>
-  <p>Of klik om te kiezen. Het komt op de DL380 terecht,<br>en Claude ziet het meteen staan.</p>
-  <div id="uitslag"></div>
-  <input type="file" id="kiezer" multiple>
-</div>
+<header>
+  <div id="titel" class="mono"><b>Amber</b> · stuur een bestand</div>
+  <a class="mono" href="/">← naar het venster</a>
+</header>
+<main>
+  <div id="vak">
+    <div class="kop mono">brievenbus</div>
+    <h1>Sleep je bestand hierheen</h1>
+    <p>Of tik op de knop om te kiezen. Het komt op de DL380 terecht en Claude ziet het meteen staan.</p>
+    <span id="knop" class="mono">kies een bestand</span>
+    <div id="uitslag" class="mono"></div>
+    <input type="file" id="kiezer" multiple>
+  </div>
+</main>
+<footer class="mono">meerdere bestanden tegelijk mag · elk bestand wordt apart gemeld</footer>
 <script>
 const vak = document.getElementById("vak");
 const kiezer = document.getElementById("kiezer");
@@ -37,18 +81,21 @@ vak.ondragleave = () => vak.classList.remove("erboven");
 vak.ondrop = e => { e.preventDefault(); vak.classList.remove("erboven");
                    stuur(e.dataTransfer.files); };
 kiezer.onchange = () => stuur(kiezer.files);
+function regel(klasse, tekst) {
+  const d = document.createElement("div"); d.className = klasse; d.textContent = tekst;
+  uitslag.appendChild(d); return d;
+}
 async function stuur(bestanden) {
   for (const b of bestanden) {
-    uitslag.className = "bezig";
-    uitslag.textContent = `bezig: ${b.name} (${(b.size/1e6).toFixed(1)} MB)…`;
+    const r0 = regel("bezig", `bezig: ${b.name} (${(b.size/1e6).toFixed(1)} MB)…`);
     try {
       const r = await fetch(`/upload?naam=${encodeURIComponent(b.name)}`,
                             {method: "PUT", body: b});
       const j = await r.json();
-      uitslag.className = j.ok ? "goed" : "fout";
-      uitslag.textContent = j.ok ? `✓ ${b.name} is binnen` : "mislukt";
+      r0.className = j.ok ? "goed" : "fout";
+      r0.textContent = j.ok ? `✓ ${b.name} is binnen` : `✗ ${b.name}: mislukt`;
     } catch (e) {
-      uitslag.className = "fout"; uitslag.textContent = "mislukt: " + e;
+      r0.className = "fout"; r0.textContent = `✗ ${b.name}: mislukt (${e})`;
     }
   }
 }
