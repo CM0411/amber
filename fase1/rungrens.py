@@ -483,6 +483,14 @@ ok, uit = ssh(f"sed -i 's|life.py [0-9]*|life.py {a.doel}|' ~/nacht && "
               f"grep -o 'life.py [0-9]*' ~/nacht", 30)
 if uit.strip() != f"life.py {a.doel}":
     sys.exit(f"wrapper ~/nacht niet op {a.doel} gekomen: {uit!r}")
+# De vrijgave (18 aug 2026): ~/nacht op de trainer start niets zonder
+# fase1/leven/VRIJGAVE en de wachter start een gevallen run alleen als het
+# er staat. De rungrens is Cleys woord voor deze run, dus hier maken we het
+# aan; een stopwoord haalt het weg (rm).
+ok, uit = ssh("touch ~/amber-werk/fase1/leven/VRIJGAVE && echo vrij", 20)
+if uit.strip() != "vrij":
+    sys.exit("vrijgave-bestand niet op de trainer gekomen — stop")
+print("  vrijgave gezet: fase1/leven/VRIJGAVE op de trainer")
 
 print(f"\nALLES KLAAR — run {RUN} wacht op Cleys woord:")
 print(f"  doel {a.doel:,} · venster {VENSTER} · lagen {LAGEN} · koppen "

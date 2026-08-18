@@ -134,11 +134,24 @@ while True:
                             "start niets, dat is Cleys woord")
                     toestand["wacht_gemeld"] = True
             else:
-                toestand["wacht_gemeld"] = False
-                schrijf("dienst staat uit terwijl de run al liep en niet af "
-                        "is — start hem")
-                ssh(f"echo {_geheim()} | sudo -S systemctl start amber-train "
-                    "2>/dev/null", tijd=20)
+                # De vrijgave-pal (18 aug 2026): op de trainer staat een
+                # bestand fase1/leven/VRIJGAVE zolang de run mag draaien; een
+                # stopwoord haalt het weg. Ontbreekt het, dan is de run
+                # bewust gestopt en start de wachter niets — op 18 aug om
+                # 18:40 startte hij anders de net gestopte run 7 na zijn
+                # eigen boot.
+                ok_v, _ = ssh("test -f /home/arch/amber-werk/fase1/leven/VRIJGAVE", tijd=15)
+                if not ok_v:
+                    if not toestand.get("wacht_gemeld"):
+                        schrijf("dienst staat uit en de vrijgave ontbreekt — "
+                                "bewust gestopt, ik start niets")
+                        toestand["wacht_gemeld"] = True
+                else:
+                    toestand["wacht_gemeld"] = False
+                    schrijf("dienst staat uit terwijl de run al liep en niet af "
+                            "is — start hem")
+                    ssh(f"echo {_geheim()} | sudo -S systemctl start amber-train "
+                        "2>/dev/null", tijd=20)
 
         # het warmte-oog: elke ronde kijken, geschiedenis elke 5 minuten
         melding = None
