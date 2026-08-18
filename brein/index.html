@@ -11,38 +11,43 @@
      en vonkjes die langs de draden reizen. Eén donker thema, bewust. */
   * { margin: 0; box-sizing: border-box; }
   html, body { height: 100%; }
-  body { background: #080b1e; color: #d8dde5; overflow: hidden;
+  body { background: #080b1e; color: #d8dde5; overflow-x: hidden; overflow-y: auto;
          font-family: system-ui, "Segoe UI", sans-serif; }
-  canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
+  #doek { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; z-index: 0; }
   .laag-tekst { position: fixed; z-index: 2; }
-  /* De rechterkolom stapelt zijn panelen zelf: het statuspaneel groeide op
-     11 aug 2026 en viel toen over "haar wereld" heen — vaste top-posities
-     verdragen geen panelen die met de inhoud meegroeien. */
-  #rechts { position: fixed; z-index: 2; top: 56vh; left: 22px; right: 22px;
-            display: flex; flex-direction: row-reverse; flex-wrap: wrap;
-            gap: clamp(20px, 4vw, 56px);
-            justify-content: space-between; align-items: flex-start; }
-            /* flex-wrap + vloeiende gap (18 aug 2026): op een half scherm
-               vouwen de blokken onder elkaar in plaats van uit het venster */
-            /* drie blokken netjes verdeeld over de volle breedte onder de
-               weefselband (14 aug 2026): geheugen links, wereld midden,
-               run-stand rechts — row-reverse houdt de run-stand buiten */
-  #status { text-align: right; font-size: 13px;
-            color: #8ea0c0; line-height: 1.8; font-variant-numeric: tabular-nums;
-            font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  /* Onder de weefselband (18 aug 2026, Cley): een gewone flow-layout — een
+     raster van kaarten dat onder elkaar vouwt, elke kaart zijn eigen
+     hoogte, de pagina scrolt als hij hoger is dan het scherm. Vóór die dag
+     stonden de blokken op vaste posities en vielen ze over elkaar zodra er
+     families en bladen bij kwamen. */
+  #onder { position: relative; z-index: 2; margin-top: 56vh;
+           padding: 0 clamp(12px, 1.5vw, 22px) 28px;
+           display: grid; gap: 14px;
+           grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); }
+  .kaart:empty { display: none; }
+  .kaart { background: rgba(8, 11, 30, .82); border: 1px solid #1d2b4d;
+           border-radius: 10px; padding: 12px 16px; min-width: 0;
+           font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+           font-size: 12.5px; color: #8ea0c0; line-height: 1.9; overflow-wrap: anywhere; }
+  .kaart.breed { grid-column: 1 / -1; }
+  .kaart .kop, .kaart .kopje { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+                               text-transform: uppercase; margin-bottom: 4px; }
+  #status { font-size: 13px; color: #8ea0c0; line-height: 1.8; font-variant-numeric: tabular-nums; }
   #status b { color: #cfe2ff; font-weight: 600; }
-  /* de stappenbalk: bovenaan de rechterkolom, alles onder de band
-     (Cleys aanwijzing, 14 aug 2026) */
-  #runkolom { display: flex; flex-direction: column; gap: 4px;
-              align-items: flex-end; }  /* alles strak tegen de
-              rechterrand — geen gat naast de balk */
-  #stappen { width: min(480px, calc(100vw - 44px)); text-align: right;
-             font-size: 13px; color: #8ea0c0; line-height: 1.8;
-             font-variant-numeric: tabular-nums;
-             font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+  #runkolom { display: flex; flex-direction: column; gap: 6px; }
+  #stappen { width: 100%; font-size: 13px; color: #8ea0c0; line-height: 1.8;
+             font-variant-numeric: tabular-nums; }
   #stappen b { color: #cfe2ff; font-weight: 600; }
-  #stappen .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
-                  text-transform: uppercase; }
+  /* proefwerken als chips per blad: kleur naar score */
+  #proefwerken .chips { display: flex; flex-wrap: wrap; gap: 6px 6px; margin: 4px 0 8px; }
+  #proefwerken .chip { display: inline-flex; gap: 6px; align-items: baseline;
+                       padding: 2px 9px; border-radius: 7px; border: 1px solid #1d2b4d;
+                       background: #0c1230; line-height: 1.7; white-space: nowrap; }
+  #proefwerken .chip b { font-weight: 600; color: #cfe2ff; }
+  #proefwerken .chip.hoog b { color: #7fe0c3; }
+  #proefwerken .chip.midden b { color: #5ca8ff; }
+  #proefwerken .chip.laag b { color: #ffa385; }
+  #proefwerken .chip.dim { opacity: .55; }
   #titel { top: 16px; left: 22px; font-size: 15px; letter-spacing: .35em;
            color: #5f6f92; text-transform: uppercase; cursor: pointer;
            user-select: none; }
@@ -62,9 +67,7 @@
   #uren { top: 42px; left: 22px; font-size: 11px; color: #47536f;
           font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
           letter-spacing: .08em; }
-  #werk { left: 22px; right: 22px; bottom: 18px;
-          font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
-          font-size: 13.5px; line-height: 1.65; }
+  #werk { font-size: 13.5px; line-height: 1.65; }
   #opgave { color: #8ea0c0; white-space: pre-wrap; }
   #antwoord { color: #cfe2ff; white-space: pre-wrap; min-height: 1.4em; }
   #antwoord.goed { color: #7fe0c3; }
@@ -75,42 +78,41 @@
   #herinnert .kopje { font-size: 10.5px; letter-spacing: .16em;
                       text-transform: uppercase; color: #47536f; }
   #herinnert .h { opacity: .75; }
-  #wereld { text-align: right;
-            font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
-            font-size: 12.5px; color: #8ea0c0; line-height: 2; }
+  #wereld { text-align: left; line-height: 2; }
   #wereld .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
                  text-transform: uppercase; }
-  #wereld .rij { display: flex; justify-content: flex-end; gap: 10px;
+  #wereld .rij { display: flex; justify-content: flex-start; gap: 10px;
                  align-items: center; }
-  #wereld .balk { display: inline-flex; gap: 2.5px; }
-  #wereld .blokje { width: 7px; height: 10px; border-radius: 1.5px;
-                    background: #1d2b4d; }
+  #wereld .rij > span:first-child, #geheugen .rij > span:first-child,
+  #keuzes .rij > span:first-child { min-width: 8.5ch; white-space: nowrap; }
+  #wereld .rij > span:last-child { white-space: nowrap; }
+  /* blokjes en staven krimpen mee met de kaart (flex), nooit breder dan
+     7 px — zo blijft rekenen 60 op één regel, ook op een smal scherm */
+  #wereld .balk { display: flex; gap: 2px; flex: 1 1 auto; min-width: 0; }
+  #wereld .blokje { flex: 1 1 7px; max-width: 7px; min-width: 2px; height: 10px;
+                    border-radius: 1.5px; background: #1d2b4d; }
   #wereld .blokje.aan { background: #5ca8ff; }
   #wereld .nieuw { color: #7fe0c3; animation: fonkel 1.2s ease-in-out infinite; }
   #wereld .doorbraak { font-size: 11px; color: #51608a; }
   @keyframes fonkel { 50% { opacity: .35; } }
-  #keuzes { text-align: right;
-            font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
-            font-size: 12.5px; color: #8ea0c0; line-height: 2; }
+  #keuzes { text-align: left; line-height: 2; }
   #keuzes .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
                  text-transform: uppercase; }
-  #keuzes .rij { display: flex; justify-content: flex-end; gap: 10px;
-                 align-items: center; }
+  #keuzes .rij { display: flex; justify-content: flex-start; gap: 10px;
+                 align-items: center; flex-wrap: wrap; }
   #keuzes .doorbraak { font-size: 11px; color: #51608a; }
-  #geheugen { text-align: right;
-              font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
-              font-size: 12.5px; color: #8ea0c0; line-height: 2; }
+  #geheugen { text-align: left; line-height: 2; }
   #geheugen .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
                    text-transform: uppercase; }
-  #geheugen .rij { display: flex; justify-content: flex-end; gap: 10px;
+  #geheugen .rij { display: flex; justify-content: flex-start; gap: 10px;
                    align-items: flex-end; }
-  #geheugen .staven { display: inline-flex; gap: 2.5px; align-items: flex-end;
-                      height: 18px; }
-  #geheugen .staaf { width: 7px; border-radius: 1.5px 1.5px 0 0;
+  #geheugen .staven { display: flex; gap: 2px; align-items: flex-end;
+                      height: 18px; flex: 1 1 auto; min-width: 0; }
+  #geheugen .staaf { flex: 1 1 7px; max-width: 7px; min-width: 2px;
+                     border-radius: 1.5px 1.5px 0 0;
                      background: #b78ae0; min-height: 2px; }
   #geheugen .fles { font-size: 11px; color: #51608a; }
-  #lijnvak { bottom: 26px; right: 22px; text-align: right;
-             max-width: 250px; }  /* onderaan, vrij van alles */
+  #lijnvak { text-align: left; }
   #lijnvak .kopje, #lijnvak #lijnwaarde {
     font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
     font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
@@ -118,36 +120,16 @@
   #lijnvak #lijnwaarde { letter-spacing: 0; font-size: 12.5px; color: #7fe0c3;
                          margin-top: 2px; }
   #lijn { position: static; inset: auto; margin-top: 6px;
-          width: 240px; height: 48px; }
+          width: 100%; max-width: 360px; height: 60px; }
   /* Telefoon (Safari op de iPhone): geen zwevende panelen over elkaar,
      maar één scrollende kolom met leesblokken; het weefsel blijft als
      achtergrond staan. */
-  /* Half scherm (18 aug 2026): kleinere letters, blokken vouwen (zie
-     #rechts), de lijngrafiek krimpt mee. */
-  @media (max-width: 1100px) {
-    #status, #stappen, #wereld, #keuzes, #geheugen { font-size: 12px; }
-    #werk { font-size: 12.5px; }
-    #lijnvak { max-width: 200px; }
-    #lijn { width: 190px; height: 40px; }
-    #rechts { gap: 20px; }
-  }
+  /* Telefoon: titel en uren mee in de flow, kaarten wat compacter. */
   @media (max-width: 700px) {
-    body { overflow: auto; -webkit-text-size-adjust: 100%; }
-    .laag-tekst, #rechts, #menu { position: static; }
-    #titel { padding: 14px 16px 0; }
-    #uren { padding: 4px 16px 0; }
-    #menu { margin: 10px 16px; min-width: 0; }
-    #rechts, #lijnvak, #werk {
-      margin: 10px 12px; padding: 12px 14px;
-      background: rgba(8, 11, 30, .78); border: 1px solid #1d2b4d;
-      border-radius: 10px; }
-    #rechts { display: flex; flex-direction: column; gap: 18px;
-              align-items: flex-start; }
-    #status, #wereld, #keuzes, #geheugen { text-align: left; font-size: 13.5px; }
-    #wereld .rij, #keuzes .rij, #geheugen .rij { justify-content: flex-start; }
-    #lijnvak { text-align: left; }
-    #lijn { width: 100%; max-width: 340px; }
-    #werk { font-size: 13px; }
+    body { -webkit-text-size-adjust: 100%; }
+    #onder { margin-top: 54vh; gap: 10px; }
+    .kaart { padding: 10px 12px; font-size: 12px; }
+    #werk { font-size: 12.5px; }
     #opgave { word-break: break-word; }
   }
 </style>
@@ -157,25 +139,27 @@
 <div class="laag-tekst" id="titel">Amber <span class="pijl">▾</span></div>
 <div class="laag-tekst" id="menu"></div>
 <div class="laag-tekst" id="uren"></div>
-<div id="rechts">
-  <div id="runkolom">
+<div id="onder">
+  <div class="kaart breed" id="werk">
+    <div class="kop">waar ze nu mee bezig is</div>
+    <div id="opgave"></div>
+    <div id="antwoord"></div>
+    <div id="uitleg"></div>
+    <div id="herinnert"></div>
+  </div>
+  <div class="kaart" id="runkolom">
     <div id="stappen"></div>
     <div id="status">wachten op de kijker&hellip;</div>
   </div>
-  <div id="wereld"></div>
-  <div id="keuzes"></div>
-  <div id="geheugen"></div>
-</div>
-<div class="laag-tekst" id="lijnvak" style="display:none">
-  <div class="kopje">haar levenslijn — ladder-proefwerk deze run</div>
-  <canvas id="lijn" width="360" height="72"></canvas>
-  <div id="lijnwaarde"></div>
-</div>
-<div class="laag-tekst" id="werk">
-  <div id="opgave"></div>
-  <div id="antwoord"></div>
-  <div id="uitleg"></div>
-  <div id="herinnert"></div>
+  <div class="kaart" id="proefwerken" style="display:none"></div>
+  <div class="kaart" id="wereld"></div>
+  <div class="kaart" id="keuzes"></div>
+  <div class="kaart" id="geheugen"></div>
+  <div class="kaart" id="lijnvak" style="display:none">
+    <div class="kopje">haar levenslijn — ladder-proefwerk deze run</div>
+    <canvas id="lijn" width="360" height="60"></canvas>
+    <div id="lijnwaarde"></div>
+  </div>
 </div>
 <script>
 let spreekVanaf = 0;
@@ -498,21 +482,28 @@ async function haal() {
       const vast = ["ladder", "grondslag", "gemengd", "gesprek", "diepte2", "diepte"];
       const namen = vast.concat(Object.keys(rs).filter(
         n => n !== "_stap" && !vast.includes(n)));
-      const pw = namen.filter(n => n in rs).map(n => `${n} ${rs[n]}%`).join(" · ");
-      if (pw) html += `<span style="opacity:.75">proefwerk`
-        + (rs._stap ? ` bij stap ${(+rs._stap).toLocaleString("nl")}` : "")
-        + `:<br>${pw}</span><br>`;
+      // proefwerken als chips per blad in een eigen kaart (18 aug 2026):
+      // kleur naar score, de eindstand van de vorige run eronder, gedimd
+      const chip = (n, p, dim) => `<span class="chip ${p >= 90 ? "hoog" : p >= 60 ? "midden" : "laag"}${dim ? " dim" : ""}">${n} <b>${p}%</b></span>`;
+      const pk = document.getElementById("proefwerken");
+      let ph = "";
+      const pw = namen.filter(n => n in rs).map(n => chip(n, +rs[n], false)).join("");
+      if (pw) ph += `<div class="kop">proefwerken`
+        + (rs._stap ? ` · bij stap ${(+rs._stap).toLocaleString("nl")}` : "")
+        + `</div><div class="chips">${pw}</div>`;
       // de eindstand van de vorige run blijft staan (Cley, 16 aug 2026):
       // het afscheidsproefwerk, zodat je de nieuwe run ertegen afleest
       const vr = s.vorige_run;
       if (vr && vr.scores) {
         const vn = vast.concat(Object.keys(vr.scores).filter(n => !vast.includes(n)));
-        const vp = vn.filter(n => n in vr.scores).map(n => `${n} ${vr.scores[n]}%`).join(" · ");
-        html += `<span style="opacity:.6">eindstand ${vr.naam || "vorige run"}`
+        const vp = vn.filter(n => n in vr.scores).map(n => chip(n, +vr.scores[n], true)).join("");
+        ph += `<div class="kop">eindstand ${vr.naam || "vorige run"}`
           + (vr.stap ? ` · stap ${(+vr.stap).toLocaleString("nl")}` : "")
           + (vr.afgeknipt ? ` (afgeknipt)` : "")
-          + `:<br>${vp}</span><br>`;
+          + `</div><div class="chips">${vp}</div>`;
       }
+      pk.style.display = ph ? "block" : "none";
+      pk.innerHTML = ph;
       if (rc.venster) html += `<span style="opacity:.75">venster ${rc.venster}`
         + (rc.hek ? ` · hek ${rc.hek}` : "")
         // sinds 15 aug 2026 schrijft de rungrens ook haar vorm mee: lagen,
@@ -560,8 +551,7 @@ async function haal() {
         Math.round((285 / grens[f] - 2.5) * 10) / 10));
       let blokjes = "";
       for (let i = 1; i <= grens[f]; i++)
-        blokjes += `<span class="blokje${i <= d ? " aan" : ""}"`
-                 + ` style="width:${bw}px"></span>`;
+        blokjes += `<span class="blokje${i <= d ? " aan" : ""}"></span>`;
       const fonkelt = window.fonkelTot > Date.now()
                       && d === Math.max(...Object.values(rand));
       html += `<div class="rij"><span${nieuw || fonkelt && window.laatstNieuw === f
@@ -604,7 +594,7 @@ async function haal() {
         for (const gr of graden) {
           const n = vakjes[`${f}/${gr}`];
           const h = Math.max(2, Math.round(18 * n / top));
-          staven += `<span class="staaf" style="height:${h}px;width:${sw}px" title="${f} ${gr}: ${n.toLocaleString("nl")}"></span>`;
+          staven += `<span class="staaf" style="height:${h}px" title="${f} ${gr}: ${n.toLocaleString("nl")}"></span>`;
         }
         g += `<div class="rij"><span>${f}</span><span class="staven">${staven}</span></div>`;
       }
@@ -764,7 +754,10 @@ function teken(t) {
 
   ctx.globalCompositeOperation = "source-over";
   ctx.textAlign = "left";
-  const fs = Math.max(10, mn * 0.0102);
+  // de letters passen tussen twee kolommen (18 aug 2026): op een smal
+  // scherm met veel lagen liepen de laagnamen over elkaar
+  const kolAfstand = B * (1 - 2 * RANDX) / Math.max(1, KOL.length - 1);
+  const fs = Math.max(7, Math.min(mn * 0.0102, kolAfstand / 6.2));
   ctx.font = `${fs}px ui-monospace, Consolas, monospace`;
   for (let k = 0; k < KOL.length; k++) {
     const [x] = plaats(k, 0);
