@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# amber-train op de DL380 (18 aug 2026): twee kaarten als twee processen
+# (torchrun/DDP, kern/parallel.py). Zelfde vorm als ~/nacht op de Z490:
+# hervat uit de momentopname, herstart bij omvallen, logboek blijft staan.
+#
+# VEILIGHEIDSPAL: traint alleen als de run hier woont — run.json in
+# ~/rapport zegt "machine": "DL380" (het verhuis-draaiboek schrijft dat).
+# Zo mag de dienst enabled zijn (komt op na een reboot) zonder dat hij ooit
+# uit zichzelf een run start die op de Z490 draait. Cleys regel: niets aan
+# amber-train zonder zijn woord — de pal is de code daarvan.
+LOG=/home/arch/leven.log
+RUN=/home/arch/rapport/run.json
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+touch "$LOG"
+if [ $(stat -c %s "$LOG") -gt 5000000 ]; then
+    tail -n 3000 "$LOG" > "$LOG.t" && mv "$LOG.t" "$LOG"
+fi
+MACHINE=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("machine",""))' "$RUN" 2>/dev/null)
+DOEL=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("doel",""))' "$RUN" 2>/dev/null)
+if [ "$MACHINE" != "DL380" ] || [ -z "$DOEL" ]; then
+    echo "=== $(date +%H:%M:%S): de run woont niet hier (machine='$MACHINE', doel='$DOEL') — niets gestart ===" >> "$LOG"
+    exit 0
+fi
+cd /home/arch/amber-werk || exit 1
+KAARTEN=$(nvidia-smi -L 2>/dev/null | wc -l)
+for poging in $(seq 1 200); do
+    echo "=== poging $poging — $(date +%H:%M:%S) — DDP op $KAARTEN kaarten, doel $DOEL ===" >> "$LOG"
+    if [ "$KAARTEN" -ge 2 ]; then
+        ./venv/bin/torchrun --standalone --nproc_per_node="$KAARTEN" fase1/life.py "$DOEL" >> "$LOG" 2>&1 && break
+    else
+        ./venv/bin/python -u fase1/life.py "$DOEL" >> "$LOG" 2>&1 && break
+    fi
+    echo "=== omgevallen, opnieuw over 15 s ===" >> "$LOG"
+    sleep 15
+done
+echo "=== klaar om $(date +%H:%M:%S) ===" >> "$LOG"

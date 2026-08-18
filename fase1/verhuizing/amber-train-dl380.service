@@ -1,0 +1,12 @@
+[Unit]
+Description=Amber-training op de DL380 (DDP, twee P100's) — traint alleen als run.json zegt dat de run hier woont
+After=network-online.target amber-gpu-stil.service
+
+[Service]
+Type=simple
+User=arch
+Environment=AMBER_CHECKPOINTING=1
+ExecStart=/home/arch/nacht
+
+[Install]
+WantedBy=multi-user.target

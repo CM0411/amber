@@ -164,18 +164,44 @@ def lees_proefwerken(start):
     return uit
 
 
+# Waar de trainer woont (18 aug 2026, verhuis-draaiboek): staat er een
+# /home/arch/amber-machine.json met {"trainer": "arch@192.168.1.51"}, dan
+# draait de run op een andere machine en gaan dienststatus, kaart en
+# herstart over ssh; leven.log en de opnames komen dan via amber-spiegel
+# hierheen. Zonder dat bestand (of "trainer": "local") is alles zoals het
+# was: de melder kijkt en herstart op deze machine.
+MACHINEJSON = "/home/arch/amber-machine.json"
+
+
+def trainer_host():
+    try:
+        h = json.load(open(MACHINEJSON)).get("trainer", "local")
+        return None if h in ("", "local") else h
+    except Exception:
+        return None
+
+
+def op_trainer(cmd, sudo=False):
+    """Voer een commando uit waar de trainer draait — hier of via ssh."""
+    host = trainer_host()
+    if sudo:
+        cmd = ["sudo", "-n"] + cmd
+    if host:
+        cmd = ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10", host] + cmd
+    return subprocess.run(cmd, capture_output=True, text=True)
+
+
 def dienst_status():
-    uit = subprocess.run(["systemctl", "is-active", "amber-train"],
-                         capture_output=True, text=True)
+    uit = op_trainer(["systemctl", "is-active", "amber-train"])
     return uit.stdout.strip() or "?"
 
 
 def kaart_geheugen():
     """(gebruikt, totaal) in MiB van de kaart, of (None, None)."""
     try:
-        uit = subprocess.run(
+        uit = op_trainer(
             ["nvidia-smi", "--query-gpu=memory.used,memory.total",
-             "--format=csv,noheader,nounits"], capture_output=True, text=True)
+             "--format=csv,noheader,nounits"])
         a, b = uit.stdout.strip().splitlines()[0].split(",")
         return int(a), int(b)
     except Exception:
@@ -184,9 +210,9 @@ def kaart_geheugen():
 
 def kaart_temp():
     try:
-        uit = subprocess.run(
+        uit = op_trainer(
             ["nvidia-smi", "--query-gpu=temperature.gpu",
-             "--format=csv,noheader"], capture_output=True, text=True)
+             "--format=csv,noheader"])
         return int(uit.stdout.strip().splitlines()[0])
     except Exception:
         return None
@@ -248,8 +274,7 @@ while True:
                       f"{int(stil / 60)} min geen stap (bij "
                       f"{stap:,}".replace(",", ".") + ") — ik herstart de "
                       "dienst", "high")
-                subprocess.run(["sudo", "-n", "systemctl", "restart",
-                                "amber-train"])
+                op_trainer(["systemctl", "restart", "amber-train"], sudo=True)
                 onthouden["herstart_om"] = nu
                 onthouden["stap_sinds"] = nu
 

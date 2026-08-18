@@ -24,7 +24,11 @@ sys.path.insert(0, "/home/arch/amber-werk/kern")
 import determinism
 determinism.lock(20260808)               # hetzelfde zaad als life.py
 import torch
-import learning, snapshot
+import learning, parallel, snapshot
+# Under torchrun (two cards as two processes, 16 Aug 2026) every process
+# takes its own card and its share; without torchrun this is a no-op. Both
+# processes print their sum: DDP is repeatable when the two runs agree.
+parallel.start()
 
 PAD = sys.argv[1]
 N = int(sys.argv[2]) if len(sys.argv) > 2 else 50
@@ -59,4 +63,6 @@ for p in L.core.parameters():
         continue
     for k in ("exp_avg", "exp_avg_sq"):
         h.update(st[k].detach().to("cpu").contiguous().view(torch.uint8).numpy().tobytes())
-print(f"controlesom na {N} stappen: {h.hexdigest()[:24]}")
+print(f"controlesom na {N} stappen: {h.hexdigest()[:24]}"
+      + (f"  (proces {parallel.rank()} van {parallel.world()})" if parallel.active() else ""))
+parallel.stop()

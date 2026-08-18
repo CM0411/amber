@@ -1,0 +1,7 @@
+[Unit]
+Description=Amber-spiegel — haalt de sporen van de trainer op als die elders draait
+
+[Service]
+Type=oneshot
+User=arch
+ExecStart=/home/arch/amber-werk/wachter/spiegel.sh
