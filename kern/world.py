@@ -1356,6 +1356,135 @@ def _check_draws(seed, depth):
     return Picker(_mix(seed ^ CHECK_SEED)).integer(1, 4) == 1
 
 
+# --- rooster — the grid puzzle, third puzzle stone (18 Aug 2026, Cley) --------
+# A small square grid with a rule over rows and columns and one or more
+# unknown cells; the answer is the number in the cell marked "?". Three
+# forms, all built from a Latin square (every row and every column holds
+# the same set of values), so the row rule and the column rule are both
+# true and both usable:
+#
+#   latijn   rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer
+#   som      rooster 4 bij 4, elke rij en kolom telt op tot 34
+#   keer     rooster: rij keer kolom (headers · 3 5 7 / 2 6 10 14 / …)
+#
+# Deeper: bigger grids and chained unknowns — "*" cells that must be found
+# first (through their column) before "?" follows through its row. Own
+# seed split inside puzzel: one in four numbers where neither keer-plus nor
+# regelcheck drew, before the rule split. Everything else stays bit for bit.
+GRID_SEED = 0x526F6F73746572             # "Rooster"
+
+
+def _latin(n, t):
+    """A random Latin square: cyclic base, rows and columns shuffled and
+    the symbols relabelled — deterministic through the picker."""
+    rows = list(range(n)); cols = list(range(n)); sym = list(range(n))
+    for lst in (rows, cols, sym):
+        for i in range(n - 1, 0, -1):
+            j = t.integer(0, i)
+            lst[i], lst[j] = lst[j], lst[i]
+    return [[sym[(rows[i] + cols[j]) % n] for j in range(n)] for i in range(n)]
+
+
+def _grid_shape(depth, t):
+    """(form, n, unknowns): the size of the grid and how many chained
+    unknowns; the form is drawn among what the depth allows."""
+    if depth <= 2:
+        return "latijn", 3, 1
+    if depth <= 4:
+        return t.choice(("latijn", "som", "keer")), 3, 1
+    if depth <= 6:
+        return t.choice(("latijn", "som", "keer")), 4, 1
+    if depth <= 8:
+        return t.choice(("latijn", "som")), 4, 2
+    if depth <= 10:
+        return t.choice(("latijn", "som")), 5, 2
+    if depth <= 14:
+        return t.choice(("latijn", "som")), 5, 3
+    return t.choice(("latijn", "som")), 6, 3
+
+
+def _grid(depth, t):
+    form, n, unknowns = _grid_shape(depth, t)
+    if form == "keer":
+        rows = []; cols = []
+        while len(rows) < n:
+            v = t.integer(2, 12)
+            if v not in rows: rows.append(v)
+        while len(cols) < n:
+            v = t.integer(2, 12)
+            if v not in cols: cols.append(v)
+        r, c = t.integer(0, n - 1), t.integer(0, n - 1)
+        lines = ["·   " + " ".join(f"{v:>3}" for v in cols)]
+        for i in range(n):
+            cells = [("  ?" if (i, j) == (r, c) else f"{rows[i] * cols[j]:>3}") for j in range(n)]
+            lines.append(f"{rows[i]:>3} " + " ".join(cells))
+        problem = "rooster: rij keer kolom\n" + "\n".join(lines) + "\nwat is ?"
+        answer = rows[r] * cols[c]
+        return problem, answer, f"{rows[r]} * {cols[c]} = {answer}"
+    L = _latin(n, t)
+    if form == "latijn":
+        vals = list(range(1, n + 1))
+        head = f"rooster {n} bij {n}, elke rij en kolom heeft 1 tot {n} één keer"
+    else:
+        vals = []
+        top = 9 if n == 3 else 20 if n == 4 else 30
+        while len(vals) < n:
+            v = t.integer(1, top)
+            if v not in vals: vals.append(v)
+        head = f"rooster {n} bij {n}, elke rij en kolom telt op tot {sum(vals)}"
+    G = [[vals[L[i][j]] for j in range(n)] for i in range(n)]
+    total = sum(vals)
+    # unknowns: the asked cell "?" and, deeper, chained "*" cells. Chain:
+    # every "*" sits alone in its column and shares the row of the next
+    # unknown, so it must be found first through its column; "?" then
+    # follows through the shared row. With one unknown: any cell.
+    r = t.integer(0, n - 1)
+    cols = list(range(n))
+    for i in range(n - 1, 0, -1):
+        j = t.integer(0, i); cols[i], cols[j] = cols[j], cols[i]
+    chain = [(r, cols[i]) for i in range(unknowns)]     # all in row r
+    asked = chain[-1]
+    stars = chain[:-1]
+    hidden = set(chain)
+    lines = []
+    for i in range(n):
+        cells = []
+        for j in range(n):
+            if (i, j) == asked: cells.append("?")
+            elif (i, j) in hidden: cells.append("*")
+            else: cells.append(str(G[i][j]))
+        lines.append(" ".join(cells))
+    problem = head + "\n" + "\n".join(lines) + "\nwat is ?"
+    steps = []
+    def missing(known):
+        return [v for v in vals if v not in known]
+    # the stars first, each through its column (only unknown there)
+    for (i, j) in stars:
+        col_known = [G[x][j] for x in range(n) if x != i]
+        v = G[i][j]
+        if form == "latijn":
+            steps.append(f"* in kolom {j + 1}: heeft {', '.join(str(x) for x in col_known)} → mist {v}")
+        else:
+            steps.append(f"* in kolom {j + 1}: {total} - {' - '.join(str(x) for x in col_known)} = {v}")
+    # then "?" through its row (all stars known now) and, as a check, the column
+    i, j = asked
+    row_known = [G[i][x] for x in range(n) if x != j]
+    v = G[i][j]
+    if form == "latijn":
+        steps.append(f"rij {i + 1}: heeft {', '.join(str(x) for x in row_known)} → mist {v}")
+        col_known = [G[x][j] for x in range(n) if x != i]
+        steps.append(f"kolom {j + 1}: heeft {', '.join(str(x) for x in col_known)} → mist {v}")
+    else:
+        steps.append(f"rij {i + 1}: {total} - {' - '.join(str(x) for x in row_known)} = {v}")
+        col_known = [G[x][j] for x in range(n) if x != i]
+        steps.append(f"kolom {j + 1}: {total} - {' - '.join(str(x) for x in col_known)} = {v}")
+    return problem, v, " ; ".join(steps)
+
+
+def _grid_draws(seed, depth):
+    return Picker(_mix(seed ^ GRID_SEED)).integer(1, 4) == 1
+
+
 def _rule_draws(seed, depth):
     """Does the rule split take this puzzle number? Above ROW_MAX always."""
     if depth > ROW_MAX:
@@ -2000,7 +2129,12 @@ def make(family, depth, number):
                 problem, solution, working = rc
             else:
                 check_drawn = False
-        if not kp_drawn and not check_drawn and _rule_draws(seed, depth):
+        # The grid puzzle (18 Aug 2026): one in four numbers where neither
+        # keer-plus nor regelcheck drew, before the rule split.
+        grid_drawn = not kp_drawn and not check_drawn and _grid_draws(seed, depth)
+        if grid_drawn:
+            problem, solution, working = _grid(depth, Picker(_mix(seed ^ GRID_SEED ^ 0x1)))
+        if not kp_drawn and not check_drawn and not grid_drawn and _rule_draws(seed, depth):
             problem, solution, working = _rule_puzzle(depth, Picker(_mix(seed ^ REGEL_SEED ^ 0x1)))
     if family == "geheugen":
         # the memory brick (17 Aug 2026): one in three numbers from

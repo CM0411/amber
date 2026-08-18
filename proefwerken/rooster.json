@@ -1,0 +1,2166 @@
+{
+ "naam": "rooster",
+ "beschrijving": "De derde puzzelsteen (18 aug 2026): een rooster met een regel over rijen en kolommen — Latijns vierkant (1 tot n één keer), som-rooster (elke rij en kolom telt op tot S), keer-rooster (rij keer kolom); vanaf diepte 7 geketende onbekenden (* eerst via de kolom, dan ? via de rij). Diepte 1 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Vastgelegd vóór de knip na run 7.",
+ "opgaven": [
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 1 3\n3 ? 1\n1 3 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 ? 1\n3 1 2\n1 2 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n2 3 1\n? 2 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 1 2\n1 2 3\n2 3 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 3 2\n3 2 1\n? 1 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n1 2 3\n2 3 ?\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n1 3 2\n2 1 ?\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n1 ? 3\n2 3 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 ? 2\n1 2 3\n2 3 1\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 ?\n3 1 2\n2 3 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 3 1\n1 2 3\n3 1 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n3 1 ?\n2 3 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 ?\n2 1 3\n1 3 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n1 3 ?\n2 1 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 1 3\n3 2 1\n1 ? 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 ? 1\n2 1 3\n1 3 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n? 3 2\n2 1 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 ? 3\n2 3 1\n3 1 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n3 ? 2\n2 3 1\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n3 1 2\n? 3 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 ?\n2 3 1\n3 1 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 2 1\n2 1 3\n1 3 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 1 3\n1 3 2\n? 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n2 3 1\n? 1 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 ? 3\n3 2 1\n1 3 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n2 ? 1\n1 2 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 1 3\n1 ? 2\n3 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 1 ?\n1 3 2\n3 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 3 1\n1 2 3\n3 1 ?\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 1,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 3 ?\n3 2 1\n2 1 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n1 3 2\n2 1 ?\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 1 3\n3 ? 1\n1 3 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 3 1\n3 1 2\n1 ? 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 3 ?\n1 2 3\n3 1 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 3 2\n? 2 1\n2 1 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 3 1\n3 ? 2\n1 2 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 3 2\n? 1 3\n3 2 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n1 3 2\n? 1 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n2 3 1\n1 ? 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n3 1 2\n? 3 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 ?\n1 2 3\n2 3 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n1 3 2\n2 ? 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 1 3\n1 3 2\n3 2 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n2 1 ?\n1 3 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 2 3\n2 3 1\n3 1 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 2 3\n3 1 2\n2 3 1\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n2 ? 1\n1 2 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 ? 2\n2 3 1\n1 2 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n? 3 2\n2 1 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 1 3\n1 3 2\n? 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 1 3\n? 2 1\n1 3 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 1 3\n? 3 2\n3 2 1\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n3 ? 2\n2 3 1\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 3 2\n3 ? 1\n2 1 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 2 1\n2 1 3\n1 3 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n? 3 1\n3 1 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 ? 2\n2 1 3\n3 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n1 2 3\n2 ? 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 1 2\n1 2 3\n2 3 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 2,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 3 2\n2 1 3\n3 2 1\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 6\n2 1 3\n1 ? 2\n3 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 ?\n2 3 1\n1 2 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 8\n1 2 5\n2 5 ?\n5 1 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·     9  11   6\n 10  90 110  60\n  4  36  44  24\n  6  54   ?  36\nwat is ?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n1 2 3\n2 ? 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 13\n8 4 1\n4 1 8\n? 8 4\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 17\n9 2 6\n2 6 9\n6 ? 2\nwat is ?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·    11   6   4\n  2   ?  12   8\n  8  88  48  32\n  7  77  42  28\nwat is ?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 18\n? 8 9\n8 9 1\n9 1 8\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 14\n8 ? 4\n2 4 8\n4 8 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·    10   5   8\n  7  70  35  56\n  9  90   ?  72\n  5  50  25  40\nwat is ?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·     2   5  11\n  2   4  10  22\n 10  20  50 110\n  6   ?  30  66\nwat is ?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·     7   5   4\n 12  84   ?  48\n  3  21  15  12\n  9  63  45  36\nwat is ?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·     9  12   2\n  8  72  96  16\n  5  45   ?  10\n 11  99 132  22\nwat is ?",
+   "oplossing": "60"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·     3   5  11\n  4  12  20  44\n  9  27  45  99\n 10   ?  50 110\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·    10   7   5\n 12 120  84  60\n  2  20  14  10\n  9  90   ?  45\nwat is ?",
+   "oplossing": "63"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 ? 2\n2 3 1\n1 2 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 14\n5 1 8\n1 8 ?\n8 5 1\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n3 1 2\n2 ? 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 11\n2 1 8\n8 2 1\n1 ? 2\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·    12   2   6\n  6  72  12  36\n  3  36   6  18\n 11 132   ?  66\nwat is ?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 11\n8 1 2\n1 ? 8\n2 8 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 13\n? 1 4\n4 8 1\n1 4 8\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·    10   4   5\n  9  90  36  45\n  6  60  24  30\n 11   ?  44  55\nwat is ?",
+   "oplossing": "110"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·    10   5   3\n  6  60  30  18\n 11 110  55   ?\n  5  50  25  15\nwat is ?",
+   "oplossing": "33"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 3 2\n2 1 ?\n3 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 2 1\n2 1 3\n1 3 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·    10  11  12\n  3   ?  33  36\n  6  60  66  72\n  5  50  55  60\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·     5   3   4\n  2  10   6   ?\n  3  15   9  12\n  8  40  24  32\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 3,
+   "opgave": "rooster: rij keer kolom\n·    12   4   7\n 12 144  48   ?\n  8  96  32  56\n 11 132  44  77\nwat is ?",
+   "oplossing": "84"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 3 2\n3 2 1\n2 ? 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·     2  10   5\n  2   4  20  10\n 12   ? 120  60\n 10  20 100  50\nwat is ?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 15\n5 4 6\n6 ? 4\n4 6 5\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·     3   2   6\n  3   9   6   ?\n 10  30  20  60\n  9  27  18  54\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 20\n? 8 7\n7 5 8\n8 7 5\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 3 2\n2 ? 3\n3 2 1\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 19\n2 9 8\n9 ? 2\n8 2 9\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 15\n1 ? 6\n6 1 8\n8 6 1\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n2 1 3\n1 3 ?\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·     3   2  10\n  6  18  12  60\n  5  15  10  50\n  3   ?   6  30\nwat is ?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·     9   8  12\n  8  72  64  96\n  4  36  32  48\n  3  27  24   ?\nwat is ?",
+   "oplossing": "36"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n? 3 1\n1 2 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 14\n5 2 7\n2 7 5\n? 5 2\nwat is ?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 ?\n2 1 3\n1 3 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 3 ?\n1 2 3\n3 1 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n2 ? 1\n3 1 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 3 2\n2 1 ?\n3 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 2 1\n? 3 2\n2 1 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·    11   5   3\n  9  99   ?  27\n  4  44  20  12\n  2  22  10   6\nwat is ?",
+   "oplossing": "45"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·     8   6   3\n  9  72  54  27\n  6  48  36  18\n  2   ?  12   6\nwat is ?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n2 3 1\n? 2 3\n3 1 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 12\n5 3 ?\n4 5 3\n3 4 5\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·     6  11   9\n  6  36  66  54\n 11  66 121  99\n  5   ?  55  45\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·     3  12   7\n  6   ?  72  42\n  8  24  96  56\n  7  21  84  49\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·     6   3   9\n 10  60  30  90\n  5  30  15  45\n  2  12   ?  18\nwat is ?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n1 2 3\n? 3 1\n3 1 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n? 3 2\n3 2 1\n2 1 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom telt op tot 15\n2 5 8\n8 2 5\n5 ? 2\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster 3 bij 3, elke rij en kolom heeft 1 tot 3 één keer\n3 1 2\n2 ? 1\n1 2 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 4,
+   "opgave": "rooster: rij keer kolom\n·     5   3   7\n  6   ?  18  42\n 10  50  30  70\n  9  45  27  63\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n1 4 3 2\n4 1 2 3\n2 3 1 4\n? 2 4 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 51\n15 9 20 7\n7 20 ? 15\n20 15 7 9\n9 7 15 20\nwat is ?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 38\n13 1 ? 6\n18 6 1 13\n6 18 13 1\n1 13 6 18\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 47\n18 12 7 10\n12 18 ? 7\n7 10 12 18\n10 7 18 12\nwat is ?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 40\n10 7 ? 20\n3 20 10 7\n7 3 20 10\n20 10 7 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n1 4 ? 3\n3 2 1 4\n2 3 4 1\n4 1 3 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 3 4 1\n4 1 2 3\n3 4 ? 2\n1 2 3 4\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster: rij keer kolom\n·     6  10   4   7\n  8  48  80  32  56\n  4  24  40  16  28\n 10  60 100  40  70\n  5   ?  50  20  35\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 37\n18 12 3 4\n4 3 18 12\n12 18 4 3\n? 4 12 18\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 43\n5 19 1 18\n1 18 5 ?\n19 1 18 5\n18 5 19 1\nwat is ?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 3 2 1\n3 4 ? 2\n2 1 3 4\n1 2 4 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster: rij keer kolom\n·    12   2   4  10\n 11 132   ?  44 110\n  5  60  10  20  50\n  4  48   8  16  40\n 10 120  20  40 100\nwat is ?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 57\n16 20 ? 8\n13 16 8 20\n8 13 20 16\n20 8 16 13\nwat is ?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 56\n15 ? 19 17\n17 19 15 5\n19 17 5 15\n5 15 17 19\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster: rij keer kolom\n·     3  12   2   7\n  8  24  96  16  56\n  6  18  72  12  42\n 12  36 144   ?  84\n  2   6  24   4  14\nwat is ?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 3 2 1\n2 4 1 3\n1 2 ? 4\n3 1 4 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster: rij keer kolom\n·    12   7   6   3\n 11 132  77  66  33\n 12 144  84  72  36\n  7  84  49  42  21\n  2   ?  14  12   6\nwat is ?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 39\n? 1 5 13\n1 5 13 20\n5 13 20 1\n13 20 1 5\nwat is ?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster: rij keer kolom\n·     2   9   4   7\n  2   4  18   8  14\n 12  24 108  48  84\n  4   8  36  16  28\n 11  22  99  44   ?\nwat is ?",
+   "oplossing": "77"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 34\n8 17 6 3\n17 8 3 6\n6 3 17 ?\n3 6 8 17\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster: rij keer kolom\n·    10   3  12   8\n 11 110  33 132  88\n 10 100   ? 120  80\n  5  50  15  60  40\n  2  20   6  24  16\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 29\n6 4 14 5\n4 6 5 14\n? 5 4 6\n5 14 6 4\nwat is ?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster: rij keer kolom\n·     5   3   9   4\n  5  25  15  45  20\n 11   ?  33  99  44\n  8  40  24  72  32\n  9  45  27  81  36\nwat is ?",
+   "oplossing": "55"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 ? 2 3\n3 2 1 4\n2 4 3 1\n1 3 4 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 2 4 1\n2 1 ? 4\n1 4 2 3\n4 3 1 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 57\n18 15 4 20\n20 4 18 15\n4 20 ? 18\n15 18 20 4\nwat is ?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 55\n12 11 19 13\n13 12 11 ?\n11 19 13 12\n19 13 12 11\nwat is ?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 1 2 3\n2 4 ? 1\n1 3 4 2\n3 2 1 4\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster: rij keer kolom\n·     2   4  10   7\n 10  20  40 100  70\n 11   ?  44 110  77\n  6  12  24  60  42\n  2   4   8  20  14\nwat is ?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 5,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 34\n4 19 3 8\n8 3 19 ?\n3 4 8 19\n19 8 4 3\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 4 2 1\n1 ? 4 2\n2 1 3 4\n4 2 1 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster: rij keer kolom\n·     4  11   2   5\n 10  40 110  20  50\n  4  16  44   8  20\n  2   8  22   4  10\n  6  24  66   ?  30\nwat is ?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster: rij keer kolom\n·     4   2  11  10\n  9  36  18  99  90\n  4  16   8  44  40\n  2   8   4  22  20\n  8  32  16  88   ?\nwat is ?",
+   "oplossing": "80"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 30\n3 2 ? 16\n2 9 16 3\n9 16 3 2\n16 3 2 9\nwat is ?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 40\n? 11 16 12\n12 16 11 1\n11 12 1 16\n16 1 12 11\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 26\n1 7 2 16\n16 1 7 2\n2 16 ? 7\n7 2 16 1\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 21\n3 10 7 1\n7 1 10 3\n10 3 ? 7\n1 7 3 10\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 3 1 2\n2 1 3 4\n1 4 2 ?\n3 2 4 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 ? 3 1\n1 3 2 4\n4 2 1 3\n3 1 4 2\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 2 3 1\n1 3 4 2\n3 1 ? 4\n2 4 1 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster: rij keer kolom\n·     7   5   2   9\n 10  70  50  20  90\n  4  28  20   8  36\n  2  14  10   4  18\n  8   ?  40  16  72\nwat is ?",
+   "oplossing": "56"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster: rij keer kolom\n·    11   2   9   4\n  3  33   ?  27  12\n  2  22   4  18   8\n  4  44   8  36  16\n  6  66  12  54  24\nwat is ?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster: rij keer kolom\n·    10   9  12   3\n 10   ?  90 120  30\n  4  40  36  48  12\n  5  50  45  60  15\n  8  80  72  96  24\nwat is ?",
+   "oplossing": "100"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n1 ? 2 3\n4 1 3 2\n2 3 4 1\n3 2 1 4\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 3 4 1\n3 1 2 4\n1 4 ? 2\n4 2 1 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster: rij keer kolom\n·     9   7   6  11\n  3  27  21  18  33\n  9  81  63  54  99\n 12 108  84  72 132\n 11  99  77   ? 121\nwat is ?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n1 4 3 2\n3 2 1 4\n2 1 4 3\n4 3 ? 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 24\n? 14 2 1\n14 1 7 2\n1 2 14 7\n2 7 1 14\nwat is ?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 48\n12 ? 1 15\n20 1 15 12\n1 15 12 20\n15 12 20 1\nwat is ?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 4 3 1\n3 1 2 4\n1 2 4 ?\n4 3 1 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n? 1 4 3\n3 2 1 4\n4 3 2 1\n1 4 3 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 26\n4 15 6 1\n15 6 1 4\n6 1 4 15\n1 ? 15 6\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 4 1 2\n1 2 ? 3\n2 1 3 4\n4 3 2 1\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 4 3 1\n3 1 4 2\n1 3 2 4\n4 2 1 ?\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster: rij keer kolom\n·     5   8  12  11\n 12  60  96 144 132\n  7  35  56  84  77\n  2  10  16  24  22\n  6  30  48  72   ?\nwat is ?",
+   "oplossing": "66"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 53\n20 18 7 8\n8 20 18 7\n7 8 20 ?\n18 7 8 20\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 2 4 1\n4 1 3 2\n2 4 ? 3\n1 3 2 4\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n1 2 3 4\n3 4 2 1\n4 3 ? 2\n2 1 4 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster: rij keer kolom\n·     6   7   9   3\n 11  66  77  99  33\n  9  54  63  81  27\n  7   ?  49  63  21\n  8  48  56  72  24\nwat is ?",
+   "oplossing": "42"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 6,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 2 1 3\n1 4 3 2\n? 3 4 1\n3 1 2 4\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 44\n19 5 14 6\n14 6 19 5\n6 19 5 14\n? 14 6 *\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 1 3 4\n4 2 1 3\n3 4 * ?\n1 3 4 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 2 4 1\n4 3 ? *\n1 4 2 3\n2 1 3 4\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 37\n10 11 3 13\n13 3 10 11\n11 10 13 3\n3 13 * ?\nwat is ?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n1 2 3 4\n2 1 4 3\n3 * 2 ?\n4 3 1 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 50\n11 18 13 8\n18 8 11 13\n13 11 8 18\n8 13 ? *\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 3 2 1\n1 2 4 3\n2 1 3 4\n3 ? 1 *\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 46\n2 7 20 17\n17 20 2 7\n* 17 7 ?\n7 2 17 20\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 ? 3 *\n3 1 2 4\n4 3 1 2\n1 2 4 3\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 3 1 4\n3 2 4 1\n1 4 3 2\n* 1 ? 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 1 2 4\n? * 3 1\n1 3 4 2\n2 4 1 3\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n1 * ? 4\n2 3 4 1\n3 4 1 2\n4 1 2 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 2 4 1\n1 ? 3 *\n4 1 2 3\n2 3 1 4\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 34\n9 7 2 16\n2 16 7 9\n? * 16 2\n16 2 9 7\nwat is ?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 22\n? 7 1 *\n7 10 4 1\n1 4 7 10\n4 1 10 7\nwat is ?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 ? * 1\n1 4 2 3\n3 1 4 2\n2 3 1 4\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n1 3 2 4\n4 1 3 2\n3 2 * ?\n2 4 1 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 2 ? *\n4 1 3 2\n2 3 4 1\n1 4 2 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 * ? 4\n3 4 2 1\n1 2 4 3\n4 1 3 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 4 3 1\n3 1 4 2\n? * 2 4\n4 2 1 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 63\n15 12 16 20\n* 16 ? 15\n12 20 15 16\n16 15 20 12\nwat is ?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 23\n8 2 7 6\n6 7 2 8\n2 * 8 ?\n7 8 6 2\nwat is ?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 53\n15 20 10 8\n8 15 20 10\n* ? 15 20\n20 10 8 15\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 55\n* 11 ? 12\n11 12 17 15\n12 15 11 17\n15 17 12 11\nwat is ?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 61\n8 20 15 18\n15 18 20 8\n20 ? * 15\n18 15 8 20\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 27\n1 8 12 6\n8 6 1 12\n6 ? 8 *\n12 1 6 8\nwat is ?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 63\n10 14 20 19\n14 20 19 10\n19 10 14 20\n20 ? * 14\nwat is ?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 50\n2 11 17 20\n20 17 2 11\n11 ? 20 *\n17 20 11 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 31\n3 10 11 7\n7 ? 3 *\n10 3 7 11\n11 7 10 3\nwat is ?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 7,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 38\n3 7 15 13\n13 * ? 7\n7 3 13 15\n15 13 7 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 30\n7 17 1 5\n* 1 17 ?\n17 5 7 1\n1 7 5 17\nwat is ?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 39\n10 6 20 3\n6 ? 3 *\n3 20 10 6\n20 3 6 10\nwat is ?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 3 1 2\n2 4 3 1\n1 2 4 3\n3 * ? 4\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 50\n16 15 18 1\n1 * 15 ?\n15 18 1 16\n18 1 16 15\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 34\n11 * ? 7\n13 7 11 3\n3 11 7 13\n7 3 13 11\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 2 1 4\n2 4 3 1\n4 1 2 3\n1 ? * 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 40\n12 2 6 20\n6 20 2 12\n20 * 12 ?\n2 12 20 6\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 38\n18 5 13 2\n13 2 18 5\n2 18 5 13\n5 ? * 18\nwat is ?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 43\n14 * 17 ?\n17 8 4 14\n8 17 14 4\n4 14 8 17\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 1 2 3\n1 2 3 4\n2 * 4 ?\n3 4 1 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 3 1 2\n2 4 3 1\n3 1 2 4\n1 2 ? *\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n* 3 1 ?\n3 4 2 1\n1 2 3 4\n2 1 4 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 1 4 3\n* 2 ? 1\n1 3 2 4\n3 4 1 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 43\n15 12 7 9\n9 * 12 ?\n12 7 9 15\n7 9 15 12\nwat is ?",
+   "oplossing": "7"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 4 2 1\n2 3 ? *\n4 1 3 2\n1 2 4 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 3 4 1\n3 1 2 4\n1 4 3 2\n* 2 1 ?\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n* 2 ? 3\n1 4 3 2\n2 3 4 1\n3 1 2 4\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n2 * 1 ?\n3 4 2 1\n1 2 4 3\n4 1 3 2\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 43\n19 4 14 6\n? 19 6 *\n6 14 4 19\n4 6 19 14\nwat is ?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 33\n10 6 9 8\n8 9 6 10\n* 8 10 ?\n9 10 8 6\nwat is ?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 49\n14 19 1 15\n* ? 15 19\n15 1 19 14\n19 15 14 1\nwat is ?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 24\n5 16 2 1\n16 2 1 5\n* 1 5 ?\n1 5 16 2\nwat is ?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n* 4 ? 1\n4 2 1 3\n1 3 4 2\n2 1 3 4\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 52\n19 18 4 11\n* 19 ? 4\n18 4 11 19\n4 11 19 18\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 38\n9 5 13 11\n11 13 9 5\n13 11 5 9\n5 * ? 13\nwat is ?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n4 3 2 1\n3 2 1 4\n1 4 3 2\n2 1 * ?\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n3 4 2 1\n1 ? * 4\n2 1 4 3\n4 3 1 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 37\n17 6 13 1\n? 1 * 13\n13 17 1 6\n1 13 6 17\nwat is ?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom heeft 1 tot 4 één keer\n* ? 3 1\n1 4 2 3\n2 3 1 4\n3 1 4 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 8,
+   "opgave": "rooster 4 bij 4, elke rij en kolom telt op tot 41\n* 7 ? 12\n12 4 18 7\n7 18 12 4\n4 12 7 18\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 91\n? 27 12 10 *\n27 12 29 13 10\n10 13 27 29 12\n12 29 10 27 13\n29 10 13 12 27\nwat is ?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 79\n29 5 26 17 2\n5 17 29 2 26\n? 2 5 * 29\n2 26 17 29 5\n26 29 2 5 17\nwat is ?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 1 5 3 2\n5 2 1 4 3\n2 4 3 1 5\n1 3 2 5 4\n? 5 4 2 *\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 100\n26 29 10 12 23\n10 26 ? 29 *\n23 10 12 26 29\n12 23 29 10 26\n29 12 26 23 10\nwat is ?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n3 1 2 4 5\n* 4 ? 2 3\n4 2 3 5 1\n5 3 4 1 2\n2 5 1 3 4\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 1 5 3 2\n5 ? * 1 4\n3 4 1 2 5\n1 5 2 4 3\n2 3 4 5 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n3 ? 4 5 *\n1 5 3 4 2\n5 3 2 1 4\n2 4 1 3 5\n4 1 5 2 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 3 2 1 5\n1 5 4 3 2\n3 2 1 5 4\n5 * ? 2 1\n2 1 5 4 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 4 5 ? *\n1 5 2 4 3\n5 3 4 1 2\n4 1 3 2 5\n3 2 1 5 4\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 79\n? 15 21 2 *\n21 28 13 15 2\n13 21 2 28 15\n2 13 15 21 28\n15 2 28 13 21\nwat is ?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 29\n2 1 4 7 15\n7 ? * 1 4\n4 7 15 2 1\n1 4 7 15 2\n15 2 1 4 7\nwat is ?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 3 1 5 4\n4 * 5 ? 1\n1 4 3 2 5\n5 1 2 4 3\n3 5 4 1 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 87\n18 15 26 7 21\n7 18 21 26 15\n21 26 18 15 7\n15 21 7 18 26\n* 7 15 ? 18\nwat is ?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 83\n27 7 11 17 21\n7 17 21 11 27\n* 21 7 ? 17\n21 27 17 7 11\n17 11 27 21 7\nwat is ?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n3 5 4 2 1\n2 1 5 4 3\n1 4 ? 3 *\n5 2 3 1 4\n4 3 1 5 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 75\n29 3 4 25 14\n14 29 25 3 4\n4 ? 3 29 *\n25 4 29 14 3\n3 25 14 4 29\nwat is ?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 * ? 2 3\n2 4 3 5 1\n1 3 2 4 5\n3 5 4 1 2\n5 2 1 3 4\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 3 2 1 5\n2 5 1 3 4\n5 1 4 2 3\n1 4 3 ? *\n3 2 5 4 1\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 ? 1 5 *\n1 2 5 4 3\n4 5 3 2 1\n3 4 2 1 5\n5 1 4 3 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 63\n19 2 6 29 7\n6 7 29 * ?\n2 6 7 19 29\n7 29 19 6 2\n29 19 2 7 6\nwat is ?",
+   "oplossing": "19"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 3 1 4 5\n* 2 3 1 ?\n3 1 4 5 2\n1 4 5 2 3\n4 5 2 3 1\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 66\n2 21 16 18 9\n16 9 21 2 18\n9 2 18 21 16\n? 16 2 9 *\n21 18 9 16 2\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 3 4 1 5\n4 2 1 5 3\n1 4 5 3 2\n5 1 3 2 4\n3 5 * ? 1\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n* 1 4 ? 5\n4 3 2 5 1\n1 5 3 4 2\n5 2 1 3 4\n2 4 5 1 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 89\n25 12 9 13 30\n12 13 25 30 9\n13 30 12 9 25\n9 * 30 ? 13\n30 9 13 25 12\nwat is ?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 68\n7 24 18 9 10\n10 ? 9 7 *\n9 10 24 18 7\n24 9 7 10 18\n18 7 10 24 9\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 5 2 1 3\n* 4 3 2 ?\n5 3 1 4 2\n2 1 5 3 4\n3 2 4 5 1\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 * 1 ? 2\n1 4 2 5 3\n4 2 5 3 1\n2 5 3 1 4\n3 1 4 2 5\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 55\n26 11 2 6 10\n2 26 10 11 6\n10 2 * ? 11\n11 6 26 10 2\n6 10 11 2 26\nwat is ?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 9,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 101\n? 12 22 29 *\n8 29 12 30 22\n29 22 8 12 30\n12 8 30 22 29\n22 30 29 8 12\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 101\n9 29 17 20 26\n26 9 20 29 17\n29 20 ? 17 *\n20 17 9 26 29\n17 26 29 9 20\nwat is ?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 1 4 5 3\n3 2 1 4 5\n5 3 * ? 4\n4 5 3 2 1\n1 4 5 3 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 121\n28 29 11 26 27\n11 26 29 27 28\n? * 26 28 11\n26 28 27 11 29\n27 11 28 29 26\nwat is ?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n1 2 4 5 3\n4 5 3 1 2\n2 4 5 3 1\n3 * 2 ? 5\n5 3 1 2 4\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 93\n21 27 25 18 2\n18 25 2 27 21\n27 2 ? 25 *\n2 18 27 21 25\n25 21 18 2 27\nwat is ?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 96\n16 28 29 13 10\n10 13 28 16 29\n13 29 10 28 16\n* 10 ? 29 13\n29 16 13 10 28\nwat is ?",
+   "oplossing": "16"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 5 2 3 1\n1 3 5 ? *\n2 4 3 1 5\n3 2 1 5 4\n5 1 4 2 3\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 111\n18 26 22 25 20\n20 22 25 18 26\n26 25 18 20 22\n22 18 20 26 25\n25 20 ? * 18\nwat is ?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 72\n20 1 7 * ?\n1 7 30 20 14\n30 14 20 7 1\n14 20 1 30 7\n7 30 14 1 20\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n* ? 1 5 2\n2 4 5 3 1\n1 2 3 4 5\n3 5 2 1 4\n5 1 4 2 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 96\n5 26 18 25 22\n22 18 5 26 25\n? 22 25 5 *\n25 5 22 18 26\n18 25 26 22 5\nwat is ?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 55\n2 5 15 3 30\n30 2 3 5 15\n3 15 2 30 5\n15 30 5 2 3\n5 3 ? 15 *\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 3 2 5 1\n5 1 4 3 2\n2 5 1 4 3\n1 4 3 2 5\n? 2 * 1 4\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 1 3 5 4\n5 2 1 4 3\n1 3 4 2 5\n4 5 * 3 ?\n3 4 5 1 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 5 1 2 3\n3 2 4 1 5\n* ? 5 3 1\n1 3 2 5 4\n5 1 3 4 2\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n3 2 4 ? *\n4 1 2 3 5\n1 3 5 2 4\n5 4 3 1 2\n2 5 1 4 3\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 93\n22 28 8 9 26\n8 ? * 26 28\n28 26 22 8 9\n9 8 26 28 22\n26 9 28 22 8\nwat is ?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 77\n9 25 8 19 16\n8 19 25 16 9\n16 8 9 25 19\n19 9 16 8 25\n* 16 19 ? 8\nwat is ?",
+   "oplossing": "9"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n? 2 4 * 3\n1 4 5 3 2\n2 1 3 4 5\n3 5 1 2 4\n4 3 2 5 1\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 3 1 5 4\n5 2 4 1 3\n* 4 5 ? 1\n1 5 3 4 2\n4 1 2 3 5\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 76\n17 15 13 7 24\n15 7 24 13 17\n24 17 7 15 13\n7 13 * 24 ?\n13 24 15 17 7\nwat is ?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 70\n16 7 20 3 24\n24 16 7 20 3\n7 20 3 24 16\n20 3 24 16 7\n3 24 16 * ?\nwat is ?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 102\n18 25 11 26 22\n11 26 25 * ?\n25 22 26 18 11\n22 11 18 25 26\n26 18 22 11 25\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 4 1 3 5\n1 3 4 5 2\n5 1 2 4 3\n3 2 5 1 4\n* 5 ? 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 76\n9 21 20 18 8\n18 8 21 20 9\n20 9 8 21 18\n8 * ? 9 21\n21 18 9 8 20\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n3 5 1 4 2\n5 * ? 2 3\n2 3 5 1 4\n4 2 3 5 1\n1 4 2 3 5\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 * ? 1 4\n5 4 1 3 2\n4 1 2 5 3\n1 2 3 4 5\n3 5 4 2 1\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n? 1 2 5 *\n5 2 3 1 4\n3 5 1 4 2\n1 3 4 2 5\n2 4 5 3 1\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n3 2 4 1 5\n4 3 5 2 1\n? * 2 4 3\n2 1 3 5 4\n5 4 1 3 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 10,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 2 4 1 3\n3 * 2 4 ?\n1 3 5 2 4\n2 4 1 3 5\n4 1 3 5 2\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 3 2 4 1\n3 1 5 2 4\n2 5 4 1 3\n* ? 3 5 *\n4 2 1 3 5\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 39\n5 7 9 15 3\n15 3 7 9 5\n* 5 3 * ?\n7 15 5 3 9\n3 9 15 5 7\nwat is ?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 3 2 4 1\n2 4 3 1 5\n* ? * 3 4\n3 1 4 5 2\n4 5 1 2 3\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n1 2 5 4 3\n2 4 1 3 5\n4 3 2 5 1\n5 1 3 2 4\n* ? 4 1 *\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 56\n10 21 7 15 3\n* 10 * ? 21\n3 15 21 10 7\n21 3 10 7 15\n15 7 3 21 10\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 84\n24 11 12 29 8\n12 29 8 24 11\n11 12 29 8 24\n* 24 * 12 ?\n29 8 24 11 12\nwat is ?",
+   "oplossing": "29"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 2 1 5 3\n? * * 4 2\n1 4 3 2 5\n5 3 2 1 4\n2 5 4 3 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 69\n20 9 3 8 29\n8 29 20 9 3\n* ? 9 * 8\n9 3 8 29 20\n3 8 29 20 9\nwat is ?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 53\n14 15 11 1 12\n12 11 1 14 15\n1 12 15 11 14\n* 14 * 15 ?\n15 1 14 12 11\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 4 2 1 3\n1 3 4 2 5\n4 1 5 3 2\n* 2 1 ? *\n2 5 3 4 1\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 87\n26 8 4 27 22\n* 4 22 ? *\n27 26 8 22 4\n22 27 26 4 8\n4 22 27 8 26\nwat is ?",
+   "oplossing": "26"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 72\n5 * 25 ? *\n14 25 5 24 4\n24 5 14 4 25\n4 14 24 25 5\n25 24 4 5 14\nwat is ?",
+   "oplossing": "14"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 1 5 2 3\n2 5 3 1 4\n1 3 4 5 2\n? * 1 4 *\n5 4 2 3 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 83\n11 6 21 22 23\n6 23 11 21 22\n23 22 6 11 21\n* 11 ? 23 *\n22 21 23 6 11\nwat is ?",
+   "oplossing": "22"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 83\n5 ? * * 12\n9 5 12 27 30\n30 12 27 9 5\n12 9 30 5 27\n27 30 5 12 9\nwat is ?",
+   "oplossing": "27"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 2 4 3 1\n2 3 5 1 4\n4 5 1 2 3\n3 * ? 4 *\n1 4 3 5 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 80\n1 27 4 30 18\n30 1 18 4 27\n27 ? * * 4\n18 4 1 27 30\n4 30 27 18 1\nwat is ?",
+   "oplossing": "18"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 4 1 5 3\n5 3 4 1 2\n1 2 3 4 5\n4 5 2 3 1\n* ? 5 2 *\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 83\n23 ? * 2 *\n10 22 23 26 2\n22 2 10 23 26\n26 23 2 22 10\n2 26 22 10 23\nwat is ?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 99\n17 18 27 16 21\n16 17 18 21 27\n21 16 17 27 18\n* ? 16 * 17\n18 27 21 17 16\nwat is ?",
+   "oplossing": "21"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 1 3 5 2\n3 2 1 4 5\n2 4 5 1 3\n* 5 * ? 4\n5 3 4 2 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 54\n10 9 27 3 5\n5 3 10 27 9\n3 10 9 5 27\n9 27 5 10 3\n27 ? * * 10\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 5 2 1 3\n2 * * 5 ?\n5 2 3 4 1\n1 4 5 3 2\n3 1 4 2 5\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 58\n2 8 20 4 24\n* * ? 24 20\n24 4 2 20 8\n20 24 4 8 2\n8 20 24 2 4\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 60\n20 16 2 15 7\n2 7 15 16 20\n7 15 20 2 16\n? 20 * * 2\n16 2 7 20 15\nwat is ?",
+   "oplossing": "15"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 2 3 1 4\n1 3 4 2 5\n2 4 5 3 1\n4 1 2 5 3\n* * 1 4 ?\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 53\n27 3 2 15 6\n6 15 27 2 3\n2 6 15 3 27\n3 2 ? * *\n15 27 3 6 2\nwat is ?",
+   "oplossing": "6"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n* 3 * ? 2\n2 1 5 3 4\n3 5 2 4 1\n4 2 3 1 5\n5 4 1 2 3\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 51\n2 3 10 14 22\n3 10 14 22 2\n10 14 22 2 3\n14 22 2 3 10\n22 * 3 ? *\nwat is ?",
+   "oplossing": "10"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 11,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 69\n20 14 25 2 8\n* * 2 ? 14\n25 20 8 14 2\n14 2 20 8 25\n2 8 14 25 20\nwat is ?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 3 5 2 1\n3 5 1 4 2\n5 ? * 3 *\n2 4 3 1 5\n1 2 4 5 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n1 3 2 4 5\n4 1 3 5 2\n? * 5 * 4\n5 4 1 2 3\n2 5 4 3 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n* 5 ? * 2\n5 3 2 1 4\n2 4 3 5 1\n3 1 4 2 5\n1 2 5 4 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 96\n8 22 30 23 13\n22 30 23 13 8\n* * 22 30 ?\n30 23 13 8 22\n23 13 8 22 30\nwat is ?",
+   "oplossing": "23"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 1 5 3 4\n* 5 4 * ?\n4 3 2 5 1\n3 2 1 4 5\n5 4 3 1 2\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 89\n11 8 27 26 17\n* 11 ? 27 *\n27 26 8 17 11\n8 17 26 11 27\n17 27 11 8 26\nwat is ?",
+   "oplossing": "17"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 5 1 3 2\n1 * * 4 ?\n5 3 2 1 4\n3 1 4 2 5\n2 4 3 5 1\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n3 1 5 4 2\n1 * ? 2 *\n5 4 2 3 1\n2 3 1 5 4\n4 2 3 1 5\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 1 4 3 2\n3 2 1 4 5\n* 4 ? 5 *\n1 3 5 2 4\n4 5 2 1 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n1 2 5 3 4\n* ? 3 * 2\n3 5 4 2 1\n4 3 2 1 5\n2 4 1 5 3\nwat is ?",
+   "oplossing": "1"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 1 ? * *\n1 2 4 3 5\n3 5 1 2 4\n2 4 3 5 1\n4 3 5 1 2\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 85\n14 ? 27 * *\n28 14 4 12 27\n12 4 28 27 14\n27 28 12 14 4\n4 27 14 28 12\nwat is ?",
+   "oplossing": "12"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 1 2 4 3\n4 5 1 3 2\n* * ? 2 1\n2 3 4 1 5\n1 2 3 5 4\nwat is ?",
+   "oplossing": "5"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 4 2 3 1\n1 5 4 2 3\n* 2 ? 1 *\n3 1 5 4 2\n2 3 1 5 4\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 84\n13 16 1 26 28\n16 * 26 * ?\n1 26 28 13 16\n26 28 13 16 1\n28 13 16 1 26\nwat is ?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n4 5 3 2 1\n3 4 2 1 5\n* * 4 ? 2\n2 3 1 5 4\n1 2 5 4 3\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n1 5 3 2 4\n? 1 * 5 *\n2 4 5 3 1\n5 2 1 4 3\n4 3 2 1 5\nwat is ?",
+   "oplossing": "3"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 91\n* 12 30 * ?\n12 4 17 30 28\n30 17 28 4 12\n4 28 12 17 30\n28 30 4 12 17\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 82\n10 8 18 26 20\n26 10 8 20 18\n18 * 26 ? *\n20 26 10 18 8\n8 18 20 10 26\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 105\n30 25 14 17 19\n* ? 17 * 14\n14 19 25 30 17\n25 17 19 14 30\n17 14 30 19 25\nwat is ?",
+   "oplossing": "30"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n? * 2 3 *\n5 2 1 4 3\n2 1 3 5 4\n3 4 5 1 2\n1 3 4 2 5\nwat is ?",
+   "oplossing": "4"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n3 4 5 1 2\n1 3 4 2 5\n2 1 3 5 4\n5 ? * * 3\n4 5 2 3 1\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 86\n20 27 24 12 3\n24 12 27 3 20\n27 3 12 20 24\n3 ? * * 12\n12 20 3 24 27\nwat is ?",
+   "oplossing": "24"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n5 4 3 2 1\n2 1 4 3 5\n3 5 1 4 2\n4 2 5 1 3\n1 * ? 5 *\nwat is ?",
+   "oplossing": "2"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 74\n3 26 14 8 23\n14 23 8 26 3\n26 14 23 3 8\n? * 26 23 *\n23 8 3 14 26\nwat is ?",
+   "oplossing": "8"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 54\n28 11 6 7 2\n11 6 2 28 7\n2 7 28 6 11\n7 ? * * 6\n6 2 7 11 28\nwat is ?",
+   "oplossing": "28"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 87\n20 25 18 11 13\n25 13 20 18 11\n11 18 13 25 20\n18 * 11 ? *\n13 11 25 20 18\nwat is ?",
+   "oplossing": "13"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 96\n14 7 30 20 25\n25 14 7 30 20\n30 20 25 14 7\n20 25 14 7 30\n7 30 ? * *\nwat is ?",
+   "oplossing": "20"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom telt op tot 54\n5 11 3 17 18\n17 3 18 11 5\n11 18 5 3 17\n18 17 11 5 3\n* * 17 18 ?\nwat is ?",
+   "oplossing": "11"
+  },
+  {
+   "familie": "puzzel",
+   "graad": 12,
+   "opgave": "rooster 5 bij 5, elke rij en kolom heeft 1 tot 5 één keer\n2 1 5 3 4\n* * 2 1 ?\n4 2 1 5 3\n1 5 3 4 2\n5 3 4 2 1\nwat is ?",
+   "oplossing": "5"
+  }
+ ]
+}

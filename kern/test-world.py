@@ -93,7 +93,7 @@ wrong = []
 kinds = set()
 for n in range(200):
     t = world.make("puzzel", 1, n)
-    if t is None or t.problem.startswith(("regel: ", "controleer: ", "paren: ")):
+    if t is None or t.problem.startswith(("regel: ", "controleer: ", "paren: ", "rooster")):
         continue                          # the which-rule kind (17 Aug 2026) and regelcheck (18 Aug), tested below
     row = [int(x) for x in re.findall(r"-?\d+", t.problem)] + [int(t.solution)]
     diffs = {row[i + 1] - row[i] for i in range(len(row) - 1)}
@@ -388,7 +388,7 @@ check("code knows negative outcomes, and marking accepts them",
 lengths = set()
 for n in range(2000, 2400):
     t = world.make("puzzel", 2, n)
-    if t is not None and not t.problem.startswith(("regel: ", "controleer: ", "paren: ")):
+    if t is not None and not t.problem.startswith(("regel: ", "controleer: ", "paren: ", "rooster")):
         lengths.add(t.problem.count(","))
 # since 15 Aug 2026 the keer-plus rows at depth 2 show two more (7-9)
 check("puzzle rows vary in length (5, 6 and 7 shown; keer-plus 7-9)",
@@ -462,7 +462,7 @@ for depth in (1, 2, 3, 4, 5, 6):
 for depth in (7, 8, 9):
     for n in range(200):
         t = world.make("puzzel", depth, n)
-        if t is None or t.problem.startswith(("regel: ", "controleer: ", "paren: ")):
+        if t is None or t.problem.startswith(("regel: ", "controleer: ", "paren: ", "rooster")):
             continue                      # rows only; the rule kinds are tested below
         compact_seen += 1
         # Deep rows always carry at least one difference layer, so the
@@ -494,6 +494,7 @@ _h6 = hashlib.sha256()
 kp_numbers = []
 regel_numbers = []
 check_numbers = []
+grid_numbers = []
 for depth in range(1, 11):
     for n in range(300):
         seed = world._seed_of("puzzel", depth, n)
@@ -508,6 +509,10 @@ for depth in range(1, 11):
         if tasks.Picker(tasks._mix(seed ^ world.CHECK_SEED)).integer(1, 4) == 1:
             check_numbers.append((depth, n))
             continue
+        # the grid puzzle (18 Aug 2026) one in four of what is left
+        if tasks.Picker(tasks._mix(seed ^ world.GRID_SEED)).integer(1, 4) == 1:
+            grid_numbers.append((depth, n))
+            continue
         if tasks.Picker(tasks._mix(seed ^ world.REGEL_SEED)).integer(1, 3) == 1:
             regel_numbers.append((depth, n))
             continue
@@ -519,14 +524,16 @@ for depth in range(1, 11):
 # existed (a7d2547646bda49b was the sum over the keer-plus complement,
 # 7fa9005221985a61 over the complement of keer-plus and rule,
 # 5d6c2b866f2a9638 over depths 1-10 outside the three splits)
-check("puzzle numbers depth 1-5 outside the three splits are bit for bit the "
-      "world of 15 Aug 2026", _h.hexdigest()[:16] == "cbf9b57eb0d7dd85",
+# (cbf9b57eb0d7dd85 / 678cd80eafbb2906 were the sums outside three splits,
+# before the grid split took its quarter)
+check("puzzle numbers depth 1-5 outside the four splits are bit for bit the "
+      "world of 15 Aug 2026", _h.hexdigest()[:16] == "521237441d5c20cc",
       _h.hexdigest()[:16])
 # depths 6-10 changed on purpose on 18 Aug 2026 (bounded rows, a noted
 # measurement change: cbb00a89fcd2b07e was the sum before); pinned so a
 # later edit cannot move them unnoticed
-check("puzzle numbers depth 6-10 outside the three splits are the bounded "
-      "world of 18 Aug 2026", _h6.hexdigest()[:16] == "678cd80eafbb2906",
+check("puzzle numbers depth 6-10 outside the four splits are the bounded "
+      "world of 18 Aug 2026", _h6.hexdigest()[:16] == "27f96e949b85031c",
       _h6.hexdigest()[:16])
 # and the bound itself: plain rows at 6-10 stay under ROW_BOUND, keer-plus
 # rows (doubling by construction) are left alone, depth 5 and 11 untouched
@@ -1089,6 +1096,7 @@ rule_seen = rule_bad = rule_unfit = rule_div = 0
 rule_steps_ok = True
 rule_share = {}
 check_share = {}
+grid_share = {}
 kwad_seen = 0
 for depth in range(1, 21):
     n_rule = n_all = 0
@@ -1099,6 +1107,9 @@ for depth in range(1, 21):
         n_all += 1
         if t.problem.startswith(("controleer: ", "paren: ")):
             check_share[depth] = check_share.get(depth, 0) + 1
+            continue
+        if t.problem.startswith("rooster"):
+            grid_share[depth] = grid_share.get(depth, 0) + 1
             continue
         if not t.problem.startswith("regel: "):
             continue
@@ -1118,7 +1129,7 @@ for depth in range(1, 21):
     rule_share[depth] = (n_rule, n_all)
 world.MAX_DEPTH_PER["puzzel"] = _old_puzzle_fence
 check("which-rule puzzles: an independent solver finds exactly one rule and "
-      "the same answer", rule_seen > 1000 and rule_bad == 0,
+      "the same answer", rule_seen > 800 and rule_bad == 0,
       f"{rule_seen} puzzles, {rule_bad} disagreements")
 check("which-rule workings find the step by multiplying, never by dividing "
       "(18 Aug 2026)", rule_div == 0 and rule_steps_ok,
@@ -1130,15 +1141,14 @@ check("all which-rule puzzles fit window 1536 with their working", rule_unfit ==
 # rarer with depth, so among *usable* puzzles the rules weigh more
 # since the bridge stone (18 Aug 2026) the rule split takes a third of what
 # keer-plus and regelcheck leave: ~20% below 11, ~75% above 10
-check("below 11 the rule split takes about a fifth of the numbers",
-      all(0.12 <= rule_share[d][0] / 150 <= 0.32 for d in range(1, 11)),
-      ", ".join(f"d{d}:{a}/150" for d, (a, b) in rule_share.items() if d <= 10))
-check("above 10 rule puzzles and regelcheck together fill nearly every usable "
-      "number, rules the larger part (the odd keer-plus row may stay)",
-      all(rule_share[d][0] + check_share[d] >= 0.9 * rule_share[d][1]
-          and rule_share[d][0] > 2 * check_share[d] and rule_share[d][0] > 80
+check("above 10 rule puzzles, regelcheck and grids together fill nearly every "
+      "usable number, rules the larger part (the odd keer-plus row may stay)",
+      all(rule_share[d][0] + check_share[d] + grid_share.get(d, 0) >= 0.9 * rule_share[d][1]
+          and rule_share[d][0] > 1.5 * check_share[d] and rule_share[d][0] > 50
           for d in range(11, 21)),
-      ", ".join(f"d{d}:{a}+{check_share[d]}/{b}" for d, (a, b) in rule_share.items() if d > 10))
+      ", ".join(f"d{d}:{a}+{check_share[d]}+{grid_share.get(d, 0)}/{b}" for d, (a, b) in rule_share.items() if d > 10))
+check("below 11 the rule split takes about a sixth of the numbers",
+      all(0.09 <= rule_share[d][0] / 150 <= 0.28 for d in range(1, 11)))
 
 # --- regelcheck: the bridge stone (18 Aug 2026) --------------------------------
 # Verify (1/0), choose (which of three rules fits every pair), later with
@@ -1208,6 +1218,95 @@ check("regelcheck takes about a fifth of the numbers at every depth",
       all(0.12 <= ck_share[d] / 150 <= 0.32 for d in range(1, 21)),
       ", ".join(f"d{d}:{a}" for d, a in ck_share.items()))
 check("all regelcheck tasks fit window 1536 with their working", ck_unfit == 0)
+
+# --- rooster: the grid puzzle (18 Aug 2026) -----------------------------------
+# The judge reads the grid and solves the unknowns itself: latijn / som by
+# constraint propagation over rows and columns (a cell whose row or column
+# has exactly one missing value), keer through the headers. It demands
+# that the propagation reaches "?" and agrees with the answer.
+print()
+print("--- rooster: the grid puzzle ---")
+
+
+def _judge_grid(problem):
+    lines = problem.split("\n")
+    head, body, q = lines[0], lines[1:-1], lines[-1]
+    assert q == "wat is ?"
+    if head == "rooster: rij keer kolom":
+        cols = [int(x) for x in body[0].split()[1:]]
+        for row in body[1:]:
+            parts = row.split()
+            r = int(parts[0])
+            for j, cell in enumerate(parts[1:]):
+                if cell == "?":
+                    return r * cols[j]
+        return None
+    n = int(re.match(r"rooster (\d) bij \d", head).group(1))
+    if "heeft 1 tot" in head:
+        vals = set(range(1, n + 1))
+    else:
+        total = int(re.search(r"telt op tot (\d+)", head).group(1))
+        vals = None
+    G = [[None if c in "?*" else int(c) for c in row.split()] for row in body]
+    asked = [(i, j) for i in range(n) for j in range(n) if body[i].split()[j] == "?"][0]
+    if vals is None:
+        # the value set follows from any complete row
+        full = [r for r in G if all(v is not None for v in r)]
+        vals = set(full[0])
+        assert sum(vals) == total
+    for _ in range(n * n):
+        changed = False
+        for i in range(n):
+            for j in range(n):
+                if G[i][j] is not None:
+                    continue
+                row_known = [v for v in G[i] if v is not None]
+                col_known = [G[x][j] for x in range(n) if G[x][j] is not None]
+                for known in (row_known, col_known):
+                    if len(known) == n - 1:
+                        G[i][j] = (vals - set(known)).pop()
+                        changed = True
+                        break
+        if not changed:
+            break
+    return G[asked[0]][asked[1]]
+
+
+world.MAX_DEPTH_PER["puzzel"] = 20
+gr_seen = gr_bad = gr_unfit = 0
+gr_forms = {"latijn": 0, "som": 0, "keer": 0, "ketting": 0}
+gr_share = {}
+for depth in range(1, 21):
+    n_gr = 0
+    for n in range(150):
+        t = world.make("puzzel", depth, n)
+        if t is None or not t.problem.startswith("rooster"):
+            continue
+        n_gr += 1
+        gr_seen += 1
+        if _judge_grid(t.problem) != int(t.solution) or not t.check(t.working):
+            gr_bad += 1
+        if not (world.fits(t, 1536 - 112)
+                and len(t.to_learn()) <= _rf(depth, "puzzel", 1536)):
+            gr_unfit += 1
+        head = t.problem.split("\n")[0]
+        gr_forms["keer" if "keer kolom" in head else "latijn" if "heeft 1 tot" in head else "som"] += 1
+        if "*" in t.problem:
+            gr_forms["ketting"] += 1
+        if depth <= 6 and "*" in t.problem:
+            gr_bad += 1
+        if depth >= 7 and "*" not in t.problem:
+            gr_bad += 1
+    gr_share[depth] = n_gr
+world.MAX_DEPTH_PER["puzzel"] = _old_puzzle_fence
+check("rooster: the independent solver reaches ? and agrees; chains only from "
+      "depth 7", gr_seen > 400 and gr_bad == 0, f"{gr_seen} seen, {gr_bad} wrong")
+check("rooster: all three forms and the chained kind exist",
+      all(v > 15 for v in gr_forms.values()), str(gr_forms))
+check("rooster takes about a sixth of the numbers at every depth",
+      all(0.08 <= gr_share[d] / 150 <= 0.28 for d in range(1, 21)),
+      ", ".join(f"d{d}:{a}" for d, a in gr_share.items()))
+check("all rooster tasks fit window 1536 with their working", gr_unfit == 0)
 
 # --- logica: the fifth family (17 Aug 2026) ------------------------------------
 # If-then chains, true = 1 / false = 0. The judge is an independent forward
