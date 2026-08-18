@@ -98,9 +98,9 @@
   #wereld .rij > span:last-child { white-space: nowrap; }
   /* blokjes en staven krimpen mee met de kaart (flex), nooit breder dan
      7 px — zo blijft rekenen 60 op één regel, ook op een smal scherm */
-  #wereld .balk { display: flex; gap: 2px; flex: 1 1 0; min-width: 0; }
+  #wereld .balk { display: flex; gap: 1.5px; flex: 1 1 0; min-width: 0; }
   #wereld .rij > span:last-child { flex: none; min-width: 5.5ch; text-align: right; }
-  #wereld .blokje { flex: 1 1 7px; max-width: 7px; min-width: 2px; height: 10px;
+  #wereld .blokje { flex: 1 1 7px; max-width: 7px; min-width: 1px; height: 10px;
                     border-radius: 1.5px; background: #1d2b4d; }
   #wereld .blokje.aan { background: #5ca8ff; }
   #wereld .nieuw { color: #7fe0c3; animation: fonkel 1.2s ease-in-out infinite; }
