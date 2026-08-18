@@ -490,6 +490,7 @@ check("compact workings fit window 1024 (85% rule)",
 # world of before: this checksum was taken over them on 15 Aug 2026 before
 # the brick existed (300 numbers per depth 1-10, minus the split numbers).
 _h = hashlib.sha256()
+_h6 = hashlib.sha256()
 kp_numbers = []
 regel_numbers = []
 check_numbers = []
@@ -511,15 +512,42 @@ for depth in range(1, 11):
             regel_numbers.append((depth, n))
             continue
         t = world.make("puzzel", depth, n)
-        _h.update((f"{depth}|{n}|{t.problem if t else ''}|"
-                   f"{t.working if t else ''}|{t.solution if t else ''}\n")
-                  .encode())
-# taken over exactly these numbers on 18 Aug 2026 before the bridge stone
+        (_h if depth <= 5 else _h6).update(
+            (f"{depth}|{n}|{t.problem if t else ''}|"
+             f"{t.working if t else ''}|{t.solution if t else ''}\n").encode())
+# taken over exactly these numbers on 18 Aug 2026 before the bounded rows
 # existed (a7d2547646bda49b was the sum over the keer-plus complement,
-# 7fa9005221985a61 over the complement of keer-plus and rule)
-check("puzzle numbers outside the three splits are bit for bit the world "
-      "of 15 Aug 2026", _h.hexdigest()[:16] == "5d6c2b866f2a9638",
+# 7fa9005221985a61 over the complement of keer-plus and rule,
+# 5d6c2b866f2a9638 over depths 1-10 outside the three splits)
+check("puzzle numbers depth 1-5 outside the three splits are bit for bit the "
+      "world of 15 Aug 2026", _h.hexdigest()[:16] == "cbf9b57eb0d7dd85",
       _h.hexdigest()[:16])
+# depths 6-10 changed on purpose on 18 Aug 2026 (bounded rows, a noted
+# measurement change: cbb00a89fcd2b07e was the sum before); pinned so a
+# later edit cannot move them unnoticed
+check("puzzle numbers depth 6-10 outside the three splits are the bounded "
+      "world of 18 Aug 2026", _h6.hexdigest()[:16] == "678cd80eafbb2906",
+      _h6.hexdigest()[:16])
+# and the bound itself: plain rows at 6-10 stay under ROW_BOUND, keer-plus
+# rows (doubling by construction) are left alone, depth 5 and 11 untouched
+_big = {d: 0 for d in range(5, 12)}
+_rows = {d: 0 for d in range(5, 12)}
+for depth in range(5, 12):
+    for n in range(300):
+        seed = world._seed_of("puzzel", depth, n)
+        k = tasks.Picker(tasks._mix(seed ^ world.KEERPLUS_SEED))
+        if depth >= world.KEERPLUS_MIN and k.integer(1, 5) == 1:
+            continue
+        t = world.make("puzzel", depth, n)
+        if t is None or not t.problem.startswith("Zet voort"):
+            continue
+        _rows[depth] += 1
+        if world._row_top(t.problem) > world.ROW_BOUND:
+            _big[depth] += 1
+check("plain rows at depth 6-10 stay under ROW_BOUND (18 Aug 2026)",
+      all(_big[d] == 0 and _rows[d] > 15 for d in range(6, 11)),
+      ", ".join(f"d{d}: {_big[d]} of {_rows[d]} over" for d in range(6, 11)))
+check("depth 5 keeps its unbounded rows (bit for bit)", _big[5] > 0)
 # and the split numbers: a row that comes out ends on its answer, every
 # equation holds, and the doubling shows in the working (a `: 2` ratio
 # step or a `gedeeld: 2` row) for the plain brick at depth 2

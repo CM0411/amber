@@ -207,7 +207,7 @@ def _arithmetic(depth, t):
 _BASES = ("maal", "plus", "plus", "beide-vorige")
 
 
-def _row_series(depth, t, length, bases=_BASES):
+def _row_series(depth, t, length, bases=_BASES, small=False):
     """Build a series of `length` numbers.
 
     A series, not a "next value" function — otherwise a rule cannot be
@@ -231,6 +231,10 @@ def _row_series(depth, t, length, bases=_BASES):
             while len(out) < length:
                 out.append(2 * out[-1] + b)
             return out
+        if kind == "maal" and small:
+            # the bounded strand (18 Aug 2026): factor 2 from a small start
+            start = t.integer(1, 8)
+            return [start * 2 ** i for i in range(length)]
         if kind == "maal":
             # Up to ×6, as the grondslag exam asks — until 11 Aug 2026 this
             # was ×2/×3 and puzzle grade 2 sat at 30%: facing a ×5 row she
@@ -248,25 +252,26 @@ def _row_series(depth, t, length, bases=_BASES):
             # Each number is the sum of its two predecessors — the form of
             # grondslag puzzle 5, which existed nowhere in the world until
             # 11 Aug 2026 (0% on the exam).
-            out = [t.integer(1, 60), t.integer(1, 60)]
+            top = 12 if small else 60
+            out = [t.integer(1, top), t.integer(1, top)]
             while len(out) < length:
                 out.append(out[-2] + out[-1])
             return out[:length]
-        start = t.integer(1, 30)
-        step = t.integer(2, 19) * t.choice((1, 1, -1))
+        start = t.integer(1, 12 if small else 30)
+        step = t.integer(1 if small else 2, 6 if small else 19) * t.choice((1, 1, -1))
         return [start + i * step for i in range(length)]
 
     if t.choice(("afwisselend", "opgeteld", "opgeteld")) == "afwisselend":
         # Two series woven together.
-        a = _row_series(depth - 1, t, (length + 1) // 2, bases)
-        b = _row_series(depth - 1, t, length // 2 + 1, bases)
+        a = _row_series(depth - 1, t, (length + 1) // 2, bases, small)
+        b = _row_series(depth - 1, t, length // 2 + 1, bases, small)
         return [a[i // 2] if i % 2 == 0 else b[i // 2] for i in range(length)]
 
     # The series beneath is this one's differences. That is how stacking
     # really works: a row with a fixed difference becomes one with a growing
     # difference, and one more layer makes that growth itself grow.
-    differences = _row_series(depth - 1, t, length - 1, bases)
-    out = [t.integer(1, 30)]
+    differences = _row_series(depth - 1, t, length - 1, bases, small)
+    out = [t.integer(1, 12 if small else 30)]
     for d in differences:
         out.append(out[-1] + d)
     return out
@@ -382,7 +387,44 @@ def _explain(row, layer=0, compact=False):
     return [], False
 
 
-def _row(depth, t, bases=_BASES, extra=0):
+# --- bounded rows at depth 6–10 (18 Aug 2026, puzzle audit) -------------------
+# The weaves let deep rows run to five and six digits: at depth 9 the
+# median row topped out above 30,000, and the working became a chain of
+# four-digit subtractions in which one slip kills the answer — arithmetic
+# instead of pattern finding. A row that runs past ROW_BOUND is redrawn
+# from the same bricks with small parameters (start ≤ 12, step ≤ 6, ×2
+# only) until it stays under the bound; rows that already stayed small
+# are untouched. This changes existing rows on those depths on purpose
+# (a measurement change, noted); depths 1–5 stay bit for bit.
+ROW_BOUND = 999
+ROW_BOUND_MIN, ROW_BOUND_MAX = 6, 10
+ROW_BOUND_TRIES = 24
+BEGRENS_SEED = 0x426567726E73            # "Begrns"
+
+
+def _row_bounded(depth, seed, out):
+    """`out` is the row `make()` drew for this number. Where the depth asks
+    for it and the row runs past ROW_BOUND, redraw it small from an own
+    seed split; a row that stays under the bound is returned untouched.
+    Returns (problem, solution, working) or (None, None, None) when no
+    small row comes out either."""
+    if out[0] is None or not ROW_BOUND_MIN <= depth <= ROW_BOUND_MAX:
+        return out
+    if _row_top(out[0]) <= ROW_BOUND:
+        return out
+    k = Picker(_mix(seed ^ BEGRENS_SEED))
+    for _ in range(ROW_BOUND_TRIES):
+        cand = _row(depth, k, small=True)
+        if cand[0] is not None and _row_top(cand[0]) <= ROW_BOUND:
+            return cand
+    return (None, None, None)
+
+
+def _row_top(problem):
+    return max(abs(int(x)) for x in re.findall(r"-?\d+", problem))
+
+
+def _row(depth, t, bases=_BASES, extra=0, small=False):
     # Varying length: five to seven numbers shown. With always six she
     # learns the rhythm instead of the stopping point — on the frozen exam
     # (five numbers) she computed every difference flawlessly on 10 Aug 2026
@@ -399,7 +441,7 @@ def _row(depth, t, bases=_BASES, extra=0):
     # depth more — measured 15 Aug 2026: without it depth 4 explained 32%,
     # with two more numbers 56%, the same profile as the world it joins.
     length = shown + 1 + 2 * max(0, depth - 5) + extra
-    row = _row_series(max(1, depth - 1), t, length, bases)
+    row = _row_series(max(1, depth - 1), t, length, bases, small)
     displayed = ", ".join(str(x) for x in row[:-1])
     # Compact working from depth 7: at full width nothing there fits the
     # window (30% at depth 8 on 1024). Depths 1-6 keep the wide form, so
@@ -1759,6 +1801,7 @@ _SPOKEN_OP = {"+": "plus", "-": "min", "*": "keer"}
 # Only a flat chain of positive numbers reads naturally as spoken words;
 # anything with parentheses keeps its symbols ("3 haakje 7 sluit" is not
 # a sentence anyone says).
+import re
 import re as _re
 _FLAT = _re.compile(r"^\d+( [+*-] \d+)+$")
 
@@ -1931,6 +1974,9 @@ def make(family, depth, number):
     t = Picker(seed)
     problem, solution, working = _MAKERS[family](depth, t)
     if family == "puzzel":
+        # bounded rows at depth 6–10 (18 Aug 2026): a row that runs past
+        # ROW_BOUND is redrawn small; the bricks below may still replace it
+        problem, solution, working = _row_bounded(depth, seed, (problem, solution, working))
         # Before the emptiness check: one in five numbers tries the
         # keer-plus brick first. Comes a method out, the number carries
         # that row (also where the old row had none — the world grows);
