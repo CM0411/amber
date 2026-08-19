@@ -91,7 +91,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 20, "code": 40, "geheugen": 40, "logica": 20, "volgorde": 20, "tekst": 20, "zeggen": 12, "taal": 12, "machine": 20, "tellen": 12}
+MAX_DEPTH_PER = {"puzzel": 20, "code": 40, "geheugen": 40, "logica": 20, "volgorde": 20, "tekst": 20, "zeggen": 24, "taal": 12, "machine": 20, "tellen": 12}
 
 
 def max_depth(family):
@@ -1952,6 +1952,8 @@ def _verdict(fam, score):
 
 
 def _saying(depth, t):
+    if depth > 12:
+        return _saying_deep(depth, t)
     k = 1 if depth <= 2 else 2 if depth <= 4 else 3 if depth <= 8 else 4
     fams = []
     while len(fams) < k:
@@ -2023,6 +2025,141 @@ def _saying(depth, t):
                 sentence = f"{_verdict(highest, stand[highest])} en {first}"
             else:
                 sentence = first
+    problem = "\n".join(lines) + "\n" + q
+    working = " ; ".join(steps + [sentence])
+    return problem, sentence, working
+
+
+
+def _trend(fam, now, before):
+    return (f"{fam} gaat beter dan gisteren" if now > before
+            else f"{fam} gaat slechter dan gisteren" if now < before
+            else f"{fam} gaat zoals gisteren")
+
+
+def _saying_deep(depth, t):
+    """Zeggen 13-24 (19 Aug 2026, Cley): meer zinsvormen, eigen woorden.
+
+    Same recipe as 1-12: a stand of herself, a question, one sentence
+    (or more) from a fixed vocabulary, exactly checkable. Scores are kept
+    distinct so every rule picks exactly one family.
+    """
+    k = 3 if depth <= 18 else 4
+    fams = []
+    while len(fams) < k:
+        f = t.choice(ZEG_ONDERWERPEN)
+        if f not in fams:
+            fams.append(f)
+    scores = []
+    while len(scores) < k:
+        v = t.integer(0, 100)
+        if v not in scores:
+            scores.append(v)
+    stand = dict(zip(fams, scores))
+    lowest = min(fams, key=lambda f: stand[f])
+    highest = max(fams, key=lambda f: stand[f])
+    lines = ["cijfers: " + " ; ".join(f"{f} {stand[f]}" for f in fams)]
+    steps = []
+
+    if depth <= 14:
+        # vergelijken: twee genoemde families
+        a, b = fams[0], fams[1]
+        q = f"wat gaat beter, {a} of {b}?"
+        w = a if stand[a] > stand[b] else b
+        l = b if w == a else a
+        steps.append(f"{w} {stand[w]} ; {l} {stand[l]}")
+        sentence = f"{w} gaat beter dan {l}"
+
+    elif depth <= 16:
+        # verandering: een vorige-regel erbij
+        before = {}
+        for f in fams:
+            v = t.integer(0, 100)
+            while v == stand[f]:
+                v = t.integer(0, 100)
+            before[f] = v
+        lines.append("gisteren: " + " ; ".join(f"{f} {before[f]}" for f in fams))
+        f0 = t.choice(fams)
+        q = f"hoe gaat {f0} nu?"
+        steps.append(f"{f0} gisteren {before[f0]} ; nu {stand[f0]}")
+        sentence = _trend(f0, stand[f0], before[f0])
+
+    elif depth <= 18:
+        # oorzaak-gevolg met keuzes
+        shares = []
+        rest = 100
+        for i, f in enumerate(fams):
+            v = t.integer(0, min(60, rest)) if i < len(fams) - 1 else rest
+            shares.append(v)
+            rest -= v
+        keuzes = dict(zip(fams, shares))
+        lines.append("keuzes: " + " ; ".join(f"{f} {keuzes[f]}" for f in fams))
+        q = "waarom gaat het zo?"
+        busy = max(fams, key=lambda f: keuzes[f])
+        if stand[busy] < 60:
+            steps.append(f"veel gekozen: {busy} {keuzes[busy]} ; laag {stand[busy]}")
+            sentence = f"ik oefen veel {busy} maar het gaat langzaam"
+        else:
+            steps.append(f"veel gekozen: {busy} {keuzes[busy]} ; goed {stand[busy]}")
+            sentence = f"ik oefen veel {busy} en het gaat goed"
+
+    elif depth <= 20:
+        # een vraag aan Cley
+        edge = {}
+        for f in fams:
+            fence = t.choice((12, 20, 30, 40, 60))
+            edge[f] = (t.integer(1, fence), fence)
+        lines.append("wereld: " + " ; ".join(f"{f} {edge[f][0]}/{edge[f][1]}" for f in fams))
+        q = "wat vraag je aan cley?"
+        deeper = [f for f in fams if stand[f] >= 90 and edge[f][0] < edge[f][1]]
+        if deeper:
+            pick = max(deeper, key=lambda f: stand[f])
+            steps.append(f"goed en niet vol: {pick} {stand[pick]} {edge[pick][0]}/{edge[pick][1]}")
+            sentence = f"mag ik dieper in {pick}?"
+        else:
+            steps.append(f"laagste: {lowest} {stand[lowest]}")
+            sentence = f"mag ik meer {lowest} oefenen?"
+
+    elif depth <= 22:
+        # over haar wereld: vol of niet
+        edge = {}
+        for f in fams:
+            fence = t.choice((12, 20, 30, 40, 60))
+            edge[f] = (t.integer(1, fence), fence)
+        lines.append("wereld: " + " ; ".join(f"{f} {edge[f][0]}/{edge[f][1]}" for f in fams))
+        f0 = t.choice(fams)
+        q = f"hoe staat {f0} ervoor?"
+        vol = edge[f0][0] >= edge[f0][1]
+        steps.append(f"{f0} {edge[f0][0]}/{edge[f0][1]} ; {stand[f0]}")
+        sentence = f"{f0} is {'vol' if vol else 'niet vol'} en {_verdict(f0, stand[f0]).split(' ', 1)[1]}"
+
+    else:
+        # drie zinnen: verdict op de hoogste, verandering, vraag
+        before = {}
+        for f in fams:
+            v = t.integer(0, 100)
+            while v == stand[f]:
+                v = t.integer(0, 100)
+            before[f] = v
+        lines.append("gisteren: " + " ; ".join(f"{f} {before[f]}" for f in fams))
+        edge = {}
+        for f in fams:
+            fence = t.choice((12, 20, 30, 40, 60))
+            edge[f] = (t.integer(1, fence), fence)
+        lines.append("wereld: " + " ; ".join(f"{f} {edge[f][0]}/{edge[f][1]}" for f in fams))
+        q = "vertel hoe het gaat"
+        deeper = [f for f in fams if stand[f] >= 90 and edge[f][0] < edge[f][1]]
+        steps.append(f"hoogste: {highest} {stand[highest]}")
+        steps.append(f"{lowest} gisteren {before[lowest]} ; nu {stand[lowest]}")
+        if deeper:
+            pick = max(deeper, key=lambda f: stand[f])
+            steps.append(f"goed en niet vol: {pick}")
+            vraag = f"mag ik dieper in {pick}?"
+        else:
+            vraag = f"mag ik meer {lowest} oefenen?"
+        sentence = (f"{_verdict(highest, stand[highest])} en "
+                    f"{_trend(lowest, stand[lowest], before[lowest])} en {vraag}")
+
     problem = "\n".join(lines) + "\n" + q
     working = " ; ".join(steps + [sentence])
     return problem, sentence, working

@@ -1693,6 +1693,88 @@ check("zeggen: solutions carry no number (checked as text) and fit the room",
 check("a zeggen task is the same task every time",
       world.make("zeggen", 9, 77) == world.make("zeggen", 9, 77))
 
+
+# --- zeggen 13-24 (19 Aug 2026, Cley: "ik wil dat ze meer kan gaan praten") ---
+# An independent judge: parses the stand/gisteren/wereld/keuzes lines
+# itself and answers the question by its own reading of the rules.
+def _judge_saying_deep(problem):
+    lines = problem.split("\n")
+    q = lines[-1]
+    blocks = {}
+    for line in lines[:-1]:
+        key, _, rest = line.partition(": ")
+        if key == "wereld":
+            blocks[key] = {f: (int(a), int(b)) for f, a, b in re.findall(r"(\w+) (\d+)/(\d+)", rest)}
+        else:
+            blocks[key] = {f: int(v) for f, v in re.findall(r"(\w+) (\d+)", rest)}
+    stand = blocks["cijfers"]
+    fams = list(stand)
+    lowest = min(fams, key=stand.get)
+    highest = max(fams, key=stand.get)
+    edge = blocks.get("wereld", {})
+    before = blocks.get("gisteren", {})
+    keuzes = blocks.get("keuzes", {})
+    verdict = lambda f: f"{f} gaat goed" if stand[f] >= 90 else f"{f} gaat" if stand[f] >= 60 else f"{f} is moeilijk"
+    trend = lambda f: (f"{f} gaat beter dan gisteren" if stand[f] > before[f]
+                       else f"{f} gaat slechter dan gisteren" if stand[f] < before[f]
+                       else f"{f} gaat zoals gisteren")
+    deeper = [f for f in fams if stand[f] >= 90 and edge.get(f, (0, 0))[0] < edge.get(f, (0, 0))[1]]
+    vraag = (f"mag ik dieper in {max(deeper, key=stand.get)}?" if deeper
+             else f"mag ik meer {lowest} oefenen?")
+    m = re.match(r"wat gaat beter, (\w+) of (\w+)\?", q)
+    if m:
+        a, b = m.groups()
+        w, l = (a, b) if stand[a] > stand[b] else (b, a)
+        return f"{w} gaat beter dan {l}"
+    m = re.match(r"hoe gaat (\w+) nu\?", q)
+    if m:
+        return trend(m.group(1))
+    if q == "waarom gaat het zo?":
+        busy = max(fams, key=keuzes.get)
+        return (f"ik oefen veel {busy} maar het gaat langzaam" if stand[busy] < 60
+                else f"ik oefen veel {busy} en het gaat goed")
+    if q == "wat vraag je aan cley?":
+        return vraag
+    m = re.match(r"hoe staat (\w+) ervoor\?", q)
+    if m:
+        f = m.group(1)
+        vol = edge[f][0] >= edge[f][1]
+        return f"{f} is {'vol' if vol else 'niet vol'} en {verdict(f).split(' ', 1)[1]}"
+    if q == "vertel hoe het gaat":
+        return f"{verdict(highest)} en {trend(lowest)} en {vraag}"
+    return None
+
+
+zd_seen = zd_bad = zd_unfit = 0
+zd_forms = set()
+for depth in range(13, 25):
+    for n in range(200):
+        t = world.make("zeggen", depth, n)
+        zd_seen += 1
+        if _judge_saying_deep(t.problem) != t.solution or not t.check(t.working):
+            zd_bad += 1
+        if not (world.fits(t, 1536 - 112) and len(t.to_learn()) <= _rf(depth, "zeggen", 1536)):
+            zd_unfit += 1
+        zd_forms.add(re.sub(r"\b(" + "|".join(world.ZEG_ONDERWERPEN) + r")\b", "X", t.solution))
+check("zeggen 13-24: the independent judge writes the same sentence every time",
+      zd_seen == 2400 and zd_bad == 0, f"{zd_bad} disagreements")
+check("zeggen 13-24: comparing, change, cause, a question to Cley, her world, three sentences",
+      any(f.startswith("X gaat beter dan X") for f in zd_forms)
+      and any("dan gisteren" in f for f in zd_forms)
+      and any(f.startswith("ik oefen veel X") for f in zd_forms)
+      and any(f.startswith("mag ik") for f in zd_forms)
+      and any(" is vol en " in f or " is niet vol en " in f for f in zd_forms)
+      and any(f.count(" en ") >= 2 for f in zd_forms), str(sorted(zd_forms))[:400])
+check("zeggen 13-24: no number in the solution and everything fits the room", zd_unfit == 0
+      and all(not re.search(r"\d", world.make("zeggen", d, 3).solution) for d in range(13, 25)))
+_h = hashlib.md5()
+for _d in range(1, 13):
+    for _n in range(0, 300):
+        _t = world.make("zeggen", _d, _n)
+        _h.update(f"{_t.problem}|{_t.solution}|{_t.working}".encode())
+check("zeggen 1-12 is bit for bit untouched by the 13-24 extension (3600 tasks, md5 pinned 19 Aug)",
+      _h.hexdigest() == "f7a0cfadc631192fe583d98ec691a57e", _h.hexdigest())
+
 # --- taal: the ninth family (18 Aug 2026, Cley) -------------------------------
 # Short sentences from a fixed vocabulary; the judge parses them with the
 # grammar and answers the question itself; for "maak de zin" it rebuilds

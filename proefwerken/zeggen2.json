@@ -1,0 +1,2166 @@
+{
+ "naam": "zeggen2",
+ "beschrijving": "Zeggen 13-24 (19 aug 2026, Cley: meer praten): haar eigen zin uit een vaste kleine woordenschat — oordeel (gaat goed / gaat / is moeilijk), wens (ik wil meer X oefenen, ik wil dieper in X, X blijft moeilijk), vanaf 11 twee zinnen met 'en'. Nagekeken als tekst. Diepte 1 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Vastgelegd vóór de knip na run 7.",
+ "opgaven": [
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: geheugen 83 ; machine 29 ; rekenen 69\nwat gaat beter, geheugen of machine?",
+   "oplossing": "geheugen gaat beter dan machine"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: tekst 13 ; volgorde 20 ; tellen 8\nwat gaat beter, tekst of volgorde?",
+   "oplossing": "volgorde gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: rekenen 67 ; logica 84 ; taal 4\nwat gaat beter, rekenen of logica?",
+   "oplossing": "logica gaat beter dan rekenen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: puzzel 21 ; tellen 85 ; volgorde 7\nwat gaat beter, puzzel of tellen?",
+   "oplossing": "tellen gaat beter dan puzzel"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: tekst 9 ; logica 94 ; tellen 50\nwat gaat beter, tekst of logica?",
+   "oplossing": "logica gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: taal 32 ; volgorde 26 ; tekst 56\nwat gaat beter, taal of volgorde?",
+   "oplossing": "taal gaat beter dan volgorde"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: rekenen 94 ; code 76 ; machine 72\nwat gaat beter, rekenen of code?",
+   "oplossing": "rekenen gaat beter dan code"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: rekenen 27 ; geheugen 58 ; code 47\nwat gaat beter, rekenen of geheugen?",
+   "oplossing": "geheugen gaat beter dan rekenen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: geheugen 41 ; rekenen 57 ; tellen 90\nwat gaat beter, geheugen of rekenen?",
+   "oplossing": "rekenen gaat beter dan geheugen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: tekst 62 ; taal 83 ; rekenen 57\nwat gaat beter, tekst of taal?",
+   "oplossing": "taal gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: puzzel 55 ; rekenen 53 ; code 25\nwat gaat beter, puzzel of rekenen?",
+   "oplossing": "puzzel gaat beter dan rekenen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: tellen 54 ; geheugen 58 ; puzzel 19\nwat gaat beter, tellen of geheugen?",
+   "oplossing": "geheugen gaat beter dan tellen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: puzzel 66 ; tellen 24 ; rekenen 79\nwat gaat beter, puzzel of tellen?",
+   "oplossing": "puzzel gaat beter dan tellen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: geheugen 62 ; code 72 ; machine 3\nwat gaat beter, geheugen of code?",
+   "oplossing": "code gaat beter dan geheugen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: puzzel 72 ; volgorde 32 ; code 14\nwat gaat beter, puzzel of volgorde?",
+   "oplossing": "puzzel gaat beter dan volgorde"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: code 42 ; logica 39 ; puzzel 17\nwat gaat beter, code of logica?",
+   "oplossing": "code gaat beter dan logica"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: rekenen 69 ; machine 3 ; tekst 25\nwat gaat beter, rekenen of machine?",
+   "oplossing": "rekenen gaat beter dan machine"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: geheugen 15 ; machine 14 ; puzzel 78\nwat gaat beter, geheugen of machine?",
+   "oplossing": "geheugen gaat beter dan machine"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: code 88 ; puzzel 26 ; logica 48\nwat gaat beter, code of puzzel?",
+   "oplossing": "code gaat beter dan puzzel"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: tekst 70 ; taal 9 ; volgorde 14\nwat gaat beter, tekst of taal?",
+   "oplossing": "tekst gaat beter dan taal"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: tellen 73 ; tekst 83 ; logica 81\nwat gaat beter, tellen of tekst?",
+   "oplossing": "tekst gaat beter dan tellen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: rekenen 53 ; taal 36 ; logica 84\nwat gaat beter, rekenen of taal?",
+   "oplossing": "rekenen gaat beter dan taal"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: tellen 7 ; volgorde 94 ; rekenen 46\nwat gaat beter, tellen of volgorde?",
+   "oplossing": "volgorde gaat beter dan tellen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: puzzel 57 ; code 7 ; rekenen 37\nwat gaat beter, puzzel of code?",
+   "oplossing": "puzzel gaat beter dan code"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: geheugen 80 ; taal 19 ; puzzel 25\nwat gaat beter, geheugen of taal?",
+   "oplossing": "geheugen gaat beter dan taal"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: rekenen 8 ; puzzel 77 ; machine 2\nwat gaat beter, rekenen of puzzel?",
+   "oplossing": "puzzel gaat beter dan rekenen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: puzzel 0 ; tellen 25 ; rekenen 37\nwat gaat beter, puzzel of tellen?",
+   "oplossing": "tellen gaat beter dan puzzel"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: taal 55 ; puzzel 61 ; tekst 25\nwat gaat beter, taal of puzzel?",
+   "oplossing": "puzzel gaat beter dan taal"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: machine 53 ; tekst 5 ; tellen 35\nwat gaat beter, machine of tekst?",
+   "oplossing": "machine gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 13,
+   "opgave": "cijfers: code 74 ; geheugen 73 ; logica 85\nwat gaat beter, code of geheugen?",
+   "oplossing": "code gaat beter dan geheugen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: rekenen 39 ; code 7 ; taal 60\nwat gaat beter, rekenen of code?",
+   "oplossing": "rekenen gaat beter dan code"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: tellen 25 ; tekst 58 ; rekenen 31\nwat gaat beter, tellen of tekst?",
+   "oplossing": "tekst gaat beter dan tellen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: tekst 22 ; machine 60 ; logica 74\nwat gaat beter, tekst of machine?",
+   "oplossing": "machine gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: geheugen 100 ; volgorde 96 ; tellen 39\nwat gaat beter, geheugen of volgorde?",
+   "oplossing": "geheugen gaat beter dan volgorde"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: logica 65 ; machine 68 ; taal 38\nwat gaat beter, logica of machine?",
+   "oplossing": "machine gaat beter dan logica"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: taal 85 ; tekst 5 ; rekenen 18\nwat gaat beter, taal of tekst?",
+   "oplossing": "taal gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: rekenen 7 ; tekst 4 ; taal 78\nwat gaat beter, rekenen of tekst?",
+   "oplossing": "rekenen gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: puzzel 81 ; tekst 46 ; machine 51\nwat gaat beter, puzzel of tekst?",
+   "oplossing": "puzzel gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: tekst 27 ; puzzel 12 ; code 18\nwat gaat beter, tekst of puzzel?",
+   "oplossing": "tekst gaat beter dan puzzel"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: tellen 63 ; code 53 ; logica 97\nwat gaat beter, tellen of code?",
+   "oplossing": "tellen gaat beter dan code"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: tellen 21 ; logica 72 ; machine 76\nwat gaat beter, tellen of logica?",
+   "oplossing": "logica gaat beter dan tellen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: geheugen 18 ; taal 60 ; tellen 37\nwat gaat beter, geheugen of taal?",
+   "oplossing": "taal gaat beter dan geheugen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: geheugen 55 ; taal 57 ; machine 89\nwat gaat beter, geheugen of taal?",
+   "oplossing": "taal gaat beter dan geheugen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: geheugen 47 ; logica 89 ; volgorde 18\nwat gaat beter, geheugen of logica?",
+   "oplossing": "logica gaat beter dan geheugen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: taal 89 ; puzzel 84 ; tellen 49\nwat gaat beter, taal of puzzel?",
+   "oplossing": "taal gaat beter dan puzzel"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: taal 86 ; volgorde 14 ; geheugen 41\nwat gaat beter, taal of volgorde?",
+   "oplossing": "taal gaat beter dan volgorde"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: volgorde 100 ; machine 92 ; tellen 33\nwat gaat beter, volgorde of machine?",
+   "oplossing": "volgorde gaat beter dan machine"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: code 91 ; taal 33 ; machine 90\nwat gaat beter, code of taal?",
+   "oplossing": "code gaat beter dan taal"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: code 1 ; volgorde 15 ; rekenen 70\nwat gaat beter, code of volgorde?",
+   "oplossing": "volgorde gaat beter dan code"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: tekst 60 ; puzzel 68 ; machine 79\nwat gaat beter, tekst of puzzel?",
+   "oplossing": "puzzel gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: tellen 24 ; taal 4 ; rekenen 93\nwat gaat beter, tellen of taal?",
+   "oplossing": "tellen gaat beter dan taal"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: tekst 62 ; code 30 ; tellen 59\nwat gaat beter, tekst of code?",
+   "oplossing": "tekst gaat beter dan code"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: volgorde 66 ; tekst 33 ; tellen 82\nwat gaat beter, volgorde of tekst?",
+   "oplossing": "volgorde gaat beter dan tekst"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: tellen 47 ; geheugen 3 ; taal 43\nwat gaat beter, tellen of geheugen?",
+   "oplossing": "tellen gaat beter dan geheugen"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: taal 96 ; code 68 ; rekenen 61\nwat gaat beter, taal of code?",
+   "oplossing": "taal gaat beter dan code"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: code 20 ; tekst 81 ; taal 83\nwat gaat beter, code of tekst?",
+   "oplossing": "tekst gaat beter dan code"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: logica 3 ; taal 41 ; rekenen 0\nwat gaat beter, logica of taal?",
+   "oplossing": "taal gaat beter dan logica"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: machine 76 ; rekenen 81 ; code 31\nwat gaat beter, machine of rekenen?",
+   "oplossing": "rekenen gaat beter dan machine"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: taal 44 ; machine 23 ; logica 11\nwat gaat beter, taal of machine?",
+   "oplossing": "taal gaat beter dan machine"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 14,
+   "opgave": "cijfers: volgorde 48 ; geheugen 93 ; code 44\nwat gaat beter, volgorde of geheugen?",
+   "oplossing": "geheugen gaat beter dan volgorde"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: logica 89 ; tellen 27 ; rekenen 96\ngisteren: logica 2 ; tellen 42 ; rekenen 14\nhoe gaat tellen nu?",
+   "oplossing": "tellen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: logica 99 ; geheugen 90 ; puzzel 62\ngisteren: logica 77 ; geheugen 27 ; puzzel 92\nhoe gaat logica nu?",
+   "oplossing": "logica gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: rekenen 60 ; tellen 41 ; code 39\ngisteren: rekenen 98 ; tellen 54 ; code 17\nhoe gaat rekenen nu?",
+   "oplossing": "rekenen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: tekst 82 ; taal 8 ; volgorde 31\ngisteren: tekst 47 ; taal 85 ; volgorde 24\nhoe gaat volgorde nu?",
+   "oplossing": "volgorde gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: geheugen 50 ; rekenen 26 ; tekst 49\ngisteren: geheugen 23 ; rekenen 40 ; tekst 73\nhoe gaat rekenen nu?",
+   "oplossing": "rekenen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: volgorde 91 ; puzzel 33 ; taal 90\ngisteren: volgorde 13 ; puzzel 0 ; taal 78\nhoe gaat taal nu?",
+   "oplossing": "taal gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: volgorde 45 ; logica 90 ; geheugen 54\ngisteren: volgorde 23 ; logica 93 ; geheugen 43\nhoe gaat volgorde nu?",
+   "oplossing": "volgorde gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: volgorde 25 ; puzzel 93 ; taal 14\ngisteren: volgorde 91 ; puzzel 26 ; taal 29\nhoe gaat taal nu?",
+   "oplossing": "taal gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: code 36 ; volgorde 80 ; puzzel 76\ngisteren: code 100 ; volgorde 13 ; puzzel 74\nhoe gaat puzzel nu?",
+   "oplossing": "puzzel gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: volgorde 81 ; puzzel 7 ; code 99\ngisteren: volgorde 68 ; puzzel 3 ; code 64\nhoe gaat code nu?",
+   "oplossing": "code gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: machine 90 ; taal 42 ; rekenen 8\ngisteren: machine 92 ; taal 48 ; rekenen 94\nhoe gaat taal nu?",
+   "oplossing": "taal gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: geheugen 15 ; machine 4 ; code 39\ngisteren: geheugen 97 ; machine 96 ; code 2\nhoe gaat code nu?",
+   "oplossing": "code gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: code 16 ; rekenen 58 ; puzzel 15\ngisteren: code 51 ; rekenen 2 ; puzzel 4\nhoe gaat puzzel nu?",
+   "oplossing": "puzzel gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: logica 19 ; tellen 9 ; geheugen 23\ngisteren: logica 71 ; tellen 63 ; geheugen 92\nhoe gaat tellen nu?",
+   "oplossing": "tellen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: tekst 2 ; puzzel 87 ; rekenen 88\ngisteren: tekst 45 ; puzzel 60 ; rekenen 12\nhoe gaat rekenen nu?",
+   "oplossing": "rekenen gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: logica 10 ; code 15 ; taal 38\ngisteren: logica 54 ; code 78 ; taal 66\nhoe gaat code nu?",
+   "oplossing": "code gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: puzzel 5 ; code 44 ; tekst 35\ngisteren: puzzel 61 ; code 62 ; tekst 40\nhoe gaat code nu?",
+   "oplossing": "code gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: tekst 73 ; rekenen 40 ; puzzel 5\ngisteren: tekst 100 ; rekenen 89 ; puzzel 0\nhoe gaat tekst nu?",
+   "oplossing": "tekst gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: rekenen 2 ; tekst 21 ; tellen 43\ngisteren: rekenen 51 ; tekst 20 ; tellen 20\nhoe gaat tekst nu?",
+   "oplossing": "tekst gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: geheugen 13 ; puzzel 22 ; tellen 55\ngisteren: geheugen 50 ; puzzel 55 ; tellen 76\nhoe gaat geheugen nu?",
+   "oplossing": "geheugen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: puzzel 62 ; tellen 40 ; tekst 5\ngisteren: puzzel 69 ; tellen 31 ; tekst 12\nhoe gaat tekst nu?",
+   "oplossing": "tekst gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: tellen 22 ; taal 50 ; geheugen 83\ngisteren: tellen 48 ; taal 63 ; geheugen 35\nhoe gaat tellen nu?",
+   "oplossing": "tellen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: puzzel 90 ; geheugen 23 ; rekenen 31\ngisteren: puzzel 64 ; geheugen 55 ; rekenen 82\nhoe gaat puzzel nu?",
+   "oplossing": "puzzel gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: geheugen 70 ; tekst 69 ; logica 10\ngisteren: geheugen 21 ; tekst 21 ; logica 85\nhoe gaat logica nu?",
+   "oplossing": "logica gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: volgorde 32 ; machine 49 ; taal 92\ngisteren: volgorde 63 ; machine 71 ; taal 75\nhoe gaat machine nu?",
+   "oplossing": "machine gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: tekst 26 ; geheugen 49 ; logica 97\ngisteren: tekst 14 ; geheugen 21 ; logica 58\nhoe gaat geheugen nu?",
+   "oplossing": "geheugen gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: geheugen 52 ; volgorde 80 ; rekenen 70\ngisteren: geheugen 97 ; volgorde 86 ; rekenen 54\nhoe gaat geheugen nu?",
+   "oplossing": "geheugen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: code 70 ; machine 17 ; logica 45\ngisteren: code 75 ; machine 23 ; logica 30\nhoe gaat machine nu?",
+   "oplossing": "machine gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: tellen 3 ; tekst 68 ; taal 31\ngisteren: tellen 54 ; tekst 45 ; taal 30\nhoe gaat tekst nu?",
+   "oplossing": "tekst gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 15,
+   "opgave": "cijfers: taal 64 ; volgorde 66 ; rekenen 40\ngisteren: taal 19 ; volgorde 8 ; rekenen 42\nhoe gaat rekenen nu?",
+   "oplossing": "rekenen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: logica 31 ; tekst 40 ; geheugen 28\ngisteren: logica 64 ; tekst 74 ; geheugen 36\nhoe gaat tekst nu?",
+   "oplossing": "tekst gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: code 30 ; tellen 69 ; volgorde 45\ngisteren: code 85 ; tellen 8 ; volgorde 50\nhoe gaat tellen nu?",
+   "oplossing": "tellen gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: logica 63 ; code 87 ; volgorde 14\ngisteren: logica 78 ; code 46 ; volgorde 1\nhoe gaat code nu?",
+   "oplossing": "code gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: rekenen 56 ; taal 89 ; logica 31\ngisteren: rekenen 74 ; taal 23 ; logica 6\nhoe gaat logica nu?",
+   "oplossing": "logica gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: machine 2 ; volgorde 72 ; geheugen 94\ngisteren: machine 11 ; volgorde 19 ; geheugen 87\nhoe gaat machine nu?",
+   "oplossing": "machine gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: machine 68 ; puzzel 61 ; taal 9\ngisteren: machine 13 ; puzzel 3 ; taal 55\nhoe gaat puzzel nu?",
+   "oplossing": "puzzel gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: rekenen 26 ; logica 6 ; puzzel 8\ngisteren: rekenen 79 ; logica 88 ; puzzel 34\nhoe gaat logica nu?",
+   "oplossing": "logica gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: taal 69 ; code 29 ; volgorde 25\ngisteren: taal 2 ; code 22 ; volgorde 36\nhoe gaat volgorde nu?",
+   "oplossing": "volgorde gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: code 70 ; tekst 53 ; taal 81\ngisteren: code 14 ; tekst 79 ; taal 47\nhoe gaat code nu?",
+   "oplossing": "code gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: puzzel 98 ; code 20 ; logica 47\ngisteren: puzzel 99 ; code 66 ; logica 66\nhoe gaat logica nu?",
+   "oplossing": "logica gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: logica 90 ; code 60 ; tellen 38\ngisteren: logica 39 ; code 22 ; tellen 4\nhoe gaat logica nu?",
+   "oplossing": "logica gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: logica 16 ; geheugen 58 ; taal 24\ngisteren: logica 32 ; geheugen 68 ; taal 82\nhoe gaat taal nu?",
+   "oplossing": "taal gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: code 87 ; tellen 98 ; taal 96\ngisteren: code 90 ; tellen 64 ; taal 36\nhoe gaat tellen nu?",
+   "oplossing": "tellen gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: taal 97 ; logica 11 ; geheugen 96\ngisteren: taal 58 ; logica 93 ; geheugen 43\nhoe gaat logica nu?",
+   "oplossing": "logica gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: taal 4 ; tekst 40 ; code 38\ngisteren: taal 65 ; tekst 3 ; code 46\nhoe gaat tekst nu?",
+   "oplossing": "tekst gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: geheugen 22 ; machine 64 ; code 46\ngisteren: geheugen 50 ; machine 78 ; code 60\nhoe gaat geheugen nu?",
+   "oplossing": "geheugen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: tellen 38 ; volgorde 54 ; taal 49\ngisteren: tellen 31 ; volgorde 96 ; taal 65\nhoe gaat taal nu?",
+   "oplossing": "taal gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: tekst 39 ; code 94 ; tellen 64\ngisteren: tekst 22 ; code 75 ; tellen 12\nhoe gaat code nu?",
+   "oplossing": "code gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: code 24 ; volgorde 8 ; geheugen 100\ngisteren: code 76 ; volgorde 90 ; geheugen 72\nhoe gaat code nu?",
+   "oplossing": "code gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: tellen 29 ; puzzel 2 ; taal 4\ngisteren: tellen 64 ; puzzel 21 ; taal 60\nhoe gaat puzzel nu?",
+   "oplossing": "puzzel gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: tekst 89 ; rekenen 57 ; machine 100\ngisteren: tekst 84 ; rekenen 64 ; machine 22\nhoe gaat tekst nu?",
+   "oplossing": "tekst gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: geheugen 49 ; tekst 24 ; logica 0\ngisteren: geheugen 26 ; tekst 1 ; logica 19\nhoe gaat geheugen nu?",
+   "oplossing": "geheugen gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: machine 54 ; volgorde 70 ; geheugen 80\ngisteren: machine 23 ; volgorde 98 ; geheugen 18\nhoe gaat volgorde nu?",
+   "oplossing": "volgorde gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: logica 17 ; geheugen 82 ; taal 44\ngisteren: logica 31 ; geheugen 35 ; taal 2\nhoe gaat logica nu?",
+   "oplossing": "logica gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: tekst 55 ; volgorde 9 ; taal 97\ngisteren: tekst 73 ; volgorde 2 ; taal 92\nhoe gaat taal nu?",
+   "oplossing": "taal gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: taal 15 ; rekenen 60 ; tellen 61\ngisteren: taal 32 ; rekenen 59 ; tellen 78\nhoe gaat tellen nu?",
+   "oplossing": "tellen gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: machine 21 ; taal 28 ; code 56\ngisteren: machine 76 ; taal 71 ; code 5\nhoe gaat code nu?",
+   "oplossing": "code gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: puzzel 58 ; taal 32 ; machine 24\ngisteren: puzzel 64 ; taal 7 ; machine 77\nhoe gaat taal nu?",
+   "oplossing": "taal gaat beter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: code 25 ; volgorde 81 ; rekenen 53\ngisteren: code 52 ; volgorde 100 ; rekenen 71\nhoe gaat volgorde nu?",
+   "oplossing": "volgorde gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 16,
+   "opgave": "cijfers: machine 46 ; puzzel 9 ; volgorde 58\ngisteren: machine 67 ; puzzel 10 ; volgorde 75\nhoe gaat puzzel nu?",
+   "oplossing": "puzzel gaat slechter dan gisteren"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: puzzel 74 ; logica 26 ; rekenen 75\nkeuzes: puzzel 3 ; logica 18 ; rekenen 79\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel rekenen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: code 86 ; machine 52 ; tellen 6\nkeuzes: code 28 ; machine 52 ; tellen 20\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel machine maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: geheugen 34 ; machine 1 ; tellen 13\nkeuzes: geheugen 33 ; machine 26 ; tellen 41\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: machine 34 ; puzzel 79 ; volgorde 51\nkeuzes: machine 21 ; puzzel 60 ; volgorde 19\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel puzzel en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: rekenen 27 ; code 1 ; logica 30\nkeuzes: rekenen 17 ; code 51 ; logica 32\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel code maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: tellen 83 ; machine 20 ; puzzel 34\nkeuzes: tellen 58 ; machine 3 ; puzzel 39\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: tellen 25 ; machine 98 ; taal 64\nkeuzes: tellen 24 ; machine 3 ; taal 73\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel taal en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: tekst 46 ; machine 98 ; taal 74\nkeuzes: tekst 59 ; machine 13 ; taal 28\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: puzzel 89 ; rekenen 81 ; volgorde 79\nkeuzes: puzzel 18 ; rekenen 34 ; volgorde 48\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel volgorde en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: taal 56 ; tellen 7 ; machine 14\nkeuzes: taal 21 ; tellen 41 ; machine 38\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: volgorde 26 ; taal 64 ; tellen 87\nkeuzes: volgorde 24 ; taal 19 ; tellen 57\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: taal 77 ; tellen 35 ; logica 47\nkeuzes: taal 37 ; tellen 6 ; logica 57\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel logica maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: taal 46 ; geheugen 63 ; tellen 20\nkeuzes: taal 58 ; geheugen 38 ; tellen 4\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel taal maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: rekenen 45 ; logica 99 ; volgorde 28\nkeuzes: rekenen 7 ; logica 55 ; volgorde 38\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel logica en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: tekst 30 ; puzzel 34 ; code 70\nkeuzes: tekst 52 ; puzzel 9 ; code 39\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: logica 6 ; puzzel 42 ; tekst 68\nkeuzes: logica 54 ; puzzel 6 ; tekst 40\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel logica maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: tellen 66 ; machine 75 ; geheugen 51\nkeuzes: tellen 23 ; machine 9 ; geheugen 68\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel geheugen maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: tellen 16 ; machine 80 ; rekenen 25\nkeuzes: tellen 49 ; machine 34 ; rekenen 17\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: taal 35 ; tekst 17 ; rekenen 45\nkeuzes: taal 19 ; tekst 53 ; rekenen 28\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: geheugen 30 ; tekst 50 ; volgorde 31\nkeuzes: geheugen 6 ; tekst 27 ; volgorde 67\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel volgorde maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: tellen 79 ; geheugen 88 ; logica 59\nkeuzes: tellen 39 ; geheugen 37 ; logica 24\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: volgorde 75 ; puzzel 83 ; geheugen 100\nkeuzes: volgorde 29 ; puzzel 12 ; geheugen 59\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel geheugen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: taal 62 ; rekenen 86 ; tekst 58\nkeuzes: taal 5 ; rekenen 33 ; tekst 62\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: puzzel 92 ; taal 29 ; rekenen 91\nkeuzes: puzzel 58 ; taal 38 ; rekenen 4\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel puzzel en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: logica 45 ; tellen 100 ; machine 74\nkeuzes: logica 27 ; tellen 23 ; machine 50\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel machine en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: puzzel 69 ; taal 2 ; volgorde 11\nkeuzes: puzzel 28 ; taal 28 ; volgorde 44\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel volgorde maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: rekenen 42 ; volgorde 94 ; tellen 71\nkeuzes: rekenen 60 ; volgorde 10 ; tellen 30\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel rekenen maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: taal 99 ; logica 62 ; rekenen 7\nkeuzes: taal 15 ; logica 55 ; rekenen 30\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel logica en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: taal 58 ; geheugen 92 ; machine 70\nkeuzes: taal 40 ; geheugen 0 ; machine 60\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel machine en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 17,
+   "opgave": "cijfers: code 84 ; machine 3 ; taal 45\nkeuzes: code 17 ; machine 2 ; taal 81\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel taal maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: tekst 91 ; taal 19 ; puzzel 61\nkeuzes: tekst 37 ; taal 29 ; puzzel 34\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: taal 82 ; tellen 38 ; machine 97\nkeuzes: taal 2 ; tellen 28 ; machine 70\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel machine en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: logica 90 ; tekst 2 ; code 94\nkeuzes: logica 38 ; tekst 17 ; code 45\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel code en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: puzzel 53 ; geheugen 91 ; code 23\nkeuzes: puzzel 2 ; geheugen 2 ; code 96\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel code maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: rekenen 80 ; code 59 ; logica 67\nkeuzes: rekenen 60 ; code 2 ; logica 38\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel rekenen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: tekst 76 ; taal 45 ; tellen 0\nkeuzes: tekst 57 ; taal 13 ; tellen 30\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: logica 43 ; volgorde 86 ; puzzel 61\nkeuzes: logica 53 ; volgorde 8 ; puzzel 39\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel logica maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: puzzel 56 ; machine 45 ; geheugen 61\nkeuzes: puzzel 58 ; machine 37 ; geheugen 5\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel puzzel maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: code 22 ; tellen 74 ; machine 5\nkeuzes: code 49 ; tellen 45 ; machine 6\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel code maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: volgorde 9 ; code 40 ; rekenen 78\nkeuzes: volgorde 44 ; code 48 ; rekenen 8\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel code maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: rekenen 8 ; logica 51 ; machine 54\nkeuzes: rekenen 27 ; logica 22 ; machine 51\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel machine maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: machine 53 ; taal 39 ; tellen 73\nkeuzes: machine 1 ; taal 10 ; tellen 89\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: tellen 8 ; volgorde 9 ; puzzel 41\nkeuzes: tellen 37 ; volgorde 12 ; puzzel 51\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel puzzel maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: tellen 77 ; logica 26 ; taal 29\nkeuzes: tellen 37 ; logica 32 ; taal 31\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: rekenen 45 ; taal 95 ; tellen 34\nkeuzes: rekenen 1 ; taal 27 ; tellen 72\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: tellen 44 ; logica 4 ; machine 43\nkeuzes: tellen 56 ; logica 28 ; machine 16\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: code 94 ; geheugen 83 ; taal 56\nkeuzes: code 31 ; geheugen 22 ; taal 47\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel taal maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: rekenen 94 ; volgorde 64 ; code 53\nkeuzes: rekenen 32 ; volgorde 56 ; code 12\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel volgorde en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: logica 79 ; taal 87 ; geheugen 71\nkeuzes: logica 46 ; taal 43 ; geheugen 11\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel logica en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: code 46 ; geheugen 27 ; tekst 59\nkeuzes: code 4 ; geheugen 22 ; tekst 74\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: tekst 23 ; geheugen 77 ; volgorde 30\nkeuzes: tekst 47 ; geheugen 25 ; volgorde 28\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: tellen 89 ; machine 96 ; volgorde 60\nkeuzes: tellen 57 ; machine 23 ; volgorde 20\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tellen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: code 83 ; logica 84 ; geheugen 64\nkeuzes: code 41 ; logica 40 ; geheugen 19\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel code en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: tellen 94 ; logica 100 ; tekst 9\nkeuzes: tellen 26 ; logica 6 ; tekst 68\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: rekenen 76 ; machine 85 ; logica 48\nkeuzes: rekenen 31 ; machine 49 ; logica 20\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel machine en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: rekenen 75 ; puzzel 95 ; geheugen 23\nkeuzes: rekenen 49 ; puzzel 44 ; geheugen 7\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel rekenen en het gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: geheugen 67 ; taal 81 ; tekst 14\nkeuzes: geheugen 25 ; taal 27 ; tekst 48\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel tekst maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: puzzel 42 ; geheugen 4 ; rekenen 77\nkeuzes: puzzel 22 ; geheugen 51 ; rekenen 27\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel geheugen maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: taal 62 ; code 32 ; logica 11\nkeuzes: taal 26 ; code 5 ; logica 69\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel logica maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 18,
+   "opgave": "cijfers: puzzel 64 ; rekenen 22 ; logica 97\nkeuzes: puzzel 33 ; rekenen 38 ; logica 29\nwaarom gaat het zo?",
+   "oplossing": "ik oefen veel rekenen maar het gaat langzaam"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: puzzel 69 ; tellen 44 ; code 40 ; geheugen 63\nwereld: puzzel 20/30 ; tellen 50/60 ; code 21/30 ; geheugen 47/60\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer code oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: machine 10 ; geheugen 82 ; tekst 38 ; code 16\nwereld: machine 24/30 ; geheugen 27/30 ; tekst 19/30 ; code 15/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: volgorde 27 ; machine 2 ; taal 34 ; puzzel 100\nwereld: volgorde 6/12 ; machine 2/12 ; taal 7/40 ; puzzel 16/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in puzzel?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: logica 58 ; puzzel 8 ; geheugen 21 ; volgorde 36\nwereld: logica 8/12 ; puzzel 9/20 ; geheugen 28/30 ; volgorde 29/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer puzzel oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: tekst 72 ; puzzel 21 ; geheugen 47 ; tellen 41\nwereld: tekst 5/30 ; puzzel 18/30 ; geheugen 9/60 ; tellen 13/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer puzzel oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: tekst 32 ; logica 23 ; machine 68 ; tellen 80\nwereld: tekst 4/40 ; logica 32/40 ; machine 11/20 ; tellen 15/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer logica oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: taal 74 ; puzzel 61 ; tekst 12 ; tellen 50\nwereld: taal 23/30 ; puzzel 19/60 ; tekst 4/60 ; tellen 15/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer tekst oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: code 37 ; tekst 24 ; rekenen 9 ; geheugen 51\nwereld: code 21/30 ; tekst 12/40 ; rekenen 15/20 ; geheugen 29/60\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer rekenen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: tekst 95 ; puzzel 35 ; rekenen 1 ; machine 90\nwereld: tekst 5/30 ; puzzel 15/30 ; rekenen 38/60 ; machine 32/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in tekst?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: taal 15 ; machine 16 ; tellen 85 ; puzzel 77\nwereld: taal 35/40 ; machine 26/30 ; tellen 18/30 ; puzzel 28/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer taal oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: tellen 88 ; geheugen 34 ; machine 32 ; logica 44\nwereld: tellen 4/30 ; geheugen 3/30 ; machine 8/60 ; logica 29/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: tellen 85 ; rekenen 25 ; volgorde 88 ; taal 93\nwereld: tellen 37/40 ; rekenen 3/40 ; volgorde 30/30 ; taal 40/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer rekenen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: logica 87 ; puzzel 31 ; tellen 41 ; machine 67\nwereld: logica 28/30 ; puzzel 5/30 ; tellen 8/20 ; machine 4/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer puzzel oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: taal 71 ; puzzel 93 ; tekst 97 ; machine 48\nwereld: taal 6/30 ; puzzel 4/20 ; tekst 2/20 ; machine 6/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in tekst?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: volgorde 57 ; rekenen 74 ; tekst 80 ; machine 79\nwereld: volgorde 1/12 ; rekenen 10/12 ; tekst 11/20 ; machine 14/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer volgorde oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: tellen 80 ; rekenen 64 ; machine 32 ; taal 74\nwereld: tellen 16/30 ; rekenen 3/30 ; machine 13/20 ; taal 16/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: geheugen 79 ; puzzel 100 ; tellen 7 ; tekst 68\nwereld: geheugen 32/40 ; puzzel 11/12 ; tellen 47/60 ; tekst 16/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in puzzel?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: logica 75 ; volgorde 76 ; rekenen 31 ; machine 92\nwereld: logica 5/20 ; volgorde 25/30 ; rekenen 39/60 ; machine 10/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in machine?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: rekenen 14 ; puzzel 28 ; logica 58 ; taal 34\nwereld: rekenen 38/40 ; puzzel 6/12 ; logica 3/12 ; taal 7/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer rekenen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: tekst 98 ; rekenen 30 ; volgorde 20 ; tellen 53\nwereld: tekst 35/40 ; rekenen 9/12 ; volgorde 52/60 ; tellen 8/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in tekst?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: taal 2 ; rekenen 5 ; tekst 63 ; logica 79\nwereld: taal 3/12 ; rekenen 12/20 ; tekst 26/60 ; logica 4/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer taal oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: rekenen 12 ; machine 53 ; logica 22 ; volgorde 17\nwereld: rekenen 9/40 ; machine 6/40 ; logica 33/60 ; volgorde 16/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer rekenen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: puzzel 37 ; machine 4 ; taal 2 ; volgorde 96\nwereld: puzzel 11/20 ; machine 10/20 ; taal 5/20 ; volgorde 15/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in volgorde?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: rekenen 84 ; tekst 53 ; machine 19 ; volgorde 77\nwereld: rekenen 22/30 ; tekst 10/12 ; machine 27/40 ; volgorde 1/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: tellen 32 ; logica 70 ; code 92 ; machine 67\nwereld: tellen 32/40 ; logica 27/40 ; code 4/20 ; machine 55/60\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in code?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: puzzel 33 ; taal 23 ; rekenen 17 ; logica 5\nwereld: puzzel 12/12 ; taal 11/30 ; rekenen 14/20 ; logica 49/60\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer logica oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: puzzel 49 ; machine 61 ; code 81 ; tellen 39\nwereld: puzzel 3/20 ; machine 2/20 ; code 7/12 ; tellen 7/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer tellen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: machine 71 ; code 95 ; logica 81 ; geheugen 92\nwereld: machine 30/30 ; code 8/12 ; logica 16/60 ; geheugen 16/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in code?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: logica 70 ; tekst 46 ; tellen 88 ; rekenen 8\nwereld: logica 37/40 ; tekst 7/20 ; tellen 19/60 ; rekenen 29/60\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer rekenen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 19,
+   "opgave": "cijfers: logica 20 ; taal 95 ; rekenen 44 ; machine 55\nwereld: logica 6/12 ; taal 16/40 ; rekenen 53/60 ; machine 6/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in taal?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: logica 64 ; tellen 51 ; tekst 65 ; machine 86\nwereld: logica 8/12 ; tellen 18/30 ; tekst 14/20 ; machine 1/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer tellen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: rekenen 84 ; tellen 62 ; machine 94 ; tekst 53\nwereld: rekenen 22/30 ; tellen 29/40 ; machine 2/20 ; tekst 23/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in machine?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: taal 3 ; volgorde 30 ; tekst 17 ; tellen 40\nwereld: taal 21/30 ; volgorde 23/40 ; tekst 5/30 ; tellen 18/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer taal oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: machine 85 ; volgorde 7 ; tellen 79 ; code 2\nwereld: machine 59/60 ; volgorde 3/12 ; tellen 9/30 ; code 25/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer code oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: machine 77 ; logica 43 ; taal 12 ; code 42\nwereld: machine 1/12 ; logica 10/12 ; taal 52/60 ; code 11/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer taal oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: volgorde 12 ; tekst 13 ; rekenen 9 ; geheugen 17\nwereld: volgorde 11/20 ; tekst 10/40 ; rekenen 20/20 ; geheugen 6/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer rekenen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: volgorde 36 ; rekenen 39 ; geheugen 24 ; machine 63\nwereld: volgorde 24/30 ; rekenen 9/12 ; geheugen 18/60 ; machine 7/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer geheugen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: geheugen 0 ; tekst 87 ; taal 3 ; tellen 39\nwereld: geheugen 41/60 ; tekst 7/12 ; taal 12/12 ; tellen 6/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer geheugen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: tekst 3 ; tellen 41 ; volgorde 53 ; code 99\nwereld: tekst 17/30 ; tellen 13/30 ; volgorde 10/12 ; code 10/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in code?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: logica 49 ; tellen 12 ; rekenen 38 ; geheugen 66\nwereld: logica 9/60 ; tellen 33/40 ; rekenen 6/12 ; geheugen 27/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer tellen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: machine 17 ; tellen 22 ; code 76 ; rekenen 0\nwereld: machine 12/12 ; tellen 13/40 ; code 9/30 ; rekenen 11/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer rekenen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: taal 13 ; puzzel 95 ; logica 48 ; tellen 84\nwereld: taal 14/20 ; puzzel 14/40 ; logica 21/40 ; tellen 19/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in puzzel?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: code 25 ; puzzel 47 ; taal 80 ; volgorde 61\nwereld: code 1/60 ; puzzel 5/12 ; taal 25/30 ; volgorde 13/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer code oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: tekst 42 ; code 60 ; taal 48 ; machine 39\nwereld: tekst 15/30 ; code 6/60 ; taal 7/12 ; machine 10/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: logica 61 ; machine 11 ; rekenen 7 ; puzzel 40\nwereld: logica 14/30 ; machine 20/20 ; rekenen 36/60 ; puzzel 26/60\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer rekenen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: geheugen 55 ; tekst 78 ; puzzel 62 ; code 73\nwereld: geheugen 17/20 ; tekst 35/40 ; puzzel 6/60 ; code 10/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer geheugen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: taal 72 ; puzzel 100 ; geheugen 6 ; machine 94\nwereld: taal 7/12 ; puzzel 44/60 ; geheugen 9/12 ; machine 9/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in puzzel?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: tellen 74 ; machine 64 ; code 1 ; rekenen 36\nwereld: tellen 7/12 ; machine 1/30 ; code 15/20 ; rekenen 20/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer code oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: logica 24 ; puzzel 66 ; tekst 35 ; tellen 42\nwereld: logica 21/40 ; puzzel 8/20 ; tekst 56/60 ; tellen 12/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer logica oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: taal 3 ; puzzel 86 ; logica 94 ; rekenen 66\nwereld: taal 48/60 ; puzzel 3/12 ; logica 6/30 ; rekenen 17/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in logica?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: rekenen 91 ; code 59 ; taal 41 ; tekst 33\nwereld: rekenen 7/12 ; code 7/30 ; taal 11/30 ; tekst 32/60\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in rekenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: machine 9 ; puzzel 4 ; logica 100 ; tellen 19\nwereld: machine 4/60 ; puzzel 60/60 ; logica 53/60 ; tellen 30/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in logica?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: tekst 77 ; rekenen 37 ; tellen 66 ; code 21\nwereld: tekst 27/40 ; rekenen 15/20 ; tellen 26/30 ; code 3/12\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer code oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: puzzel 95 ; machine 60 ; tekst 78 ; rekenen 53\nwereld: puzzel 16/40 ; machine 32/40 ; tekst 30/40 ; rekenen 11/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in puzzel?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: code 80 ; tellen 69 ; taal 44 ; tekst 1\nwereld: code 12/40 ; tellen 20/20 ; taal 31/40 ; tekst 6/30\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer tekst oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: code 89 ; puzzel 1 ; tellen 0 ; taal 30\nwereld: code 5/12 ; puzzel 54/60 ; tellen 17/20 ; taal 13/20\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer tellen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: puzzel 52 ; taal 54 ; logica 63 ; tekst 65\nwereld: puzzel 11/20 ; taal 9/12 ; logica 19/20 ; tekst 39/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer puzzel oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: rekenen 30 ; logica 46 ; puzzel 50 ; tekst 12\nwereld: rekenen 21/30 ; logica 11/30 ; puzzel 31/40 ; tekst 35/60\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer tekst oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: volgorde 87 ; puzzel 50 ; logica 35 ; machine 66\nwereld: volgorde 12/30 ; puzzel 56/60 ; logica 20/30 ; machine 31/40\nwat vraag je aan cley?",
+   "oplossing": "mag ik meer logica oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 20,
+   "opgave": "cijfers: tekst 11 ; volgorde 37 ; geheugen 99 ; puzzel 24\nwereld: tekst 26/40 ; volgorde 17/20 ; geheugen 28/60 ; puzzel 59/60\nwat vraag je aan cley?",
+   "oplossing": "mag ik dieper in geheugen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: geheugen 42 ; code 87 ; logica 49 ; volgorde 95\nwereld: geheugen 16/30 ; code 5/20 ; logica 38/60 ; volgorde 22/60\nhoe staat logica ervoor?",
+   "oplossing": "logica is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: tellen 54 ; tekst 76 ; rekenen 47 ; code 38\nwereld: tellen 25/60 ; tekst 38/40 ; rekenen 4/40 ; code 11/20\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: tellen 58 ; volgorde 13 ; tekst 49 ; logica 87\nwereld: tellen 28/30 ; volgorde 20/60 ; tekst 3/12 ; logica 53/60\nhoe staat tekst ervoor?",
+   "oplossing": "tekst is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: code 80 ; volgorde 6 ; machine 60 ; tellen 48\nwereld: code 12/30 ; volgorde 24/30 ; machine 25/60 ; tellen 12/20\nhoe staat code ervoor?",
+   "oplossing": "code is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: tellen 71 ; logica 98 ; puzzel 68 ; tekst 87\nwereld: tellen 9/12 ; logica 1/12 ; puzzel 24/30 ; tekst 10/30\nhoe staat puzzel ervoor?",
+   "oplossing": "puzzel is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: machine 40 ; logica 23 ; geheugen 77 ; tellen 35\nwereld: machine 19/20 ; logica 18/20 ; geheugen 12/60 ; tellen 37/40\nhoe staat logica ervoor?",
+   "oplossing": "logica is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: taal 26 ; code 70 ; geheugen 99 ; tellen 40\nwereld: taal 7/20 ; code 39/60 ; geheugen 59/60 ; tellen 5/20\nhoe staat code ervoor?",
+   "oplossing": "code is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: rekenen 13 ; geheugen 88 ; tellen 4 ; puzzel 1\nwereld: rekenen 3/30 ; geheugen 10/60 ; tellen 19/60 ; puzzel 3/30\nhoe staat tellen ervoor?",
+   "oplossing": "tellen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: taal 6 ; tellen 79 ; machine 92 ; volgorde 99\nwereld: taal 30/40 ; tellen 11/30 ; machine 14/40 ; volgorde 3/30\nhoe staat taal ervoor?",
+   "oplossing": "taal is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: rekenen 75 ; logica 97 ; machine 29 ; taal 8\nwereld: rekenen 10/30 ; logica 3/30 ; machine 40/40 ; taal 13/30\nhoe staat taal ervoor?",
+   "oplossing": "taal is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: logica 60 ; puzzel 63 ; tekst 49 ; machine 69\nwereld: logica 10/30 ; puzzel 3/12 ; tekst 41/60 ; machine 6/30\nhoe staat machine ervoor?",
+   "oplossing": "machine is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: logica 1 ; volgorde 25 ; geheugen 77 ; tekst 53\nwereld: logica 40/60 ; volgorde 1/20 ; geheugen 11/20 ; tekst 23/40\nhoe staat logica ervoor?",
+   "oplossing": "logica is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: tekst 13 ; geheugen 55 ; puzzel 50 ; rekenen 88\nwereld: tekst 5/12 ; geheugen 16/30 ; puzzel 4/60 ; rekenen 14/20\nhoe staat geheugen ervoor?",
+   "oplossing": "geheugen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: volgorde 18 ; machine 5 ; rekenen 70 ; taal 100\nwereld: volgorde 13/20 ; machine 1/12 ; rekenen 9/30 ; taal 8/12\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: tekst 6 ; volgorde 68 ; rekenen 90 ; puzzel 55\nwereld: tekst 28/40 ; volgorde 8/20 ; rekenen 39/40 ; puzzel 1/30\nhoe staat tekst ervoor?",
+   "oplossing": "tekst is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: tekst 76 ; logica 1 ; puzzel 96 ; tellen 44\nwereld: tekst 7/12 ; logica 53/60 ; puzzel 18/20 ; tellen 4/20\nhoe staat tellen ervoor?",
+   "oplossing": "tellen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: puzzel 31 ; tekst 39 ; tellen 91 ; volgorde 48\nwereld: puzzel 39/40 ; tekst 58/60 ; tellen 1/20 ; volgorde 6/40\nhoe staat tekst ervoor?",
+   "oplossing": "tekst is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: volgorde 95 ; code 100 ; geheugen 9 ; machine 90\nwereld: volgorde 18/20 ; code 1/12 ; geheugen 19/40 ; machine 5/40\nhoe staat geheugen ervoor?",
+   "oplossing": "geheugen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: tekst 47 ; puzzel 50 ; geheugen 4 ; code 5\nwereld: tekst 17/30 ; puzzel 2/12 ; geheugen 29/30 ; code 20/20\nhoe staat code ervoor?",
+   "oplossing": "code is vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: rekenen 34 ; machine 26 ; code 68 ; logica 53\nwereld: rekenen 1/60 ; machine 2/12 ; code 37/40 ; logica 3/20\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: tellen 36 ; rekenen 81 ; tekst 71 ; taal 41\nwereld: tellen 19/20 ; rekenen 14/30 ; tekst 38/40 ; taal 16/40\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: machine 54 ; geheugen 72 ; puzzel 28 ; tekst 40\nwereld: machine 56/60 ; geheugen 49/60 ; puzzel 8/30 ; tekst 10/60\nhoe staat machine ervoor?",
+   "oplossing": "machine is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: code 32 ; logica 41 ; tellen 15 ; volgorde 74\nwereld: code 2/20 ; logica 29/60 ; tellen 58/60 ; volgorde 27/30\nhoe staat tellen ervoor?",
+   "oplossing": "tellen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: code 82 ; puzzel 35 ; machine 92 ; volgorde 62\nwereld: code 21/60 ; puzzel 5/20 ; machine 7/12 ; volgorde 29/40\nhoe staat code ervoor?",
+   "oplossing": "code is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: rekenen 15 ; tellen 50 ; puzzel 98 ; logica 78\nwereld: rekenen 5/12 ; tellen 8/40 ; puzzel 11/20 ; logica 2/60\nhoe staat logica ervoor?",
+   "oplossing": "logica is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: logica 71 ; puzzel 52 ; geheugen 74 ; tellen 39\nwereld: logica 6/30 ; puzzel 21/40 ; geheugen 17/40 ; tellen 14/60\nhoe staat logica ervoor?",
+   "oplossing": "logica is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: logica 62 ; puzzel 74 ; volgorde 21 ; rekenen 82\nwereld: logica 19/60 ; puzzel 54/60 ; volgorde 9/12 ; rekenen 11/20\nhoe staat puzzel ervoor?",
+   "oplossing": "puzzel is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: geheugen 96 ; puzzel 99 ; tekst 75 ; logica 33\nwereld: geheugen 27/40 ; puzzel 15/20 ; tekst 7/60 ; logica 24/40\nhoe staat logica ervoor?",
+   "oplossing": "logica is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: geheugen 47 ; machine 71 ; rekenen 75 ; puzzel 33\nwereld: geheugen 52/60 ; machine 34/40 ; rekenen 5/20 ; puzzel 2/12\nhoe staat geheugen ervoor?",
+   "oplossing": "geheugen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 21,
+   "opgave": "cijfers: tellen 95 ; geheugen 37 ; logica 38 ; volgorde 51\nwereld: tellen 16/20 ; geheugen 25/30 ; logica 21/40 ; volgorde 25/40\nhoe staat volgorde ervoor?",
+   "oplossing": "volgorde is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: tekst 95 ; logica 6 ; taal 81 ; volgorde 30\nwereld: tekst 3/30 ; logica 36/40 ; taal 9/12 ; volgorde 11/12\nhoe staat volgorde ervoor?",
+   "oplossing": "volgorde is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: logica 18 ; geheugen 57 ; rekenen 66 ; tekst 37\nwereld: logica 3/20 ; geheugen 10/20 ; rekenen 51/60 ; tekst 26/40\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: puzzel 66 ; tellen 76 ; taal 25 ; rekenen 92\nwereld: puzzel 15/20 ; tellen 38/60 ; taal 1/12 ; rekenen 20/30\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: logica 47 ; puzzel 63 ; taal 96 ; rekenen 18\nwereld: logica 3/20 ; puzzel 28/30 ; taal 37/40 ; rekenen 10/12\nhoe staat logica ervoor?",
+   "oplossing": "logica is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: geheugen 2 ; logica 81 ; taal 9 ; rekenen 7\nwereld: geheugen 7/20 ; logica 41/60 ; taal 40/60 ; rekenen 12/30\nhoe staat geheugen ervoor?",
+   "oplossing": "geheugen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: tekst 2 ; taal 14 ; volgorde 92 ; geheugen 18\nwereld: tekst 22/30 ; taal 9/12 ; volgorde 2/60 ; geheugen 10/30\nhoe staat taal ervoor?",
+   "oplossing": "taal is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: puzzel 32 ; tekst 18 ; code 48 ; logica 0\nwereld: puzzel 2/12 ; tekst 3/20 ; code 9/12 ; logica 7/12\nhoe staat tekst ervoor?",
+   "oplossing": "tekst is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: puzzel 6 ; rekenen 78 ; machine 41 ; code 88\nwereld: puzzel 13/20 ; rekenen 3/20 ; machine 17/20 ; code 12/12\nhoe staat code ervoor?",
+   "oplossing": "code is vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: volgorde 61 ; code 62 ; machine 38 ; rekenen 73\nwereld: volgorde 15/40 ; code 28/60 ; machine 17/40 ; rekenen 6/12\nhoe staat volgorde ervoor?",
+   "oplossing": "volgorde is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: code 45 ; logica 82 ; taal 6 ; rekenen 96\nwereld: code 39/60 ; logica 5/20 ; taal 3/20 ; rekenen 7/20\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: machine 24 ; rekenen 29 ; tellen 51 ; geheugen 18\nwereld: machine 23/30 ; rekenen 29/40 ; tellen 35/60 ; geheugen 1/12\nhoe staat machine ervoor?",
+   "oplossing": "machine is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: puzzel 94 ; tellen 59 ; volgorde 39 ; logica 33\nwereld: puzzel 25/40 ; tellen 13/40 ; volgorde 25/30 ; logica 13/40\nhoe staat volgorde ervoor?",
+   "oplossing": "volgorde is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: volgorde 14 ; tekst 96 ; rekenen 41 ; machine 47\nwereld: volgorde 39/40 ; tekst 6/20 ; rekenen 33/40 ; machine 37/40\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: puzzel 71 ; geheugen 99 ; volgorde 47 ; taal 75\nwereld: puzzel 15/40 ; geheugen 9/20 ; volgorde 43/60 ; taal 8/30\nhoe staat puzzel ervoor?",
+   "oplossing": "puzzel is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: rekenen 61 ; volgorde 80 ; logica 9 ; geheugen 47\nwereld: rekenen 3/12 ; volgorde 14/40 ; logica 39/40 ; geheugen 10/20\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: tellen 43 ; volgorde 82 ; taal 48 ; tekst 47\nwereld: tellen 54/60 ; volgorde 4/20 ; taal 19/30 ; tekst 38/40\nhoe staat tekst ervoor?",
+   "oplossing": "tekst is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: code 89 ; geheugen 72 ; machine 14 ; taal 48\nwereld: code 31/40 ; geheugen 15/40 ; machine 30/30 ; taal 19/40\nhoe staat machine ervoor?",
+   "oplossing": "machine is vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: volgorde 79 ; taal 1 ; tellen 62 ; geheugen 6\nwereld: volgorde 53/60 ; taal 18/20 ; tellen 14/60 ; geheugen 7/60\nhoe staat geheugen ervoor?",
+   "oplossing": "geheugen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: rekenen 1 ; volgorde 80 ; tekst 82 ; logica 24\nwereld: rekenen 1/30 ; volgorde 9/40 ; tekst 40/40 ; logica 5/30\nhoe staat tekst ervoor?",
+   "oplossing": "tekst is vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: tekst 27 ; machine 85 ; taal 69 ; puzzel 36\nwereld: tekst 50/60 ; machine 37/60 ; taal 1/30 ; puzzel 20/20\nhoe staat puzzel ervoor?",
+   "oplossing": "puzzel is vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: logica 11 ; machine 80 ; tellen 8 ; code 16\nwereld: logica 7/40 ; machine 19/20 ; tellen 18/30 ; code 19/30\nhoe staat logica ervoor?",
+   "oplossing": "logica is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: geheugen 74 ; volgorde 77 ; taal 0 ; tekst 11\nwereld: geheugen 12/20 ; volgorde 11/20 ; taal 22/30 ; tekst 15/20\nhoe staat volgorde ervoor?",
+   "oplossing": "volgorde is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: volgorde 19 ; machine 83 ; tellen 55 ; geheugen 88\nwereld: volgorde 28/40 ; machine 3/12 ; tellen 11/30 ; geheugen 1/30\nhoe staat volgorde ervoor?",
+   "oplossing": "volgorde is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: logica 4 ; code 77 ; rekenen 66 ; taal 38\nwereld: logica 10/40 ; code 14/60 ; rekenen 17/30 ; taal 1/60\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: tekst 60 ; code 77 ; logica 13 ; tellen 9\nwereld: tekst 14/30 ; code 37/40 ; logica 8/12 ; tellen 1/12\nhoe staat logica ervoor?",
+   "oplossing": "logica is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: code 50 ; volgorde 39 ; geheugen 68 ; rekenen 63\nwereld: code 18/40 ; volgorde 25/60 ; geheugen 13/30 ; rekenen 24/30\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en gaat"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: machine 27 ; tekst 4 ; puzzel 76 ; tellen 59\nwereld: machine 30/30 ; tekst 8/12 ; puzzel 11/12 ; tellen 40/40\nhoe staat tellen ervoor?",
+   "oplossing": "tellen is vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: volgorde 71 ; puzzel 9 ; rekenen 37 ; logica 83\nwereld: volgorde 12/60 ; puzzel 53/60 ; rekenen 16/30 ; logica 46/60\nhoe staat rekenen ervoor?",
+   "oplossing": "rekenen is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: tekst 94 ; puzzel 11 ; code 99 ; volgorde 47\nwereld: tekst 11/60 ; puzzel 11/30 ; code 3/30 ; volgorde 6/20\nhoe staat tekst ervoor?",
+   "oplossing": "tekst is niet vol en gaat goed"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 22,
+   "opgave": "cijfers: rekenen 70 ; machine 82 ; tekst 97 ; code 8\nwereld: rekenen 2/60 ; machine 14/40 ; tekst 16/20 ; code 29/40\nhoe staat code ervoor?",
+   "oplossing": "code is niet vol en is moeilijk"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: volgorde 39 ; taal 41 ; machine 89 ; rekenen 68\ngisteren: volgorde 34 ; taal 15 ; machine 88 ; rekenen 80\nwereld: volgorde 5/60 ; taal 25/40 ; machine 9/12 ; rekenen 5/12\nvertel hoe het gaat",
+   "oplossing": "machine gaat en volgorde gaat beter dan gisteren en mag ik meer volgorde oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: tekst 44 ; code 2 ; logica 65 ; taal 28\ngisteren: tekst 60 ; code 4 ; logica 61 ; taal 72\nwereld: tekst 54/60 ; code 12/12 ; logica 25/30 ; taal 16/30\nvertel hoe het gaat",
+   "oplossing": "logica gaat en code gaat slechter dan gisteren en mag ik meer code oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: code 94 ; volgorde 63 ; machine 18 ; rekenen 37\ngisteren: code 100 ; volgorde 5 ; machine 74 ; rekenen 28\nwereld: code 35/40 ; volgorde 11/12 ; machine 20/20 ; rekenen 17/30\nvertel hoe het gaat",
+   "oplossing": "code gaat goed en machine gaat slechter dan gisteren en mag ik dieper in code?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: puzzel 70 ; logica 62 ; rekenen 97 ; code 40\ngisteren: puzzel 86 ; logica 9 ; rekenen 47 ; code 80\nwereld: puzzel 12/20 ; logica 39/40 ; rekenen 17/20 ; code 11/12\nvertel hoe het gaat",
+   "oplossing": "rekenen gaat goed en code gaat slechter dan gisteren en mag ik dieper in rekenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: machine 96 ; puzzel 78 ; logica 60 ; tekst 59\ngisteren: machine 34 ; puzzel 65 ; logica 3 ; tekst 54\nwereld: machine 32/40 ; puzzel 23/40 ; logica 17/20 ; tekst 24/30\nvertel hoe het gaat",
+   "oplossing": "machine gaat goed en tekst gaat beter dan gisteren en mag ik dieper in machine?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: logica 35 ; code 16 ; puzzel 64 ; rekenen 33\ngisteren: logica 92 ; code 64 ; puzzel 81 ; rekenen 58\nwereld: logica 11/20 ; code 14/30 ; puzzel 7/12 ; rekenen 4/12\nvertel hoe het gaat",
+   "oplossing": "puzzel gaat en code gaat slechter dan gisteren en mag ik meer code oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: tellen 62 ; taal 10 ; tekst 47 ; logica 9\ngisteren: tellen 36 ; taal 53 ; tekst 24 ; logica 16\nwereld: tellen 57/60 ; taal 59/60 ; tekst 4/60 ; logica 7/30\nvertel hoe het gaat",
+   "oplossing": "tellen gaat en logica gaat slechter dan gisteren en mag ik meer logica oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: tellen 97 ; logica 86 ; puzzel 43 ; rekenen 29\ngisteren: tellen 50 ; logica 41 ; puzzel 9 ; rekenen 22\nwereld: tellen 9/12 ; logica 7/12 ; puzzel 9/12 ; rekenen 2/12\nvertel hoe het gaat",
+   "oplossing": "tellen gaat goed en rekenen gaat beter dan gisteren en mag ik dieper in tellen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: volgorde 91 ; puzzel 84 ; logica 4 ; tellen 38\ngisteren: volgorde 53 ; puzzel 20 ; logica 13 ; tellen 27\nwereld: volgorde 37/40 ; puzzel 23/30 ; logica 7/20 ; tellen 43/60\nvertel hoe het gaat",
+   "oplossing": "volgorde gaat goed en logica gaat slechter dan gisteren en mag ik dieper in volgorde?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: tellen 80 ; puzzel 20 ; logica 45 ; volgorde 30\ngisteren: tellen 10 ; puzzel 55 ; logica 15 ; volgorde 1\nwereld: tellen 55/60 ; puzzel 25/40 ; logica 18/40 ; volgorde 19/40\nvertel hoe het gaat",
+   "oplossing": "tellen gaat en puzzel gaat slechter dan gisteren en mag ik meer puzzel oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: tellen 28 ; taal 13 ; puzzel 62 ; machine 96\ngisteren: tellen 3 ; taal 95 ; puzzel 3 ; machine 67\nwereld: tellen 37/60 ; taal 24/60 ; puzzel 25/40 ; machine 14/20\nvertel hoe het gaat",
+   "oplossing": "machine gaat goed en taal gaat slechter dan gisteren en mag ik dieper in machine?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: puzzel 18 ; tellen 52 ; code 85 ; machine 14\ngisteren: puzzel 11 ; tellen 24 ; code 97 ; machine 65\nwereld: puzzel 12/60 ; tellen 39/60 ; code 1/30 ; machine 9/30\nvertel hoe het gaat",
+   "oplossing": "code gaat en machine gaat slechter dan gisteren en mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: logica 29 ; volgorde 50 ; puzzel 8 ; code 21\ngisteren: logica 86 ; volgorde 13 ; puzzel 13 ; code 89\nwereld: logica 9/12 ; volgorde 16/60 ; puzzel 24/30 ; code 11/12\nvertel hoe het gaat",
+   "oplossing": "volgorde is moeilijk en puzzel gaat slechter dan gisteren en mag ik meer puzzel oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: tekst 23 ; machine 56 ; logica 27 ; rekenen 0\ngisteren: tekst 75 ; machine 43 ; logica 0 ; rekenen 97\nwereld: tekst 26/60 ; machine 12/12 ; logica 9/20 ; rekenen 16/40\nvertel hoe het gaat",
+   "oplossing": "machine is moeilijk en rekenen gaat slechter dan gisteren en mag ik meer rekenen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: code 46 ; logica 66 ; machine 20 ; volgorde 26\ngisteren: code 87 ; logica 30 ; machine 99 ; volgorde 73\nwereld: code 8/30 ; logica 8/60 ; machine 58/60 ; volgorde 11/30\nvertel hoe het gaat",
+   "oplossing": "logica gaat en machine gaat slechter dan gisteren en mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: tekst 51 ; geheugen 65 ; puzzel 61 ; rekenen 86\ngisteren: tekst 93 ; geheugen 86 ; puzzel 48 ; rekenen 72\nwereld: tekst 28/30 ; geheugen 15/60 ; puzzel 2/20 ; rekenen 23/60\nvertel hoe het gaat",
+   "oplossing": "rekenen gaat en tekst gaat slechter dan gisteren en mag ik meer tekst oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: geheugen 31 ; tellen 19 ; rekenen 63 ; machine 5\ngisteren: geheugen 6 ; tellen 83 ; rekenen 12 ; machine 12\nwereld: geheugen 1/40 ; tellen 53/60 ; rekenen 2/30 ; machine 6/12\nvertel hoe het gaat",
+   "oplossing": "rekenen gaat en machine gaat slechter dan gisteren en mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: geheugen 66 ; tekst 7 ; tellen 83 ; machine 34\ngisteren: geheugen 33 ; tekst 26 ; tellen 36 ; machine 14\nwereld: geheugen 13/40 ; tekst 34/40 ; tellen 11/20 ; machine 8/40\nvertel hoe het gaat",
+   "oplossing": "tellen gaat en tekst gaat slechter dan gisteren en mag ik meer tekst oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: logica 85 ; puzzel 96 ; taal 80 ; volgorde 62\ngisteren: logica 7 ; puzzel 3 ; taal 14 ; volgorde 76\nwereld: logica 6/12 ; puzzel 20/20 ; taal 59/60 ; volgorde 16/20\nvertel hoe het gaat",
+   "oplossing": "puzzel gaat goed en volgorde gaat slechter dan gisteren en mag ik meer volgorde oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: rekenen 55 ; volgorde 96 ; geheugen 5 ; logica 91\ngisteren: rekenen 78 ; volgorde 19 ; geheugen 20 ; logica 62\nwereld: rekenen 30/30 ; volgorde 47/60 ; geheugen 10/12 ; logica 2/12\nvertel hoe het gaat",
+   "oplossing": "volgorde gaat goed en geheugen gaat slechter dan gisteren en mag ik dieper in volgorde?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: code 12 ; machine 95 ; logica 61 ; tellen 14\ngisteren: code 58 ; machine 13 ; logica 39 ; tellen 42\nwereld: code 18/20 ; machine 5/12 ; logica 10/30 ; tellen 3/30\nvertel hoe het gaat",
+   "oplossing": "machine gaat goed en code gaat slechter dan gisteren en mag ik dieper in machine?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: code 3 ; machine 6 ; logica 4 ; tellen 29\ngisteren: code 49 ; machine 70 ; logica 39 ; tellen 64\nwereld: code 8/30 ; machine 2/30 ; logica 13/30 ; tellen 6/20\nvertel hoe het gaat",
+   "oplossing": "tellen is moeilijk en code gaat slechter dan gisteren en mag ik meer code oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: logica 45 ; rekenen 96 ; geheugen 22 ; machine 75\ngisteren: logica 73 ; rekenen 61 ; geheugen 60 ; machine 100\nwereld: logica 13/30 ; rekenen 32/60 ; geheugen 3/20 ; machine 7/30\nvertel hoe het gaat",
+   "oplossing": "rekenen gaat goed en geheugen gaat slechter dan gisteren en mag ik dieper in rekenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: taal 83 ; logica 6 ; tekst 74 ; machine 100\ngisteren: taal 59 ; logica 0 ; tekst 20 ; machine 89\nwereld: taal 12/60 ; logica 10/60 ; tekst 30/30 ; machine 4/60\nvertel hoe het gaat",
+   "oplossing": "machine gaat goed en logica gaat beter dan gisteren en mag ik dieper in machine?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: puzzel 95 ; code 22 ; taal 98 ; tekst 26\ngisteren: puzzel 23 ; code 1 ; taal 16 ; tekst 65\nwereld: puzzel 1/12 ; code 22/40 ; taal 8/12 ; tekst 5/40\nvertel hoe het gaat",
+   "oplossing": "taal gaat goed en code gaat beter dan gisteren en mag ik dieper in taal?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: tellen 18 ; geheugen 2 ; puzzel 84 ; tekst 86\ngisteren: tellen 68 ; geheugen 50 ; puzzel 90 ; tekst 69\nwereld: tellen 4/20 ; geheugen 2/12 ; puzzel 29/60 ; tekst 19/60\nvertel hoe het gaat",
+   "oplossing": "tekst gaat en geheugen gaat slechter dan gisteren en mag ik meer geheugen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: volgorde 51 ; tellen 91 ; code 36 ; geheugen 6\ngisteren: volgorde 62 ; tellen 39 ; code 53 ; geheugen 10\nwereld: volgorde 1/12 ; tellen 4/60 ; code 6/30 ; geheugen 37/40\nvertel hoe het gaat",
+   "oplossing": "tellen gaat goed en geheugen gaat slechter dan gisteren en mag ik dieper in tellen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: rekenen 42 ; machine 25 ; tekst 11 ; logica 22\ngisteren: rekenen 74 ; machine 92 ; tekst 97 ; logica 66\nwereld: rekenen 24/40 ; machine 11/12 ; tekst 7/12 ; logica 13/40\nvertel hoe het gaat",
+   "oplossing": "rekenen is moeilijk en tekst gaat slechter dan gisteren en mag ik meer tekst oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: code 53 ; puzzel 96 ; machine 11 ; tekst 21\ngisteren: code 11 ; puzzel 69 ; machine 55 ; tekst 74\nwereld: code 7/12 ; puzzel 17/30 ; machine 12/12 ; tekst 4/20\nvertel hoe het gaat",
+   "oplossing": "puzzel gaat goed en machine gaat slechter dan gisteren en mag ik dieper in puzzel?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 23,
+   "opgave": "cijfers: logica 16 ; taal 93 ; tellen 57 ; geheugen 1\ngisteren: logica 51 ; taal 83 ; tellen 32 ; geheugen 78\nwereld: logica 13/20 ; taal 26/30 ; tellen 8/12 ; geheugen 15/30\nvertel hoe het gaat",
+   "oplossing": "taal gaat goed en geheugen gaat slechter dan gisteren en mag ik dieper in taal?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: tekst 25 ; logica 39 ; machine 15 ; taal 97\ngisteren: tekst 99 ; logica 57 ; machine 60 ; taal 92\nwereld: tekst 31/40 ; logica 32/60 ; machine 5/12 ; taal 12/12\nvertel hoe het gaat",
+   "oplossing": "taal gaat goed en machine gaat slechter dan gisteren en mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: volgorde 32 ; tellen 48 ; puzzel 83 ; tekst 84\ngisteren: volgorde 36 ; tellen 69 ; puzzel 35 ; tekst 39\nwereld: volgorde 28/30 ; tellen 13/40 ; puzzel 35/40 ; tekst 2/40\nvertel hoe het gaat",
+   "oplossing": "tekst gaat en volgorde gaat slechter dan gisteren en mag ik meer volgorde oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: rekenen 100 ; geheugen 97 ; logica 63 ; code 54\ngisteren: rekenen 33 ; geheugen 24 ; logica 20 ; code 68\nwereld: rekenen 35/40 ; geheugen 18/20 ; logica 1/12 ; code 4/30\nvertel hoe het gaat",
+   "oplossing": "rekenen gaat goed en code gaat slechter dan gisteren en mag ik dieper in rekenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: geheugen 35 ; logica 62 ; volgorde 98 ; machine 23\ngisteren: geheugen 24 ; logica 72 ; volgorde 32 ; machine 58\nwereld: geheugen 11/60 ; logica 7/12 ; volgorde 20/20 ; machine 19/20\nvertel hoe het gaat",
+   "oplossing": "volgorde gaat goed en machine gaat slechter dan gisteren en mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: rekenen 87 ; taal 40 ; tellen 81 ; code 67\ngisteren: rekenen 62 ; taal 49 ; tellen 74 ; code 41\nwereld: rekenen 2/30 ; taal 32/60 ; tellen 26/60 ; code 8/30\nvertel hoe het gaat",
+   "oplossing": "rekenen gaat en taal gaat slechter dan gisteren en mag ik meer taal oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: volgorde 6 ; geheugen 45 ; rekenen 72 ; code 39\ngisteren: volgorde 57 ; geheugen 0 ; rekenen 79 ; code 69\nwereld: volgorde 2/12 ; geheugen 19/20 ; rekenen 40/40 ; code 39/60\nvertel hoe het gaat",
+   "oplossing": "rekenen gaat en volgorde gaat slechter dan gisteren en mag ik meer volgorde oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: puzzel 13 ; rekenen 16 ; logica 24 ; tekst 96\ngisteren: puzzel 81 ; rekenen 88 ; logica 28 ; tekst 5\nwereld: puzzel 10/60 ; rekenen 8/40 ; logica 22/40 ; tekst 49/60\nvertel hoe het gaat",
+   "oplossing": "tekst gaat goed en puzzel gaat slechter dan gisteren en mag ik dieper in tekst?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: code 18 ; machine 4 ; tellen 33 ; tekst 64\ngisteren: code 37 ; machine 87 ; tellen 73 ; tekst 41\nwereld: code 14/20 ; machine 8/30 ; tellen 30/30 ; tekst 2/12\nvertel hoe het gaat",
+   "oplossing": "tekst gaat en machine gaat slechter dan gisteren en mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: logica 56 ; puzzel 13 ; tellen 42 ; tekst 22\ngisteren: logica 55 ; puzzel 77 ; tellen 9 ; tekst 33\nwereld: logica 24/30 ; puzzel 43/60 ; tellen 11/40 ; tekst 10/60\nvertel hoe het gaat",
+   "oplossing": "logica is moeilijk en puzzel gaat slechter dan gisteren en mag ik meer puzzel oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: tellen 31 ; machine 85 ; tekst 54 ; logica 25\ngisteren: tellen 98 ; machine 23 ; tekst 59 ; logica 58\nwereld: tellen 50/60 ; machine 9/20 ; tekst 1/12 ; logica 15/20\nvertel hoe het gaat",
+   "oplossing": "machine gaat en logica gaat slechter dan gisteren en mag ik meer logica oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: puzzel 92 ; tellen 39 ; tekst 36 ; taal 90\ngisteren: puzzel 69 ; tellen 65 ; tekst 75 ; taal 99\nwereld: puzzel 23/30 ; tellen 15/60 ; tekst 16/30 ; taal 21/60\nvertel hoe het gaat",
+   "oplossing": "puzzel gaat goed en tekst gaat slechter dan gisteren en mag ik dieper in puzzel?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: logica 33 ; puzzel 31 ; geheugen 0 ; machine 21\ngisteren: logica 86 ; puzzel 51 ; geheugen 51 ; machine 87\nwereld: logica 18/40 ; puzzel 10/12 ; geheugen 34/40 ; machine 45/60\nvertel hoe het gaat",
+   "oplossing": "logica is moeilijk en geheugen gaat slechter dan gisteren en mag ik meer geheugen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: volgorde 44 ; tellen 19 ; puzzel 93 ; geheugen 1\ngisteren: volgorde 10 ; tellen 82 ; puzzel 48 ; geheugen 27\nwereld: volgorde 7/20 ; tellen 38/40 ; puzzel 39/60 ; geheugen 38/60\nvertel hoe het gaat",
+   "oplossing": "puzzel gaat goed en geheugen gaat slechter dan gisteren en mag ik dieper in puzzel?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: geheugen 78 ; rekenen 65 ; volgorde 48 ; logica 20\ngisteren: geheugen 50 ; rekenen 86 ; volgorde 58 ; logica 82\nwereld: geheugen 15/60 ; rekenen 10/12 ; volgorde 5/12 ; logica 40/60\nvertel hoe het gaat",
+   "oplossing": "geheugen gaat en logica gaat slechter dan gisteren en mag ik meer logica oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: taal 58 ; machine 83 ; volgorde 4 ; tellen 38\ngisteren: taal 89 ; machine 27 ; volgorde 34 ; tellen 4\nwereld: taal 8/40 ; machine 12/12 ; volgorde 4/20 ; tellen 4/30\nvertel hoe het gaat",
+   "oplossing": "machine gaat en volgorde gaat slechter dan gisteren en mag ik meer volgorde oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: machine 86 ; tellen 92 ; rekenen 31 ; code 37\ngisteren: machine 75 ; tellen 81 ; rekenen 80 ; code 29\nwereld: machine 12/30 ; tellen 56/60 ; rekenen 27/40 ; code 15/40\nvertel hoe het gaat",
+   "oplossing": "tellen gaat goed en rekenen gaat slechter dan gisteren en mag ik dieper in tellen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: taal 57 ; machine 10 ; geheugen 81 ; logica 37\ngisteren: taal 94 ; machine 85 ; geheugen 4 ; logica 88\nwereld: taal 9/60 ; machine 8/12 ; geheugen 24/60 ; logica 28/60\nvertel hoe het gaat",
+   "oplossing": "geheugen gaat en machine gaat slechter dan gisteren en mag ik meer machine oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: logica 38 ; geheugen 34 ; puzzel 98 ; taal 78\ngisteren: logica 98 ; geheugen 92 ; puzzel 17 ; taal 71\nwereld: logica 21/30 ; geheugen 20/60 ; puzzel 40/60 ; taal 27/30\nvertel hoe het gaat",
+   "oplossing": "puzzel gaat goed en geheugen gaat slechter dan gisteren en mag ik dieper in puzzel?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: rekenen 62 ; tekst 63 ; geheugen 33 ; logica 24\ngisteren: rekenen 95 ; tekst 4 ; geheugen 21 ; logica 94\nwereld: rekenen 4/20 ; tekst 16/40 ; geheugen 51/60 ; logica 14/20\nvertel hoe het gaat",
+   "oplossing": "tekst gaat en logica gaat slechter dan gisteren en mag ik meer logica oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: logica 4 ; volgorde 5 ; geheugen 56 ; machine 20\ngisteren: logica 92 ; volgorde 41 ; geheugen 89 ; machine 68\nwereld: logica 5/12 ; volgorde 47/60 ; geheugen 22/40 ; machine 12/12\nvertel hoe het gaat",
+   "oplossing": "geheugen is moeilijk en logica gaat slechter dan gisteren en mag ik meer logica oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: geheugen 69 ; tekst 95 ; taal 51 ; machine 16\ngisteren: geheugen 4 ; tekst 93 ; taal 6 ; machine 69\nwereld: geheugen 6/20 ; tekst 10/12 ; taal 22/40 ; machine 52/60\nvertel hoe het gaat",
+   "oplossing": "tekst gaat goed en machine gaat slechter dan gisteren en mag ik dieper in tekst?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: puzzel 57 ; volgorde 97 ; taal 27 ; tellen 15\ngisteren: puzzel 32 ; volgorde 82 ; taal 43 ; tellen 63\nwereld: puzzel 3/30 ; volgorde 3/30 ; taal 17/30 ; tellen 2/30\nvertel hoe het gaat",
+   "oplossing": "volgorde gaat goed en tellen gaat slechter dan gisteren en mag ik dieper in volgorde?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: geheugen 3 ; tekst 84 ; machine 65 ; volgorde 18\ngisteren: geheugen 89 ; tekst 34 ; machine 0 ; volgorde 20\nwereld: geheugen 11/20 ; tekst 34/60 ; machine 4/20 ; volgorde 26/60\nvertel hoe het gaat",
+   "oplossing": "tekst gaat en geheugen gaat slechter dan gisteren en mag ik meer geheugen oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: machine 19 ; tellen 71 ; taal 85 ; tekst 7\ngisteren: machine 55 ; tellen 8 ; taal 32 ; tekst 64\nwereld: machine 49/60 ; tellen 22/30 ; taal 12/60 ; tekst 15/30\nvertel hoe het gaat",
+   "oplossing": "taal gaat en tekst gaat slechter dan gisteren en mag ik meer tekst oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: logica 71 ; machine 39 ; puzzel 25 ; code 66\ngisteren: logica 13 ; machine 63 ; puzzel 81 ; code 18\nwereld: logica 16/20 ; machine 33/40 ; puzzel 37/40 ; code 46/60\nvertel hoe het gaat",
+   "oplossing": "logica gaat en puzzel gaat slechter dan gisteren en mag ik meer puzzel oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: machine 20 ; geheugen 25 ; tellen 85 ; volgorde 99\ngisteren: machine 82 ; geheugen 1 ; tellen 83 ; volgorde 41\nwereld: machine 6/30 ; geheugen 17/20 ; tellen 18/20 ; volgorde 27/30\nvertel hoe het gaat",
+   "oplossing": "volgorde gaat goed en machine gaat slechter dan gisteren en mag ik dieper in volgorde?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: taal 22 ; rekenen 77 ; code 33 ; machine 74\ngisteren: taal 31 ; rekenen 51 ; code 90 ; machine 97\nwereld: taal 8/12 ; rekenen 53/60 ; code 7/30 ; machine 17/20\nvertel hoe het gaat",
+   "oplossing": "rekenen gaat en taal gaat slechter dan gisteren en mag ik meer taal oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: puzzel 8 ; geheugen 97 ; tellen 1 ; taal 44\ngisteren: puzzel 0 ; geheugen 60 ; tellen 34 ; taal 13\nwereld: puzzel 2/60 ; geheugen 24/30 ; tellen 30/30 ; taal 27/60\nvertel hoe het gaat",
+   "oplossing": "geheugen gaat goed en tellen gaat slechter dan gisteren en mag ik dieper in geheugen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: rekenen 68 ; puzzel 86 ; volgorde 67 ; taal 8\ngisteren: rekenen 93 ; puzzel 7 ; volgorde 59 ; taal 17\nwereld: rekenen 22/40 ; puzzel 36/60 ; volgorde 2/30 ; taal 25/60\nvertel hoe het gaat",
+   "oplossing": "puzzel gaat en taal gaat slechter dan gisteren en mag ik meer taal oefenen?"
+  },
+  {
+   "familie": "zeggen",
+   "graad": 24,
+   "opgave": "cijfers: code 100 ; volgorde 7 ; tellen 5 ; tekst 58\ngisteren: code 13 ; volgorde 80 ; tellen 31 ; tekst 90\nwereld: code 19/20 ; volgorde 1/20 ; tellen 14/20 ; tekst 2/20\nvertel hoe het gaat",
+   "oplossing": "code gaat goed en tellen gaat slechter dan gisteren en mag ik dieper in code?"
+  }
+ ]
+}
