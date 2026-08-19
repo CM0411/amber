@@ -77,11 +77,22 @@ opruim() {
     return 0
 }
 
+# Staat de NAS aan? Eén keer kloppen, en dat antwoord hieronder overal
+# gebruiken. Élke aanraking van /mnt/truenas start de automount, en die loopt
+# dan 90 s in een timeout en zet `mnt-truenas.mount` op **failed** — waarna
+# een échte storing niet meer opvalt in `systemctl --failed`. Dus ook een
+# onschuldige `test -d` in de opruimlus hieronder mag er niet aan zitten
+# (19 aug 2026: precies daar ging het mis nadat de schrijfkant al geklopt had).
+nas_aan=0
+timeout 5 ping -c 1 -W 2 "$NAS_HOST" >/dev/null 2>&1 && nas_aan=1
+
 # Restanten van een afgebroken vorige keer opruimen (de trap mist als het
 # proces gedood wordt). Ouder dan zes uur, dus nooit de lopende back-up.
 timeout 60 find /home/arch -maxdepth 1 -type f -name '.amber-backup.*.tar.gz' \
     -mmin +360 ! -samefile "$tijdelijk" -delete 2>/dev/null
-for map in "$DATA" "$NAS" "$DL360"; do
+opruimmappen=("$DATA" "$DL360")
+(( nas_aan )) && opruimmappen+=("$NAS")
+for map in "${opruimmappen[@]}"; do
     timeout 30 test -d "$map" 2>/dev/null || continue
     timeout 60 find "$map" -maxdepth 1 -type f -name "$PREFIX-*.tar.gz.deel" \
         -mmin +360 -delete 2>/dev/null
@@ -143,10 +154,8 @@ schrijf_map() {
 
 schrijf_map "$DATA"
 
-# De NAS staat meestal uit. Het pad zelf aanraken start de automount, en die
-# mislukt dan — waarna mnt-truenas.mount permanent op "failed" staat en een
-# échte storing niet meer opvalt in `systemctl --failed`. Dus eerst kloppen.
-if timeout 5 ping -c 1 -W 2 "$NAS_HOST" >/dev/null 2>&1; then
+# De NAS staat meestal uit; er is bovenaan al één keer geklopt.
+if (( nas_aan )); then
     schrijf_map "$NAS"
 else
     echo "overgeslagen (uit): de NAS"

@@ -38,11 +38,24 @@ BEWAAR_GB=360                   # ruimte laten voor het halffabricaat én de Z49
 BEWAAR_AANTAL_THUIS=6           # het vangnet staat op dezelfde schijf als de bron
 BEWAAR_GB_THUIS=60              # — dat is geen back-up, dus houd het klein
 
+NAS=/mnt/truenas/amber              # de NAS op 192.168.1.149 — staat meestal uit
+NAS_HOST=192.168.1.149
+
 BESTEMMINGEN=(
     /home/arch/amber-snapshots      # zelfde schijf: vangnet, geen back-up
     /mnt/opslag/amber               # de RAID10-array van vier Seagates (11 aug 2026)
-    /mnt/truenas/amber              # de NAS op 192.168.1.149
 )
+
+# Staat de NAS aan? Eén keer kloppen, en alleen dán het pad in de lijst zetten.
+# Élke aanraking van /mnt/truenas — ook een onschuldige `test -d` — start de
+# automount, die 90 s in een timeout loopt en `mnt-truenas.mount` op **failed**
+# zet. Daarna valt een échte storing niet meer op in `systemctl --failed`.
+# (19 aug 2026: beide machines stonden hierdoor permanent rood.)
+if timeout 5 ping -c 1 -W 2 "$NAS_HOST" >/dev/null 2>&1; then
+    BESTEMMINGEN+=("$NAS")
+else
+    echo "overgeslagen (uit): de NAS"
+fi
 
 namen=()
 for b in "${BRONNEN[@]}"; do
