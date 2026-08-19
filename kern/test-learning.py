@@ -193,6 +193,34 @@ check("and the most attractive does come by most often",
       max(((c.pick(s, tasks.Picker(s * 31 + 7)) == ("code", 1))
            for s in range(300)), default=False))
 
+# wishes (19 Aug 2026, Cley): "Amber zegt: ik wil meer puzzel oefenen" —
+# a wished-for family pulls harder, the wish fades as she masters it,
+# and without wishes the draw is bit for bit the old one
+c_a = cur.Curiosity(families=("rekenen", "puzzel"), grades=(1, 2))
+c_b = cur.Curiosity(families=("rekenen", "puzzel"), grades=(1, 2))
+for g in (1, 2):
+    for fam in ("rekenen", "puzzel"):
+        c_a.update((fam, g), 0.5, 0); c_b.update((fam, g), 0.5, 0)
+base = [c_a.pick(s, tasks.Picker(s)) for s in range(400)]
+check("no wishes: bit for bit the old draw",
+      base == [c_b.pick(s, tasks.Picker(s)) for s in range(400)])
+c_b.wish("puzzel")
+wished = [c_b.pick(s, tasks.Picker(s)) for s in range(400)]
+share_base = sum(f == "puzzel" for f, _ in base) / 400
+share_wish = sum(f == "puzzel" for f, _ in wished) / 400
+check("a wished-for family draws clearly more of her own choices",
+      share_wish > share_base + 0.15,
+      f"puzzel {share_base:.0%} → {share_wish:.0%} with a wish")
+for i in range(30):
+    c_b.update(("puzzel", 1), 0.95, 500 + i)
+check("the wish fades out once she can do it (good scores)",
+      "puzzel" not in c_b.wishes, f"wishes left: {c_b.wishes}")
+c_c = cur.Curiosity(families=("rekenen", "puzzel"), grades=(1, 2))
+c_c.wish("puzzel")
+c_d = cur.Curiosity(families=("rekenen", "puzzel"), grades=(1, 2))
+c_d.restore(c_c.carry())
+check("wishes travel in the snapshot", c_d.wishes == c_c.wishes == {"puzzel": 3.0})
+
 # family first, then room (17 Aug 2026): sixty mastered rekenen rooms must
 # not drown a new family with two unknown rooms — and a future `last`
 # must never make a weight negative

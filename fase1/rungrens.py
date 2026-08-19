@@ -123,6 +123,8 @@ p.add_argument("--verborgen", type=int, default=None,
                     "16 aug 2026); weglaten = niet groeien")
 p.add_argument("--zonder-herhaalproef", action="store_true",
                help="sla het herhaalbaarheidsbewijs op de trainer over")
+p.add_argument("--wens", action="append", default=[],
+               help="familie waar Amber om vroeg (zelfrapport 'Amber zegt'); krijgt een uitdovende voorkeur in haar nieuwsgierigheid — herhaalbaar, Cleys woord")
 p.add_argument("--checkpointing", action="store_true",
                help="activatie-checkpointing aan in de dienst op de trainer "
                     "(AMBER_CHECKPOINTING=1); blijft aan tot iemand het uitzet")
@@ -343,6 +345,18 @@ print(f"venster {{oud_venster}} → {{core.window}}, lagen {{oud_lagen}} → "
       f"{{len(core.blocks)}}, koppen {{oud_koppen}} → {{core.heads}}, "
       f"verborgen {{oud_verborgen}} → {{core.hidden}}, uitvoer bit voor bit gelijk")
 extra["vorm"] = core.spec()
+# Wensen (19 aug 2026, Cley): "Amber zegt: ik wil meer puzzel oefenen" —
+# Cley honoreert dat op de rungrens; de nieuwsgierigheid krijgt een
+# uitdovende voorkeur voor die familie (kern/curiosity.py, WISH_*).
+wensen = {a.wens!r}
+if wensen:
+    ng = dict(extra.get("nieuwsgierig") or {{}})
+    w = dict(ng.get("wensen") or {{}})
+    for fam in wensen:
+        w[fam] = max(3.0, float(w.get(fam, 1.0)))
+    ng["wensen"] = w
+    extra["nieuwsgierig"] = ng
+    print("wensen in de startopname:", w)
 snapshot.write("{START}", stapnr, core, L.optimizer,
                inhoud.get("determinisme"), extra=extra)
 print("run{RUN}-start.pt:", stapnr, "vorm", core.spec())

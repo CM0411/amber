@@ -32,6 +32,11 @@ both make identical choices from identical streams.
 
 import tasks
 
+# Wishes (19 Aug 2026, Cley) - tunable at the top, like the watchers.
+WISH_WEIGHT = 3.0    # a wished-for family draws 3x its natural weight
+WISH_GOOD = 0.8      # a score this good on that family fades the wish ...
+WISH_FADE = 0.9      # ... by this factor (3.0 -> 1.0 in ~11 good scores)
+
 
 class Curiosity:
     def __init__(self, families=None, grades=None, fade=6.0, floor=0.05):
@@ -42,6 +47,12 @@ class Curiosity:
         self.floor = floor              # nothing ever drops all the way to zero
         self.score = {s: 0.0 for s in self.kinds}
         self.last = {s: 0 for s in self.kinds}
+        # Wishes: a family she asked for herself ("ik wil meer puzzel
+        # oefenen") gets a temporary pull. The weight multiplies the family
+        # draw in pick(); every good score on that family lets it fade
+        # towards 1.0, so the wish dies out exactly when she can do it.
+        # Empty dict = bit for bit the old behaviour.
+        self.wishes = {}
 
     def add(self, kind, step=0):
         """A topic that was not there before.
@@ -57,7 +68,16 @@ class Curiosity:
         self.last[kind] = step
         return True
 
+    def wish(self, family, weight=WISH_WEIGHT):
+        """She asked for a family; give it a pull until she masters it."""
+        self.wishes[family] = max(float(weight), self.wishes.get(family, 1.0))
+
     def update(self, kind, score, step):
+        fam = kind[0]
+        if fam in self.wishes and score >= WISH_GOOD:
+            self.wishes[fam] = max(1.0, self.wishes[fam] * WISH_FADE)
+            if self.wishes[fam] <= 1.0 + 1e-9:
+                del self.wishes[fam]
         """Report how well she is doing on this topic."""
         if kind not in self.score:
             self.add(kind, step)
@@ -115,6 +135,9 @@ class Curiosity:
         for (family, grade), weight in weights.items():
             per_family.setdefault(family, []).append(weight)
         family_weights = {f: sum(ws) / len(ws) for f, ws in per_family.items()}
+        for f, w in self.wishes.items():
+            if f in family_weights:
+                family_weights[f] *= w
         family = self._draw(family_weights, picker)
         rooms = {kind: w for kind, w in weights.items() if kind[0] == family}
         return self._draw(rooms, picker)
@@ -139,7 +162,8 @@ class Curiosity:
         """
         return {"soorten": [list(s) for s in self.kinds],
                 "score": {f"{f}/{g}": self.score[(f, g)] for f, g in self.kinds},
-                "laatst": {f"{f}/{g}": self.last[(f, g)] for f, g in self.kinds}}
+                "laatst": {f"{f}/{g}": self.last[(f, g)] for f, g in self.kinds},
+                "wensen": dict(self.wishes)}
 
     def restore(self, carried):
         self.kinds = [tuple(s) for s in carried["soorten"]]
@@ -150,3 +174,4 @@ class Curiosity:
         for key, value in carried["laatst"].items():
             f, g = key.rsplit("/", 1)
             self.last[(f, int(g))] = value
+        self.wishes = {k: float(v) for k, v in carried.get("wensen", {}).items()}
