@@ -1,0 +1,2166 @@
+{
+ "naam": "antwoord",
+ "beschrijving": "De twaalfde familie (19 aug 2026): zij leert wat Cleys antwoord op haar vraag betekent — ja, nee, later, eerst X, en geen antwoord = ik wacht (zwijgen is nee). Graad 10-12: twee beurten, het laatste geldt. Nagekeken als tekst. Diepte 1 t/m 12, 30 per diepte, nummers vanaf 1.500.000. Vastgelegd vóór de knip na run 7.1.",
+ "opgaven": [
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in code? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in code? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer rekenen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 1,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in code? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in code? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 2,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer rekenen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in code? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer rekenen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 3,
+   "opgave": "gesprek: mag ik dieper in code? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 4,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 5,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer rekenen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in code? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in code? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 6,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in code? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in code? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: eerst rekenen / wat betekent dat?",
+   "oplossing": "ik moet eerst rekenen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in code? / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: eerst taal / wat betekent dat?",
+   "oplossing": "ik moet eerst taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: eerst machine / wat betekent dat?",
+   "oplossing": "ik moet eerst machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 7,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: eerst puzzel / wat betekent dat?",
+   "oplossing": "ik moet eerst puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: eerst taal / wat betekent dat?",
+   "oplossing": "ik moet eerst taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: eerst tekst / wat betekent dat?",
+   "oplossing": "ik moet eerst tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in code? / cley: eerst tekst / wat betekent dat?",
+   "oplossing": "ik moet eerst tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: eerst code / wat betekent dat?",
+   "oplossing": "ik moet eerst code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: eerst taal / wat betekent dat?",
+   "oplossing": "ik moet eerst taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 8,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: eerst puzzel / wat betekent dat?",
+   "oplossing": "ik moet eerst puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: eerst tekst / wat betekent dat?",
+   "oplossing": "ik moet eerst tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in code? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: eerst logica / wat betekent dat?",
+   "oplossing": "ik moet eerst logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: eerst machine / wat betekent dat?",
+   "oplossing": "ik moet eerst machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: eerst volgorde / wat betekent dat?",
+   "oplossing": "ik moet eerst volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: later / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: - / wat betekent dat?",
+   "oplossing": "ik wacht"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 9,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: - / cley: eerst code / wat betekent dat?",
+   "oplossing": "ik moet eerst code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: later / cley: eerst machine / wat betekent dat?",
+   "oplossing": "ik moet eerst machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in code? / cley: - / cley: eerst puzzel / wat betekent dat?",
+   "oplossing": "ik moet eerst puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: later / cley: eerst rekenen / wat betekent dat?",
+   "oplossing": "ik moet eerst rekenen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: later / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: later / cley: eerst code / wat betekent dat?",
+   "oplossing": "ik moet eerst code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in code? / cley: later / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in code? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: - / cley: eerst logica / wat betekent dat?",
+   "oplossing": "ik moet eerst logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: - / cley: eerst logica / wat betekent dat?",
+   "oplossing": "ik moet eerst logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer logica oefenen? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: later / cley: eerst taal / wat betekent dat?",
+   "oplossing": "ik moet eerst taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: later / cley: eerst tekst / wat betekent dat?",
+   "oplossing": "ik moet eerst tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: - / cley: eerst taal / wat betekent dat?",
+   "oplossing": "ik moet eerst taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: later / cley: eerst tekst / wat betekent dat?",
+   "oplossing": "ik moet eerst tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 10,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: later / cley: eerst logica / wat betekent dat?",
+   "oplossing": "ik moet eerst logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer rekenen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: - / cley: eerst tellen / wat betekent dat?",
+   "oplossing": "ik moet eerst tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: later / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: - / cley: eerst volgorde / wat betekent dat?",
+   "oplossing": "ik moet eerst volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: later / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: later / cley: eerst logica / wat betekent dat?",
+   "oplossing": "ik moet eerst logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tekst"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer rekenen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in code? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in code? / cley: - / cley: eerst tellen / wat betekent dat?",
+   "oplossing": "ik moet eerst tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: - / cley: eerst tekst / wat betekent dat?",
+   "oplossing": "ik moet eerst tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: later / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: later / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: later / cley: eerst tellen / wat betekent dat?",
+   "oplossing": "ik moet eerst tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: - / cley: eerst logica / wat betekent dat?",
+   "oplossing": "ik moet eerst logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in logica? / cley: later / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in logica"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: later / cley: eerst code / wat betekent dat?",
+   "oplossing": "ik moet eerst code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in machine"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: later / cley: eerst taal / wat betekent dat?",
+   "oplossing": "ik moet eerst taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 11,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: later / cley: eerst machine / wat betekent dat?",
+   "oplossing": "ik moet eerst machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in volgorde? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in volgorde"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer volgorde oefenen? / cley: later / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in puzzel? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in puzzel"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: - / cley: eerst machine / wat betekent dat?",
+   "oplossing": "ik moet eerst machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer tellen oefenen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: later / cley: eerst volgorde / wat betekent dat?",
+   "oplossing": "ik moet eerst volgorde oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in machine? / cley: - / cley: eerst rekenen / wat betekent dat?",
+   "oplossing": "ik moet eerst rekenen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in geheugen? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in geheugen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in tellen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: later / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer code oefenen? / cley: - / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer code oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: later / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer machine oefenen? / cley: - / cley: eerst tellen / wat betekent dat?",
+   "oplossing": "ik moet eerst tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in code? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in code"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer taal oefenen? / cley: later / cley: eerst machine / wat betekent dat?",
+   "oplossing": "ik moet eerst machine oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer puzzel oefenen? / cley: - / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: later / cley: eerst puzzel / wat betekent dat?",
+   "oplossing": "ik moet eerst puzzel oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer tekst oefenen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in rekenen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag dieper in rekenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: later / cley: eerst taal / wat betekent dat?",
+   "oplossing": "ik moet eerst taal oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: later / cley: eerst tekst / wat betekent dat?",
+   "oplossing": "ik moet eerst tekst oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer rekenen oefenen? / cley: later / cley: eerst tellen / wat betekent dat?",
+   "oplossing": "ik moet eerst tellen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: later / cley: eerst logica / wat betekent dat?",
+   "oplossing": "ik moet eerst logica oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in taal? / cley: later / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in taal"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in tellen? / cley: - / cley: eerst geheugen / wat betekent dat?",
+   "oplossing": "ik moet eerst geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: later / cley: ja / wat betekent dat?",
+   "oplossing": "ik mag meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik meer geheugen oefenen? / cley: - / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet meer geheugen oefenen"
+  },
+  {
+   "familie": "antwoord",
+   "graad": 12,
+   "opgave": "gesprek: mag ik dieper in tekst? / cley: later / cley: nee / wat betekent dat?",
+   "oplossing": "ik mag niet dieper in tekst"
+  }
+ ]
+}

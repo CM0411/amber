@@ -13,6 +13,7 @@ alleen de levende hersenweergave en de spraak vallen dan stil.
 import json, os, re, subprocess, threading, time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
+RAPPORT = "/home/arch/rapport"
 MAP = "/home/arch/amber-werk/brein"
 DL380 = "arch@192.168.1.51"
 SPRAAK_UIT = "/home/arch/spraak-uit"   # verzoeken aan de mond; de brug brengt ze
@@ -442,6 +443,63 @@ class Venster(BaseHTTPRequestHandler):
             self._stuur(json.dumps(
                 {"in_brievenbus": bool(vraag and antwoord)}).encode(),
                 "application/json")
+        elif self.path.startswith("/antwoord-cley"):
+            # Gesprek (19 aug 2026): Cley antwoordt op haar laatste vraag.
+            # Het antwoord komt (1) in haar logboek amber-zegt.jsonl bij de
+            # vraag, en (2) als les in de brievenbus in de vorm van de
+            # familie 'gesprek': vraag = haar vraag + Cleys antwoord,
+            # antwoord = wat dat voor haar betekent — zo leert zij het
+            # antwoord begrijpen, niet alleen opslaan. Zwijgen blijft nee.
+            from urllib.parse import urlparse, parse_qs
+            q = parse_qs(urlparse(self.path).query)
+            ant = q.get("antwoord", [""])[0].strip().lower()[:80]
+            ok = False
+            try:
+                regels = open(f"{RAPPORT}/amber-zegt.jsonl").read().splitlines()
+                laatste = json.loads(regels[-1]) if regels else {}
+                hv = laatste.get("vraagt") or laatste.get("zegt") or ""
+                if ant and hv:
+                    laatste["antwoord_cley"] = ant
+                    laatste["antwoord_tijd"] = time.strftime("%Y-%m-%d %H:%M")
+                    regels[-1] = json.dumps(laatste, ensure_ascii=False)
+                    with open(f"{RAPPORT}/amber-zegt.jsonl", "w") as f:
+                        f.write("\n".join(regels) + "\n")
+                    # betekenis voor haar (zelfde regels als world._talk)
+                    m = re.match(r"mag ik (dieper in|meer) (\w+)( oefenen)?\?", hv)
+                    fam = m.group(2) if m else None
+                    if fam and ant.startswith("ja"):
+                        bet = f"ik mag dieper in {fam}" if "dieper" in hv else f"ik mag meer {fam} oefenen"
+                    elif fam and ant.startswith("nee"):
+                        bet = f"ik mag niet dieper in {fam}" if "dieper" in hv else f"ik mag niet meer {fam} oefenen"
+                    elif ant.startswith("later"):
+                        bet = "ik wacht"
+                    elif ant.startswith("eerst "):
+                        bet = f"ik moet eerst {ant[6:].strip()} oefenen"
+                    else:
+                        bet = f"cley zegt {ant}"
+                    import fcntl
+                    bus = "/home/arch/amber-werk/fase1/brievenbus.jsonl"
+                    with open(bus + ".slot", "w") as sl:
+                        fcntl.flock(sl, fcntl.LOCK_EX)
+                        with open(bus, "a") as f:
+                            f.write(json.dumps({
+                                "tijd": time.time(),
+                                "wanneer": time.strftime("%Y-%m-%d %H:%M"),
+                                "soort": "les", "bron": "gesprek (antwoord van Cley)",
+                                "vraag": f"gesprek: {hv} / cley: {ant} / wat betekent dat?",
+                                "antwoord": bet, "bezorgd": False,
+                            }, ensure_ascii=False) + "\n")
+                            f.flush(); os.fsync(f.fileno())
+                    ok = True
+            except Exception:
+                ok = False
+            self._stuur(json.dumps({"geantwoord": ok}).encode(), "application/json")
+        elif self.path.startswith("/amber-zegt.json"):
+            try:
+                regels = open(f"{RAPPORT}/amber-zegt.jsonl").read().splitlines()[-12:]
+                self._stuur(("[" + ",".join(regels) + "]").encode(), "application/json")
+            except Exception:
+                self._stuur(b"[]", "application/json")
         elif self.path.startswith("/gesprek.json"):
             try:
                 with open(f"{MAP}/gesprek.json", "rb") as f:

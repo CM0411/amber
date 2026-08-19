@@ -45,7 +45,7 @@ FAMILIE_VAN_BLAD = {"regel": "puzzel", "regelcheck": "puzzel", "rooster": "puzze
                     "diepte": "puzzel", "geheugen": "geheugen", "geheugen2": "geheugen",
                     "logica": "logica", "volgorde": "volgorde", "tekst": "tekst",
                     "vergelijking": "rekenen", "deling": "rekenen", "zeggen": "zeggen",
-                    "taal": "taal", "gesprek": "rekenen", "machine": "machine", "tellen": "tellen"}
+                    "taal": "taal", "gesprek": "rekenen", "machine": "machine", "tellen": "tellen", "antwoord": "antwoord"}
 STOKT_ONDER = 60          # score waaronder een blad "stokt" …
 STOKT_STAPPEN = 3000      # … als het over zoveel stappen niet meer dan
 STOKT_MARGE = 3           # zoveel punten vooruitging
@@ -153,6 +153,7 @@ if keuzes:
 # --- Amber zelf: haar eigen zin, als "zeggen" in haar wereld zit ----------------
 amber_zegt = None
 amber_noot = None
+amber_vraagt = None
 try:
     sys.path.insert(0, KERN)
     import world as _world                     # de wereld van de lopende run
@@ -195,6 +196,28 @@ try:
                 antwoord = L.answer([taak], at_most=learning.room_for(9, "zeggen", L.core.window))[0]
             amber_zegt = antwoord.rsplit(" ; ", 1)[-1].strip()
             amber_noot = "haar eigen zin, uit de laatste momentopname; de vraag: " + vraag.replace("\n", " / ")
+            # Gesprek (19 aug 2026, Cley): staat 'zeggen' tot >= 19 open, dan
+            # vragen we haar ook echt iets te VRAGEN — dat is de zin die
+            # Cley kan beantwoorden (graad 19-20: "mag ik ... ?").
+            amber_vraagt = None
+            if rand.get("zeggen", 0) >= 19:
+                vraag2 = "\n".join(regels_[:2] + ["wat vraag je aan cley?"])
+                taak2 = _tasks.Task(family="zeggen", grade=19, number=0, problem=vraag2, solution="", working=None)
+                with torch.no_grad():
+                    a2 = L.answer([taak2], at_most=learning.room_for(19, "zeggen", L.core.window))[0]
+                amber_vraagt = a2.rsplit(" ; ", 1)[-1].strip()
+            # Logboek van haar uitspraken (aangroeiend; overleeft runs)
+            try:
+                import json as _json, time as _time
+                rec = {"tijd": _time.time(), "wanneer": _time.strftime("%Y-%m-%d %H:%M"),
+                       "run": run.get("naam"), "stap": laatste,
+                       "zegt": amber_zegt, "vraagt": amber_vraagt,
+                       "vraag_aan_haar": vraag.replace("\n", " / "),
+                       "cijfers": cijfers, "antwoord_cley": None}
+                with open(f"{RAPPORT}/amber-zegt.jsonl", "a") as _f:
+                    _f.write(_json.dumps(rec, ensure_ascii=False) + "\n")
+            except Exception:
+                pass
     else:
         amber_noot = "de familie 'zeggen' zit nog niet in haar wereld — vanaf de volgende knip vertelt zij het zelf"
 except Exception as e:
@@ -206,6 +229,7 @@ uit = {
     "waarnemingen": waarnemingen,
     "voorstellen": voorstellen or ["niets bijzonders — zo doorgaan"],
     "amber_zegt": amber_zegt, "amber_noot": amber_noot,
+    "amber_vraagt": (amber_vraagt if "amber_vraagt" in dir() else None),
     "keuzes": aandeel,
     "regel": "alleen voorstellen — Cley beslist, zwijgen is nee",
 }

@@ -150,6 +150,9 @@ def room_for(depth, family=None, window=512):
         # Language (18 Aug 2026): a sentence and a word, or the built
         # sentence — under 60 characters everywhere. Room 48 + 4·d.
         return min(window - 112, 48 + 4 * depth)
+    if family == "antwoord":
+        # Conversation (19 Aug 2026): one short sentence, ~40 chars. Room 48 + 4·d.
+        return min(window - 112, 48 + 4 * depth)
     if family == "zeggen":
         # Saying (18 Aug 2026): one or two short lines of reasoning and the
         # sentence — ~120 characters at depth 12. Room 64 + 8·d.

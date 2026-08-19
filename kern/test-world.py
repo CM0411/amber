@@ -196,7 +196,7 @@ for family in world.FAMILIES:
     for depth in range(1, 13):
         for n in range(100):
             task = world.make(family, depth, n)
-            if task and family not in ("zeggen", "taal"):   # those answer in words
+            if task and family not in ("zeggen", "taal", "antwoord"):   # those answer in words
                 longest_answer = max(longest_answer, len(task.solution))
 check("the answers stay short enough to be meaningful",
       longest_answer <= 16,
@@ -230,7 +230,7 @@ for family in world.FAMILIES:
 check(
     "from depth 3 nearly every number gives a different problem",
     all(len({t.problem for n in range(2000) if (t := world.make(f, 3, n))}) > 1500
-        for f in world.FAMILIES if f not in ("zeggen", "taal", "tellen")),
+        for f in world.FAMILIES if f not in ("zeggen", "taal", "tellen", "antwoord")),
     "the space grows exponentially with depth instead of linearly with "
     "what is typed",
 )
@@ -1774,6 +1774,52 @@ for _d in range(1, 13):
         _h.update(f"{_t.problem}|{_t.solution}|{_t.working}".encode())
 check("zeggen 1-12 is bit for bit untouched by the 13-24 extension (3600 tasks, md5 pinned 19 Aug)",
       _h.hexdigest() == "f7a0cfadc631192fe583d98ec691a57e", _h.hexdigest())
+
+
+# --- antwoord: twelfth family (19 Aug 2026, Cley: "ik wil terug kunnen praten") --
+# She asked, Cley answered; the judge reads the turns itself and says what
+# the LAST answer means. No answer is a no (CLAUDE.md).
+def _judge_answer(problem):
+    m = re.match(r"gesprek: mag ik (dieper in|meer) (\w+)( oefenen)?\? / (.*) / wat betekent dat\?", problem)
+    assert m, problem
+    deeper = m.group(1) == "dieper in"
+    fam = m.group(2)
+    turns = [t[len("cley: "):] for t in m.group(4).split(" / ")]
+    ant = turns[-1]
+    if ant == "ja":
+        return f"ik mag dieper in {fam}" if deeper else f"ik mag meer {fam} oefenen"
+    if ant == "nee":
+        return f"ik mag niet dieper in {fam}" if deeper else f"ik mag niet meer {fam} oefenen"
+    if ant in ("later", "-"):
+        return "ik wacht"
+    if ant.startswith("eerst "):
+        return f"ik moet eerst {ant[6:]} oefenen"
+    return f"cley zegt {ant}"
+
+
+an_bad = an_unfit = 0
+an_forms = set()
+for depth in range(1, 13):
+    for n in range(200):
+        t = world.make("antwoord", depth, n)
+        if _judge_answer(t.problem) != t.solution or not t.check(t.working):
+            an_bad += 1
+        if not (world.fits(t, 1536 - 112) and len(t.to_learn()) <= _rf(depth, "antwoord", 1536)):
+            an_unfit += 1
+        an_forms.add(re.sub(r"\b(" + "|".join(world.ZEG_ONDERWERPEN) + r")\b", "X", t.solution))
+check("antwoord: the independent judge reads Cley's last answer the same way (2400 tasks)",
+      an_bad == 0, f"{an_bad} disagreements")
+check("antwoord: ja / nee / later / no answer / eerst X — and silence is a no",
+      {"ik mag dieper in X", "ik mag niet dieper in X", "ik mag meer X oefenen",
+       "ik mag niet meer X oefenen", "ik wacht", "ik moet eerst X oefenen"} <= an_forms
+      and any("zwijgen is nee" in world.make("antwoord", 5, n).working for n in range(60)),
+      str(sorted(an_forms)))
+check("antwoord: no number in the solution and everything fits the room", an_unfit == 0
+      and all(not re.search(r"\d", world.make("antwoord", d, 3).solution) for d in range(1, 13)))
+check("antwoord: at depth 10-12 the LAST of two answers counts",
+      all("het laatste geldt" in world.make("antwoord", d, n).working for d in (10, 11, 12) for n in range(30)))
+check("the world's families end with antwoord — appended, the older streams untouched",
+      world.FAMILIES[-1] == "antwoord" and world.FAMILIES[7:11] == ("zeggen", "taal", "machine", "tellen"))
 
 # --- taal: the ninth family (18 Aug 2026, Cley) -------------------------------
 # Short sentences from a fixed vocabulary; the judge parses them with the

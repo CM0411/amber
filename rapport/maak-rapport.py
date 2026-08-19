@@ -209,7 +209,7 @@ def grafiek(curve, reeksen, doorbraken=None, hoog=300):
 
 
 FAM_KLEUR = {"rekenen": "#5ca8ff", "puzzel": "#b78ae0", "code": "#7fe0c3",
-             "geheugen": "#ffb86b", "logica": "#ff8fa3", "volgorde": "#8fd3ff", "tekst": "#e6d37a", "zeggen": "#f5a3ff", "taal": "#a3ffd6", "machine": "#ffd28f", "tellen": "#8fffb0"}
+             "geheugen": "#ffb86b", "logica": "#ff8fa3", "volgorde": "#8fd3ff", "tekst": "#e6d37a", "zeggen": "#f5a3ff", "taal": "#a3ffd6", "machine": "#ffd28f", "tellen": "#8fffb0", "antwoord": "#c8b4ff"}
 
 
 def keuzes_sectie():

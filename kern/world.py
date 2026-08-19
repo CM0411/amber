@@ -57,7 +57,7 @@ from tasks import FAMILIES as _MEASURED_FAMILIES, Task, Picker, _mix
 #   18 Aug 2026: "volgorde" — steps put in the right order from rules (_order).
 #   18 Aug 2026: "tekst" — patterns in letters and words, counted (_text).
 FAMILIES = _MEASURED_FAMILIES + ("geheugen", "logica", "volgorde", "tekst", "zeggen", "taal",
-                                  "machine", "tellen")
+                                  "machine", "tellen", "antwoord")
 
 # Own constant, separate from tasks.py's: the world and the exams are two
 # separate things and must be so in their numbers too.
@@ -91,7 +91,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 20, "code": 40, "geheugen": 40, "logica": 20, "volgorde": 20, "tekst": 20, "zeggen": 24, "taal": 12, "machine": 20, "tellen": 12}
+MAX_DEPTH_PER = {"puzzel": 20, "code": 40, "geheugen": 40, "logica": 20, "volgorde": 20, "tekst": 20, "zeggen": 24, "taal": 12, "machine": 20, "tellen": 12, "antwoord": 12}
 
 
 def max_depth(family):
@@ -2165,6 +2165,59 @@ def _saying_deep(depth, t):
     return problem, sentence, working
 
 
+
+# --- gesprek (conversation) — (19 Aug 2026, Cley: "ik wil terug kunnen praten") --
+# She asks (zeggen 19-20: "mag ik dieper in X?"), Cley answers, and she
+# learns what the answer MEANS for her. The hard rule of CLAUDE.md is in
+# the family itself: no answer is a no ("geen antwoord ; ik wacht").
+GESPREK_ANTWOORDEN = ("ja", "nee", "later", "-")   # '-' = no answer
+
+
+def _talk(depth, t):
+    fam = t.choice(ZEG_ONDERWERPEN)
+    dieper = t.integer(0, 1) == 1
+    vraag = f"mag ik dieper in {fam}?" if dieper else f"mag ik meer {fam} oefenen?"
+    steps = []
+
+    def betekenis(ant):
+        if ant == "ja":
+            return f"ik mag dieper in {fam}" if dieper else f"ik mag meer {fam} oefenen"
+        if ant == "nee":
+            return f"ik mag niet dieper in {fam}" if dieper else f"ik mag niet meer {fam} oefenen"
+        if ant == "later":
+            return "ik wacht"
+        if ant == "-":
+            return "ik wacht"
+        if ant.startswith("eerst "):
+            return f"ik moet eerst {ant[6:]} oefenen"
+        return f"cley zegt {ant}"
+
+    if depth <= 3:
+        ant = t.choice(("ja", "nee"))
+    elif depth <= 6:
+        ant = t.choice(GESPREK_ANTWOORDEN)
+    elif depth <= 9:
+        ander = t.choice([f for f in ZEG_ONDERWERPEN if f != fam])
+        ant = t.choice(GESPREK_ANTWOORDEN + (f"eerst {ander}",))
+    else:
+        # two turns: the last answer counts
+        ander = t.choice([f for f in ZEG_ONDERWERPEN if f != fam])
+        eerste = t.choice(("later", "-"))
+        tweede = t.choice(("ja", "nee", f"eerst {ander}"))
+        steps.append(f"eerst {eerste} ; dan {tweede} ; het laatste geldt")
+        problem = f"gesprek: {vraag} / cley: {eerste} / cley: {tweede} / wat betekent dat?"
+        sentence = betekenis(tweede)
+        working = " ; ".join(steps + [sentence])
+        return problem, sentence, working
+
+    problem = f"gesprek: {vraag} / cley: {ant} / wat betekent dat?"
+    sentence = betekenis(ant)
+    if ant == "-":
+        steps.append("geen antwoord ; zwijgen is nee")
+    working = " ; ".join(steps + [sentence])
+    return problem, sentence, working
+
+
 # --- taal (language) — the ninth family (18 Aug 2026, Cley) -------------------
 # A piece of language of her own, after "zeggen": short Dutch sentences
 # from a fixed small vocabulary, with a question — and, deeper, building a
@@ -2456,7 +2509,7 @@ def _counting(depth, t):
 
 _MAKERS = {"rekenen": _arithmetic, "puzzel": _row, "code": _code,
            "geheugen": _memory, "logica": _logic, "volgorde": _order,
-           "tekst": _text, "zeggen": _saying, "taal": _language,
+           "tekst": _text, "zeggen": _saying, "taal": _language, "antwoord": _talk,
            "machine": _machine, "tellen": _counting}
 
 

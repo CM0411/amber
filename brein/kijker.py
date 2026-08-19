@@ -311,7 +311,7 @@ LAAGNAMEN = {"rekenen": "rekenlaag", "code": "codelaag",
              "puzzel": "puzzellaag", "geheugen": "geheugenlaag",
              "logica": "logicalaag", "volgorde": "volgordelaag",
              "tekst": "tekstlaag", "zeggen": "zeggenlaag", "taal": "taallaag",
-             "machine": "machinelaag", "tellen": "tellenlaag"}
+             "machine": "machinelaag", "tellen": "tellenlaag", "antwoord": "antwoordlaag"}
 LAAGSTAND = f"{FOLDER}/laagnamen-stand.json"
 MINSTENS = 20                            # opgaven per familie vóór hij meetelt
 try:

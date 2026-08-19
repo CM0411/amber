@@ -143,6 +143,16 @@
     #werk { font-size: 12.5px; }
     #opgave { word-break: break-word; }
   }
+
+.gesprek-knoppen{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}
+.gesprek-knoppen button{background:#0c1230;color:#dfe6ff;border:1px solid #2b3a66;border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit}
+.gesprek-knoppen button:hover{border-color:#8fd3ff}
+.gesprek-knoppen input{background:#080b1e;color:#dfe6ff;border:1px solid #2b3a66;border-radius:6px;padding:4px 8px;font:inherit;min-width:150px;flex:1}
+.gesprek-log{max-height:180px;overflow-y:auto;font-size:.85em;border-top:1px solid #1d2b4d;padding-top:6px}
+.gesprek-log .beurt{margin:2px 0}
+.gesprek-log .wanneer{color:#51608a}
+.gesprek-log .zij{color:#f5a3ff}
+.gesprek-log .cley{color:#8fd3ff}
 </style>
 </head>
 <body>
@@ -330,7 +340,7 @@ bouwNamen();
 function keuzesHtml(k, kop) {
   if (!k || !k.laatste || !k.laatste_n) return "";
   const kleur = {rekenen: "#5ca8ff", puzzel: "#b78ae0", code: "#7fe0c3",
-                 geheugen: "#ffb86b", logica: "#ff8fa3", volgorde: "#8fd3ff", tekst: "#e6d37a", zeggen: "#f5a3ff", taal: "#a3ffd6", machine: "#ffd28f", tellen: "#8fffb0"};
+                 geheugen: "#ffb86b", logica: "#ff8fa3", volgorde: "#8fd3ff", tekst: "#e6d37a", zeggen: "#f5a3ff", taal: "#a3ffd6", machine: "#ffd28f", tellen: "#8fffb0", antwoord: "#c8b4ff"};
   const fams = Object.keys(k.laatste).sort((a, b) => k.laatste[b] - k.laatste[a]);
   let h = `<div class="kop">${kop} · laatste ${k.laatste_n} keuzes</div>`;
   for (const f of fams) {
@@ -543,19 +553,19 @@ async function haal() {
     // de hekken komen uit run.json (de rungrens schrijft die mee met elke
     // run); de vaste waarden zijn alleen het vangnet als de config ontbreekt.
     // Handbijhouden liep op 14 aug 2026 drie hekken achter — nooit meer.
-    const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12, volgorde: 12, tekst: 12, zeggen: 12, taal: 12, machine: 12, tellen: 12};   // vangnet; 16 aug: geheugen, 17 aug: logica
+    const grens = {rekenen: 38, code: 15, puzzel: 9, geheugen: 12, logica: 12, volgorde: 12, tekst: 12, zeggen: 12, taal: 12, machine: 12, tellen: 12, antwoord: 12};   // vangnet; 16 aug: geheugen, 17 aug: logica
     const hekstr = (s.run && s.run.config && s.run.config.hek) || "";
     for (const m of hekstr.matchAll(/([a-z]+)\s+(\d+)/g)) grens[m[1]] = +m[2];
     // het checkpoint is de waarheid; logregels vullen alleen aan wat het
     // checkpoint nog niet weet, en nooit boven de echte grens uit
-    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2, logica: 2, volgorde: 2, tekst: 2, zeggen: 2, taal: 2, machine: 2, tellen: 2},
+    const rand = Object.assign({rekenen: 2, puzzel: 2, code: 2, geheugen: 2, logica: 2, volgorde: 2, tekst: 2, zeggen: 2, taal: 2, machine: 2, tellen: 2, antwoord: 2},
                                (s.run && s.run.wereld) || {},
                                s.wereldrand || {});
     for (const f in rand) rand[f] = Math.min(rand[f], grens[f] || rand[f]);
     if (!window.vorigeRand) window.vorigeRand = {};
     let html = '<div class="kop">haar wereld</div>';
     const inRun = new Set([...hekstr.matchAll(/([a-z]+)\s+\d+/g)].map(m => m[1]));
-    for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal", "machine", "tellen"]) {
+    for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal", "machine", "tellen", "antwoord"]) {
       if (inRun.size && !inRun.has(f)) continue;     // niet in deze run
       const d = rand[f], nieuw = window.vorigeRand[f] && d > window.vorigeRand[f];
       if (nieuw) window.fonkelTot = Date.now() + 90000;
@@ -596,7 +606,7 @@ async function haal() {
     if (Object.keys(vakjes).length) {
       const top = Math.max(...Object.values(vakjes));
       let g = '<div class="kop">haar geheugen</div>';
-      for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal", "machine", "tellen"]) {
+      for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal", "machine", "tellen", "antwoord"]) {
         const graden = Object.keys(vakjes)
           .filter(k => k.startsWith(f + "/"))
           .map(k => +k.split("/")[1]).sort((a, b) => a - b);
@@ -665,6 +675,25 @@ async function haalZelfrapport() {
     let h = `<div class="kop">zij stelt voor · stap ${(+z.stap).toLocaleString("nl")} · ${z.gemaakt}</div>`;
     h += `<div class="stem">amber zegt</div>`;
     h += z.amber_zegt ? `<div class="amber">"${z.amber_zegt}"</div>` : `<div style="color:#51608a">${z.amber_noot || "—"}</div>`;
+    // Gesprek (19 aug 2026, Cley: terug kunnen praten): haar vraag + Cleys antwoord
+    if (z.amber_vraagt) {
+      h += `<div class="stem">amber vraagt</div><div class="amber">"${z.amber_vraagt}"</div>`;
+    }
+    h += `<div class="stem">jouw antwoord</div><div class="gesprek-knoppen">`
+       + ["ja", "nee", "later"].map(a => `<button onclick="antwoordCley('${a}')">${a}</button>`).join("")
+       + `<input id="antwoord-vrij" placeholder="eerst rekenen …" maxlength="60"><button onclick="antwoordCley(document.getElementById('antwoord-vrij').value)">stuur</button></div>`;
+    try {
+      const log = await (await fetch("/amber-zegt.json", {cache: "no-store"})).json();
+      if (log.length) {
+        h += `<div class="stem">het gesprek</div><div class="gesprek-log">`;
+        for (const r of log.slice().reverse()) {
+          h += `<div class="beurt"><span class="wanneer">${r.wanneer} · ${(+r.stap).toLocaleString("nl")}</span> `
+             + `<span class="zij">amber: ${r.vraagt || r.zegt || "—"}</span>`
+             + (r.antwoord_cley ? ` <span class="cley">cley: ${r.antwoord_cley}</span>` : ``) + `</div>`;
+        }
+        h += `</div>`;
+      }
+    } catch (e) {}
     h += `<div class="stem">het systeem</div><ul>` + (z.voorstellen || []).map(v => `<li>${v}</li>`).join("") + `</ul>`;
     if ((z.waarnemingen || []).length) h += `<div class="stem">waarnemingen</div><ul>` + z.waarnemingen.map(v => `<li>${v}</li>`).join("") + `</ul>`;
     h += `<div class="regel">${z.regel}</div>`;
@@ -672,6 +701,13 @@ async function haalZelfrapport() {
   } catch (e) {}
 }
 haalZelfrapport(); setInterval(haalZelfrapport, 300000);
+async function antwoordCley(a) {
+  a = (a || "").trim(); if (!a) return;
+  const r = await (await fetch("/antwoord-cley?antwoord=" + encodeURIComponent(a), {cache: "no-store"})).json();
+  if (r.geantwoord) { const v = document.getElementById("antwoord-vrij"); if (v) v.value = ""; haalZelfrapport(); }
+  else alert("er staat geen vraag van haar open om te beantwoorden");
+}
+
 maat();
 
 function teken(t) {
