@@ -296,6 +296,18 @@ ok, uit = ssh(f"echo {_geheim()} | sudo -S systemctl restart amber-kijker "
               f"2>/dev/null; systemctl is-active amber-kijker", 60)
 print("kijker op de trainer herstart:", uit.strip().splitlines()[-1] if uit else "?")
 
+# Het venster is een dienst: hij houdt server.py in het geheugen, maar leest
+# index.html en mobiel.html bij ELKE aanvraag opnieuw van schijf. Kopieer je
+# hierboven alle drie zonder te herstarten, dan draait er oude servercode
+# onder een nieuwe pagina. Precies dat gebeurde op 19 aug 2026: de rungrens
+# naar 7.2 zette om 14:19 de nieuwe pagina neer terwijl de dienst nog de
+# code van 11:55 draaide, en Cleys venster stond stil — server gezond, alle
+# antwoorden 200, geen enkele fout in het logboek, en tóch bevroren.
+# Kopiëren en herstarten horen bij elkaar, net als bij de kijker hierboven.
+ok, uit = ssh(f"echo {_geheim()} | sudo -S systemctl restart amber-venster "
+              f"2>/dev/null; systemctl is-active amber-venster", 60)
+print("venster op de trainer herstart:", uit.strip().splitlines()[-1] if uit else "?")
+
 stap(6, "startcheckpoint bouwen en plaatsen")
 # Via de Learner en niet via het kale netwerk (15 aug 2026): een laag erbij
 # moet de optimizer meenemen (grow_layer plant de oude momenten over), en
