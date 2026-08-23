@@ -91,7 +91,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 20, "code": 40, "geheugen": 40, "logica": 20, "volgorde": 20, "tekst": 20, "zeggen": 24, "taal": 12, "machine": 20, "tellen": 12, "antwoord": 12}
+MAX_DEPTH_PER = {"puzzel": 20, "code": 48, "geheugen": 40, "logica": 20, "volgorde": 20, "tekst": 20, "zeggen": 24, "taal": 16, "machine": 20, "tellen": 12, "antwoord": 16}
 
 
 def max_depth(family):
@@ -1512,7 +1512,7 @@ def _rule_draws(seed, depth):
 #
 #     84 : 7          →   7 * 12 = 84 ; 84 : 7 = 12
 #
-# One in six numbers at depth DEEL_MIN–DEEL_MAX, only where no other split
+# One in three numbers at depth DEEL_MIN–DEEL_MAX, only where no other split
 # drew; the rest stays bit for bit. Divisor 2–12 throughout; the quotient
 # grows with the depth (2–12 at depth 3, up to 2–99 at depth 12), so the
 # dividend stays inside what she multiplies elsewhere.
@@ -1532,7 +1532,7 @@ def _division(depth, t):
 
 def _division_draws(seed, depth):
     return (DEEL_MIN <= depth <= DEEL_MAX
-            and Picker(_mix(seed ^ DEEL_SEED)).integer(1, 6) == 1)
+            and Picker(_mix(seed ^ DEEL_SEED)).integer(1, 3) == 1)
 
 
 # --- logica (logic) — the fifth family (17 Aug 2026) ---------------------------

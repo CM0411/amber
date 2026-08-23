@@ -745,8 +745,11 @@ for depth in range(1, 13):
 # equation brick existed
 # and 9e6f98e443403dfe over the complement of keerc and equation, taken on
 # 18 Aug 2026 before the division brick existed
+# and 4511e954860bd6b3 over that same complement while division still drew
+# one in six, taken on 20 Aug 2026 before division went to one in three:
+# deling had stalled at 15% because it hardly came up (run 7.3, Cleys woord)
 check("untouched arithmetic numbers depth 1-12 are bit for bit the old world",
-      _h.hexdigest()[:16] == "4511e954860bd6b3",
+      _h.hexdigest()[:16] == "b7484d5c06a9ea82",
       f"{_h.hexdigest()[:16]}, {kc_numbers} + {vgl_numbers} + {deel_numbers} split numbers")
 
 # --- the division brick (18 Aug 2026) ---------------------------------------
