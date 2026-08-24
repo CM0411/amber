@@ -64,7 +64,7 @@ _CHUNK_BUDGET = 10_000_000
 # A row shorter than this share of its group's longest starts a new
 # group (24 Aug 2026): keeps the padding in every group under ~30%,
 # while groups stay large enough to keep the card busy.
-_GROUP_SPAN = 0.7
+_GROUP_SPAN = 0.8
 
 
 def bf16_usable(device):
