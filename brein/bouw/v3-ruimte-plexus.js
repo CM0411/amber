@@ -3,9 +3,8 @@
    "begin vanaf nul tot je eigen futuristische design").
 
    Geen website met bladen. Eén scherm. Haar brein in het midden, als een
-   brein (Cley, 24 aug laat: "een echt brein zoals bij een mens"): een
-   zijaanzicht vol knopen met een web van dunne lijnen; de vraag komt
-   binnen bij de hersenstam, het antwoord komt eruit aan de voorkant. Elke knoop is echt: een groep van 12 kanalen
+   plexus (Cleys afbeelding, 24 aug laat): een losse band van knopen met
+   een web van dunne lijnen. Elke knoop is echt: een groep van 12 kanalen
    uit haar residustroom (32 per laag, 20 lagen, plus de 32 van de
    inbedding en de ene knoop van de uitvoer). Elke lijn is echt: tussen
    twee lagen de sterkste gewichten van groep naar groep (bleek plus,
@@ -79,51 +78,18 @@ function rnd(seed) {                      // vaste toevalsgetallen: dezelfde kno
 }
 let vorm = [], glad = [];                // per station: {k, z, cy, xyz: Float32Array, n, soort}; glad: de getoonde activiteit per knoop
 let lijnen = [], samen = [];             // de bedrading tussen de lagen; wie samen vuurt binnen een laag
-/* Het brein (Cley, 24 aug: "een echt brein zoals bij een mens, en alleen het draadje licht op").
-   Zijaanzicht, de voorkant rechts. De vraag komt binnen bij de hersenstam en de kleine hersenen
-   (de inbedding: 32 knopen), gaat in 20 plakken van achter naar voren door de grote hersenen
-   (per plak 32 knopen = haar 32 groepen van 12 kanalen; de plakken zijn even vol), en het
-   antwoord komt eruit bij de voorkant (de uitvoer: één knoop). De omtrek is tekening; de knopen
-   en alle lijnen zijn echt. */
-const BREIN = [[-0.95, -0.05], [-1.0, 0.15], [-0.95, 0.35], [-0.8, 0.52], [-0.55, 0.64], [-0.25, 0.70], [0.05, 0.70], [0.35, 0.66],
-               [0.6, 0.56], [0.8, 0.42], [0.95, 0.25], [1.0, 0.05], [0.97, -0.12], [0.85, -0.25], [0.65, -0.32], [0.45, -0.30],
-               [0.3, -0.36], [0.1, -0.45], [-0.15, -0.48], [-0.4, -0.42], [-0.55, -0.30], [-0.7, -0.22], [-0.85, -0.15]];
-const KLEINE = {cx: -0.60, cy: -0.42, rx: 0.27, ry: 0.15};
-const STAM = [[-0.30, -0.44], [-0.20, -0.74]];
-const UIT = [0.93, -0.20];
-function binnen(poly, x, y) {
-  let c = false;
-  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-    const [xi, yi] = poly[i], [xj, yj] = poly[j];
-    if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) c = !c;
-  }
-  return c;
-}
 function bouwVorm() {
-  const n = KOL.length, lagen = n - 2;
-  // de plakken: even vol, dus grenzen op kwantielen van de oppervlakte
-  const xs = [];
-  for (let i = 0; xs.length < 3000 && i < 20000; i++) { const x = rnd(i * 7 + 1) * 2 - 1, y = rnd(i * 7 + 2) * 1.5 - 0.8; if (binnen(BREIN, x, y)) xs.push(x); }
-  xs.sort((p, q) => p - q);
-  const grens = [-1.0]; for (let k = 1; k < lagen; k++) grens.push(xs[Math.floor(xs.length * k / lagen)]); grens.push(1.0);
+  const n = KOL.length, dz = 1.35;
   vorm = [];
   for (let k = 0; k < n; k++) {
-    const st = {k, z: 0, cy: 0, n: KOL[k], soort: KOL[k] === 1 ? "uit" : (k === 0 ? "in" : "laag"), xyz: new Float32Array(KOL[k] * 3)};
-    let sy = 0;
+    const z = (k - (n - 1) / 2) * dz, cy = 0.9 * Math.sin(k / Math.max(1, n - 1) * Math.PI * 1.6);   // een zachte slinger door de band
+    const st = {k, z, cy, n: KOL[k], soort: KOL[k] === 1 ? "uit" : (k === 0 ? "in" : "laag"), xyz: new Float32Array(KOL[k] * 3)};
     for (let i = 0; i < st.n; i++) {
-      let x, y, pog = 0;
-      if (st.soort === "uit") { x = UIT[0]; y = UIT[1]; }
-      else if (st.soort === "in") {
-        if (i < st.n - 8) { const r = Math.sqrt(rnd(k * 131 + i * 17 + 1)), a = rnd(k * 131 + i * 17 + 2) * 2 * Math.PI; x = KLEINE.cx + Math.cos(a) * r * KLEINE.rx; y = KLEINE.cy + Math.sin(a) * r * KLEINE.ry; }
-        else { const u = (i - (st.n - 8) + 0.5) / 8; x = STAM[0][0] + (STAM[1][0] - STAM[0][0]) * u + (rnd(k * 131 + i * 17 + 1) - 0.5) * 0.08; y = STAM[0][1] + (STAM[1][1] - STAM[0][1]) * u; }
-      } else {
-        const x0 = grens[k - 1], x1 = grens[k];
-        do { x = x0 + (x1 - x0) * rnd(k * 131 + i * 17 + pog * 3 + 1); y = rnd(k * 131 + i * 17 + pog * 3 + 2) * 1.5 - 0.8; pog++; }
-        while (!binnen(BREIN, x, y) && pog < 400);
-      }
-      st.xyz[3 * i] = x; st.xyz[3 * i + 1] = y; st.xyz[3 * i + 2] = (rnd(k * 131 + i * 17 + 3) - 0.5) * 0.45; sy += y;
+      if (st.n === 1) { st.xyz[0] = 0; st.xyz[1] = cy; st.xyz[2] = z; continue; }
+      const u1 = rnd(k * 131 + i * 17 + 1), u2 = rnd(k * 131 + i * 17 + 2), u3 = rnd(k * 131 + i * 17 + 3);
+      const r = 2.4 * Math.sqrt(u1), a = u2 * 2 * Math.PI;
+      st.xyz[3 * i] = Math.cos(a) * r; st.xyz[3 * i + 1] = cy + Math.sin(a) * r * 0.8; st.xyz[3 * i + 2] = z + (u3 - 0.5) * 0.9;
     }
-    st.cy = sy / Math.max(1, st.n);
     vorm.push(st);
   }
   glad = vorm.map(st => new Float32Array(st.n));
@@ -185,7 +151,7 @@ function nieuweGedachte(t) {
 }
 
 /* ---- de camera ---- */
-const cam = {yaw: 0, pitch: 0, roll: 0, D: 30, f: 22, zoom: 1};
+const cam = {yaw: 1.15, pitch: 0.32, roll: -0.42, D: 30, f: 22, zoom: 1};
 let vuil = true, S = 100, CX = 0, CY = 0, laatstBediend = 0;
 let proj = [];                           // per station: {k, xy: Float32Array, s: Float32Array, z, cx, cy}
 function projecteer() {
@@ -218,7 +184,7 @@ doek.addEventListener("pointermove", e => {
   if (sleep) {
     const dx = e.clientX - sleep.x, dy = e.clientY - sleep.y;
     if (Math.hypot(dx, dy) > 4) sleep.bewogen = true;
-    if (sleep.bewogen && zoom.t < 0.5) { cam.yaw = Math.max(-0.9, Math.min(0.9, sleep.yaw + dx * 0.006)); cam.pitch = Math.max(-0.6, Math.min(0.6, sleep.pitch + dy * 0.006)); vuil = true; }
+    if (sleep.bewogen && zoom.t < 0.5) { cam.yaw = sleep.yaw + dx * 0.006; cam.pitch = Math.max(-1.3, Math.min(1.3, sleep.pitch + dy * 0.006)); vuil = true; }
     laatstBediend = performance.now();
   }
 });
@@ -278,21 +244,11 @@ function tekenRuimte(t, j, veeg, alpha) {
   for (let k = 0; k < n; k++) { const g = glad[k]; if (!g) continue; for (let i = 0; i < g.length; i++) { const doel = rij ? activiteitVan(j, k, i) : 0; g[i] += (doel - g[i]) * 0.09; } }
   const stroom = (k1, i1, k2, i2) => Math.sqrt(Math.max(0, (glad[k1] ? glad[k1][i1] : 0) * (glad[k2] ? glad[k2][i2] : 0)));
   ctx.lineCap = "round";
-  // de omtrek van het brein (tekening, geen meting): grote hersenen, kleine hersenen, hersenstam
-  {
-    const cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw), cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch), cr = Math.cos(cam.roll), sr = Math.sin(cam.roll);
-    const pt = (x, y) => { const x1 = x * cy, z1 = -x * sy, y2 = y * cp - z1 * sp, z2 = y * sp + z1 * cp, s = cam.f / (cam.D + z2), px = x1 * s, py = -y2 * s; return [CX + (px * cr - py * sr) * S, CY + (px * sr + py * cr) * S]; };
-    ctx.strokeStyle = "rgba(150,175,190,0.13)"; ctx.lineWidth = DPR * 1.2; ctx.lineJoin = "round";
-    ctx.beginPath(); BREIN.forEach(([x, y], i) => { const q = pt(x, y); if (i) ctx.lineTo(q[0], q[1]); else ctx.moveTo(q[0], q[1]); }); ctx.closePath(); ctx.stroke();
-    ctx.beginPath(); for (let i = 0; i <= 40; i++) { const a = i / 40 * 2 * Math.PI, q = pt(KLEINE.cx + Math.cos(a) * KLEINE.rx, KLEINE.cy + Math.sin(a) * KLEINE.ry); if (i) ctx.lineTo(q[0], q[1]); else ctx.moveTo(q[0], q[1]); } ctx.stroke();
-    const s1 = pt(STAM[0][0] - 0.06, STAM[0][1]), s2 = pt(STAM[1][0] - 0.06, STAM[1][1]), s3 = pt(STAM[1][0] + 0.06, STAM[1][1]), s4 = pt(STAM[0][0] + 0.06, STAM[0][1]);
-    ctx.beginPath(); ctx.moveTo(s1[0], s1[1]); ctx.lineTo(s2[0], s2[1]); ctx.moveTo(s4[0], s4[1]); ctx.lineTo(s3[0], s3[1]); ctx.stroke();
-  }
   // het web binnen een laag: wie samen vuurt in deze gedachte; licht als er aan beide kanten iets is
   for (const l of samen) {
     const p = proj[l.k]; if (!p) continue;
     const nb = nabij(p), f = stroom(l.k, l.a, l.k, l.b) * l.c;
-    ctx.strokeStyle = `rgba(${205 + 40 * f | 0},${210 + 40 * f | 0},${195 + 10 * f | 0},${(0.05 + 0.10 * l.c * (0.4 + 0.6 * nb) + 0.70 * f).toFixed(3)})`;
+    ctx.strokeStyle = `rgba(${205 + 40 * f | 0},${210 + 40 * f | 0},${195 + 10 * f | 0},${(0.05 + 0.10 * l.c * (0.4 + 0.6 * nb) + 0.55 * f).toFixed(3)})`;
     ctx.lineWidth = DPR * (0.6 + 1.0 * f) * p.s;
     ctx.beginPath(); ctx.moveTo(p.xy[2 * l.a], p.xy[2 * l.a + 1]); ctx.lineTo(p.xy[2 * l.b], p.xy[2 * l.b + 1]); ctx.stroke();
   }
@@ -300,21 +256,30 @@ function tekenRuimte(t, j, veeg, alpha) {
   for (const l of lijnen) {
     const a = proj[l.k], b = proj[l.k + 1]; if (!a || !b) continue;
     const nb = (nabij(a) + nabij(b)) / 2, f = stroom(l.k, l.b, l.k + 1, l.d) * (0.4 + 0.6 * l.a);
-    ctx.strokeStyle = l.w >= 0 ? `rgba(${228 + 20 * f | 0},${228 + 27 * f | 0},${208 - 20 * f | 0},${(0.06 + 0.14 * l.a * (0.4 + 0.6 * nb) + 0.75 * f).toFixed(3)})`
-                               : `rgba(255,${176 + 30 * f | 0},${152 + 20 * f | 0},${(0.06 + 0.14 * l.a * (0.4 + 0.6 * nb) + 0.75 * f).toFixed(3)})`;
+    ctx.strokeStyle = l.w >= 0 ? `rgba(${228 + 20 * f | 0},${228 + 27 * f | 0},${208 - 20 * f | 0},${(0.06 + 0.14 * l.a * (0.4 + 0.6 * nb) + 0.60 * f).toFixed(3)})`
+                               : `rgba(255,${176 + 30 * f | 0},${152 + 20 * f | 0},${(0.06 + 0.14 * l.a * (0.4 + 0.6 * nb) + 0.60 * f).toFixed(3)})`;
     ctx.lineWidth = DPR * (0.5 + 0.6 * l.a + 1.3 * f) * a.s;
     ctx.beginPath(); ctx.moveTo(a.xy[2 * l.b], a.xy[2 * l.b + 1]); ctx.lineTo(b.xy[2 * l.d], b.xy[2 * l.d + 1]); ctx.stroke();
   }
   // de knopen, ver naar dichtbij
   const volgorde = proj.slice().sort((a, b) => b.z - a.z);
   for (const p of volgorde) {
-    const k = p.k, st = vorm[k], nb = nabij(p);
+    const k = p.k, st = vorm[k], nb = nabij(p), fel = [];
     for (let i = 0; i < st.n; i++) {
       const a = glad[k] ? glad[k][i] : 0, x = p.xy[2 * i], y = p.xy[2 * i + 1];
-      const r = DPR * (st.n === 1 ? 5 : 2.1) * (0.6 + 0.8 * p.sc[i]);
-      // de knopen blijven stil (Cley: "echt alleen het draadje"); hooguit een zweem waar een draadje aankomt
-      ctx.fillStyle = `rgba(${118 + 40 * a | 0},${142 + 30 * a | 0},${150 + 10 * a | 0},${(0.20 + 0.14 * nb + 0.12 * a).toFixed(3)})`;
+      const r = DPR * (st.n === 1 ? 5 : 2.1) * (0.6 + 0.8 * p.sc[i]) * (1 + 0.6 * a);
+      if (a > 0.8) fel.push([i, a]);
+      // stil: donker teal-grijs (als de verre knopen in zijn plexus); in de golf: bleek geelwit
+      ctx.fillStyle = `rgba(${105 + 140 * a | 0},${130 + 120 * a | 0},${140 + 50 * a | 0},${(0.16 + 0.14 * nb + 0.70 * a).toFixed(3)})`;
       ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+    }
+    // de gloed: een stille lichtkring om de felste knopen van dit teken (glijdt mee, geen flits)
+    fel.sort((x, y) => y[1] - x[1]);
+    for (const [i, a] of fel.slice(0, 3)) {
+      const gx = p.xy[2 * i], gy = p.xy[2 * i + 1], gr = DPR * 26 * p.sc[i] * a;
+      const gg = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
+      gg.addColorStop(0, `rgba(170,255,140,${(0.32 * a).toFixed(3)})`); gg.addColorStop(0.5, `rgba(120,230,150,${(0.10 * a).toFixed(3)})`); gg.addColorStop(1, "rgba(120,230,150,0)");
+      ctx.fillStyle = gg; ctx.fillRect(gx - gr, gy - gr, 2 * gr, 2 * gr);
     }
     if (hover.station === k && hover.kanaal !== null) {
       const i = hover.kanaal; ctx.strokeStyle = "rgba(234,238,247,0.9)"; ctx.lineWidth = DPR;
@@ -435,7 +400,7 @@ function teken(t) {
     if (t - laatstTonen > 80) { laatstTonen = t; const a = document.getElementById("antwoord"); if (a) a.textContent = antwoordDoel.slice(0, antwoordNu); if (typeof toonGedachte === "function") toonGedachte(j, n); }
   }
   // de ruimte draait zachtjes als je even niets doet
-  if (!RUSTIG && zoom.t < 0.5 && !sleep && t - laatstBediend > 15000) { cam.yaw += (0.10 * Math.sin(t / 7000) - cam.yaw) * 0.01; cam.pitch += (0.05 * Math.sin(t / 11000) - cam.pitch) * 0.01; vuil = true; }
+  if (!RUSTIG && zoom.t < 0.5 && !sleep && t - laatstBediend > 15000) { cam.yaw += 0.00022; vuil = true; }
   if (vuil) projecteer();
   zoekHover();
   zoom.t += ((zoom.doel || 0) - zoom.t) * 0.12;

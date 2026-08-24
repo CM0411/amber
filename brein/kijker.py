@@ -32,6 +32,25 @@ FOLDER = os.environ.get("AMBER_KIJKER_MAP", "/home/arch/amber-werk/brein")
 FIJN = os.environ.get("AMBER_KIJKER_FIJN", "/home/arch/rapport/fijn.json")
 EENMAAL = os.environ.get("AMBER_KIJKER_EENMAAL") == "1"     # proef: één ronde, dan stoppen
 RUST = int(os.environ.get("AMBER_KIJKER_RUST", "6"))       # seconden tussen twee rondes (24 aug: 120 op de Z490, de training gaat voor)
+KIJKT = os.environ.get("AMBER_KIJKER_KIJKT", "/home/arch/rapport/kijkt")   # het venster tikt dit aan bij elke stand
+SLAAP_NA = int(os.environ.get("AMBER_KIJKER_SLAAP_NA", "180"))          # zo lang niemand: dan slapen (24 aug, Cleys keuze B)
+
+def _iemand_kijkt():
+    try:
+        return time.time() - os.path.getmtime(KIJKT) < SLAAP_NA
+    except OSError:
+        return False
+UREN = os.environ.get("AMBER_KIJKER_UREN", "17-23")   # 24 aug, Cley: "zet de kijker op een timer, 17:00 t/m 23:00" -- 's nachts staat het venster ook open
+
+def _mag_kijken():
+    """Binnen de uren van Cley, en (als SLAAP_NA > 0) alleen als er iemand kijkt."""
+    try:
+        a, b = (int(x) for x in UREN.split("-"))
+    except ValueError:
+        a, b = 0, 24
+    u = time.localtime().tm_hour
+    in_uren = (a <= u < b) if a <= b else (u >= a or u < b)
+    return in_uren and (SLAAP_NA <= 0 or _iemand_kijkt())
 X399 = "arch@192.168.1.239"
 FETCH_EVERY = 180        # a fresh snapshot from the X399, every 3 minutes —
                          # as often as she writes one herself
@@ -450,6 +469,13 @@ while True:
         fetch_snapshot()
     _beantwoord_vragen()
     load_if_newer()
+    # Slapen buiten Cleys uren (24 aug 2026): de kijker kostte de training 13%, en 's nachts
+    # staat het venster toch open. Binnen de uren: elke RUST seconden een ronde (en met
+    # SLAAP_NA > 0 alleen als het venster KIJKT aantikt). Cleys vragen worden ook slapend
+    # beantwoord (hierboven); een proefstand (EENMAAL) slaapt nooit.
+    if not EENMAAL and not _mag_kijken():
+        time.sleep(30)
+        continue
 
     counter += 1
     picker = tasks.Picker(9001 + counter)

@@ -460,7 +460,8 @@ function toonOnderschrift(j, n) {
     const [a, b] = NAMEN[hover.station] || ["", ""];
     if (hover.kanaal !== null) t = `${a} · ${vorm[hover.station].soort === "uit" ? "de knoop" : `groep ${hover.kanaal} (12 kanalen)`} · ${Math.round(100 * activiteit(j, hover.station, hover.kanaal))}% van het max van deze laag · klik: de microscoop`;
     else t = `${a} · ${b} · klik om te openen`;
-  } else if (!n) t = "wachten op een gedachte…";
+  } else if (kijkerOud > 300) t = `de kijker rust (hij kijkt van 17 tot 23 uur) · dit is haar laatste gedachte, van ${new Date(kijkerTijd * 1000).toLocaleTimeString("nl", {hour: "2-digit", minute: "2-digit"})} · de cijfers in de kop lopen gewoon door`;
+  else if (!n) t = "wachten op een gedachte…";
   else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · sleep om te draaien · klik op een knoop" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
   $("onderschrift").textContent = t;
   const rij = rijen[j];
@@ -504,6 +505,7 @@ function tekenMachinesKort(s) {
   $("machines-sub").textContent = (s.run && s.run.config && s.run.config.machine) ? `training op de ${s.run.config.machine}` : "";
 }
 
+let kijkerOud = 0, kijkerTijd = 0;
 /* ---- de kraan: stand.json elke 5 s ---- */
 async function haal() {
   try {
@@ -532,6 +534,8 @@ async function haal() {
     const pil = $("pil"), d = (s.run && s.run.machine && s.run.machine.dienst) || "", w = s.wachter || {};
     pil.className = "pil " + (d === "active" ? "aan" : "uit");
     pil.textContent = d === "active" ? "ze leert" : (w.melding ? "let op" : "ze rust");
+    // de kijker kijkt van 17 tot 23 uur (24 aug, Cley); daarbuiten blijft haar laatste gedachte staan
+    kijkerOud = s.tijd ? Date.now() / 1000 - s.tijd : 0; kijkerTijd = s.tijd || 0;
     tekenProefwerken(s); tekenLevenslijn(s); tekenWereld(s); tekenKeuzes(s); tekenGeheugen(s); tekenMachines(s); tekenMachinesKort(s);
   } catch (e) { console.error(e); }
 }

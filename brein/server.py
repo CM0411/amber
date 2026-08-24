@@ -14,6 +14,7 @@ import json, os, re, subprocess, threading, time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 RAPPORT = "/home/arch/rapport"
+KIJKT = f"{RAPPORT}/kijkt"      # 24 aug 2026: het venster tikt dit aan bij elke stand; de kijker slaapt als het oud is
 MAP = "/home/arch/amber-werk/brein"
 DL380 = "arch@192.168.1.51"
 SPRAAK_UIT = "/home/arch/spraak-uit"   # verzoeken aan de mond; de brug brengt ze
@@ -303,6 +304,12 @@ class Venster(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path.startswith("/stand.json"):
+            try:                          # er kijkt iemand: dat weet de kijker zo
+                with open(KIJKT, "a"):
+                    pass
+                os.utime(KIJKT, None)
+            except OSError:
+                pass
             try:
                 with open(f"{MAP}/stand.json") as f:
                     stand = json.load(f)
