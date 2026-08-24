@@ -11,12 +11,13 @@ Environment=CUDA_VISIBLE_DEVICES=
 Environment=OMP_NUM_THREADS=4
 Environment=AMBER_KIJKER_LOKAAL=1
 # 24 aug 2026 (op de Z490 als drop-in rust.conf): de kijker kostte de training 13%.
-# Cleys keuze: alleen tussen 17:00 en 23:00 (UREN), dan elke 30 s een ronde (RUST);
+# Cleys keuze (25 aug, 00:40): altijd aan ("ook als ik niet kijk moet het live staan"), 5 s rust;
+# kost de training ± 13%. Eerder: 17-23 uur en wakker bij bezoek.
 # SLAAP_NA=300: ook buiten de uren wakker zolang Cley iets doet in het venster (/ik-kijk);
 # een open tabblad zonder hem telt niet. Live: elke doorgang naar rapport/live.json.
 Environment=AMBER_KIJKER_RUST=5
-Environment=AMBER_KIJKER_SLAAP_NA=300
-Environment=AMBER_KIJKER_UREN=17-23
+Environment=AMBER_KIJKER_SLAAP_NA=0
+Environment=AMBER_KIJKER_UREN=0-24
 Nice=10
 WorkingDirectory=/home/arch/amber-werk
 ExecStart=/usr/bin/python3 -u /home/arch/amber-werk/brein/kijker.py
