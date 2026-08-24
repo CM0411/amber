@@ -15,7 +15,7 @@ Environment=AMBER_KIJKER_LOKAAL=1
 # kost de training ± 13%. Eerder: 17-23 uur en wakker bij bezoek.
 # SLAAP_NA=300: ook buiten de uren wakker zolang Cley iets doet in het venster (/ik-kijk);
 # een open tabblad zonder hem telt niet. Live: elke doorgang naar rapport/live.json.
-Environment=AMBER_KIJKER_RUST=5
+Environment=AMBER_KIJKER_RUST=1
 Environment=AMBER_KIJKER_SLAAP_NA=0
 Environment=AMBER_KIJKER_UREN=0-24
 Nice=10

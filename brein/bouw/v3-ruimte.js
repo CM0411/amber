@@ -382,7 +382,7 @@ function tekenLaag(t, j, alpha) {
 }
 
 /* ---- elk beeld ---- */
-let laatstMeld = 0, beelden = 0;
+let laatstMeld = 0, beelden = 0, laatsteVonk = 0;
 const FOTO = /foto=1/.test(location.search);        // proefopname: na 40 beelden stoppen
 // de kijker bewaart de laatste 48 doorgangen; bij een langer antwoord begint
 // de eerste dus niet bij het lezen van de vraag maar bij een teken verderop
@@ -407,6 +407,9 @@ function teken(t) {
   }
   // de ruimte draait zachtjes als je even niets doet
   if (vuil) projecteer();
+  // de pulstrein (25 aug, Cley: "er moet elke keer een puls doorheen gaan, het mag niet stoppen"):
+  // elke 120 ms vonkjes van de stromen naar de kolom en door naar het blok, ook tussen twee gedachten
+  if (zoom.t < 0.5 && t - laatsteVonk > 120) { laatsteVonk = t; vonk(t); }
   zoekHover();
   zoom.t += ((zoom.doel || 0) - zoom.t) * 0.12;
   if (Math.abs(zoom.t - (zoom.doel || 0)) < 0.002) zoom.t = zoom.doel || 0;
