@@ -545,7 +545,7 @@ async function haalLive() {
     const rij = [l.rij.in, ...l.rij.b, [l.rij.uit]];
     while (rijen.length < l.doorgang) rijen.push(rijen.length ? rijen[rijen.length - 1] : rij);   // een gemiste doorgang: de vorige herhalen
     if (rijen.length === l.doorgang) rijen.push(rij); else rijen[l.doorgang] = rij;
-    if (l.doorgang !== liveDoorgang) { liveDoorgang = l.doorgang; liveLaatst = Date.now(); }
+    if (l.doorgang !== liveDoorgang) { liveDoorgang = l.doorgang; liveLaatst = Date.now(); if (typeof vonk === "function") vonk(performance.now()); }
     kolMax = KOL.map((n, k) => { let m = 0.0001; for (const r of rijen) for (const v of (r[k] || [])) m = Math.max(m, v); return m; });
     if ((l.tekst || "") !== antwoordDoel) { wachtAntwoord = l.tekst || ""; bouwGedachte(); }
     else if (typeof toonGedachte === "function") { vorigeTegel = -1; }

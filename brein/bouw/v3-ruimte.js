@@ -113,6 +113,18 @@ const TINT = {cyaan: "41,211,255", magenta: "255,63,160", geel: "255,210,63", bl
 const STROOM = [["vraag", TINT.cyaan], ["herinnering", TINT.magenta], ["antwoord", TINT.geel]];
 const NIVO = ["rgba(60,95,200,0.55)", "rgba(80,150,255,0.85)", "rgba(41,211,255,0.95)", "rgba(120,235,255,1)", "rgba(255,63,160,1)", "rgba(255,210,63,1)"];
 const G = {};
+let vonken = [];                         // vonkjes over de vezels (als in het weefsel): bij elk nieuw teken, klein, kort
+function vonk(t) {
+  if (RUSTIG || !G.cel) return;
+  const g0 = glad[0] || [], nk = KOL[0];
+  for (let i = 0; i < 3; i++) for (let v = 0; v < 4; v++) {
+    let g = Math.floor(rnd((t | 0) * 7 + i * 31 + v * 13) * nk);
+    for (let p = 0; p < 6 && (g0[g] || 0) < 0.4; p++) g = Math.floor(rnd((t | 0) * 7 + i * 31 + v * 13 + p * 101) * nk);   // liever een actieve groep
+    vonken.push({i, g, t0: t + v * 90, duur: 650});
+  }
+  if (vonken.length > 120) vonken = vonken.slice(-120);
+}
+function rnd(seed) { let t = (seed | 0) + 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; }
 let vuil = true, laatstBediend = 0;
 const atlas = document.createElement("canvas"), blokDoek = document.createElement("canvas");
 let blokTik = 0;
@@ -236,6 +248,18 @@ function tekenRuimte(t, j, veeg, alpha) {
       ctx.strokeStyle = `rgba(${kl},${(0.10 + 0.6 * a).toFixed(3)})`; ctx.lineWidth = DPR * (0.5 + 1.0 * a);
       ctx.beginPath(); ctx.moveTo(x0, y0); ctx.bezierCurveTo(mx, y0, mx, y1, G.kolX - DPR * 4, y1); ctx.stroke();
     }
+  }
+  // de vonkjes: over de vezel van de stroom naar de groep, dan door naar het blok
+  const nu = performance.now();
+  vonken = vonken.filter(v => nu - v.t0 < v.duur + 300);
+  for (const v of vonken) {
+    const u = (nu - v.t0) / v.duur; if (u < 0) continue;
+    const kl = STROOM[v.i][1], x0 = G.stroomX1 + fs * 0.4, y0 = G.stroomY[v.i], y1 = G.kolY0 + (G.kolY1 - G.kolY0) * (nk > 1 ? v.g / (nk - 1) : 0.5), mx = (x0 + G.kolX) / 2, x3 = G.kolX - DPR * 4;
+    let x, y, a;
+    if (u <= 1) { const w = 1 - u; x = w * w * w * x0 + 3 * w * w * u * mx + 3 * w * u * u * mx + u * u * u * x3; y = w * w * w * y0 + 3 * w * w * u * y0 + 3 * w * u * u * y1 + u * u * u * y1; a = 0.95; }
+    else { const u2 = Math.min(1, (u - 1) * v.duur / 300), yb = G.blokY + G.blokH * (nk > 1 ? v.g / (nk - 1) : 0.5); x = G.kolX + DPR * 6 + (G.blokX - DPR * 3 - G.kolX - DPR * 6) * u2; y = y1 + (yb - y1) * u2; a = 0.9 * (1 - u2); }
+    ctx.fillStyle = `rgba(${kl},${a.toFixed(2)})`; ctx.beginPath(); ctx.arc(x, y, DPR * 2.2, 0, 7); ctx.fill();
+    ctx.fillStyle = "rgba(255,255,255," + (0.6 * a).toFixed(2) + ")"; ctx.beginPath(); ctx.arc(x, y, DPR * 1.0, 0, 7); ctx.fill();
   }
   // de kolom: de 32 groepen van de inbedding, en de streepjes naar het blok
   for (let g = 0; g < nk; g++) {
