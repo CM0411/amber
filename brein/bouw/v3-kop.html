@@ -17,15 +17,16 @@
      dyslexie); cijfers: JetBrains Mono; alleen de naam in Syne.
      Eén thema, met opzet: een sterrenwacht is 's nachts open. */
   :root {
-    --bg: #05070D; --bg-2: #0A0E1C; --glas: rgba(10,14,27,.74); --glas-2: rgba(19,25,45,.85); --vlak: #121830;
-    --rand: rgba(140,170,220,.13); --rand-2: rgba(140,170,220,.28); --line: rgba(140,170,220,.13); --line-2: rgba(140,170,220,.28);
-    --surface: #0E1322; --surface-2: #151C30;
-    --ink: #EAEEF7; --muted: #8E99B3; --dim: #5C6781;
-    --mint: #7FE0C3; --coral: #FF9A7A; --sky: #6FB5FF; --lilac: #F0A8FF; --amber: #FFC272;
+    /* zwart, wit, cyaan -- naar Cleys derde afbeelding (24 aug laat: "dit is hem") */
+    --bg: #000000; --bg-2: #050708; --glas: rgba(8,10,12,.78); --glas-2: rgba(14,17,20,.9); --vlak: #101316;
+    --rand: rgba(255,255,255,.11); --rand-2: rgba(255,255,255,.24); --line: rgba(255,255,255,.11); --line-2: rgba(255,255,255,.24);
+    --surface: #0A0D0F; --surface-2: #14181B;
+    --ink: #F2F4F5; --muted: #9AA3AA; --dim: #5E676E;
+    --mint: #3FD0E0; --coral: #FF8A70; --sky: #7FD9E6; --lilac: #9EE7F0; --amber: #FFC272;
     --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
     --tekst: "Atkinson Hyperlegible", system-ui, "Segoe UI", sans-serif;
     --merk: "Syne", "Atkinson Hyperlegible", system-ui, sans-serif;
-    --r: 14px; --r-s: 9px;
+    --r: 6px; --r-s: 4px;
     --kop-h: 56px; --rail-w: 218px; --rechts-w: 316px; --onder-h: 66px; --marge: 12px;
   }
   * { margin: 0; box-sizing: border-box; }
@@ -37,7 +38,7 @@
   ::selection { background: rgba(111,181,255,.35); }
 
   /* ================= het toneel: de ruimte ================= */
-  #toneel { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 55% 45%, #0C1B38 0%, #060C1A 66%); }
+  #toneel { position: fixed; inset: 0; z-index: 0; background: #000; }
   #doek { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
   #vrij { position: absolute; top: calc(var(--kop-h) + var(--marge)); left: calc(var(--rail-w) + 2 * var(--marge));
           right: calc(var(--rechts-w) + 2 * var(--marge)); bottom: calc(var(--onder-h) + 2 * var(--marge));
@@ -53,7 +54,7 @@
                      color: var(--dim); font-family: var(--mono); font-size: 12px; cursor: pointer; transition: background .2s, color .2s; }
   #gedachte .tegel.vraag { width: 34px; }
   #gedachte .tegel.geweest { color: var(--muted); background: rgba(127,224,195,.10); }
-  #gedachte .tegel.nu { color: var(--bg); background: var(--mint); font-weight: 700; }
+  #gedachte .tegel.nu { color: #06090C; background: var(--mint); font-weight: 700; }
   #gedachte .tegel.vast { border-color: var(--ink); }
   #gedachte .tegel:hover { border-color: var(--rand-2); }
   #gedachte .tegel:focus-visible, .knop:focus-visible, .meer:focus-visible, .rij:focus-visible, .sluit:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
@@ -67,6 +68,7 @@
   #merk { display: flex; align-items: baseline; gap: 12px; white-space: nowrap; }
   #merk .naam { font-family: var(--merk); font-weight: 800; font-size: 19px; letter-spacing: .02em; color: var(--ink); }
   #merk .wacht { font-family: var(--merk); font-weight: 700; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--mint); }
+  .cijfer .voortgang i, .rij .balk b { background: var(--mint); }
   #merk .run { font-family: var(--mono); font-size: 12px; color: var(--dim); }
   #cijfers { display: flex; gap: 28px; justify-content: center; align-items: center; min-width: 0; overflow: hidden; }
   .cijfer { display: flex; flex-direction: column; gap: 1px; white-space: nowrap; }
@@ -84,7 +86,7 @@
   .pil.uit::before { background: var(--amber); }
 
   /* ================= glas ================= */
-  .glas { background: var(--glas); border: 1px solid var(--rand); border-radius: var(--r);
+  .glas { background: var(--glas); border: 1px solid var(--rand); border-radius: 6px;
           backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); }
   #rail, #rechts, #onder { position: fixed; z-index: 4; transition: opacity .3s, transform .3s; }
   body.laag-open #rail, body.laag-open #rechts, body.laag-open #onder { opacity: 0; pointer-events: none; }
@@ -425,7 +427,7 @@ addEventListener("keydown", e => { if (e.key === "Escape" && document.body.class
 function bouwRail() {
   const r = $("rail");
   r.innerHTML = `<div class="kopje">haar lagen</div>` + NAMEN.map(([a, b], k) =>
-    `<button class="rij" data-k="${k}" title="${esc(a)} openen"><span class="nm">${esc(a)}</span><span class="fam" style="color:${kleurVan(b)}">${esc(b)}</span><i class="balk"><b></b></i></button>`).join("");
+    `<button class="rij" data-k="${k}" title="${esc(a)} openen"><span class="nm">${esc(a)}</span><span class="fam">${esc(b)}</span><i class="balk"><b></b></i></button>`).join("");
   r.querySelectorAll(".rij").forEach(b => b.addEventListener("click", () => openLaag(+b.dataset.k)));
   toonRail();
 }
@@ -436,12 +438,12 @@ let wachtAntwoord = "", wachtGoed = null, vorigeTegel = -1;
 function bouwGedachte() {
   antwoordDoel = wachtAntwoord; antwoordNu = 0;
   const a = $("antwoord"); a.textContent = ""; a.className = wachtGoed === true ? "goed" : (wachtGoed === false ? "fout" : "");
-  const n = rijen.length, v = verschuiving();
-  $("tegels").innerHTML = Array.from({length: n}, (_, j) => {
-    const i = j + v - 1, vraag = i < 0;
+  const n = rijen.length, v = verschuiving(), van = Math.max(0, n - 48);
+  $("tegels").innerHTML = Array.from({length: n - van}, (_, q) => {
+    const j = van + q, i = j + v - 1, vraag = i < 0;
     const c = vraag ? "?" : (antwoordDoel[i] === " " ? "·" : (antwoordDoel[i] || "·"));
     return `<button class="tegel${vraag ? " vraag" : ""}" data-j="${j}" title="${vraag ? "ze leest de vraag" : `teken ${i + 1}: ${esc(antwoordDoel[i] || "")}`}">${esc(c)}</button>`;
-  }).join("") + (v ? `<span class="tegel-noot" title="de kijker bewaart de laatste ${n} doorgangen">de laatste ${n} van ${antwoordDoel.length + 1}</span>` : "");
+  }).join("") + (v || van ? `<span class="tegel-noot">de laatste ${n - van} van ${Math.max(n, antwoordDoel.length + 1)}</span>` : "");
   $("tegels").querySelectorAll(".tegel").forEach(b => b.addEventListener("click", () => { vast = +b.dataset.j; $("verder").hidden = false; vorigeTegel = -1; }));
   $("verder").hidden = true; vorigeTegel = -1;
 }
@@ -458,11 +460,10 @@ function toonOnderschrift(j, n) {
   if (zoom.t > 0.5) t = "";
   else if (hover.station !== null) {
     const [a, b] = NAMEN[hover.station] || ["", ""];
-    if (hover.kanaal !== null) t = `${a} · ${vorm[hover.station].soort === "uit" ? "de knoop" : `groep ${hover.kanaal} (12 kanalen)`} · ${Math.round(100 * activiteit(j, hover.station, hover.kanaal))}% van het max van deze laag · klik: de microscoop`;
-    else t = `${a} · ${b} · klik om te openen`;
-  } else if (kijkerOud > 300) t = `de kijker rust (hij kijkt van 17 tot 23 uur) · dit is haar laatste gedachte, van ${new Date(kijkerTijd * 1000).toLocaleTimeString("nl", {hour: "2-digit", minute: "2-digit"})} · de cijfers in de kop lopen gewoon door`;
+    t = `${a} · ${b} · klik: de microscoop`;
+  } else if (kijkerOud > 300) t = `kijker rustte · hij wordt wakker nu jij hier bent, nieuwe gedachte over ± 1 min · dit is haar laatste, van ${new Date(kijkerTijd * 1000).toLocaleTimeString("nl", {hour: "2-digit", minute: "2-digit"})}`;
   else if (!n) t = "wachten op een gedachte…";
-  else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · sleep om te draaien · klik op een knoop" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
+  else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · wit plus, grijsblauw min · sleep om te schuiven · klik op een cel" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
   $("onderschrift").textContent = t;
   const rij = rijen[j];
   $("rail").querySelectorAll(".rij").forEach(b => {
@@ -506,6 +507,50 @@ function tekenMachinesKort(s) {
 }
 
 let kijkerOud = 0, kijkerTijd = 0;
+/* ---- ik kijk: als Cley iets doet in het venster, mag de kijker wakker worden (ook buiten 17–23) ---- */
+let ikKeek = 0;
+function ikKijk() {
+  if (document.visibilityState !== "visible" || Date.now() - ikKeek < 20000) return;
+  ikKeek = Date.now();
+  fetch("/ik-kijk", {cache: "no-store"}).catch(() => {});
+}
+["pointermove", "pointerdown", "keydown", "touchstart", "wheel"].forEach(ev => addEventListener(ev, ikKijk, {passive: true}));
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") { ikKeek = 0; ikKijk(); } });
+
+/* ---- live: haar denken terwijl het gebeurt (24 aug, Cley: "het moet wel echt live zijn") ----
+   De kijker schrijft na elk teken live.json: die doorgang plus wat ze tot nu toe schreef. Hier wordt
+   dat de gedachte in beeld, doorgang voor doorgang; komt stand.json daarna met dezelfde begintijd,
+   dan is dat dezelfde gedachte en wordt er niets opnieuw afgespeeld. */
+let liveTijd = 0, liveBezig = false;
+async function haalLive() {
+  if (liveBezig) return;
+  liveBezig = true;
+  try {
+    const r = await fetch("/rapport/live.json", {cache: "no-store"});
+    if (!r.ok) return;
+    const l = await r.json();
+    if (!l || !l.rij || !Array.isArray(l.rij.b)) return;
+    if (Date.now() / 1000 - (l.geschreven || 0) > 180) return;      // oud: ze denkt nu niet
+    if (l.tijd !== liveTijd) {                                       // een nieuwe gedachte begint
+      liveTijd = l.tijd; LIVE = true; rijen = []; wachtrij = []; vast = null; klaarSinds = 0; samen = [];
+      const kol = [l.rij.in.length, ...l.rij.b.map(x => x.length), 1];
+      if (kol.length !== KOL.length) { KOL = kol; bouwNamen(); }
+      wachtAntwoord = ""; wachtGoed = null; $("verder").hidden = true;
+      $("opgave").textContent = (l.opgave || "").replace(/\n/g, " ; ");
+      $("nu-sub").textContent = l.checkpoint_stap ? `brein van stap ${nl(l.checkpoint_stap)} · live` : "live";
+      const a = $("antwoord"); a.textContent = ""; a.className = "";
+    }
+    const rij = [l.rij.in, ...l.rij.b, [l.rij.uit]];
+    while (rijen.length < l.doorgang) rijen.push(rijen.length ? rijen[rijen.length - 1] : rij);   // een gemiste doorgang: de vorige herhalen
+    if (rijen.length === l.doorgang) rijen.push(rij); else rijen[l.doorgang] = rij;
+    kolMax = KOL.map((n, k) => { let m = 0.0001; for (const r of rijen) for (const v of (r[k] || [])) m = Math.max(m, v); return m; });
+    if (rijen.length >= 4 && rijen.length % 6 === 0) bouwSamen();
+    if ((l.tekst || "") !== antwoordDoel) { wachtAntwoord = l.tekst || ""; bouwGedachte(); }
+    else if (typeof toonGedachte === "function") { vorigeTegel = -1; }
+  } catch (e) {} finally { liveBezig = false; }
+}
+setInterval(haalLive, 500);
+
 /* ---- de kraan: stand.json elke 5 s ---- */
 async function haal() {
   try {
@@ -526,7 +571,12 @@ async function haal() {
       if (Array.isArray(s.laagnamen)) { laagnamen = {}; for (const x of s.laagnamen) if (x && x.laag) laagnamen[x.laag] = x.naam; }
       if (s.bedrading && (nieuweBedrading || !weefsel.length)) { bedrading = s.bedrading; bedradingUit = s.bedrading_uit; weefsel = [true]; }
       bouwNamen();                       // de vorm (met de bedrading) en de rail
-      wachtAntwoord = s.antwoord || ""; wachtGoed = s.goed;
+      if (LIVE && s.tijd === liveTijd) {   // dezelfde gedachte die net live voorbijkwam: niets herhalen, wel de uitslag
+        wachtrij = []; wachtAntwoord = s.antwoord || ""; wachtGoed = s.goed;
+        if (antwoordDoel !== wachtAntwoord) bouwGedachte();
+        const a = $("antwoord"); a.className = s.goed === true ? "goed" : (s.goed === false ? "fout" : "");
+      } else if (LIVE) { wachtrij = []; }   // een oudere gedachte uit stand.json terwijl we live zijn: laten liggen
+      else { wachtAntwoord = s.antwoord || ""; wachtGoed = s.goed; }
       tekenNu(s);
     }
     if (typeof haalFijn === "function") haalFijn(s.tijd);

@@ -12,9 +12,10 @@ Environment=OMP_NUM_THREADS=4
 Environment=AMBER_KIJKER_LOKAAL=1
 # 24 aug 2026 (op de Z490 als drop-in rust.conf): de kijker kostte de training 13%.
 # Cleys keuze: alleen tussen 17:00 en 23:00 (UREN), dan elke 30 s een ronde (RUST);
-# SLAAP_NA=0 -- het venster staat 's nachts toch open, dus niet op bezoek sturen.
+# SLAAP_NA=300: ook buiten de uren wakker zolang Cley iets doet in het venster (/ik-kijk);
+# een open tabblad zonder hem telt niet. Live: elke doorgang naar rapport/live.json.
 Environment=AMBER_KIJKER_RUST=30
-Environment=AMBER_KIJKER_SLAAP_NA=0
+Environment=AMBER_KIJKER_SLAAP_NA=300
 Environment=AMBER_KIJKER_UREN=17-23
 Nice=10
 WorkingDirectory=/home/arch/amber-werk

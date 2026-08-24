@@ -16,7 +16,7 @@ and the page speaks Cley's language.
 import sys, os, json, time, subprocess
 sys.path.insert(0, "/home/arch/amber-werk/kern")
 import determinism; determinism.lock(9001)
-import bridge, exams, learning, snapshot, tasks, world, torch
+import bridge, exams, learning, snapshot, tasks, world, torch, tokens
 
 # The calculator's password lives outside the repo — a repo that one day
 # goes public must never carry a secret in its history.
@@ -43,14 +43,14 @@ def _iemand_kijkt():
 UREN = os.environ.get("AMBER_KIJKER_UREN", "17-23")   # 24 aug, Cley: "zet de kijker op een timer, 17:00 t/m 23:00" -- 's nachts staat het venster ook open
 
 def _mag_kijken():
-    """Binnen de uren van Cley, en (als SLAAP_NA > 0) alleen als er iemand kijkt."""
+    """Binnen de uren van Cley, óf (als SLAAP_NA > 0) als hij de laatste SLAAP_NA seconden iets deed in het venster."""
     try:
         a, b = (int(x) for x in UREN.split("-"))
     except ValueError:
         a, b = 0, 24
     u = time.localtime().tm_hour
     in_uren = (a <= u < b) if a <= b else (u >= a or u < b)
-    return in_uren and (SLAAP_NA <= 0 or _iemand_kijkt())
+    return in_uren or (SLAAP_NA > 0 and _iemand_kijkt())     # 24 aug, laat: "het moet wel echt live zijn" -- ook buiten de uren als hij er is
 X399 = "arch@192.168.1.239"
 FETCH_EVERY = 180        # a fresh snapshot from the X399, every 3 minutes —
                          # as often as she writes one herself
@@ -122,9 +122,37 @@ def _catch_ff(_m, _in, out):
     # de invoer van feedforward.down is gelu(up(x)): de 1536 eenheden zelf
     current.append(("ff", _in[0].detach().abs().mean(dim=(0, 1))))
 
+LIVE = os.environ.get("AMBER_KIJKER_LIVE", "/home/arch/rapport/live.json")
+live_aan, live_start, live_n, live_ids, live_task, live_familie = False, 0.0, 0, [], None, ""
+
 def _catch_out(_m, _in, out):
+    global live_n
     p = torch.softmax(out.detach()[0, -1].float(), dim=-1)
     current.append(("uit", float(p.max())))
+    if not live_aan:
+        return
+    # Live (24 aug 2026, Cley: "het moet wel echt live zijn"): na elke doorgang -- dus na elk
+    # teken dat ze schrijft -- deze doorgang naar live.json, met wat ze tot nu toe schreef.
+    # Het venster leest dat elke halve seconde en tekent haar denken terwijl het gebeurt.
+    try:
+        live_ids.append(int(p.argmax()))
+        start = max(i for i, it in enumerate(current) if it[0] == "in")
+        stuk = current[start:]
+        rij = {"in": [round(float(v), 4) for v in stuk[0][1]],
+               "b": [[round(float(v), 4) for v in it[1]] for it in stuk if it[0] == "blok"],
+               "uit": round(float(p.max()), 4)}
+        try:
+            tekst = tokens.answer_from_sequence([tokens.ANSWER] + live_ids)
+        except Exception:
+            tekst = ""
+        with open(LIVE + ".deel", "w") as f:
+            json.dump({"tijd": live_start, "geschreven": time.time(), "doorgang": live_n,
+                       "tekst": tekst, "opgave": getattr(live_task, "problem", ""), "familie": live_familie,
+                       "checkpoint_stap": step_in_snapshot, "rij": rij}, f, separators=(",", ":"))
+        os.replace(LIVE + ".deel", LIVE)
+        live_n += 1
+    except Exception as e:
+        print("live.json mislukt:", e, file=sys.stderr)
 
 L.core.embedding.register_forward_hook(_catch_in)
 L.core.unembedding.register_forward_hook(_catch_out)
@@ -489,9 +517,12 @@ while True:
         time.sleep(2); continue
 
     current.clear()
+    live_start, live_n, live_task, live_familie = time.time(), 0, task, family
+    live_ids.clear(); live_aan = True
     answer = L.answer([task],
                       at_most=learning.room_for(depth, family,
                                                 L.core.window))[0]
+    live_aan = False
     # `current` now holds (passes × 8) values in a row
     # cut per pass: in → blocks → out
     n_layers = len(L.core.blocks)
@@ -518,7 +549,7 @@ while True:
     _tel_lagen(family, rows)
 
     stand = {
-        "tijd": time.time(),
+        "tijd": live_start,             # de begintijd van deze gedachte: gelijk aan live.json (24 aug)
         "laagnamen": _laagnamen(),
         "herinnert": _recall(task),
         "geheugen_grootte": len(memories),

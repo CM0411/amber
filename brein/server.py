@@ -303,13 +303,18 @@ class Venster(BaseHTTPRequestHandler):
                     "application/json")
 
     def do_GET(self):
-        if self.path.startswith("/stand.json"):
-            try:                          # er kijkt iemand: dat weet de kijker zo
+        if self.path.startswith("/ik-kijk"):
+            # Cley doet iets in het venster (muis, toets, tik): de kijker mag wakker worden,
+            # ook buiten zijn uren. Een open tabblad zonder hem 's nachts stuurt dit niet.
+            try:
                 with open(KIJKT, "a"):
                     pass
                 os.utime(KIJKT, None)
             except OSError:
                 pass
+            self._stuur(b'{"ok": true}', "application/json")
+            return
+        if self.path.startswith("/stand.json"):
             try:
                 with open(f"{MAP}/stand.json") as f:
                     stand = json.load(f)
