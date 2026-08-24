@@ -17,12 +17,12 @@
      dyslexie); cijfers: JetBrains Mono; alleen de naam in Syne.
      Eén thema, met opzet: een sterrenwacht is 's nachts open. */
   :root {
-    /* zwart, wit, cyaan -- naar Cleys derde afbeelding (24 aug laat: "dit is hem") */
-    --bg: #000000; --bg-2: #050708; --glas: rgba(8,10,12,.78); --glas-2: rgba(14,17,20,.9); --vlak: #101316;
-    --rand: rgba(255,255,255,.11); --rand-2: rgba(255,255,255,.24); --line: rgba(255,255,255,.11); --line-2: rgba(255,255,255,.24);
-    --surface: #0A0D0F; --surface-2: #14181B;
-    --ink: #F2F4F5; --muted: #9AA3AA; --dim: #5E676E;
-    --mint: #3FD0E0; --coral: #FF8A70; --sky: #7FD9E6; --lilac: #9EE7F0; --amber: #FFC272;
+    /* diep blauw, cyaan, magenta, geel -- naar Cleys vierde afbeelding (24 aug laat: "precies dit") */
+    --bg: #050B24; --bg-2: #081132; --glas: rgba(8,16,48,.74); --glas-2: rgba(12,22,62,.9); --vlak: #0E1A4A;
+    --rand: rgba(120,160,255,.16); --rand-2: rgba(120,160,255,.32); --line: rgba(120,160,255,.16); --line-2: rgba(120,160,255,.32);
+    --surface: #0A1440; --surface-2: #122058;
+    --ink: #EEF3FF; --muted: #96A6D6; --dim: #5C6D9E;
+    --mint: #29D3FF; --coral: #FF3FA0; --sky: #6FA8FF; --lilac: #FF7AD9; --amber: #FFD23F;
     --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
     --tekst: "Atkinson Hyperlegible", system-ui, "Segoe UI", sans-serif;
     --merk: "Syne", "Atkinson Hyperlegible", system-ui, sans-serif;
@@ -38,7 +38,7 @@
   ::selection { background: rgba(111,181,255,.35); }
 
   /* ================= het toneel: de ruimte ================= */
-  #toneel { position: fixed; inset: 0; z-index: 0; background: #000; }
+  #toneel { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 50%, #0F1E5E 0%, #071033 55%, #050B24 100%); }
   #doek { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
   #vrij { position: absolute; top: calc(var(--kop-h) + var(--marge)); left: calc(var(--rail-w) + 2 * var(--marge));
           right: calc(var(--rechts-w) + 2 * var(--marge)); bottom: calc(var(--onder-h) + 2 * var(--marge));
@@ -460,10 +460,10 @@ function toonOnderschrift(j, n) {
   if (zoom.t > 0.5) t = "";
   else if (hover.station !== null) {
     const [a, b] = NAMEN[hover.station] || ["", ""];
-    t = `${a} · ${b} · klik: de microscoop`;
-  } else if (kijkerOud > 300) t = `kijker rustte · hij wordt wakker nu jij hier bent, nieuwe gedachte over ± 1 min · dit is haar laatste, van ${new Date(kijkerTijd * 1000).toLocaleTimeString("nl", {hour: "2-digit", minute: "2-digit"})}`;
+    t = hover.kanaal !== null ? `${a} · kanaal ${hover.kanaal} · ${Math.round(100 * activiteitKanaal(hover.station, hover.kanaal))}% van het max van deze laag · klik: de microscoop` : `${a} · ${b} · klik: de microscoop`;
+  } else if (kijkerOud > 300 && !LIVE) t = `kijker rustte · hij wordt wakker nu jij hier bent, nieuwe gedachte over ± 1 min · dit is haar laatste, van ${new Date(kijkerTijd * 1000).toLocaleTimeString("nl", {hour: "2-digit", minute: "2-digit"})}`;
   else if (!n) t = "wachten op een gedachte…";
-  else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · wit plus, grijsblauw min · sleep om te schuiven · klik op een cel" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
+  else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · wijs een cijfer aan · klik op een laag: de microscoop" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
   $("onderschrift").textContent = t;
   const rij = rijen[j];
   $("rail").querySelectorAll(".rij").forEach(b => {
@@ -540,11 +540,11 @@ async function haalLive() {
       $("nu-sub").textContent = l.checkpoint_stap ? `brein van stap ${nl(l.checkpoint_stap)} · live` : "live";
       const a = $("antwoord"); a.textContent = ""; a.className = "";
     }
+    if (Array.isArray(l.kanaal) && l.kanaal.length) liveKanaal = l.kanaal;
     const rij = [l.rij.in, ...l.rij.b, [l.rij.uit]];
     while (rijen.length < l.doorgang) rijen.push(rijen.length ? rijen[rijen.length - 1] : rij);   // een gemiste doorgang: de vorige herhalen
     if (rijen.length === l.doorgang) rijen.push(rij); else rijen[l.doorgang] = rij;
     kolMax = KOL.map((n, k) => { let m = 0.0001; for (const r of rijen) for (const v of (r[k] || [])) m = Math.max(m, v); return m; });
-    if (rijen.length >= 4 && rijen.length % 6 === 0) bouwSamen();
     if ((l.tekst || "") !== antwoordDoel) { wachtAntwoord = l.tekst || ""; bouwGedachte(); }
     else if (typeof toonGedachte === "function") { vorigeTegel = -1; }
   } catch (e) {} finally { liveBezig = false; }

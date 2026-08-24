@@ -141,6 +141,13 @@ def _catch_out(_m, _in, out):
         rij = {"in": [round(float(v), 4) for v in stuk[0][1]],
                "b": [[round(float(v), 4) for v in it[1]] for it in stuk if it[0] == "blok"],
                "uit": round(float(p.max()), 4)}
+        # per laag de 384 kanalen als cijfers 0..9 (naar het max van die laag in deze doorgang):
+        # het blok van enen en nullen in het venster (24 aug laat, Cleys vierde afbeelding)
+        kanaal = []
+        for it in stuk:
+            if it[0] == "blok" and len(it) > 3:
+                v = it[3]; m = float(v.max()) or 1.0
+                kanaal.append("".join(chr(48 + x) for x in (v / m * 9.999).to(torch.int64).tolist()))
         try:
             tekst = tokens.answer_from_sequence([tokens.ANSWER] + live_ids)
         except Exception:
@@ -148,7 +155,7 @@ def _catch_out(_m, _in, out):
         with open(LIVE + ".deel", "w") as f:
             json.dump({"tijd": live_start, "geschreven": time.time(), "doorgang": live_n,
                        "tekst": tekst, "opgave": getattr(live_task, "problem", ""), "familie": live_familie,
-                       "checkpoint_stap": step_in_snapshot, "rij": rij}, f, separators=(",", ":"))
+                       "checkpoint_stap": step_in_snapshot, "rij": rij, "kanaal": kanaal}, f, separators=(",", ":"))
         os.replace(LIVE + ".deel", LIVE)
         live_n += 1
     except Exception as e:
