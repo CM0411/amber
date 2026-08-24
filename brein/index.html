@@ -84,10 +84,21 @@
   .leeg { color: var(--dim); font-size: 14px; }
 
   /* het weefsel */
-  #weefsel { position: relative; height: clamp(300px, 52vh, 640px); border-radius: var(--r); overflow: hidden;
-             border: 1px solid var(--line); background: var(--bg-2); }
-  #doek { display: block; width: 100%; height: 100%; }
-  #weefsel .onderschrift { position: absolute; left: 16px; bottom: 12px; font-family: var(--mono); font-size: 11.5px;
+  #weefsel { position: relative; height: clamp(320px, 56vh, 680px); border-radius: var(--r); overflow: hidden;
+             border: 1px solid var(--line); display: flex;
+             background: radial-gradient(ellipse at 42% 50%, #0E1428 0%, #0A0E1C 55%, #070A14 100%); }
+  #doek { display: block; flex: 1 1 auto; min-width: 0; height: 100%; }
+  #lagen { flex: 0 0 210px; border-left: 1px solid var(--line); padding: 14px 14px 40px; overflow-y: auto; scrollbar-width: none;
+           display: flex; flex-direction: column; justify-content: safe center; gap: 2px; }
+  #lagen .laag { display: grid; grid-template-columns: 8px 6.5ch 1fr; gap: 9px; align-items: center;
+                 font-family: var(--mono); font-size: 11.5px; line-height: 1.25; padding: 1px 6px; border-radius: 6px;
+                 color: var(--dim); transition: background .35s, color .35s; white-space: nowrap; }
+  #lagen .laag i { width: 6px; height: 6px; border-radius: 50%; opacity: .55; transition: opacity .35s, transform .35s; }
+  #lagen .laag .b { overflow: hidden; text-overflow: ellipsis; opacity: .8; }
+  #lagen .laag.nu { background: rgba(200,222,255,.07); color: var(--ink); }
+  #lagen .laag.nu i { opacity: 1; transform: scale(1.5); box-shadow: 0 0 8px currentColor; }
+  #lagen .laag.nu .b { opacity: 1; }
+  #weefsel .onderschrift { position: absolute; left: 16px; bottom: 12px; max-width: calc(100% - 250px); font-family: var(--mono); font-size: 11.5px;
                            color: var(--dim); letter-spacing: .06em; pointer-events: none; }
   #weefsel .onderschrift b { color: var(--muted); font-weight: 500; }
   #weefsel .onderschrift .plus { color: var(--mint); } #weefsel .onderschrift .min { color: var(--coral); }
@@ -213,8 +224,13 @@
     :root { --kop-h: auto; }
     #kop { grid-template-columns: 1fr auto; padding: 10px 14px; row-gap: 8px; height: auto;
            backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(7,10,20,.97); }
-    #weefsel { display: flex; flex-direction: column; }
+    #weefsel { display: flex; flex-direction: column; height: 60vh; }
     #doek { flex: 1; min-height: 0; }
+    #lagen { flex: 0 0 auto; border-left: 0; border-top: 1px solid var(--line); flex-direction: row; flex-wrap: wrap;
+             padding: 8px 10px; gap: 2px 8px; justify-content: flex-start; }
+    #lagen .laag { grid-template-columns: 6px auto; font-size: 10.5px; }
+    #lagen .laag .b { display: none; }
+    #weefsel .onderschrift { max-width: none; }
     #weefsel .onderschrift { position: static; padding: 8px 12px 10px; font-size: 11px; white-space: normal; }
     #cijfers { grid-column: 1 / -1; gap: 16px; overflow-x: auto; scrollbar-width: none; }
     #cijfers .voortgang { width: 110px; }
@@ -250,6 +266,7 @@
     <div class="raster">
       <div class="k12" id="weefsel">
         <canvas id="doek"></canvas>
+        <aside id="lagen" aria-label="lagen"></aside>
         <div class="onderschrift" id="onderschrift"><span class="plus">groen</span> is plus, <span class="min">rood</span> is min — haar echte bedrading</div>
       </div>
       <div class="kaart k7" id="nu">
@@ -362,10 +379,29 @@
 /* ======================================================================
    Het weefsel — Cleys ontwerp, letterlijk overgenomen. Zie de opmerkingen.
    ====================================================================== */
+/* ======================================================================
+   De iris — Claudes ontwerp voor het weefsel (24 aug 2026, op Cleys
+   woord: "de webinterface is jouw project, doe er je ding").
+
+   Wat het laat zien is niet veranderd: haar echte bedrading (per overgang
+   de sterkste verbindingen, mint is plus, koraal is min, dikte en licht
+   naar gewicht) en haar echte activaties (een gedachte die door de lagen
+   trekt, met vonkjes langs de draden). Wat wél anders is, is de vorm: geen
+   twintig kolommen naast elkaar, maar twintig ringen in elkaar. De invoer
+   in het midden, als pupil; elke laag een ring verder naar buiten; de
+   uitvoer als de gloed aan de rand. Zo wordt elke verbinding kort en
+   leesbaar, en een gedachte een rimpeling van binnen naar buiten.
+
+   Twee regels die blijven staan: nooit een flits (Cley is gevoelig voor
+   knipperende beelden -- alles ademt, niets knippert), en geen tekst óver
+   het weefsel: de laagnamen staan ernaast, en lichten op waar de
+   rimpeling is.
+   ====================================================================== */
 const doek = document.getElementById("doek");
 const ctx = doek.getContext("2d");
-let B = 1, H = 1;
-let KOL = [32, 32,32,32,32,32,32,32,32, 1];
+const DPR = Math.min(devicePixelRatio || 1, 2);
+let B = 1, H = 1, CX = 0, CY = 0, R = 1;
+let KOL = [32, 32, 32, 32, 32, 32, 32, 32, 32, 1];
 let NAMEN = [];
 let stand = null, wachtrij = [], rijNu = null, rijStart = 0;
 let gloed = KOL.map(n => new Array(n).fill(0));
@@ -373,122 +409,243 @@ let kolMax = KOL.map(() => 0.0001);
 let bedrading = null, bedradingUit = null, weefsel = [];
 let vonken = [];
 let antwoordDoel = "", antwoordNu = 0, laatstTonen = 0;
-const DUUR = 1300;
+const DUUR = 1500;                        // één gedachte, van pupil tot rand
+let pos = [];                             // pos[ring][i] = [x, y]
+let draden = [];                          // per overgang: [{b, d, w, plus, cx, cy}]
+let gloedSprite = null, haloSprite = null, laatsteRingInLijst = -1;
 
-const stof = Array.from({length: 45}, () => ({
-  x: Math.random(), y: Math.random(),
-  r: 0.4 + Math.random() * 1.3, s: 0.00002 + Math.random() * 0.00006,
-  tw: Math.random() * 6.28 }));
+const stof = Array.from({length: 40}, () => ({
+  a: Math.random() * 6.283, r: 0.3 + Math.random() * 0.9, v: 0.00004 + Math.random() * 0.00008,
+  tw: Math.random() * 6.28, d: 0.55 + Math.random() * 0.5 }));
 
-// Het weefsel is sinds 14 aug 2026 een brede, lage band bovenin (Cleys
-// aanwijzing): alle tekst staat erónder in plaats van erop. Deze drie
-// getallen zijn de hele maatvoering.
-const MIDDEN = 0.30, HOOG = 0.42, RANDX = 0.04, BAND = 0.58;
-function plaats(kol, i) {
-  const bx = B * RANDX, ex = B * (1 - RANDX);
-  const x = bx + (ex - bx) * kol / (KOL.length - 1);
-  const midden = H * MIDDEN, hoog = H * HOOG;
-  const n = KOL[kol];
-  const y = n === 1 ? midden : midden - hoog / 2 + hoog * i / (n - 1);
-  return [x, y];
+/* ---- de ringen ---- */
+function ringStraal(k) {
+  const n = KOL.length - 1;
+  return R * (0.10 + 0.90 * Math.pow(k / n, 0.92));   // iets meer ruimte voor de buitenste ringen
 }
-function kromming(y1, y2) {
-  // draden bollen weg van het midden: samen vormen ze de lensvormen
-  const midden = H * MIDDEN;
-  const m = (y1 + y2) / 2;
-  return m + (m - midden) * 0.55 + (y2 - y1) * 0.08;
+function bouwPosities() {
+  pos = [];
+  for (let k = 0; k < KOL.length; k++) {
+    const n = KOL[k], r = ringStraal(k), rij = [];
+    const draai = k * 0.11;                            // een zachte spiraal, niets staat op één lijn
+    for (let i = 0; i < n; i++) {
+      const t = n === 1 ? 0 : (i / n) * 2 * Math.PI + draai - Math.PI / 2;
+      rij.push(n === 1 ? [CX, CY] : [CX + r * Math.cos(t), CY + r * Math.sin(t)]);
+    }
+    pos.push(rij);
+  }
 }
+function plaats(k, i) { return (pos[k] && pos[k][i]) || [CX, CY]; }
 
-const DPR = Math.min(devicePixelRatio || 1, 1.5);
-let achtergrond = null;
 function maat() {
-  // Het paneel bepaalt de maat (24 aug 2026): het weefsel zit in zijn
-  // eigen vak en schaalt mee. De tekening rekent nog in de hoogte H,
-  // waarvan de bovenste BAND zichtbaar is -- precies de band met namen.
-  if (!doek.clientWidth) return;               // tab niet in beeld
-  B = doek.width = doek.clientWidth * DPR;
-  H = doek.clientHeight * DPR / BAND;
-  doek.height = Math.round(doek.clientHeight * DPR);
-  achtergrond = document.createElement("canvas");
-  achtergrond.width = B; achtergrond.height = H;
-  const q = achtergrond.getContext("2d");
-  const g = q.createLinearGradient(0, 0, 0, H);
-  g.addColorStop(0, "#0A0E1C"); g.addColorStop(.55, "#0D1326");
-  g.addColorStop(1, "#080B18");
-  q.fillStyle = g; q.fillRect(0, 0, B, H);
+  const wrap = document.getElementById("weefsel");
+  if (!doek.clientWidth) return;                     // blad niet in beeld
+  B = doek.width = Math.round(doek.clientWidth * DPR);
+  H = doek.height = Math.round(doek.clientHeight * DPR);
+  R = Math.min(B, H) * 0.44;
+  CX = B / 2; CY = H / 2;
   gloedSprite = document.createElement("canvas");
   gloedSprite.width = gloedSprite.height = 64;
   const qs = gloedSprite.getContext("2d");
   const rg = qs.createRadialGradient(32, 32, 0, 32, 32, 32);
-  rg.addColorStop(0, "rgba(190,215,255,0.9)");
-  rg.addColorStop(1, "rgba(190,215,255,0)");
+  rg.addColorStop(0, "rgba(200,222,255,0.9)"); rg.addColorStop(1, "rgba(200,222,255,0)");
   qs.fillStyle = rg; qs.beginPath(); qs.arc(32, 32, 32, 0, 7); qs.fill();
+  // de halo van de uitvoer: een zachte ring net buiten de laatste laag
+  haloSprite = document.createElement("canvas");
+  haloSprite.width = haloSprite.height = Math.max(4, Math.round(R * 2.6));
+  const qh = haloSprite.getContext("2d"), hm = haloSprite.width / 2;
+  const hg = qh.createRadialGradient(hm, hm, R * 0.98, hm, hm, R * 1.28);
+  hg.addColorStop(0, "rgba(127,224,195,0)"); hg.addColorStop(0.35, "rgba(160,225,235,0.22)");
+  hg.addColorStop(1, "rgba(127,224,195,0)");
+  qh.fillStyle = hg; qh.beginPath(); qh.arc(hm, hm, R * 1.28, 0, 7); qh.fill();
+  bouwPosities();
   bouwWeefsel();
 }
-let gloedSprite = null;
 addEventListener("resize", maat);
 if (window.ResizeObserver) new ResizeObserver(() => maat()).observe(document.getElementById("weefsel"));
 
+/* ---- de draden: één keer getekend, per overgang bewaard voor de rimpeling ---- */
 function bouwWeefsel() {
-  // Het vaste weefsel: per overgang haar sterkste verbindingen, één keer
-  // getekend op een eigen laag. Groen = plus, rood = min — echt uit haar
-  // gewichten. Per beeld schuift alleen de helderheid, dat houdt het licht.
-  weefsel = [];
-  if (!bedrading) return;
+  weefsel = []; draden = [];
+  if (!bedrading || !pos.length) return;
   for (let k = 0; k < KOL.length - 1; k++) {
-    const [x1k] = plaats(k, 0), [x2k] = plaats(k + 1, 0);
-    const marge = B * 0.012;
-    const links = Math.max(0, x1k - marge);
-    const breed = Math.min(B - links, x2k - x1k + 2 * marge);
-    const c = document.createElement("canvas");
-    c.width = Math.max(2, Math.round(breed)); c.height = H;
-    c.dataset.links = links;
-    const q = c.getContext("2d");
-    q.translate(-links, 0);
-    q.globalCompositeOperation = "lighter";
     let paren = [];
     if (k < KOL.length - 2) {
-      const M = bedrading[k];            // [doel][bron], genormaliseerd
+      const M = bedrading[k];                          // [doel][bron], genormaliseerd
+      if (!M) { draden.push([]); continue; }
       for (let b = 0; b < KOL[k]; b++)
         for (let d = 0; d < KOL[k + 1]; d++) {
           const w = M[d] ? (M[d][b] || 0) : 0;
           if (Math.abs(w) > 0.04) paren.push([Math.abs(w), w > 0, b, d]);
         }
       paren.sort((a, z) => z[0] - a[0]);
-      paren = paren.slice(0, 320);
+      paren = paren.slice(0, 300);
     } else {
-      for (let b = 0; b < KOL[k]; b++)
-        paren.push([(bedradingUit ? bedradingUit[b] : 0.5), true, b, 0]);
+      for (let b = 0; b < KOL[k]; b++) paren.push([bedradingUit ? Math.abs(bedradingUit[b] || 0) : 0.4, !bedradingUit || bedradingUit[b] >= 0, b, 0]);
     }
+    const lijst = [];
     for (const [w, plus, b, d] of paren) {
       const [x1, y1] = plaats(k, b);
-      const [x2, y2] = plaats(k + 1, d);
-      // mint voor plus, koraal voor min; dikte en helderheid naar gewicht
-      q.strokeStyle = plus
-        ? `rgba(127,224,195,${(0.04 + w * 0.34).toFixed(3)})`
-        : `rgba(255,154,122,${(0.04 + w * 0.34).toFixed(3)})`;
-      q.lineWidth = Math.max(0.5, Math.min(B, H) * (0.0004 + 0.0012 * w));
-      q.beginPath();
-      q.moveTo(x1, y1);
-      q.quadraticCurveTo((x1 + x2) / 2, kromming(y1, y2), x2, y2);
-      q.stroke();
+      let [x2, y2] = plaats(k + 1, d);
+      if (k === KOL.length - 2) {                      // naar de rand: recht naar buiten, tot de halo
+        const t = Math.atan2(y1 - CY, x1 - CX), rr = R * 1.06;
+        x2 = CX + rr * Math.cos(t); y2 = CY + rr * Math.sin(t);
+      }
+      // de draad buigt zacht met de ring mee: het stuurpunt ligt op de tussenring
+      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+      const dm = Math.hypot(mx - CX, my - CY) || 1;
+      const rm = (Math.hypot(x1 - CX, y1 - CY) + Math.hypot(x2 - CX, y2 - CY)) / 2;
+      lijst.push({b, d, w, plus, x1, y1, x2, y2, cx: CX + (mx - CX) / dm * rm, cy: CY + (my - CY) / dm * rm});
     }
-    weefsel.push(c);
+    draden.push(lijst);
+  }
+  // de rustige laag: alles in één keer, zacht
+  const c = document.createElement("canvas");
+  c.width = B; c.height = H;
+  const q = c.getContext("2d");
+  q.globalCompositeOperation = "lighter";
+  for (let k = 0; k < draden.length; k++) tekenDraden(q, k, 0.06, 0.30);
+  weefsel = [c];
+}
+function tekenDraden(q, k, basis, schaal) {
+  q.lineCap = "round";
+  // naar binnen toe liggen de draden dichter op elkaar: daar zachter, anders
+  // brandt het hart wit -- de buitenste ringen krijgen het volle licht
+  const f = 0.22 + 0.78 * Math.pow(ringStraal(k + 0.5) / R, 1.3);
+  for (const s of draden[k] || []) {
+    q.strokeStyle = s.plus
+      ? `rgba(127,224,195,${((basis + s.w * schaal) * f).toFixed(3)})`
+      : `rgba(255,154,122,${((basis + s.w * schaal) * f).toFixed(3)})`;
+    q.lineWidth = Math.max(0.5, R * (0.0010 + 0.0030 * s.w) * (0.6 + 0.4 * f));
+    q.beginPath(); q.moveTo(s.x1, s.y1); q.quadraticCurveTo(s.cx, s.cy, s.x2, s.y2); q.stroke();
   }
 }
 
-// Laagnamen uit haar meting (16 aug 2026, Cleys keuze): de kijker meet per
-// laag welke familie hem naar verhouding het meest laat oplichten en
-// schrijft dat in stand.json (laagnamen); hier wordt het de naam onder de
-// laag. Zolang de meting er nog niet is staat er wat er stond.
+/* ---- de namen, in de lijst naast de iris ---- */
 let laagnamen = {};
+const FAMILIEKLEUR = {rekenen: "#6FB5FF", puzzel: "#B78AE0", code: "#7FE0C3", geheugen: "#FFB86B", logica: "#FF8FA3",
+                      volgorde: "#8FD3FF", tekst: "#E6D37A", zeggen: "#F0A8FF", taal: "#A3FFD6", machine: "#FFD28F",
+                      tellen: "#C4B5FD", antwoord: "#FDA4AF", antwoordlaag: "#FDA4AF", gesprek: "#F0A8FF"};
 function bouwNamen() {
   NAMEN = [["invoer", "inbedding"]];
-  for (let i = 1; i < KOL.length - 1; i++)
-    NAMEN.push(["laag " + i, laagnamen[i] || "GELU"]);
+  for (let i = 1; i < KOL.length - 1; i++) NAMEN.push(["laag " + i, laagnamen[i] || "GELU"]);
   NAMEN.push(["uitvoer", "zekerheid"]);
+  const lijst = document.getElementById("lagen");
+  if (!lijst) return;
+  lijst.innerHTML = NAMEN.map(([a, b], k) => {
+    const kleur = FAMILIEKLEUR[b] || (b === "stil" ? "var(--dim)" : "var(--muted)");
+    return `<div class="laag" data-k="${k}"><i style="background:${kleur}"></i><span class="a">${a}</span><span class="b" style="color:${kleur}">${b}</span></div>`;
+  }).join("");
+  laatsteRingInLijst = -1;
 }
 bouwNamen();
+
+/* ---- elk beeld ---- */
+function teken(t) {
+  ctx.globalCompositeOperation = "source-over";
+  ctx.globalAlpha = 1;
+  ctx.clearRect(0, 0, B, H);
+
+  // stof: langzaam draaiende korrels rond de iris
+  for (const p of stof) {
+    p.a += p.v * (p.d > 0.9 ? 0.6 : 1);
+    const rr = R * (0.15 + p.d * 1.15);
+    const tw = 0.25 + 0.25 * Math.sin(t / 1100 + p.tw);
+    ctx.fillStyle = `rgba(190,210,255,${tw.toFixed(2)})`;
+    ctx.beginPath(); ctx.arc(CX + rr * Math.cos(p.a), CY + rr * Math.sin(p.a), p.r * DPR, 0, 7); ctx.fill();
+  }
+  // de ringen zelf, heel zacht
+  ctx.strokeStyle = "rgba(200,215,245,0.045)"; ctx.lineWidth = 1;
+  for (let k = 1; k < KOL.length - 1; k++) { ctx.beginPath(); ctx.arc(CX, CY, ringStraal(k), 0, 7); ctx.stroke(); }
+
+  // de gedachte: een rimpeling van binnen naar buiten
+  if (!rijNu && wachtrij.length) { rijNu = wachtrij.shift(); rijStart = t; }
+  let front = -1;
+  if (rijNu) {
+    front = (t - rijStart) / DUUR * KOL.length;
+    if (front >= KOL.length + 1.5) {
+      if (!wachtrij.length) wachtrij.push(rijNu);
+      rijNu = wachtrij.shift(); rijStart = t; front = 0;
+    }
+  }
+  for (let k = 0; k < KOL.length; k++) for (let i = 0; i < KOL[k]; i++) gloed[k][i] *= 0.965;
+
+  // de draden: de rustige laag, en de overgang waar de rimpeling is, helder
+  ctx.globalCompositeOperation = "lighter";
+  const adem = 0.5 + 0.5 * Math.sin(t / 4200 * 2 * Math.PI);
+  ctx.globalAlpha = 0.55 + 0.15 * adem;
+  if (weefsel[0]) ctx.drawImage(weefsel[0], 0, 0);
+  ctx.globalAlpha = 1;
+  if (rijNu) {
+    const k0 = Math.floor(front);
+    for (let k = Math.max(0, k0 - 1); k <= Math.min(draden.length - 1, k0); k++) {
+      const nabij = 1 - Math.min(1, Math.abs(front - (k + 0.5)) / 1.5);
+      if (nabij > 0) tekenDraden(ctx, k, 0.10 * nabij, 0.55 * nabij);
+    }
+  }
+
+  // vonkjes langs de draden waar de rimpeling loopt
+  if (rijNu && vonken.length < 80 && Math.random() < 0.65) {
+    const k = Math.max(0, Math.min(KOL.length - 2, Math.floor(front)));
+    const lijst = draden[k] || [];
+    if (lijst.length) {
+      const sterk = rijNu[k].map((v, i) => [v / kolMax[k], i]).sort((x, y) => y[0] - x[0]).slice(0, 8);
+      const [, b] = sterk[Math.floor(Math.random() * sterk.length)] || [0, 0];
+      const kandidaten = lijst.filter(s => s.b === b);
+      const s = kandidaten.length ? kandidaten[Math.floor(Math.random() * kandidaten.length)] : lijst[Math.floor(Math.random() * lijst.length)];
+      vonken.push({k, s, u: 0, sn: 0.016 + Math.random() * 0.02});
+    }
+  }
+  for (const v of vonken) {
+    v.u += v.sn;
+    const u = Math.min(1, v.u), w = 1 - u, s = v.s;
+    const x = w * w * s.x1 + 2 * w * u * s.cx + u * u * s.x2;
+    const y = w * w * s.y1 + 2 * w * u * s.cy + u * u * s.y2;
+    const zwel = Math.sin(Math.PI * u);
+    ctx.strokeStyle = `rgba(220,235,255,${(0.22 * zwel).toFixed(3)})`;
+    ctx.lineWidth = R * 0.0028;
+    ctx.beginPath(); ctx.moveTo(s.x1, s.y1); ctx.quadraticCurveTo(s.cx, s.cy, s.x2, s.y2); ctx.stroke();
+    ctx.fillStyle = `rgba(235,244,255,${(0.9 * (1 - u * 0.35)).toFixed(2)})`;
+    ctx.beginPath(); ctx.arc(x, y, R * 0.0045, 0, 7); ctx.fill();
+    if (v.u >= 1 && gloed[v.k + 1]) gloed[v.k + 1][s.d] = Math.min(1, (gloed[v.k + 1][s.d] || 0) + 0.5);
+  }
+  vonken = vonken.filter(v => v.u < 1);
+
+  // de knopen: klein, en ze gloeien alleen als er echt iets aankomt
+  for (let k = 0; k < KOL.length - 1; k++)
+    for (let i = 0; i < KOL[k]; i++) {
+      const [x, y] = plaats(k, i);
+      const gl = gloed[k][i];
+      const r = R * 0.0055 * (1 + 1.6 * gl);
+      ctx.fillStyle = `rgba(${185 + 65 * gl | 0},${200 + 50 * gl | 0},${232 + 23 * gl | 0},${(0.38 + 0.62 * gl).toFixed(2)})`;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+      if (gl > 0.35) { ctx.globalAlpha = 0.45 * gl; const d = r * 9; ctx.drawImage(gloedSprite, x - d / 2, y - d / 2, d, d); ctx.globalAlpha = 1; }
+    }
+  // de pupil ademt zacht; de halo aan de rand licht op als de gedachte aankomt
+  const pupil = 0.5 + 0.5 * Math.sin(t / 2600);
+  const uitGl = gloed[KOL.length - 1] ? (gloed[KOL.length - 1][0] || 0) : 0;
+  ctx.globalAlpha = 0.35 + 0.25 * pupil + 0.4 * uitGl;
+  if (haloSprite) ctx.drawImage(haloSprite, CX - haloSprite.width / 2, CY - haloSprite.height / 2);
+  ctx.globalAlpha = 0.22 + 0.18 * pupil;
+  { const d = R * 0.42; ctx.drawImage(gloedSprite, CX - d / 2, CY - d / 2, d, d); }
+  if (rijNu && front < 1.2) { ctx.globalAlpha = 0.35 * (1.2 - front) / 1.2; const d = R * 0.9; ctx.drawImage(gloedSprite, CX - d / 2, CY - d / 2, d, d); }
+  ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = "source-over";
+
+  // de lijst ernaast volgt de rimpeling
+  const ringNu = rijNu ? Math.max(0, Math.min(KOL.length - 1, Math.floor(front))) : -1;
+  if (ringNu !== laatsteRingInLijst) {
+    laatsteRingInLijst = ringNu;
+    document.querySelectorAll("#lagen .laag").forEach(el => el.classList.toggle("nu", +el.dataset.k === ringNu));
+  }
+
+  if (antwoordNu < antwoordDoel.length && t - laatstTonen > DUUR / 5) {
+    antwoordNu += 1; laatstTonen = t;
+    document.getElementById("antwoord").textContent = antwoordDoel.slice(0, antwoordNu);
+  }
+  requestAnimationFrame(teken);
+}
+requestAnimationFrame(teken);
 
 
 /* ======================================================================
@@ -914,148 +1071,7 @@ haal(); setInterval(haal, 5000);
 tekenGesprek(); setInterval(tekenGesprek, 60000);
 
 maat();
-function teken(t) {
-  ctx.globalCompositeOperation = "source-over";
-  ctx.globalAlpha = 1;
-  ctx.drawImage(achtergrond, 0, 0);
 
-  const mn = Math.min(B, H);
-  for (const p of stof) {
-    p.y -= p.s; if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
-    const tw = 0.3 + 0.3 * Math.sin(t / 900 + p.tw);
-    ctx.fillStyle = `rgba(190,210,255,${tw.toFixed(2)})`;
-    ctx.beginPath();
-    ctx.arc(p.x * B, p.y * H, p.r * devicePixelRatio, 0, 7); ctx.fill();
-  }
-
-  if (!rijNu && wachtrij.length) { rijNu = wachtrij.shift(); rijStart = t; }
-  let front = -1;
-  if (rijNu) {
-    front = (t - rijStart) / DUUR * KOL.length;
-    if (front >= KOL.length + 1.5) {
-      if (!wachtrij.length) wachtrij.push(rijNu);
-      rijNu = wachtrij.shift(); rijStart = t; front = 0;
-    }
-  }
-  for (let k = 0; k < KOL.length; k++) {
-    for (let i = 0; i < KOL[k]; i++) {
-      // Geen golf die hele kolommen tegelijk aanzet (Cleys aanwijzing,
-      // 11 aug 2026): een bolletje gloeit alléén als er werkelijk een
-      // vonkje bij hem aankomt — de aankomstbult verderop — en dooft
-      // daarna vanzelf uit. Net als de draadjes.
-      gloed[k][i] = gloed[k][i] * 0.97;
-    }
-  }
-
-  // het weefsel: altijd zichtbaar, en de overgang waar de golf zit gloeit op
-  ctx.globalCompositeOperation = "lighter";
-  const adem = 0.5 + 0.5 * Math.sin(t / 4000 * 2 * Math.PI);
-  for (let k = 0; k < weefsel.length; k++) {
-    let a = 0.34 + 0.10 * adem;
-    if (rijNu && front >= k - 0.2 && front < k + 2.0) a = Math.min(1, a + 0.55);
-    ctx.globalAlpha = a;
-    ctx.drawImage(weefsel[k], +weefsel[k].dataset.links, 0);
-  }
-  ctx.globalAlpha = 1;
-
-  // vonkjes langs de draden waar de golf loopt
-  if (rijNu && vonken.length < 90 && Math.random() < 0.7) {
-    const k = Math.max(0, Math.min(KOL.length - 2, Math.floor(front)));
-    const sterk = rijNu[k].map((v, i) => [v / kolMax[k], i])
-      .sort((x, y) => y[0] - x[0]).slice(0, 10);
-    const doelK = rijNu[k + 1].map((v, i) => [v / kolMax[k + 1], i])
-      .sort((x, y) => y[0] - x[0]).slice(0, 10);
-    const [, b] = sterk[Math.floor(Math.random() * sterk.length)] || [0, 0];
-    const [, d] = doelK[Math.floor(Math.random() * doelK.length)] || [0, 0];
-    vonken.push({k, b, d, u: 0, sn: 0.014 + Math.random() * 0.02});
-  }
-  for (const v of vonken) {
-    v.u += v.sn;
-    const u = Math.min(1, v.u);
-    const [x1, y1] = plaats(v.k, v.b);
-    const [x2, y2] = plaats(v.k + 1, v.d);
-    const cy = kromming(y1, y2), cx = (x1 + x2) / 2;
-    const w = 1 - u;
-    const x = w * w * x1 + 2 * w * u * cx + u * u * x2;
-    const y = w * w * y1 + 2 * w * u * cy + u * u * y2;
-    // het draadje waarover hij reist licht zacht mee: aanzwellen naar
-    // het midden van de reis, uitdoven naar het eind — nooit een flits
-    const zwel = Math.sin(Math.PI * u);
-    ctx.strokeStyle = `rgba(215,232,255,${(0.18 * zwel).toFixed(3)})`;
-    ctx.lineWidth = mn * 0.0011;
-    ctx.beginPath(); ctx.moveTo(x1, y1);
-    ctx.quadraticCurveTo(cx, cy, x2, y2); ctx.stroke();
-    ctx.fillStyle = `rgba(235,244,255,${(0.85 * (1 - u * 0.4)).toFixed(2)})`;
-    ctx.beginPath(); ctx.arc(x, y, mn * 0.0016, 0, 7); ctx.fill();
-    // aankomst: het bolletje gloeit zacht mee en dooft vanzelf (x0,97
-    // per beeldje); de uitvoerbol ademt en doet hier niet aan mee
-    if (v.u >= 1 && gloed[v.k + 1])
-      gloed[v.k + 1][v.d] = Math.min(1, (gloed[v.k + 1][v.d] || 0) + 0.45);
-  }
-  vonken = vonken.filter(v => v.u < 1);
-
-  // de kolommen zelf, met een gloed aan de invoer als de golf daar begint
-  for (let k = 0; k < KOL.length; k++)
-    for (let i = 0; i < KOL[k]; i++) {
-      const [x, y] = plaats(k, i);
-      // de bol ademt: een trage, zachte puls van ~5 seconden — bewust
-      // zonder flitsen (Cley is gevoelig voor knipperende beelden)
-      const gl = KOL[k] === 1
-        ? 0.25 + 0.28 * (0.5 + 0.5 * Math.sin(t / 800))
-        : gloed[k][i];
-      const r = mn * (KOL[k] === 1 ? 0.008 : 0.0021) * (1 + 1.7 * gl);
-      ctx.fillStyle = `rgba(${190 + 60 * gl | 0},${205 + 45 * gl | 0},${235 + 20 * gl | 0},${(0.42 + 0.58 * gl).toFixed(2)})`;
-      ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
-      if (gl > 0.4) {
-        ctx.globalAlpha = 0.4 * gl;
-        const d = r * 10;
-        ctx.drawImage(gloedSprite, x - d / 2, y - d / 2, d, d);
-        ctx.globalAlpha = 1;
-      }
-    }
-  if (rijNu && front < 1.6) {
-    const [x0] = plaats(0, 0);
-    ctx.globalAlpha = 0.3 * (1.6 - front) / 1.6;
-    const d = mn * 0.6;
-    ctx.drawImage(gloedSprite, x0 - d / 2, H * 0.465 - d / 2, d, d);
-    ctx.globalAlpha = 1;
-  }
-
-  ctx.globalCompositeOperation = "source-over";
-  ctx.textAlign = "left";
-  // de letters passen tussen twee kolommen (18 aug 2026): op een smal
-  // scherm met veel lagen liepen de laagnamen over elkaar
-  const kolAfstand = B * (1 - 2 * RANDX) / Math.max(1, KOL.length - 1);
-  // Namen alleen waar ze passen (24 aug 2026): wordt het krap, dan om de
-  // andere laag, en nooit kleiner dan leesbaar -- liever minder dan over
-  // elkaar. Invoer en uitvoer staan er altijd.
-  const fs = Math.max(9.5 * DPR, Math.min(mn * 0.0105, kolAfstand / 5.6));
-  const om = Math.max(1, Math.ceil(fs * 7.2 / kolAfstand));
-  ctx.font = `500 ${fs}px "JetBrains Mono", ui-monospace, Consolas, monospace`;
-  for (let k = 0; k < KOL.length; k++) {
-    if (om > 1 && k % om !== 0 && k !== KOL.length - 1) continue;
-    const [x] = plaats(k, 0);
-    const [, yb] = plaats(k, KOL[k] - 1);
-    const y = (KOL[k] === 1 ? H * MIDDEN : yb) + fs * 2.2;
-    ctx.textAlign = k === KOL.length - 1 ? "right" : "left";
-    const lx = k === KOL.length - 1 ? x + fs : x - fs;
-    ctx.fillStyle = "rgba(234,238,247,0.9)";
-    ctx.fillText(NAMEN[k][0], lx, y);
-    if (om === 1 || k === 0 || k === KOL.length - 1) {
-      ctx.fillStyle = "rgba(142,153,179,0.95)";
-      ctx.fillText(NAMEN[k][1], lx, y + fs * 1.4);
-    }
-  }
-  ctx.textAlign = "left";
-
-  if (antwoordNu < antwoordDoel.length && t - laatstTonen > DUUR / 4) {
-    antwoordNu += 1; laatstTonen = t;
-    document.getElementById("antwoord").textContent =
-      antwoordDoel.slice(0, antwoordNu);
-  }
-  requestAnimationFrame(teken);
-}
-requestAnimationFrame(teken);
 </script>
 </body>
 </html>
