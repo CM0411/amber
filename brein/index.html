@@ -3,163 +3,212 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
 <title>Amber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
-  /* Naar Cley's filmpje (9 aug 2026): het volledige weefsel van haar
-     bedrading altijd zichtbaar — groen is werkelijk plus, rood is werkelijk
-     min in haar gewichten — met golven van activatie die erdoorheen trekken
-     en vonkjes die langs de draden reizen. Eén donker thema, bewust. */
+  /* Het brein-venster, verbouwd op 24 aug 2026 (Cley: "naar je eigen smaak,
+     maak het van deze tijd"). Dezelfde motor als daarvoor — het weefsel
+     naar Cleys filmpje van 9 aug (groen is echt plus, rood is echt min in
+     haar gewichten, golven en vonkjes, nooit een flits), alle tekst ónder
+     de band (14 en 18 aug), de hekken uit run.json — maar een nieuwe jas:
+     één rustig donker thema, grote getallen bovenin, leesbare letters
+     (Atkinson Hyperlegible is ontworpen om te lezen, ook met dyslexie),
+     tabelcijfers, en ruimte. */
+  :root {
+    --bg: #070A14; --surface: #0D1220; --surface-2: #131A2C; --line: #1E2740;
+    --ink: #E6EBF5; --muted: #8C97B0; --dim: #5B667F;
+    --mint: #7FE0C3; --coral: #FF9A7A; --sky: #6FB5FF; --lilac: #F0A8FF; --amber: #FFC272;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --tekst: "Atkinson Hyperlegible", system-ui, "Segoe UI", sans-serif;
+    --r: 14px;
+  }
   * { margin: 0; box-sizing: border-box; }
   html, body { height: 100%; }
-  body { background: #080b1e; color: #d8dde5; overflow-x: hidden; overflow-y: auto;
-         font-family: system-ui, "Segoe UI", sans-serif; }
-  /* Het weefsel is een gewoon blok in de paginaflow (18 aug 2026, Cley):
-     het scrolt mee omhoog, de kaarten komen eronder en niet erover. De
-     tekening rekent nog in de maten van het hele venster; het doek toont
-     daarvan de bovenste BAND (58%) — precies de band met de laagnamen. */
-  #doek { position: relative; display: block; width: 100vw; height: 58vh; z-index: 0; }
-  .laag-tekst { position: absolute; z-index: 2; }   /* scrolt mee, geen overlay */
-  /* Onder de weefselband (18 aug 2026, Cley): een gewone flow-layout — een
-     raster van kaarten dat onder elkaar vouwt, elke kaart zijn eigen
-     hoogte, de pagina scrolt als hij hoger is dan het scherm. Vóór die dag
-     stonden de blokken op vaste posities en vielen ze over elkaar zodra er
-     families en bladen bij kwamen. */
-  #onder { position: relative; z-index: 2; margin-top: 0;
-           padding: 0 clamp(12px, 1.5vw, 22px) 28px;
-           display: grid; gap: 14px;
-           grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); }
-  .kaart:empty { display: none; }
-  .kaart { background: rgba(8, 11, 30, .82); border: 1px solid #1d2b4d;
-           border-radius: 10px; padding: 12px 16px; min-width: 0;
-           font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
-           font-size: 12.5px; color: #8ea0c0; line-height: 1.9; overflow-wrap: anywhere; }
-  .kaart.breed { grid-column: 1 / -1; }
-  .kaart .kop, .kaart .kopje { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
-                               text-transform: uppercase; margin-bottom: 4px; }
-  #status { font-size: 13px; color: #8ea0c0; line-height: 1.8; font-variant-numeric: tabular-nums; }
-  #status b { color: #cfe2ff; font-weight: 600; }
-  #runkolom { display: flex; flex-direction: column; gap: 6px; }
-  #stappen { width: 100%; font-size: 13px; color: #8ea0c0; line-height: 1.8;
-             font-variant-numeric: tabular-nums; }
-  #stappen b { color: #cfe2ff; font-weight: 600; }
-  /* proefwerken als chips per blad: kleur naar score */
-  #proefwerken .chips { display: flex; flex-wrap: wrap; gap: 6px 6px; margin: 4px 0 8px; }
-  #proefwerken .chip { display: inline-flex; gap: 6px; align-items: baseline;
-                       padding: 2px 9px; border-radius: 7px; border: 1px solid #1d2b4d;
-                       background: #0c1230; line-height: 1.7; white-space: nowrap; }
-  #proefwerken .chip b { font-weight: 600; color: #cfe2ff; }
-  #proefwerken .chip.hoog b { color: #7fe0c3; }
-  #proefwerken .chip.midden b { color: #5ca8ff; }
-  #proefwerken .chip.laag b { color: #ffa385; }
-  #proefwerken .chip.dim { opacity: .55; }
-  /* het zelfrapport (18 aug 2026): systeem en Amber zelf, gelabeld */
-  #zelfrapport .stem { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
-                       text-transform: uppercase; margin-top: 8px; }
-  #zelfrapport .amber { color: #f5a3ff; font-size: 13.5px; }
-  #zelfrapport .regel { color: #47536f; font-size: 11px; margin-top: 6px; }
-  #zelfrapport li { margin-left: 1.2em; }
-  #titel { top: 16px; left: 22px; font-size: 15px; letter-spacing: .35em;
-           color: #5f6f92; text-transform: uppercase; cursor: pointer;
-           user-select: none; }
-  #titel .pijl { display: inline-block; transition: transform .2s;
-                 letter-spacing: 0; }
+  body { background: var(--bg); color: var(--ink); overflow-x: hidden; overflow-y: auto;
+         font-family: var(--tekst); font-size: 15px; line-height: 1.6;
+         font-variant-numeric: tabular-nums; }
+  a { color: inherit; }
+  button, input { font: inherit; }
+
+  /* ---- kop ---- */
+  #bovenbalk { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 18px;
+               padding: 10px clamp(14px, 2vw, 28px); background: rgba(7, 10, 20, .78);
+               backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+               border-bottom: 1px solid var(--line); }
+  #titel { position: relative; font-family: var(--tekst); font-weight: 700; font-size: 17px;
+           letter-spacing: .22em; text-transform: uppercase; color: var(--ink); cursor: pointer;
+           user-select: none; display: inline-flex; align-items: center; gap: 8px; }
+  #titel .pijl { display: inline-block; transition: transform .2s; color: var(--muted); letter-spacing: 0; font-size: 13px; }
   #titel.open .pijl { transform: rotate(180deg); }
-  #menu { top: 44px; left: 22px; display: none; min-width: 250px;
-          background: #0c1230; border: 1px solid #1d2b4d; border-radius: 8px;
-          padding: 8px 0; font-family: ui-monospace, "Cascadia Mono",
-          Consolas, monospace; font-size: 12.5px; z-index: 3; }
+  #menu { position: absolute; top: 48px; left: clamp(14px, 2vw, 28px); display: none; min-width: 290px;
+          background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+          padding: 8px 0; font-size: 14px; z-index: 6; box-shadow: 0 18px 50px rgba(0,0,0,.5); }
   #menu.open { display: block; }
-  #menu a { display: flex; justify-content: space-between; gap: 14px;
-            padding: 6px 14px; color: #8ea0c0; text-decoration: none; }
-  #menu a:hover { background: #131b3e; color: #cfe2ff; }
-  #menu .st { color: #51608a; font-size: 11px; }
-  #menu .st.lopend { color: #7fe0c3; }
-  #uren { top: 42px; left: 22px; font-size: 11px; color: #47536f;
-          font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
-          letter-spacing: .08em; }
-  #werk { font-size: 13.5px; line-height: 1.65; }
-  #opgave { color: #8ea0c0; white-space: pre-wrap; }
-  #antwoord { color: #cfe2ff; white-space: pre-wrap; min-height: 1.4em; }
-  #antwoord.goed { color: #7fe0c3; }
-  #antwoord.fout { color: #ffa385; }
-  #uitleg { font-size: 11.5px; color: #51608a; margin-top: 5px; }
-  #herinnert { margin-top: 8px; font-size: 12px; line-height: 1.7;
-               color: #5f6f92; }
-  #herinnert .kopje { font-size: 10.5px; letter-spacing: .16em;
-                      text-transform: uppercase; color: #47536f; }
-  #herinnert .h { opacity: .75; }
-  #wereld { text-align: left; line-height: 2; }
-  #wereld .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
-                 text-transform: uppercase; }
-  #wereld .rij { display: flex; justify-content: flex-start; gap: 10px;
-                 align-items: center; }
-  #wereld .rij > span:first-child, #geheugen .rij > span:first-child,
-  #keuzes .rij > span:first-child { min-width: 8.5ch; white-space: nowrap; }
-  #wereld .rij > span:last-child { white-space: nowrap; }
-  /* blokjes en staven krimpen mee met de kaart (flex), nooit breder dan
-     7 px — zo blijft rekenen 60 op één regel, ook op een smal scherm */
-  #wereld .balk { display: flex; gap: 1.5px; flex: 1 1 0; min-width: 0; }
-  #wereld .rij > span:last-child { flex: none; min-width: 5.5ch; text-align: right; }
-  #wereld .blokje { flex: 1 1 7px; max-width: 7px; min-width: 1px; height: 10px;
-                    border-radius: 1.5px; background: #1d2b4d; }
-  #wereld .blokje.aan { background: #5ca8ff; }
-  #wereld .nieuw { color: #7fe0c3; animation: fonkel 1.2s ease-in-out infinite; }
-  #wereld .doorbraak { font-size: 11px; color: #51608a; }
+  #menu a { display: flex; justify-content: space-between; gap: 14px; padding: 8px 16px;
+            color: var(--muted); text-decoration: none; }
+  #menu a:hover { background: var(--surface-2); color: var(--ink); }
+  #menu .st { color: var(--dim); font-size: 12px; font-family: var(--mono); }
+  #menu .st.lopend { color: var(--mint); }
+  #uren { font-size: 12.5px; color: var(--dim); font-family: var(--mono); letter-spacing: .04em; }
+  .pil { margin-left: auto; font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+         padding: 5px 12px; border-radius: 100px; border: 1px solid var(--line); color: var(--muted);
+         display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+  .pil::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--dim); }
+  .pil.aan { color: var(--mint); border-color: rgba(127,224,195,.35); }
+  .pil.aan::before { background: var(--mint); box-shadow: 0 0 10px var(--mint); }
+  .pil.uit { color: var(--amber); border-color: rgba(255,194,114,.35); }
+  .pil.uit::before { background: var(--amber); }
+
+  /* ---- het weefsel ---- */
+  #doek { position: relative; display: block; width: 100vw; height: 58vh; z-index: 0; }
+
+  /* ---- tegels: de getallen die tellen ---- */
+  #stappen { display: grid; gap: 12px; padding: 0 clamp(12px, 1.5vw, 24px);
+             grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+             margin-top: -6px; position: relative; z-index: 2; }
+  #stappen:empty { display: none; }
+  .tegel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+           padding: 14px 18px 14px; min-width: 0; }
+  .tegel.tegel-stap { grid-column: span 2; }
+  .tegel .label { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim);
+                  font-family: var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tegel .getal { margin-top: 4px; font-family: var(--mono); font-size: clamp(26px, 3vw, 36px);
+                  font-weight: 700; color: var(--ink); line-height: 1.15; letter-spacing: -.01em;
+                  display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .tegel .getal b { font-weight: 700; }
+  .tegel .getal .van, .tegel .getal .eenheid { font-size: 14px; font-weight: 400; color: var(--muted); letter-spacing: 0; }
+  .tegel .sub { margin-top: 4px; font-size: 13px; color: var(--muted); }
+  .tegel .sub .live { color: var(--mint); }
+  .tegel .balk { height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; margin-top: 10px; }
+  .tegel .balk i { display: block; height: 100%; border-radius: 4px;
+                   background: linear-gradient(90deg, var(--sky), var(--mint)); transition: width .8s linear; }
+  .tegel.warm { border-color: rgba(255,154,122,.5); }
+  .tegel.warm .getal b { color: var(--coral); }
+
+  /* ---- kaarten ---- */
+  #onder { position: relative; z-index: 2; padding: 14px clamp(12px, 1.5vw, 24px) 40px;
+           display: grid; gap: 12px;
+           grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+  .kaart:empty { display: none; }
+  .kaart { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+           padding: 16px 18px 18px; min-width: 0; color: var(--muted); line-height: 1.7; overflow-wrap: anywhere; }
+  .kaart.breed { grid-column: 1 / -1; }
+  .kaart .kop, .kaart .kopje { font-family: var(--mono); font-size: 11px; letter-spacing: .18em;
+                               color: var(--dim); text-transform: uppercase; margin-bottom: 8px; }
+  .kaart b { color: var(--ink); font-weight: 700; }
+  #status { font-size: 14px; color: var(--muted); line-height: 1.8; }
+  #runkolom { display: flex; flex-direction: column; gap: 6px; }
+  #runkolom:has(#status:empty) { display: none; }
+
+  /* waar ze nu mee bezig is */
+  #werk { font-size: 15.5px; line-height: 1.65; }
+  #opgave { color: var(--muted); white-space: pre-wrap; font-family: var(--mono); font-size: 14px; }
+  #antwoord { color: var(--ink); white-space: pre-wrap; min-height: 1.5em; font-family: var(--mono); font-size: 15px; margin-top: 6px; }
+  #antwoord.goed { color: var(--mint); }
+  #antwoord.fout { color: var(--coral); }
+  #uitleg { font-size: 12.5px; color: var(--dim); margin-top: 8px; }
+  #herinnert { margin-top: 12px; font-size: 13.5px; line-height: 1.7; color: var(--dim); }
+  #herinnert .kopje { margin-bottom: 4px; }
+  #herinnert .h { opacity: .8; font-family: var(--mono); font-size: 12.5px; }
+
+  /* proefwerken als chips per blad: kleur naar score */
+  #proefwerken .chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 2px 0 12px; }
+  #proefwerken .chip { display: inline-flex; gap: 7px; align-items: baseline; padding: 4px 11px;
+                       border-radius: 100px; border: 1px solid var(--line); background: var(--surface-2);
+                       line-height: 1.6; white-space: nowrap; font-size: 13.5px; }
+  #proefwerken .chip b { font-family: var(--mono); font-weight: 700; color: var(--ink); }
+  #proefwerken .chip.hoog b { color: var(--mint); }
+  #proefwerken .chip.midden b { color: var(--sky); }
+  #proefwerken .chip.laag b { color: var(--coral); }
+  #proefwerken .chip.dim { opacity: .5; }
+
+  /* het zelfrapport en het gesprek */
+  #zelfrapport .stem { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; color: var(--dim);
+                       text-transform: uppercase; margin-top: 12px; }
+  #zelfrapport .amber { color: var(--lilac); font-size: 16px; line-height: 1.55; }
+  #zelfrapport .regel { color: var(--dim); font-size: 12.5px; margin-top: 10px; }
+  #zelfrapport ul { margin: 4px 0 0 1.2em; font-size: 14px; }
+  .gesprek-knoppen { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 12px; }
+  .gesprek-knoppen button { background: var(--surface-2); color: var(--ink); border: 1px solid var(--line);
+                            border-radius: 100px; padding: 7px 16px; cursor: pointer; transition: border-color .15s, background .15s; }
+  .gesprek-knoppen button:hover { border-color: var(--sky); }
+  .gesprek-knoppen button:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+  .gesprek-knoppen button:disabled { opacity: .45; cursor: default; }
+  .gesprek-knoppen input { background: var(--bg); color: var(--ink); border: 1px solid var(--line);
+                           border-radius: 100px; padding: 7px 14px; min-width: 160px; flex: 1; }
+  .gesprek-knoppen input:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+  .gesprek-log { max-height: 220px; overflow-y: auto; font-size: 13.5px; border-top: 1px solid var(--line);
+                 padding-top: 8px; scrollbar-width: thin; }
+  .gesprek-log .beurt { margin: 4px 0; }
+  .gesprek-log .wanneer { color: var(--dim); font-family: var(--mono); font-size: 12px; }
+  .gesprek-log .zij { color: var(--lilac); }
+  .gesprek-log .cley { color: var(--sky); }
+
+  /* haar wereld, keuzes, geheugen */
+  #wereld .rij, #geheugen .rij, #keuzes .rij { display: flex; gap: 12px; align-items: center; min-height: 28px; }
+  #wereld .rij > span:first-child, #geheugen .rij > span:first-child, #keuzes .rij > span:first-child {
+    min-width: 9ch; white-space: nowrap; color: var(--ink); font-size: 14px; }
+  #wereld .balk { display: flex; gap: 1.5px; flex: 1 1 0; min-width: 0; overflow: hidden; }
+  #wereld .rij > span:last-child { flex: none; min-width: 6ch; margin-left: 4px; text-align: right; font-family: var(--mono); font-size: 13px; }
+  #wereld .blokje { flex: 1 1 7px; max-width: 7px; min-width: 1px; height: 11px; border-radius: 2px; background: var(--surface-2); }
+  #wereld .blokje.aan { background: var(--sky); }
+  #wereld .nieuw { color: var(--mint); animation: fonkel 1.2s ease-in-out infinite; }
+  #wereld .doorbraak, #keuzes .doorbraak { font-size: 12.5px; color: var(--dim); }
   @keyframes fonkel { 50% { opacity: .35; } }
-  #keuzes { text-align: left; line-height: 2; }
-  #keuzes .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
-                 text-transform: uppercase; }
-  #keuzes .rij { display: flex; justify-content: flex-start; gap: 10px;
-                 align-items: center; flex-wrap: wrap; }
-  #keuzes .doorbraak { font-size: 11px; color: #51608a; }
-  #geheugen { text-align: left; line-height: 2; }
-  #geheugen .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
-                   text-transform: uppercase; }
-  #geheugen .rij { display: flex; justify-content: flex-start; gap: 10px;
-                   align-items: flex-end; }
-  #geheugen .staven { display: flex; gap: 2px; align-items: flex-end;
-                      height: 18px; flex: 1 1 0; min-width: 0; }
-  #geheugen .staaf { flex: 1 1 7px; max-width: 7px; min-width: 2px;
-                     border-radius: 1.5px 1.5px 0 0;
-                     background: #b78ae0; min-height: 2px; }
-  #geheugen .fles { font-size: 11px; color: #51608a; }
-  #lijnvak { text-align: left; }
-  #lijnvak .kopje, #lijnvak #lijnwaarde {
-    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
-    font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
-    color: #47536f; }
-  #lijnvak #lijnwaarde { letter-spacing: 0; font-size: 12.5px; color: #7fe0c3;
-                         margin-top: 2px; }
-  #lijn { position: static; inset: auto; margin-top: 6px;
-          width: 100%; max-width: 360px; height: 60px; }
-  /* Telefoon (Safari op de iPhone): geen zwevende panelen over elkaar,
-     maar één scrollende kolom met leesblokken; het weefsel blijft als
-     achtergrond staan. */
-  /* Telefoon: titel en uren mee in de flow, kaarten wat compacter. */
-  @media (max-width: 700px) {
-    body { -webkit-text-size-adjust: 100%; }
+  #keuzes .rij { flex-wrap: wrap; }
+  #keuzes .balk { display: inline-block; width: 110px; height: 8px; background: var(--surface-2);
+                  border-radius: 4px; overflow: hidden; }
+  #keuzes .vul { display: block; height: 8px; border-radius: 4px; }
+  #geheugen .rij { align-items: flex-end; }
+  #geheugen .staven { display: flex; gap: 2px; align-items: flex-end; height: 22px; flex: 1 1 0; min-width: 0; }
+  #geheugen .staaf { flex: 1 1 8px; max-width: 8px; min-width: 2px; border-radius: 2px 2px 0 0;
+                     background: var(--lilac); opacity: .85; min-height: 2px; }
+  #geheugen .fles { font-size: 12.5px; color: var(--dim); margin-top: 6px; }
+
+  /* de levenslijn */
+  #lijnvak #lijnwaarde { font-family: var(--mono); font-size: 13px; color: var(--mint); margin-top: 4px; }
+  #lijn { display: block; margin-top: 6px; width: 100%; max-width: 420px; height: 64px; }
+
+  #spreek { cursor: pointer; color: var(--sky); }
+  #spreek:hover { text-decoration: underline; }
+
+  /* toast: één rustige melding onderin */
+  #toast { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 20px); opacity: 0;
+           background: var(--surface-2); border: 1px solid var(--line); color: var(--ink); padding: 10px 18px;
+           border-radius: 100px; font-size: 14px; z-index: 9; pointer-events: none;
+           transition: opacity .25s, transform .25s; max-width: min(92vw, 560px); text-align: center; }
+  #toast.zien { opacity: 1; transform: translate(-50%, 0); }
+  #toast.goed { border-color: rgba(127,224,195,.5); }
+  #toast.mis { border-color: rgba(255,154,122,.5); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tegel .balk i, #toast, #titel .pijl { transition: none; }
+    #wereld .nieuw { animation: none; }
+  }
+  @media (max-width: 760px) {
+    body { -webkit-text-size-adjust: 100%; font-size: 14.5px; }
+    #bovenbalk { gap: 12px; flex-wrap: wrap; }
+    #uren { order: 3; width: 100%; }
+    #stappen { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tegel.tegel-stap { grid-column: 1 / -1; }
     #onder { gap: 10px; }
-    .kaart { padding: 10px 12px; font-size: 12px; }
-    #werk { font-size: 12.5px; }
+    .kaart { padding: 13px 14px 15px; }
     #opgave { word-break: break-word; }
   }
-
-.gesprek-knoppen{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}
-.gesprek-knoppen button{background:#0c1230;color:#dfe6ff;border:1px solid #2b3a66;border-radius:6px;padding:4px 10px;cursor:pointer;font:inherit}
-.gesprek-knoppen button:hover{border-color:#8fd3ff}
-.gesprek-knoppen input{background:#080b1e;color:#dfe6ff;border:1px solid #2b3a66;border-radius:6px;padding:4px 8px;font:inherit;min-width:150px;flex:1}
-.gesprek-log{max-height:180px;overflow-y:auto;font-size:.85em;border-top:1px solid #1d2b4d;padding-top:6px}
-.gesprek-log .beurt{margin:2px 0}
-.gesprek-log .wanneer{color:#51608a}
-.gesprek-log .zij{color:#f5a3ff}
-.gesprek-log .cley{color:#8fd3ff}
 </style>
 </head>
 <body>
+<header id="bovenbalk">
+  <div id="titel">Amber <span class="pijl">▾</span></div>
+  <div id="menu"></div>
+  <div id="uren"></div>
+  <div id="pil" class="pil">…</div>
+</header>
 <canvas id="doek"></canvas>
-<div class="laag-tekst" id="titel">Amber <span class="pijl">▾</span></div>
-<div class="laag-tekst" id="menu"></div>
-<div class="laag-tekst" id="uren"></div>
+<section id="stappen" aria-label="voortgang"></section>
 <div id="onder">
   <div class="kaart breed" id="werk">
     <div class="kop">waar ze nu mee bezig is</div>
@@ -169,21 +218,23 @@
     <div id="herinnert"></div>
   </div>
   <div class="kaart" id="runkolom">
-    <div id="stappen"></div>
+    <div class="kop">de run</div>
     <div id="status">wachten op de kijker&hellip;</div>
   </div>
   <div class="kaart" id="proefwerken" style="display:none"></div>
-  <div class="kaart" id="zelfrapport" style="display:none"></div>
   <div class="kaart" id="wereld"></div>
   <div class="kaart" id="keuzes"></div>
   <div class="kaart" id="geheugen"></div>
+  <div class="kaart" id="zelfrapport" style="display:none"></div>
   <div class="kaart" id="lijnvak" style="display:none">
     <div class="kopje">haar levenslijn — ladder-proefwerk deze run</div>
-    <canvas id="lijn" width="360" height="60"></canvas>
+    <canvas id="lijn" width="420" height="64"></canvas>
     <div id="lijnwaarde"></div>
   </div>
 </div>
+<div id="toast" role="status" aria-live="polite"></div>
 <script>
+
 let spreekVanaf = 0;
 document.addEventListener("click", async (e) => {
   if (e.target.id !== "spreek") return;
@@ -352,8 +403,8 @@ function keuzesHtml(k, kop) {
     const bereik = ds.length ? (ds.length === 1 ? `diepte ${ds[0]}`
       : `diepte ${ds[0]}–${ds[ds.length - 1]}, meest ${top}`) : "";
     h += `<div class="rij"><span style="color:${kleur[f] || "#8ea0c0"}">${f}</span>`
-      + `<span class="balk" style="display:inline-block;width:90px;height:7px;background:#1d2b4d;border-radius:3px;overflow:hidden">`
-      + `<span style="display:block;width:${pct}%;height:7px;background:${kleur[f] || "#5ca8ff"}"></span></span>`
+      + `<span class="balk">`
+      + `<span class="vul" style="width:${pct}%;background:${kleur[f] || "#5ca8ff"}"></span></span>`
       + `<span>${pct}%</span><span class="doorbraak">${bereik}</span></div>`;
   }
   // het verloop: gestapelde aandelen per blok, klein en stil
@@ -471,8 +522,8 @@ async function haal() {
     if (run) {
       // de stappenbalk blijft rechtsboven — in één oogopslag zichtbaar,
       // los van de tekstblokken onder de band (Cleys punt, 14 aug 2026)
-      let kop = `<div class="kop">${rc.naam || "training"} · ${rc.machine || "trainer"}`
-        + (rm.poging ? ` · poging ${rm.poging}` : "") + `</div>`;
+      const rcNaam = rc.naam || "training";
+      let kop = "";
       let html = "";
       // live uit het logboek (per stap, elke 5 s ververst); de logregel
       // van elke 50 stappen is het vangnet
@@ -482,23 +533,34 @@ async function haal() {
       const stapNu = lv.stap || (m ? +m[1] : 0);
       const msNu = lv.ms || (m ? +m[4] : 0);
       if (stapNu && doel && msNu) {
-        const pct = Math.floor(100 * stapNu / doel);
+        const pct = 100 * stapNu / doel;
         const overMs = (doel - stapNu) * msNu;
         const klaar = new Date(Date.now() + overMs);
-        const wanneer = klaar.toLocaleString("nl", {weekday: "short",
-                          hour: "2-digit", minute: "2-digit"});
+        const wanneer = klaar.toLocaleString("nl", {weekday: "long", hour: "2-digit", minute: "2-digit"});
         const nogU = Math.floor(overMs / 3600000);
         const nogM = Math.floor(overMs % 3600000 / 60000);
-        window.lvBasis = {stap: stapNu, ms: msNu, doel: doel,
-                          ontvangen: performance.now()};
-        kop += `<div style="background:rgba(127,212,168,.15);border-radius:3px;height:6px;margin:5px 0">`
-          + `<div id="lv-balk" style="background:#7fd4a8;height:6px;border-radius:3px;width:${pct}%"></div></div>`
-          + `<b id="lv-stap">${stapNu.toLocaleString("nl")}</b> / ${doel.toLocaleString("nl")}<br>`
-          + `<b>${msNu.toLocaleString("nl")}</b> ms per stap`
-          + (lv.ms ? ` <span style="color:#7fe0c3">● live</span>` : "")
-          + ` · nog <span id="lv-nog">${nogU}u${String(nogM).padStart(2, "0")}</span>`
-          + ` · klaar ~${wanneer}`;
-      } else { kop += run; }
+        window.lvBasis = {stap: stapNu, ms: msNu, doel: doel, ontvangen: performance.now()};
+        kop += `<div class="tegel tegel-stap"><div class="label">${rcNaam}${rm.poging > 1 ? ` · poging ${rm.poging}` : ""}</div>`
+          + `<div class="getal"><b id="lv-stap">${stapNu.toLocaleString("nl")}</b><span class="van">/ ${doel.toLocaleString("nl")}</span></div>`
+          + `<div class="balk"><i id="lv-balk" style="width:${pct.toFixed(2)}%"></i></div>`
+          + `<div class="sub"><span id="lv-pct">${pct.toFixed(1).replace(".", ",")}%</span> van de run`
+          + (lv.ms ? ` · <span class="live">● live</span>` : "") + `</div></div>`;
+        kop += `<div class="tegel"><div class="label">tempo</div>`
+          + `<div class="getal"><b>${(msNu / 1000).toLocaleString("nl", {minimumFractionDigits: 1, maximumFractionDigits: 1})}</b><span class="eenheid">s per stap</span></div>`
+          + `<div class="sub">${msNu.toLocaleString("nl")} ms</div></div>`;
+        kop += `<div class="tegel"><div class="label">nog</div>`
+          + `<div class="getal"><b id="lv-nog">${nogU}<span class="eenheid">u</span> ${String(nogM).padStart(2, "0")}<span class="eenheid">m</span></b></div>`
+          + `<div class="sub">klaar ${wanneer}</div></div>`;
+      } else {
+        kop += `<div class="tegel tegel-stap"><div class="label">${rcNaam}</div><div class="sub">${run}</div></div>`;
+      }
+      if (rm.temp) {
+        const warm = +rm.temp >= 80;
+        kop += `<div class="tegel${warm ? " warm" : ""}"><div class="label">kaart</div>`
+          + `<div class="getal"><b>${rm.temp}</b><span class="eenheid">°C</span></div>`
+          + `<div class="sub">${rm.watt ? Math.round(+rm.watt) + " W" : ""}${rm.vram ? ` · ${(+rm.vram / 1024).toLocaleString("nl", {maximumFractionDigits: 1})} GB` : ""}`
+          + (rm.dienst && rm.dienst !== "active" ? ` · dienst ${rm.dienst}` : "") + `</div></div>`;
+      }
       sb.innerHTML = kop;
       // vaste volgorde eerst; een nieuw proefwerk (zoals gesprek, 14 aug
       // 2026) komt er automatisch achteraan — geen handwerk meer
@@ -535,19 +597,17 @@ async function haal() {
         + (rc.parameters ? ` · ${(+rc.parameters/1e6).toFixed(1).replace(".", ",")} M parameters` : "")
         + (rc.checkpointing ? ` · checkpointing aan` : "")
         + `</span><br>`;
-      if (rm.temp) {
-        const warm = +rm.temp >= 80;
-        html += `<span style="opacity:.75">kaart `
-          + (warm ? `<span style="color:#ffa385">let op: ${rm.temp} °C</span>`
-                  : `${rm.temp} °C`)
-          + ` · ${rm.watt} W · ${rm.vram} MB`
-          + (rm.dienst ? ` · dienst ${rm.dienst === "active" ? "draait" : rm.dienst}` : "")
-          + `</span><br>`;
-      }
       html += `<span id="spreek" style="cursor:pointer;color:#7fa8d4">🔊 vertel de stand</span>`
         + ` <audio id="stem-audio" style="display:none"></audio>`;
       st.innerHTML = html;
     } else { sb.innerHTML = ""; st.textContent = "geen training actief"; }
+    const pil = document.getElementById("pil");
+    if (pil) {
+      const d = (s.run && s.run.machine && s.run.machine.dienst) || "";
+      const w = s.wachter || {};
+      pil.className = "pil " + (d === "active" ? "aan" : "uit");
+      pil.textContent = d === "active" ? "ze leert" : (w.melding ? "let op" : "ze rust");
+    }
     // haar wereld: per familie hoe diep hij openstaat — checkpoint eerst,
     // logregels als aanvulling; een verse doorbraak fonkelt
     // de hekken komen uit run.json (de rungrens schrijft die mee met elke
@@ -668,6 +728,22 @@ async function haal() {
   } catch (e) {}
 }
 haal(); setInterval(haal, 5000);
+// tussen twee verversingen loopt de teller zelf door op het gemeten tempo
+setInterval(() => {
+  const b = window.lvBasis; if (!b) return;
+  const el = document.getElementById("lv-stap"); if (!el) return;
+  const st = Math.min(b.doel, b.stap + (performance.now() - b.ontvangen) / b.ms);
+  el.textContent = Math.floor(st).toLocaleString("nl");
+  const balk = document.getElementById("lv-balk");
+  if (balk) balk.style.width = (100 * st / b.doel).toFixed(3) + "%";
+  const p = document.getElementById("lv-pct");
+  if (p) p.textContent = (100 * st / b.doel).toFixed(1).replace(".", ",") + "%";
+  const nog = document.getElementById("lv-nog");
+  if (nog) {
+    const ms = Math.max(0, (b.doel - st) * b.ms);
+    nog.innerHTML = `${Math.floor(ms / 3600000)}<span class="eenheid">u</span> ${String(Math.floor(ms % 3600000 / 60000)).padStart(2, "0")}<span class="eenheid">m</span>`;
+  }
+}, 1000);
 async function haalZelfrapport() {
   try {
     const z = await (await fetch("/rapport/zelfrapport.json", {cache: "no-store"})).json();
@@ -701,11 +777,29 @@ async function haalZelfrapport() {
   } catch (e) {}
 }
 haalZelfrapport(); setInterval(haalZelfrapport, 300000);
+let antwoordSlot = 0;
+function toast(tekst, soort) {
+  const t = document.getElementById("toast");
+  t.textContent = tekst; t.className = "zien " + (soort || "");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => { t.className = ""; }, 4000);
+}
 async function antwoordCley(a) {
   a = (a || "").trim(); if (!a) return;
-  const r = await (await fetch("/antwoord-cley?antwoord=" + encodeURIComponent(a), {cache: "no-store"})).json();
-  if (r.geantwoord) { const v = document.getElementById("antwoord-vrij"); if (v) v.value = ""; haalZelfrapport(); }
-  else alert("er staat geen vraag van haar open om te beantwoorden");
+  // Eén antwoord per vier seconden (24 aug 2026): een dubbele klik op
+  // "later" bezorgde die avond twee keer dezelfde les in haar bus.
+  if (Date.now() < antwoordSlot) { toast("even wachten — je antwoord is net verstuurd"); return; }
+  antwoordSlot = Date.now() + 4000;
+  document.querySelectorAll(".gesprek-knoppen button").forEach(b => b.disabled = true);
+  setTimeout(() => document.querySelectorAll(".gesprek-knoppen button").forEach(b => b.disabled = false), 4000);
+  try {
+    const r = await (await fetch("/antwoord-cley?antwoord=" + encodeURIComponent(a), {cache: "no-store"})).json();
+    if (r.geantwoord) {
+      const v = document.getElementById("antwoord-vrij"); if (v) v.value = "";
+      toast(`bezorgd: "${a}" — zij leert het op de volgende rungrens`, "goed");
+      haalZelfrapport();
+    } else toast("er staat geen vraag van haar open om te beantwoorden", "mis");
+  } catch (e) { toast("het venster kon het antwoord niet kwijt — probeer nog eens", "mis"); }
 }
 
 maat();
@@ -845,6 +939,7 @@ function teken(t) {
   requestAnimationFrame(teken);
 }
 requestAnimationFrame(teken);
+
 </script>
 </body>
 </html>
