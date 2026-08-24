@@ -61,6 +61,10 @@ ROOM = 128
 # larger is flat, and the VRAM peak did not move. Chunking never changes
 # outcomes — test-learning proves batched answering equals one-by-one.
 _CHUNK_BUDGET = 10_000_000
+# A row shorter than this share of its group's longest starts a new
+# group (24 Aug 2026): keeps the padding in every group under ~30%,
+# while groups stay large enough to keep the card busy.
+_GROUP_SPAN = 0.7
 
 
 def bf16_usable(device):
@@ -537,42 +541,86 @@ class Learner:
         with torch.autocast("cuda", dtype=torch.bfloat16, enabled=self.bf16):
             return self._step_real(chunk)
 
+    def _make_groups(self, chunk):
+        """The batch as groups that each pad to their own longest row.
+
+        Until 24 Aug 2026 the whole batch was one rectangle, every row
+        padded to the longest of the 64. With replay drawn uniformly from
+        her whole memory that longest is ~1000 characters while the average
+        row is ~285 (measured on run 7.3): 3.5x the tokens, and attention
+        pays length squared, all for padding that counts nowhere. The
+        learning step was 90% of the 10 s per step, nearly constant across
+        families -- that constant was the air.
+
+        Sorted by length (longest first, ties by position) and cut into
+        groups under the same budget (rows x longest^2 <= _CHUNK_BUDGET),
+        the same sum costs a fraction. Mathematically nothing changes:
+        padding sits on the right, attention is causal and the mask is off
+        there, so no real position ever sees it, and the loss is the sum
+        over counted positions divided by the whole batch's count whatever
+        the grouping. test-batch-groups.py proves the step equal to the
+        one-rectangle version. Grouping depends only on the lengths, so it
+        is as repeatable as the rest (not bit for bit the old numbers: the
+        kernels see other shapes -- a new baseline at a run boundary).
+        """
+        seqs, masks = [], []
+        for t in chunk:
+            seq, mask = tokens.task_to_sequence(t)
+            seqs.append(seq)
+            masks.append(mask)
+        order = sorted(range(len(seqs)), key=lambda i: (-len(seqs[i]), i))
+        groups, current, longest = [], [], 0
+        for i in order:
+            if not current:
+                longest = len(seqs[i])
+            elif ((len(current) + 1) * longest * longest > _CHUNK_BUDGET
+                  or len(seqs[i]) < _GROUP_SPAN * longest):
+                # a new group when the budget is full, or when this row is
+                # so much shorter that padding it up would be mostly air
+                groups.append(current)
+                current, longest = [], len(seqs[i])
+            current.append(i)
+        if current:
+            groups.append(current)
+        total_counts = sum(sum(m[1:]) for m in masks)
+        out = []
+        for g in groups:
+            s, m = tokens.batch([seqs[i] for i in g], [masks[i] for i in g])
+            out.append((torch.tensor(s, dtype=torch.long, device=self.device),
+                        torch.tensor(m, dtype=torch.bool, device=self.device)))
+        return out, total_counts
+
     def _step_real(self, chunk):
         self.core.train()
-        codes, mask = self._make_batch(chunk)
-        n, length = codes.shape
-
-        # Memory budget (9 Aug 2026): attention costs batch × length², and
-        # when the deep material opened (sequences of ~460 characters) the
-        # X399's 8 GB card ran out of memory thirty-four times in a row.
-        # The same sum, in chunks: gradients add up across chunks, so the
-        # outcome is mathematically equal to one big batch — only the
-        # memory stays bounded. The chunk size depends only on (n, length)
-        # and is therefore as repeatable as the rest.
-        chunk_size = max(1, min(n, _CHUNK_BUDGET // max(1, length * length)))
+        # Memory budget (9 Aug 2026): attention costs rows x length^2, and
+        # when the deep material opened the X399's 8 GB card ran out of
+        # memory thirty-four times in a row. The same sum, in groups:
+        # gradients add up across groups, so the outcome is mathematically
+        # equal to one big batch -- only the memory stays bounded. Since
+        # 24 Aug 2026 the groups are cut by length (see _make_groups).
+        groups, total_counts = self._make_groups(chunk)
 
         self.optimizer.zero_grad(set_to_none=True)
         # `total_counts` is over the WHOLE batch, also with one process per
         # card: every process divides its share's loss by the same number,
-        # so the summed gradients equal the gradient of one big batch — the
-        # same identity the chunks rely on, one level up.
-        total_counts = int(mask[:, 1:].sum())
+        # so the summed gradients equal the gradient of one big batch -- the
+        # same identity the groups rely on, one level up.
         total_loss = 0.0
-        # My rows. Alone that is all of them; in a group every `world`-th
-        # row (parallel.share), cut from the batch AFTER padding so both
-        # shares see the same `length` and thus the same chunk size.
-        codes_mine = parallel.share(codes)
-        mask_mine = parallel.share(mask)
-        for i in range(0, len(codes_mine), chunk_size):
-            c = codes_mine[i:i + chunk_size]
-            m = mask_mine[i:i + chunk_size]
-            scores = self._compute_core(c)
+        for codes, mask in groups:
+            # My rows. Alone that is all of them; in a group every `world`-th
+            # row (parallel.share). Shares need not have the same shape: the
+            # gradients meet per parameter, not per activation.
+            codes_mine = parallel.share(codes)
+            mask_mine = parallel.share(mask)
+            if len(codes_mine) == 0:
+                continue
+            scores = self._compute_core(codes_mine)
             # The score at position j predicts the character at j+1. The
             # mask must therefore shift one along; one position off and she
             # learns to predict the question.
             predicted = scores[:, :-1].reshape(-1, tokens.VOCAB)
-            target = c[:, 1:].reshape(-1)
-            counts = m[:, 1:].reshape(-1)
+            target = codes_mine[:, 1:].reshape(-1)
+            counts = mask_mine[:, 1:].reshape(-1)
             summed = F.cross_entropy(predicted[counts], target[counts],
                                      reduction="sum")
             (summed / max(1, total_counts)).backward()
