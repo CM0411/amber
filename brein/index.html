@@ -84,9 +84,8 @@
   .leeg { color: var(--dim); font-size: 14px; }
 
   /* het weefsel */
-  #weefsel { position: relative; height: clamp(320px, 56vh, 680px); border-radius: var(--r); overflow: hidden;
-             border: 1px solid var(--line); display: flex;
-             background: radial-gradient(ellipse at 42% 50%, #0E1428 0%, #0A0E1C 55%, #070A14 100%); }
+  #weefsel { position: relative; height: clamp(360px, 58vh, 720px); border-radius: var(--r); overflow: hidden;
+             border: 1px solid var(--line); display: flex; background: var(--bg-2); }
   #doek { display: block; flex: 1 1 auto; min-width: 0; height: 100%; }
   #lagen { flex: 0 0 210px; border-left: 1px solid var(--line); padding: 14px 14px 40px; overflow-y: auto; scrollbar-width: none;
            display: flex; flex-direction: column; justify-content: safe center; gap: 2px; }
@@ -98,7 +97,7 @@
   #lagen .laag.nu { background: rgba(200,222,255,.07); color: var(--ink); }
   #lagen .laag.nu i { opacity: 1; transform: scale(1.5); box-shadow: 0 0 8px currentColor; }
   #lagen .laag.nu .b { opacity: 1; }
-  #weefsel .onderschrift { position: absolute; left: 16px; bottom: 12px; max-width: calc(100% - 250px); font-family: var(--mono); font-size: 11.5px;
+  #weefsel .onderschrift { position: absolute; right: 16px; bottom: 12px; text-align: right; max-width: 50%; font-family: var(--mono); font-size: 11.5px;
                            color: var(--dim); letter-spacing: .06em; pointer-events: none; }
   #weefsel .onderschrift b { color: var(--muted); font-weight: 500; }
   #weefsel .onderschrift .plus { color: var(--mint); } #weefsel .onderschrift .min { color: var(--coral); }
@@ -266,8 +265,7 @@
     <div class="raster">
       <div class="k12" id="weefsel">
         <canvas id="doek"></canvas>
-        <aside id="lagen" aria-label="lagen"></aside>
-        <div class="onderschrift" id="onderschrift"><span class="plus">groen</span> is plus, <span class="min">rood</span> is min — haar echte bedrading</div>
+        <div class="onderschrift" id="onderschrift">het spoor van haar gedachte: per geschreven teken de activiteit van elke laag</div>
       </div>
       <div class="kaart k7" id="nu">
         <div class="titel"><h2>Waar ze nu mee bezig is</h2><span class="sub" id="nu-sub"></span></div>
@@ -380,268 +378,215 @@
    Het weefsel — Cleys ontwerp, letterlijk overgenomen. Zie de opmerkingen.
    ====================================================================== */
 /* ======================================================================
-   De iris — Claudes ontwerp voor het weefsel (24 aug 2026, op Cleys
-   woord: "de webinterface is jouw project, doe er je ding").
+   Het spoor — Claudes ontwerp voor het weefsel (24 aug 2026, tweede
+   poging, na Cleys woord: "het moet daadwerkelijk iets doen").
 
-   Wat het laat zien is niet veranderd: haar echte bedrading (per overgang
-   de sterkste verbindingen, mint is plus, koraal is min, dikte en licht
-   naar gewicht) en haar echte activaties (een gedachte die door de lagen
-   trekt, met vonkjes langs de draden). Wat wél anders is, is de vorm: geen
-   twintig kolommen naast elkaar, maar twintig ringen in elkaar. De invoer
-   in het midden, als pupil; elke laag een ring verder naar buiten; de
-   uitvoer als de gloed aan de rand. Zo wordt elke verbinding kort en
-   leesbaar, en een gedachte een rimpeling van binnen naar buiten.
+   Een instrument, geen sfeerbeeld. Terwijl ze een antwoord schrijft, vangt
+   de kijker per geschreven teken de activiteit van elke laag (384 kanalen
+   per laag, gevouwen tot 32 groepen). Dat staat hier als een partituur:
 
-   Twee regels die blijven staan: nooit een flits (Cley is gevoelig voor
-   knipperende beelden -- alles ademt, niets knippert), en geen tekst óver
-   het weefsel: de laagnamen staan ernaast, en lichten op waar de
-   rimpeling is.
+     horizontaal  de doorgangen -- eerst de vraag, dan teken voor teken
+                  het antwoord, dat bovenaan meeschrijft
+     verticaal    haar lagen: invoer, laag 1 t/m 20, uitvoer
+     elke cel     32 fijne streepjes, één per groep: hoe hard die groep
+                  op dat moment vuurt, ten opzichte van het maximum van
+                  die laag in deze gedachte
+     rechts       per laag haar bedrading: hoeveel plus (mint) en hoeveel
+                  min (koraal) er in de sterkste verbindingen zit
+
+   Alles is echt en af te lezen: welke laag wanneer vuurt, waar ze stil is,
+   hoe de antwoordlagen pas meedoen als ze schrijft. De enige regie is het
+   tempo: een gedachte kost haar milliseconden, hier speelt hij af in een
+   paar seconden, en blijft dan staan. Nooit een flits: cellen komen zacht
+   op en blijven.
    ====================================================================== */
 const doek = document.getElementById("doek");
 const ctx = doek.getContext("2d");
 const DPR = Math.min(devicePixelRatio || 1, 2);
-let B = 1, H = 1, CX = 0, CY = 0, R = 1;
+let B = 1, H = 1;
 let KOL = [32, 32, 32, 32, 32, 32, 32, 32, 32, 1];
 let NAMEN = [];
 let stand = null, wachtrij = [], rijNu = null, rijStart = 0;
-let gloed = KOL.map(n => new Array(n).fill(0));
-let kolMax = KOL.map(() => 0.0001);
+let gloed = [], kolMax = KOL.map(() => 0.0001);
 let bedrading = null, bedradingUit = null, weefsel = [];
 let vonken = [];
 let antwoordDoel = "", antwoordNu = 0, laatstTonen = 0;
-const DUUR = 1500;                        // één gedachte, van pupil tot rand
-let pos = [];                             // pos[ring][i] = [x, y]
-let draden = [];                          // per overgang: [{b, d, w, plus, cx, cy}]
-let gloedSprite = null, haloSprite = null, laatsteRingInLijst = -1;
+const DUUR = 1500;
 
-const stof = Array.from({length: 40}, () => ({
-  a: Math.random() * 6.283, r: 0.3 + Math.random() * 0.9, v: 0.00004 + Math.random() * 0.00008,
-  tw: Math.random() * 6.28, d: 0.55 + Math.random() * 0.5 }));
-
-/* ---- de ringen ---- */
-function ringStraal(k) {
-  const n = KOL.length - 1;
-  return R * (0.10 + 0.90 * Math.pow(k / n, 0.92));   // iets meer ruimte voor de buitenste ringen
-}
-function bouwPosities() {
-  pos = [];
-  for (let k = 0; k < KOL.length; k++) {
-    const n = KOL[k], r = ringStraal(k), rij = [];
-    const draai = k * 0.11;                            // een zachte spiraal, niets staat op één lijn
-    for (let i = 0; i < n; i++) {
-      const t = n === 1 ? 0 : (i / n) * 2 * Math.PI + draai - Math.PI / 2;
-      rij.push(n === 1 ? [CX, CY] : [CX + r * Math.cos(t), CY + r * Math.sin(t)]);
-    }
-    pos.push(rij);
-  }
-}
-function plaats(k, i) { return (pos[k] && pos[k][i]) || [CX, CY]; }
-
-function maat() {
-  const wrap = document.getElementById("weefsel");
-  if (!doek.clientWidth) return;                     // blad niet in beeld
-  B = doek.width = Math.round(doek.clientWidth * DPR);
-  H = doek.height = Math.round(doek.clientHeight * DPR);
-  R = Math.min(B, H) * 0.44;
-  CX = B / 2; CY = H / 2;
-  gloedSprite = document.createElement("canvas");
-  gloedSprite.width = gloedSprite.height = 64;
-  const qs = gloedSprite.getContext("2d");
-  const rg = qs.createRadialGradient(32, 32, 0, 32, 32, 32);
-  rg.addColorStop(0, "rgba(200,222,255,0.9)"); rg.addColorStop(1, "rgba(200,222,255,0)");
-  qs.fillStyle = rg; qs.beginPath(); qs.arc(32, 32, 32, 0, 7); qs.fill();
-  // de halo van de uitvoer: een zachte ring net buiten de laatste laag
-  haloSprite = document.createElement("canvas");
-  haloSprite.width = haloSprite.height = Math.max(4, Math.round(R * 2.6));
-  const qh = haloSprite.getContext("2d"), hm = haloSprite.width / 2;
-  const hg = qh.createRadialGradient(hm, hm, R * 0.98, hm, hm, R * 1.28);
-  hg.addColorStop(0, "rgba(127,224,195,0)"); hg.addColorStop(0.35, "rgba(160,225,235,0.22)");
-  hg.addColorStop(1, "rgba(127,224,195,0)");
-  qh.fillStyle = hg; qh.beginPath(); qh.arc(hm, hm, R * 1.28, 0, 7); qh.fill();
-  bouwPosities();
-  bouwWeefsel();
-}
-addEventListener("resize", maat);
-if (window.ResizeObserver) new ResizeObserver(() => maat()).observe(document.getElementById("weefsel"));
-
-/* ---- de draden: één keer getekend, per overgang bewaard voor de rimpeling ---- */
-function bouwWeefsel() {
-  weefsel = []; draden = [];
-  if (!bedrading || !pos.length) return;
-  for (let k = 0; k < KOL.length - 1; k++) {
-    let paren = [];
-    if (k < KOL.length - 2) {
-      const M = bedrading[k];                          // [doel][bron], genormaliseerd
-      if (!M) { draden.push([]); continue; }
-      for (let b = 0; b < KOL[k]; b++)
-        for (let d = 0; d < KOL[k + 1]; d++) {
-          const w = M[d] ? (M[d][b] || 0) : 0;
-          if (Math.abs(w) > 0.04) paren.push([Math.abs(w), w > 0, b, d]);
-        }
-      paren.sort((a, z) => z[0] - a[0]);
-      paren = paren.slice(0, 300);
-    } else {
-      for (let b = 0; b < KOL[k]; b++) paren.push([bedradingUit ? Math.abs(bedradingUit[b] || 0) : 0.4, !bedradingUit || bedradingUit[b] >= 0, b, 0]);
-    }
-    const lijst = [];
-    for (const [w, plus, b, d] of paren) {
-      const [x1, y1] = plaats(k, b);
-      let [x2, y2] = plaats(k + 1, d);
-      if (k === KOL.length - 2) {                      // naar de rand: recht naar buiten, tot de halo
-        const t = Math.atan2(y1 - CY, x1 - CX), rr = R * 1.06;
-        x2 = CX + rr * Math.cos(t); y2 = CY + rr * Math.sin(t);
-      }
-      // de draad buigt zacht met de ring mee: het stuurpunt ligt op de tussenring
-      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
-      const dm = Math.hypot(mx - CX, my - CY) || 1;
-      const rm = (Math.hypot(x1 - CX, y1 - CY) + Math.hypot(x2 - CX, y2 - CY)) / 2;
-      lijst.push({b, d, w, plus, x1, y1, x2, y2, cx: CX + (mx - CX) / dm * rm, cy: CY + (my - CY) / dm * rm});
-    }
-    draden.push(lijst);
-  }
-  // de rustige laag: alles in één keer, zacht
-  const c = document.createElement("canvas");
-  c.width = B; c.height = H;
-  const q = c.getContext("2d");
-  q.globalCompositeOperation = "lighter";
-  for (let k = 0; k < draden.length; k++) tekenDraden(q, k, 0.06, 0.30);
-  weefsel = [c];
-}
-function tekenDraden(q, k, basis, schaal) {
-  q.lineCap = "round";
-  // naar binnen toe liggen de draden dichter op elkaar: daar zachter, anders
-  // brandt het hart wit -- de buitenste ringen krijgen het volle licht
-  const f = 0.22 + 0.78 * Math.pow(ringStraal(k + 0.5) / R, 1.3);
-  for (const s of draden[k] || []) {
-    q.strokeStyle = s.plus
-      ? `rgba(127,224,195,${((basis + s.w * schaal) * f).toFixed(3)})`
-      : `rgba(255,154,122,${((basis + s.w * schaal) * f).toFixed(3)})`;
-    q.lineWidth = Math.max(0.5, R * (0.0010 + 0.0030 * s.w) * (0.6 + 0.4 * f));
-    q.beginPath(); q.moveTo(s.x1, s.y1); q.quadraticCurveTo(s.cx, s.cy, s.x2, s.y2); q.stroke();
-  }
-}
-
-/* ---- de namen, in de lijst naast de iris ---- */
+let rijen = [];                 // de doorgangen van deze gedachte: rijen[j][k] = 32 waarden van laag k
+let sterkte = [];               // per overgang: {plus, min} uit de bedrading
+let speelStart = 0, getoond = 0, klaarSinds = 0, muis = null;
+const PAS_PER_S = 14;           // tekens per seconde bij het afspelen
 let laagnamen = {};
 const FAMILIEKLEUR = {rekenen: "#6FB5FF", puzzel: "#B78AE0", code: "#7FE0C3", geheugen: "#FFB86B", logica: "#FF8FA3",
                       volgorde: "#8FD3FF", tekst: "#E6D37A", zeggen: "#F0A8FF", taal: "#A3FFD6", machine: "#FFD28F",
                       tellen: "#C4B5FD", antwoord: "#FDA4AF", antwoordlaag: "#FDA4AF", gesprek: "#F0A8FF"};
+
+/* ---- maat en indeling ---- */
+const M = {links: 0, rechts: 0, boven: 0, onder: 0, rijH: 0, kolB: 0, plotB: 0, plotH: 0, fs: 12};
+function maat() {
+  if (!doek.clientWidth) return;
+  B = doek.width = Math.round(doek.clientWidth * DPR);
+  H = doek.height = Math.round(doek.clientHeight * DPR);
+  M.fs = Math.max(10, Math.min(13, B / 110)) * DPR;
+  M.links = Math.round(M.fs * 12.5);          // de laagnamen
+  M.rechts = Math.round(M.fs * 8.5);          // de bedradingsbalkjes
+  M.boven = Math.round(M.fs * 3.2);           // de tekens die ze schrijft
+  M.onder = Math.round(M.fs * 2.4);
+  M.plotB = Math.max(10, B - M.links - M.rechts);
+  M.plotH = Math.max(10, H - M.boven - M.onder);
+  M.rijH = M.plotH / Math.max(1, KOL.length);
+  M.kolB = M.plotB / Math.max(28, rijen.length);
+}
+addEventListener("resize", maat);
+if (window.ResizeObserver) new ResizeObserver(() => maat()).observe(document.getElementById("weefsel"));
+
+/* ---- de bedrading per laag: hoeveel plus, hoeveel min ---- */
+function bouwWeefsel() {
+  sterkte = [];
+  if (!bedrading) { weefsel = []; return; }
+  for (let k = 0; k < KOL.length - 1; k++) {
+    let plus = 0, min = 0;
+    if (k < KOL.length - 2) {
+      const Mk = bedrading[k] || [];
+      const alle = [];
+      for (const rij of Mk) for (const w of rij || []) alle.push(w);
+      alle.sort((a, z) => Math.abs(z) - Math.abs(a));
+      for (const w of alle.slice(0, 300)) { if (w > 0) plus += w; else min += -w; }
+    } else if (bedradingUit) {
+      for (const w of bedradingUit) { if (w > 0) plus += w; else min += -w; }
+    }
+    sterkte.push({plus, min});
+  }
+  const top = Math.max(0.0001, ...sterkte.map(s => Math.max(s.plus, s.min)));
+  for (const s of sterkte) { s.p = s.plus / top; s.m = s.min / top; }
+  weefsel = [true];
+}
+
+/* ---- de namen ---- */
 function bouwNamen() {
   NAMEN = [["invoer", "inbedding"]];
   for (let i = 1; i < KOL.length - 1; i++) NAMEN.push(["laag " + i, laagnamen[i] || "GELU"]);
   NAMEN.push(["uitvoer", "zekerheid"]);
-  const lijst = document.getElementById("lagen");
-  if (!lijst) return;
-  lijst.innerHTML = NAMEN.map(([a, b], k) => {
-    const kleur = FAMILIEKLEUR[b] || (b === "stil" ? "var(--dim)" : "var(--muted)");
-    return `<div class="laag" data-k="${k}"><i style="background:${kleur}"></i><span class="a">${a}</span><span class="b" style="color:${kleur}">${b}</span></div>`;
-  }).join("");
-  laatsteRingInLijst = -1;
+  maat();
 }
 bouwNamen();
+
+/* ---- een nieuwe gedachte begint ---- */
+function nieuweGedachte() {
+  rijen = wachtrij.slice();
+  wachtrij = []; rijNu = rijen.length ? rijen[0] : null;
+  speelStart = performance.now(); getoond = 0; klaarSinds = 0;
+  kolMax = KOL.map((n, k) => { let m = 0.0001; for (const r of rijen) for (const v of (r[k] || [])) m = Math.max(m, v); return m; });
+  maat();
+}
+
+/* ---- de muis: welke cel ---- */
+doek.addEventListener("mousemove", e => {
+  const r = doek.getBoundingClientRect();
+  muis = {x: (e.clientX - r.left) * DPR, y: (e.clientY - r.top) * DPR};
+});
+doek.addEventListener("mouseleave", () => { muis = null; });
 
 /* ---- elk beeld ---- */
 function teken(t) {
   ctx.globalCompositeOperation = "source-over";
   ctx.globalAlpha = 1;
   ctx.clearRect(0, 0, B, H);
+  if (!rijen.length && wachtrij.length) nieuweGedachte();
+  const n = rijen.length;
+  const fs = M.fs, mono = `500 ${fs}px "JetBrains Mono", ui-monospace, Consolas, monospace`;
 
-  // stof: langzaam draaiende korrels rond de iris
-  for (const p of stof) {
-    p.a += p.v * (p.d > 0.9 ? 0.6 : 1);
-    const rr = R * (0.15 + p.d * 1.15);
-    const tw = 0.25 + 0.25 * Math.sin(t / 1100 + p.tw);
-    ctx.fillStyle = `rgba(190,210,255,${tw.toFixed(2)})`;
-    ctx.beginPath(); ctx.arc(CX + rr * Math.cos(p.a), CY + rr * Math.sin(p.a), p.r * DPR, 0, 7); ctx.fill();
+  // afspelen: teken voor teken, dan blijven staan
+  if (n) {
+    const doel = Math.min(n, Math.floor((t - speelStart) / 1000 * PAS_PER_S) + 1);
+    if (doel > getoond) getoond = doel;
+    if (getoond >= n && !klaarSinds) klaarSinds = t;
+    antwoordNu = Math.max(0, Math.min(antwoordDoel.length, getoond - 1));
+    if (t - laatstTonen > 80) { laatstTonen = t; document.getElementById("antwoord").textContent = antwoordDoel.slice(0, antwoordNu); }
   }
-  // de ringen zelf, heel zacht
-  ctx.strokeStyle = "rgba(200,215,245,0.045)"; ctx.lineWidth = 1;
-  for (let k = 1; k < KOL.length - 1; k++) { ctx.beginPath(); ctx.arc(CX, CY, ringStraal(k), 0, 7); ctx.stroke(); }
 
-  // de gedachte: een rimpeling van binnen naar buiten
-  if (!rijNu && wachtrij.length) { rijNu = wachtrij.shift(); rijStart = t; }
-  let front = -1;
-  if (rijNu) {
-    front = (t - rijStart) / DUUR * KOL.length;
-    if (front >= KOL.length + 1.5) {
-      if (!wachtrij.length) wachtrij.push(rijNu);
-      rijNu = wachtrij.shift(); rijStart = t; front = 0;
+  // de rijen: een zachte lijn per laag, en de naam links
+  ctx.font = mono; ctx.textBaseline = "middle";
+  for (let k = 0; k < KOL.length; k++) {
+    const y = M.boven + (k + 0.5) * M.rijH;
+    ctx.strokeStyle = "rgba(200,215,245,0.05)"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(M.links, M.boven + (k + 1) * M.rijH); ctx.lineTo(B - M.rechts, M.boven + (k + 1) * M.rijH); ctx.stroke();
+    const [a, b] = NAMEN[k] || ["", ""];
+    const kleur = FAMILIEKLEUR[b] || (b === "stil" ? "#5C6781" : "#8E99B3");
+    ctx.textAlign = "left";
+    ctx.fillStyle = "rgba(234,238,247,0.85)"; ctx.fillText(a, fs * 0.9, y);
+    if (M.rijH > fs * 1.15) { ctx.fillStyle = kleur; ctx.fillText(b, fs * 0.9 + fs * 4.4, y); }
+  }
+
+  // de cellen: 32 streepjes per cel, licht naar activiteit
+  const kb = M.kolB, sub = Math.max(1, Math.floor(kb / 32 * 10) / 10);
+  for (let j = 0; j < Math.min(getoond, n); j++) {
+    const x0 = M.links + j * kb;
+    const vers = 1 - Math.max(0, Math.min(1, (getoond - 1 - j) * 0.35));    // net getoond: iets helderder
+    for (let k = 0; k < KOL.length; k++) {
+      const v = rijen[j][k] || [], m = kolMax[k], y0 = M.boven + k * M.rijH;
+      const g = v.length, sw = kb / Math.max(1, g);
+      for (let i = 0; i < g; i++) {
+        const a = Math.min(1, (v[i] || 0) / m);
+        if (a < 0.03) continue;
+        const helder = 0.08 + 0.92 * a * a;
+        ctx.fillStyle = `rgba(127,224,195,${(helder * (0.72 + 0.28 * vers)).toFixed(3)})`;
+        ctx.fillRect(x0 + i * sw + 0.25, y0 + M.rijH * 0.12, Math.max(0.5, sw - 0.5), M.rijH * 0.76);
+      }
     }
   }
-  for (let k = 0; k < KOL.length; k++) for (let i = 0; i < KOL[k]; i++) gloed[k][i] *= 0.965;
+  // de kolom waar ze nu schrijft
+  if (n && getoond < n) {
+    const x = M.links + getoond * kb;
+    ctx.fillStyle = "rgba(200,222,255,0.06)"; ctx.fillRect(x, M.boven, kb, M.plotH);
+  }
 
-  // de draden: de rustige laag, en de overgang waar de rimpeling is, helder
-  ctx.globalCompositeOperation = "lighter";
-  const adem = 0.5 + 0.5 * Math.sin(t / 4200 * 2 * Math.PI);
-  ctx.globalAlpha = 0.55 + 0.15 * adem;
-  if (weefsel[0]) ctx.drawImage(weefsel[0], 0, 0);
-  ctx.globalAlpha = 1;
-  if (rijNu) {
-    const k0 = Math.floor(front);
-    for (let k = Math.max(0, k0 - 1); k <= Math.min(draden.length - 1, k0); k++) {
-      const nabij = 1 - Math.min(1, Math.abs(front - (k + 0.5)) / 1.5);
-      if (nabij > 0) tekenDraden(ctx, k, 0.10 * nabij, 0.55 * nabij);
+  // de tekens bovenaan: eerst de vraag, dan wat ze schrijft
+  ctx.textAlign = "center"; ctx.font = mono;
+  for (let j = 0; j < Math.min(getoond, n); j++) {
+    const x = M.links + (j + 0.5) * kb;
+    const teken = j === 0 ? "?" : (antwoordDoel[j - 1] || "");
+    if (!teken) continue;
+    ctx.fillStyle = j === 0 ? "rgba(142,153,179,0.9)" : (teken === " " ? "rgba(92,103,129,0.5)" : "rgba(234,238,247,0.92)");
+    if (kb >= fs * 0.75) ctx.fillText(teken === " " ? "·" : teken, x, M.boven - fs * 0.9);
+  }
+  ctx.textAlign = "left";
+  ctx.fillStyle = "rgba(92,103,129,0.9)";
+  ctx.fillText(n ? (getoond < n ? "ze schrijft" : "klaar — dit was haar gedachte") : "wachten op een gedachte…", M.links, M.boven - fs * 2.1);
+
+  // rechts: de bedrading per laag, plus en min
+  const bx = B - M.rechts + fs * 0.8, bw = M.rechts - fs * 2.2;
+  for (let k = 0; k < sterkte.length; k++) {
+    const s = sterkte[k], y = M.boven + (k + 0.5) * M.rijH + M.rijH * 0.5;   // tussen laag k en k+1
+    const h = Math.max(2, Math.min(6 * DPR, M.rijH * 0.28));
+    ctx.fillStyle = "rgba(127,224,195,0.75)"; ctx.fillRect(bx, y - h - 1, bw * s.p, h);
+    ctx.fillStyle = "rgba(255,154,122,0.75)"; ctx.fillRect(bx, y + 1, bw * s.m, h);
+  }
+  ctx.fillStyle = "rgba(92,103,129,0.9)"; ctx.font = mono; ctx.textAlign = "left";
+  ctx.fillText("bedrading", bx, M.boven - fs * 2.1);
+  ctx.fillStyle = "rgba(127,224,195,0.9)"; ctx.fillText("plus", bx, M.boven - fs * 0.9);
+  ctx.fillStyle = "rgba(255,154,122,0.9)"; ctx.fillText("min", bx + fs * 3.2, M.boven - fs * 0.9);
+
+  // de muis: wat staat er in deze cel
+  if (muis && n && muis.x > M.links && muis.x < B - M.rechts && muis.y > M.boven && muis.y < H - M.onder) {
+    const j = Math.floor((muis.x - M.links) / kb), k = Math.floor((muis.y - M.boven) / M.rijH);
+    if (j < getoond && rijen[j] && rijen[j][k]) {
+      const v = rijen[j][k], gem = v.reduce((a, b) => a + b, 0) / v.length, top = Math.max(...v);
+      ctx.strokeStyle = "rgba(234,238,247,0.6)"; ctx.lineWidth = 1;
+      ctx.strokeRect(M.links + j * kb + 0.5, M.boven + k * M.rijH + 0.5, kb - 1, M.rijH - 1);
+      const tekst = `${NAMEN[k] ? NAMEN[k][0] : ""} · ${j === 0 ? "de vraag" : `teken ${j}: "${antwoordDoel[j - 1] || ""}"`} · activiteit ${(gem / kolMax[k] * 100).toFixed(0)}% van haar max, sterkste groep ${(top / kolMax[k] * 100).toFixed(0)}%`;
+      ctx.fillStyle = "rgba(234,238,247,0.9)"; ctx.textAlign = "left";
+      ctx.fillText(tekst, M.links, H - fs * 1.0);
     }
+  } else {
+    ctx.fillStyle = "rgba(92,103,129,0.8)"; ctx.textAlign = "left";
+    if (n) ctx.fillText(`${n - 1} tekens · ${KOL.length - 2} lagen · elke cel 32 groepen van 12 kanalen · wijs een cel aan`, M.links, H - fs * 1.0);
   }
 
-  // vonkjes langs de draden waar de rimpeling loopt
-  if (rijNu && vonken.length < 80 && Math.random() < 0.65) {
-    const k = Math.max(0, Math.min(KOL.length - 2, Math.floor(front)));
-    const lijst = draden[k] || [];
-    if (lijst.length) {
-      const sterk = rijNu[k].map((v, i) => [v / kolMax[k], i]).sort((x, y) => y[0] - x[0]).slice(0, 8);
-      const [, b] = sterk[Math.floor(Math.random() * sterk.length)] || [0, 0];
-      const kandidaten = lijst.filter(s => s.b === b);
-      const s = kandidaten.length ? kandidaten[Math.floor(Math.random() * kandidaten.length)] : lijst[Math.floor(Math.random() * lijst.length)];
-      vonken.push({k, s, u: 0, sn: 0.016 + Math.random() * 0.02});
-    }
-  }
-  for (const v of vonken) {
-    v.u += v.sn;
-    const u = Math.min(1, v.u), w = 1 - u, s = v.s;
-    const x = w * w * s.x1 + 2 * w * u * s.cx + u * u * s.x2;
-    const y = w * w * s.y1 + 2 * w * u * s.cy + u * u * s.y2;
-    const zwel = Math.sin(Math.PI * u);
-    ctx.strokeStyle = `rgba(220,235,255,${(0.22 * zwel).toFixed(3)})`;
-    ctx.lineWidth = R * 0.0028;
-    ctx.beginPath(); ctx.moveTo(s.x1, s.y1); ctx.quadraticCurveTo(s.cx, s.cy, s.x2, s.y2); ctx.stroke();
-    ctx.fillStyle = `rgba(235,244,255,${(0.9 * (1 - u * 0.35)).toFixed(2)})`;
-    ctx.beginPath(); ctx.arc(x, y, R * 0.0045, 0, 7); ctx.fill();
-    if (v.u >= 1 && gloed[v.k + 1]) gloed[v.k + 1][s.d] = Math.min(1, (gloed[v.k + 1][s.d] || 0) + 0.5);
-  }
-  vonken = vonken.filter(v => v.u < 1);
-
-  // de knopen: klein, en ze gloeien alleen als er echt iets aankomt
-  for (let k = 0; k < KOL.length - 1; k++)
-    for (let i = 0; i < KOL[k]; i++) {
-      const [x, y] = plaats(k, i);
-      const gl = gloed[k][i];
-      const r = R * 0.0055 * (1 + 1.6 * gl);
-      ctx.fillStyle = `rgba(${185 + 65 * gl | 0},${200 + 50 * gl | 0},${232 + 23 * gl | 0},${(0.38 + 0.62 * gl).toFixed(2)})`;
-      ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
-      if (gl > 0.35) { ctx.globalAlpha = 0.45 * gl; const d = r * 9; ctx.drawImage(gloedSprite, x - d / 2, y - d / 2, d, d); ctx.globalAlpha = 1; }
-    }
-  // de pupil ademt zacht; de halo aan de rand licht op als de gedachte aankomt
-  const pupil = 0.5 + 0.5 * Math.sin(t / 2600);
-  const uitGl = gloed[KOL.length - 1] ? (gloed[KOL.length - 1][0] || 0) : 0;
-  ctx.globalAlpha = 0.35 + 0.25 * pupil + 0.4 * uitGl;
-  if (haloSprite) ctx.drawImage(haloSprite, CX - haloSprite.width / 2, CY - haloSprite.height / 2);
-  ctx.globalAlpha = 0.22 + 0.18 * pupil;
-  { const d = R * 0.42; ctx.drawImage(gloedSprite, CX - d / 2, CY - d / 2, d, d); }
-  if (rijNu && front < 1.2) { ctx.globalAlpha = 0.35 * (1.2 - front) / 1.2; const d = R * 0.9; ctx.drawImage(gloedSprite, CX - d / 2, CY - d / 2, d, d); }
-  ctx.globalAlpha = 1;
-  ctx.globalCompositeOperation = "source-over";
-
-  // de lijst ernaast volgt de rimpeling
-  const ringNu = rijNu ? Math.max(0, Math.min(KOL.length - 1, Math.floor(front))) : -1;
-  if (ringNu !== laatsteRingInLijst) {
-    laatsteRingInLijst = ringNu;
-    document.querySelectorAll("#lagen .laag").forEach(el => el.classList.toggle("nu", +el.dataset.k === ringNu));
-  }
-
-  if (antwoordNu < antwoordDoel.length && t - laatstTonen > DUUR / 5) {
-    antwoordNu += 1; laatstTonen = t;
-    document.getElementById("antwoord").textContent = antwoordDoel.slice(0, antwoordNu);
+  // klaar: even laten staan, dan de volgende gedachte (of dezelfde nog eens)
+  if (n && klaarSinds && t - klaarSinds > 6000) {
+    if (wachtrij.length) nieuweGedachte(); else { speelStart = t; getoond = 0; klaarSinds = 0; }
   }
   requestAnimationFrame(teken);
 }
@@ -1062,8 +1007,8 @@ async function haal() {
     const pil = $("pil"), d = (s.run && s.run.machine && s.run.machine.dienst) || "", w = s.wachter || {};
     pil.className = "pil " + (d === "active" ? "aan" : "uit");
     pil.textContent = d === "active" ? "ze leert" : (w.melding ? "let op" : "ze rust");
-    $("onderschrift").innerHTML = `<span class="plus">groen</span> is plus, <span class="min">rood</span> is min — haar echte bedrading` +
-      (s.checkpoint_stap ? ` · <b>brein van stap ${nl(s.checkpoint_stap)}</b>` : "") + (KOL.length > 2 ? ` · ${KOL.length - 2} lagen` : "");
+    $("onderschrift").innerHTML = `<span class="plus">mint</span> is activiteit · rechts haar bedrading: <span class="plus">plus</span> en <span class="min">min</span>` +
+      (s.checkpoint_stap ? ` · <b>brein van stap ${nl(s.checkpoint_stap)}</b>` : "");
     tekenProefwerken(s); tekenLevenslijn(s); tekenWereld(s); tekenKeuzes(s); tekenGeheugen(s); tekenMachines(s);
   } catch (e) { console.error(e); }
 }
