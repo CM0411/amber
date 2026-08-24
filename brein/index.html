@@ -466,7 +466,7 @@ function rnd(seed) {                      // vaste toevalsgetallen: dezelfde kno
   let t = (seed | 0) + 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61);
   return ((t ^ t >>> 14) >>> 0) / 4294967296;
 }
-let vorm = [];                           // per station: {k, z, cy, xyz: Float32Array, n, soort}
+let vorm = [], glad = [];                // per station: {k, z, cy, xyz: Float32Array, n, soort}; glad: de getoonde activiteit per knoop
 let lijnen = [], samen = [];             // de bedrading tussen de lagen; wie samen vuurt binnen een laag
 function bouwVorm() {
   const n = KOL.length, dz = 1.35;
@@ -482,6 +482,7 @@ function bouwVorm() {
     }
     vorm.push(st);
   }
+  glad = vorm.map(st => new Float32Array(st.n));
   // de bedrading: per overgang de sterkste gewichten van groep naar groep, naar het eigen maximum
   lijnen = [];
   for (let k = 0; k < n - 1; k++) {
@@ -624,51 +625,45 @@ function tekenRuimte(t, j, veeg, alpha) {
   if (vuil || !proj.length) projecteer();
   ctx.globalAlpha = alpha;
   const rij = (j >= 0 && rijen[j]) ? rijen[j] : null, n = KOL.length;
-  const front = veeg * (n + 1);
   const zmin = Math.min(...proj.map(p => p.z)), zmax = Math.max(...proj.map(p => p.z));
   const nabij = p => 1 - (p.z - zmin) / Math.max(0.001, zmax - zmin);   // 1 = dichtbij
-  // de golf (Cley, 24 aug: "niet alles hoeft op te lichten, zoals bij het weefsel"): licht rondom de kop
-  // van de gedachte, komt anderhalve laag vooruit op en dooft over vijf lagen erachter uit
-  const aanVan = k => { if (!rij) return 0; const d = front - 1 - k; return d < 0 ? Math.max(0, 1 + d / 1.5) : Math.max(0, 1 - d / 5); };
+  // Geen golf van links naar rechts (Cley, 24 aug: "daar krijg ik een klein beetje error van").
+  // Per teken staat het hele beeld stil; elke knoop glijdt elk beeld een stukje naar zijn waarde
+  // van nu, dus niets springt en niets veegt. Licht zit in de knopen die actief zijn en in de
+  // draadjes waar iets doorheen gaat: van een actieve knoop naar een actieve knoop.
+  for (let k = 0; k < n; k++) { const g = glad[k]; if (!g) continue; for (let i = 0; i < g.length; i++) { const doel = rij ? activiteitVan(j, k, i) : 0; g[i] += (doel - g[i]) * 0.09; } }
+  const stroom = (k1, i1, k2, i2) => Math.sqrt(Math.max(0, (glad[k1] ? glad[k1][i1] : 0) * (glad[k2] ? glad[k2][i2] : 0)));
   ctx.lineCap = "round";
-  // het web binnen een laag: wie samen vuurt in deze gedachte
+  // het web binnen een laag: wie samen vuurt in deze gedachte; licht als er aan beide kanten iets is
   for (const l of samen) {
     const p = proj[l.k]; if (!p) continue;
-    const nb = nabij(p), aan = aanVan(l.k);
-    ctx.strokeStyle = `rgba(205,210,195,${(0.06 + 0.16 * l.c * (0.4 + 0.6 * nb) + 0.20 * aan).toFixed(3)})`;
-    ctx.lineWidth = DPR * 0.7 * p.s;
+    const nb = nabij(p), f = stroom(l.k, l.a, l.k, l.b) * l.c;
+    ctx.strokeStyle = `rgba(${205 + 40 * f | 0},${210 + 40 * f | 0},${195 + 10 * f | 0},${(0.05 + 0.10 * l.c * (0.4 + 0.6 * nb) + 0.55 * f).toFixed(3)})`;
+    ctx.lineWidth = DPR * (0.6 + 1.0 * f) * p.s;
     ctx.beginPath(); ctx.moveTo(p.xy[2 * l.a], p.xy[2 * l.a + 1]); ctx.lineTo(p.xy[2 * l.b], p.xy[2 * l.b + 1]); ctx.stroke();
   }
-  // de bedrading tussen de lagen: bleek plus, koraal min
+  // de bedrading tussen de lagen: bleek plus, koraal min; licht waar iets doorheen gaat
   for (const l of lijnen) {
     const a = proj[l.k], b = proj[l.k + 1]; if (!a || !b) continue;
-    const nb = (nabij(a) + nabij(b)) / 2, aan = Math.max(aanVan(l.k), aanVan(l.k + 1));
-    ctx.strokeStyle = l.w >= 0 ? `rgba(228,228,208,${(0.07 + 0.20 * l.a * (0.4 + 0.6 * nb) + 0.22 * aan).toFixed(3)})` : `rgba(255,176,152,${(0.07 + 0.20 * l.a * (0.4 + 0.6 * nb) + 0.22 * aan).toFixed(3)})`;
-    ctx.lineWidth = DPR * (0.6 + 1.0 * l.a) * a.s;
+    const nb = (nabij(a) + nabij(b)) / 2, f = stroom(l.k, l.b, l.k + 1, l.d) * (0.4 + 0.6 * l.a);
+    ctx.strokeStyle = l.w >= 0 ? `rgba(${228 + 20 * f | 0},${228 + 27 * f | 0},${208 - 20 * f | 0},${(0.06 + 0.14 * l.a * (0.4 + 0.6 * nb) + 0.60 * f).toFixed(3)})`
+                               : `rgba(255,${176 + 30 * f | 0},${152 + 20 * f | 0},${(0.06 + 0.14 * l.a * (0.4 + 0.6 * nb) + 0.60 * f).toFixed(3)})`;
+    ctx.lineWidth = DPR * (0.5 + 0.6 * l.a + 1.3 * f) * a.s;
     ctx.beginPath(); ctx.moveTo(a.xy[2 * l.b], a.xy[2 * l.b + 1]); ctx.lineTo(b.xy[2 * l.d], b.xy[2 * l.d + 1]); ctx.stroke();
-  }
-  // het licht van het teken dat nu door haar heen trekt
-  if (rij && front > 0 && front < n + 1) {
-    const kf = Math.max(0, Math.min(n - 1, front - 1)), k0 = Math.floor(kf), k1 = Math.min(n - 1, k0 + 1), u = kf - k0;
-    const a0 = proj[k0], a1 = proj[k1];
-    const lx = a0.cx + (a1.cx - a0.cx) * u, ly = a0.cy + (a1.cy - a0.cy) * u, lr = S * (a0.s + (a1.s - a0.s) * u) * 2.2;
-    const lg = ctx.createRadialGradient(lx, ly, 0, lx, ly, lr);
-    lg.addColorStop(0, "rgba(120,230,150,0.10)"); lg.addColorStop(1, "rgba(120,230,150,0)");
-    ctx.fillStyle = lg; ctx.fillRect(lx - lr, ly - lr, 2 * lr, 2 * lr);
   }
   // de knopen, ver naar dichtbij
   const volgorde = proj.slice().sort((a, b) => b.z - a.z);
   for (const p of volgorde) {
-    const k = p.k, st = vorm[k], nb = nabij(p), aan = aanVan(k), fel = [];
+    const k = p.k, st = vorm[k], nb = nabij(p), fel = [];
     for (let i = 0; i < st.n; i++) {
-      const a = rij ? activiteitVan(j, k, i) * aan : 0, x = p.xy[2 * i], y = p.xy[2 * i + 1];
+      const a = glad[k] ? glad[k][i] : 0, x = p.xy[2 * i], y = p.xy[2 * i + 1];
       const r = DPR * (st.n === 1 ? 5 : 2.1) * (0.6 + 0.8 * p.sc[i]) * (1 + 0.6 * a);
       if (a > 0.8) fel.push([i, a]);
       // stil: donker teal-grijs (als de verre knopen in zijn plexus); in de golf: bleek geelwit
       ctx.fillStyle = `rgba(${105 + 140 * a | 0},${130 + 120 * a | 0},${140 + 50 * a | 0},${(0.16 + 0.14 * nb + 0.70 * a).toFixed(3)})`;
       ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
     }
-    // de gloed: een stille lichtkring om de felste knopen van dit teken (komt op met het licht, geen flits)
+    // de gloed: een stille lichtkring om de felste knopen van dit teken (glijdt mee, geen flits)
     fel.sort((x, y) => y[1] - x[1]);
     for (const [i, a] of fel.slice(0, 3)) {
       const gx = p.xy[2 * i], gy = p.xy[2 * i + 1], gr = DPR * 26 * p.sc[i] * a;
