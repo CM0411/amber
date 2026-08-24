@@ -31,6 +31,7 @@ FOLDER = os.environ.get("AMBER_KIJKER_MAP", "/home/arch/amber-werk/brein")
 # hoeft te weten en de pagina hem alleen ophaalt als er een nieuwe gedachte is.
 FIJN = os.environ.get("AMBER_KIJKER_FIJN", "/home/arch/rapport/fijn.json")
 EENMAAL = os.environ.get("AMBER_KIJKER_EENMAAL") == "1"     # proef: één ronde, dan stoppen
+RUST = int(os.environ.get("AMBER_KIJKER_RUST", "6"))       # seconden tussen twee rondes (24 aug: 120 op de Z490, de training gaat voor)
 X399 = "arch@192.168.1.239"
 FETCH_EVERY = 180        # a fresh snapshot from the X399, every 3 minutes —
                          # as often as she writes one herself
@@ -518,4 +519,4 @@ while True:
         print("fijn.json mislukt:", e, file=sys.stderr)
     if EENMAAL:
         break
-    time.sleep(6)
+    time.sleep(RUST)

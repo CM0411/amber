@@ -10,6 +10,9 @@ User=arch
 Environment=CUDA_VISIBLE_DEVICES=
 Environment=OMP_NUM_THREADS=4
 Environment=AMBER_KIJKER_LOKAAL=1
+# 24 aug 2026: 120 s rust tussen twee rondes (op de Z490 als drop-in rust.conf);
+# gemeten: doorlopend meten op vier draden kostte de training 13%
+Environment=AMBER_KIJKER_RUST=120
 Nice=10
 WorkingDirectory=/home/arch/amber-werk
 ExecStart=/usr/bin/python3 -u /home/arch/amber-werk/brein/kijker.py

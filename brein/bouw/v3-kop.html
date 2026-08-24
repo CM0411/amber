@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Amber · Sterrenwacht</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap">
+<style>
+  /* De Sterrenwacht (24 aug 2026). Claudes ontwerp, van de grond af, op
+     Cleys "begin vanaf nul tot je eigen futuristische design". Eén
+     scherm, geen bladen: haar brein in de ruimte in het midden, de
+     instrumenten eromheen als glas. Alles op het scherm is gemeten;
+     niets flitst. Letters: Atkinson Hyperlegible (leesbaar, ook met
+     dyslexie); cijfers: JetBrains Mono; alleen de naam in Syne.
+     Eén thema, met opzet: een sterrenwacht is 's nachts open. */
+  :root {
+    --bg: #05070D; --bg-2: #0A0E1C; --glas: rgba(10,14,27,.74); --glas-2: rgba(19,25,45,.85); --vlak: #121830;
+    --rand: rgba(140,170,220,.13); --rand-2: rgba(140,170,220,.28); --line: rgba(140,170,220,.13); --line-2: rgba(140,170,220,.28);
+    --surface: #0E1322; --surface-2: #151C30;
+    --ink: #EAEEF7; --muted: #8E99B3; --dim: #5C6781;
+    --mint: #7FE0C3; --coral: #FF9A7A; --sky: #6FB5FF; --lilac: #F0A8FF; --amber: #FFC272;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --tekst: "Atkinson Hyperlegible", system-ui, "Segoe UI", sans-serif;
+    --merk: "Syne", "Atkinson Hyperlegible", system-ui, sans-serif;
+    --r: 14px; --r-s: 9px;
+    --kop-h: 56px; --rail-w: 218px; --rechts-w: 316px; --onder-h: 66px; --marge: 12px;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--tekst); font-size: 14px; line-height: 1.45;
+         -webkit-font-smoothing: antialiased; overflow: hidden; }
+  b { color: var(--ink); }
+  button { font: inherit; color: inherit; }
+  ::selection { background: rgba(111,181,255,.35); }
+
+  /* ================= het toneel: de ruimte ================= */
+  #toneel { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 45%, #0D1730 0%, #060A16 68%); }
+  #doek { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  #vrij { position: absolute; top: calc(var(--kop-h) + var(--marge)); left: calc(var(--rail-w) + 2 * var(--marge));
+          right: calc(var(--rechts-w) + 2 * var(--marge)); bottom: calc(var(--onder-h) + 2 * var(--marge));
+          pointer-events: none; transition: opacity .3s; }
+  body.laag-open #vrij { opacity: 0; }
+  #onderschrift { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; font-family: var(--mono); font-size: 12px;
+                  color: var(--dim); letter-spacing: .05em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #onderschrift b { color: var(--muted); font-weight: 500; }
+  #gedachte { position: absolute; left: 0; right: 0; bottom: 30px; display: flex; justify-content: center; align-items: center; gap: 10px;
+              pointer-events: auto; }
+  #gedachte .tegels { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; max-width: 100%; }
+  #gedachte .tegel { width: 17px; height: 22px; padding: 0; border-radius: 4px; border: 1px solid transparent; background: rgba(140,170,220,.07);
+                     color: var(--dim); font-family: var(--mono); font-size: 12px; cursor: pointer; transition: background .2s, color .2s; }
+  #gedachte .tegel.vraag { width: 34px; }
+  #gedachte .tegel.geweest { color: var(--muted); background: rgba(127,224,195,.10); }
+  #gedachte .tegel.nu { color: var(--bg); background: var(--mint); font-weight: 700; }
+  #gedachte .tegel.vast { border-color: var(--ink); }
+  #gedachte .tegel:hover { border-color: var(--rand-2); }
+  #gedachte .tegel:focus-visible, .knop:focus-visible, .meer:focus-visible, .rij:focus-visible, .sluit:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+  .tegel-noot { font-family: var(--mono); font-size: 10.5px; color: var(--dim); margin-left: 8px; align-self: center; white-space: nowrap; }
+  #verder { font-family: var(--mono); font-size: 12px; padding: 4px 12px; border-radius: 100px; border: 1px solid var(--rand-2); background: var(--glas-2); cursor: pointer; }
+  #verder[hidden] { display: none; }
+
+  /* ================= de kop ================= */
+  #kop { position: fixed; top: 0; left: 0; right: 0; height: var(--kop-h); z-index: 5; display: grid; grid-template-columns: auto 1fr auto;
+         align-items: center; gap: 24px; padding: 0 18px; background: linear-gradient(rgba(5,7,13,.92), rgba(5,7,13,.6)); }
+  #merk { display: flex; align-items: baseline; gap: 12px; white-space: nowrap; }
+  #merk .naam { font-family: var(--merk); font-weight: 800; font-size: 19px; letter-spacing: .02em; color: var(--ink); }
+  #merk .wacht { font-family: var(--merk); font-weight: 700; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--mint); }
+  #merk .run { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+  #cijfers { display: flex; gap: 28px; justify-content: center; align-items: center; min-width: 0; overflow: hidden; }
+  .cijfer { display: flex; flex-direction: column; gap: 1px; white-space: nowrap; }
+  .cijfer .l { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim); }
+  .cijfer .w { font-family: var(--mono); font-size: 17px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .cijfer .w small { font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 4px; }
+  .cijfer .voortgang { width: 150px; height: 3px; border-radius: 2px; background: rgba(140,170,220,.15); margin-top: 4px; overflow: hidden; }
+  .cijfer .voortgang i { display: block; height: 100%; background: var(--mint); transition: width 1s linear; }
+  .pil { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; padding: 6px 13px; border-radius: 100px;
+         border: 1px solid var(--rand); color: var(--muted); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; background: var(--glas); }
+  .pil::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--dim); }
+  .pil.aan { color: var(--mint); border-color: rgba(127,224,195,.35); }
+  .pil.aan::before { background: var(--mint); }
+  .pil.uit { color: var(--amber); border-color: rgba(255,194,114,.35); }
+  .pil.uit::before { background: var(--amber); }
+
+  /* ================= glas ================= */
+  .glas { background: var(--glas); border: 1px solid var(--rand); border-radius: var(--r);
+          backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); }
+  #rail, #rechts, #onder { position: fixed; z-index: 4; transition: opacity .3s, transform .3s; }
+  body.laag-open #rail, body.laag-open #rechts, body.laag-open #onder { opacity: 0; pointer-events: none; }
+  body.laag-open #rail { transform: translateX(-10px); } body.laag-open #rechts { transform: translateX(10px); } body.laag-open #onder { transform: translateY(10px); }
+
+  /* de lagen, links */
+  #rail { top: calc(var(--kop-h) + var(--marge)); left: var(--marge); width: var(--rail-w); bottom: calc(var(--onder-h) + 2 * var(--marge));
+          display: flex; flex-direction: column; gap: 1px; padding: 8px; overflow-y: auto; scrollbar-width: none; }
+  #rail::-webkit-scrollbar { display: none; }
+  #rail .kopje { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim); padding: 4px 8px 6px; }
+  .rij { position: relative; display: grid; grid-template-columns: 6.5ch 1fr; gap: 8px; align-items: center; text-align: left; padding: 5px 8px 7px;
+         border: 0; border-radius: 7px; background: transparent; cursor: pointer; font-family: var(--mono); font-size: 12px; color: var(--muted);
+         flex: 1 1 auto; min-height: 24px; max-height: 34px; transition: background .2s, color .2s; }
+  .rij:hover { background: rgba(140,170,220,.10); color: var(--ink); }
+  .rij.actief { background: rgba(127,224,195,.14); color: var(--ink); }
+  .rij .nm { color: inherit; white-space: nowrap; }
+  .rij .fam { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: .85; }
+  .rij .balk { position: absolute; left: 8px; right: 8px; bottom: 3px; height: 2px; border-radius: 1px; background: rgba(140,170,220,.10); overflow: hidden; }
+  .rij .balk b { display: block; height: 100%; width: 0; background: var(--mint); transition: width .25s linear; }
+
+  /* de instrumenten, rechts */
+  #rechts { top: calc(var(--kop-h) + var(--marge)); right: var(--marge); width: var(--rechts-w); bottom: calc(var(--onder-h) + 2 * var(--marge));
+            display: flex; flex-direction: column; gap: 10px; overflow-y: auto; scrollbar-width: none; }
+  #rechts::-webkit-scrollbar { display: none; }
+  .kaart { padding: 13px 15px 14px; min-width: 0; color: var(--muted); font-size: 13px; }
+  .kaart > .titel { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .kaart > .titel h2 { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); font-family: var(--mono); }
+  .kaart > .titel .sub { font-family: var(--mono); font-size: 11px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+  .meer { margin-left: auto; width: 26px; height: 26px; border-radius: 7px; border: 1px solid var(--rand); background: transparent; color: var(--dim);
+          cursor: pointer; font-size: 14px; line-height: 1; display: inline-grid; place-items: center; transition: color .15s, border-color .15s; flex: 0 0 auto; }
+  .meer:hover { color: var(--ink); border-color: var(--rand-2); }
+  .leeg { color: var(--dim); font-size: 13px; }
+
+  #nu .opgave { font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: pre-wrap; line-height: 1.55; max-height: 5.2em; overflow: hidden; }
+  #nu #antwoord { font-family: var(--mono); font-size: 14px; color: var(--ink); white-space: pre-wrap; min-height: 1.5em; margin-top: 6px; }
+  #nu #antwoord.goed { color: var(--mint); } #nu #antwoord.fout { color: var(--coral); }
+  #nu .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 9px; }
+  .chip { display: inline-flex; gap: 5px; align-items: baseline; padding: 2px 9px; border-radius: 100px; border: 1px solid var(--rand);
+          background: rgba(140,170,220,.06); font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .chip b { font-family: var(--mono); font-weight: 600; }
+  #nu .herinnert { margin-top: 10px; border-top: 1px solid var(--rand); padding-top: 8px; }
+  #nu .herinnert .l { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
+  #nu .herinnert .h { font-family: var(--mono); font-size: 12px; color: var(--dim); line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .staven { display: flex; flex-direction: column; gap: 6px; }
+  .staaf { display: grid; grid-template-columns: 8.5ch 1fr 5.5ch; align-items: center; gap: 10px; font-size: 12.5px; }
+  .staaf .n { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .staaf .spoor { position: relative; height: 7px; border-radius: 4px; background: rgba(140,170,220,.12); }
+  .staaf .vul { position: absolute; inset: 0 auto 0 0; border-radius: 4px; background: var(--sky); transition: width .8s ease; }
+  .staaf .vul.hoog { background: var(--mint); } .staaf .vul.midden { background: var(--sky); } .staaf .vul.laag { background: var(--coral); }
+  .staaf .schaduw { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); opacity: .55; border-radius: 1px; }
+  .staaf .v { font-family: var(--mono); text-align: right; color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .staaf .v small { color: var(--dim); font-weight: 400; font-size: 10.5px; }
+  .staaf.dim { opacity: .55; }
+  .legenda { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 11.5px; color: var(--dim); }
+  .legenda i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; }
+  .legenda i.streep { width: 2px; height: 11px; background: var(--ink); border-radius: 1px; }
+  #proefwerken .legenda { display: none; }
+  #proefwerken .staaf:nth-child(n+7) { display: none; }
+  #levenslijn-inhoud { margin-top: 10px; }
+  svg.lijn { display: block; width: 100%; height: auto; overflow: visible; }
+  svg.lijn text { font-family: var(--mono); font-size: 11px; fill: var(--dim); }
+  #levenslijn-sub { display: block; font-family: var(--mono); font-size: 11px; color: var(--dim); margin-top: 8px; }
+
+  .hek { display: grid; grid-template-columns: 8.5ch 1fr 5ch; gap: 10px; align-items: center; font-size: 12.5px; margin-bottom: 5px; }
+  .hek .n { color: var(--ink); } .hek .n.nieuw { color: var(--mint); text-decoration: underline; text-underline-offset: 3px; }
+  .hek .blokjes { display: flex; gap: 1.5px; overflow: hidden; }
+  .hek .blokjes i { flex: 1 1 6px; max-width: 6px; min-width: 1px; height: 10px; border-radius: 2px; background: rgba(140,170,220,.12); }
+  .hek .blokjes i.aan { background: var(--sky); }
+  .hek .v { font-family: var(--mono); text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .tijdlijn { list-style: none; margin-top: 6px; }
+  .tijdlijn li { display: grid; grid-template-columns: 8ch 1fr; gap: 12px; padding: 5px 0; border-top: 1px solid var(--rand); font-size: 13px; }
+  .tijdlijn li .t { font-family: var(--mono); color: var(--dim); font-size: 12px; }
+  .stapel { display: flex; height: 12px; border-radius: 6px; overflow: hidden; background: rgba(140,170,220,.12); margin-bottom: 12px; }
+  .stapel i { display: block; height: 100%; min-width: 1px; }
+  .stapel-reeks { display: flex; gap: 3px; align-items: stretch; height: 34px; margin-top: 10px; }
+  .stapel-reeks .kolom { flex: 1; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
+  .stapel-reeks .kolom i { display: block; min-height: 0; }
+  .warmte { display: grid; gap: 2px; align-items: center; font-size: 12.5px; }
+  .warmte .n { color: var(--ink); padding-right: 8px; white-space: nowrap; }
+  .warmte .cel { height: 16px; border-radius: 3px; background: rgba(140,170,220,.10); }
+  .warmte .as { font-family: var(--mono); font-size: 10.5px; color: var(--dim); text-align: center; }
+  .kengetallen { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin-top: 12px; }
+  .kengetal { background: rgba(140,170,220,.07); border-radius: var(--r-s); padding: 9px 12px; }
+  .kengetal .l { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+  .kengetal .w { font-family: var(--mono); font-size: 17px; font-weight: 700; color: var(--ink); margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .kengetal .w small { font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 3px; }
+  .meter { display: grid; grid-template-columns: 8ch 1fr 6ch; gap: 10px; align-items: center; font-size: 12.5px; margin-bottom: 6px; }
+  .meter .n { color: var(--muted); } .meter .v { font-family: var(--mono); text-align: right; color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .meter .spoor { height: 6px; border-radius: 3px; background: rgba(140,170,220,.12); overflow: hidden; }
+  .meter .spoor i { display: block; height: 100%; border-radius: 3px; background: var(--sky); transition: width .8s ease; }
+  .meter .spoor i.warm { background: var(--coral); } .meter .spoor i.goed { background: var(--mint); }
+  .diensten { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
+  .dienst { font-family: var(--mono); font-size: 11px; padding: 2px 9px; border-radius: 100px; border: 1px solid var(--rand); color: var(--dim); }
+  .dienst.aan { color: var(--mint); border-color: rgba(127,224,195,.35); }
+  .links { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .links a { display: flex; justify-content: space-between; gap: 10px; padding: 9px 13px; border: 1px solid var(--rand); border-radius: var(--r-s);
+             text-decoration: none; color: var(--ink); font-size: 13.5px; background: rgba(140,170,220,.06); }
+  .links a:hover { border-color: var(--sky); }
+  .links a .st { font-family: var(--mono); font-size: 11px; color: var(--dim); }
+  .links a .st.lopend { color: var(--mint); }
+  .melding { border: 1px solid rgba(255,194,114,.45); background: rgba(255,194,114,.08); color: var(--amber); border-radius: var(--r-s);
+             padding: 8px 12px; font-size: 13px; margin-bottom: 10px; }
+
+  /* het gesprek, onderaan */
+  #onder { left: var(--marge); right: var(--marge); bottom: var(--marge); height: var(--onder-h); display: grid; grid-template-columns: minmax(0, 1fr) auto auto;
+           align-items: center; gap: 16px; padding: 0 10px 0 18px; }
+  #onder .zij { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  #onder .wie { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac); }
+  #onder .tekst { font-size: 14.5px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #onder.open .tekst { font-weight: 700; }
+  .antwoorden { display: flex; gap: 6px; align-items: center; }
+  .antwoorden button, .knop { background: rgba(140,170,220,.08); color: var(--ink); border: 1px solid var(--rand-2); border-radius: 100px;
+                              padding: 7px 15px; cursor: pointer; transition: border-color .15s, background .15s; font-size: 14px; }
+  .antwoorden button:hover, .knop:hover { border-color: var(--sky); background: rgba(111,181,255,.12); }
+  .antwoorden button:focus-visible, .knop:focus-visible, .antwoorden input:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+  .antwoorden button:disabled { opacity: .4; cursor: default; }
+  .antwoorden button.stil { opacity: .45; }
+  .antwoorden button.ja { border-color: rgba(127,224,195,.5); } .antwoorden button.nee { border-color: rgba(255,154,122,.5); }
+  .antwoorden input { width: 220px; background: rgba(5,7,13,.6); color: var(--ink); border: 1px solid var(--rand-2); border-radius: 100px; padding: 7px 14px; font: inherit; }
+  .antwoorden input::placeholder { color: var(--dim); }
+
+  /* ================= de vensters (over de ruimte heen) ================= */
+  .venster { position: fixed; inset: 0; z-index: 8; display: none; align-items: flex-start; justify-content: center;
+             padding: calc(var(--kop-h) + var(--marge)) var(--marge) calc(var(--onder-h) + 2 * var(--marge)); background: rgba(5,7,13,.55); }
+  .venster.open { display: flex; }
+  .venster-kaart { width: min(1060px, 100%); max-height: 100%; overflow-y: auto; padding: 18px 22px 22px; }
+  .venster-kop { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; position: sticky; top: -18px; padding: 18px 0 8px; margin-top: -18px;
+                 background: linear-gradient(var(--glas-2), var(--glas-2) 80%, transparent); z-index: 1; }
+  .venster-kop h2 { font-family: var(--merk); font-size: 20px; font-weight: 700; color: var(--ink); }
+  .venster-kop .sub { font-family: var(--mono); font-size: 11.5px; color: var(--dim); letter-spacing: .04em; flex: 1; }
+  .sluit { width: 32px; height: 32px; border-radius: 9px; border: 1px solid var(--rand); background: transparent; color: var(--muted); cursor: pointer; font-size: 18px; line-height: 1; }
+  .sluit:hover { color: var(--ink); border-color: var(--rand-2); }
+  .raster { display: grid; gap: 12px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .raster .kaart { background: rgba(140,170,220,.05); border: 1px solid var(--rand); border-radius: var(--r); padding: 15px 17px 17px; }
+  .k12 { grid-column: span 12; } .k8 { grid-column: span 8; } .k7 { grid-column: span 7; } .k6 { grid-column: span 6; }
+  .k5 { grid-column: span 5; } .k4 { grid-column: span 4; }
+  .bubbels { display: flex; flex-direction: column; gap: 10px; }
+  .bubbel { max-width: 88%; padding: 10px 14px; border-radius: 16px; font-size: 14.5px; line-height: 1.5; position: relative; }
+  .bubbel .wie { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 3px; }
+  .bubbel.zij { align-self: flex-start; background: rgba(240,168,255,.09); border: 1px solid rgba(240,168,255,.25); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubbel.zij .wie { color: var(--lilac); }
+  .bubbel.cley { align-self: flex-end; background: rgba(111,181,255,.10); border: 1px solid rgba(111,181,255,.28); color: var(--ink); border-bottom-right-radius: 4px; }
+  .bubbel.cley .wie { color: var(--sky); }
+  .bubbel .t { font-family: var(--mono); font-size: 11px; color: var(--dim); margin-top: 4px; }
+  .bubbel.systeem { align-self: stretch; max-width: none; background: rgba(140,170,220,.06); border: 1px solid var(--rand); color: var(--muted); font-size: 13.5px; }
+  .bubbel.systeem .wie { color: var(--dim); }
+  .bubbel.systeem ul { margin: 4px 0 0 1.2em; }
+  #bubbels { max-height: 46vh; overflow-y: auto; padding-right: 4px; }
+
+  /* toast */
+  #toast { position: fixed; left: 50%; bottom: calc(var(--onder-h) + 3 * var(--marge)); transform: translate(-50%, 16px); opacity: 0; z-index: 30;
+           background: var(--glas-2); border: 1px solid var(--rand-2); color: var(--ink); padding: 10px 18px; border-radius: 100px;
+           font-size: 14px; pointer-events: none; transition: opacity .25s, transform .25s; max-width: min(92vw, 560px); text-align: center; }
+  #toast.zien { opacity: 1; transform: translate(-50%, 0); }
+  #toast.goed { border-color: rgba(127,224,195,.55); } #toast.mis { border-color: rgba(255,154,122,.55); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .staaf .vul, .meter .spoor i, .cijfer .voortgang i, #toast, #rail, #rechts, #onder, #vrij, .rij .balk b { transition: none; }
+  }
+  @media (max-width: 1280px) { :root { --rechts-w: 284px; --rail-w: 196px; } .cijfer.klaar { display: none; } }
+
+  /* ================= klein scherm: alles onder elkaar ================= */
+  @media (max-width: 900px) {
+    :root { --kop-h: auto; }
+    body { overflow: auto; display: flex; flex-direction: column; }
+    html, body { height: auto; min-height: 100%; }
+    #kop { order: 0; } #toneel { order: 1; } #rail { order: 2; } #rechts { order: 3; } #onder { order: 4; }
+    #kop, #toneel, #rail, #rechts, #onder { flex: 0 0 auto; }
+    #kop { position: sticky; height: auto; grid-template-columns: 1fr auto; padding: 10px 14px; row-gap: 8px; background: rgba(5,7,13,.97); }
+    #cijfers { grid-column: 1 / -1; justify-content: flex-start; gap: 18px; overflow-x: auto; scrollbar-width: none; }
+    .cijfer .voortgang { width: 110px; } .cijfer.klaar { display: flex; }
+    #toneel { position: relative; height: 58vh; z-index: 0; }
+    #vrij { inset: 0; }
+    #gedachte { bottom: 26px; padding: 0 8px; } #gedachte .tegel { width: 14px; height: 20px; font-size: 11px; }
+    #onderschrift { bottom: 6px; font-size: 11px; padding: 0 8px; }
+    .glas { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(12,17,32,.97); }
+    #rail, #rechts { position: static; width: auto; transform: none !important; opacity: 1 !important; pointer-events: auto !important; }
+    #rail { flex-direction: row; overflow-x: auto; overflow-y: hidden; margin: 10px 10px 0; padding: 6px; gap: 4px; }
+    #rail .kopje { display: none; }
+    .rij { grid-template-columns: auto; gap: 0; padding: 5px 9px 8px; flex: 0 0 auto; max-height: none; }
+    .rij .fam { display: none; }
+    #rechts { margin: 10px 10px 0; overflow: visible; padding-bottom: 8px; }
+    #onder { position: sticky; bottom: 0; left: 0; right: 0; margin: 10px 10px 12px; height: auto; grid-template-columns: 1fr auto; row-gap: 8px; padding: 10px 12px; }
+    #onder .antwoorden { grid-column: 1 / -1; flex-wrap: wrap; }
+    .antwoorden input { flex: 1; width: auto; min-width: 140px; }
+    .venster { padding: 0; align-items: stretch; }
+    .venster-kaart { width: 100%; max-height: none; border-radius: 0; padding: 14px 14px 90px; }
+    .venster-kop { top: -14px; margin-top: -14px; padding-top: 14px; }
+    .k8, .k7, .k6, .k5, .k4 { grid-column: span 12; }
+    .staaf { grid-template-columns: 8ch 1fr 5ch; }
+    #toast { bottom: 120px; }
+  }
+</style>
+</head>
+<body>
+<div id="toneel">
+  <canvas id="doek" aria-label="Ambers brein in de ruimte: sleep om te draaien, klik op een laag om hem te openen"></canvas>
+  <div id="vrij">
+    <div id="gedachte"><div class="tegels" id="tegels"></div><button id="verder" hidden>▶ verder</button></div>
+    <div id="onderschrift">wachten op een gedachte…</div>
+  </div>
+</div>
+
+<header id="kop">
+  <div id="merk"><span class="naam">Amber</span><span class="wacht">Sterrenwacht</span><span class="run" id="merk-run">…</span></div>
+  <div id="cijfers"></div>
+  <div id="pil" class="pil">…</div>
+</header>
+
+<aside id="rail" class="glas" aria-label="Haar lagen"><div class="kopje">haar lagen</div></aside>
+
+<aside id="rechts" aria-label="Instrumenten">
+  <section class="kaart glas" id="nu">
+    <div class="titel"><h2>Nu</h2><span class="sub" id="nu-sub"></span><button class="meer" data-venster="geheugen" title="haar geheugen">⤢</button></div>
+    <div class="opgave" id="opgave">…</div>
+    <div id="antwoord"></div>
+    <div class="meta" id="nu-meta"></div>
+    <div class="herinnert" id="herinnert"></div>
+  </section>
+  <section class="kaart glas" id="proefwerken">
+    <div class="titel"><h2>Proefwerken</h2><span class="sub" id="proefwerken-sub"></span><button class="meer" data-venster="wereld" title="alle bladen en haar wereld">⤢</button></div>
+    <div id="proefwerken-inhoud" class="leeg">nog geen proefwerk</div>
+    <div id="levenslijn-inhoud"></div>
+    <span id="levenslijn-sub"></span>
+  </section>
+  <section class="kaart glas" id="wereld-kort">
+    <div class="titel"><h2>Wereld</h2><span class="sub">hoe diep het hek open staat</span><button class="meer" data-venster="wereld" title="haar wereld">⤢</button></div>
+    <div id="wereld-kort-inhoud" class="leeg">…</div>
+  </section>
+  <section class="kaart glas" id="machines-kort">
+    <div class="titel"><h2>Machines</h2><span class="sub" id="machines-kort-sub"></span><button class="meer" data-venster="machines" title="de machines">⤢</button></div>
+    <div id="machines-kort-inhoud" class="leeg">…</div>
+  </section>
+</aside>
+
+<div id="onder" class="glas">
+  <div class="zij"><span class="wie" id="balk-wie">amber</span><span class="tekst" id="balk-tekst">wachten op haar…</span></div>
+  <div class="antwoorden" id="antwoorden">
+    <button class="ja" onclick="antwoordCley('ja')">ja</button>
+    <button class="nee" onclick="antwoordCley('nee')">nee</button>
+    <button onclick="antwoordCley('later')">later</button>
+    <input id="antwoord-vrij" placeholder="in je eigen woorden…" maxlength="60" onkeydown="if(event.key==='Enter')antwoordCley(this.value)">
+    <button onclick="antwoordCley(document.getElementById('antwoord-vrij').value)">stuur</button>
+  </div>
+  <button class="meer" data-venster="gesprek" title="het hele gesprek">⤢</button>
+</div>
+
+<div class="venster" id="venster-gesprek" role="dialog" aria-label="Het gesprek">
+  <div class="venster-kaart glas">
+    <div class="venster-kop"><h2>Het gesprek</h2><span class="sub" id="gesprek-sub"></span><button class="sluit" aria-label="sluiten">×</button></div>
+    <div class="bubbels" id="bubbels"><div class="leeg">wachten op haar…</div></div>
+    <div class="leeg" style="margin:10px 0 16px">Jij beslist, en zwijgen is nee. Antwoorden doe je in de balk onderaan; een antwoord gaat op de volgende rungrens als les de bus in.</div>
+    <div class="raster">
+      <div class="kaart k8" id="systeem">
+        <div class="titel"><h2>Wat het systeem ziet</h2><span class="sub" id="systeem-sub"></span></div>
+        <div id="systeem-inhoud" class="leeg">nog geen zelfrapport</div>
+      </div>
+      <div class="kaart k4">
+        <div class="titel"><h2>Haar stem</h2></div>
+        <button class="knop" id="spreek">🔊 vertel de stand</button>
+        <audio id="stem-audio" style="display:none"></audio>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="venster" id="venster-wereld" role="dialog" aria-label="Haar wereld">
+  <div class="venster-kaart glas">
+    <div class="venster-kop"><h2>Haar wereld</h2><span class="sub" id="wereld-sub">per familie: hoe diep het hek open staat</span><button class="sluit" aria-label="sluiten">×</button></div>
+    <div class="raster">
+      <div class="kaart k7" id="wereld-kaart"><div class="titel"><h2>De hekken</h2></div><div id="wereld-inhoud"></div></div>
+      <div class="kaart k5" id="doorbraken"><div class="titel"><h2>Doorbraken</h2><span class="sub">deze run</span></div><div id="doorbraken-inhoud" class="leeg">nog geen</div></div>
+      <div class="kaart k7" id="keuzes"><div class="titel"><h2>Haar eigen keuzes</h2><span class="sub" id="keuzes-sub"></span></div><div id="keuzes-inhoud" class="leeg"></div></div>
+      <div class="kaart k5" id="proefwerken-alles"><div class="titel"><h2>Alle bladen</h2><span class="sub" id="proefwerken-alles-sub"></span></div><div id="proefwerken-alles-inhoud" class="leeg"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="venster" id="venster-geheugen" role="dialog" aria-label="Haar geheugen">
+  <div class="venster-kaart glas">
+    <div class="venster-kop"><h2>Haar geheugen</h2><span class="sub" id="geheugen-sub"></span><button class="sluit" aria-label="sluiten">×</button></div>
+    <div class="raster">
+      <div class="kaart k8" id="geheugen-kaart"><div class="titel"><h2>Per familie en moeilijkheid</h2></div><div id="geheugen-inhoud" class="leeg">nog geen geheugen</div></div>
+      <div class="kaart k4" id="geheugen-nu"><div class="titel"><h2>Waar ze aan terugdenkt</h2><span class="sub">bij de opgave van nu</span></div><div id="geheugen-nu-inhoud" class="leeg"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="venster" id="venster-machines" role="dialog" aria-label="De machines">
+  <div class="venster-kaart glas">
+    <div class="venster-kop"><h2>De machines</h2><span class="sub" id="machines-sub"></span><button class="sluit" aria-label="sluiten">×</button></div>
+    <div class="raster">
+      <div class="kaart k6" id="trainer"><div class="titel"><h2>Z490 — de trainer</h2><span class="sub" id="trainer-sub"></span></div><div id="trainer-inhoud" class="leeg"></div></div>
+      <div class="kaart k6" id="thuis"><div class="titel"><h2>DL380 — thuis</h2><span class="sub" id="thuis-sub"></span></div><div id="thuis-inhoud" class="leeg"></div></div>
+      <div class="kaart k6" id="vorm"><div class="titel"><h2>Haar vorm</h2><span class="sub">deze run</span></div><div id="vorm-inhoud" class="leeg"></div></div>
+      <div class="kaart k6" id="meer"><div class="titel"><h2>Meer</h2><span class="sub">pagina's en rapporten</span></div><div id="meer-inhoud" class="links"></div></div>
+    </div>
+  </div>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/*__RUIMTE__*/
+
+/* ======================================================================
+   De instrumenten: kop, rail, gedachte, kaarten, vensters, gesprek.
+   ====================================================================== */
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const nl = (n, d) => (+n).toLocaleString("nl", d === undefined ? {} : {minimumFractionDigits: d, maximumFractionDigits: d});
+const KLEUR = {rekenen: "#6FB5FF", puzzel: "#B78AE0", code: "#7FE0C3", geheugen: "#FFB86B", logica: "#FF8FA3",
+               volgorde: "#8FD3FF", tekst: "#E6D37A", zeggen: "#F0A8FF", taal: "#A3FFD6", machine: "#FFD28F",
+               tellen: "#C4B5FD", antwoord: "#FDA4AF", gesprek: "#F0A8FF"};
+const FAMILIES = ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal", "machine", "tellen", "antwoord"];
+const band = (p) => p >= 90 ? "hoog" : p >= 60 ? "midden" : "laag";
+
+/*__V2_FUNCTIES__*/
+
+/* ---- de vensters: over de ruimte heen, in plaats van bladen ---- */
+const VENSTERS = ["gesprek", "wereld", "geheugen", "machines"];
+function toonVenster(naam) {
+  VENSTERS.forEach(v => $("venster-" + v).classList.toggle("open", v === naam));
+  document.body.classList.toggle("venster-open", !!naam);
+  if (naam) history.replaceState(null, "", "#" + naam);
+  else if (location.hash && !location.hash.startsWith("#laag")) history.replaceState(null, "", location.pathname);
+  if (naam === "gesprek") { const b = $("bubbels"); b.scrollTop = b.scrollHeight; }
+}
+document.querySelectorAll(".meer").forEach(b => b.addEventListener("click", () => toonVenster(b.dataset.venster)));
+document.querySelectorAll(".venster").forEach(v => {
+  v.addEventListener("click", e => { if (e.target === v) toonVenster(null); });
+  v.querySelector(".sluit").addEventListener("click", () => toonVenster(null));
+});
+addEventListener("keydown", e => { if (e.key === "Escape" && document.body.classList.contains("venster-open")) toonVenster(null); });
+{ const h = location.hash.replace("#", "").split("?")[0]; if (VENSTERS.includes(h)) toonVenster(h); }
+
+/* ---- de rail: haar lagen, links ---- */
+function bouwRail() {
+  const r = $("rail");
+  r.innerHTML = `<div class="kopje">haar lagen</div>` + NAMEN.map(([a, b], k) =>
+    `<button class="rij" data-k="${k}" title="${esc(a)} openen"><span class="nm">${esc(a)}</span><span class="fam" style="color:${kleurVan(b)}">${esc(b)}</span><i class="balk"><b></b></i></button>`).join("");
+  r.querySelectorAll(".rij").forEach(b => b.addEventListener("click", () => openLaag(+b.dataset.k)));
+  toonRail();
+}
+function toonRail() { $("rail").querySelectorAll(".rij").forEach(b => b.classList.toggle("actief", zoom.doel === 1 && +b.dataset.k === zoom.laag)); }
+
+/* ---- de gedachte: de tekens van haar antwoord, om doorheen te stappen ---- */
+let wachtAntwoord = "", wachtGoed = null, vorigeTegel = -1;
+function bouwGedachte() {
+  antwoordDoel = wachtAntwoord; antwoordNu = 0;
+  const a = $("antwoord"); a.textContent = ""; a.className = wachtGoed === true ? "goed" : (wachtGoed === false ? "fout" : "");
+  const n = rijen.length, v = verschuiving();
+  $("tegels").innerHTML = Array.from({length: n}, (_, j) => {
+    const i = j + v - 1, vraag = i < 0;
+    const c = vraag ? "?" : (antwoordDoel[i] === " " ? "·" : (antwoordDoel[i] || "·"));
+    return `<button class="tegel${vraag ? " vraag" : ""}" data-j="${j}" title="${vraag ? "ze leest de vraag" : `teken ${i + 1}: ${esc(antwoordDoel[i] || "")}`}">${esc(c)}</button>`;
+  }).join("") + (v ? `<span class="tegel-noot" title="de kijker bewaart de laatste ${n} doorgangen">de laatste ${n} van ${antwoordDoel.length + 1}</span>` : "");
+  $("tegels").querySelectorAll(".tegel").forEach(b => b.addEventListener("click", () => { vast = +b.dataset.j; $("verder").hidden = false; vorigeTegel = -1; }));
+  $("verder").hidden = true; vorigeTegel = -1;
+}
+$("verder").addEventListener("click", () => { const j = vast === null ? 0 : vast; vast = null; speelStart = performance.now() - (j + 0.6) * TEKEN_S * 1000; klaarSinds = 0; $("verder").hidden = true; });
+function toonGedachte(j, n) {
+  if (j === vorigeTegel) return; vorigeTegel = j;
+  $("tegels").querySelectorAll(".tegel").forEach(b => { const k = +b.dataset.j; b.classList.toggle("nu", k === j); b.classList.toggle("geweest", k < j); b.classList.toggle("vast", vast !== null && k === vast); });
+}
+
+/* ---- het onderschrift en de balkjes in de rail ---- */
+function activiteit(j, k, i) {
+  const rij = rijen[j]; if (!rij) return 0;
+  const kan = fijnKanaal(j, k);
+  if (kan) return (kan[i] || 0) / 255;
+  const st = vorm[k], per = st && st.soort === "laag" ? Math.max(1, Math.floor(st.n / Math.max(1, KOL[k]))) : 1;
+  const g = st && st.soort === "laag" ? Math.min(KOL[k] - 1, Math.floor(i / per)) : i;
+  return Math.min(1, ((rij[k] || [])[g] || 0) / kolMax[k]);
+}
+function toonOnderschrift(j, n) {
+  let t;
+  if (zoom.t > 0.5) t = "";
+  else if (hover.station !== null) {
+    const [a, b] = NAMEN[hover.station] || ["", ""];
+    if (hover.kanaal !== null) t = `${a} · ${vorm[hover.station].soort === "laag" ? "kanaal" : vorm[hover.station].soort === "in" ? "groep" : "knoop"} ${hover.kanaal} · ${Math.round(100 * activiteit(j, hover.station, hover.kanaal))}% van het max van deze laag`;
+    else t = `${a} · ${b} · klik om te openen`;
+  } else if (!n) t = "wachten op een gedachte…";
+  else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · sleep om te draaien · klik op een laag" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
+  $("onderschrift").textContent = t;
+  const rij = rijen[j];
+  $("rail").querySelectorAll(".rij").forEach(b => {
+    const k = +b.dataset.k, v = rij ? (rij[k] || []) : [];
+    let s = 0; for (const x of v) s += x; const a = v.length ? Math.min(1, s / v.length / kolMax[k]) : 0;
+    b.querySelector(".balk b").style.width = (100 * a).toFixed(1) + "%";
+  });
+}
+
+/* ---- de balk onderaan: wat ze het laatst zei ---- */
+function balkGesprek() {
+  const bubs = document.querySelectorAll("#bubbels .bubbel.zij");
+  const last = bubs[bubs.length - 1];
+  const open = ($("gesprek-sub").textContent || "").includes("open");
+  if (last) {
+    const c = last.cloneNode(true); c.querySelectorAll(".wie, .t").forEach(x => x.remove());
+    $("balk-tekst").textContent = c.textContent.trim();
+    const wie = last.querySelector(".wie"); $("balk-wie").textContent = (wie ? wie.textContent : "amber") + (open ? " · vraagt" : "");
+  } else { $("balk-tekst").textContent = "nog niets gezegd"; $("balk-wie").textContent = "amber"; }
+  $("onder").classList.toggle("open", open);
+}
+{ const _tg = tekenGesprek; tekenGesprek = async function () { await _tg(); balkGesprek(); }; }
+
+/* ---- machines, kort ---- */
+function tekenMachinesKort(s) {
+  const rm = (s.run && s.run.machine) || {}, w = s.wachter || {}, th = (s.run && s.run.thuis) || null;
+  let h = "";
+  if (w.melding) h += `<div class="melding">⚠ ${esc(w.melding)}</div>`;
+  if (rm.temp) {
+    const t = +rm.temp;
+    h += meterHtml("kaart", t, 90, "°C", t >= 80 ? "warm" : t <= 60 ? "goed" : "");
+    if (rm.vram) h += meterHtml("geheugen", +rm.vram / 1024, 8, " GB", +rm.vram > 7000 ? "warm" : "");
+    if (rm.watt) h += meterHtml("vermogen", +rm.watt, 320, " W", "");
+  } else h += `<div class="leeg">geen meting</div>`;
+  h += `<div class="diensten"><span class="dienst ${rm.dienst === "active" ? "aan" : ""}">training ${rm.dienst === "active" ? "draait" : (rm.dienst || "?")}</span>` +
+       (th ? `<span class="dienst ${th.aan ? "aan" : ""}">thuis ${th.aan ? "aan" : "uit"}</span>` : "") +
+       (w.crashes_vandaag > 0 ? `<span class="dienst" style="color:var(--amber)">${w.crashes_vandaag}× herstart</span>` : "") + `</div>`;
+  $("machines-kort-sub").textContent = rm.spiegel ? esc(rm.spiegel) : "";
+  $("machines-kort-inhoud").innerHTML = h; $("machines-kort-inhoud").classList.remove("leeg");
+  $("machines-sub").textContent = (s.run && s.run.config && s.run.config.machine) ? `training op de ${s.run.config.machine}` : "";
+}
+
+/* ---- de kraan: stand.json elke 5 s ---- */
+async function haal() {
+  try {
+    const r = await fetch("/stand.json", {cache: "no-store"});
+    const s = await r.json();
+    const rijenOk = s.lagen && s.lagen.length && !Array.isArray(s.lagen[0]);
+    const alleenBedrading = !rijenOk && s.bedrading && s.bedrading.length && s.bedrading[0] && s.bedrading[0].length;
+    if ((!stand || s.tijd !== stand.tijd) && (rijenOk || alleenBedrading)) {
+      const nieuweBedrading = JSON.stringify(s.checkpoint_stap) !== JSON.stringify(stand && stand.checkpoint_stap);
+      stand = s;
+      if (rijenOk) {
+        wachtrij = s.lagen.map(rij => [rij.in, ...rij.b, [rij.uit]]);
+        KOL = wachtrij[0].map(kl => kl.length);
+      } else {
+        wachtrij = []; rijNu = null;
+        KOL = [s.bedrading[0][0].length, ...s.bedrading.map(M => M.length), 1];
+      }
+      if (Array.isArray(s.laagnamen)) { laagnamen = {}; for (const x of s.laagnamen) if (x && x.laag) laagnamen[x.laag] = x.naam; }
+      if (s.bedrading && (nieuweBedrading || !weefsel.length)) { bedrading = s.bedrading; bedradingUit = s.bedrading_uit; weefsel = [true]; }
+      bouwNamen();                       // de vorm (met de bedrading) en de rail
+      wachtAntwoord = s.antwoord || ""; wachtGoed = s.goed;
+      tekenNu(s);
+    }
+    if (typeof haalFijn === "function") haalFijn(s.tijd);
+    tekenCijfers(s);
+    const pil = $("pil"), d = (s.run && s.run.machine && s.run.machine.dienst) || "", w = s.wachter || {};
+    pil.className = "pil " + (d === "active" ? "aan" : "uit");
+    pil.textContent = d === "active" ? "ze leert" : (w.melding ? "let op" : "ze rust");
+    tekenProefwerken(s); tekenLevenslijn(s); tekenWereld(s); tekenKeuzes(s); tekenGeheugen(s); tekenMachines(s); tekenMachinesKort(s);
+  } catch (e) { console.error(e); }
+}
+haal(); setInterval(haal, 5000);
+tekenGesprek(); setInterval(tekenGesprek, 60000);
+maat();
+</script>
+</body>
+</html>
