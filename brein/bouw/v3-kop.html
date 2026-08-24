@@ -37,7 +37,7 @@
   ::selection { background: rgba(111,181,255,.35); }
 
   /* ================= het toneel: de ruimte ================= */
-  #toneel { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 45%, #0D1730 0%, #060A16 68%); }
+  #toneel { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 55% 45%, #0C1B38 0%, #060C1A 66%); }
   #doek { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
   #vrij { position: absolute; top: calc(var(--kop-h) + var(--marge)); left: calc(var(--rail-w) + 2 * var(--marge));
           right: calc(var(--rechts-w) + 2 * var(--marge)); bottom: calc(var(--onder-h) + 2 * var(--marge));
@@ -452,23 +452,16 @@ function toonGedachte(j, n) {
 }
 
 /* ---- het onderschrift en de balkjes in de rail ---- */
-function activiteit(j, k, i) {
-  const rij = rijen[j]; if (!rij) return 0;
-  const kan = fijnKanaal(j, k);
-  if (kan) return (kan[i] || 0) / 255;
-  const st = vorm[k], per = st && st.soort === "laag" ? Math.max(1, Math.floor(st.n / Math.max(1, KOL[k]))) : 1;
-  const g = st && st.soort === "laag" ? Math.min(KOL[k] - 1, Math.floor(i / per)) : i;
-  return Math.min(1, ((rij[k] || [])[g] || 0) / kolMax[k]);
-}
+const activiteit = (j, k, i) => activiteitVan(j, k, i);
 function toonOnderschrift(j, n) {
   let t;
   if (zoom.t > 0.5) t = "";
   else if (hover.station !== null) {
     const [a, b] = NAMEN[hover.station] || ["", ""];
-    if (hover.kanaal !== null) t = `${a} · ${vorm[hover.station].soort === "laag" ? "kanaal" : vorm[hover.station].soort === "in" ? "groep" : "knoop"} ${hover.kanaal} · ${Math.round(100 * activiteit(j, hover.station, hover.kanaal))}% van het max van deze laag`;
+    if (hover.kanaal !== null) t = `${a} · ${vorm[hover.station].soort === "uit" ? "de knoop" : `groep ${hover.kanaal} (12 kanalen)`} · ${Math.round(100 * activiteit(j, hover.station, hover.kanaal))}% van het max van deze laag · klik: de microscoop`;
     else t = `${a} · ${b} · klik om te openen`;
   } else if (!n) t = "wachten op een gedachte…";
-  else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · sleep om te draaien · klik op een laag" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
+  else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · sleep om te draaien · klik op een knoop" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
   $("onderschrift").textContent = t;
   const rij = rijen[j];
   $("rail").querySelectorAll(".rij").forEach(b => {
