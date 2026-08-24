@@ -117,7 +117,7 @@ let vonken = [];                         // vonkjes over de vezels (als in het w
 function vonk(t) {
   if (RUSTIG || !G.cel) return;
   const g0 = glad[0] || [], nk = KOL[0];
-  for (let i = 0; i < 3; i++) for (let v = 0; v < 4; v++) {
+  for (let i = 0; i < 3; i++) for (let v = 0; v < 2; v++) {
     let g = Math.floor(rnd((t | 0) * 7 + i * 31 + v * 13) * nk);
     for (let p = 0; p < 6 && (g0[g] || 0) < 0.4; p++) g = Math.floor(rnd((t | 0) * 7 + i * 31 + v * 13 + p * 101) * nk);   // liever een actieve groep
     vonken.push({i, g, t0: t + v * 90, duur: 650});
