@@ -46,7 +46,7 @@ async function haalFijn(tijd) {
   if (tijd === fijnTijd || fijnBezig) return;
   fijnBezig = true;
   try {
-    const r = await fetch("/rapport/fijn.json", {cache: "no-store"});
+    const r = await fetch("/rapport/fijn.json?t=" + tijd, {cache: "no-store"});
     const f = await r.json();
     if (f && f.kanaal && f.tijd === tijd) { fijn = f; fijnTijd = tijd; }
   } catch (e) {} finally { fijnBezig = false; }
@@ -224,7 +224,7 @@ function tekenRuimte(t, j, veeg, alpha) {
     ctx.fillStyle = `rgba(${kl},0.9)`; ctx.font = `700 ${fs * 0.62}px "JetBrains Mono", ui-monospace, monospace`;
     ctx.fillText(naam.toUpperCase() + (bron[i] ? "" : " · nog niets"), G.stroomX0, y - fs * 1.05);
     ctx.font = `500 ${fs * 0.72}px "JetBrains Mono", ui-monospace, monospace`;
-    for (let p = 0; p < staart.length; p++) { const u = (p + 1) / staart.length; ctx.fillStyle = `rgba(${kl},${(0.25 + 0.7 * u).toFixed(2)})`; ctx.fillText(staart[p], G.stroomX0 + p * bitB, y); }
+    for (let p = 0; p < staart.length; p++) { const u = (p + 1) / staart.length, nieuw = p >= staart.length - 8; ctx.fillStyle = nieuw ? "rgba(255,255,255,0.95)" : `rgba(${kl},${(0.25 + 0.7 * u).toFixed(2)})`; ctx.fillText(staart[p], G.stroomX0 + p * bitB, y); }
   });
   // de vezels: van elke stroom naar elke groep van de inbedding, licht naar de activiteit van die groep
   const g0 = glad[0] || [], nk = KOL[0];

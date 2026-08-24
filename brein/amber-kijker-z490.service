@@ -14,7 +14,7 @@ Environment=AMBER_KIJKER_LOKAAL=1
 # Cleys keuze: alleen tussen 17:00 en 23:00 (UREN), dan elke 30 s een ronde (RUST);
 # SLAAP_NA=300: ook buiten de uren wakker zolang Cley iets doet in het venster (/ik-kijk);
 # een open tabblad zonder hem telt niet. Live: elke doorgang naar rapport/live.json.
-Environment=AMBER_KIJKER_RUST=30
+Environment=AMBER_KIJKER_RUST=5
 Environment=AMBER_KIJKER_SLAAP_NA=300
 Environment=AMBER_KIJKER_UREN=17-23
 Nice=10
