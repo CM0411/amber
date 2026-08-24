@@ -37,7 +37,7 @@ const TEKEN_S = 0.7, VEEG = 0.5;
 let laagnamen = {};
 let spec = {koppen: 6, verborgen: 1536, breedte: 384};
 let zoom = {laag: null, t: 0, doel: 0};
-let LIVE = false;                        // live: het beeld volgt de laatste doorgang uit live.json, niets wordt afgespeeld
+let LIVE = false, herhaal = false, herhaalJ = 0;                        // live: het beeld volgt de laatste doorgang uit live.json, niets wordt afgespeeld
 const RUSTIG = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---- de fijne meting: per kanaal, per kop, per eenheid ---- */
@@ -394,7 +394,7 @@ function teken(t) {
   const n = rijen.length;
   let j = -1, veeg = 0;
   if (n) {
-    if (LIVE && vast === null) { j = n - 1; veeg = 1; }
+    if (LIVE && vast === null) { j = herhaal ? Math.max(0, Math.min(n - 1, herhaalJ)) : n - 1; veeg = 1; }
     else if (vast !== null) { j = Math.min(n - 1, vast); veeg = 1; }
     else {
       const u = (t - speelStart) / 1000 / TEKEN_S;

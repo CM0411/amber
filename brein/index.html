@@ -429,7 +429,7 @@ const TEKEN_S = 0.7, VEEG = 0.5;
 let laagnamen = {};
 let spec = {koppen: 6, verborgen: 1536, breedte: 384};
 let zoom = {laag: null, t: 0, doel: 0};
-let LIVE = false;                        // live: het beeld volgt de laatste doorgang uit live.json, niets wordt afgespeeld
+let LIVE = false, herhaal = false, herhaalJ = 0;                        // live: het beeld volgt de laatste doorgang uit live.json, niets wordt afgespeeld
 const RUSTIG = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---- de fijne meting: per kanaal, per kop, per eenheid ---- */
@@ -786,7 +786,7 @@ function teken(t) {
   const n = rijen.length;
   let j = -1, veeg = 0;
   if (n) {
-    if (LIVE && vast === null) { j = n - 1; veeg = 1; }
+    if (LIVE && vast === null) { j = herhaal ? Math.max(0, Math.min(n - 1, herhaalJ)) : n - 1; veeg = 1; }
     else if (vast !== null) { j = Math.min(n - 1, vast); veeg = 1; }
     else {
       const u = (t - speelStart) / 1000 / TEKEN_S;
@@ -1237,7 +1237,7 @@ function toonOnderschrift(j, n) {
   else if (hover.station !== null) {
     const [a, b] = NAMEN[hover.station] || ["", ""];
     t = hover.kanaal !== null ? `${a} · kanaal ${hover.kanaal} · ${Math.round(100 * activiteitKanaal(hover.station, hover.kanaal))}% van het max van deze laag · klik: de microscoop` : `${a} · ${b} · klik: de microscoop`;
-  } else if (LIVE) t = (Date.now() - liveLaatst < 4000 ? `● LIVE · ze schrijft · teken ${n}` : `● LIVE · klaar (${n} tekens) · wacht op haar volgende gedachte, ± 5 s`) + " · wijs een cijfer aan · klik op een laag: de microscoop";
+  } else if (LIVE) t = (Date.now() - liveLaatst < 800 ? `● LIVE · ze schrijft · teken ${n}` : `● LIVE · klaar (${n} tekens) · haar laatste tekens lopen opnieuw tot de volgende gedachte`) + " · wijs een cijfer aan · klik op een laag: de microscoop";
   else if (kijkerOud > 300 && !LIVE) t = `kijker rustte · hij wordt wakker nu jij hier bent, nieuwe gedachte over ± 1 min · dit is haar laatste, van ${new Date(kijkerTijd * 1000).toLocaleTimeString("nl", {hour: "2-digit", minute: "2-digit"})}`;
   else if (!n) t = "wachten op een gedachte…";
   else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · wijs een cijfer aan · klik op een laag: de microscoop" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
@@ -1299,6 +1299,7 @@ document.addEventListener("visibilitychange", () => { if (document.visibilitySta
    dat de gedachte in beeld, doorgang voor doorgang; komt stand.json daarna met dezelfde begintijd,
    dan is dat dezelfde gedachte en wordt er niets opnieuw afgespeeld. */
 let liveTijd = 0, liveBezig = false, liveLaatst = 0, liveDoorgang = -1, liveGeschreven = 0, tegelsTijd = 0, tegelsWacht = false;
+let liveReeks = [], herhaalI = 0;                 // de laatste doorgangen (per kanaal), om tussen twee gedachten opnieuw te laten lopen
 async function haalLive() {
   if (liveBezig || document.visibilityState !== "visible") return;
   liveBezig = true;
@@ -1311,7 +1312,7 @@ async function haalLive() {
     if (l.geschreven === liveGeschreven) return;                      // niets nieuws sinds de vorige keer
     liveGeschreven = l.geschreven;
     if (l.tijd !== liveTijd) {                                       // een nieuwe gedachte begint
-      liveTijd = l.tijd; LIVE = true; rijen = []; wachtrij = []; vast = null; klaarSinds = 0; samen = []; kolMax = KOL.map(() => 0.0001);
+      liveTijd = l.tijd; LIVE = true; rijen = []; wachtrij = []; vast = null; klaarSinds = 0; samen = []; kolMax = KOL.map(() => 0.0001); liveReeks = []; herhaal = false;
       const kol = [l.rij.in.length, ...l.rij.b.map(x => x.length), 1];
       if (kol.length !== KOL.length) { KOL = kol; bouwNamen(); }
       wachtAntwoord = ""; wachtGoed = null; $("verder").hidden = true;
@@ -1323,13 +1324,21 @@ async function haalLive() {
     const rij = [l.rij.in, ...l.rij.b, [l.rij.uit]];
     while (rijen.length < l.doorgang) rijen.push(rijen.length ? rijen[rijen.length - 1] : rij);   // een gemiste doorgang: de vorige herhalen
     if (rijen.length === l.doorgang) rijen.push(rij); else rijen[l.doorgang] = rij;
-    if (l.doorgang !== liveDoorgang) { liveDoorgang = l.doorgang; liveLaatst = Date.now(); if (typeof vonk === "function") vonk(performance.now()); }
+    if (l.doorgang !== liveDoorgang) { liveDoorgang = l.doorgang; liveLaatst = Date.now(); herhaal = false; if (typeof vonk === "function") vonk(performance.now());
+      if (Array.isArray(l.kanaal) && l.kanaal.length) { liveReeks.push({kanaal: l.kanaal, j: l.doorgang}); if (liveReeks.length > 80) liveReeks.shift(); } }
     rij.forEach((kol, k) => { for (const v of kol) if (v > kolMax[k]) kolMax[k] = v; });   // het maximum groeit mee, zonder alles opnieuw te tellen
     if ((l.tekst || "") !== antwoordDoel) { wachtAntwoord = l.tekst || ""; if (Date.now() - tegelsTijd > 250) { tegelsTijd = Date.now(); tegelsWacht = false; bouwGedachte(); } else tegelsWacht = true; }
     else if (typeof toonGedachte === "function") { vorigeTegel = -1; }
   } catch (e) {} finally { liveBezig = false; }
 }
 setInterval(haalLive, 100);                      // elke 0,1 s (25 aug, Cley)
+// tussen twee gedachten (25 aug, Cley: "de cijfers moeten ook blijven veranderen"): haar laatste
+// doorgangen lopen opnieuw door het blok -- echte cijfers van net, in een lus, tot de volgende gedachte
+setInterval(() => {
+  if (!LIVE || Date.now() - liveLaatst < 800 || liveReeks.length < 2) return;
+  herhaal = true; herhaalI = (herhaalI + 1) % liveReeks.length;
+  liveKanaal = liveReeks[herhaalI].kanaal; herhaalJ = liveReeks[herhaalI].j;
+}, 100);
 setInterval(() => { if (tegelsWacht && Date.now() - tegelsTijd > 250) { tegelsTijd = Date.now(); tegelsWacht = false; bouwGedachte(); } }, 100);
 
 /* ---- de kraan: stand.json elke 5 s ---- */
