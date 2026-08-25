@@ -460,11 +460,12 @@ function toonOnderschrift(j, n) {
   if (zoom.t > 0.5) t = "";
   else if (hover.station !== null) {
     const [a, b] = NAMEN[hover.station] || ["", ""];
-    t = hover.kanaal !== null ? `${a} · kanaal ${hover.kanaal} · ${Math.round(100 * activiteitKanaal(hover.station, hover.kanaal))}% van het max van deze laag · klik: de microscoop` : `${a} · ${b} · klik: de microscoop`;
-  } else if (LIVE) t = (Date.now() - liveLaatst < 800 ? `● LIVE · ze schrijft · teken ${n}` : `● LIVE · klaar (${n} tekens) · haar laatste tekens lopen opnieuw tot de volgende gedachte`) + " · wijs een cijfer aan · klik op een laag: de microscoop";
+    if (hover.groep !== null && hover.groep !== undefined) { const per = Math.max(1, Math.floor(spec.breedte / KOL[hover.station])); t = `${a} · groep ${hover.groep + 1} van ${KOL[hover.station]} (kanaal ${hover.groep * per}–${hover.groep * per + per - 1}) · ${Math.round(100 * activiteitGroep(hover.station, hover.groep))}% van het max van deze laag · klik: de microscoop`; }
+    else t = hover.kanaal !== null ? `${a} · kanaal ${hover.kanaal} · ${Math.round(100 * activiteitKanaal(hover.station, hover.kanaal))}% van het max van deze laag · klik: de microscoop` : `${a} · ${b} · klik: de microscoop`;
+  } else if (LIVE) t = (Date.now() - liveLaatst < 800 ? `● LIVE · ze schrijft · teken ${n}` : `● LIVE · klaar (${n} tekens) · haar laatste tekens lopen opnieuw tot de volgende gedachte`) + " · wijs een knoop aan · klik op een laag: de microscoop";
   else if (kijkerOud > 300 && !LIVE) t = `kijker rustte · hij wordt wakker nu jij hier bent, nieuwe gedachte over ± 1 min · dit is haar laatste, van ${new Date(kijkerTijd * 1000).toLocaleTimeString("nl", {hour: "2-digit", minute: "2-digit"})}`;
   else if (!n) t = "wachten op een gedachte…";
-  else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · wijs een cijfer aan · klik op een laag: de microscoop" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
+  else t = (j === 0 && !verschuiving() ? "ze leest de vraag" : j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan") + " · wijs een knoop aan · klik op een laag: de microscoop" + (stand && stand.checkpoint_stap ? ` · brein van stap ${nl(stand.checkpoint_stap)}` : "");
   $("onderschrift").textContent = t;
   const rij = rijen[j];
   $("rail").querySelectorAll(".rij").forEach(b => {

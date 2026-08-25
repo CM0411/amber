@@ -1,25 +1,19 @@
 /* ======================================================================
-   De Sterrenwacht — Claudes ontwerp, van de grond af (24 aug 2026, Cley:
-   "begin vanaf nul tot je eigen futuristische design").
+   De Sterrenwacht — de waaier (25 aug 2026, naar Cleys clip: "illustrative
+   3d animation neural network, wide view").
 
-   Geen website met bladen. Eén scherm. Haar brein in het midden, naar
-   Cleys vierde afbeelding (24 aug laat: "precies dit en niet anders"):
-   links drie datastromen als bits -- haar vraag (cyaan), wat ze zich
-   herinnert (magenta) en wat ze tot nu toe schreef (geel) -- die als
-   gekleurde vezels samenkomen in één kolom: de 32 groepen van haar
-   inbedding. Rechts een blok van enen en nullen: haar 20 lagen x 384
-   kanalen, 1 = actief (boven de helft van het max van die laag), 0 =
-   stil, de kleur is hoe sterk. Live per teken. Niets schuift, niets
-   flitst: elke cel glijdt naar zijn waarde. Elke knoop is echt: een groep van 12 kanalen
-   uit haar residustroom (32 per laag, 20 lagen, plus de 32 van de
-   inbedding en de ene knoop van de uitvoer). Elke lijn is echt: tussen
-   twee lagen de sterkste gewichten van groep naar groep (bleek plus,
-   koraal min), binnen een laag de groepen die in deze gedachte samen
-   vuren (correlatie over de doorgangen). Het licht is haar gemeten
-   activiteit per geschreven teken; de felste knopen krijgen een stille
-   gloed. Draaien met de muis, klik op een knoop en de microscoop van die
-   laag gaat open (daar wél elk kanaal apart). Niets flitst; de ruimte
-   draait langzaam als je even niets doet.
+   Links één lichtpunt: haar vraag. Daaruit waaieren draden naar de 32
+   groepen van haar inbedding, en van elke kolom naar de volgende: 20 lagen,
+   32 groepen per laag, 21 kolommen naast elkaar, steeds een beetje hoger,
+   zoals in de clip. Elke draad is echt: het gewicht van groep naar groep
+   uit stand.json (de bedrading). Een draad licht alleen op als er nú iets
+   doorheen loopt: groep ervoor actief × gewicht × groep erna actief, per
+   geschreven teken gemeten (live.json, elke 0,1 s). Rechts de uitvoer:
+   haar zekerheid, en de wolk van bits van wat ze tot nu toe schreef.
+   Alleen blauw. Geen puls over het scherm: de vonkjes lopen over de draad
+   waar het signaal loopt. Bij het openen bouwt het netwerk zich één keer
+   op van links naar rechts, daarna staat het. Klik op een knoop of een
+   laagnaam en de microscoop van die laag gaat open.
    ====================================================================== */
 const doek = document.getElementById("doek");
 const ctx = doek.getContext("2d");
@@ -37,8 +31,9 @@ const TEKEN_S = 0.7, VEEG = 0.5;
 let laagnamen = {};
 let spec = {koppen: 6, verborgen: 1536, breedte: 384};
 let zoom = {laag: null, t: 0, doel: 0};
-let LIVE = false, herhaal = false, herhaalJ = 0;                        // live: het beeld volgt de laatste doorgang uit live.json, niets wordt afgespeeld
+let LIVE = false, herhaal = false, herhaalJ = 0;                        // live: het beeld volgt de laatste doorgang uit live.json
 const RUSTIG = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const FOTO = /foto=1/.test(location.search);        // proefopname: geen opbouw, na 40 beelden stoppen
 
 /* ---- de fijne meting: per kanaal, per kop, per eenheid ---- */
 let fijn = null, fijnTijd = 0, fijnBezig = false;
@@ -61,12 +56,14 @@ const FAMILIEKLEUR = {rekenen: "#6FB5FF", puzzel: "#B78AE0", code: "#7FE0C3", ge
                       tellen: "#C4B5FD", antwoord: "#FDA4AF", antwoordlaag: "#FDA4AF", gesprek: "#F0A8FF", gemengd: "#8E99B3"};
 const kleurVan = b => FAMILIEKLEUR[b] || (b === "stil" ? "#5C6781" : "#8E99B3");
 
-/* ---- maat: het doek is het hele scherm; de ruimte zit in het vrije midden ---- */
+/* ---- maat: het doek is het hele scherm; de waaier zit in het vrije midden ---- */
 const P = {fs: 12, boven: 0, vrijX: 0, vrijY: 0, vrijB: 1, vrijH: 1};
 function maat() {
   if (!doek.clientWidth) return;
-  B = doek.width = Math.round(doek.clientWidth * DPR);
-  H = doek.height = Math.round(doek.clientHeight * DPR);
+  const nb = Math.round(doek.clientWidth * DPR), nh = Math.round(doek.clientHeight * DPR);
+  if (nb !== doek.width) doek.width = nb;   // alleen als het echt anders is: op maat zetten wist het doek
+  if (nh !== doek.height) doek.height = nh;
+  B = nb; H = nh;
   P.fs = Math.max(10, Math.min(13, B / 115)) * DPR;
   const r = doek.getBoundingClientRect();
   const vrij = document.getElementById("vrij").getBoundingClientRect();
@@ -78,16 +75,25 @@ function maat() {
 addEventListener("resize", maat);
 if (window.ResizeObserver) new ResizeObserver(() => maat()).observe(document.getElementById("vrij"));
 
-/* ---- de vorm: stromen, kolom, blok ---- */
-let vorm = [], glad = [], gladKan = [];  // per station {k, n, soort}; glad: groepen; gladKan: kanalen (getoond, glijdend)
+/* ---- de vorm: kolommen van groepen, en de stroom door elke draad ---- */
+let vorm = [], glad = [], gladKan = [];  // per station {k, n, soort}; glad: groepen (glijdend); gladKan: kanalen (voor de microscoop en het aanwijzen)
 let liveKanaal = null;                   // live.json: per laag 384 cijfers 0..9
 let samen = [];
+let stroom = [], stroomIn = null, stroomUit = null, wMax = [];   // per tussenruimte: de stroom door elke draad, 0..1 (glijdend)
 function bouwVorm() {
   vorm = KOL.map((n, k) => ({k, n, soort: n === 1 ? "uit" : (k === 0 ? "in" : "laag")}));
-  glad = KOL.map(n => new Float32Array(n));
-  gladKan = KOL.map(() => new Float32Array(spec.breedte));
+  const anders = glad.length !== KOL.length || KOL.some((n, k) => glad[k].length !== n);
+  if (anders) {                          // alleen opnieuw als de vorm echt anders is: anders zou alles even doven
+    glad = KOL.map(n => new Float32Array(n));
+    gladKan = KOL.map(() => new Float32Array(spec.breedte));
+    stroom = []; for (let c = 0; c + 2 < KOL.length; c++) stroom.push(new Float32Array(KOL[c] * Math.min(K_PER_GROEP, KOL[c + 1]) * 4));   // ruim: de paren zijn hooguit K per doelgroep
+    stroomIn = new Float32Array(KOL[0]); stroomUit = new Float32Array(KOL[KOL.length - 2]);
+  }
+  wMax = []; for (let c = 0; c + 2 < KOL.length; c++) { let m = 0.0001; const M = bedrading && bedrading[c]; if (M) for (const r of M) for (const v of r) m = Math.max(m, Math.abs(v)); wMax.push(m); }
+  wMaxUit = 0.0001; if (bedradingUit) for (const v of bedradingUit) wMaxUit = Math.max(wMaxUit, Math.abs(v));
   vuil = true;
 }
+let wMaxUit = 0.0001;
 function bouwSamen() {}
 function bouwWeefsel() { bouwVorm(); weefsel = [true]; }
 function bouwNamen() {
@@ -108,71 +114,181 @@ function nieuweGedachte(t) {
   if (typeof bouwGedachte === "function") bouwGedachte();
 }
 
-/* ---- de maten van het beeld ---- */
-const TINT = {cyaan: "41,211,255", magenta: "255,63,160", geel: "255,210,63", blauw: "70,120,255"};
-const STROOM = [["vraag", TINT.cyaan], ["herinnering", TINT.magenta], ["antwoord", TINT.geel]];
-const NIVO = ["rgba(60,95,200,0.55)", "rgba(80,150,255,0.85)", "rgba(41,211,255,0.95)", "rgba(120,235,255,1)", "rgba(255,63,160,1)", "rgba(255,210,63,1)"];
+/* ---- kleur: alleen blauw, zoals in de clip ---- */
+const TINT = {draad: "150,190,255", licht: "190,220,255", knoop: "120,180,255", wit: "255,255,255", blauw: "70,120,255", cyaan: "41,211,255"};
+const NIVO = ["rgba(60,95,200,0.55)", "rgba(80,150,255,0.85)", "rgba(110,190,255,0.95)", "rgba(150,215,255,1)", "rgba(200,235,255,1)", "rgba(255,255,255,1)"];
+const nivo = v => v < 0.25 ? 0 : v < 0.5 ? 1 : v < 0.7 ? 2 : v < 0.85 ? 3 : v < 0.95 ? 4 : 5;
 const G = {};
-let vonken = [];                         // vonkjes over de vezels (als in het weefsel): bij elk nieuw teken, klein, kort
-function vonk(t) {
-  if (RUSTIG || !G.cel) return;
-  const g0 = glad[0] || [], nk = KOL[0];
-  for (let i = 0; i < 3; i++) for (let v = 0; v < 2; v++) {
-    let g = Math.floor(rnd((t | 0) * 7 + i * 31 + v * 13) * nk);
-    for (let p = 0; p < 6 && (g0[g] || 0) < 0.4; p++) g = Math.floor(rnd((t | 0) * 7 + i * 31 + v * 13 + p * 101) * nk);   // liever een actieve groep
-    vonken.push({i, g, t0: t + v * 90, duur: 650});
-  }
-  if (vonken.length > 120) vonken = vonken.slice(-120);
-}
+const pt = (u, v) => G.staand ? [v, u] : [u, v];           // u: langs de stroom (links->rechts, op de telefoon boven->onder); v: dwars
 function rnd(seed) { let t = (seed | 0) + 0x6D2B79F5; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; }
 let vuil = true, laatstBediend = 0;
-const atlas = document.createElement("canvas"), blokDoek = document.createElement("canvas");
-let blokTik = 0;
-function projecteer() {
-  const L = P.vrijX, T = P.vrijY, W = P.vrijB, Hh = P.vrijH, fs = P.fs, lagen = Math.max(1, KOL.length - 2);
-  G.staand = matchMedia("(max-width: 900px)").matches || W < Hh * 1.1;   // telefoon: alles onder elkaar
-  G.kolommen = 64; G.rijen = G.staand ? 1 : 6; G.perCel = Math.max(1, Math.round(spec.breedte / (G.rijen * G.kolommen)));
-  const rows = lagen * G.rijen + (lagen - 1);
-  if (G.staand) {
-    G.cel = Math.max(2, Math.min((W - fs * 1.2) / G.kolommen, (Hh * 0.52 - fs * 5) / rows));
-    G.blokB = G.cel * G.kolommen; G.blokH = G.cel * rows;
-    G.blokX = L + (W - G.blokB) / 2; G.blokY = T + Hh * 0.44;
-    G.kolY = T + Hh * 0.36; G.kolX0 = G.blokX + fs * 0.5; G.kolX1 = G.blokX + G.blokB - fs * 0.5;
-    G.stroomX0 = L + fs * 0.6; G.stroomX1 = L + W - fs * 0.6;
-    G.stroomY = [T + Hh * 0.09, T + Hh * 0.18, T + Hh * 0.27];
-  } else {
-    G.cel = Math.max(2, Math.min((W * 0.55) / G.kolommen, (Hh - fs * 7.5) / rows));   // onderin ruimte voor de tegels en het onderschrift
-    G.blokB = G.cel * G.kolommen; G.blokH = G.cel * rows;
-    G.blokX = L + W - G.blokB - fs * 4.2; G.blokY = T + fs * 1.6 + (Hh - fs * 7.5 - G.blokH) / 2;
-    G.kolX = G.blokX - fs * 3.2; G.kolY0 = G.blokY + G.blokH * 0.2; G.kolY1 = G.blokY + G.blokH * 0.8;
-    G.stroomX0 = L + fs * 0.6; G.stroomX1 = G.kolX - fs * 10;
-    G.stroomY = [T + Hh * 0.32, T + Hh * 0.5, T + Hh * 0.68];
+const atlas = document.createElement("canvas"), gloei = document.createElement("canvas");
+const vezelDoek = document.createElement("canvas"), lichtDoek = document.createElement("canvas"), wolkDoek = document.createElement("canvas");
+let tik = 0, vezelBron = undefined, vezelMaat = "";
+let paren = [];                          // per tussenruimte: [a, b, w] van de K sterkste gewichten per doelgroep (w = |gewicht| / max van die tussenruimte)
+const K_PER_GROEP = 10;
+function bouwParen() {
+  paren = [];
+  for (let c = 0; c + 2 < KOL.length; c++) {
+    const M = bedrading && bedrading[c], na = KOL[c], nb = KOL[c + 1], m = wMax[c] || 1, lijst = [];
+    for (let b = 0; b < nb; b++) {
+      const rij = M && M[b]; if (!rij) { for (let a = 0; a < na; a++) lijst.push([a, b, 0.3]); continue; }
+      const idx = []; for (let a = 0; a < na; a++) idx.push(a);
+      idx.sort((x, y) => Math.abs(rij[y] || 0) - Math.abs(rij[x] || 0));
+      for (let i = 0; i < Math.min(K_PER_GROEP, na); i++) lijst.push([idx[i], b, Math.abs(rij[idx[i]] || 0) / m]);
+    }
+    paren.push(lijst);
   }
-  // de letters 0 en 1 in zes sterktes, één keer getekend
-  const c = G.cel;
-  atlas.width = Math.ceil(c * 12); atlas.height = Math.ceil(c);
-  const q = atlas.getContext("2d");
-  q.clearRect(0, 0, atlas.width, atlas.height);
-  q.font = `700 ${Math.max(2, c * 1.05)}px "JetBrains Mono", ui-monospace, monospace`; q.textAlign = "center"; q.textBaseline = "middle";
-  for (let n = 0; n < 6; n++) for (let g = 0; g < 2; g++) { q.fillStyle = NIVO[n]; q.fillText(String(g), (n * 2 + g) * c + c / 2, c / 2 + c * 0.05); }
-  blokDoek.width = Math.ceil(G.blokB); blokDoek.height = Math.ceil(G.blokH);
-  vuil = false; blokTik = 0;
 }
-function kolPunt(g) { const nk = KOL[0] || 1, u = nk > 1 ? g / (nk - 1) : 0.5; return G.staand ? [G.kolX0 + (G.kolX1 - G.kolX0) * u, G.kolY] : [G.kolX, G.kolY0 + (G.kolY1 - G.kolY0) * u]; }
-function blokPunt(g) { const nk = KOL[0] || 1, u = nk > 1 ? g / (nk - 1) : 0.5; return G.staand ? [G.blokX + G.blokB * u, G.blokY - DPR * 3] : [G.blokX - DPR * 3, G.blokY + G.blokH * u]; }
-function stroomEind(i) { return G.staand ? [G.stroomX0 + (G.stroomX1 - G.stroomX0) * (0.25 + 0.25 * i), G.stroomY[i] + P.fs * 0.6] : [G.stroomX1 + P.fs * 0.4, G.stroomY[i]]; }
-function vezel(i, g) {                  // de vier punten van de vezel van stroom i naar groep g
-  const [x0, y0] = stroomEind(i), [x3, y3] = kolPunt(g), k = G.staand ? [x3, y3 - DPR * 4] : [x3 - DPR * 4, y3];
-  return G.staand ? [x0, y0, x0, (y0 + k[1]) / 2, k[0], (y0 + k[1]) / 2, k[0], k[1]] : [x0, y0, (x0 + k[0]) / 2, y0, (x0 + k[0]) / 2, k[1], k[0], k[1]];
-}
-function kolUit(g) { const [x, y] = kolPunt(g); return G.staand ? [x, y + DPR * 6] : [x + DPR * 6, y]; }
-const bits = s => { let u = ""; for (const b of new TextEncoder().encode(s || "")) u += b.toString(2).padStart(8, "0"); return u; };
+let vonken = [];                         // vonkjes over de draden waar het signaal loopt
+let opbouw = {t0: 0, klaar: RUSTIG || FOTO};
 
-/* ---- bediening: aanwijzen en klikken in het blok ---- */
-let sleep = null, hover = {station: null, kanaal: null};
+/* ---- de draad: van knoop naar knoop, gebogen langs de stroomas (de bundel bij de knoop, de waaier ertussen) ---- */
+function pad(q, a, b) {
+  if (G.staand) { const d = (b[1] - a[1]) * 0.5; q.moveTo(a[0], a[1]); q.bezierCurveTo(a[0], a[1] + d, b[0], b[1] - d, b[0], b[1]); }
+  else { const d = (b[0] - a[0]) * 0.5; q.moveTo(a[0], a[1]); q.bezierCurveTo(a[0] + d, a[1], b[0] - d, b[1], b[0], b[1]); }
+}
+function opPad(a, b, u) {
+  const w = 1 - u; let c1, c2;
+  if (G.staand) { const d = (b[1] - a[1]) * 0.5; c1 = [a[0], a[1] + d]; c2 = [b[0], b[1] - d]; }
+  else { const d = (b[0] - a[0]) * 0.5; c1 = [a[0] + d, a[1]]; c2 = [b[0] - d, b[1]]; }
+  return [w * w * w * a[0] + 3 * w * w * u * c1[0] + 3 * w * u * u * c2[0] + u * u * u * b[0],
+          w * w * w * a[1] + 3 * w * w * u * c1[1] + 3 * w * u * u * c2[1] + u * u * u * b[1]];
+}
+function eind(c, a, b) {                 // de twee uiteinden van draad (c, a, b): c = -1 punt->inbedding, c = nK-1 laatste laag->uitvoer
+  const nK = KOL.length - 1;
+  if (c < 0) return [G.punt, G.knoop[0][b]];
+  if (c >= nK - 1) return [G.knoop[nK - 1][a], G.uit];
+  return [G.knoop[c][a], G.knoop[c + 1][b]];
+}
+
+/* ---- de maten van het beeld ---- */
+function projecteer() {
+  const L = P.vrijX, T = P.vrijY, W = P.vrijB, Hh = P.vrijH, fs = P.fs, nK = KOL.length - 1;
+  G.staand = matchMedia("(max-width: 900px)").matches || W < Hh * 1.1;   // telefoon: de stroom loopt van boven naar onder
+  const rest = G.staand ? fs * 10.5 : fs * 7.5;   // onderin #vrij staan de tegels en het onderschrift
+  const uA = G.staand ? T : L, span = G.staand ? Hh - rest : W, vA = G.staand ? L : T, dwars = G.staand ? W : Hh - rest, mid = vA + dwars / 2;
+  Object.assign(G, {uA, span, vA, dwars, mid, nK});
+  G.punt = pt(uA + span * 0.055, mid);
+  G.knoop = []; G.label = [];
+  for (let c = 0; c < nK; c++) {
+    const n = KOL[c], u = uA + span * (0.14 + 0.63 * c / Math.max(1, nK - 1));
+    const h = dwars * (G.staand ? 0.44 + 0.46 * c / Math.max(1, nK - 1) : 0.24 + 0.50 * c / Math.max(1, nK - 1));
+    const kol = []; for (let g = 0; g < n; g++) kol.push(pt(u, mid - h / 2 + (n > 1 ? h * g / (n - 1) : h / 2)));
+    G.knoop.push(kol);
+    G.label.push(G.staand ? pt(u, vA + fs * 0.4) : pt(u, mid + h / 2 + fs * 1.2));      // de naam: links van de rij, of onder de kolom
+  }
+  G.uit = pt(uA + span * 0.835, mid);
+  // de wolk: de bits van haar antwoord; tekens dwars, 8 bits langs de stroom
+  const cb = Math.max(3, Math.min(fs * 0.85, span * (G.staand ? 0.11 : 0.095) / 8));
+  G.cel = cb; G.wolkU0 = uA + span * 0.885; G.wolkRijen = Math.max(4, Math.floor(dwars * 0.86 / (cb * 1.15)));
+  G.wolkV0 = mid - G.wolkRijen * cb * 1.15 / 2; G.wolkXY = pt(G.wolkU0, G.wolkV0);
+  const [x1, y1] = pt(G.wolkU0 + 8 * cb, G.wolkV0 + G.wolkRijen * cb * 1.15);
+  G.wolk = [G.wolkXY[0], G.wolkXY[1], x1 - G.wolkXY[0], y1 - G.wolkXY[1]];
+  wolkDoek.width = Math.ceil(G.wolk[2]); wolkDoek.height = Math.ceil(G.wolk[3]); wolkTekst = null;   // op maat zetten wist de wolk: bij de volgende tik opnieuw tekenen
+  // de cijfers 0 en 1 in zeven sterktes, één keer getekend
+  atlas.width = Math.ceil(cb * 14); atlas.height = Math.ceil(cb);
+  const q = atlas.getContext("2d"); q.clearRect(0, 0, atlas.width, atlas.height);
+  q.font = `700 ${Math.max(2, cb * 1.05)}px "JetBrains Mono", ui-monospace, monospace`; q.textAlign = "center"; q.textBaseline = "middle";
+  for (let n = 0; n < 7; n++) for (let g = 0; g < 2; g++) { q.globalAlpha = g ? 1 : 0.45; q.fillStyle = n < 6 ? NIVO[n] : "#FFFFFF"; q.fillText(String(g), (n * 2 + g) * cb + cb / 2, cb / 2 + cb * 0.05); }
+  q.globalAlpha = 1;
+  // de gloed van een knoop in zes sterktes (een kern met een zachte hof), één keer getekend
+  const R = Math.max(3, fs * (G.staand ? 0.45 : 0.6)), S = Math.ceil(R * 2); G.gloeiS = S;
+  gloei.width = S * 6; gloei.height = S;
+  const g2 = gloei.getContext("2d"); g2.clearRect(0, 0, gloei.width, gloei.height);
+  for (let n = 0; n < 6; n++) {
+    const a = n / 5, cx = n * S + S / 2, cy = S / 2;
+    const hof = g2.createRadialGradient(cx, cy, 0, cx, cy, R);
+    hof.addColorStop(0, `rgba(${TINT.licht},${(0.15 + 0.6 * a).toFixed(2)})`); hof.addColorStop(0.3, `rgba(${TINT.knoop},${(0.05 + 0.35 * a).toFixed(2)})`); hof.addColorStop(1, `rgba(${TINT.knoop},0)`);
+    g2.fillStyle = hof; g2.fillRect(n * S, 0, S, S);
+    g2.fillStyle = NIVO[n]; g2.beginPath(); g2.arc(cx, cy, DPR * (0.9 + 1.3 * a), 0, 7); g2.fill();
+  }
+  vezelDoek.width = lichtDoek.width = B; vezelDoek.height = lichtDoek.height = H;
+  vezelMaat = ""; vuil = false; tik = 0;
+}
+
+/* ---- de stille draden: elk gewicht, één keer getekend, bleek ---- */
+function bouwVezels() {
+  const q = vezelDoek.getContext("2d"), nK = G.nK, BAK = 6;
+  q.clearRect(0, 0, B, H); q.lineCap = "round";
+  const paden = []; for (let i = 0; i < BAK; i++) paden.push(new Path2D());
+  const bak = w => paden[Math.max(0, Math.min(BAK - 1, Math.floor(w * BAK)))];
+  for (let g = 0; g < KOL[0]; g++) pad(paden[2], G.punt, G.knoop[0][g]);
+  bouwParen();
+  for (let c = 0; c + 1 < nK; c++) for (const [a, b, w] of paren[c]) pad(bak(w), G.knoop[c][a], G.knoop[c + 1][b]);
+  for (let a = 0; a < KOL[nK - 1]; a++) pad(bak(bedradingUit ? Math.abs(bedradingUit[a] || 0) / wMaxUit : 0.3), G.knoop[nK - 1][a], G.uit);
+  q.lineWidth = DPR * 0.45;
+  paden.forEach((p, i) => { q.strokeStyle = `rgba(${TINT.draad},${(0.03 + 0.08 * (i + 0.5) / BAK).toFixed(3)})`; q.stroke(p); });
+  vezelBron = bedrading; vezelMaat = B + "x" + H + "|" + KOL.join(",");
+}
+
+/* ---- het licht: alleen de draden waar nú iets doorheen loopt (tien keer per seconde, glijdend) ---- */
+const drempel = () => G.staand ? 0.5 : 0.35;   // een draad licht op vanaf 35% (telefoon: 50%) van de sterkste stroom in zijn tussenruimte
+let tmp = new Float32Array(1024);
+function verlicht() {
+  if (!stroomIn || glad.length !== KOL.length) return;
+  const q = lichtDoek.getContext("2d"), nK = G.nK, BAK = 8, DR = drempel(), dik = G.staand ? 0.7 : 1;
+  q.clearRect(0, 0, B, H); q.lineCap = "round";
+  const paden = []; for (let i = 0; i < BAK; i++) paden.push(new Path2D());
+  const bak = f => paden[Math.max(0, Math.min(BAK - 1, Math.floor(f * BAK)))];
+  // het punt -> de inbedding: de activiteit van de groep
+  for (let g = 0; g < KOL[0]; g++) { const d = glad[0][g] || 0; stroomIn[g] += (d - stroomIn[g]) * 0.35; if (stroomIn[g] > DR) pad(bak((stroomIn[g] - DR) / (1 - DR)), G.punt, G.knoop[0][g]); }
+  // van kolom naar kolom: groep ervoor x gewicht x groep erna, ten opzichte van de sterkste stroom in die tussenruimte
+  for (let c = 0; c + 1 < nK; c++) {
+    const S = stroom[c], ga = glad[c], gb = glad[c + 1], lijst = paren[c];
+    if (!S || !lijst) continue;
+    if (tmp.length < lijst.length) tmp = new Float32Array(lijst.length);
+    let top = 0.000001;
+    for (let i = 0; i < lijst.length; i++) { const [a, b, w] = lijst[i], f = (ga[a] || 0) * w * (gb[b] || 0); tmp[i] = f; if (f > top) top = f; }
+    for (let i = 0; i < lijst.length; i++) { S[i] += (tmp[i] / top - S[i]) * 0.35; if (S[i] > DR) { const [a, b] = lijst[i]; pad(bak((S[i] - DR) / (1 - DR)), G.knoop[c][a], G.knoop[c + 1][b]); } }
+  }
+  // de laatste laag -> de uitvoer
+  { const na = KOL[nK - 1], ga = glad[nK - 1], zeker = glad[nK] ? glad[nK][0] : 0; let top = 0.000001;
+    for (let a = 0; a < na; a++) { const f = (ga[a] || 0) * (bedradingUit ? Math.abs(bedradingUit[a] || 0) / wMaxUit : 0.3) * Math.max(0.2, zeker); tmp[a] = f; if (f > top) top = f; }
+    for (let a = 0; a < na; a++) { stroomUit[a] += (tmp[a] / top - stroomUit[a]) * 0.35; if (stroomUit[a] > DR) pad(bak((stroomUit[a] - DR) / (1 - DR)), G.knoop[nK - 1][a], G.uit); } }
+  paden.forEach((p, i) => { const f = (i + 0.5) / BAK; q.strokeStyle = `rgba(${TINT.licht},${(0.10 + 0.7 * f).toFixed(3)})`; q.lineWidth = DPR * dik * (0.5 + 1.1 * f); q.stroke(p); });
+  q.strokeStyle = "rgba(255,255,255,0.35)"; q.lineWidth = DPR * 0.5; q.stroke(paden[BAK - 1]);
+}
+
+/* ---- de wolk: de bits van haar antwoord tot nu toe, het nieuwste teken wit ---- */
+let wolkTekst = null;
+function tekenWolk() {
+  const tekst = antwoordDoel.slice(0, Math.max(0, antwoordNu));
+  if (tekst === wolkTekst) return; wolkTekst = tekst;
+  const q = wolkDoek.getContext("2d"), cb = G.cel; q.clearRect(0, 0, wolkDoek.width, wolkDoek.height);
+  const bytes = new TextEncoder().encode(tekst), n = Math.min(G.wolkRijen, bytes.length), start = bytes.length - n;
+  for (let r = 0; r < n; r++) {
+    const byte = bytes[start + r], nieuw = r === n - 1, lvl = nieuw ? 6 : Math.max(0, Math.min(5, Math.floor((r + 1) / Math.max(1, G.wolkRijen) * 5.99)));
+    for (let bit = 0; bit < 8; bit++) {
+      const een = (byte >> (7 - bit)) & 1, [x, y] = G.staand ? [r * cb * 1.15, bit * cb] : [bit * cb, r * cb * 1.15];
+      q.drawImage(atlas, (lvl * 2 + een) * cb, 0, cb, cb, x, y, cb, cb);
+    }
+  }
+}
+function wolkRij(r) {                     // waar staat het teken r (0 = oudste getoonde) in de wolk: de as van die rij, langs de stroom
+  return [G.wolkU0, G.wolkV0 + (r + 0.5) * G.cel * 1.15];
+}
+
+/* ---- de vonkjes: over een draad waar nu stroom staat, van knoop naar knoop ---- */
+function vonk(t) {
+  if (RUSTIG || !G.knoop || !stroom.length) return;
+  const nK = G.nK;
+  for (let v = 0; v < 3; v++) {
+    const z = (t | 0) * 7 + v * 131, c = Math.floor(rnd(z) * (nK + 1)) - 1;      // -1 .. nK-1
+    let beste = drempel(), keuze = null;
+    if (c < 0) { for (let p = 0; p < 8; p++) { const g = Math.floor(rnd(z + p * 17) * KOL[0]); if (stroomIn[g] > beste) { beste = stroomIn[g]; keuze = [0, g]; } } }
+    else if (c >= nK - 1) { for (let p = 0; p < 8; p++) { const a = Math.floor(rnd(z + p * 17) * KOL[nK - 1]); if (stroomUit[a] > beste) { beste = stroomUit[a]; keuze = [a, 0]; } } }
+    else { const S = stroom[c], na = KOL[c]; for (let p = 0; p < 12; p++) { const i = Math.floor(rnd(z + p * 17) * S.length); if (S[i] > beste) { beste = S[i]; keuze = [i % na, Math.floor(i / na)]; } } }
+    if (keuze) vonken.push({c, a: keuze[0], b: keuze[1], t0: t + v * 70, duur: 520 + 200 * (1 - beste)});
+  }
+  if (vonken.length > 90) vonken = vonken.slice(-90);
+}
+
+/* ---- bediening: aanwijzen en klikken ---- */
+let sleep = null, hover = {station: null, kanaal: null, groep: null};
 function schermXY(e) { const r = doek.getBoundingClientRect(); const p = e.touches ? e.touches[0] : e; return {x: (p.clientX - r.left) * DPR, y: (p.clientY - r.top) * DPR}; }
 doek.addEventListener("pointermove", e => { muis = schermXY(e); laatstBediend = performance.now(); });
-doek.addEventListener("pointerleave", () => { muis = null; hover = {station: null, kanaal: null}; });
+doek.addEventListener("pointerleave", () => { muis = null; hover = {station: null, kanaal: null, groep: null}; });
 doek.addEventListener("pointerup", e => {
   const p = schermXY(e); muis = p;
   if (zoom.t < 0.5) { zoekHover(); if (hover.station !== null) openLaag(hover.station); }
@@ -190,25 +306,31 @@ addEventListener("keydown", e => {
 });
 { const mm = location.hash.match(/laag=(\d+)/); if (mm) { zoom.laag = +mm[1]; zoom.doel = 1; document.body.classList.add("laag-open"); } }
 function zoekHover() {
-  hover = {station: null, kanaal: null};
-  if (!muis || zoom.t > 0.5 || !G.cel) return;
-  if (muis.x >= G.blokX && muis.x < G.blokX + G.blokB && muis.y >= G.blokY && muis.y < G.blokY + G.blokH) {
-    const per = G.rijen + 1, rij = Math.floor((muis.y - G.blokY) / G.cel), k = Math.floor(rij / per) + 1, r = rij % per;
-    if (r < G.rijen && k >= 1 && k <= KOL.length - 2) { hover.station = k; hover.kanaal = Math.min(spec.breedte - 1, (r * G.kolommen + Math.floor((muis.x - G.blokX) / G.cel)) * G.perCel); }
-  } else if (G.staand ? (Math.abs(muis.y - G.kolY) < P.fs * 1.5 && muis.x >= G.kolX0 - P.fs && muis.x <= G.kolX1 + P.fs) : (Math.abs(muis.x - G.kolX) < P.fs * 1.5 && muis.y >= G.kolY0 - P.fs && muis.y <= G.kolY1 + P.fs)) hover.station = 0;
+  hover = {station: null, kanaal: null, groep: null};
+  if (!muis || zoom.t > 0.5 || !G.knoop) return;
+  const nK = G.nK, fs = P.fs; let best = (fs * 0.9) ** 2;
+  for (let c = 0; c < nK; c++) for (let g = 0; g < KOL[c]; g++) {
+    const p = G.knoop[c][g], d = (p[0] - muis.x) ** 2 + (p[1] - muis.y) ** 2;
+    if (d < best) { best = d; hover.station = c; hover.groep = g; hover.kanaal = Math.min(spec.breedte - 1, g * Math.max(1, Math.floor(spec.breedte / KOL[c]))); }
+  }
+  if (hover.station !== null) return;
+  if ((G.uit[0] - muis.x) ** 2 + (G.uit[1] - muis.y) ** 2 < (fs * 1.4) ** 2) { hover.station = KOL.length - 1; return; }
+  const w = G.wolk; if (muis.x >= w[0] - fs && muis.x < w[0] + w[2] + fs && muis.y >= w[1] - fs && muis.y < w[1] + w[3] + fs) { hover.station = KOL.length - 1; return; }
+  for (let c = 0; c < nK; c++) { const p = G.label[c]; if (Math.abs(p[0] - muis.x) < fs * (G.staand ? 1.6 : 1.1) && Math.abs(p[1] - muis.y) < fs * (G.staand ? 0.7 : 0.9)) { hover.station = c; return; } }
 }
 
 /* ---- helpers ---- */
 function rondRect(q, x, y, w, h, r) { q.beginPath(); q.moveTo(x + r, y); q.arcTo(x + w, y, x + w, y + h, r); q.arcTo(x + w, y + h, x, y + h, r); q.arcTo(x, y + h, x, y, r); q.arcTo(x, y, x + w, y, r); q.closePath(); }
-function warm(v) {                       // gewicht -> kleur (de microscoop): cyaan plus, magenta min
+function warm(v) {                       // gewicht -> kleur (de microscoop): licht plus, donker min
   const a = Math.min(1, Math.abs(v));
-  return v >= 0 ? `rgba(41,211,255,${(0.08 + 0.92 * a).toFixed(3)})` : `rgba(255,63,160,${(0.08 + 0.92 * a).toFixed(3)})`;
+  return v >= 0 ? `rgba(150,215,255,${(0.08 + 0.92 * a).toFixed(3)})` : `rgba(255,63,160,${(0.08 + 0.92 * a).toFixed(3)})`;
 }
 function activiteitVan(j, k, i) {         // een groep in doorgang j: 0..1 ten opzichte van het maximum van die laag in deze gedachte
   const rij = rijen[j]; if (!rij) return 0;
   return Math.min(1, ((rij[k] || [])[i] || 0) / kolMax[k]);
 }
 function activiteitKanaal(k, c) { return gladKan[k] ? gladKan[k][c] : 0; }
+function activiteitGroep(k, g) { return glad[k] ? glad[k][g] : 0; }
 function doelKanalen(j, k) {              // 384 doelwaarden 0..1 voor laag k: live (per teken), anders fijn.json, anders de groepen
   const n = spec.breedte, uit = new Float32Array(n);
   const s = LIVE && liveKanaal && liveKanaal[k - 1];
@@ -220,98 +342,79 @@ function doelKanalen(j, k) {              // 384 doelwaarden 0..1 voor laag k: l
   for (let c = 0; c < n; c++) uit[c] = Math.min(1, ((rij[k] || [])[Math.min(KOL[k] - 1, Math.floor(c / per))] || 0) / kolMax[k]);
   return uit;
 }
-const nivo = v => v < 0.25 ? 0 : v < 0.5 ? 1 : v < 0.7 ? 2 : v < 0.85 ? 3 : v < 0.95 ? 4 : 5;
+function tekst(s, x, y, kl, maat, uitl) { ctx.fillStyle = kl; ctx.font = `700 ${P.fs * (maat || 0.62)}px "JetBrains Mono", ui-monospace, monospace`; ctx.textAlign = uitl || "left"; ctx.fillText(s, x, y); }
+function knip(s, maxB) { if (ctx.measureText(s).width <= maxB) return s; while (s.length > 1 && ctx.measureText(s + "…").width > maxB) s = s.slice(0, -1); return s + "…"; }
 
-/* ---- het blok: 20 lagen x 384 kanalen als enen en nullen (tien keer per seconde ververst, glijdend) ---- */
-function tekenBlok(j) {
-  const q = blokDoek.getContext("2d"), c = G.cel, lagen = KOL.length - 2;
-  q.clearRect(0, 0, blokDoek.width, blokDoek.height);
-  for (let k = 1; k <= lagen; k++) {
-    const doel = doelKanalen(j, k), g = gladKan[k]; if (!g) continue;
-    const y0 = (k - 1) * (G.rijen + 1) * c;
-    for (let ch = 0; ch < spec.breedte; ch++) g[ch] += (doel[ch] - g[ch]) * 0.35;
-    const cellen = G.rijen * G.kolommen;
-    for (let i = 0; i < cellen; i++) {
-      let v = 0, tel = 0;
-      for (let ch = i * G.perCel; ch < Math.min(spec.breedte, (i + 1) * G.perCel); ch++) { v += g[ch]; tel++; }
-      v = tel ? v / tel : 0;
-      const n = nivo(v), een = v >= 0.5 ? 1 : 0;
-      q.drawImage(atlas, (n * 2 + een) * c, 0, c, c, (i % G.kolommen) * c, y0 + Math.floor(i / G.kolommen) * c, c, c);
-    }
-  }
-}
-
-/* ---- de ruimte: elk beeld ---- */
+/* ---- de waaier: elk beeld ---- */
 function tekenRuimte(t, j, veeg, alpha) {
-  if (vuil || !G.cel) projecteer();
+  if (glad.length !== KOL.length) bouwVorm();
+  if (vuil || !G.knoop) projecteer();
+  if (vezelBron !== bedrading || vezelMaat !== B + "x" + H + "|" + KOL.join(",")) { bouwVezels(); }
   ctx.globalAlpha = alpha;
-  const rij = (j >= 0 && rijen[j]) ? rijen[j] : null, n = KOL.length, fs = P.fs;
-  const mono = `500 ${fs * 0.8}px "JetBrains Mono", ui-monospace, monospace`;
+  const rij = (j >= 0 && rijen[j]) ? rijen[j] : null, n = KOL.length, nK = G.nK, fs = P.fs;
   for (let k = 0; k < n; k++) { const g = glad[k]; if (!g) continue; for (let i = 0; i < g.length; i++) { const doel = rij ? activiteitVan(j, k, i) : 0; g[i] += (doel - g[i]) * 0.12; } }
-  if (t - blokTik > 100) { blokTik = t; tekenBlok(j); }
-  // de drie stromen: bits van haar vraag, haar herinnering en wat ze tot nu toe schreef
-  const bron = [stand ? (stand.opgave || "") : "", (stand && stand.herinnert && stand.herinnert[0]) ? (stand.herinnert[0].opgave || "") : "", antwoordDoel.slice(0, Math.max(0, antwoordNu))];
-  ctx.font = `500 ${fs * 0.72}px "JetBrains Mono", ui-monospace, monospace`; ctx.textBaseline = "middle"; ctx.textAlign = "left";
-  const bitB = ctx.measureText("0").width, past = Math.max(8, Math.floor(0.94 * (G.stroomX1 - G.stroomX0) / bitB));
-  STROOM.forEach(([naam, kl], i) => {
-    const y = G.stroomY[i], b = bits(bron[i]), staart = b.slice(-past);
-    ctx.fillStyle = `rgba(${kl},0.9)`; ctx.font = `700 ${fs * 0.62}px "JetBrains Mono", ui-monospace, monospace`;
-    ctx.fillText(naam.toUpperCase() + (bron[i] ? "" : " · nog niets"), G.stroomX0, y - fs * 1.05);
-    ctx.font = `500 ${fs * 0.72}px "JetBrains Mono", ui-monospace, monospace`;
-    for (let p = 0; p < staart.length; p++) { const u = (p + 1) / staart.length, nieuw = p >= staart.length - 8; ctx.fillStyle = nieuw ? "rgba(255,255,255,0.95)" : `rgba(${kl},${(0.25 + 0.7 * u).toFixed(2)})`; ctx.fillText(staart[p], G.stroomX0 + p * bitB, y); }
-  });
-  // de vezels: van elke stroom naar elke groep van de inbedding, licht naar de activiteit van die groep
-  const g0 = glad[0] || [], nk = KOL[0];
-  ctx.lineCap = "round";
-  for (let i = 0; i < 3; i++) {
-    const kl = STROOM[i][1];
-    for (let g = 0; g < nk; g++) {
-      const a = g0[g] || 0, v = vezel(i, g);
-      ctx.strokeStyle = `rgba(${kl},${(0.10 + 0.6 * a).toFixed(3)})`; ctx.lineWidth = DPR * (0.5 + 1.0 * a);
-      ctx.beginPath(); ctx.moveTo(v[0], v[1]); ctx.bezierCurveTo(v[2], v[3], v[4], v[5], v[6], v[7]); ctx.stroke();
-    }
+  if (t - tik > 100) {                   // tien keer per seconde: het licht, de kanalen (voor het aanwijzen) en de wolk
+    tik = t; verlicht(); tekenWolk();
+    for (let k = 1; k <= n - 2; k++) { const d = doelKanalen(j, k), g = gladKan[k]; if (g) for (let c = 0; c < d.length; c++) g[c] += (d[c] - g[c]) * 0.35; }
   }
-  // de vonkjes: over de vezel van de stroom naar de groep, dan door naar het blok
+  // de opbouw: één keer, van links naar rechts (op de telefoon van boven naar onder), daarna staat het
+  let front = 1;
+  if (!opbouw.klaar) {
+    if (!opbouw.t0 && (bedrading || t > 2500)) opbouw.t0 = t;
+    if (!opbouw.t0) front = 0;
+    else { const p = Math.min(1, (t - opbouw.t0) / 3000); front = p < 0.5 ? 2 * p * p : 1 - (-2 * p + 2) ** 2 / 2; if (p >= 1) opbouw.klaar = true; }
+  }
+  ctx.save();
+  if (front < 1) { const tot = G.uA + G.span * (0.02 + 1.0 * front); ctx.beginPath(); if (G.staand) ctx.rect(0, 0, B, tot); else ctx.rect(0, 0, tot, H); ctx.clip(); }
+  ctx.drawImage(vezelDoek, 0, 0); ctx.drawImage(lichtDoek, 0, 0);
+  // de knopen: een gloed naar de activiteit van de groep
+  const S = G.gloeiS;
+  for (let c = 0; c < nK; c++) { const g = glad[c], kol = G.knoop[c]; for (let i = 0; i < kol.length; i++) { const lvl = nivo(g ? g[i] : 0); ctx.drawImage(gloei, lvl * S, 0, S, S, kol[i][0] - S / 2, kol[i][1] - S / 2, S, S); } }
+  // de uitvoer: haar zekerheid over het teken van nu
+  const zeker = glad[n - 1] ? glad[n - 1][0] : 0;
+  { const lvl = nivo(zeker), s2 = S * 1.6; ctx.drawImage(gloei, lvl * S, 0, S, S, G.uit[0] - s2 / 2, G.uit[1] - s2 / 2, s2, s2); }
+  // het punt: haar vraag komt hier binnen
+  { const s3 = S * 2.6; ctx.globalAlpha = alpha * 0.9; ctx.drawImage(gloei, 5 * S, 0, S, S, G.punt[0] - s3 / 2, G.punt[1] - s3 / 2, s3, s3); ctx.globalAlpha = alpha; ctx.fillStyle = "#FFFFFF"; ctx.beginPath(); ctx.arc(G.punt[0], G.punt[1], DPR * 2.4, 0, 7); ctx.fill(); }
+  // de vonkjes
   const nu = performance.now();
-  vonken = vonken.filter(v => nu - v.t0 < v.duur + 300);
+  vonken = vonken.filter(v => nu - v.t0 < v.duur);
   for (const v of vonken) {
     const u = (nu - v.t0) / v.duur; if (u < 0) continue;
-    const kl = STROOM[v.i][1], p = vezel(v.i, v.g);
-    let x, y, a;
-    if (u <= 1) { const w = 1 - u; x = w * w * w * p[0] + 3 * w * w * u * p[2] + 3 * w * u * u * p[4] + u * u * u * p[6]; y = w * w * w * p[1] + 3 * w * w * u * p[3] + 3 * w * u * u * p[5] + u * u * u * p[7]; a = 0.95; }
-    else { const u2 = Math.min(1, (u - 1) * v.duur / 300), [xa, ya] = kolUit(v.g), [xb, yb] = blokPunt(v.g); x = xa + (xb - xa) * u2; y = ya + (yb - ya) * u2; a = 0.9 * (1 - u2); }
-    ctx.fillStyle = `rgba(${kl},${a.toFixed(2)})`; ctx.beginPath(); ctx.arc(x, y, DPR * 2.2, 0, 7); ctx.fill();
-    ctx.fillStyle = "rgba(255,255,255," + (0.6 * a).toFixed(2) + ")"; ctx.beginPath(); ctx.arc(x, y, DPR * 1.0, 0, 7); ctx.fill();
+    const [a, b] = eind(v.c, v.a, v.b), [x, y] = opPad(a, b, u), f = Math.sin(u * Math.PI);
+    ctx.fillStyle = `rgba(${TINT.licht},${(0.9 * f).toFixed(2)})`; ctx.beginPath(); ctx.arc(x, y, DPR * 2.0, 0, 7); ctx.fill();
+    ctx.fillStyle = `rgba(255,255,255,${(0.8 * f).toFixed(2)})`; ctx.beginPath(); ctx.arc(x, y, DPR * 0.9, 0, 7); ctx.fill();
   }
-  // de kolom: de 32 groepen van de inbedding, en de streepjes naar het blok
-  for (let g = 0; g < nk; g++) {
-    const [x, y] = kolPunt(g), a = g0[g] || 0, [xa, ya] = kolUit(g), [xb, yb] = blokPunt(g);
-    ctx.fillStyle = NIVO[nivo(a)]; ctx.beginPath(); ctx.arc(x, y, DPR * (2.2 + 1.6 * a), 0, 7); ctx.fill();
-    ctx.strokeStyle = `rgba(${TINT.blauw},${(0.15 + 0.5 * a).toFixed(2)})`; ctx.lineWidth = DPR;
-    ctx.beginPath(); ctx.moveTo(xa, ya); ctx.lineTo(xb, yb); ctx.stroke();
+  // de wolk van bits, en de acht draden van de uitvoer naar het nieuwste teken
+  ctx.drawImage(wolkDoek, G.wolk[0], G.wolk[1]);
+  if (wolkTekst) {
+    const nrij = Math.min(G.wolkRijen, new TextEncoder().encode(wolkTekst).length) - 1;
+    if (nrij >= 0) { const [u0, v0] = wolkRij(nrij); ctx.strokeStyle = `rgba(${TINT.licht},0.45)`; ctx.lineWidth = DPR * 0.8; ctx.beginPath(); pad(ctx, G.uit, pt(u0, v0)); ctx.stroke(); }
   }
-  if (hover.station === 0) { ctx.strokeStyle = "rgba(255,255,255,0.8)"; ctx.lineWidth = DPR; if (G.staand) rondRect(ctx, G.kolX0 - fs * 0.8, G.kolY - fs, G.kolX1 - G.kolX0 + fs * 1.6, fs * 2, 4 * DPR); else rondRect(ctx, G.kolX - fs, G.kolY0 - fs * 0.8, fs * 2, G.kolY1 - G.kolY0 + fs * 1.6, 4 * DPR); ctx.stroke(); }
-  // het blok
-  ctx.drawImage(blokDoek, G.blokX, G.blokY);
-  // de lagen erlangs, en de aangewezen laag/het aangewezen kanaal
-  ctx.font = `700 ${fs * 0.62}px "JetBrains Mono", ui-monospace, monospace`; ctx.textAlign = "left"; ctx.textBaseline = "middle";
-  for (let k = 1; k <= n - 2; k++) {
-    const y = G.blokY + ((k - 1) * (G.rijen + 1) + G.rijen / 2) * G.cel, licht = hover.station === k || (zoom.laag === k && zoom.doel);
-    ctx.fillStyle = licht ? "rgba(255,255,255,0.95)" : `rgba(${TINT.cyaan},0.7)`;
-    if (!G.staand || licht) ctx.fillText(`L${k}`, G.blokX + G.blokB + fs * 0.5, y);
-    if (licht) { ctx.strokeStyle = "rgba(255,255,255,0.7)"; ctx.lineWidth = DPR; ctx.strokeRect(G.blokX - DPR, G.blokY + (k - 1) * (G.rijen + 1) * G.cel - DPR, G.blokB + 2 * DPR, G.rijen * G.cel + 2 * DPR); }
+  // de namen: de vraag bij het punt, de lagen onder de kolommen, de uitvoer
+  ctx.textBaseline = "middle";
+  const vraag = stand ? (stand.opgave || "").replace(/\n/g, " ; ") : "";
+  if (G.staand) {
+    tekst("VRAAG", G.punt[0] + fs * 2.4, G.punt[1] - fs * 0.6, `rgba(${TINT.draad},0.85)`, 0.6);
+    ctx.font = `500 ${fs * 0.62}px "JetBrains Mono", ui-monospace, monospace`; ctx.fillStyle = `rgba(${TINT.draad},0.6)`; ctx.textAlign = "left";
+    ctx.fillText(knip(vraag, G.dwars * 0.5 - fs * 3), G.punt[0] + fs * 2.4, G.punt[1] + fs * 0.6);
+  } else {
+    tekst("VRAAG", G.punt[0], G.punt[1] - fs * 1.6, `rgba(${TINT.draad},0.85)`, 0.6, "center");
+    ctx.font = `500 ${fs * 0.62}px "JetBrains Mono", ui-monospace, monospace`; ctx.fillStyle = `rgba(${TINT.draad},0.6)`; ctx.textAlign = "left";
+    ctx.fillText(knip(vraag, G.span * 0.5), P.vrijX + fs * 0.4, P.vrijY + fs * 0.8);
   }
-  if (hover.station !== null && hover.kanaal !== null) {
-    const k = hover.station, cel = Math.floor(hover.kanaal / G.perCel), x = G.blokX + (cel % G.kolommen) * G.cel, y = G.blokY + ((k - 1) * (G.rijen + 1) + Math.floor(cel / G.kolommen)) * G.cel;
-    ctx.strokeStyle = "rgba(255,255,255,0.95)"; ctx.lineWidth = DPR; ctx.strokeRect(x - DPR, y - DPR, G.cel + 2 * DPR, G.cel + 2 * DPR);
+  for (let c = 0; c < nK; c++) {
+    const licht = hover.station === c || (zoom.laag === c && zoom.doel), naam = c === 0 ? "IN" : "L" + c;
+    if (G.staand && !licht && c % 2 === 0 && c > 0) continue;          // op de telefoon om en om, anders staan ze op elkaar
+    tekst(naam, G.label[c][0], G.label[c][1], licht ? "rgba(255,255,255,0.95)" : `rgba(${TINT.draad},0.55)`, 0.56, "center");
+    if (licht) { const kol = G.knoop[c], a = kol[0], b = kol[kol.length - 1]; ctx.strokeStyle = "rgba(255,255,255,0.5)"; ctx.lineWidth = DPR; ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); }
   }
-  // de uitvoer: haar zekerheid over het teken van nu, rechtsonder het blok
-  const zeker = glad[n - 1] ? glad[n - 1][0] : 0;
-  ctx.fillStyle = `rgba(${TINT.geel},0.85)`; ctx.font = `700 ${fs * 0.62}px "JetBrains Mono", ui-monospace, monospace`; ctx.textAlign = "right";
-  ctx.fillText(`UITVOER · ZEKERHEID ${Math.round(100 * zeker)}%`, G.blokX + G.blokB + (G.staand ? 0 : fs * 3.4), G.blokY - fs * 0.9);
-  ctx.fillStyle = `rgba(${TINT.cyaan},0.7)`; ctx.textAlign = "left";
-  ctx.fillText(G.staand ? `${n - 2} LAGEN · ${G.kolommen} CIJFERS PER LAAG (${G.perCel} KANALEN PER CIJFER)` : `${n - 2} LAGEN × ${spec.breedte} KANALEN · 1 = ACTIEF, 0 = STIL · KLEUR = STERKTE`, G.blokX, G.blokY - fs * 0.9);
-  ctx.textBaseline = "alphabetic"; ctx.globalAlpha = 1;
+  if (hover.station !== null && hover.groep !== null && G.knoop[hover.station]) { const p = G.knoop[hover.station][hover.groep]; ctx.strokeStyle = "rgba(255,255,255,0.95)"; ctx.lineWidth = DPR; ctx.beginPath(); ctx.arc(p[0], p[1], fs * 0.5, 0, 7); ctx.stroke(); }
+  const uitLicht = hover.station === n - 1 || (zoom.laag === n - 1 && zoom.doel);
+  if (G.staand) { tekst(`UITVOER · ZEKERHEID ${Math.round(100 * zeker)}%`, G.uit[0] - fs * 1.4, G.uit[1], uitLicht ? "rgba(255,255,255,0.95)" : `rgba(${TINT.draad},0.85)`, 0.6, "right"); }
+  else { tekst("UITVOER", G.uit[0], G.uit[1] - fs * 1.7, uitLicht ? "rgba(255,255,255,0.95)" : `rgba(${TINT.draad},0.85)`, 0.6, "center"); tekst(`ZEKERHEID ${Math.round(100 * zeker)}%`, G.uit[0], G.uit[1] + fs * 1.7, `rgba(${TINT.draad},0.7)`, 0.56, "center"); }
+  tekst("ANTWOORD · BITS", G.staand ? G.wolk[0] : G.wolk[0] + G.wolk[2] / 2, G.staand ? G.wolk[1] - fs * 0.8 : G.wolk[1] - fs * 0.9, `rgba(${TINT.draad},0.6)`, 0.5, G.staand ? "left" : "center");
+  tekst(`${n - 2} LAGEN × ${KOL[1]} GROEPEN · ELKE DRAAD EEN GEWICHT · LICHT = HAAR SIGNAAL VAN NU`, G.staand ? P.vrijX + fs * 0.4 : P.vrijX + P.vrijB - fs * 0.4, G.staand ? P.vrijY + P.vrijH - fs * 0.6 : P.vrijY + fs * 0.8, `rgba(${TINT.draad},0.5)`, 0.5, G.staand ? "left" : "right");
+  ctx.restore(); ctx.textBaseline = "alphabetic"; ctx.globalAlpha = 1;
 }
 
 /* ---- de laag open: kanalen, matrices, bouw (de microscoop) ---- */
@@ -404,11 +507,11 @@ function tekenLaag(t, j, alpha) {
 
 /* ---- elk beeld ---- */
 let laatstMeld = 0, beelden = 0, laatsteVonk = 0;
-const FOTO = /foto=1/.test(location.search);        // proefopname: na 40 beelden stoppen
 // de kijker bewaart de laatste 48 doorgangen; bij een langer antwoord begint
 // de eerste dus niet bij het lezen van de vraag maar bij een teken verderop
 const verschuiving = () => Math.max(0, antwoordDoel.length + 1 - rijen.length);
 function teken(t) {
+  if (FOTO && ++beelden > 40 && beelden % 6) { requestAnimationFrame(teken); return; }   // proefopname: na 40 beelden nog maar één op de zes (anders loopt de opname vast)
   ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1;
   ctx.clearRect(0, 0, B, H);
   if (!rijen.length && wachtrij.length) nieuweGedachte(t);
@@ -426,10 +529,9 @@ function teken(t) {
     antwoordNu = Math.max(0, Math.min(antwoordDoel.length, j + verschuiving()));
     if (t - laatstTonen > 80) { laatstTonen = t; const a = document.getElementById("antwoord"); if (a) a.textContent = antwoordDoel.slice(0, antwoordNu); if (typeof toonGedachte === "function") toonGedachte(j, n); }
   }
-  // de ruimte draait zachtjes als je even niets doet
   if (vuil) projecteer();
-  // de pulstrein (25 aug, Cley: "er moet elke keer een puls doorheen gaan, het mag niet stoppen"):
-  // elke 120 ms vonkjes van de stromen naar de kolom en door naar het blok, ook tussen twee gedachten
+  // de vonkjes (25 aug, Cley: "er moet elke keer een puls doorheen gaan, het mag niet stoppen"):
+  // elke 120 ms over een draad waar nu stroom staat, ook tussen twee gedachten -- nooit over het hele scherm
   if (zoom.t < 0.5 && t - laatsteVonk > 120) { laatsteVonk = t; vonk(t); }
   zoekHover();
   zoom.t += ((zoom.doel || 0) - zoom.t) * 0.12;
@@ -439,6 +541,6 @@ function teken(t) {
   doek.style.cursor = (hover.station !== null || zoom.t > 0.5) ? "pointer" : "default";
   if (t - laatstMeld > 100) { laatstMeld = t; if (typeof toonOnderschrift === "function") toonOnderschrift(j, n); }
   if (!LIVE && n && vast === null && klaarSinds && t - klaarSinds > 7000) { if (wachtrij.length) nieuweGedachte(t); else { speelStart = t; klaarSinds = 0; } }
-  if (!FOTO || ++beelden < 40) requestAnimationFrame(teken);
+  requestAnimationFrame(teken);
 }
 requestAnimationFrame(teken);
