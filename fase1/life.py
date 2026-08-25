@@ -50,6 +50,7 @@ import exams
 import journal
 import parallel
 import snapshot
+import learning
 from learning import Learner
 
 # Join the process group if torchrun launched us (else this returns 1 and
@@ -212,7 +213,9 @@ for step in range(BEGIN, STEPS + 1):
         chosen.get((result["family"], result["depth"]), 0) + 1
     log.write("stap", stap=step, familie=result["family"],
               diepte=result["depth"], score=result["score"],
-              fout=result["loss"])
+              fout=result["loss"], spel=result.get("spel", False),
+              goed=result.get("goed"), mis=result.get("fout"),
+              weetniet=result.get("weetniet"))
     if result["deeper"]:
         say(f"  stap {step:>5} | wereld open: "
               + ", ".join(f"{f} tot {d}" for f, d in result["deeper"]))
@@ -243,6 +246,18 @@ for step in range(BEGIN, STEPS + 1):
               f"  nog {rest}"
               f"   {result['family']}/{result['depth']}  {last_score:>4}",
               flush=True)
+
+    # Her day (25 Aug 2026): at the end of every DAG_STAPPEN steps the day's
+    # tally becomes a few lines in her own idiom, into her memory through
+    # the doorway, and into the journal (kind "dag", permanent).
+    if step % learning.DAG_STAPPEN == learning.DAG_STAPPEN - 1:
+        dagregels = learner.dag_afsluiten(step)
+        for vraag, antwoord in dagregels:
+            log.write("dag", stap=step, dag=step // learning.DAG_STAPPEN,
+                      vraag=vraag, antwoord=antwoord)
+        if dagregels:
+            say(f"  dag {step // learning.DAG_STAPPEN} afgesloten: "
+                f"{len(dagregels)} regels in haar geheugen — {dagregels[-1][1]}")
 
     if step % EXAM_EVERY == 0:
         scores = exam(step)

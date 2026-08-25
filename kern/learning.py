@@ -92,6 +92,92 @@ ONCE_TARGET = 0.8
 ONCE_MAX_PASSES = 30
 
 
+# --- the honest "?" and the play hour (25 Aug 2026, Claude's wishes 1 and 3, on Cley's word) --
+def score_of(right):
+    """A self-test mark from a list of check() results.
+
+    True is right, False is wrong, None is an honest "?" (see tasks.Task.check).
+    A "?" counts neither right nor wrong; a wrong answer weighs half a point
+    against. So guessing costs more than admitting: ten right and ten wrong
+    give 0,25, ten right and ten "?" give 0,5. Never below zero.
+    """
+    n = len(right)
+    if not n:
+        return 0.0
+    goed = sum(1 for r in right if r is True)
+    fout = sum(1 for r in right if r is False)
+    return max(0.0, (goed - 0.5 * fout) / n)
+
+
+def telling(right):
+    """(goed, fout, weetniet) — for the journal."""
+    return (sum(1 for r in right if r is True), sum(1 for r in right if r is False),
+            sum(1 for r in right if r is None))
+
+
+# One hour a day without a mark: she picks (curiosity picks, as always) and
+# learns, but nothing is measured — no self-test, no curiosity update, no
+# gate that opens. In steps, not by the clock, so the stream stays
+# repeatable: one block of SPEL_DUUR steps in every SPEL_PERIODE (about
+# an hour in a day at five seconds a step).
+SPEL_PERIODE = 17_000
+SPEL_DUUR = 700
+
+
+def speelt(step):
+    return (step % SPEL_PERIODE) < SPEL_DUUR
+
+
+# --- her day (25 Aug 2026, Cley: a real answer to "hoe was je dag") -----------
+# A day is DAG_STAPPEN steps (the play hour's period). Through the day the
+# Learner tallies what she did — which families, how the self-tests went,
+# what she played, where the world opened — and at the end of the day the
+# tally becomes a few lessons in her own idiom (family gesprek, the same
+# doorway as Cley's lessons): "dag 3: wat oefende je?" → "ik oefende
+# rekenen, taal en code". Step-based and carried in the snapshot, so the
+# stream stays repeatable. The diary question "hoe was je dag?" gets the
+# latest day's line, so the kijker's evening question can land on it.
+DAG_STAPPEN = SPEL_PERIODE
+
+
+def _lege_dag():
+    return {"geoefend": {}, "gespeeld": {}, "scores": {}, "open": []}
+
+
+def _oordeel(fam, score):                 # her "zeggen" idiom, see world._verdict
+    return (f"{fam} gaat goed" if score >= 0.9 else f"{fam} gaat" if score >= 0.6
+            else f"{fam} is moeilijk")
+
+
+def _lijst(fams):
+    return fams[0] if len(fams) == 1 else ", ".join(fams[:-1]) + " en " + fams[-1]
+
+
+def dag_lessen(dag, nummer):
+    """(vraag, antwoord) pairs from a day's tally; [] for an empty day."""
+    uit = []
+    top = sorted(dag["geoefend"], key=lambda f: (-dag["geoefend"][f], f))[:3]
+    if top:
+        uit.append((f"dag {nummer}: wat oefende je?", f"ik oefende {_lijst(top)}"))
+    gem = {f: s / n for f, (s, n) in dag["scores"].items() if n}
+    if gem:
+        beste = max(sorted(gem), key=gem.get)
+        slechtste = min(sorted(gem), key=gem.get)
+        uit.append((f"dag {nummer}: wat gaat goed?", _oordeel(beste, gem[beste])))
+        uit.append((f"dag {nummer}: wat is moeilijk?", _oordeel(slechtste, gem[slechtste])))
+    spel = sorted(dag["gespeeld"], key=lambda f: (-dag["gespeeld"][f], f))[:3]
+    if spel:
+        uit.append((f"dag {nummer}: wat speelde je?", f"ik speelde {_lijst(spel)}"))
+    if dag["open"]:
+        uit.append((f"dag {nummer}: wat ging open?",
+                    " ; ".join(f"ik mag dieper in {f}" for f in dag["open"][:3])))
+    if uit:
+        samen = " ; ".join(a for q, a in uit if "speelde" not in q and "open" not in q)
+        uit.append((f"dag {nummer}: hoe was je dag?", samen))
+        uit.append(("hoe was je dag?", samen))
+    return uit
+
+
 def room_for(depth, family=None, window=512):
     """How many characters a working needs here.
 
@@ -303,6 +389,7 @@ class Learner:
         # tasks costs as much as 16. The time hangs on the number of
         # characters she writes, not on how many tasks go in together.
         self.probe_every = probe_every
+        self.dag = _lege_dag()             # today's tally (25 Aug 2026), see dag_lessen
         self.curiosity = curiosity or Curiosity(
             families=world.FAMILIES,
             grades=tuple(range(world.MIN_DEPTH, deepest + 1)),
@@ -794,20 +881,34 @@ class Learner:
         # tasks costs as much as 16: the time hangs on the characters she
         # writes, not on how many tasks go in.
         score = None
-        if step % self.probe_every == 0:
+        goed = fout = weetniet = None
+        spel = speelt(step)                # the play hour: no mark, no gate
+        if step % self.probe_every == 0 and not spel:
             given = self.answer(chunk,
                                 at_most=room_for(depth, family,
                                                    self.core.window))
             right = [t.check(a) for t, a in zip(chunk, given)]
             for t, a, r in zip(chunk, given, right):
                 self.memory.remember(t, a, r)
-            score = sum(right) / len(right)
+            score = score_of(right)
+            goed, fout, weetniet = telling(right)
             self.curiosity.update((family, depth), score, step)
 
         loss = self.learn(chunk)
-        deeper = self.open_deeper(step)
+        deeper = [] if spel else self.open_deeper(step)
+        # the day's tally
+        d = self.dag
+        bak = d["gespeeld"] if spel else d["geoefend"]
+        bak[family] = bak.get(family, 0) + 1
+        if score is not None:
+            som, n = d["scores"].get(family, (0.0, 0))
+            d["scores"][family] = (som + score, n + 1)
+        for f, _ in deeper:
+            if f not in d["open"]:
+                d["open"].append(f)
         return {"step": step, "family": family, "depth": depth,
-                "score": score, "loss": loss,
+                "score": score, "loss": loss, "spel": spel,
+                "goed": goed, "fout": fout, "weetniet": weetniet,
                 "deepest_per": dict(self.deepest_per), "deeper": deeper}
 
     # --- state --------------------------------------------------------------
@@ -887,9 +988,23 @@ class Learner:
                    sorted(self.curiosity.score.items()),
                    sorted(self.curiosity.last.items())))
 
+    def dag_afsluiten(self, step):
+        """End of a day (25 Aug 2026): the day's lessons into the memory,
+        through the doorway like every lesson, and a fresh tally. Returns
+        the lessons, for the journal."""
+        nummer = step // DAG_STAPPEN
+        lessen = dag_lessen(self.dag, nummer)
+        for i, (vraag, antwoord) in enumerate(lessen):
+            les = tasks_module.Task(family="gesprek", grade=1, number=step * 10 + i,
+                                    problem=vraag, solution=antwoord, working=None)
+            self.memory.remember(les, None, None)
+        self.dag = _lege_dag()
+        return lessen
+
     def carry(self):
         return {
             "geheugen": self.memory.carry(),
+            "dag": self.dag,                   # today's tally (25 Aug 2026)
             "nieuwsgierig": self.curiosity.carry(),
             "les_tot": self.lessons_upto,
             "diepste_per": dict(self.deepest_per),
@@ -1091,6 +1206,11 @@ class Learner:
             self.curiosity.restore(carried["nieuwsgierig"])
         if carried.get("leerstappen") is not None:
             self.steps = int(carried["leerstappen"])
+        if carried.get("dag"):                 # snapshots from before 25 Aug 2026 lack it: a fresh day
+            d = carried["dag"]
+            self.dag = {"geoefend": dict(d.get("geoefend", {})), "gespeeld": dict(d.get("gespeeld", {})),
+                        "scores": {f: (float(v[0]), int(v[1])) for f, v in d.get("scores", {}).items()},
+                        "open": list(d.get("open", []))}
         if carried.get("diepste_per"):
             # Bounded restore: a snapshot can carry a world open too deep
             # (code to 12, from before the fence of 8 existed).

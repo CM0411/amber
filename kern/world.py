@@ -56,8 +56,10 @@ from tasks import FAMILIES as _MEASURED_FAMILIES, Task, Picker, _mix
 #   17 Aug 2026: "logica" — if-then chains over true/false facts (_logic).
 #   18 Aug 2026: "volgorde" — steps put in the right order from rules (_order).
 #   18 Aug 2026: "tekst" — patterns in letters and words, counted (_text).
+#   25 Aug 2026: "onbekend" — questions nobody can answer; the honest answer
+#   is "?" (Claude's first wish, on Cley's word: an honest "I don't know").
 FAMILIES = _MEASURED_FAMILIES + ("geheugen", "logica", "volgorde", "tekst", "zeggen", "taal",
-                                  "machine", "tellen", "antwoord")
+                                  "machine", "tellen", "antwoord", "onbekend")
 
 # Own constant, separate from tasks.py's: the world and the exams are two
 # separate things and must be so in their numbers too.
@@ -91,7 +93,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 20, "code": 48, "geheugen": 40, "logica": 20, "volgorde": 20, "tekst": 20, "zeggen": 24, "taal": 16, "machine": 20, "tellen": 12, "antwoord": 16}
+MAX_DEPTH_PER = {"puzzel": 20, "code": 48, "geheugen": 40, "logica": 20, "volgorde": 20, "tekst": 20, "zeggen": 24, "taal": 16, "machine": 20, "tellen": 12, "antwoord": 16, "onbekend": 12}
 
 
 def max_depth(family):
@@ -2507,10 +2509,58 @@ def _counting(depth, t):
     return problem, len(hits), working
 
 
+
+
+# --- onbekend (unknowable) — (25 Aug 2026, Claude's first wish, on Cley's word) --
+# An honest "I don't know". Until now she always had to say something, so
+# she guessed, and a lucky guess counted as knowing. This family asks what
+# nobody can know — a secret number, a die not yet thrown, tomorrow, a
+# name never given — and the one right answer is "?". The rule in the
+# marking (tasks.Task.check, learning.score_of): a "?" counts neither
+# right nor wrong, a wrong answer weighs half a point against, so guessing
+# costs more than admitting. Depth adds context and length, never
+# knowability: nothing in the text lets the answer be worked out. Uses the
+# language family's animals and things, so the words are hers already.
+ONBEKEND_KORT = ("wat is het geheime getal?", "welk getal denk ik?",
+                 "wat gooit de dobbelsteen?", "welk getal zit in de dichte doos?",
+                 "hoe laat wordt het morgen wakker?", "wat is het wachtwoord?")
+
+
+def _unknowable(depth, t):
+    dier, ding = t.choice(TAAL_DIEREN), t.choice(TAAL_DINGEN)
+    dier2, ding2 = t.choice(TAAL_DIEREN), t.choice(TAAL_DINGEN)
+    n, m, k = t.integer(2, 99), t.integer(2, 99), t.integer(2, 99)
+    kleur = t.choice(("rood", "blauw", "geel", "groen"))
+    keus = t.integer(1, 4)
+    # every line carries numbers and words drawn fresh, so the space is
+    # wide at every depth (the world must not run out — test-world)
+    if depth <= 3:
+        problem = (f"de {dier} zit op de {ding} / hoe heet de {dier}?" if keus == 1
+                   else f"het geheime getal ligt tussen {min(n, m)} en {max(n, m)} / wat is het geheime getal?" if keus == 2
+                   else f"cley gooit de dobbelsteen {n} keer / wat gooit hij de {k}e keer?" if keus == 3
+                   else f"in de {ding} zitten {n} {dier}s / hoe heet de {k}e {dier}?")
+    elif depth <= 6:
+        problem = (f"a = {n} ; b is geheim / wat is a + b?" if keus == 1
+                   else f"cijfers: rekenen {n} ; puzzel {m} ; {dier} ? / wat is {dier}?" if keus == 2
+                   else f"de {dier} zit op de {ding} ; de {dier2} zit op de {ding2} / hoe heet de {dier}?" if keus == 3
+                   else f"a = {n} ; b = {m} ; c is geheim / wat is a + b + c?")
+    elif depth <= 9:
+        problem = (f"a = {n} ; b = a * {m} ; c is geheim / wat is b + c?" if keus == 1
+                   else f"de {dier} is {kleur} ; de {ding} is dicht ; er zitten {n} dingen in / wat zit er in de {ding}?" if keus == 2
+                   else f"Wat is {n} plus het geheime getal van de {dier}?" if keus == 3
+                   else f"lijst: {n} {m} {k} / welk getal komt er morgen bij?")
+    else:
+        problem = (f"lijst: {n} {m} {k} {t.integer(2, 99)} / welk getal gooit de dobbelsteen morgen?" if keus == 1
+                   else f"de {dier} zit op de {ding} ; de {dier2} zit op de {ding2} ; de {dier} is {kleur} / hoe heet de {dier} van cley?" if keus == 2
+                   else f"a = {n} ; b = a * {m} ; het geheime getal is geheim / wat is b keer het geheime getal?" if keus == 3
+                   else f"cijfers: {dier} {n} ; {dier2} {m} ; {ding} ? / wat is {ding} morgen?")
+    return problem, "?", "?"          # the working is the answer: what she writes is "?"
+
+
 _MAKERS = {"rekenen": _arithmetic, "puzzel": _row, "code": _code,
            "geheugen": _memory, "logica": _logic, "volgorde": _order,
            "tekst": _text, "zeggen": _saying, "taal": _language, "antwoord": _talk,
-           "machine": _machine, "tellen": _counting}
+           "machine": _machine, "tellen": _counting, "onbekend": _unknowable}
 
 
 # --- the conversational wrapper (13 Aug 2026) --------------------------------

@@ -388,7 +388,7 @@ const nl = (n, d) => (+n).toLocaleString("nl", d === undefined ? {} : {minimumFr
 const KLEUR = {rekenen: "#6FB5FF", puzzel: "#B78AE0", code: "#7FE0C3", geheugen: "#FFB86B", logica: "#FF8FA3",
                volgorde: "#8FD3FF", tekst: "#E6D37A", zeggen: "#F0A8FF", taal: "#A3FFD6", machine: "#FFD28F",
                tellen: "#C4B5FD", antwoord: "#FDA4AF", gesprek: "#F0A8FF"};
-const FAMILIES = ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal", "machine", "tellen", "antwoord"];
+const FAMILIES = ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal", "machine", "tellen", "antwoord", "onbekend"];
 const band = (p) => p >= 90 ? "hoog" : p >= 60 ? "midden" : "laag";
 
 /* ---- bladen ---- */
@@ -531,11 +531,18 @@ function tekenLevenslijn(s) {
 }
 
 function hekken(s) {
-  const grens = {};
+  // vangnet: het hek van run 7.4 (25 aug 2026); wat de run zelf zegt gaat voor
+  const grens = {rekenen: 60, puzzel: 20, code: 48, geheugen: 40, logica: 20, volgorde: 20, tekst: 20, zeggen: 24, taal: 16, machine: 20, tellen: 12, antwoord: 16, onbekend: 12};
   const hekstr = (s.run && s.run.config && s.run.config.hek) || "";
-  for (const m of hekstr.matchAll(/([a-z]+)\s+(\d+)/g)) grens[m[1]] = +m[2];
+  const uitRun = {};
+  for (const m of hekstr.matchAll(/([a-z]+)\s+(\d+)/g)) uitRun[m[1]] = +m[2];
   const rand = Object.assign({}, (s.run && s.run.wereld) || {}, s.wereldrand || {});
-  const fams = FAMILIES.filter(f => f in grens || f in rand);
+  // alleen de families die deze run kent (het hek van de run, of een wereldrand)
+  const fams = [];
+  for (const f of ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal", "machine", "tellen", "antwoord", "onbekend"]) {
+    if (f in uitRun) grens[f] = uitRun[f];
+    if (f in uitRun || f in rand) fams.push(f);
+  }
   for (const f of fams) { if (!grens[f]) grens[f] = rand[f] || 1; rand[f] = Math.min(rand[f] || 0, grens[f]); }
   return {grens, rand, fams};
 }

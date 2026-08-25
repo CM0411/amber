@@ -156,6 +156,17 @@ class Task:
         number. For tasks without a working nothing changes: that single
         number is the answer, and the frozen exams keep working.
         """
+        # An honest "?" (25 Aug 2026): the last piece of what she wrote is
+        # a lone "?" — she says she does not know. For a task whose solution
+        # IS "?" (family onbekend) that is right; anything else there is
+        # wrong. For every other task a "?" counts neither right nor wrong
+        # (None), and the marking (learning.score_of) makes a wrong answer
+        # cost more than a "?".
+        last_piece = str(answer).rsplit(" ; ", 1)[-1].strip()
+        if self.solution.strip() == "?":
+            return last_piece == "?"
+        if last_piece == "?":
+            return None
         right = _NUMBER.findall(self.solution)
         if not right:
             # A solution without a number (18 Aug 2026: the families

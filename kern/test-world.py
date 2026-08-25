@@ -1821,8 +1821,8 @@ check("antwoord: no number in the solution and everything fits the room", an_unf
       and all(not re.search(r"\d", world.make("antwoord", d, 3).solution) for d in range(1, 13)))
 check("antwoord: at depth 10-12 the LAST of two answers counts",
       all("het laatste geldt" in world.make("antwoord", d, n).working for d in (10, 11, 12) for n in range(30)))
-check("the world's families end with antwoord — appended, the older streams untouched",
-      world.FAMILIES[-1] == "antwoord" and world.FAMILIES[7:11] == ("zeggen", "taal", "machine", "tellen"))
+check("the world's families end with onbekend — appended, the older streams untouched",
+      world.FAMILIES[-1] == "onbekend" and world.FAMILIES[7:12] == ("zeggen", "taal", "machine", "tellen", "antwoord"))
 
 # --- taal: the ninth family (18 Aug 2026, Cley) -------------------------------
 # Short sentences from a fixed vocabulary; the judge parses them with the

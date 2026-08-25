@@ -74,7 +74,8 @@ END_KINDS = {"rust"}
 # "les" is permanent since 13 Aug 2026: a lesson from Cley came from
 # outside and can never be recomputed — and `lessons_upto` in the snapshot
 # needs the original line numbers to stay honest across compactions.
-PERMANENT = {"meting", "proefwerk", "wereld_dieper", "besluit", "les"}
+# "dag" (25 Aug 2026): her day's lines, what she learned about her own day.
+PERMANENT = {"meting", "proefwerk", "wereld_dieper", "besluit", "les", "dag"}
 
 
 class Journal:
