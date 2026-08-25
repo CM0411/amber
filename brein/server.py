@@ -687,6 +687,11 @@ class Mobiel(Venster):
     gebouwd voor de duim in plaats van geperst vanaf het grote scherm."""
     def do_GET(self):
         if self.path == "/" or self.path.startswith("/index"):
+            # 25 aug 2026: de telefoon krijgt dezelfde Sterrenwacht (die past zich aan);
+            # de oude telefoonpagina staat nog op /mobiel.html
+            with open(f"{MAP}/index.html", "rb") as f:
+                self._stuur(f.read())
+        elif self.path.startswith("/mobiel.html"):
             with open(f"{MAP}/mobiel.html", "rb") as f:
                 self._stuur(f.read())
         else:

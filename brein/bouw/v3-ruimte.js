@@ -130,14 +130,24 @@ const atlas = document.createElement("canvas"), blokDoek = document.createElemen
 let blokTik = 0;
 function projecteer() {
   const L = P.vrijX, T = P.vrijY, W = P.vrijB, Hh = P.vrijH, fs = P.fs, lagen = Math.max(1, KOL.length - 2);
-  G.rijen = 6; G.kolommen = Math.ceil(spec.breedte / G.rijen);
+  G.staand = matchMedia("(max-width: 900px)").matches || W < Hh * 1.1;   // telefoon: alles onder elkaar
+  G.kolommen = 64; G.rijen = G.staand ? 1 : 6; G.perCel = Math.max(1, Math.round(spec.breedte / (G.rijen * G.kolommen)));
   const rows = lagen * G.rijen + (lagen - 1);
-  G.cel = Math.max(2, Math.min((W * 0.55) / G.kolommen, (Hh - fs * 7.5) / rows));   // onderin ruimte voor de tegels en het onderschrift
-  G.blokB = G.cel * G.kolommen; G.blokH = G.cel * rows;
-  G.blokX = L + W - G.blokB - fs * 4.2; G.blokY = T + fs * 1.6 + (Hh - fs * 7.5 - G.blokH) / 2;
-  G.kolX = G.blokX - fs * 3.2; G.kolY0 = G.blokY + G.blokH * 0.2; G.kolY1 = G.blokY + G.blokH * 0.8;
-  G.stroomX0 = L + fs * 0.6; G.stroomX1 = G.kolX - fs * 10;
-  G.stroomY = [T + Hh * 0.32, T + Hh * 0.5, T + Hh * 0.68];
+  if (G.staand) {
+    G.cel = Math.max(2, Math.min((W - fs * 1.2) / G.kolommen, (Hh * 0.52 - fs * 5) / rows));
+    G.blokB = G.cel * G.kolommen; G.blokH = G.cel * rows;
+    G.blokX = L + (W - G.blokB) / 2; G.blokY = T + Hh * 0.44;
+    G.kolY = T + Hh * 0.36; G.kolX0 = G.blokX + fs * 0.5; G.kolX1 = G.blokX + G.blokB - fs * 0.5;
+    G.stroomX0 = L + fs * 0.6; G.stroomX1 = L + W - fs * 0.6;
+    G.stroomY = [T + Hh * 0.09, T + Hh * 0.18, T + Hh * 0.27];
+  } else {
+    G.cel = Math.max(2, Math.min((W * 0.55) / G.kolommen, (Hh - fs * 7.5) / rows));   // onderin ruimte voor de tegels en het onderschrift
+    G.blokB = G.cel * G.kolommen; G.blokH = G.cel * rows;
+    G.blokX = L + W - G.blokB - fs * 4.2; G.blokY = T + fs * 1.6 + (Hh - fs * 7.5 - G.blokH) / 2;
+    G.kolX = G.blokX - fs * 3.2; G.kolY0 = G.blokY + G.blokH * 0.2; G.kolY1 = G.blokY + G.blokH * 0.8;
+    G.stroomX0 = L + fs * 0.6; G.stroomX1 = G.kolX - fs * 10;
+    G.stroomY = [T + Hh * 0.32, T + Hh * 0.5, T + Hh * 0.68];
+  }
   // de letters 0 en 1 in zes sterktes, één keer getekend
   const c = G.cel;
   atlas.width = Math.ceil(c * 12); atlas.height = Math.ceil(c);
@@ -148,6 +158,14 @@ function projecteer() {
   blokDoek.width = Math.ceil(G.blokB); blokDoek.height = Math.ceil(G.blokH);
   vuil = false; blokTik = 0;
 }
+function kolPunt(g) { const nk = KOL[0] || 1, u = nk > 1 ? g / (nk - 1) : 0.5; return G.staand ? [G.kolX0 + (G.kolX1 - G.kolX0) * u, G.kolY] : [G.kolX, G.kolY0 + (G.kolY1 - G.kolY0) * u]; }
+function blokPunt(g) { const nk = KOL[0] || 1, u = nk > 1 ? g / (nk - 1) : 0.5; return G.staand ? [G.blokX + G.blokB * u, G.blokY - DPR * 3] : [G.blokX - DPR * 3, G.blokY + G.blokH * u]; }
+function stroomEind(i) { return G.staand ? [G.stroomX0 + (G.stroomX1 - G.stroomX0) * (0.25 + 0.25 * i), G.stroomY[i] + P.fs * 0.6] : [G.stroomX1 + P.fs * 0.4, G.stroomY[i]]; }
+function vezel(i, g) {                  // de vier punten van de vezel van stroom i naar groep g
+  const [x0, y0] = stroomEind(i), [x3, y3] = kolPunt(g), k = G.staand ? [x3, y3 - DPR * 4] : [x3 - DPR * 4, y3];
+  return G.staand ? [x0, y0, x0, (y0 + k[1]) / 2, k[0], (y0 + k[1]) / 2, k[0], k[1]] : [x0, y0, (x0 + k[0]) / 2, y0, (x0 + k[0]) / 2, k[1], k[0], k[1]];
+}
+function kolUit(g) { const [x, y] = kolPunt(g); return G.staand ? [x, y + DPR * 6] : [x + DPR * 6, y]; }
 const bits = s => { let u = ""; for (const b of new TextEncoder().encode(s || "")) u += b.toString(2).padStart(8, "0"); return u; };
 
 /* ---- bediening: aanwijzen en klikken in het blok ---- */
@@ -156,7 +174,7 @@ function schermXY(e) { const r = doek.getBoundingClientRect(); const p = e.touch
 doek.addEventListener("pointermove", e => { muis = schermXY(e); laatstBediend = performance.now(); });
 doek.addEventListener("pointerleave", () => { muis = null; hover = {station: null, kanaal: null}; });
 doek.addEventListener("pointerup", e => {
-  const p = schermXY(e);
+  const p = schermXY(e); muis = p;
   if (zoom.t < 0.5) { zoekHover(); if (hover.station !== null) openLaag(hover.station); }
   else if (p.y - P.boven < P.fs * 3.2 && p.x < P.fs * 9) sluit();
 });
@@ -176,8 +194,8 @@ function zoekHover() {
   if (!muis || zoom.t > 0.5 || !G.cel) return;
   if (muis.x >= G.blokX && muis.x < G.blokX + G.blokB && muis.y >= G.blokY && muis.y < G.blokY + G.blokH) {
     const per = G.rijen + 1, rij = Math.floor((muis.y - G.blokY) / G.cel), k = Math.floor(rij / per) + 1, r = rij % per;
-    if (r < G.rijen && k >= 1 && k <= KOL.length - 2) { hover.station = k; hover.kanaal = Math.min(spec.breedte - 1, r * G.kolommen + Math.floor((muis.x - G.blokX) / G.cel)); }
-  } else if (Math.abs(muis.x - G.kolX) < P.fs * 1.5 && muis.y >= G.kolY0 - P.fs && muis.y <= G.kolY1 + P.fs) hover.station = 0;
+    if (r < G.rijen && k >= 1 && k <= KOL.length - 2) { hover.station = k; hover.kanaal = Math.min(spec.breedte - 1, (r * G.kolommen + Math.floor((muis.x - G.blokX) / G.cel)) * G.perCel); }
+  } else if (G.staand ? (Math.abs(muis.y - G.kolY) < P.fs * 1.5 && muis.x >= G.kolX0 - P.fs && muis.x <= G.kolX1 + P.fs) : (Math.abs(muis.x - G.kolX) < P.fs * 1.5 && muis.y >= G.kolY0 - P.fs && muis.y <= G.kolY1 + P.fs)) hover.station = 0;
 }
 
 /* ---- helpers ---- */
@@ -211,10 +229,14 @@ function tekenBlok(j) {
   for (let k = 1; k <= lagen; k++) {
     const doel = doelKanalen(j, k), g = gladKan[k]; if (!g) continue;
     const y0 = (k - 1) * (G.rijen + 1) * c;
-    for (let ch = 0; ch < spec.breedte; ch++) {
-      g[ch] += (doel[ch] - g[ch]) * 0.35;
-      const v = g[ch], n = nivo(v), een = v >= 0.5 ? 1 : 0;
-      q.drawImage(atlas, (n * 2 + een) * c, 0, c, c, (ch % G.kolommen) * c, y0 + Math.floor(ch / G.kolommen) * c, c, c);
+    for (let ch = 0; ch < spec.breedte; ch++) g[ch] += (doel[ch] - g[ch]) * 0.35;
+    const cellen = G.rijen * G.kolommen;
+    for (let i = 0; i < cellen; i++) {
+      let v = 0, tel = 0;
+      for (let ch = i * G.perCel; ch < Math.min(spec.breedte, (i + 1) * G.perCel); ch++) { v += g[ch]; tel++; }
+      v = tel ? v / tel : 0;
+      const n = nivo(v), een = v >= 0.5 ? 1 : 0;
+      q.drawImage(atlas, (n * 2 + een) * c, 0, c, c, (i % G.kolommen) * c, y0 + Math.floor(i / G.kolommen) * c, c, c);
     }
   }
 }
@@ -230,7 +252,7 @@ function tekenRuimte(t, j, veeg, alpha) {
   // de drie stromen: bits van haar vraag, haar herinnering en wat ze tot nu toe schreef
   const bron = [stand ? (stand.opgave || "") : "", (stand && stand.herinnert && stand.herinnert[0]) ? (stand.herinnert[0].opgave || "") : "", antwoordDoel.slice(0, Math.max(0, antwoordNu))];
   ctx.font = `500 ${fs * 0.72}px "JetBrains Mono", ui-monospace, monospace`; ctx.textBaseline = "middle"; ctx.textAlign = "left";
-  const bitB = ctx.measureText("0").width, past = Math.max(8, Math.floor((G.stroomX1 - G.stroomX0) / bitB));
+  const bitB = ctx.measureText("0").width, past = Math.max(8, Math.floor(0.94 * (G.stroomX1 - G.stroomX0) / bitB));
   STROOM.forEach(([naam, kl], i) => {
     const y = G.stroomY[i], b = bits(bron[i]), staart = b.slice(-past);
     ctx.fillStyle = `rgba(${kl},0.9)`; ctx.font = `700 ${fs * 0.62}px "JetBrains Mono", ui-monospace, monospace`;
@@ -242,11 +264,11 @@ function tekenRuimte(t, j, veeg, alpha) {
   const g0 = glad[0] || [], nk = KOL[0];
   ctx.lineCap = "round";
   for (let i = 0; i < 3; i++) {
-    const x0 = G.stroomX1 + fs * 0.4, y0 = G.stroomY[i], kl = STROOM[i][1];
+    const kl = STROOM[i][1];
     for (let g = 0; g < nk; g++) {
-      const y1 = G.kolY0 + (G.kolY1 - G.kolY0) * (nk > 1 ? g / (nk - 1) : 0.5), a = g0[g] || 0, mx = (x0 + G.kolX) / 2;
+      const a = g0[g] || 0, v = vezel(i, g);
       ctx.strokeStyle = `rgba(${kl},${(0.10 + 0.6 * a).toFixed(3)})`; ctx.lineWidth = DPR * (0.5 + 1.0 * a);
-      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.bezierCurveTo(mx, y0, mx, y1, G.kolX - DPR * 4, y1); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(v[0], v[1]); ctx.bezierCurveTo(v[2], v[3], v[4], v[5], v[6], v[7]); ctx.stroke();
     }
   }
   // de vonkjes: over de vezel van de stroom naar de groep, dan door naar het blok
@@ -254,22 +276,21 @@ function tekenRuimte(t, j, veeg, alpha) {
   vonken = vonken.filter(v => nu - v.t0 < v.duur + 300);
   for (const v of vonken) {
     const u = (nu - v.t0) / v.duur; if (u < 0) continue;
-    const kl = STROOM[v.i][1], x0 = G.stroomX1 + fs * 0.4, y0 = G.stroomY[v.i], y1 = G.kolY0 + (G.kolY1 - G.kolY0) * (nk > 1 ? v.g / (nk - 1) : 0.5), mx = (x0 + G.kolX) / 2, x3 = G.kolX - DPR * 4;
+    const kl = STROOM[v.i][1], p = vezel(v.i, v.g);
     let x, y, a;
-    if (u <= 1) { const w = 1 - u; x = w * w * w * x0 + 3 * w * w * u * mx + 3 * w * u * u * mx + u * u * u * x3; y = w * w * w * y0 + 3 * w * w * u * y0 + 3 * w * u * u * y1 + u * u * u * y1; a = 0.95; }
-    else { const u2 = Math.min(1, (u - 1) * v.duur / 300), yb = G.blokY + G.blokH * (nk > 1 ? v.g / (nk - 1) : 0.5); x = G.kolX + DPR * 6 + (G.blokX - DPR * 3 - G.kolX - DPR * 6) * u2; y = y1 + (yb - y1) * u2; a = 0.9 * (1 - u2); }
+    if (u <= 1) { const w = 1 - u; x = w * w * w * p[0] + 3 * w * w * u * p[2] + 3 * w * u * u * p[4] + u * u * u * p[6]; y = w * w * w * p[1] + 3 * w * w * u * p[3] + 3 * w * u * u * p[5] + u * u * u * p[7]; a = 0.95; }
+    else { const u2 = Math.min(1, (u - 1) * v.duur / 300), [xa, ya] = kolUit(v.g), [xb, yb] = blokPunt(v.g); x = xa + (xb - xa) * u2; y = ya + (yb - ya) * u2; a = 0.9 * (1 - u2); }
     ctx.fillStyle = `rgba(${kl},${a.toFixed(2)})`; ctx.beginPath(); ctx.arc(x, y, DPR * 2.2, 0, 7); ctx.fill();
     ctx.fillStyle = "rgba(255,255,255," + (0.6 * a).toFixed(2) + ")"; ctx.beginPath(); ctx.arc(x, y, DPR * 1.0, 0, 7); ctx.fill();
   }
   // de kolom: de 32 groepen van de inbedding, en de streepjes naar het blok
   for (let g = 0; g < nk; g++) {
-    const y = G.kolY0 + (G.kolY1 - G.kolY0) * (nk > 1 ? g / (nk - 1) : 0.5), a = g0[g] || 0;
-    ctx.fillStyle = NIVO[nivo(a)]; ctx.beginPath(); ctx.arc(G.kolX, y, DPR * (2.2 + 1.6 * a), 0, 7); ctx.fill();
-    const yb = G.blokY + G.blokH * (nk > 1 ? g / (nk - 1) : 0.5);
+    const [x, y] = kolPunt(g), a = g0[g] || 0, [xa, ya] = kolUit(g), [xb, yb] = blokPunt(g);
+    ctx.fillStyle = NIVO[nivo(a)]; ctx.beginPath(); ctx.arc(x, y, DPR * (2.2 + 1.6 * a), 0, 7); ctx.fill();
     ctx.strokeStyle = `rgba(${TINT.blauw},${(0.15 + 0.5 * a).toFixed(2)})`; ctx.lineWidth = DPR;
-    ctx.beginPath(); ctx.moveTo(G.kolX + DPR * 6, y); ctx.lineTo(G.blokX - DPR * 3, yb); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(xa, ya); ctx.lineTo(xb, yb); ctx.stroke();
   }
-  if (hover.station === 0) { ctx.strokeStyle = "rgba(255,255,255,0.8)"; ctx.lineWidth = DPR; rondRect(ctx, G.kolX - fs, G.kolY0 - fs * 0.8, fs * 2, G.kolY1 - G.kolY0 + fs * 1.6, 4 * DPR); ctx.stroke(); }
+  if (hover.station === 0) { ctx.strokeStyle = "rgba(255,255,255,0.8)"; ctx.lineWidth = DPR; if (G.staand) rondRect(ctx, G.kolX0 - fs * 0.8, G.kolY - fs, G.kolX1 - G.kolX0 + fs * 1.6, fs * 2, 4 * DPR); else rondRect(ctx, G.kolX - fs, G.kolY0 - fs * 0.8, fs * 2, G.kolY1 - G.kolY0 + fs * 1.6, 4 * DPR); ctx.stroke(); }
   // het blok
   ctx.drawImage(blokDoek, G.blokX, G.blokY);
   // de lagen erlangs, en de aangewezen laag/het aangewezen kanaal
@@ -277,19 +298,19 @@ function tekenRuimte(t, j, veeg, alpha) {
   for (let k = 1; k <= n - 2; k++) {
     const y = G.blokY + ((k - 1) * (G.rijen + 1) + G.rijen / 2) * G.cel, licht = hover.station === k || (zoom.laag === k && zoom.doel);
     ctx.fillStyle = licht ? "rgba(255,255,255,0.95)" : `rgba(${TINT.cyaan},0.7)`;
-    ctx.fillText(`L${k}`, G.blokX + G.blokB + fs * 0.5, y);
+    if (!G.staand || licht) ctx.fillText(`L${k}`, G.blokX + G.blokB + fs * 0.5, y);
     if (licht) { ctx.strokeStyle = "rgba(255,255,255,0.7)"; ctx.lineWidth = DPR; ctx.strokeRect(G.blokX - DPR, G.blokY + (k - 1) * (G.rijen + 1) * G.cel - DPR, G.blokB + 2 * DPR, G.rijen * G.cel + 2 * DPR); }
   }
   if (hover.station !== null && hover.kanaal !== null) {
-    const k = hover.station, ch = hover.kanaal, x = G.blokX + (ch % G.kolommen) * G.cel, y = G.blokY + ((k - 1) * (G.rijen + 1) + Math.floor(ch / G.kolommen)) * G.cel;
+    const k = hover.station, cel = Math.floor(hover.kanaal / G.perCel), x = G.blokX + (cel % G.kolommen) * G.cel, y = G.blokY + ((k - 1) * (G.rijen + 1) + Math.floor(cel / G.kolommen)) * G.cel;
     ctx.strokeStyle = "rgba(255,255,255,0.95)"; ctx.lineWidth = DPR; ctx.strokeRect(x - DPR, y - DPR, G.cel + 2 * DPR, G.cel + 2 * DPR);
   }
   // de uitvoer: haar zekerheid over het teken van nu, rechtsonder het blok
   const zeker = glad[n - 1] ? glad[n - 1][0] : 0;
   ctx.fillStyle = `rgba(${TINT.geel},0.85)`; ctx.font = `700 ${fs * 0.62}px "JetBrains Mono", ui-monospace, monospace`; ctx.textAlign = "right";
-  ctx.fillText(`UITVOER · zekerheid ${Math.round(100 * zeker)}%`, G.blokX + G.blokB, G.blokY + G.blokH + fs * 1.0);
+  ctx.fillText(`UITVOER · ZEKERHEID ${Math.round(100 * zeker)}%`, G.blokX + G.blokB + (G.staand ? 0 : fs * 3.4), G.blokY - fs * 0.9);
   ctx.fillStyle = `rgba(${TINT.cyaan},0.7)`; ctx.textAlign = "left";
-  ctx.fillText(`${n - 2} LAGEN × ${spec.breedte} KANALEN · 1 = ACTIEF, 0 = STIL · KLEUR = STERKTE`, G.blokX, G.blokY - fs * 0.9);
+  ctx.fillText(G.staand ? `${n - 2} LAGEN · ${G.kolommen} CIJFERS PER LAAG (${G.perCel} KANALEN PER CIJFER)` : `${n - 2} LAGEN × ${spec.breedte} KANALEN · 1 = ACTIEF, 0 = STIL · KLEUR = STERKTE`, G.blokX, G.blokY - fs * 0.9);
   ctx.textBaseline = "alphabetic"; ctx.globalAlpha = 1;
 }
 
