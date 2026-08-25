@@ -14,10 +14,16 @@ import os, sys, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import determinism, torch, network, tokens, snapshot, bridge, world
 from learning import Learner, bf16_usable, room_for
+if not torch.cuda.is_available():
+    print("geen kaart — deze test vergelijkt op de kaart; overgeslagen")
+    print("passed: 0    failed: 0"); sys.exit(0)
+pad = sys.argv[1] if len(sys.argv) > 1 else "fase1/leven/momentopname.pt"
+if not os.path.exists(pad):
+    print(f"geen momentopname op {pad} — overgeslagen (geef er een als argument)")
+    print("passed: 0    failed: 0"); sys.exit(0)
 dev = "cuda"
 core = network.Core(layers=20, width=384, heads=6, hidden=1536, window=2048)
 learner = Learner(core=core, device=dev, batch_size=64, bf16=False)
-pad = sys.argv[1] if len(sys.argv) > 1 else "fase1/leven/momentopname.pt"
 content = snapshot.read(pad, device=dev)
 vorm = (content.get("extra") or {}).get("vorm")
 if vorm: learner.adopt_shape(bridge.translate_spec(vorm))
@@ -59,4 +65,5 @@ for family, depth in (("rekenen", 12), ("puzzel", 3), ("taal", 4), ("code", 10),
 print(f"per teken (gelijke invoer): {flips} andere keuzes op {totaal} tekens = {100*flips/max(1,totaal):.3f}%, max logit-verschil {maxd:.3f}")
 print(f"einde: {eind_gelijk}/{eind_n} antwoorden woordelijk gelijk; goed oud {score_oud}, nieuw {score_nieuw}")
 assert flips == 0 and eind_gelijk == eind_n, "de Decoder kiest andere tekens dan de gewone weg"
+print("passed: 1    failed: 0")
 print("alles goed")
