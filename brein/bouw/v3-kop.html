@@ -350,6 +350,14 @@
         <button class="knop" id="spreek">🔊 vertel de stand</button>
         <audio id="stem-audio" style="display:none"></audio>
       </div>
+      <div class="kaart k6" id="claude-kaart">
+        <div class="titel"><h2>Vragen van Claude</h2><span class="sub">zij antwoordt met haar echte brein</span></div>
+        <div id="claude-inhoud" class="leeg">nog niets gevraagd</div>
+      </div>
+      <div class="kaart k6" id="dagboek-kaart">
+        <div class="titel"><h2>Haar dagboek</h2><span class="sub">haar woorden, ongewijzigd</span></div>
+        <div id="dagboek-inhoud" class="leeg">nog geen regel</div>
+      </div>
     </div>
   </div>
 </div>
@@ -565,6 +573,22 @@ setInterval(() => {
   liveKanaal = liveReeks[herhaalI].kanaal; herhaalJ = liveReeks[herhaalI].j;
 }, 100);
 setInterval(() => { if (tegelsWacht && Date.now() - tegelsTijd > 250) { tegelsTijd = Date.now(); tegelsWacht = false; bouwGedachte(); } }, 100);
+
+/* ---- vragen van Claude en haar dagboek (25 aug 2026, Claudes wensen 2 en 4) ---- */
+async function haalRegels(pad) {
+  try {
+    const t = await (await fetch(pad + "?t=" + Date.now(), {cache: "no-store"})).text();
+    return t.split("\n").filter(Boolean).map(l => { try { return JSON.parse(l); } catch (e) { return null; } }).filter(Boolean);
+  } catch (e) { return []; }
+}
+async function tekenExtraGesprek() {
+  const [cl, db] = await Promise.all([haalRegels("/rapport/vragen-claude.jsonl"), haalRegels("/rapport/dagboek-amber.jsonl")]);
+  const rij = r => `<div class="bubbel zij"><div class="wie">${esc(r.afzender === "claude" ? "claude vroeg" : "dagboek")} · ${esc(r.wanneer || "")} · brein van stap ${nl(r.stap || 0)}</div><b>${esc(r.vraag || "")}</b><br>${esc(r.antwoord || "")}</div>`;
+  $("claude-inhoud").innerHTML = cl.length ? cl.slice(-6).reverse().map(rij).join("") : '<div class="leeg">nog niets gevraagd</div>';
+  $("dagboek-inhoud").innerHTML = db.length ? db.slice(-9).reverse().map(rij).join("") : '<div class="leeg">nog geen regel</div>';
+}
+setInterval(tekenExtraGesprek, 60000);
+tekenExtraGesprek();
 
 /* ---- de kraan: stand.json elke 5 s ---- */
 async function haal() {
