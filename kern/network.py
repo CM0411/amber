@@ -136,6 +136,151 @@ class KVCache:
         return self.k[:, :, :self.n], self.v[:, :, :self.n]
 
 
+# --- writing one character at a time as one card instruction (25 Aug 2026) ---
+# Measured on run 7.3 (step 448.500): the card was busy a quarter of the
+# time and Python had one core at 100%. Writing an answer sends every layer's
+# every operation to the card separately -- some nine hundred tiny kernels
+# per character, each costing more to launch than to run. This decoder does
+# the same arithmetic with fixed shapes: buffers laid out at full room, the
+# position as a tensor instead of a Python number, the attention over the
+# whole buffer with the unfilled part masked. Fixed shapes are what a CUDA
+# graph needs: the whole step is captured once and then replayed per
+# character as one instruction. The numbers are the eager path's within
+# rounding (the softmax and the matmul see more masked columns, which changes
+# the order of the additions, not the sum); test-snel.py checks both paths
+# against each other and the graph against the eager step bit for bit.
+# Learning is untouched: this is the answering loop only.
+
+
+def _angles_at(pos, head_size, device):
+    """The angles of one position given as a tensor (graph-safe `_angles`)."""
+    step = torch.arange(0, head_size, 2, device=device, dtype=torch.float32)
+    freq = 1.0 / (10000.0 ** (step / head_size))
+    angle = pos.to(torch.float32).reshape(1, 1) * freq[None, :]
+    return torch.cos(angle), torch.sin(angle)
+
+
+class Decoder:
+    """Answering with fixed shapes, per character one (captured) step.
+
+    `prefill` runs the question through the ordinary path once and copies
+    the keys and values into buffers of `room` positions (grown by GROW like
+    KVCache, so an exam of 64 tasks does not hold gigabytes of zeros);
+    `step` writes one character. On a card the step is a CUDA graph,
+    captured anew whenever the buffers grow; elsewhere the same code runs
+    eagerly.
+    """
+
+    GROW = KVCache.GROW
+
+    def __init__(self, core, batch, capacity, key_mask_full, use_graph=True):
+        self.core = core
+        self.batch = batch
+        self.capacity = capacity
+        self.device = key_mask_full.device
+        self.mask_full = key_mask_full        # (batch, capacity), True = nothing real
+        att = core.blocks[0].attention
+        self.heads, self.head_size = att.heads, att.head_size
+        self.n = 0                            # positions filled
+        self.room = 0                         # positions laid out
+        self.k = self.v = None
+        self.tok = torch.zeros(batch, 1, dtype=torch.long, device=self.device)
+        self.pos = torch.zeros((), dtype=torch.long, device=self.device)
+        self.graph = None
+        self.out = None
+        self.use_graph = use_graph and self.device.type == "cuda"
+
+    def _make_room(self, need, like):
+        if need > self.capacity:
+            raise ValueError(f"decoder full: {need} > capacity {self.capacity}")
+        if need <= self.room:
+            return
+        room = min(self.capacity, max(need, self.room + self.GROW))
+        shape = (self.batch, self.heads, room, self.head_size)
+        k = [like.new_zeros(shape) for _ in self.core.blocks]
+        v = [like.new_zeros(shape) for _ in self.core.blocks]
+        if self.k is not None and self.n:
+            for i in range(len(k)):
+                k[i][:, :, :self.n].copy_(self.k[i][:, :, :self.n])
+                v[i][:, :, :self.n].copy_(self.v[i][:, :, :self.n])
+        self.k, self.v, self.room = k, v, room
+        self.graph = None                     # new addresses: capture again
+
+    def prefill(self, question, key_mask):
+        """The question in one ordinary pass; returns its scores."""
+        cache = self.core.new_cache(self.capacity)
+        scores, cache = self.core.advance(question, cache=cache, key_mask=key_mask)
+        length = question.shape[1]
+        self._make_room(length, cache[0].k)
+        for i, c in enumerate(cache):
+            self.k[i][:, :, :length].copy_(c.k[:, :, :length])
+            self.v[i][:, :, :length].copy_(c.v[:, :, :length])
+        self.n = length
+        self.pos.fill_(length)
+        return scores
+
+    def step_eager(self):
+        """One character at position `pos`, from `tok`; returns (batch, 1, VOCAB)."""
+        core, batch = self.core, self.batch
+        x = core.embedding(self.tok)
+        cos, sin = _angles_at(self.pos, self.head_size, self.device)
+        col = torch.arange(self.room, device=self.device)
+        mask = self.mask_full[:, :self.room] | (col > self.pos)[None, :]
+        index = self.pos.reshape(1)
+        for i, block in enumerate(core.blocks):
+            att = block.attention
+            qkv = att.to_qkv(block.norm1(x))
+            q, k, v = qkv.chunk(3, dim=-1)
+            shape = (batch, 1, att.heads, att.head_size)
+            q = q.view(shape).transpose(1, 2)
+            k = k.view(shape).transpose(1, 2)
+            v = v.view(shape).transpose(1, 2)
+            q = _rotate(q, cos, sin)
+            k = _rotate(k, cos, sin)
+            self.k[i].index_copy_(2, index, k.to(self.k[i].dtype))
+            self.v[i].index_copy_(2, index, v.to(self.v[i].dtype))
+            keys, values = self.k[i], self.v[i]
+            if att._scale_folds and not torch.is_autocast_enabled():
+                scores = (q * att._scale) @ keys.transpose(-2, -1)
+            else:
+                scores = (q @ keys.transpose(-2, -1)) / math.sqrt(att.head_size)
+            scores.masked_fill_(mask[:, None, None, :], float("-inf"))
+            empty = torch.isinf(scores).all(dim=-1, keepdim=True)
+            scores.masked_fill_(empty, 0.0)
+            weight = torch.softmax(scores, dim=-1)
+            out = (weight @ values).transpose(1, 2).reshape(batch, 1, att.inner)
+            x = x + block.alpha1 * att.out(out)
+            x = x + block.alpha2 * block.feedforward(block.norm2(x))
+        return core.unembedding(core.final_norm(x))
+
+    def _capture(self):
+        side = torch.cuda.Stream()
+        side.wait_stream(torch.cuda.current_stream())
+        with torch.cuda.stream(side):
+            for _ in range(2):                # warm-up: the real step will overwrite this position anyway
+                self.step_eager()
+        torch.cuda.current_stream().wait_stream(side)
+        self.graph = torch.cuda.CUDAGraph()
+        with torch.cuda.graph(self.graph):
+            self.out = self.step_eager()
+
+    def step(self, following):
+        """Write the character `following` (batch,) at the next position;
+        returns the scores for the character after it, (batch, VOCAB)."""
+        self.tok.copy_(following.reshape(self.batch, 1))
+        self._make_room(self.n + 1, self.k[0])
+        if self.use_graph:
+            if self.graph is None:
+                self._capture()
+            self.graph.replay()
+            scores = self.out
+        else:
+            scores = self.step_eager()
+        self.n += 1
+        self.pos.add_(1)
+        return scores[:, -1]
+
+
 # --- the slimmer attention (16 Aug 2026) ---------------------------------------
 # On the P100 the softmax and the masks were a third of a learning step:
 # every pass over the (batch, heads, length, length) scores is 900 million

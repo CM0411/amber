@@ -28,6 +28,7 @@ through real learning steps and demands bit-for-bit equal weights at the
 end.
 """
 
+import os
 import threading
 
 import bridge
@@ -41,6 +42,7 @@ import torch.nn.functional as F
 import world
 import replay_memory
 from replay_memory import ReplayMemory, Bottleneck
+import network
 from network import Core
 from curiosity import Curiosity
 
@@ -496,9 +498,19 @@ class Learner:
 
         # The question in one pass into a cache laid out at full length;
         # after that only each new character (see KVCache in network.py).
-        cache = core.new_cache(capacity)
-        scores, cache = core.advance(question, cache=cache,
-                                     key_mask=mask_full[:, :longest])
+        # On a card the characters are written by the Decoder (25 Aug 2026,
+        # see network.py): the same arithmetic with fixed shapes, every step
+        # one captured CUDA graph instead of hundreds of separate kernels.
+        # AMBER_GRAAF=0 takes the old road; off a card it is the old road.
+        decoder = None
+        wil = os.environ.get("AMBER_GRAAF", "1")          # "0": never; "altijd": also off a card (tests)
+        if wil == "altijd" or (wil != "0" and torch.device(device).type == "cuda"):
+            decoder = network.Decoder(core, len(tasks_), capacity, mask_full)
+            scores = decoder.prefill(question, mask_full[:, :longest])
+        else:
+            cache = core.new_cache(capacity)
+            scores, cache = core.advance(question, cache=cache,
+                                         key_mask=mask_full[:, :longest])
         written = []
         done = torch.zeros(len(tasks_), dtype=torch.bool, device=device)
         following = scores[:, -1].argmax(dim=-1)
@@ -511,6 +523,9 @@ class Learner:
             done = done | (following == tokens.END)
             if bool(done.all()) or step == at_most - 1:
                 break
+            if decoder is not None:
+                following = decoder.step(following).argmax(dim=-1)
+                continue
             scores, cache = core.advance(following[:, None], cache=cache,
                                          offset=longest + step,
                                          key_mask=mask_full[:, :longest + step + 1])
@@ -605,7 +620,7 @@ class Learner:
         # card: every process divides its share's loss by the same number,
         # so the summed gradients equal the gradient of one big batch -- the
         # same identity the groups rely on, one level up.
-        total_loss = 0.0
+        total_loss = torch.zeros((), device=self.device)
         for codes, mask in groups:
             # My rows. Alone that is all of them; in a group every `world`-th
             # row (parallel.share). Shares need not have the same shape: the
@@ -624,14 +639,18 @@ class Learner:
             summed = F.cross_entropy(predicted[counts], target[counts],
                                      reduction="sum")
             (summed / max(1, total_counts)).backward()
-            total_loss += float(summed.item())
+            # Summed on the card, read once after the loop (25 Aug 2026):
+            # `.item()` per group made Python wait for the card each time,
+            # and the next group's launches waited with it. The gradient is
+            # untouched; only the reported number is added up elsewhere.
+            total_loss = total_loss + summed.detach()
         # Meet over the bus: the shares' gradients add up to the gradient of
         # the whole batch, and every process leaves with that total. From
         # here on both take exactly the same step. The measured loss is
         # summed too, so the number in the journal is the whole batch's.
         # Alone both calls do nothing.
         parallel.sum_grads(self.core.parameters())
-        total_loss = parallel.sum_number(total_loss)
+        total_loss = parallel.sum_number(float(total_loss.item()))
         measured = total_loss / max(1, total_counts)
 
         # The brake (off by default — EWC, measured and rejected 8 Aug 2026)
