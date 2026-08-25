@@ -197,14 +197,20 @@ class Decoder:
             return
         room = min(self.capacity, max(need, self.room + self.GROW))
         shape = (self.batch, self.heads, room, self.head_size)
-        k = [like.new_zeros(shape) for _ in self.core.blocks]
-        v = [like.new_zeros(shape) for _ in self.core.blocks]
-        if self.k is not None and self.n:
-            for i in range(len(k)):
-                k[i][:, :, :self.n].copy_(self.k[i][:, :, :self.n])
-                v[i][:, :, :self.n].copy_(self.v[i][:, :, :self.n])
-        self.k, self.v, self.room = k, v, room
         self.graph = None                     # new addresses: capture again
+        if self.k is None:
+            self.k = [like.new_zeros(shape) for _ in self.core.blocks]
+            self.v = [like.new_zeros(shape) for _ in self.core.blocks]
+        else:
+            # layer by layer, like KVCache: old and new stand side by side
+            # for one layer at a time, not for all twenty (measured 25 Aug
+            # 2026 on the P100: 15,7 GB against 5,7 for the ordinary path)
+            for i in range(len(self.k)):
+                nk, nv = like.new_zeros(shape), like.new_zeros(shape)
+                nk[:, :, :self.n].copy_(self.k[i][:, :, :self.n])
+                nv[:, :, :self.n].copy_(self.v[i][:, :, :self.n])
+                self.k[i], self.v[i] = nk, nv
+        self.room = room
 
     def prefill(self, question, key_mask):
         """The question in one ordinary pass; returns its scores."""
@@ -273,12 +279,14 @@ class Decoder:
             if self.graph is None:
                 self._capture()
             self.graph.replay()
-            scores = self.out
+            # a copy: the graph writes the same buffer at every replay, and
+            # a caller that keeps the scores must not see them change
+            scores = self.out[:, -1].clone()
         else:
-            scores = self.step_eager()
+            scores = self.step_eager()[:, -1]
         self.n += 1
         self.pos.add_(1)
-        return scores[:, -1]
+        return scores
 
 
 # --- the slimmer attention (16 Aug 2026) ---------------------------------------

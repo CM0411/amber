@@ -39,11 +39,19 @@ for i, p in enumerate(prompts):
 mask_full = torch.zeros(batch, capacity, dtype=torch.bool, device=device)
 mask_full[:, :longest] = question == tokens.PAD
 
+# fp16 where bf16 is not native (the P100): lighter kernels, closer to the
+# launch-bound regime of the Z490's card
+soort = torch.bfloat16 if bf16 else torch.float16
+halve = bf16 or os.environ.get("AMBER_MEET_FP16", "1") == "1"
+print(f"  rekenen in {'fp32' if not halve else str(soort).split('.')[-1]} (autocast)")
 uit = {}
+cache = dec = s = None
 for naam in ("gewoon", "graaf"):
+    del cache, dec, s                         # nothing of the previous run may stay on the card
+    cache = dec = s = None
     torch.cuda.empty_cache(); torch.cuda.reset_peak_memory_stats(); torch.cuda.synchronize()
     t0 = time.perf_counter()
-    with torch.no_grad(), torch.autocast("cuda", dtype=torch.bfloat16, enabled=bf16):
+    with torch.no_grad(), torch.autocast("cuda", dtype=soort, enabled=halve):
         if naam == "gewoon":
             cache = core.new_cache(capacity)
             s, cache = core.advance(question, cache=cache, key_mask=mask_full[:, :longest])
