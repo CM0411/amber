@@ -15,6 +15,7 @@ Run:  CUDA_VISIBLE_DEVICES= python3 kern/test-snel.py      (processor only)
 """
 import os
 import sys
+import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -90,6 +91,10 @@ def test_eager_equals_advance(device):
     assert same == 1.0, same
 
 
+def test_learner_answers_equal_default():
+    test_learner_answers_equal('cpu')
+
+
 def test_learner_answers_equal(device):
     """The Learner's answers with and without the Decoder."""
     core = small_core(seed=11)
@@ -144,13 +149,23 @@ def test_graph_equals_eager():
 
 if __name__ == "__main__":
     device = "cpu"
+    passed = failed = 0
+    def loop(naam, fn):
+        global passed, failed
+        try:
+            fn(); passed += 1
+        except AssertionError as e:
+            failed += 1; print(f"  FOUT: {naam} {e}")
     print("decoder eager == advance")
-    test_eager_equals_advance(device)
+    loop("eager == advance", lambda: test_eager_equals_advance(device))
     print("learner: antwoorden gelijk")
-    test_learner_answers_equal(device)
+    loop("antwoorden gelijk", test_learner_answers_equal_default)
     if os.environ.get("AMBER_KAART_TEST") == "1" and torch.cuda.is_available():
         print("op de kaart: graaf == eager, en het tempo")
-        test_graph_equals_eager()
+        loop("graaf == eager", test_graph_equals_eager)
     else:
         print("(kaarttest overgeslagen: AMBER_KAART_TEST=1 op een vrije kaart)")
-    print("alles goed")
+    print("=" * 70)
+    print(f"passed: {passed}    failed: {failed}")
+    print("=" * 70)
+    sys.exit(1 if failed else 0)
