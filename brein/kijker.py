@@ -352,9 +352,9 @@ os.makedirs(VRAGEN, exist_ok=True)
 # "dagboek-*.txt" is een vraag voor haar eigen dagboek: het antwoord komt
 # ongewijzigd in sessies/dagboek-amber.md, met stap en datum. Geen
 # bewerking, geen mooimakerij: wat ze zegt staat er.
-VRAGEN_CLAUDE = f"{FOLDER}/vragen-claude.jsonl"
+VRAGEN_CLAUDE = "/home/arch/rapport/vragen-claude.jsonl"      # het venster leest /rapport/...
 DAGBOEK = "/home/arch/amber/sessies/dagboek-amber.md"
-DAGBOEK_JSON = f"{FOLDER}/dagboek-amber.jsonl"
+DAGBOEK_JSON = "/home/arch/rapport/dagboek-amber.jsonl"
 
 
 def _beantwoord_vragen():
