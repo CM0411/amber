@@ -144,14 +144,15 @@ let vonken = [];                         // vonkjes over de draden waar het sign
 let opbouw = {t0: 0, klaar: RUSTIG || FOTO};
 
 /* ---- de draad: van knoop naar knoop, gebogen langs de stroomas (de bundel bij de knoop, de waaier ertussen) ---- */
+const BOCHT = 0.3;                        // 25 aug, Cley: "netjes aan elkaar" -- korte bundel bij de knoop, daarna bijna recht
 function pad(q, a, b) {
-  if (G.staand) { const d = (b[1] - a[1]) * 0.5; q.moveTo(a[0], a[1]); q.bezierCurveTo(a[0], a[1] + d, b[0], b[1] - d, b[0], b[1]); }
-  else { const d = (b[0] - a[0]) * 0.5; q.moveTo(a[0], a[1]); q.bezierCurveTo(a[0] + d, a[1], b[0] - d, b[1], b[0], b[1]); }
+  if (G.staand) { const d = (b[1] - a[1]) * BOCHT; q.moveTo(a[0], a[1]); q.bezierCurveTo(a[0], a[1] + d, b[0], b[1] - d, b[0], b[1]); }
+  else { const d = (b[0] - a[0]) * BOCHT; q.moveTo(a[0], a[1]); q.bezierCurveTo(a[0] + d, a[1], b[0] - d, b[1], b[0], b[1]); }
 }
 function opPad(a, b, u) {
   const w = 1 - u; let c1, c2;
-  if (G.staand) { const d = (b[1] - a[1]) * 0.5; c1 = [a[0], a[1] + d]; c2 = [b[0], b[1] - d]; }
-  else { const d = (b[0] - a[0]) * 0.5; c1 = [a[0] + d, a[1]]; c2 = [b[0] - d, b[1]]; }
+  if (G.staand) { const d = (b[1] - a[1]) * BOCHT; c1 = [a[0], a[1] + d]; c2 = [b[0], b[1] - d]; }
+  else { const d = (b[0] - a[0]) * BOCHT; c1 = [a[0] + d, a[1]]; c2 = [b[0] - d, b[1]]; }
   return [w * w * w * a[0] + 3 * w * w * u * c1[0] + 3 * w * u * u * c2[0] + u * u * u * b[0],
           w * w * w * a[1] + 3 * w * w * u * c1[1] + 3 * w * u * u * c2[1] + u * u * u * b[1]];
 }
@@ -173,7 +174,7 @@ function projecteer() {
   G.knoop = []; G.label = [];
   for (let c = 0; c < nK; c++) {
     const n = KOL[c], u = uA + span * (0.14 + 0.63 * c / Math.max(1, nK - 1));
-    const h = dwars * (G.staand ? 0.44 + 0.46 * c / Math.max(1, nK - 1) : 0.24 + 0.50 * c / Math.max(1, nK - 1));
+    const h = dwars * (G.staand ? 0.44 + 0.46 * c / Math.max(1, nK - 1) : 0.22 + 0.42 * c / Math.max(1, nK - 1));
     const kol = []; for (let g = 0; g < n; g++) kol.push(pt(u, mid - h / 2 + (n > 1 ? h * g / (n - 1) : h / 2)));
     G.knoop.push(kol);
     G.label.push(G.staand ? pt(u, vA + fs * 0.4) : pt(u, mid + h / 2 + fs * 1.2));      // de naam: links van de rij, of onder de kolom
@@ -193,7 +194,7 @@ function projecteer() {
   for (let n = 0; n < 7; n++) for (let g = 0; g < 2; g++) { q.globalAlpha = g ? 1 : 0.45; q.fillStyle = n < 6 ? NIVO[n] : "#FFFFFF"; q.fillText(String(g), (n * 2 + g) * cb + cb / 2, cb / 2 + cb * 0.05); }
   q.globalAlpha = 1;
   // de gloed van een knoop in zes sterktes (een kern met een zachte hof), één keer getekend
-  const R = Math.max(3, fs * (G.staand ? 0.45 : 0.6)), S = Math.ceil(R * 2); G.gloeiS = S;
+  const R = Math.max(3, fs * (G.staand ? 0.35 : 0.45)), S = Math.ceil(R * 2); G.gloeiS = S;
   gloei.width = S * 6; gloei.height = S;
   const g2 = gloei.getContext("2d"); g2.clearRect(0, 0, gloei.width, gloei.height);
   for (let n = 0; n < 6; n++) {
@@ -201,7 +202,7 @@ function projecteer() {
     const hof = g2.createRadialGradient(cx, cy, 0, cx, cy, R);
     hof.addColorStop(0, `rgba(${TINT.licht},${(0.15 + 0.6 * a).toFixed(2)})`); hof.addColorStop(0.3, `rgba(${TINT.knoop},${(0.05 + 0.35 * a).toFixed(2)})`); hof.addColorStop(1, `rgba(${TINT.knoop},0)`);
     g2.fillStyle = hof; g2.fillRect(n * S, 0, S, S);
-    g2.fillStyle = NIVO[n]; g2.beginPath(); g2.arc(cx, cy, DPR * (0.9 + 1.3 * a), 0, 7); g2.fill();
+    g2.fillStyle = NIVO[n]; g2.beginPath(); g2.arc(cx, cy, DPR * (0.9 + 1.1 * a), 0, 7); g2.fill();
   }
   vezelDoek.width = lichtDoek.width = B; vezelDoek.height = lichtDoek.height = H;
   vezelMaat = ""; vuil = false; tik = 0;
@@ -217,22 +218,25 @@ function bouwVezels() {
   bouwParen();
   for (let c = 0; c + 1 < nK; c++) for (const [a, b, w] of paren[c]) pad(bak(w), G.knoop[c][a], G.knoop[c + 1][b]);
   for (let a = 0; a < KOL[nK - 1]; a++) pad(bak(bedradingUit ? Math.abs(bedradingUit[a] || 0) / wMaxUit : 0.3), G.knoop[nK - 1][a], G.uit);
-  q.lineWidth = DPR * 0.45;
-  paden.forEach((p, i) => { q.strokeStyle = `rgba(${TINT.draad},${(0.03 + 0.08 * (i + 0.5) / BAK).toFixed(3)})`; q.stroke(p); });
+  q.lineWidth = DPR * 0.5; q.strokeStyle = `rgba(${TINT.draad},${G.staand ? 0.035 : 0.05})`;   // 25 aug, Cley: "de rest op 95% donkerte"
+  paden.forEach(p => q.stroke(p));
   vezelBron = bedrading; vezelMaat = B + "x" + H + "|" + KOL.join(",");
 }
 
 /* ---- het licht: alleen de draden waar nú iets doorheen loopt (tien keer per seconde, glijdend) ---- */
-const drempel = () => G.staand ? 0.5 : 0.35;   // een draad licht op vanaf 35% (telefoon: 50%) van de sterkste stroom in zijn tussenruimte
+const drempel = () => G.staand ? 0.6 : 0.5;    // een draad licht op vanaf 50% (telefoon: 60%) van de sterkste stroom in zijn tussenruimte
+const plafond = () => G.staand ? 10 : 16;      // en per tussenruimte hooguit zoveel draden tegelijk (de sterkste)
 let tmp = new Float32Array(1024);
+let lichtIn = [], lichtUit = [], lichtTussen = [];   // wat er nu verlicht is: groepen (in), groepen (uit), per tussenruimte de paren-indexen
 function verlicht() {
   if (!stroomIn || glad.length !== KOL.length) return;
-  const q = lichtDoek.getContext("2d"), nK = G.nK, BAK = 8, DR = drempel(), dik = G.staand ? 0.7 : 1;
+  const q = lichtDoek.getContext("2d"), nK = G.nK, BAK = 8, DR = drempel(), PLAFOND = plafond(), dik = G.staand ? 0.6 : 0.85;
   q.clearRect(0, 0, B, H); q.lineCap = "round";
   const paden = []; for (let i = 0; i < BAK; i++) paden.push(new Path2D());
   const bak = f => paden[Math.max(0, Math.min(BAK - 1, Math.floor(f * BAK)))];
   // het punt -> de inbedding: de activiteit van de groep
-  for (let g = 0; g < KOL[0]; g++) { const d = glad[0][g] || 0; stroomIn[g] += (d - stroomIn[g]) * 0.35; if (stroomIn[g] > DR) pad(bak((stroomIn[g] - DR) / (1 - DR)), G.punt, G.knoop[0][g]); }
+  lichtIn = []; lichtUit = []; lichtTussen = [];
+  for (let g = 0; g < KOL[0]; g++) { const d = glad[0][g] || 0; stroomIn[g] += (d - stroomIn[g]) * 0.35; if (stroomIn[g] > DR) { lichtIn.push(g); pad(bak((stroomIn[g] - DR) / (1 - DR)), G.punt, G.knoop[0][g]); } }
   // van kolom naar kolom: groep ervoor x gewicht x groep erna, ten opzichte van de sterkste stroom in die tussenruimte
   for (let c = 0; c + 1 < nK; c++) {
     const S = stroom[c], ga = glad[c], gb = glad[c + 1], lijst = paren[c];
@@ -240,14 +244,18 @@ function verlicht() {
     if (tmp.length < lijst.length) tmp = new Float32Array(lijst.length);
     let top = 0.000001;
     for (let i = 0; i < lijst.length; i++) { const [a, b, w] = lijst[i], f = (ga[a] || 0) * w * (gb[b] || 0); tmp[i] = f; if (f > top) top = f; }
-    for (let i = 0; i < lijst.length; i++) { S[i] += (tmp[i] / top - S[i]) * 0.35; if (S[i] > DR) { const [a, b] = lijst[i]; pad(bak((S[i] - DR) / (1 - DR)), G.knoop[c][a], G.knoop[c + 1][b]); } }
+    const kand = [];
+    for (let i = 0; i < lijst.length; i++) { S[i] += (tmp[i] / top - S[i]) * 0.35; if (S[i] > DR) kand.push(i); }
+    if (kand.length > PLAFOND) kand.sort((x, y) => S[y] - S[x]).length = PLAFOND;
+    lichtTussen[c] = kand;
+    for (const i of kand) { const [a, b] = lijst[i]; pad(bak((S[i] - DR) / (1 - DR)), G.knoop[c][a], G.knoop[c + 1][b]); }
   }
   // de laatste laag -> de uitvoer
   { const na = KOL[nK - 1], ga = glad[nK - 1], zeker = glad[nK] ? glad[nK][0] : 0; let top = 0.000001;
     for (let a = 0; a < na; a++) { const f = (ga[a] || 0) * (bedradingUit ? Math.abs(bedradingUit[a] || 0) / wMaxUit : 0.3) * Math.max(0.2, zeker); tmp[a] = f; if (f > top) top = f; }
-    for (let a = 0; a < na; a++) { stroomUit[a] += (tmp[a] / top - stroomUit[a]) * 0.35; if (stroomUit[a] > DR) pad(bak((stroomUit[a] - DR) / (1 - DR)), G.knoop[nK - 1][a], G.uit); } }
-  paden.forEach((p, i) => { const f = (i + 0.5) / BAK; q.strokeStyle = `rgba(${TINT.licht},${(0.10 + 0.7 * f).toFixed(3)})`; q.lineWidth = DPR * dik * (0.5 + 1.1 * f); q.stroke(p); });
-  q.strokeStyle = "rgba(255,255,255,0.35)"; q.lineWidth = DPR * 0.5; q.stroke(paden[BAK - 1]);
+    for (let a = 0; a < na; a++) { stroomUit[a] += (tmp[a] / top - stroomUit[a]) * 0.35; if (stroomUit[a] > DR) { lichtUit.push(a); pad(bak((stroomUit[a] - DR) / (1 - DR)), G.knoop[nK - 1][a], G.uit); } } }
+  paden.forEach((p, i) => { const f = (i + 0.5) / BAK; q.strokeStyle = `rgba(${TINT.licht},${(0.28 + 0.6 * f).toFixed(3)})`; q.lineWidth = DPR * dik * (0.45 + 0.7 * f); q.stroke(p); });
+  q.strokeStyle = "rgba(255,255,255,0.25)"; q.lineWidth = DPR * 0.5; q.stroke(paden[BAK - 1]);
 }
 
 /* ---- de wolk: de bits van haar antwoord tot nu toe, het nieuwste teken wit ---- */
@@ -275,11 +283,11 @@ function vonk(t) {
   const nK = G.nK;
   for (let v = 0; v < 3; v++) {
     const z = (t | 0) * 7 + v * 131, c = Math.floor(rnd(z) * (nK + 1)) - 1;      // -1 .. nK-1
-    let beste = drempel(), keuze = null;
-    if (c < 0) { for (let p = 0; p < 8; p++) { const g = Math.floor(rnd(z + p * 17) * KOL[0]); if (stroomIn[g] > beste) { beste = stroomIn[g]; keuze = [0, g]; } } }
-    else if (c >= nK - 1) { for (let p = 0; p < 8; p++) { const a = Math.floor(rnd(z + p * 17) * KOL[nK - 1]); if (stroomUit[a] > beste) { beste = stroomUit[a]; keuze = [a, 0]; } } }
-    else { const S = stroom[c], na = KOL[c]; for (let p = 0; p < 12; p++) { const i = Math.floor(rnd(z + p * 17) * S.length); if (S[i] > beste) { beste = S[i]; keuze = [i % na, Math.floor(i / na)]; } } }
-    if (keuze) vonken.push({c, a: keuze[0], b: keuze[1], t0: t + v * 70, duur: 520 + 200 * (1 - beste)});
+    let keuze = null, beste = 0;                                                   // alleen over een draad die nu ook echt oplicht
+    if (c < 0) { if (lichtIn.length) { const g = lichtIn[Math.floor(rnd(z + 3) * lichtIn.length)]; keuze = [0, g]; beste = stroomIn[g]; } }
+    else if (c >= nK - 1) { if (lichtUit.length) { const a = lichtUit[Math.floor(rnd(z + 3) * lichtUit.length)]; keuze = [a, 0]; beste = stroomUit[a]; } }
+    else { const kand = lichtTussen[c]; if (kand && kand.length) { const i = kand[Math.floor(rnd(z + 3) * kand.length)], [a, b] = paren[c][i]; keuze = [a, b]; beste = stroom[c][i]; } }
+    if (keuze) vonken.push({c, a: keuze[0], b: keuze[1], t0: t + v * 70, duur: 520 + 200 * (1 - Math.min(1, beste))});
   }
   if (vonken.length > 90) vonken = vonken.slice(-90);
 }
