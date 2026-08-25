@@ -596,6 +596,11 @@ while True:
         "goed": task.check(answer),
         "wereldrand": world_edge,
         "geheugen_vakjes": memory_cells,
+        # geleefde lessen: haar gesprek-vakje groeit mee met haar leven
+        # (brieven van Cley + elke dag-afsluiting) — het enige geheugen-
+        # getal dat oploopt; het werkgeheugen zelf is rollend en vlak.
+        "geleefde_lessen": memory_cells.get("gesprek/1", 0),
+        "dag": (step_in_snapshot // learning.DAG_STAPPEN) if step_in_snapshot else 0,
         "fles": bottleneck_status,
         "bedrading": wiring,
         "bedrading_uit": wiring_out,

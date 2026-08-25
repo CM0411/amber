@@ -174,6 +174,8 @@
   .kengetal .l { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
   .kengetal .w { font-family: var(--mono); font-size: 17px; font-weight: 700; color: var(--ink); margin-top: 2px; font-variant-numeric: tabular-nums; }
   .kengetal .w small { font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 3px; }
+  .kengetal.groei { background: rgba(41,211,255,.10); }
+  .kengetal.groei .w { color: var(--mint); }
   .meter { display: grid; grid-template-columns: 8ch 1fr 6ch; gap: 10px; align-items: center; font-size: 12.5px; margin-bottom: 6px; }
   .meter .n { color: var(--muted); } .meter .v { font-family: var(--mono); text-align: right; color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
   .meter .spoor { height: 6px; border-radius: 3px; background: rgba(140,170,220,.12); overflow: hidden; }
@@ -1045,7 +1047,7 @@ function tekenNu(s) {
   if (s.familie) meta.push(`<span class="chip" style="border-color:${KLEUR[s.familie] || "var(--line)"}55">${esc(s.familie)} <b>moeilijkheid ${s.diepte}</b></span>`);
   if (s.goed === true) meta.push(`<span class="chip" style="color:var(--mint)">goed</span>`);
   if (s.goed === false) meta.push(`<span class="chip" style="color:var(--coral)">fout</span>`);
-  if (s.geheugen_grootte) meta.push(`<span class="chip">geheugen <b>${nl(s.geheugen_grootte)}</b></span>`);
+  if (s.geleefde_lessen != null) meta.push(`<span class="chip">geleefde lessen <b>${nl(s.geleefde_lessen)}</b></span>`);
   $("nu-meta").innerHTML = meta.join("");
   const hn = s.herinnert || [];
   $("herinnert").innerHTML = hn.length
@@ -1202,7 +1204,8 @@ function tekenGeheugen(s) {
   const fl = s.fles || {};
   const totaal = Object.values(vakjes).reduce((a, b) => a + b, 0);
   h += `<div class="kengetallen">
-    <div class="kengetal"><div class="l">herinneringen</div><div class="w">${nl(s.geheugen_grootte || totaal)}</div></div>
+    <div class="kengetal groei"><div class="l">geleefde lessen</div><div class="w">${nl(s.geleefde_lessen != null ? s.geleefde_lessen : (vakjes["gesprek/1"] || 0))}<small>groeit met haar leven</small></div></div>
+    <div class="kengetal"><div class="l">werkgeheugen</div><div class="w">${nl(s.geheugen_grootte || totaal)}<small>vol, rollend</small></div></div>
     <div class="kengetal"><div class="l">vakjes</div><div class="w">${nl(sleutels.length)}</div></div>
     ${fl.lengte ? `<div class="kengetal"><div class="l">doorgang</div><div class="w">${nl(fl.lengte)}<small>${fl.bezetting != null ? Math.round(fl.bezetting * 100) + "% gevuld" : ""}</small></div></div>` : ""}
     ${fl.geweigerd != null ? `<div class="kengetal"><div class="l">geweigerd</div><div class="w">${fl.geweigerd >= 1e6 ? nl(fl.geweigerd / 1e6, 1) + "<small>mln</small>" : nl(fl.geweigerd)}</div></div>` : ""}
