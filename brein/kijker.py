@@ -345,6 +345,16 @@ def load_if_newer():
 
 VRAGEN = f"{FOLDER}/vraag-wachtrij"
 os.makedirs(VRAGEN, exist_ok=True)
+# 25 aug 2026 (Claudes wensen, op Cleys woord in het draaiboek): twee extra
+# afzenders door dezelfde weg. Een bestand "claude-*.txt" in de wachtrij is
+# een vraag van Claude — het antwoord gaat naar vragen-claude.jsonl, met
+# afzender, zodat in het logboek staat wie wat vroeg. Een bestand
+# "dagboek-*.txt" is een vraag voor haar eigen dagboek: het antwoord komt
+# ongewijzigd in sessies/dagboek-amber.md, met stap en datum. Geen
+# bewerking, geen mooimakerij: wat ze zegt staat er.
+VRAGEN_CLAUDE = f"{FOLDER}/vragen-claude.jsonl"
+DAGBOEK = "/home/arch/amber/sessies/dagboek-amber.md"
+DAGBOEK_JSON = f"{FOLDER}/dagboek-amber.jsonl"
 
 
 def _beantwoord_vragen():
@@ -360,16 +370,35 @@ def _beantwoord_vragen():
             os.remove(pad)
         if not vraag:
             continue
+        afzender = ("claude" if naam.startswith("claude-")
+                    else "dagboek" if naam.startswith("dagboek-") else "cley")
         taak = tasks.Task(family="vraag", grade=1, number=0,
                           problem=vraag, solution="")
         ruim = max(16, min(500, L.core.window - len(vraag) - 16))
         antwoord = L.answer([taak], at_most=ruim)[0]
-        uit = {"tijd": time.time(), "vraag": vraag, "antwoord": antwoord,
-               "herinnert": _recall(taak)}
-        with open(f"{FOLDER}/vraag-antwoord.json.deel", "w") as f:
-            json.dump(uit, f, ensure_ascii=False)
-        os.replace(f"{FOLDER}/vraag-antwoord.json.deel",
-                   f"{FOLDER}/vraag-antwoord.json")
+        if afzender == "cley":
+            uit = {"tijd": time.time(), "vraag": vraag, "antwoord": antwoord,
+                   "herinnert": _recall(taak)}
+            with open(f"{FOLDER}/vraag-antwoord.json.deel", "w") as f:
+                json.dump(uit, f, ensure_ascii=False)
+            os.replace(f"{FOLDER}/vraag-antwoord.json.deel",
+                       f"{FOLDER}/vraag-antwoord.json")
+            continue
+        regel = {"tijd": time.time(), "wanneer": time.strftime("%Y-%m-%d %H:%M"),
+                 "stap": globals().get("step_in_snapshot"), "afzender": afzender,
+                 "vraag": vraag, "antwoord": antwoord}
+        doel = VRAGEN_CLAUDE if afzender == "claude" else DAGBOEK_JSON
+        with open(doel, "a") as f:
+            f.write(json.dumps(regel, ensure_ascii=False) + "\n")
+        if afzender == "dagboek":
+            os.makedirs(os.path.dirname(DAGBOEK), exist_ok=True)
+            nieuw = not os.path.exists(DAGBOEK)
+            with open(DAGBOEK, "a") as f:
+                if nieuw:
+                    f.write("# Ambers dagboek\n\nHaar eigen woorden, ongewijzigd. Elke regel: wanneer, "
+                            "bij welke stap van haar brein, de vraag, en wat zij zei.\n\n")
+                f.write(f"- **{regel['wanneer']}** · stap **{regel['stap']}** · "
+                        f"*{vraag}* — {antwoord}\n")
 
 
 # --- laagnamen uit haar meting (16 aug 2026, Cleys keuze) ---------------------
