@@ -120,14 +120,14 @@
   .meer:hover { color: var(--ink); border-color: var(--rand-2); }
   .leeg { color: var(--dim); font-size: 13px; }
 
-  #nu .opgave { font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: pre-wrap; line-height: 1.55; max-height: 5.2em; overflow: hidden; }
-  #nu #antwoord { font-family: var(--mono); font-size: 14px; color: var(--ink); white-space: pre-wrap; min-height: 1.5em; margin-top: 6px; }
+  #nu .opgave { font-family: var(--mono); font-size: 12.5px; color: var(--muted); white-space: pre-wrap; line-height: 1.55; height: 5.2em; overflow: hidden; }
+  #nu #antwoord { font-family: var(--mono); font-size: 14px; color: var(--ink); white-space: pre-wrap; height: 3.1em; overflow: hidden; margin-top: 6px; }
   #nu #antwoord.goed { color: var(--mint); } #nu #antwoord.fout { color: var(--coral); }
-  #nu .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 9px; }
+  #nu .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 9px; height: 56px; overflow: hidden; align-content: flex-start; }
   .chip { display: inline-flex; gap: 5px; align-items: baseline; padding: 2px 9px; border-radius: 100px; border: 1px solid var(--rand);
           background: rgba(140,170,220,.06); font-size: 12px; color: var(--muted); white-space: nowrap; }
   .chip b { font-family: var(--mono); font-weight: 600; }
-  #nu .herinnert { margin-top: 10px; border-top: 1px solid var(--rand); padding-top: 8px; }
+  #nu .herinnert { margin-top: 10px; border-top: 1px solid var(--rand); padding-top: 8px; height: 84px; overflow: hidden; }
   #nu .herinnert .l { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 4px; }
   #nu .herinnert .h { font-family: var(--mono); font-size: 12px; color: var(--dim); line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
@@ -202,12 +202,13 @@
   .antwoorden button, .knop { background: rgba(140,170,220,.08); color: var(--ink); border: 1px solid var(--rand-2); border-radius: 100px;
                               padding: 7px 15px; cursor: pointer; transition: border-color .15s, background .15s; font-size: 14px; }
   .antwoorden button:hover, .knop:hover { border-color: var(--sky); background: rgba(111,181,255,.12); }
-  .antwoorden button:focus-visible, .knop:focus-visible, .antwoorden input:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+  .antwoorden button:focus-visible, .knop:focus-visible, .antwoorden input:focus-visible, .antwoorden textarea:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
   .antwoorden button:disabled { opacity: .4; cursor: default; }
   .antwoorden button.stil { opacity: .45; }
   .antwoorden button.ja { border-color: rgba(127,224,195,.5); } .antwoorden button.nee { border-color: rgba(255,154,122,.5); }
-  .antwoorden input { width: 220px; background: rgba(5,7,13,.6); color: var(--ink); border: 1px solid var(--rand-2); border-radius: 100px; padding: 7px 14px; font: inherit; }
-  .antwoorden input::placeholder { color: var(--dim); }
+  .antwoorden input, .antwoorden textarea { width: 220px; background: rgba(5,7,13,.6); color: var(--ink); border: 1px solid var(--rand-2); border-radius: 18px; padding: 7px 14px; font: inherit; }
+  .antwoorden textarea { resize: none; line-height: 1.4; max-height: 96px; overflow-y: auto; }
+  .antwoorden input::placeholder, .antwoorden textarea::placeholder { color: var(--dim); }
 
   /* ================= de vensters (over de ruimte heen) ================= */
   .venster { position: fixed; inset: 0; z-index: 8; display: none; align-items: flex-start; justify-content: center;
@@ -272,7 +273,7 @@
     #rechts { margin: 10px 10px 0; overflow: visible; padding-bottom: 8px; }
     #onder { position: sticky; bottom: 0; left: 0; right: 0; margin: 10px 10px 12px; height: auto; grid-template-columns: 1fr auto; row-gap: 8px; padding: 10px 12px; }
     #onder .antwoorden { grid-column: 1 / -1; flex-wrap: wrap; }
-    .antwoorden input { flex: 1; width: auto; min-width: 140px; }
+    .antwoorden input, .antwoorden textarea { flex: 1; width: auto; min-width: 140px; }
     .venster { padding: 0; align-items: stretch; }
     .venster-kaart { width: 100%; max-height: none; border-radius: 0; padding: 14px 14px 90px; }
     .venster-kop { top: -14px; margin-top: -14px; padding-top: 14px; }
@@ -329,7 +330,9 @@
     <button class="ja" onclick="antwoordCley('ja')">ja</button>
     <button class="nee" onclick="antwoordCley('nee')">nee</button>
     <button onclick="antwoordCley('later')">later</button>
-    <input id="antwoord-vrij" placeholder="in je eigen woorden…" maxlength="60" onkeydown="if(event.key==='Enter')antwoordCley(this.value)">
+    <textarea id="antwoord-vrij" placeholder="in je eigen woorden…" title="Enter stuurt · Shift+Enter nieuwe regel · tot 900 tekens" maxlength="900" rows="1"
+      oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,96)+'px'"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();antwoordCley(this.value);}"></textarea>
     <button onclick="antwoordCley(document.getElementById('antwoord-vrij').value)">stuur</button>
   </div>
   <button class="meer" data-venster="gesprek" title="het hele gesprek">⤢</button>

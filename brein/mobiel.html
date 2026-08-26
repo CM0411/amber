@@ -314,7 +314,7 @@ async function haalZelfrapport() {
     if (z.amber_vraagt) h += `<div class="fijn">amber vraagt</div><div class="amber">"${z.amber_vraagt}"</div>`;
     h += `<div class="fijn">jouw antwoord</div><div class="gesprek-knoppen">`
        + ["ja", "nee", "later"].map(a => `<button onclick="antwoordCley('${a}')">${a}</button>`).join("")
-       + `<input id="antwoord-vrij" placeholder="eerst rekenen …" maxlength="60"><button onclick="antwoordCley(document.getElementById('antwoord-vrij').value)">stuur</button></div>`;
+       + `<input id="antwoord-vrij" placeholder="eerst rekenen …" maxlength="900"><button onclick="antwoordCley(document.getElementById('antwoord-vrij').value)">stuur</button></div>`;
     if ((z.voorstellen || []).length) h += `<div class="fijn">het systeem</div><ul class="zacht">` + z.voorstellen.map(v => `<li>${v}</li>`).join("") + `</ul>`;
     try {
       const log = await (await fetch("/amber-zegt.json", {cache: "no-store"})).json();

@@ -464,7 +464,13 @@ class Venster(BaseHTTPRequestHandler):
             # antwoord begrijpen, niet alleen opslaan. Zwijgen blijft nee.
             from urllib.parse import urlparse, parse_qs
             q = parse_qs(urlparse(self.path).query)
-            ant = q.get("antwoord", [""])[0].strip().lower()[:80]
+            # 900 tekens (26 aug 2026, Cleys wens: hele verhalen kunnen
+            # schrijven): de les bevat het antwoord twee keer (vraag en
+            # betekenis), en 2x900 + haar vraag past ruim door de
+            # geheugendeur van 2048. Nieuwe regels worden " ; " — haar
+            # wereld is een-regelig.
+            ant = q.get("antwoord", [""])[0].strip().lower()[:900]
+            ant = " ; ".join(r.strip() for r in ant.splitlines() if r.strip())
             ok = False
             try:
                 regels = open(f"{RAPPORT}/amber-zegt.jsonl").read().splitlines()
