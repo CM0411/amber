@@ -69,9 +69,9 @@ check("telling", telling([True, False, None, None]) == (1, 1, 2))
 
 # --- de familie onbekend -------------------------------------------------
 check("onbekend in de wereld, achteraan", world.FAMILIES[-1] == "onbekend")
-check("hek van onbekend", world.max_depth("onbekend") == 12)
+check("hek van onbekend", world.max_depth("onbekend") == 16)   # 26 aug 2026: 12 -> 16 (run 7.5)
 gezien = set()
-for depth in range(1, 13):
+for depth in range(1, world.max_depth("onbekend") + 1):
     for n in range(0, 30):
         a = world.make("onbekend", depth, n)
         b = world.make("onbekend", depth, n)
@@ -82,9 +82,18 @@ for depth in range(1, 13):
         check("opgave past", len(a.problem) < 200)
         gezien.add(a.problem)
 check("genoeg verschillende opgaven", len(gezien) > 120, str(len(gezien)))
+# De kale generator mag toevallig een tekst maken die ook op het bevroren
+# blad staat — de tekstruimte is klein op lage dieptes. Wat telt is het
+# slot: de leerlus geeft exclude=exams.material() mee (learning.py), dus
+# leerstof bevat nooit een proefwerktekst. Dat slot toetsen we hier, op
+# elke diepte. (26 aug 2026: de oude botsing-check gold alleen doordat de
+# knip-volgorde het blad pas ná de toets bevroor.)
 mat = exams.material()
-botst = [p for p in gezien if p in mat]
-check("geen botsing met de proefwerken", not botst, str(botst[:2]))
+for depth in range(1, world.max_depth("onbekend") + 1):
+    leer = world.learning_tasks("onbekend", depth, 8, start=0, room=400,
+                                exclude=mat)
+    check("slot houdt proefwerk buiten de leerstof",
+          not any(t.problem in mat for t in leer), f"diepte {depth}")
 leer = world.learning_tasks("onbekend", 5, 8, start=0, room=400, exclude=set())
 check("leerstof onbekend", len(leer) == 8 and all(t.solution == "?" for t in leer))
 

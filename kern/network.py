@@ -189,6 +189,13 @@ class Decoder:
         self.graph = None
         self.out = None
         self.use_graph = use_graph and self.device.type == "cuda"
+        # Without a graph the keys and values are cut to what is filled —
+        # the same matmul shape as the ordinary path, so the same cuBLAS
+        # kernel and the same rounding, also under bf16 (26 Aug 2026: on
+        # the 3070 Ti the full-buffer shapes picked a different reduction
+        # order and flipped characters). The graph needs fixed shapes and
+        # keeps the full buffer; tests may override this switch.
+        self.cuts = not self.use_graph
 
     def _make_room(self, need, like):
         if need > self.capacity:
@@ -228,10 +235,11 @@ class Decoder:
     def step_eager(self):
         """One character at position `pos`, from `tok`; returns (batch, 1, VOCAB)."""
         core, batch = self.core, self.batch
+        reach = self.n + 1 if self.cuts else self.room
         x = core.embedding(self.tok)
         cos, sin = _angles_at(self.pos, self.head_size, self.device)
-        col = torch.arange(self.room, device=self.device)
-        mask = self.mask_full[:, :self.room] | (col > self.pos)[None, :]
+        col = torch.arange(reach, device=self.device)
+        mask = self.mask_full[:, :reach] | (col > self.pos)[None, :]
         index = self.pos.reshape(1)
         for i, block in enumerate(core.blocks):
             att = block.attention
@@ -245,7 +253,8 @@ class Decoder:
             k = _rotate(k, cos, sin)
             self.k[i].index_copy_(2, index, k.to(self.k[i].dtype))
             self.v[i].index_copy_(2, index, v.to(self.v[i].dtype))
-            keys, values = self.k[i], self.v[i]
+            keys = self.k[i][:, :, :reach]
+            values = self.v[i][:, :, :reach]
             if att._scale_folds and not torch.is_autocast_enabled():
                 scores = (q * att._scale) @ keys.transpose(-2, -1)
             else:

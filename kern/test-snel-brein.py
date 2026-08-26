@@ -18,6 +18,8 @@ if not torch.cuda.is_available():
     print("geen kaart — deze test vergelijkt op de kaart; overgeslagen")
     print("passed: 0    failed: 0"); sys.exit(0)
 pad = sys.argv[1] if len(sys.argv) > 1 else "fase1/leven/momentopname.pt"
+modus = sys.argv[2] if len(sys.argv) > 2 else "graaf"   # "graaf" of "snij" (26 aug 2026)
+assert modus in ("graaf", "snij"), modus
 if not os.path.exists(pad):
     print(f"geen momentopname op {pad} — overgeslagen (geef er een als argument)")
     print("passed: 0    failed: 0"); sys.exit(0)
@@ -29,7 +31,7 @@ vorm = (content.get("extra") or {}).get("vorm")
 if vorm: learner.adopt_shape(bridge.translate_spec(vorm))
 stap = snapshot.restore(content, learner.core, None, dev)
 core = learner.core.eval(); del content
-print(f"brein van stap {stap}, {len(core.blocks)} lagen, venster {core.window}")
+print(f"brein van stap {stap}, {len(core.blocks)} lagen, venster {core.window}, decoder-modus {modus}")
 soort = torch.bfloat16 if bf16_usable(dev) else torch.float16   # the card's own half precision, as in the run
 totaal = flips = 0; maxd = 0.0; eind_gelijk = eind_n = 0; score_oud = score_nieuw = 0
 for family, depth in (("rekenen", 12), ("puzzel", 3), ("taal", 4), ("code", 10), ("geheugen", 8), ("logica", 6)):
@@ -44,7 +46,8 @@ for family, depth in (("rekenen", 12), ("puzzel", 3), ("taal", 4), ("code", 10),
         # 1. per character, identical inputs (the ordinary path decides)
         cache = core.new_cache(capacity)
         s, cache = core.advance(q, cache=cache, key_mask=mask[:, :longest])
-        dec = network.Decoder(core, B, capacity, mask, use_graph=True); s2 = dec.prefill(q, mask[:, :longest])
+        dec = network.Decoder(core, B, capacity, mask, use_graph=(modus == "graaf"))
+        s2 = dec.prefill(q, mask[:, :longest])
         f = s[:, -1].argmax(-1); done = torch.zeros(B, dtype=torch.bool, device=dev)
         for step in range(at_most - 1):
             f = torch.where(done, torch.full_like(f, tokens.PAD), f); done = done | (f == tokens.END)
@@ -58,7 +61,8 @@ for family, depth in (("rekenen", 12), ("puzzel", 3), ("taal", 4), ("code", 10),
         del cache, dec
         # 2. end to end: each path on its own, through the Learner
         os.environ["AMBER_GRAAF"] = "0"; oud = learner.answer(tasks_, at_most=at_most)
-        os.environ["AMBER_GRAAF"] = "1"; nieuw = learner.answer(tasks_, at_most=at_most)
+        os.environ["AMBER_GRAAF"] = ("1" if modus == "graaf" else "snij")
+        nieuw = learner.answer(tasks_, at_most=at_most)
     gelijk = sum(1 for x, y in zip(oud, nieuw) if x == y); eind_gelijk += gelijk; eind_n += B
     so = sum(t.check(x) for t, x in zip(tasks_, oud)); sn = sum(t.check(x) for t, x in zip(tasks_, nieuw)); score_oud += so; score_nieuw += sn
     print(f"  {family:9s}/{depth:<2d} antwoorden gelijk {gelijk}/{B}, goed oud {so} nieuw {sn}")

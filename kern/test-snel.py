@@ -47,7 +47,7 @@ def left_padded(prompts, device):
 
 
 @torch.no_grad()
-def write_both(core, prompts, steps, device, use_graph):
+def write_both(core, prompts, steps, device, use_graph, cuts=None):
     """Returns (scores_old, scores_new): per character the scores of the
     ordinary path and of the Decoder, plus the characters chosen."""
     question, longest = left_padded(prompts, device)
@@ -59,6 +59,8 @@ def write_both(core, prompts, steps, device, use_graph):
     cache = core.new_cache(capacity)
     s_old, cache = core.advance(question, cache=cache, key_mask=mask_full[:, :longest])
     dec = network.Decoder(core, batch, capacity, mask_full, use_graph=use_graph)
+    if cuts is not None:
+        dec.cuts = cuts
     s_new = dec.prefill(question, mask_full[:, :longest])
     assert torch.equal(s_old, s_new), "prefill differs"
 
@@ -83,10 +85,20 @@ def write_both(core, prompts, steps, device, use_graph):
 def test_eager_equals_advance(device):
     core = small_core().to(device)
     prompts = [[tokens.ANSWER] + [5, 6, 7, 8][: 1 + i] for i in range(4)]
+    # cut to n (the default without a graph): the same shapes as the
+    # ordinary path, so bit for bit — also the bf16 requirement (26 Aug)
     old, new, c_old, c_new = write_both(core, prompts, steps=40, device=device, use_graph=False)
     diff = (old.float() - new.float()).abs().max().item()
     same = (c_old == c_new).float().mean().item()
-    print(f"  eager decoder vs advance: max verschil {diff:.2e}, zelfde teken {same:.1%}")
+    print(f"  gesneden decoder vs advance: max verschil {diff:.2e}, zelfde teken {same:.1%}")
+    assert torch.equal(old, new), f"gesneden pad niet bit voor bit ({diff:.2e})"
+    assert same == 1.0, same
+    # the full buffer (what the graph sees): within rounding, same tokens
+    old, new, c_old, c_new = write_both(core, prompts, steps=40, device=device,
+                                        use_graph=False, cuts=False)
+    diff = (old.float() - new.float()).abs().max().item()
+    same = (c_old == c_new).float().mean().item()
+    print(f"  volle-buffer decoder vs advance: max verschil {diff:.2e}, zelfde teken {same:.1%}")
     assert diff < 1e-4, diff
     assert same == 1.0, same
 
@@ -110,12 +122,29 @@ def test_learner_answers_equal(device):
     assert a == b, (a, b)
 
 
+def test_snij_equals_advance_card():
+    """The cut path against the ordinary path on the card, in the card's
+    own half precision — the bf16 requirement the graph cannot meet on
+    consumer cards (26 Aug 2026)."""
+    device = "cuda"
+    core = small_core(seed=3, layers=4, width=96, heads=3, window=512).to(device)
+    prompts = [[tokens.ANSWER] + list(range(5, 5 + 3 + i)) for i in range(8)]
+    with torch.autocast("cuda", dtype=torch.bfloat16):
+        old, new, c_old, c_new = write_both(core, prompts, steps=300, device=device,
+                                            use_graph=False)
+    exact = torch.equal(old, new)
+    same = (c_old == c_new).float().mean().item()
+    print(f"  gesneden vs advance (bf16, kaart): bit voor bit {exact}, zelfde teken {same:.1%}")
+    assert exact and same == 1.0, (exact, same)
+
+
 def test_graph_equals_eager():
     device = "cuda"
     core = small_core(seed=3, layers=4, width=96, heads=3, window=512).to(device)
     prompts = [[tokens.ANSWER] + list(range(5, 5 + 3 + i)) for i in range(8)]
     with torch.autocast("cuda", dtype=torch.bfloat16):
-        _, new_eager, _, _ = write_both(core, prompts, steps=300, device=device, use_graph=False)
+        _, new_eager, _, _ = write_both(core, prompts, steps=300, device=device,
+                                        use_graph=False, cuts=False)
         _, new_graph, _, _ = write_both(core, prompts, steps=300, device=device, use_graph=True)
     exact = torch.equal(new_eager, new_graph)
     diff = (new_eager.float() - new_graph.float()).abs().max().item()
@@ -161,7 +190,8 @@ if __name__ == "__main__":
     print("learner: antwoorden gelijk")
     loop("antwoorden gelijk", test_learner_answers_equal_default)
     if os.environ.get("AMBER_KAART_TEST") == "1" and torch.cuda.is_available():
-        print("op de kaart: graaf == eager, en het tempo")
+        print("op de kaart: gesneden == advance (bf16), graaf == eager, en het tempo")
+        loop("gesneden == advance (kaart)", test_snij_equals_advance_card)
         loop("graaf == eager", test_graph_equals_eager)
     else:
         print("(kaarttest overgeslagen: AMBER_KAART_TEST=1 op een vrije kaart)")

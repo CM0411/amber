@@ -590,9 +590,10 @@ class Learner:
         # one captured CUDA graph instead of hundreds of separate kernels.
         # AMBER_GRAAF=0 takes the old road; off a card it is the old road.
         decoder = None
-        wil = os.environ.get("AMBER_GRAAF", "1")          # "0": never; "altijd": also off a card (tests)
+        wil = os.environ.get("AMBER_GRAAF", "1")          # "0": never; "snij": no graph, cut to n (bf16-safe); "altijd": also off a card (tests)
         if wil == "altijd" or (wil != "0" and torch.device(device).type == "cuda"):
-            decoder = network.Decoder(core, len(tasks_), capacity, mask_full)
+            decoder = network.Decoder(core, len(tasks_), capacity, mask_full,
+                                      use_graph=(wil != "snij"))
             scores = decoder.prefill(question, mask_full[:, :longest])
         else:
             cache = core.new_cache(capacity)
