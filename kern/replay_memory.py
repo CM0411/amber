@@ -165,6 +165,14 @@ class ReplayMemory:
         self._content = []
         self._tally = {}
         self.refused = 0
+        # Lifelong tally (27 Aug 2026, Cley's wish to watch her memory grow):
+        # every experience that ever passes the doorway adds one, and it is
+        # never decreased when balanced forgetting drops one — the working
+        # memory rolls, but what she has *ever* learned only grows. Seeded
+        # at the current fill for a checkpoint from before this counter, so
+        # the number starts where the working memory sits (390.000) and
+        # climbs from there. Carried like everything else in her state.
+        self.onthouden_totaal = 0
 
     def remember(self, task, answer, correct):
         try:
@@ -175,6 +183,7 @@ class ReplayMemory:
         self._content.append(stored)
         cell = (stored["familie"], stored["graad"])
         self._tally[cell] = self._tally.get(cell, 0) + 1
+        self.onthouden_totaal += 1
         if len(self._content) > self.capacity:
             self._forget_one()
         return True
@@ -248,6 +257,7 @@ class ReplayMemory:
         return {
             "ruimte": self.capacity,
             "geweigerd": self.refused,
+            "onthouden_totaal": self.onthouden_totaal,
             "inhoud": [dict(s) for s in self._content],
         }
 
@@ -265,6 +275,11 @@ class ReplayMemory:
         # a smaller one lets balanced forgetting trim on the next remember.
         self.capacity = max(self.capacity, len(carried["inhoud"]))
         self.refused = int(carried["geweigerd"])
+        # An older checkpoint has no lifelong tally yet: start it at what she
+        # currently holds, so the number never overclaims a history it did
+        # not record, and never dips below the working memory.
+        self.onthouden_totaal = int(carried.get("onthouden_totaal",
+                                                len(carried["inhoud"])))
         self._content = [dict(s) for s in carried["inhoud"]]
         # The tally is not in the checkpoint but follows from the content —
         # so a checkpoint from before balanced forgetting loads unchanged.
@@ -278,12 +293,14 @@ class ReplayMemory:
         """What is in it, and how full the doorway sits."""
         if not self._content:
             return {"aantal": 0, "geweigerd": self.refused,
+                    "onthouden_totaal": self.onthouden_totaal,
                     "bezetting_gemiddeld": None, "bezetting_hoogste": None}
         occ = [self.bottleneck.occupancy(s) for s in self._content]
         graded = [s["goed"] for s in self._content if s["goed"] is not None]
         return {
             "aantal": len(self._content),
             "geweigerd": self.refused,
+            "onthouden_totaal": self.onthouden_totaal,
             "bezetting_gemiddeld": sum(occ) / len(occ),
             "bezetting_hoogste": max(occ),
             "nagekeken": len(graded),

@@ -208,6 +208,74 @@ bottleneck_status = {}
 # 4); the memories themselves are real: what she lived through on the
 # X399 and kept through the bottleneck.
 memories = []
+onthouden_snap = None       # de echte lifelong-teller uit de momentopname (7.6+)
+# Tot de echte teller meekomt: ~batch 64 + toets elke 4 stappen = 64*1.25.
+# life.py bepaalt dit; verandert dat, pas dit aan. De kijker rekent er de
+# levende waarde mee uit, het venster laat hem elke seconde meetikken.
+ONTHOUDEN_PER_STAP = 80
+
+# Haar dag en haar open vragen, voor het venster (27 aug 2026). Alleen lezen
+# en meegeven in stand.json — het venster (andere sessie) rendert ze.
+LOGBOEK_PAD = "/home/arch/amber-werk/fase1/leven/logboek.jsonl"
+ZEGT_PAD = "/home/arch/rapport/amber-zegt.jsonl"
+
+
+def _staart_regels(pad, bytes_terug=300_000):
+    """De laatste regels van een groot jsonl, zonder alles te lezen."""
+    try:
+        with open(pad, "rb") as f:
+            f.seek(0, os.SEEK_END)
+            f.seek(max(0, f.tell() - bytes_terug))
+            blok = f.read().decode("utf-8", "ignore")
+    except OSError:
+        return []
+    regels = blok.splitlines()
+    return regels[1:] if len(regels) > 1 else regels     # eerste kan half zijn
+
+
+def _dag_verhaal():
+    """De vraag/antwoord-regels van haar laatste afgesloten dag."""
+    laatste = {}
+    for r in _staart_regels(LOGBOEK_PAD):
+        try:
+            d = json.loads(r)
+        except ValueError:
+            continue
+        if d.get("soort") == "dag":
+            laatste = {"dag": d.get("dag"), "regels": laatste.get("regels", [])} \
+                if laatste.get("dag") == d.get("dag") else {"dag": d.get("dag"), "regels": []}
+            laatste["regels"].append({"vraag": d.get("vraag", ""),
+                                      "antwoord": d.get("antwoord", ""),
+                                      "tijd": d.get("tijd")})
+    if not laatste:
+        return []
+    # ontdubbel op antwoord, houd de eerste (de nette "hoe was je dag?"-vorm)
+    gezien = set(); uit = []
+    for x in laatste["regels"]:
+        k = x["antwoord"]
+        if k in gezien:
+            continue
+        gezien.add(k); uit.append(x)
+    return uit
+
+
+def _open_vragen(limiet=10):
+    """Haar eigen vragen die nog geen antwoord van Cley hebben."""
+    per_vraag = {}
+    for r in _staart_regels(ZEGT_PAD, 200_000):
+        try:
+            d = json.loads(r)
+        except ValueError:
+            continue
+        v = d.get("vraagt")
+        if not v:
+            continue
+        per_vraag[v] = d                     # laatste voorkomen wint
+    open_ = [{"tijd": d.get("tijd"), "vraagt": v,
+              "antwoord_cley": d.get("antwoord_cley")}
+             for v, d in per_vraag.items() if not d.get("antwoord_cley")]
+    open_.sort(key=lambda x: x["tijd"] or 0, reverse=True)
+    return open_[:limiet]
 
 
 def _grams(text):
@@ -216,9 +284,10 @@ def _grams(text):
 
 
 def _build_memories(extra):
-    global memories, memory_cells, bottleneck_status
+    global memories, memory_cells, bottleneck_status, onthouden_snap
     memories = []
     memory = (extra or {}).get("geheugen") or {}
+    onthouden_snap = memory.get("onthouden_totaal")   # None op oude breinen
     content = memory.get("inhoud") or []
     neck = L.memory.bottleneck
     cells = {}
@@ -601,6 +670,12 @@ while True:
         # getal dat oploopt; het werkgeheugen zelf is rollend en vlak.
         "geleefde_lessen": memory_cells.get("gesprek/1", 0),
         "dag": (step_in_snapshot // learning.DAG_STAPPEN) if step_in_snapshot else 0,
+        "onthouden_totaal": (int(onthouden_snap) if onthouden_snap is not None
+                             else ONTHOUDEN_PER_STAP * (step_in_snapshot or 0)),
+        "onthouden_ref_stap": step_in_snapshot or 0,
+        "onthouden_per_stap": ONTHOUDEN_PER_STAP,
+        "dag_verhaal": _dag_verhaal(),
+        "open_vragen": _open_vragen(),
         "fles": bottleneck_status,
         "bedrading": wiring,
         "bedrading_uit": wiring_out,

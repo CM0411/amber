@@ -1200,6 +1200,17 @@ class Learner:
             return
         if carried.get("geheugen"):
             self.memory.restore(carried["geheugen"])
+            # Lifelong tally (27 Aug 2026, Cley wil haar geheugen zien
+            # groeien): a snapshot from before this counter seeds it at the
+            # current fill in ReplayMemory — but she has taken in far more
+            # than she now holds, the working memory rolls. Seed it at the
+            # lived estimate instead: ~batch_size per learning step plus the
+            # probe every probe_every steps, over the run so far. Only when
+            # the snapshot did not carry the real count (then that stands).
+            if step is not None and "onthouden_totaal" not in carried["geheugen"]:
+                per_stap = self.batch_size * (1 + 1.0 / self.probe_every)
+                self.memory.onthouden_totaal = max(
+                    self.memory.onthouden_totaal, int(per_stap * int(step)))
         # Snapshots from before 13 Aug 2026 lack this key: then no lesson
         # has ever been taken in, and 0 is exactly right.
         self.lessons_upto = int(carried.get("les_tot") or 0)
