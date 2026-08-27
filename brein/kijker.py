@@ -278,6 +278,71 @@ def _open_vragen(limiet=10):
     return open_[:limiet]
 
 
+# --- Amber ziet Cley: de eerste steen (27 aug 2026) ---------------------------
+# Een doel uit Tau: zij neemt waar dat Cley er is en groet uit zichzelf. Dit is
+# alleen het fundament, met wat er nu al is: het venster tikt KIJKT aan zolang
+# hij kijkt, dus daaraan "ziet" zij hem — geen camera. Was hij een poos weg en
+# komt hij terug, dan legt zij zelf een begroeting klaar in stand.json; het
+# venster toont hem. Nog geen stem (dat komt later, met Cley erbij) en geen
+# nieuwe dienst. Een klein statusbestand houdt "wanneer was hij er" over
+# herstarts heen. De volle vorm (de driehoek met het oog, en de stem) hoort bij
+# run 8 — zie het draaiboek.
+AANWEZIG_STAAT = "/home/arch/rapport/aanwezig.json"
+AANWEZIG_VENSTER = 180     # KIJKT jonger dan dit = hij kijkt nu (eigen drempel:
+                           # de dienst zet SLAAP_NA=0, dus _iemand_kijkt() kan dit
+                           # niet leveren — 27 aug 2026)
+WEG_DREMPEL = 900          # minstens zo lang weg voordat "terug" telt (15 min)
+BEGROETING_DUUR = 180      # zo lang blijft een verse begroeting in stand.json
+
+
+def _weg_in_woorden(sec):
+    m = int(sec // 60)
+    if m < 60:
+        return "een minuut" if m == 1 else f"{m} minuten"
+    u, m = m // 60, m % 60
+    if u < 24:
+        kop = "een uur" if u == 1 else f"{u} uur"
+        return kop + (f" en {m} minuten" if m else "")
+    d = u // 24
+    return "een dag" if d == 1 else f"{d} dagen"
+
+
+def _begroeting():
+    """Merkt of Cley terug is na een poos weg, en legt dan zelf een groet klaar.
+    Geeft de huidige begroeting terug (of None)."""
+    now = time.time()
+    try:
+        st = json.load(open(AANWEZIG_STAAT))
+    except (OSError, ValueError):
+        st = {}
+    if "laatst_aanwezig" not in st:                # koude start: neem de laatste
+        try:                                       # venster-tik als "toen was hij er"
+            st["laatst_aanwezig"] = os.path.getmtime(KIJKT)
+        except OSError:
+            st["laatst_aanwezig"] = now
+    try:                                           # KIJKT vers = hij kijkt nu
+        aanwezig = (now - os.path.getmtime(KIJKT)) < AANWEZIG_VENSTER
+    except OSError:
+        aanwezig = False
+    groet = st.get("begroeting")
+    if groet and now - groet.get("tijd", 0) > BEGROETING_DUUR:
+        groet = None                               # verjaard
+    if aanwezig:
+        weg = now - st.get("laatst_aanwezig", now)
+        if weg >= WEG_DREMPEL:                      # terug na een poos weg: zij begint
+            groet = {"tekst": f"Hee Cley, ben je er weer — je was {_weg_in_woorden(weg)} weg.",
+                     "weg_seconden": int(weg), "tijd": now}
+        st["laatst_aanwezig"] = now
+    st["begroeting"] = groet
+    try:
+        with open(AANWEZIG_STAAT + ".deel", "w") as f:
+            json.dump(st, f, ensure_ascii=False)
+        os.replace(AANWEZIG_STAAT + ".deel", AANWEZIG_STAAT)
+    except OSError:
+        pass
+    return groet
+
+
 def _grams(text):
     t = text.replace(" ", "")
     return frozenset(t[i:i + 3] for i in range(len(t) - 2))
@@ -598,6 +663,7 @@ def _groups_t(v, n):
     return v.reshape(n, -1).mean(dim=1)
 
 while True:
+    huidige_begroeting = _begroeting()      # Amber ziet Cley: merkt terugkomst, ook slapend
     if time.time() - last_fetched > FETCH_EVERY:
         fetch_snapshot()
     _beantwoord_vragen()
@@ -676,6 +742,7 @@ while True:
         "onthouden_per_stap": ONTHOUDEN_PER_STAP,
         "dag_verhaal": _dag_verhaal(),
         "open_vragen": _open_vragen(),
+        "begroeting": huidige_begroeting,   # zij groet uit zichzelf als hij terug is (None = niets)
         "fles": bottleneck_status,
         "bedrading": wiring,
         "bedrading_uit": wiring_out,
