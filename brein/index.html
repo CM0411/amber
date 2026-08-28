@@ -40,7 +40,7 @@
   /* ================= het toneel: de ruimte ================= */
   #toneel { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 50%, #0F1E5E 0%, #071033 55%, #050B24 100%); }
   #doek { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
-  #vrij { position: absolute; top: calc(var(--kop-h) + var(--marge)); left: calc(var(--rail-w) + 2 * var(--marge));
+  #vrij { position: absolute; top: calc(var(--kop-h) + var(--marge)); left: var(--marge);   /* 28 aug, Cley: de rail 'haar lagen' is weg, de waaier krijgt die ruimte */
           right: calc(var(--rechts-w) + 2 * var(--marge)); bottom: calc(var(--onder-h) + 2 * var(--marge));
           pointer-events: none; transition: opacity .3s; }
   body.laag-open #vrij { opacity: 0; }
@@ -281,6 +281,7 @@
     .staaf { grid-template-columns: 8ch 1fr 5ch; }
     #toast { bottom: 120px; }
   }
+  #rail { display: none; }   /* 28 aug 2026, Cley: "dit gedeelte mag weg, niet zo waardevol" — element en bouwNamen() blijven, alleen onzichtbaar */
 </style>
 </head>
 <body>
@@ -342,7 +343,7 @@
   <div class="venster-kaart glas">
     <div class="venster-kop"><h2>Het gesprek</h2><span class="sub" id="gesprek-sub"></span><button class="sluit" aria-label="sluiten">×</button></div>
     <div class="bubbels" id="bubbels"><div class="leeg">wachten op haar…</div></div>
-    <div class="leeg" style="margin:10px 0 16px">Jij beslist, en zwijgen is nee. Antwoorden doe je in de balk onderaan; een antwoord gaat op de volgende rungrens als les de bus in.</div>
+    <div class="leeg" style="margin:10px 0 16px">Jij beslist, en zwijgen is wachten: zeg je niets, dan wacht ze — alleen een uitgesproken nee is een nee. Antwoorden doe je in de balk onderaan; een antwoord gaat op de volgende rungrens als les de bus in.</div>
     <div class="raster">
       <div class="kaart k8" id="systeem">
         <div class="titel"><h2>Wat het systeem ziet</h2><span class="sub" id="systeem-sub"></span></div>
@@ -407,8 +408,8 @@
 
    Links één lichtpunt: haar vraag. Daaruit waaieren draden naar de 32
    groepen van haar inbedding, en van elke kolom naar de volgende: 20 lagen,
-   32 groepen per laag, 21 kolommen naast elkaar, steeds een beetje hoger,
-   zoals in de clip. Elke draad is echt: het gewicht van groep naar groep
+   32 groepen per laag, 21 kolommen naast elkaar, allemaal even hoog
+   (28 aug, Cley; tot dan steeds een beetje hoger, zoals in de clip). Elke draad is echt: het gewicht van groep naar groep
    uit stand.json (de bedrading). Een draad licht alleen op als er nú iets
    doorheen loopt: groep ervoor actief × gewicht × groep erna actief, per
    geschreven teken gemeten (live.json, elke 0,1 s). Rechts de uitvoer:
@@ -584,7 +585,7 @@ function projecteer() {
   G.knoop = []; G.label = [];
   for (let c = 0; c < nK; c++) {
     const n = KOL[c], u = uA + span * (0.14 + 0.73 * c / Math.max(1, nK - 1));
-    const h = dwars * (G.staand ? 0.44 + 0.46 * c / Math.max(1, nK - 1) : 0.22 + 0.42 * c / Math.max(1, nK - 1));
+    const h = dwars * (G.staand ? 0.90 : 0.64);   // 28 aug, Cley (plaatje met groene lijnen): alle lagen even hoog, tot de lijnen — zo hoog als L20 was
     const kol = []; for (let g = 0; g < n; g++) kol.push(pt(u, mid - h / 2 + (n > 1 ? h * g / (n - 1) : h / 2)));
     G.knoop.push(kol);
     G.label.push(G.staand ? pt(u, vA + fs * 0.4) : pt(u, mid + h / 2 + fs * 1.2));      // de naam: links van de rij, of onder de kolom
@@ -1000,7 +1001,8 @@ function toast(tekst, soort) {
 }
 
 /* ---- de cijfers in de kop, en de teller die doorloopt ---- */
-let lvBasis = null;
+let lvBasis = null, lvOnth = null;   // lvOnth: wat ze onthouden heeft, tikt live mee (28 aug, overgenomen uit het Tau-venster): totaal bij stap ref, +per per stap
+function onthNu(st) { const o = lvOnth; return o ? Math.floor(o.totaal + Math.max(0, st - o.ref) * o.per) : null; }
 function tekenCijfers(s) {
   const run = (s.run && s.run.regel) || "";
   const cfg = (s.run && s.run.config) || {};
@@ -1010,10 +1012,13 @@ function tekenCijfers(s) {
   const stap = lv.stap || (m ? +m[1] : 0);
   const ms = lv.ms || (m ? +m[4] : 0);
   $("merk-run").textContent = cfg.naam || (run ? "training" : "geen run");
+  lvOnth = s.onthouden_totaal != null ? {totaal: +s.onthouden_totaal, ref: s.onthouden_ref_stap || stap, per: s.onthouden_per_stap || 0}
+         : (s.geheugen_grootte ? {totaal: +s.geheugen_grootte, ref: 0, per: 0} : null);
+  const tegelOnth = lvOnth ? `<div class="cijfer"><span class="l">onthouden</span><span class="w"><span id="lv-onth">${nl(onthNu(stap))}</span></span></div>` : "";
   if (!(stap && doel && ms)) {
     lvBasis = null;
-    $("cijfers").innerHTML = run ? `<div class="cijfer"><span class="l">stand</span><span class="w" style="font-size:14px;font-weight:500">${esc(run)}</span></div>`
-                                 : `<div class="cijfer"><span class="l">stand</span><span class="w" style="font-size:14px;font-weight:500;color:var(--muted)">geen training actief</span></div>`;
+    $("cijfers").innerHTML = (run ? `<div class="cijfer"><span class="l">stand</span><span class="w" style="font-size:14px;font-weight:500">${esc(run)}</span></div>`
+                                 : `<div class="cijfer"><span class="l">stand</span><span class="w" style="font-size:14px;font-weight:500;color:var(--muted)">geen training actief</span></div>`) + tegelOnth;
     return;
   }
   lvBasis = {stap, ms, doel, ontvangen: performance.now()};
@@ -1022,9 +1027,9 @@ function tekenCijfers(s) {
   $("cijfers").innerHTML =
     `<div class="cijfer"><span class="l">stap</span><span class="w"><span id="lv-stap">${nl(stap)}</span><small>/ ${nl(doel)}</small></span>
        <div class="voortgang"><i id="lv-balk" style="width:${(100 * stap / doel).toFixed(2)}%"></i></div></div>` +
-    `<div class="cijfer"><span class="l">tempo</span><span class="w">${nl(ms / 1000, 1)}<small>s per stap</small></span></div>` +
+    `<div class="cijfer"><span class="l">tempo</span><span class="w">${nl(ms / 1000, 1)}<small>s per stap${lv.ms_laatste ? ` · laatste ${nl(lv.ms_laatste / 1000, 1)} s` : ""}</small></span></div>` +   // live: gemiddelde van de laatste 32 stappen + de laatste stap apart (28 aug, Cley)
     `<div class="cijfer"><span class="l">nog</span><span class="w" id="lv-nog">${uurmin(over)}</span></div>` +
-    `<div class="cijfer klaar"><span class="l">klaar</span><span class="w" id="lv-klaar">${klaar}</span></div>`;
+    `<div class="cijfer klaar"><span class="l">klaar</span><span class="w" id="lv-klaar">${klaar}</span></div>` + tegelOnth;
 }
 function uurmin(ms) {
   ms = Math.max(0, ms);
@@ -1038,6 +1043,7 @@ setInterval(() => {
   el.textContent = nl(Math.floor(st));
   const balk = $("lv-balk"); if (balk) balk.style.width = (100 * st / b.doel).toFixed(3) + "%";
   const nog = $("lv-nog"); if (nog) nog.innerHTML = uurmin((b.doel - st) * b.ms);
+  const on = $("lv-onth"); if (on && lvOnth) on.textContent = nl(onthNu(st));
 }, 1000);
 
 /* ---- overzicht: nu, proefwerken, levenslijn, wereld kort ---- */
@@ -1304,7 +1310,7 @@ async function tekenGesprek() {
     + (v.antwoord ? `<div class="bubbel cley"><div class="wie">cley</div>${esc(v.antwoord.tekst)}<div class="t">${esc(v.antwoord.tijd)}</div></div>` : "")).join("");
   $("bubbels").innerHTML = b || `<div class="leeg">nog niets gezegd</div>`;
   const open = log.length && (log[log.length - 1].vraagt) && !log[log.length - 1].antwoord_cley;
-  $("gesprek-sub").textContent = open ? "er staat een vraag van haar open" : (log.length ? `${log.length} beurten` : "");
+  $("gesprek-sub").textContent = open ? "er staat een vraag van haar open · ze wacht, geen nee" : (log.length ? `${log.length} beurten` : "");
   document.querySelectorAll("#antwoorden button").forEach(k => k.classList.toggle("stil", !open));
   if (z) {
     let h = "";
@@ -1430,7 +1436,7 @@ function balkGesprek() {
   if (last) {
     const c = last.cloneNode(true); c.querySelectorAll(".wie, .t").forEach(x => x.remove());
     $("balk-tekst").textContent = c.textContent.trim();
-    const wie = last.querySelector(".wie"); $("balk-wie").textContent = (wie ? wie.textContent : "amber") + (open ? " · vraagt" : "");
+    const wie = last.querySelector(".wie"); $("balk-wie").textContent = (wie ? wie.textContent : "amber") + (open ? " · vraagt · wacht" : "");
   } else { $("balk-tekst").textContent = "nog niets gezegd"; $("balk-wie").textContent = "amber"; }
   $("onder").classList.toggle("open", open);
 }

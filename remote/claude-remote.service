@@ -1,5 +1,5 @@
 [Unit]
-Description=Amber — Claude Code Remote Control (mobiele app)
+Description=Amber — Claude Code Remote Control (mobiele app, Z490)
 After=network-online.target
 Wants=network-online.target
 

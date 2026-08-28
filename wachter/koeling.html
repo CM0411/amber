@@ -1,0 +1,106 @@
+<meta charset="utf-8">
+<!doctype html>
+<html lang="nl">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Koeling P100</title>
+<style>
+:root{--papier:#f4f2ee;--inkt:#1b1a18;--grijs:#6b665e;--lijn:#d5d0c6;--vlak:#ffffff;--rood:#b8332a;--groen:#3f6b4a;--blauw:#3c5a6c;}
+@media (prefers-color-scheme:dark){:root{--papier:#151618;--inkt:#ecEae4;--grijs:#a29c92;--lijn:#34373c;--vlak:#1e2023;--rood:#f0584a;--groen:#7fb48c;--blauw:#84aac1;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papier);color:var(--inkt);font:18px/1.5 -apple-system,"Helvetica Neue",Arial,sans-serif;padding:20px;max-width:640px;margin:0 auto}
+h1{font-size:26px;margin:6px 0 18px}
+.meter{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.meter div{background:var(--vlak);border:1px solid var(--lijn);border-radius:10px;padding:12px 14px}
+.meter b{display:block;font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums}
+.meter span{color:var(--grijs);font-size:14px}
+.heet b{color:var(--rood)}
+.blok{background:var(--vlak);border:1px solid var(--lijn);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.blok h2{font-size:20px;margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline}
+.blok h2 output{font-variant-numeric:tabular-nums;font-size:26px}
+input[type=range]{width:100%;height:44px;margin:6px 0}
+label.auto{display:flex;align-items:center;gap:10px;font-size:17px;color:var(--grijs);margin-top:4px}
+label.auto input{width:24px;height:24px}
+.uitleg{color:var(--grijs);font-size:15px;margin:4px 0 0}
+#melding{min-height:24px;color:var(--groen);font-size:15px}
+.fout{color:var(--rood)!important}
+</style>
+</head>
+<body>
+<h1>Koeling van de P100</h1>
+
+<div class="meter">
+  <div id="mT"><b>–</b><span>°C kaart</span></div>
+  <div><b id="mW">–</b><span>watt</span></div>
+  <div><b id="mMHz">–</b><span>MHz</span></div>
+</div>
+
+<div class="blok">
+  <h2>Fans <output id="oF">–</output></h2>
+  <input type="range" id="sF" min="0" max="100" step="5">
+  <label class="auto"><input type="checkbox" id="aF"> automatisch — de curve volgt de kaart. Schuif je, dan gaat dit vanzelf uit.</label>
+  <p class="uitleg">Nu op het bord: <span id="pwm">–</span></p>
+</div>
+
+<div class="blok">
+  <h2>Vermogen <output id="oW">–</output></h2>
+  <input type="range" id="sW" min="125" max="250" step="5">
+  <p class="uitleg">Plafond van de kaart. Lager = koeler en langzamer. Minimum <b>125</b>, maximum <b>250</b>.</p>
+</div>
+
+<div class="blok">
+  <h2>Klok <output id="oK">–</output></h2>
+  <input type="range" id="sK" min="544" max="1328" step="50">
+  <label class="auto"><input type="checkbox" id="aK"> vrij — de kaart kiest zelf. Schuif je, dan gaat dit vanzelf uit.</label>
+  <p class="uitleg">Vaste klok houdt het vermogen laag. Vrij = tot <b>1328</b> MHz.</p>
+</div>
+
+<div id="melding"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let bezig = false, laatst = {};
+function toon(s){
+  $('mT').querySelector('b').textContent = s.temp ?? '–';
+  $('mT').className = (s.temp ?? 0) >= 76 ? 'heet' : '';
+  $('mW').textContent = s.watt != null ? Math.round(s.watt) : '–';
+  $('mMHz').textContent = s.mhz ?? '–';
+  $('pwm').textContent = s.pwm ? s.pwm.map(p => Math.round(p*100/255) + '%').join(' · ') : '–';
+  const i = s.instelling || {};
+  if (!bezig){
+    const auto = i.vast == null;
+    $('aF').checked = auto;
+    $('sF').value = auto ? (s.fans ?? 0) : i.vast;
+    $('oF').textContent = $('sF').value + '%' + (auto ? ' (curve)' : '');
+    $('sW').value = i.vermogen_w ?? 125; $('oW').textContent = $('sW').value + ' W';
+    const vrij = i.klok_mhz == null;
+    $('aK').checked = vrij;
+    $('sK').value = vrij ? (s.mhz ?? 1328) : i.klok_mhz;
+    $('oK').textContent = vrij ? 'vrij' : $('sK').value + ' MHz';
+  }
+}
+async function lees(){
+  try { const r = await fetch('/stand'); laatst = await r.json(); toon(laatst); $('melding').className=''; }
+  catch(e){ $('melding').textContent = 'geen verbinding met de Z490'; $('melding').className='fout'; }
+}
+async function stuur(veld){
+  try {
+    const r = await fetch('/instelling', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(veld)});
+    const j = await r.json();
+    $('melding').textContent = 'opgeslagen: ' + Object.entries(veld).map(([k,v]) => k + ' = ' + (v == null ? 'automatisch' : v)).join(', ');
+    $('melding').className = '';
+    bezig = false; lees();
+  } catch(e){ $('melding').textContent = 'opslaan mislukt'; $('melding').className = 'fout'; }
+}
+$('sF').oninput = () => { bezig = true; $('oF').textContent = $('sF').value + '%'; };
+$('sF').onchange = () => { $('aF').checked = false; stuur({vast: Number($('sF').value)}); };
+$('aF').onchange = () => stuur($('aF').checked ? {vast: null} : {vast: Number($('sF').value)});
+$('sW').oninput = () => { bezig = true; $('oW').textContent = $('sW').value + ' W'; };
+$('sW').onchange = () => stuur({vermogen_w: Number($('sW').value)});
+$('sK').oninput = () => { bezig = true; $('oK').textContent = $('sK').value + ' MHz'; };
+$('sK').onchange = () => { $('aK').checked = false; stuur({klok_mhz: Number($('sK').value)}); };
+$('aK').onchange = () => stuur($('aK').checked ? {klok_mhz: null} : {klok_mhz: Number($('sK').value)});
+lees(); setInterval(() => { if (!bezig) lees(); }, 2000);
+</script>
+</body>
+</html>

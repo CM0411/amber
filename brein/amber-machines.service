@@ -1,0 +1,12 @@
+[Unit]
+Description=Amber: gezondheid van Z490 en DL380 voor het venster (machines.json)
+After=network-online.target
+
+[Service]
+User=arch
+ExecStart=/home/arch/amber-werk/brein/machines-status.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -2171,7 +2171,8 @@ def _saying_deep(depth, t):
 # --- gesprek (conversation) — (19 Aug 2026, Cley: "ik wil terug kunnen praten") --
 # She asks (zeggen 19-20: "mag ik dieper in X?"), Cley answers, and she
 # learns what the answer MEANS for her. The hard rule of CLAUDE.md is in
-# the family itself: no answer is a no ("geen antwoord ; ik wacht").
+# the family itself: no answer means she WAITS ("geen antwoord ; ik wacht") —
+# not a no: Cley is often building and simply has not answered yet (27 Aug 2026).
 GESPREK_ANTWOORDEN = ("ja", "nee", "later", "-")   # '-' = no answer
 
 
@@ -2215,7 +2216,7 @@ def _talk(depth, t):
     problem = f"gesprek: {vraag} / cley: {ant} / wat betekent dat?"
     sentence = betekenis(ant)
     if ant == "-":
-        steps.append("geen antwoord ; zwijgen is nee")
+        steps.append("geen antwoord ; cley is bezig ; ik wacht")
     working = " ; ".join(steps + [sentence])
     return problem, sentence, working
 

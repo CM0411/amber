@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Amber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* Het brein-venster, van de grond af opnieuw (24 aug 2026, Cley: "je mag
+     de totale interface compleet verbouwen, naar je eigen smaak, iets van
+     deze tijd"). Wat bleef, omdat het van Cley is: het weefsel naar zijn
+     filmpje van 9 aug — groen is echt plus, rood is echt min in haar
+     gewichten, golven en vonkjes, nooit een flits — en de regel dat geen
+     tekst óver het weefsel heen mag. Wat nieuw is: een app met vijf
+     bladen in plaats van één lange rol; de cijfers die tellen altijd in
+     beeld; grafieken in plaats van tekstregels; het gesprek als gesprek;
+     letters die te lezen zijn (Atkinson Hyperlegible), cijfers die stil
+     staan (tabelcijfers). Alle gegevens komen uit dezelfde stand.json als
+     altijd; server.py is niet veranderd. */
+  :root {
+    --bg: #070A14; --bg-2: #0A0E1C; --surface: #0E1322; --surface-2: #151C30; --line: #1F2841; --line-2: #2A3552;
+    --ink: #EAEEF7; --muted: #8E99B3; --dim: #5C6781;
+    --mint: #7FE0C3; --coral: #FF9A7A; --sky: #6FB5FF; --lilac: #F0A8FF; --amber: #FFC272; --geel: #E6D37A;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    --tekst: "Atkinson Hyperlegible", system-ui, "Segoe UI", sans-serif;
+    --r: 16px; --r-s: 10px;
+    --kop-h: 64px;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html { height: 100%; }
+  body { min-height: 100%; background: var(--bg); color: var(--ink); font-family: var(--tekst);
+         font-size: 15px; line-height: 1.6; font-variant-numeric: tabular-nums; overflow-x: hidden; }
+  a { color: inherit; }
+  button, input { font: inherit; }
+  ::selection { background: rgba(111,181,255,.35); }
+
+  /* ================= kop ================= */
+  #kop { position: sticky; top: 0; z-index: 20; height: var(--kop-h);
+         display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 22px;
+         padding: 0 clamp(14px, 2vw, 28px); background: rgba(7,10,20,.82);
+         backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+  #merk { display: flex; align-items: center; gap: 12px; }
+  #merk .naam { font-weight: 700; font-size: 18px; letter-spacing: .24em; text-transform: uppercase; }
+  #merk .run { font-family: var(--mono); font-size: 12px; color: var(--dim); letter-spacing: .08em; padding: 3px 9px;
+               border: 1px solid var(--line); border-radius: 100px; }
+  #cijfers { display: flex; gap: 26px; align-items: center; min-width: 0; overflow: hidden; }
+  .cijfer { display: flex; flex-direction: column; line-height: 1.1; white-space: nowrap; }
+  .cijfer .l { font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim); }
+  .cijfer .w { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--ink); margin-top: 3px; }
+  .cijfer .w small { font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 3px; }
+  .cijfer.klaar .w { font-size: 15px; font-weight: 500; color: var(--muted); margin-top: 6px; }
+  #cijfers .voortgang { width: 150px; height: 6px; border-radius: 3px; background: var(--surface-2); overflow: hidden; margin-top: 7px; }
+  #cijfers .voortgang i { display: block; height: 100%; background: linear-gradient(90deg, var(--sky), var(--mint)); transition: width 1s linear; }
+  nav#bladen { display: flex; gap: 4px; }
+  nav#bladen button { background: transparent; border: 1px solid transparent; color: var(--muted); padding: 7px 14px;
+                      border-radius: 100px; cursor: pointer; font-size: 14px; transition: background .15s, color .15s; }
+  nav#bladen button:hover { color: var(--ink); background: var(--surface-2); }
+  nav#bladen button.actief { color: var(--ink); background: var(--surface-2); border-color: var(--line-2); }
+  nav#bladen button:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+  .pil { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding: 6px 13px; border-radius: 100px;
+         border: 1px solid var(--line); color: var(--muted); display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .pil::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--dim); }
+  .pil.aan { color: var(--mint); border-color: rgba(127,224,195,.35); }
+  .pil.aan::before { background: var(--mint); box-shadow: 0 0 10px var(--mint); }
+  .pil.uit { color: var(--amber); border-color: rgba(255,194,114,.35); }
+  .pil.uit::before { background: var(--amber); }
+
+  /* ================= bladen ================= */
+  main { padding: 16px clamp(12px, 1.6vw, 26px) 90px; }
+  .blad { display: none; }
+  .blad.actief { display: block; }
+  .raster { display: grid; gap: 14px; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .kaart { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px 20px;
+           min-width: 0; color: var(--muted); }
+  .kaart > .titel { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .kaart > .titel h2 { font-size: 15px; font-weight: 700; color: var(--ink); letter-spacing: .01em; }
+  .kaart > .titel .sub { font-family: var(--mono); font-size: 11.5px; color: var(--dim); letter-spacing: .06em; white-space: nowrap; }
+  .kaart b { color: var(--ink); }
+  .k12 { grid-column: span 12; } .k8 { grid-column: span 8; } .k7 { grid-column: span 7; } .k6 { grid-column: span 6; }
+  .k5 { grid-column: span 5; } .k4 { grid-column: span 4; } .k3 { grid-column: span 3; }
+  .leeg { color: var(--dim); font-size: 14px; }
+
+  /* het weefsel */
+  #weefsel { position: relative; height: clamp(360px, 58vh, 720px); border-radius: var(--r); overflow: hidden;
+             border: 1px solid var(--line); display: flex; background: var(--bg-2); }
+  #doek { display: block; flex: 1 1 auto; min-width: 0; height: 100%; }
+  #lagen { flex: 0 0 210px; border-left: 1px solid var(--line); padding: 14px 14px 40px; overflow-y: auto; scrollbar-width: none;
+           display: flex; flex-direction: column; justify-content: safe center; gap: 2px; }
+  #lagen .laag { display: grid; grid-template-columns: 8px 6.5ch 1fr; gap: 9px; align-items: center;
+                 font-family: var(--mono); font-size: 11.5px; line-height: 1.25; padding: 1px 6px; border-radius: 6px;
+                 color: var(--dim); transition: background .35s, color .35s; white-space: nowrap; }
+  #lagen .laag i { width: 6px; height: 6px; border-radius: 50%; opacity: .55; transition: opacity .35s, transform .35s; }
+  #lagen .laag .b { overflow: hidden; text-overflow: ellipsis; opacity: .8; }
+  #lagen .laag.nu { background: rgba(200,222,255,.07); color: var(--ink); }
+  #lagen .laag.nu i { opacity: 1; transform: scale(1.5); box-shadow: 0 0 8px currentColor; }
+  #lagen .laag.nu .b { opacity: 1; }
+  #weefsel .onderschrift { position: absolute; right: 16px; bottom: 12px; text-align: right; max-width: 50%; font-family: var(--mono); font-size: 11.5px;
+                           color: var(--dim); letter-spacing: .06em; pointer-events: none; }
+  #weefsel .onderschrift b { color: var(--muted); font-weight: 500; }
+  #weefsel .onderschrift .plus { color: var(--mint); } #weefsel .onderschrift .min { color: var(--coral); }
+
+  /* waar ze mee bezig is */
+  #nu .opgave { font-family: var(--mono); font-size: 13.5px; color: var(--muted); white-space: pre-wrap; line-height: 1.6; }
+  #nu #antwoord { font-family: var(--mono); font-size: 15px; color: var(--ink); white-space: pre-wrap; min-height: 1.6em; margin-top: 8px; }
+  #nu #antwoord.goed { color: var(--mint); } #nu #antwoord.fout { color: var(--coral); }
+  #nu .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .chip { display: inline-flex; gap: 6px; align-items: baseline; padding: 3px 10px; border-radius: 100px;
+          border: 1px solid var(--line); background: var(--surface-2); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+  .chip b { font-family: var(--mono); font-weight: 600; }
+  #nu .herinnert { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+  #nu .herinnert .l { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 6px; }
+  #nu .herinnert .h { font-family: var(--mono); font-size: 12.5px; color: var(--dim); line-height: 1.6;
+                      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* staven (proefwerken, wereld, keuzes, machines) */
+  .staven { display: flex; flex-direction: column; gap: 7px; }
+  .staaf { display: grid; grid-template-columns: 9.5ch 1fr 5.5ch; align-items: center; gap: 12px; font-size: 13.5px; }
+  .staaf .n { color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .staaf .spoor { position: relative; height: 10px; border-radius: 5px; background: var(--surface-2); overflow: visible; }
+  .staaf .vul { position: absolute; inset: 0 auto 0 0; border-radius: 5px; background: var(--sky); transition: width .8s ease; }
+  .staaf .vul.hoog { background: var(--mint); } .staaf .vul.midden { background: var(--sky); } .staaf .vul.laag { background: var(--coral); }
+  .staaf .schaduw { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); opacity: .55; border-radius: 1px; }
+  .staaf .v { font-family: var(--mono); text-align: right; color: var(--ink); font-weight: 600; }
+  .staaf .v small { color: var(--dim); font-weight: 400; font-size: 11px; }
+  .staaf.dim { opacity: .55; }
+  .legenda { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 12px; font-size: 12px; color: var(--dim); }
+  .legenda i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: -1px; margin-right: 5px; }
+  .legenda i.streep { width: 2px; height: 12px; background: var(--ink); border-radius: 1px; }
+
+  /* de wereld: hekken */
+  .hek { display: grid; grid-template-columns: 9.5ch 1fr 6ch; gap: 12px; align-items: center; font-size: 13.5px; margin-bottom: 7px; }
+  .hek .n { color: var(--ink); } .hek .n.nieuw { color: var(--mint); animation: fonkel 1.2s ease-in-out infinite; }
+  .hek .blokjes { display: flex; gap: 1.5px; overflow: hidden; }
+  .hek .blokjes i { flex: 1 1 7px; max-width: 7px; min-width: 1px; height: 12px; border-radius: 2px; background: var(--surface-2); }
+  .hek .blokjes i.aan { background: var(--sky); }
+  .hek .v { font-family: var(--mono); text-align: right; color: var(--muted); }
+  @keyframes fonkel { 50% { opacity: .35; } }
+  .tijdlijn { list-style: none; margin-top: 8px; }
+  .tijdlijn li { display: grid; grid-template-columns: 8ch 1fr; gap: 12px; padding: 5px 0; border-top: 1px solid var(--line); font-size: 13px; }
+  .tijdlijn li .t { font-family: var(--mono); color: var(--dim); font-size: 12px; }
+
+  /* keuzes: gestapeld */
+  .stapel { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: var(--surface-2); margin-bottom: 12px; }
+  .stapel i { display: block; height: 100%; min-width: 1px; }
+  .stapel-reeks { display: flex; gap: 3px; align-items: stretch; height: 34px; margin-top: 10px; }
+  .stapel-reeks .kolom { flex: 1; display: flex; flex-direction: column; border-radius: 3px; overflow: hidden; }
+  .stapel-reeks .kolom i { display: block; min-height: 0; }
+
+  /* geheugen: warmtekaart */
+  .warmte { display: grid; gap: 2px; align-items: center; font-size: 12.5px; }
+  .warmte .n { color: var(--ink); padding-right: 8px; white-space: nowrap; }
+  .warmte .cel { height: 18px; border-radius: 3px; background: var(--surface-2); }
+  .warmte .as { font-family: var(--mono); font-size: 10.5px; color: var(--dim); text-align: center; }
+  .kengetallen { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 14px; }
+  .kengetal { background: var(--surface-2); border-radius: var(--r-s); padding: 10px 12px; }
+  .kengetal .l { font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+  .kengetal .w { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--ink); margin-top: 2px; }
+  .kengetal .w small { font-size: 11.5px; font-weight: 400; color: var(--muted); margin-left: 3px; }
+
+  /* de levenslijn */
+  svg.lijn { display: block; width: 100%; height: auto; overflow: visible; }
+  svg.lijn text { font-family: var(--mono); font-size: 11px; fill: var(--dim); }
+
+  /* het gesprek */
+  #gesprek-kolom { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .bubbels { display: flex; flex-direction: column; gap: 10px; }
+  .bubbel { max-width: 88%; padding: 10px 14px; border-radius: 16px; font-size: 15px; line-height: 1.55; position: relative; }
+  .bubbel .wie { font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 3px; }
+  .bubbel.zij { align-self: flex-start; background: rgba(240,168,255,.09); border: 1px solid rgba(240,168,255,.25); color: var(--ink); border-bottom-left-radius: 4px; }
+  .bubbel.zij .wie { color: var(--lilac); }
+  .bubbel.cley { align-self: flex-end; background: rgba(111,181,255,.10); border: 1px solid rgba(111,181,255,.28); color: var(--ink); border-bottom-right-radius: 4px; }
+  .bubbel.cley .wie { color: var(--sky); }
+  .bubbel .t { font-family: var(--mono); font-size: 11px; color: var(--dim); margin-top: 4px; }
+  .bubbel.systeem { align-self: stretch; max-width: none; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  .bubbel.systeem .wie { color: var(--dim); }
+  .bubbel.systeem ul { margin: 4px 0 0 1.2em; }
+  .antwoorden { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .antwoorden button, .knop { background: var(--surface-2); color: var(--ink); border: 1px solid var(--line-2); border-radius: 100px;
+                              padding: 9px 18px; cursor: pointer; transition: border-color .15s, background .15s; font-size: 15px; }
+  .antwoorden button:hover, .knop:hover { border-color: var(--sky); }
+  .antwoorden button:focus-visible, .knop:focus-visible, .antwoorden input:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+  .antwoorden button:disabled { opacity: .4; cursor: default; }
+  .antwoorden button.ja { border-color: rgba(127,224,195,.5); } .antwoorden button.nee { border-color: rgba(255,154,122,.5); }
+  .antwoorden input { flex: 1; min-width: 180px; background: var(--bg); color: var(--ink); border: 1px solid var(--line-2);
+                      border-radius: 100px; padding: 9px 16px; }
+  .knop.stil { color: var(--muted); }
+
+  /* machines */
+  .meter { display: grid; grid-template-columns: 9ch 1fr 6ch; gap: 12px; align-items: center; font-size: 13.5px; margin-bottom: 8px; }
+  .meter .n { color: var(--muted); } .meter .v { font-family: var(--mono); text-align: right; color: var(--ink); font-weight: 600; }
+  .meter .spoor { height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+  .meter .spoor i { display: block; height: 100%; border-radius: 4px; background: var(--sky); transition: width .8s ease; }
+  .meter .spoor i.warm { background: var(--coral); } .meter .spoor i.goed { background: var(--mint); }
+  .diensten { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .dienst { font-family: var(--mono); font-size: 12px; padding: 3px 10px; border-radius: 100px; border: 1px solid var(--line); color: var(--dim); }
+  .dienst.aan { color: var(--mint); border-color: rgba(127,224,195,.35); }
+  .links { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .links a { display: flex; justify-content: space-between; gap: 10px; padding: 10px 14px; border: 1px solid var(--line);
+             border-radius: var(--r-s); text-decoration: none; color: var(--ink); font-size: 14px; background: var(--surface-2); }
+  .links a:hover { border-color: var(--sky); }
+  .links a .st { font-family: var(--mono); font-size: 11.5px; color: var(--dim); }
+  .links a .st.lopend { color: var(--mint); }
+  .melding { border: 1px solid rgba(255,194,114,.45); background: rgba(255,194,114,.08); color: var(--amber);
+             border-radius: var(--r-s); padding: 10px 14px; font-size: 14px; margin-bottom: 12px; }
+
+  /* toast */
+  #toast { position: fixed; left: 50%; bottom: 84px; transform: translate(-50%, 16px); opacity: 0; z-index: 30;
+           background: var(--surface-2); border: 1px solid var(--line-2); color: var(--ink); padding: 10px 18px; border-radius: 100px;
+           font-size: 14px; pointer-events: none; transition: opacity .25s, transform .25s; max-width: min(92vw, 560px); text-align: center; }
+  #toast.zien { opacity: 1; transform: translate(-50%, 0); }
+  #toast.goed { border-color: rgba(127,224,195,.55); } #toast.mis { border-color: rgba(255,154,122,.55); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hek .n.nieuw { animation: none; } .staaf .vul, .meter .spoor i, #cijfers .voortgang i, #toast { transition: none; }
+  }
+  @media (max-width: 1100px) {
+    .k8, .k7, .k6, .k5, .k4, .k3 { grid-column: span 6; }
+  }
+  @media (max-width: 760px) {
+    :root { --kop-h: auto; }
+    #kop { grid-template-columns: 1fr auto; padding: 10px 14px; row-gap: 8px; height: auto;
+           backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(7,10,20,.97); }
+    #weefsel { display: flex; flex-direction: column; height: 60vh; }
+    #doek { flex: 1; min-height: 0; }
+    #lagen { flex: 0 0 auto; border-left: 0; border-top: 1px solid var(--line); flex-direction: row; flex-wrap: wrap;
+             padding: 8px 10px; gap: 2px 8px; justify-content: flex-start; }
+    #lagen .laag { grid-template-columns: 6px auto; font-size: 10.5px; }
+    #lagen .laag .b { display: none; }
+    #weefsel .onderschrift { max-width: none; }
+    #weefsel .onderschrift { position: static; padding: 8px 12px 10px; font-size: 11px; white-space: normal; }
+    #cijfers { grid-column: 1 / -1; gap: 16px; overflow-x: auto; scrollbar-width: none; }
+    #cijfers .voortgang { width: 110px; }
+    nav#bladen { position: fixed; left: 10px; right: 10px; bottom: 10px; z-index: 25; background: rgba(14,19,34,.92);
+                 backdrop-filter: blur(16px); border: 1px solid var(--line); border-radius: 100px; padding: 5px; justify-content: space-between; }
+    nav#bladen button { padding: 8px 6px; font-size: 12.5px; flex: 1; text-align: center; }
+    main { padding: 12px 12px 100px; }
+    .raster { gap: 10px; }
+    .k12, .k8, .k7, .k6, .k5, .k4, .k3 { grid-column: span 12; }
+    #weefsel { height: 42vh; }
+    .kaart { padding: 14px 15px 16px; }
+    .staaf { grid-template-columns: 8ch 1fr 5ch; }
+    .meter { grid-template-columns: 8ch 1fr 6ch; }
+  }
+</style>
+</head>
+<body>
+<header id="kop">
+  <div id="merk"><span class="naam">Amber</span><span class="run" id="merk-run">…</span></div>
+  <div id="cijfers"></div>
+  <nav id="bladen" aria-label="Bladen">
+    <button data-blad="overzicht" class="actief">Overzicht</button>
+    <button data-blad="gesprek">Gesprek</button>
+    <button data-blad="wereld">Wereld</button>
+    <button data-blad="geheugen">Geheugen</button>
+    <button data-blad="machines">Machines</button>
+  </nav>
+  <div id="pil" class="pil">…</div>
+</header>
+
+<main>
+  <section class="blad actief" id="blad-overzicht">
+    <div class="raster">
+      <div class="k12" id="weefsel">
+        <canvas id="doek"></canvas>
+        <div class="onderschrift" id="onderschrift">de microscoop: haar bouw als één stroom — klik op een laag en hij gaat open</div>
+      </div>
+      <div class="kaart k7" id="nu">
+        <div class="titel"><h2>Waar ze nu mee bezig is</h2><span class="sub" id="nu-sub"></span></div>
+        <div class="opgave" id="opgave"></div>
+        <div id="antwoord"></div>
+        <div class="meta" id="nu-meta"></div>
+        <div class="herinnert" id="herinnert"></div>
+      </div>
+      <div class="kaart k5" id="proefwerken">
+        <div class="titel"><h2>Proefwerken</h2><span class="sub" id="proefwerken-sub"></span></div>
+        <div id="proefwerken-inhoud" class="leeg">nog geen proefwerk</div>
+      </div>
+      <div class="kaart k8" id="levenslijn">
+        <div class="titel"><h2>Haar levenslijn</h2><span class="sub" id="levenslijn-sub">ladder-proefwerk, deze run</span></div>
+        <div id="levenslijn-inhoud" class="leeg">nog geen lijn</div>
+      </div>
+      <div class="kaart k4" id="wereld-kort">
+        <div class="titel"><h2>Haar wereld</h2><span class="sub">hoe diep het open staat</span></div>
+        <div id="wereld-kort-inhoud"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blad" id="blad-gesprek">
+    <div id="gesprek-kolom">
+      <div class="kaart">
+        <div class="titel"><h2>Het gesprek</h2><span class="sub" id="gesprek-sub"></span></div>
+        <div class="bubbels" id="bubbels"><div class="leeg">wachten op haar…</div></div>
+        <div class="antwoorden" id="antwoorden" style="margin-top:14px">
+          <button class="ja" onclick="antwoordCley('ja')">ja</button>
+          <button class="nee" onclick="antwoordCley('nee')">nee</button>
+          <button onclick="antwoordCley('later')">later</button>
+          <input id="antwoord-vrij" placeholder="of in je eigen woorden: eerst rekenen …" maxlength="60"
+                 onkeydown="if(event.key==='Enter')antwoordCley(this.value)">
+          <button onclick="antwoordCley(document.getElementById('antwoord-vrij').value)">stuur</button>
+        </div>
+        <div class="leeg" style="margin-top:8px;font-size:12.5px">Jij beslist, en zwijgen is nee. Een antwoord gaat op de volgende rungrens als les de bus in.</div>
+      </div>
+      <div class="kaart" id="systeem">
+        <div class="titel"><h2>Wat het systeem ziet</h2><span class="sub" id="systeem-sub"></span></div>
+        <div id="systeem-inhoud" class="leeg">nog geen zelfrapport</div>
+      </div>
+      <div class="kaart">
+        <div class="titel"><h2>Haar stem</h2></div>
+        <button class="knop" id="spreek">🔊 vertel de stand</button>
+        <audio id="stem-audio" style="display:none"></audio>
+      </div>
+    </div>
+  </section>
+
+  <section class="blad" id="blad-wereld">
+    <div class="raster">
+      <div class="kaart k7" id="wereld">
+        <div class="titel"><h2>Haar wereld</h2><span class="sub" id="wereld-sub">per familie: hoe diep het hek open staat</span></div>
+        <div id="wereld-inhoud"></div>
+      </div>
+      <div class="kaart k5" id="doorbraken">
+        <div class="titel"><h2>Doorbraken</h2><span class="sub">deze run</span></div>
+        <div id="doorbraken-inhoud" class="leeg">nog geen</div>
+      </div>
+      <div class="kaart k7" id="keuzes">
+        <div class="titel"><h2>Haar eigen keuzes</h2><span class="sub" id="keuzes-sub"></span></div>
+        <div id="keuzes-inhoud" class="leeg"></div>
+      </div>
+      <div class="kaart k5" id="proefwerken-alles">
+        <div class="titel"><h2>Alle bladen</h2><span class="sub" id="proefwerken-alles-sub"></span></div>
+        <div id="proefwerken-alles-inhoud" class="leeg"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blad" id="blad-geheugen">
+    <div class="raster">
+      <div class="kaart k8" id="geheugen">
+        <div class="titel"><h2>Haar geheugen</h2><span class="sub" id="geheugen-sub"></span></div>
+        <div id="geheugen-inhoud" class="leeg"></div>
+      </div>
+      <div class="kaart k4" id="geheugen-nu">
+        <div class="titel"><h2>Waar ze aan terugdenkt</h2><span class="sub">bij de opgave van nu</span></div>
+        <div id="geheugen-nu-inhoud" class="leeg"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blad" id="blad-machines">
+    <div class="raster">
+      <div class="kaart k6" id="trainer">
+        <div class="titel"><h2>Z490 — de trainer</h2><span class="sub" id="trainer-sub"></span></div>
+        <div id="trainer-inhoud" class="leeg"></div>
+      </div>
+      <div class="kaart k6" id="thuis">
+        <div class="titel"><h2>DL380 — thuis</h2><span class="sub" id="thuis-sub"></span></div>
+        <div id="thuis-inhoud" class="leeg"></div>
+      </div>
+      <div class="kaart k6" id="vorm">
+        <div class="titel"><h2>Haar vorm</h2><span class="sub">deze run</span></div>
+        <div id="vorm-inhoud" class="leeg"></div>
+      </div>
+      <div class="kaart k6" id="meer">
+        <div class="titel"><h2>Meer</h2><span class="sub">pagina's en rapporten</span></div>
+        <div id="meer-inhoud" class="links"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ======================================================================
+   Het weefsel — Cleys ontwerp, letterlijk overgenomen. Zie de opmerkingen.
+   ====================================================================== */
+/* ======================================================================
+   De microscoop — Claudes ontwerp voor het weefsel (24 aug 2026, na drie
+   pogingen en Cleys eerlijke "dat ben jij niet").
+
+   Dit is wat ik zelf zou willen als ik naar haar kijk: niet een plaatje,
+   maar iets waar je dichterbij kunt kijken. In het overzicht staat haar
+   hele bouw als één stroom: per laag de aandacht (6 koppen), de
+   feedforward (1536 eenheden) en de residustroom van 384 kanalen die er
+   doorheen loopt; tussen de lagen de sterkte van haar bedrading. Het licht
+   stroomt per geschreven teken door de stroom -- haar echte gemeten
+   activiteit. Klik op een laag en hij gaat open: haar 384 kanalen als
+   raster met hun activiteit, en haar gewichtsmatrix naar de volgende laag
+   als warmtekaart, 32 x 32, elk vakje een echt getal. Wijs iets aan en het
+   getal staat er. Pijltjes van laag naar laag, Esc terug. Alles glijdt,
+   niets flitst.
+
+   Echt: de bouw, de kanalen, de matrices, de activiteit, elk getal. Regie:
+   het tempo van het licht. Nog niet gemeten (tot de kijker fijner is): de
+   activiteit per kop en per feedforward-eenheid -- die staan als bouw,
+   eerlijk gelabeld.
+   ====================================================================== */
+const doek = document.getElementById("doek");
+const ctx = doek.getContext("2d");
+const DPR = Math.min(devicePixelRatio || 1, 2);
+let B = 1, H = 1;
+let KOL = [32, 32, 32, 32, 32, 32, 32, 32, 32, 1];
+let NAMEN = [];
+let stand = null, wachtrij = [], rijNu = null, rijStart = 0;
+let gloed = [], kolMax = KOL.map(() => 0.0001);
+let bedrading = null, bedradingUit = null, weefsel = [];
+let vonken = [];
+let antwoordDoel = "", antwoordNu = 0, laatstTonen = 0;
+const DUUR = 1500;
+
+let rijen = [];                         // doorgangen van deze gedachte: rijen[j][k] = 32 groepen
+let sterkte = [];                       // per overgang: {plus, min, p, m}
+let speelStart = 0, klaarSinds = 0, muis = null;
+const TEKEN_S = 0.7, VEEG = 0.5;
+let laagnamen = {};
+let spec = {koppen: 6, verborgen: 1536, breedte: 384};
+let zoom = {laag: null, t: 0, van: null};       // t: 0 = overzicht, 1 = open
+let fijn = null, fijnTijd = 0, fijnBezig = false;  // de fijne meting: per kanaal, per kop, per eenheid
+async function haalFijn(tijd) {
+  if (tijd === fijnTijd || fijnBezig) return;
+  fijnBezig = true;
+  try {
+    const r = await fetch("/rapport/fijn.json", {cache: "no-store"});
+    const f = await r.json();
+    if (f && f.kanaal && f.tijd === tijd) { fijn = f; fijnTijd = tijd; }
+  } catch (e) {} finally { fijnBezig = false; }
+}
+const fijnPast = () => fijn && stand && fijn.tijd === stand.tijd;
+function fijnKanaal(j, k) { return (fijnPast() && k >= 1 && k <= fijn.lagen && fijn.kanaal[j]) ? fijn.kanaal[j][k - 1] : null; }
+function fijnKop(j, k) { return (fijnPast() && k >= 1 && k <= fijn.lagen && fijn.kop && fijn.kop[j]) ? fijn.kop[j][k - 1] : null; }
+function fijnFfGroep(j, k) { return (fijnPast() && k >= 1 && k <= fijn.lagen && fijn.ff_groep && fijn.ff_groep[j]) ? fijn.ff_groep[j][k - 1] : null; }
+function fijnFfEenheid(k) { return (fijnPast() && k >= 1 && k <= fijn.lagen && fijn.ff_eenheid) ? fijn.ff_eenheid[k - 1] : null; }
+const FAMILIEKLEUR = {rekenen: "#6FB5FF", puzzel: "#B78AE0", code: "#7FE0C3", geheugen: "#FFB86B", logica: "#FF8FA3",
+                      volgorde: "#8FD3FF", tekst: "#E6D37A", zeggen: "#F0A8FF", taal: "#A3FFD6", machine: "#FFD28F",
+                      tellen: "#C4B5FD", antwoord: "#FDA4AF", antwoordlaag: "#FDA4AF", gesprek: "#F0A8FF"};
+const kleurVan = b => FAMILIEKLEUR[b] || (b === "stil" ? "#5C6781" : "#8E99B3");
+
+/* ---- maat ---- */
+const P = {fs: 12, links: 0, rechts: 0, boven: 0, onder: 0, stapX: 0, stroomY: 0, stroomH: 0};
+function maat() {
+  if (!doek.clientWidth) return;
+  B = doek.width = Math.round(doek.clientWidth * DPR);
+  H = doek.height = Math.round(doek.clientHeight * DPR);
+  P.fs = Math.max(10, Math.min(13, B / 115)) * DPR;
+  P.links = P.fs * 2.5; P.rechts = P.fs * 2.5; P.boven = P.fs * 3.6; P.onder = P.fs * 4.2;
+  P.stapX = (B - P.links - P.rechts) / Math.max(1, KOL.length - 1);
+  P.stroomH = Math.max(30, (H - P.boven - P.onder) * 0.36);
+  P.stroomY = P.boven + (H - P.boven - P.onder) * 0.5;
+}
+addEventListener("resize", maat);
+if (window.ResizeObserver) new ResizeObserver(() => maat()).observe(document.getElementById("weefsel"));
+function laagX(k) { return P.links + k * P.stapX; }
+
+/* ---- bedrading per overgang ---- */
+function bouwWeefsel() {
+  sterkte = [];
+  if (!bedrading) { weefsel = []; return; }
+  for (let k = 0; k < KOL.length - 1; k++) {
+    let plus = 0, min = 0;
+    if (k < KOL.length - 2) {
+      const alle = [];
+      for (const rij of (bedrading[k] || [])) for (const w of (rij || [])) alle.push(w);
+      alle.sort((a, z) => Math.abs(z) - Math.abs(a));
+      for (const w of alle.slice(0, 300)) { if (w > 0) plus += w; else min += -w; }
+    } else if (bedradingUit) for (const w of bedradingUit) { if (w > 0) plus += w; else min += -w; }
+    sterkte.push({plus, min});
+  }
+  const top = Math.max(0.0001, ...sterkte.map(s => s.plus + s.min));
+  for (const s of sterkte) { s.p = s.plus / top; s.m = s.min / top; s.tot = (s.plus + s.min) / top; }
+  weefsel = [true];
+}
+function bouwNamen() {
+  NAMEN = [["invoer", "inbedding"]];
+  for (let i = 1; i < KOL.length - 1; i++) NAMEN.push(["laag " + i, laagnamen[i] || "GELU"]);
+  NAMEN.push(["uitvoer", "zekerheid"]);
+  if (stand && stand.run && stand.run.config) {
+    const c = stand.run.config;
+    spec = {koppen: c.koppen || 6, verborgen: c.verborgen || 1536, breedte: 384};
+  }
+  maat();
+}
+bouwNamen();
+function nieuweGedachte(t) {
+  rijen = wachtrij.slice(); wachtrij = []; rijNu = rijen.length ? rijen[0] : null;
+  speelStart = t; klaarSinds = 0; vonken = [];
+  kolMax = KOL.map((n, k) => { let m = 0.0001; for (const r of rijen) for (const v of (r[k] || [])) m = Math.max(m, v); return m; });
+}
+
+/* ---- bediening: aanwijzen, klikken, pijltjes ---- */
+doek.addEventListener("mousemove", e => { const r = doek.getBoundingClientRect(); muis = {x: (e.clientX - r.left) * DPR, y: (e.clientY - r.top) * DPR}; });
+doek.addEventListener("mouseleave", () => { muis = null; });
+doek.style.cursor = "pointer";
+function laagBijMuis() {
+  if (!muis) return null;
+  let best = null, bd = 1e9;
+  for (let k = 0; k < KOL.length; k++) { const d = Math.abs(muis.x - laagX(k)); if (d < bd) { bd = d; best = k; } }
+  return bd < P.stapX * 0.6 ? best : null;
+}
+function openLaag(k) { if (k === null || k < 0 || k >= KOL.length) return; zoom.van = zoom.laag; zoom.laag = k; zoom.doel = 1; }
+function sluit() { zoom.doel = 0; }
+doek.addEventListener("click", e => {
+  if (zoom.t < 0.5) { const k = laagBijMuis(); if (k !== null) openLaag(k); }
+  else { const r = doek.getBoundingClientRect(), x = (e.clientX - r.left) * DPR, y = (e.clientY - r.top) * DPR;
+         if (y < P.fs * 3.2 && x < P.fs * 9) sluit(); }
+});
+addEventListener("keydown", e => {
+  if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+  if (e.key === "Escape") sluit();
+  if (zoom.t > 0.5 && zoom.laag !== null) {
+    if (e.key === "ArrowRight") { openLaag(Math.min(KOL.length - 1, zoom.laag + 1)); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { openLaag(Math.max(0, zoom.laag - 1)); e.preventDefault(); }
+  }
+});
+zoom.doel = 0;
+{ const mm = location.hash.match(/laag=(\d+)/); if (mm) { zoom.laag = +mm[1]; zoom.doel = 1; } }   // #laag=12 opent een laag meteen
+
+/* ---- helpers ---- */
+function rondRect(q, x, y, w, h, r) { q.beginPath(); q.moveTo(x + r, y); q.arcTo(x + w, y, x + w, y + h, r); q.arcTo(x + w, y + h, x, y + h, r); q.arcTo(x, y + h, x, y, r); q.arcTo(x, y, x + w, y, r); q.closePath(); }
+function warm(v) {                       // gewicht -> kleur
+  const a = Math.min(1, Math.abs(v));
+  return v >= 0 ? `rgba(127,224,195,${(0.08 + 0.92 * a).toFixed(3)})` : `rgba(255,154,122,${(0.08 + 0.92 * a).toFixed(3)})`;
+}
+
+/* ---- het overzicht: de stroom ---- */
+function tekenOverzicht(t, j, veeg, alpha) {
+  const fs = P.fs, mono = `500 ${fs}px "JetBrains Mono", ui-monospace, Consolas, monospace`;
+  ctx.globalAlpha = alpha;
+  const front = veeg * (KOL.length + 1);
+  const rij = (j >= 0 && rijen[j]) ? rijen[j] : null;
+  const n = KOL.length;
+  // de stroom tussen de lagen: dikte naar de sterkte van de bedrading, kleur naar plus/min
+  for (let k = 0; k < n - 1; k++) {
+    const s = sterkte[k] || {tot: 0.4, p: 0.5, m: 0.5}, x1 = laagX(k), x2 = laagX(k + 1);
+    const dik = Math.max(3 * DPR, P.stroomH * (0.12 + 0.55 * s.tot));
+    const g = ctx.createLinearGradient(x1, 0, x2, 0);
+    const mix = s.p / Math.max(0.0001, s.p + s.m);
+    g.addColorStop(0, `rgba(${Math.round(255 - 128 * mix)},${Math.round(154 + 70 * mix)},${Math.round(122 + 73 * mix)},0.22)`);
+    g.addColorStop(1, `rgba(${Math.round(255 - 128 * mix)},${Math.round(154 + 70 * mix)},${Math.round(122 + 73 * mix)},0.22)`);
+    ctx.fillStyle = g;
+    ctx.fillRect(x1, P.stroomY - dik / 2, x2 - x1, dik);
+    // het licht dat erdoor trekt
+    if (rij && front > k && front < k + 2.5) {
+      const u = Math.max(0, Math.min(1, front - k - 1));
+      const lx = x1 + (x2 - x1) * u;
+      const lg = ctx.createRadialGradient(lx, P.stroomY, 0, lx, P.stroomY, P.stapX * 0.9);
+      lg.addColorStop(0, "rgba(220,240,255,0.55)"); lg.addColorStop(1, "rgba(220,240,255,0)");
+      ctx.fillStyle = lg; ctx.fillRect(x1 - P.stapX, P.stroomY - dik * 2, (x2 - x1) + 2 * P.stapX, dik * 4);
+    }
+  }
+  // per laag: de residustroom als 32 segmenten (de groepen), en de bouw eromheen
+  const kolB = Math.max(4 * DPR, Math.min(P.stapX * 0.42, fs * 1.6));
+  for (let k = 0; k < n; k++) {
+    const x = laagX(k), m = kolMax[k], v = rij ? (rij[k] || []) : [];
+    const aan = rij ? Math.max(0, Math.min(1, front - k + 1)) : 0;
+    const groepen = KOL[k];
+    const segH = P.stroomH / groepen;
+    for (let g = 0; g < groepen; g++) {
+      const a = v.length ? Math.min(1, (v[g] || 0) / m) * aan : 0;
+      const y = P.stroomY - P.stroomH / 2 + g * segH;
+      ctx.fillStyle = `rgba(${127 + 100 * a | 0},${224 + 20 * a | 0},${195 + 50 * a | 0},${(0.18 + 0.8 * a * a).toFixed(3)})`;
+      ctx.fillRect(x - kolB / 2, y + 0.5, kolB, Math.max(1, segH - 1));
+    }
+    if (KOL[k] > 1 && k > 0 && k < n - 1) {
+      // aandacht (boven) en feedforward (onder): de bouw, met de aantallen
+      const bw = Math.min(P.stapX * 0.8, fs * 4.6), bh = fs * 1.6;
+      const ay = P.stroomY - P.stroomH / 2 - bh - fs * 0.9, fy = P.stroomY + P.stroomH / 2 + fs * 0.9;
+      ctx.fillStyle = `rgba(20,28,50,0.9)`; ctx.strokeStyle = `rgba(120,140,190,${(0.25 + 0.35 * aan).toFixed(2)})`; ctx.lineWidth = 1;
+      rondRect(ctx, x - bw / 2, ay, bw, bh, 4 * DPR); ctx.fill(); ctx.stroke();
+      rondRect(ctx, x - bw / 2, fy, bw, bh, 4 * DPR); ctx.fill(); ctx.stroke();
+      // de 6 koppen als puntjes, de feedforward als fijne streepjes
+      const kop = rij ? fijnKop(j, k) : null, ffg = rij ? fijnFfGroep(j, k) : null;
+      for (let h = 0; h < spec.koppen; h++) {
+        const a = kop ? (kop[h] || 0) / 255 * aan : 0;
+        const px = x - bw / 2 + bw * (h + 0.5) / spec.koppen;
+        ctx.fillStyle = kop ? `rgba(${127 + 100 * a | 0},${224 + 20 * a | 0},${195 + 50 * a | 0},${(0.2 + 0.8 * a).toFixed(2)})` : `rgba(160,180,225,${(0.35 + 0.5 * aan).toFixed(2)})`;
+        ctx.beginPath(); ctx.arc(px, ay + bh / 2, Math.max(1, bw / spec.koppen * (0.2 + 0.12 * a)), 0, 7); ctx.fill();
+      }
+      const st = ffg ? ffg.length : 24;
+      for (let i = 0; i < st; i++) {
+        const a = ffg ? (ffg[i] || 0) / 255 * aan : 0;
+        ctx.fillStyle = ffg ? `rgba(${127 + 100 * a | 0},${224 + 20 * a | 0},${195 + 50 * a | 0},${(0.15 + 0.85 * a).toFixed(2)})` : `rgba(160,180,225,${(0.2 + 0.4 * aan).toFixed(2)})`;
+        ctx.fillRect(x - bw / 2 + bw * (i + 0.5) / st, fy + bh * 0.25, Math.max(1, DPR * 0.8), bh * 0.5);
+      }
+      // de lussen van de stroom door de bouw heen
+      ctx.strokeStyle = `rgba(120,140,190,${(0.18 + 0.3 * aan).toFixed(2)})`;
+      ctx.beginPath(); ctx.moveTo(x, P.stroomY - P.stroomH / 2); ctx.lineTo(x, ay + bh); ctx.moveTo(x, P.stroomY + P.stroomH / 2); ctx.lineTo(x, fy); ctx.stroke();
+    }
+  }
+  // namen onder de lagen, waar ze passen
+  ctx.font = mono; ctx.textBaseline = "top"; ctx.textAlign = "center";
+  const om = Math.max(1, Math.ceil(fs * 6.2 / P.stapX));
+  const nyb = P.stroomY + P.stroomH / 2 + fs * 3.4;
+  for (let k = 0; k < n; k++) {
+    if (om > 1 && k % om !== 0 && k !== n - 1) continue;
+    const [a, b] = NAMEN[k] || ["", ""], x = laagX(k);
+    const licht = laagBijMuis() === k;
+    ctx.fillStyle = licht ? "rgba(234,238,247,1)" : "rgba(234,238,247,0.75)"; ctx.fillText(a, x, nyb);
+    if (om === 1 || k === 0 || k === n - 1) { ctx.fillStyle = kleurVan(b); ctx.fillText(b, x, nyb + fs * 1.3); }
+  }
+  // aanwijzen: de laag licht op
+  const hk = laagBijMuis();
+  if (hk !== null) {
+    ctx.strokeStyle = "rgba(234,238,247,0.35)"; ctx.lineWidth = 1;
+    rondRect(ctx, laagX(hk) - P.stapX * 0.45, P.boven, P.stapX * 0.9, H - P.boven - P.onder, 6 * DPR); ctx.stroke();
+  }
+  ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+  ctx.globalAlpha = 1;
+}
+
+/* ---- de laag open: kanalen, matrices, bouw ---- */
+function tekenLaag(t, j, alpha) {
+  const k = zoom.laag; if (k === null) return;
+  const fs = P.fs, mono = `500 ${fs}px "JetBrains Mono", ui-monospace, Consolas, monospace`;
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = "rgba(10,14,28,0.92)"; ctx.fillRect(0, 0, B, H);
+  const [naam, soort] = NAMEN[k] || ["", ""];
+  // kop: terug, naam, pijltjes
+  ctx.font = mono; ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+  ctx.fillStyle = "rgba(142,153,179,0.95)"; ctx.fillText("← terug (Esc)", fs * 1.2, fs * 2);
+  ctx.font = `700 ${fs * 1.5}px "JetBrains Mono", ui-monospace, monospace`; ctx.fillStyle = "rgba(234,238,247,0.95)";
+  ctx.fillText(naam, fs * 12, fs * 2.1);
+  ctx.font = mono; ctx.fillStyle = kleurVan(soort); ctx.fillText(soort, fs * 12 + naam.length * fs * 0.95 + fs, fs * 2.05);
+  ctx.fillStyle = "rgba(92,103,129,0.9)"; ctx.textAlign = "right"; ctx.fillText("← → andere laag", B - fs * 1.2, fs * 2); ctx.textAlign = "left";
+
+  const top = fs * 3.6, hoog = H - top - fs * 3.2;
+  const rij = (j >= 0 && rijen[j]) ? rijen[j] : null, v = rij ? (rij[k] || []) : [], m = kolMax[k];
+  // links: de kanalen als raster 24 x 16 (of de ene uitvoerknoop)
+  const kan = fijnKanaal(j, k), ffe = fijnFfEenheid(k), kopv = fijnKop(j, k);
+  const rasterB = Math.min(B * 0.34, hoog * 0.95), cel = Math.min(rasterB / 24, hoog * 0.5 / 16), rasterH = cel * 16;
+  const rx = fs * 1.2, ry = top + fs * 1.2;
+  ctx.fillStyle = "rgba(92,103,129,0.9)"; ctx.fillText(KOL[k] === 1 ? "1 knoop — haar zekerheid" : kan ? `${spec.breedte} kanalen · licht is activiteit nu` : `${spec.breedte} kanalen · in 32 groepen · licht is nu`, rx, ry - fs * 0.6);
+  let aanw = null;
+  if (KOL[k] === 1) {
+    const a = v.length ? Math.min(1, (v[0] || 0) / m) : 0;
+    ctx.fillStyle = `rgba(200,240,225,${(0.3 + 0.7 * a).toFixed(2)})`; ctx.beginPath(); ctx.arc(rx + rasterB / 2, ry + rasterH / 2, rasterH * 0.18 * (0.8 + 0.4 * a), 0, 7); ctx.fill();
+  } else {
+    for (let c = 0; c < 384; c++) {
+      const g = Math.floor(c / 12), a = kan ? (kan[c] || 0) / 255 : (v.length ? Math.min(1, (v[g] || 0) / m) : 0);
+      const x = rx + (c % 24) * cel, y = ry + Math.floor(c / 24) * cel;
+      ctx.fillStyle = `rgba(${127 + 100 * a | 0},${224 + 20 * a | 0},${195 + 50 * a | 0},${(0.12 + 0.85 * a * a).toFixed(3)})`;
+      ctx.fillRect(x + 1, y + 1, cel - 2, cel - 2);
+      if (muis && muis.x >= x && muis.x < x + cel && muis.y >= y && muis.y < y + cel) aanw = `kanaal ${c}${kan ? "" : ` (groep ${g})`} · activiteit ${(a * 100).toFixed(0)}% van het max van deze laag`;
+    }
+    // de feedforward: 1536 eenheden als raster 48 x 32, gemiddeld over deze gedachte
+    if (ffe && ffe.length) {
+      const fcel = Math.min(rasterB / 48, (hoog - rasterH - fs * 3.6) / 32), fy0 = ry + rasterH + fs * 2.2;
+      ctx.fillStyle = "rgba(92,103,129,0.9)"; ctx.fillText(`${ffe.length} feedforward-eenheden · gemiddeld in deze gedachte`, rx, fy0 - fs * 0.6);
+      for (let u = 0; u < ffe.length; u++) {
+        const a = (ffe[u] || 0) / 255, x = rx + (u % 48) * fcel, y = fy0 + Math.floor(u / 48) * fcel;
+        ctx.fillStyle = `rgba(${127 + 100 * a | 0},${224 + 20 * a | 0},${195 + 50 * a | 0},${(0.1 + 0.9 * a * a).toFixed(3)})`;
+        ctx.fillRect(x + 0.5, y + 0.5, Math.max(0.5, fcel - 1), Math.max(0.5, fcel - 1));
+        if (muis && muis.x >= x && muis.x < x + fcel && muis.y >= y && muis.y < y + fcel) aanw = `feedforward-eenheid ${u} · gemiddeld ${(a * 100).toFixed(0)}% van het max in deze laag`;
+      }
+    }
+  }
+  // midden: de matrix naar de volgende laag
+  const mx = rx + rasterB + fs * 2.5, mB = Math.min(B - mx - fs * 12.5, hoog * 0.9), mcel = mB / 32, my = top + (hoog - mB) / 2;
+  const M = (k < KOL.length - 2 && bedrading) ? bedrading[k] : null;
+  ctx.fillStyle = "rgba(92,103,129,0.9)";
+  if (M) {
+    ctx.fillText(`bedrading naar ${NAMEN[k + 1][0]} · 32 × 32 groepen · ${"mint"} plus, ${"koraal"} min`, mx, my - fs * 0.8);
+    for (let d = 0; d < 32; d++) for (let b = 0; b < 32; b++) {
+      const w = M[d] ? (M[d][b] || 0) : 0, x = mx + b * mcel, y = my + d * mcel;
+      ctx.fillStyle = warm(w); ctx.fillRect(x + 0.5, y + 0.5, mcel - 1, mcel - 1);
+      if (muis && muis.x >= x && muis.x < x + mcel && muis.y >= y && muis.y < y + mcel) aanw = `van groep ${b} (${NAMEN[k][0]}) naar groep ${d} (${NAMEN[k + 1][0]}): ${w >= 0 ? "+" : ""}${w.toFixed(3)}`;
+    }
+    ctx.fillStyle = "rgba(92,103,129,0.8)"; ctx.textAlign = "left";
+    ctx.fillText("bron →", mx, my + mB + fs * 1.2); ctx.save(); ctx.translate(mx - fs * 0.6, my + mB); ctx.rotate(-Math.PI / 2); ctx.fillText("doel →", 0, 0); ctx.restore();
+  } else if (k === KOL.length - 2 && bedradingUit) {
+    ctx.fillText("bedrading naar de uitvoer · per groep", mx, my - fs * 0.8);
+    const bw = mB / 32;
+    for (let b = 0; b < 32; b++) { const w = bedradingUit[b] || 0, h = Math.abs(w) * mB * 0.9; ctx.fillStyle = warm(w); ctx.fillRect(mx + b * bw + 1, my + mB - h, bw - 2, h);
+      if (muis && muis.x >= mx + b * bw && muis.x < mx + (b + 1) * bw && muis.y >= my && muis.y < my + mB) aanw = `groep ${b} → uitvoer: ${w >= 0 ? "+" : ""}${w.toFixed(3)}`; }
+  } else {
+    ctx.fillText(k === KOL.length - 1 ? "de uitvoer: hier wordt haar antwoord een teken" : "de inbedding: tekens worden 384 getallen", mx, my - fs * 0.8);
+  }
+  // rechts: de bouw van deze laag
+  const bx = B - fs * 10.5, by = top + fs * 0.4;
+  ctx.fillStyle = "rgba(92,103,129,0.9)"; ctx.fillText("de bouw", bx, by);
+  const regels = KOL[k] === 1 ? [["uitvoer", "1 knoop"], ["zekerheid", "softmax"]] : k === 0 ? [["inbedding", `${spec.breedte}`], ["positie", "rotatie"]] :
+    [["aandacht", `${spec.koppen} koppen × 64`], ["feedforward", `${spec.verborgen} eenheden`], ["stroom", `${spec.breedte} kanalen`], ["normalisatie", "2×"]];
+  ctx.font = mono;
+  regels.forEach(([a, b], i) => { const y = by + fs * 2.3 * (i + 1); ctx.fillStyle = "rgba(234,238,247,0.85)"; ctx.fillText(a, bx, y); ctx.fillStyle = "rgba(142,153,179,0.95)"; ctx.fillText(b, bx, y + fs * 1.05); });
+  // de koppen, nu: zes staven
+  if (kopv) {
+    const ky = by + fs * 2.3 * (regels.length + 1) + fs * 2.6, kw = fs * 8;
+    ctx.fillStyle = "rgba(92,103,129,0.9)"; ctx.fillText(`${kopv.length} koppen · nu`, bx, ky - fs * 0.6);
+    kopv.forEach((val, h) => {
+      const a = (val || 0) / 255, y = ky + h * fs * 1.15;
+      ctx.fillStyle = "rgba(21,28,48,1)"; ctx.fillRect(bx, y, kw, fs * 0.75);
+      ctx.fillStyle = `rgba(${127 + 100 * a | 0},${224 + 20 * a | 0},${195 + 50 * a | 0},0.9)`; ctx.fillRect(bx, y, kw * a, fs * 0.75);
+      if (muis && muis.x >= bx && muis.x < bx + kw && muis.y >= y && muis.y < y + fs * 0.75) aanw = `kop ${h + 1} · activiteit nu ${(a * 100).toFixed(0)}% van het max van deze laag`;
+    });
+  }
+  // de laagnaam-meting (van de kijker): welke familie deze laag het meest laat oplichten
+  const ln = (stand && Array.isArray(stand.laagnamen)) ? stand.laagnamen.find(x => x && x.laag === k) : null;
+  if (ln && ln.sterkte) { const ny = by + fs * 2.3 * (regels.length + 1) + (kopv ? fs * 2.6 + kopv.length * fs * 1.15 + fs * 1.2 : 0); ctx.fillStyle = "rgba(92,103,129,0.9)"; ctx.fillText(`naam uit de meting:`, bx, ny); ctx.fillStyle = kleurVan(ln.naam); ctx.fillText(`${ln.naam} (${(+ln.sterkte).toFixed(2)}×)`, bx, ny + fs * 1.05); }
+  // onderin: wat je aanwijst
+  ctx.fillStyle = aanw ? "rgba(234,238,247,0.95)" : "rgba(92,103,129,0.8)"; ctx.textAlign = "left";
+  ctx.fillText(aanw || "wijs een kanaal of een vakje aan", fs * 1.2, H - fs * 1.2);
+  ctx.globalAlpha = 1;
+}
+
+/* ---- elk beeld ---- */
+function teken(t) {
+  ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1;
+  ctx.clearRect(0, 0, B, H);
+  if (!rijen.length && wachtrij.length) nieuweGedachte(t);
+  const n = rijen.length, fs = P.fs, mono = `500 ${fs}px "JetBrains Mono", ui-monospace, Consolas, monospace`;
+  let j = -1, veeg = 0;
+  if (n) {
+    const u = (t - speelStart) / 1000 / TEKEN_S;
+    j = Math.min(n - 1, Math.floor(u)); veeg = Math.min(1, (u - Math.floor(u)) / VEEG);
+    if (j >= n - 1 && !klaarSinds && (u - (n - 1)) > 1) klaarSinds = t;
+    if (j >= n - 1 && klaarSinds) veeg = 1;
+    antwoordNu = Math.max(0, Math.min(antwoordDoel.length, j));
+    if (t - laatstTonen > 80) { laatstTonen = t; document.getElementById("antwoord").textContent = antwoordDoel.slice(0, antwoordNu); }
+  }
+  // de zoom glijdt
+  zoom.t += ((zoom.doel || 0) - zoom.t) * 0.12;
+  if (Math.abs(zoom.t - (zoom.doel || 0)) < 0.002) zoom.t = zoom.doel || 0;
+  if (zoom.t < 0.999) tekenOverzicht(t, j, veeg, 1 - zoom.t);
+  if (zoom.t > 0.001 && zoom.laag !== null) tekenLaag(t, j, zoom.t);
+
+  // bovenaan: wat ze schrijft (in beide standen)
+  ctx.font = mono; ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+  if (zoom.t < 0.5) {
+    ctx.fillStyle = "rgba(92,103,129,0.9)";
+    ctx.fillText(n ? (j === 0 ? "ze leest de vraag" : (j < n - 1 ? "ze schrijft" : "klaar — haar gedachte blijft staan")) : "wachten op een gedachte…", P.links, fs * 1.6);
+    if (n && j > 0) { ctx.fillStyle = "rgba(234,238,247,0.9)"; ctx.fillText(antwoordDoel.slice(0, j).slice(-70), P.links + fs * 11, fs * 1.6); }
+    ctx.fillStyle = "rgba(92,103,129,0.8)"; ctx.textAlign = "right"; ctx.fillText("klik op een laag om hem te openen", B - P.rechts, fs * 1.6); ctx.textAlign = "left";
+  }
+  if (n && klaarSinds && t - klaarSinds > 7000) { if (wachtrij.length) nieuweGedachte(t); else { speelStart = t; klaarSinds = 0; } }
+  requestAnimationFrame(teken);
+}
+requestAnimationFrame(teken);
+
+
+/* ======================================================================
+   De app: bladen, cijfers, kaarten, gesprek. Nieuw op 24 aug 2026.
+   ====================================================================== */
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const nl = (n, d) => (+n).toLocaleString("nl", d === undefined ? {} : {minimumFractionDigits: d, maximumFractionDigits: d});
+const KLEUR = {rekenen: "#6FB5FF", puzzel: "#B78AE0", code: "#7FE0C3", geheugen: "#FFB86B", logica: "#FF8FA3",
+               volgorde: "#8FD3FF", tekst: "#E6D37A", zeggen: "#F0A8FF", taal: "#A3FFD6", machine: "#FFD28F",
+               tellen: "#C4B5FD", antwoord: "#FDA4AF", gesprek: "#F0A8FF"};
+const FAMILIES = ["rekenen", "puzzel", "code", "geheugen", "logica", "volgorde", "tekst", "zeggen", "taal", "machine", "tellen", "antwoord"];
+const band = (p) => p >= 90 ? "hoog" : p >= 60 ? "midden" : "laag";
+
+/* ---- bladen ---- */
+function toonBlad(naam) {
+  document.querySelectorAll(".blad").forEach(b => b.classList.toggle("actief", b.id === "blad-" + naam));
+  document.querySelectorAll("nav#bladen button").forEach(b => b.classList.toggle("actief", b.dataset.blad === naam));
+  try { localStorage.setItem("amber-blad", naam); } catch (e) {}
+  if (location.hash !== "#" + naam) history.replaceState(null, "", "#" + naam);
+  window.scrollTo({top: 0});
+  if (naam === "overzicht" && typeof maat === "function") setTimeout(maat, 0);
+}
+document.querySelectorAll("nav#bladen button").forEach(b => b.addEventListener("click", () => toonBlad(b.dataset.blad)));
+(function () {
+  let b = location.hash.replace("#", "").split("?")[0].split("&")[0];
+  if (!b) { try { b = localStorage.getItem("amber-blad") || ""; } catch (e) {} }
+  if (["overzicht", "gesprek", "wereld", "geheugen", "machines"].includes(b)) toonBlad(b);
+})();
+
+/* ---- toast ---- */
+function toast(tekst, soort) {
+  const t = $("toast");
+  t.textContent = tekst; t.className = "zien " + (soort || "");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => { t.className = ""; }, 4500);
+}
+
+/* ---- de cijfers in de kop, en de teller die doorloopt ---- */
+let lvBasis = null;
+function tekenCijfers(s) {
+  const run = (s.run && s.run.regel) || "";
+  const cfg = (s.run && s.run.config) || {};
+  const lv = (s.run && s.run.live) || {};
+  const m = run.match(/stap\s+(\d+)\/(\d+)\s+(\d+)%\s+(\d+) ms\/st/);
+  const doel = cfg.doel || (m ? +m[2] : 0);
+  const stap = lv.stap || (m ? +m[1] : 0);
+  const ms = lv.ms || (m ? +m[4] : 0);
+  $("merk-run").textContent = cfg.naam || (run ? "training" : "geen run");
+  if (!(stap && doel && ms)) {
+    lvBasis = null;
+    $("cijfers").innerHTML = run ? `<div class="cijfer"><span class="l">stand</span><span class="w" style="font-size:14px;font-weight:500">${esc(run)}</span></div>`
+                                 : `<div class="cijfer"><span class="l">stand</span><span class="w" style="font-size:14px;font-weight:500;color:var(--muted)">geen training actief</span></div>`;
+    return;
+  }
+  lvBasis = {stap, ms, doel, ontvangen: performance.now()};
+  const over = (doel - stap) * ms;
+  const klaar = new Date(Date.now() + over).toLocaleString("nl", {weekday: "long", hour: "2-digit", minute: "2-digit"});
+  $("cijfers").innerHTML =
+    `<div class="cijfer"><span class="l">stap</span><span class="w"><span id="lv-stap">${nl(stap)}</span><small>/ ${nl(doel)}</small></span>
+       <div class="voortgang"><i id="lv-balk" style="width:${(100 * stap / doel).toFixed(2)}%"></i></div></div>` +
+    `<div class="cijfer"><span class="l">tempo</span><span class="w">${nl(ms / 1000, 1)}<small>s per stap</small></span></div>` +
+    `<div class="cijfer"><span class="l">nog</span><span class="w" id="lv-nog">${uurmin(over)}</span></div>` +
+    `<div class="cijfer klaar"><span class="l">klaar</span><span class="w" id="lv-klaar">${klaar}</span></div>`;
+}
+function uurmin(ms) {
+  ms = Math.max(0, ms);
+  const u = Math.floor(ms / 3600000), mi = Math.floor(ms % 3600000 / 60000);
+  return `${u}<small>u</small> ${String(mi).padStart(2, "0")}<small>m</small>`;
+}
+setInterval(() => {
+  if (!lvBasis) return;
+  const b = lvBasis, el = $("lv-stap"); if (!el) return;
+  const st = Math.min(b.doel, b.stap + (performance.now() - b.ontvangen) / b.ms);
+  el.textContent = nl(Math.floor(st));
+  const balk = $("lv-balk"); if (balk) balk.style.width = (100 * st / b.doel).toFixed(3) + "%";
+  const nog = $("lv-nog"); if (nog) nog.innerHTML = uurmin((b.doel - st) * b.ms);
+}, 1000);
+
+/* ---- overzicht: nu, proefwerken, levenslijn, wereld kort ---- */
+function tekenNu(s) {
+  $("opgave").textContent = (s.opgave || "").replace(/\n/g, " ; ");
+  $("nu-sub").textContent = s.checkpoint_stap ? `brein van stap ${nl(s.checkpoint_stap)}` : "";
+  const meta = [];
+  if (s.familie) meta.push(`<span class="chip" style="border-color:${KLEUR[s.familie] || "var(--line)"}55">${esc(s.familie)} <b>moeilijkheid ${s.diepte}</b></span>`);
+  if (s.goed === true) meta.push(`<span class="chip" style="color:var(--mint)">goed</span>`);
+  if (s.goed === false) meta.push(`<span class="chip" style="color:var(--coral)">fout</span>`);
+  if (s.geheugen_grootte) meta.push(`<span class="chip">geheugen <b>${nl(s.geheugen_grootte)}</b></span>`);
+  $("nu-meta").innerHTML = meta.join("");
+  const hn = s.herinnert || [];
+  $("herinnert").innerHTML = hn.length
+    ? `<div class="l">waar ze aan terugdenkt</div>` + hn.slice(0, 3).map(h => `<div class="h" title="${esc(h.opgave)}">${esc(h.opgave)}</div>`).join("")
+    : "";
+  $("herinnert").style.display = hn.length ? "" : "none";
+  $("geheugen-nu-inhoud").innerHTML = hn.length
+    ? hn.map(h => `<div style="margin-bottom:10px"><div class="chip" style="margin-bottom:4px">${esc(h.familie)} <b>${h.graad}</b> · lijkt <b>${Math.round((h.gelijkenis || 0) * 100)}%</b></div>
+        <div style="font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:pre-wrap">${esc(h.opgave)}</div></div>`).join("")
+    : `<div class="leeg">niets in beeld</div>`;
+}
+
+function stavenHtml(scores, vorige, namen, dim) {
+  return `<div class="staven">` + namen.map(n => {
+    const p = +scores[n], v = vorige && n in vorige ? +vorige[n] : null;
+    const d = v === null ? "" : (p - v === 0 ? `<small>=</small>` : `<small>${p - v > 0 ? "+" : ""}${p - v}</small>`);
+    return `<div class="staaf${dim ? " dim" : ""}"><span class="n" title="${esc(n)}">${esc(n)}</span>
+      <span class="spoor"><span class="vul ${band(p)}" style="width:${p}%"></span>${v === null ? "" : `<span class="schaduw" style="left:${v}%" title="vorige run ${v}%"></span>`}</span>
+      <span class="v">${p}%${d}</span></div>`;
+  }).join("") + `</div>`;
+}
+function tekenProefwerken(s) {
+  const rs = (s.run && s.run.scores) || {};
+  const vr = (s.vorige_run && s.vorige_run.scores) || null;
+  const namen = Object.keys(rs).filter(n => n !== "_stap");
+  if (!namen.length) return;
+  const vast = ["ladder", "grondslag", "gemengd", "gesprek", "deling", "diepte"];
+  const kort = vast.filter(n => n in rs).concat(namen.filter(n => !vast.includes(n) && !/nep|eenmalig/.test(n)).sort((a, b) => rs[a] - rs[b]).slice(0, 4));
+  const stap = rs._stap ? `bij stap ${nl(rs._stap)}` : "";
+  $("proefwerken-sub").textContent = stap;
+  $("proefwerken-inhoud").innerHTML = stavenHtml(rs, vr, kort) +
+    `<div class="legenda"><span><i style="background:var(--mint)"></i>90+</span><span><i style="background:var(--sky)"></i>60–89</span><span><i style="background:var(--coral)"></i>onder 60</span>${vr ? `<span><i class="streep"></i>eindstand ${esc(s.vorige_run.naam || "vorige run")}</span>` : ""}</div>`;
+  const alle = namen.slice().sort((a, b) => rs[b] - rs[a]);
+  $("proefwerken-alles-sub").textContent = `${alle.length} bladen · ${stap}`;
+  $("proefwerken-alles-inhoud").innerHTML = stavenHtml(rs, vr, alle) +
+    (vr ? `<div class="legenda"><span><i class="streep"></i>eindstand ${esc(s.vorige_run.naam)} · stap ${nl(s.vorige_run.stap || 0)}${s.vorige_run.afgeknipt ? " (afgeknipt)" : ""}</span></div>` : "");
+}
+
+function tekenLevenslijn(s) {
+  const curve = (s.run && s.run.curve) || [];
+  if (curve.length < 2) return;
+  const W = 640, H = 170, L = 44, R = 12, T = 12, B = 28;
+  const xs = curve.map(c => c[0]), ys = curve.map(c => c[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs);
+  const yMin = Math.max(0, Math.floor((Math.min(...ys) - 5) / 10) * 10), yMax = 100;
+  const X = v => L + (W - L - R) * (v - x0) / Math.max(1, x1 - x0);
+  const Y = v => T + (H - T - B) * (1 - (v - yMin) / (yMax - yMin));
+  let pad = "", vlak = "";
+  curve.forEach(([st, p], i) => { pad += (i ? "L" : "M") + X(st).toFixed(1) + " " + Y(p).toFixed(1) + " "; });
+  vlak = pad + `L${X(x1).toFixed(1)} ${Y(yMin).toFixed(1)} L${X(x0).toFixed(1)} ${Y(yMin).toFixed(1)} Z`;
+  let raster = "";
+  for (let y = yMin; y <= yMax; y += (yMax - yMin) / 4) raster += `<line x1="${L}" x2="${W - R}" y1="${Y(y).toFixed(1)}" y2="${Y(y).toFixed(1)}" stroke="var(--line)" stroke-width="1"/><text x="${L - 8}" y="${(Y(y) + 4).toFixed(1)}" text-anchor="end">${Math.round(y)}%</text>`;
+  const ticks = 4;
+  let xas = "";
+  for (let i = 0; i <= ticks; i++) { const st = x0 + (x1 - x0) * i / ticks; xas += `<text x="${X(st).toFixed(1)}" y="${H - 8}" text-anchor="${i === 0 ? "start" : i === ticks ? "end" : "middle"}">${nl(Math.round(st / 500) * 500)}</text>`; }
+  const [ls, lp] = curve[curve.length - 1];
+  $("levenslijn-inhoud").innerHTML = `<svg class="lijn" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-label="levenslijn">
+    <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky)" stop-opacity=".35"/><stop offset="1" stop-color="var(--sky)" stop-opacity="0"/></linearGradient></defs>
+    ${raster}${xas}
+    <path d="${vlak}" fill="url(#lg)"/>
+    <path d="${pad}" fill="none" stroke="var(--sky)" stroke-width="2.2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+    <circle cx="${X(ls).toFixed(1)}" cy="${Y(lp).toFixed(1)}" r="4.5" fill="var(--mint)"/>
+    </svg>`;
+  $("levenslijn-sub").textContent = `ladder ${lp}% bij stap ${nl(ls)} · ${curve.length} metingen`;
+}
+
+function hekken(s) {
+  const grens = {};
+  const hekstr = (s.run && s.run.config && s.run.config.hek) || "";
+  for (const m of hekstr.matchAll(/([a-z]+)\s+(\d+)/g)) grens[m[1]] = +m[2];
+  const rand = Object.assign({}, (s.run && s.run.wereld) || {}, s.wereldrand || {});
+  const fams = FAMILIES.filter(f => f in grens || f in rand);
+  for (const f of fams) { if (!grens[f]) grens[f] = rand[f] || 1; rand[f] = Math.min(rand[f] || 0, grens[f]); }
+  return {grens, rand, fams};
+}
+window.vorigeRand = window.vorigeRand || {};
+function hekHtml(f, d, g, nieuw) {
+  let b = "";
+  for (let i = 1; i <= g; i++) b += `<i class="${i <= d ? "aan" : ""}"></i>`;
+  return `<div class="hek"><span class="n${nieuw ? " nieuw" : ""}" style="color:${nieuw ? "" : ""}">${esc(f)}</span><span class="blokjes">${b}</span><span class="v">${d}/${g}</span></div>`;
+}
+function tekenWereld(s) {
+  const {grens, rand, fams} = hekken(s);
+  let kort = "", lang = "";
+  for (const f of fams) {
+    const d = rand[f], nieuw = window.vorigeRand[f] && d > window.vorigeRand[f];
+    if (nieuw) window.fonkelTot = Date.now() + 90000, window.laatstNieuw = f;
+    const fonkelt = window.fonkelTot > Date.now() && window.laatstNieuw === f;
+    kort += hekHtml(f, d, grens[f], fonkelt);
+    lang += hekHtml(f, d, grens[f], fonkelt);
+    window.vorigeRand[f] = d;
+  }
+  $("wereld-kort-inhoud").innerHTML = kort;
+  $("wereld-inhoud").innerHTML = lang;
+  const db = ((s.run && s.run.doorbraken) || []).slice().reverse();
+  $("doorbraken-inhoud").innerHTML = db.length
+    ? `<ul class="tijdlijn">` + db.slice(0, 14).map(l => `<li><span class="t">${nl(l.stap)}</span><span><b style="color:${KLEUR[l.familie] || "var(--ink)"}">${esc(l.familie)}</b> naar ${l.tot}</span></li>`).join("") + `</ul>`
+    : `<div class="leeg">nog geen doorbraak deze run</div>`;
+}
+
+function tekenKeuzes(s) {
+  const k = s.keuzes;
+  if (!k || !k.laatste || !k.laatste_n) return;
+  const fams = Object.keys(k.laatste).sort((a, b) => k.laatste[b] - k.laatste[a]);
+  $("keuzes-sub").textContent = `laatste ${nl(k.laatste_n)} keuzes`;
+  let h = `<div class="stapel">` + fams.map(f => `<i style="width:${100 * k.laatste[f] / k.laatste_n}%;background:${KLEUR[f] || "#8ea0c0"}" title="${f} ${Math.round(100 * k.laatste[f] / k.laatste_n)}%"></i>`).join("") + `</div>`;
+  h += `<div class="staven">` + fams.map(f => {
+    const pct = 100 * k.laatste[f] / k.laatste_n;
+    const pd = (k.per_diepte && k.per_diepte[f]) || {};
+    const ds = Object.keys(pd).map(Number).sort((a, b) => a - b);
+    let top = null, topN = -1; for (const d of ds) if (pd[d] > topN) { topN = pd[d]; top = d; }
+    const bereik = ds.length ? (ds.length === 1 ? `diepte ${ds[0]}` : `diepte ${ds[0]}–${ds[ds.length - 1]}, meest ${top}`) : "";
+    return `<div class="staaf"><span class="n" style="color:${KLEUR[f] || "var(--ink)"}">${esc(f)}</span>
+      <span class="spoor"><span class="vul" style="width:${pct}%;background:${KLEUR[f] || "var(--sky)"}"></span></span>
+      <span class="v">${Math.round(pct)}%<small> ${bereik ? "" : ""}</small></span></div>` +
+      (bereik ? `<div style="font-size:12px;color:var(--dim);margin:-4px 0 2px calc(9.5ch + 12px)">${bereik}</div>` : "");
+  }).join("") + `</div>`;
+  const reeks = k.reeks || [];
+  if (reeks.length >= 2) {
+    h += `<div class="stapel-reeks">` + reeks.map(b => `<div class="kolom" title="stap ${nl(b.stap)}">` +
+      Object.keys(b.aandeel).sort().map(f => `<i style="height:${(100 * b.aandeel[f]).toFixed(1)}%;background:${KLEUR[f] || "#8ea0c0"};opacity:.85"></i>`).join("") + `</div>`).join("") + `</div>` +
+      `<div style="font-size:12px;color:var(--dim);margin-top:6px">verloop per 500 stappen · ${nl(reeks[0].stap)} → ${nl(reeks[reeks.length - 1].stap)}</div>`;
+  }
+  $("keuzes-inhoud").innerHTML = h; $("keuzes-inhoud").classList.remove("leeg");
+}
+
+function tekenGeheugen(s) {
+  const vakjes = s.geheugen_vakjes || {};
+  const sleutels = Object.keys(vakjes);
+  if (!sleutels.length) return;
+  const fams = FAMILIES.concat(["gesprek"]).filter(f => sleutels.some(k => k.startsWith(f + "/")));
+  const maxD = Math.max(...sleutels.map(k => +k.split("/")[1]));
+  const kolommen = Math.min(maxD, 60);
+  const top = Math.max(...Object.values(vakjes));
+  let h = `<div class="warmte" style="grid-template-columns: 9.5ch repeat(${kolommen}, minmax(0, 1fr))">`;
+  for (const f of fams) {
+    h += `<span class="n">${esc(f)}</span>`;
+    for (let d = 1; d <= kolommen; d++) {
+      const n = vakjes[`${f}/${d}`] || 0;
+      const a = n ? 0.15 + 0.85 * Math.sqrt(n / top) : 0;
+      h += `<span class="cel" style="${n ? `background:${KLEUR[f] || "#F0A8FF"};opacity:${a.toFixed(2)}` : ""}" title="${f} ${d}: ${nl(n)}"></span>`;
+    }
+  }
+  h += `<span></span>`;
+  for (let d = 1; d <= kolommen; d++) h += `<span class="as">${d === 1 || d % 10 === 0 ? d : ""}</span>`;
+  h += `</div>`;
+  const fl = s.fles || {};
+  const totaal = Object.values(vakjes).reduce((a, b) => a + b, 0);
+  h += `<div class="kengetallen">
+    <div class="kengetal"><div class="l">herinneringen</div><div class="w">${nl(s.geheugen_grootte || totaal)}</div></div>
+    <div class="kengetal"><div class="l">vakjes</div><div class="w">${nl(sleutels.length)}</div></div>
+    ${fl.lengte ? `<div class="kengetal"><div class="l">doorgang</div><div class="w">${nl(fl.lengte)}<small>${fl.bezetting != null ? Math.round(fl.bezetting * 100) + "% gevuld" : ""}</small></div></div>` : ""}
+    ${fl.geweigerd != null ? `<div class="kengetal"><div class="l">geweigerd</div><div class="w">${fl.geweigerd >= 1e6 ? nl(fl.geweigerd / 1e6, 1) + "<small>mln</small>" : nl(fl.geweigerd)}</div></div>` : ""}
+  </div>`;
+  $("geheugen-sub").textContent = `per familie en moeilijkheid · donkerder is voller`;
+  $("geheugen-inhoud").innerHTML = h; $("geheugen-inhoud").classList.remove("leeg");
+}
+
+/* ---- machines ---- */
+function meterHtml(naam, waarde, max, eenheid, klasse) {
+  const p = Math.max(0, Math.min(100, 100 * waarde / max));
+  return `<div class="meter"><span class="n">${naam}</span><span class="spoor"><i class="${klasse || ""}" style="width:${p.toFixed(1)}%"></i></span><span class="v">${nl(Math.round(waarde))}${eenheid}</span></div>`;
+}
+function tekenMachines(s) {
+  const rm = (s.run && s.run.machine) || {}, cfg = (s.run && s.run.config) || {}, w = s.wachter || {};
+  let h = "";
+  if (w.melding) h += `<div class="melding">⚠ ${esc(w.melding)}</div>`;
+  if (rm.temp) {
+    const t = +rm.temp;
+    h += meterHtml("kaart", t, 90, "°C", t >= 80 ? "warm" : t <= 60 ? "goed" : "");
+    if (rm.watt) h += meterHtml("vermogen", +rm.watt, 320, " W", "");
+    if (rm.vram) h += meterHtml("geheugen", +rm.vram / 1024, 8, " GB", +rm.vram > 7000 ? "warm" : "");
+    if (rm.cpu_temp) h += meterHtml("processor", +rm.cpu_temp, 100, "°C", +rm.cpu_temp >= 85 ? "warm" : "");
+  } else h += `<div class="leeg">geen meting</div>`;
+  h += `<div class="diensten">` +
+    `<span class="dienst ${rm.dienst === "active" ? "aan" : ""}">training ${rm.dienst === "active" ? "draait" : (rm.dienst || "?")}</span>` +
+    (rm.spiegel ? `<span class="dienst aan">${esc(rm.spiegel)}</span>` : "") +
+    (w.crashes_vandaag > 0 ? `<span class="dienst" style="color:var(--amber)">${w.crashes_vandaag}× herstart vandaag</span>` : "") +
+    (rm.poging > 1 ? `<span class="dienst">poging ${rm.poging}</span>` : "") + `</div>`;
+  $("trainer-sub").textContent = w.uptime ? `wachter sinds ${esc(w.uptime).slice(11, 16)}` : "";
+  $("trainer-inhoud").innerHTML = h; $("trainer-inhoud").classList.remove("leeg");
+
+  const th = (s.run && s.run.thuis) || null;
+  if (th) {
+    let t = `<div class="diensten" style="margin:0 0 12px"><span class="dienst ${th.aan ? "aan" : ""}">${th.aan ? "staat aan" : "staat uit"}</span>${th.array ? `<span class="dienst ${th.array === "synchroon" ? "aan" : ""}">schijven ${esc(th.array)}</span>` : ""}</div>`;
+    (th.kaarten || []).forEach((k, i) => { const m = String(k).match(/(\d+)[^\d]+([\d.]+)\s*W/); if (m) t += meterHtml(`P100 #${i + 1} · ${Math.round(+m[2])} W`, +m[1], 90, `°C`, +m[1] >= 80 ? "warm" : "goed"); });
+    if (th.cpu_temp) { const c = parseFloat(th.cpu_temp); if (!isNaN(c)) t += meterHtml("processor", c, 100, "°C", c >= 85 ? "warm" : ""); }
+    const ds = th.diensten || {};
+    t += `<div class="diensten">` + Object.keys(ds).map(d => `<span class="dienst ${ds[d] === "active" ? "aan" : ""}">${esc(d)}</span>`).join("") + `</div>`;
+    $("thuis-inhoud").innerHTML = t; $("thuis-inhoud").classList.remove("leeg");
+  } else $("thuis-inhoud").innerHTML = `<div class="leeg">geen verbinding met thuis</div>`;
+
+  const v = [];
+  if (cfg.lagen) v.push(["lagen", cfg.lagen]);
+  if (cfg.parameters) v.push(["parameters", nl(cfg.parameters / 1e6, 1) + "<small>M</small>"]);
+  if (cfg.venster) v.push(["venster", nl(cfg.venster)]);
+  if (cfg.koppen) v.push(["koppen", cfg.koppen]);
+  if (cfg.verborgen) v.push(["verborgen", nl(cfg.verborgen)]);
+  if (cfg.start && cfg.doel) v.push(["deze run", `${nl(cfg.start)} → ${nl(cfg.doel)}`]);
+  if (cfg.checkpointing !== undefined) v.push(["checkpointing", cfg.checkpointing ? "aan" : "uit"]);
+  if (s.uren) v.push(["samen gebouwd", `${String(s.uren).replace(".", ",")}<small>uur</small>`]);
+  if (s.haar_uren) v.push(["zij leerde", `${String(s.haar_uren).replace(".", ",")}<small>uur</small>`]);
+  $("vorm-inhoud").innerHTML = `<div class="kengetallen">` + v.map(([l, w]) => `<div class="kengetal"><div class="l">${l}</div><div class="w">${w}</div></div>`).join("") + `</div>` +
+    (cfg.hek ? `<div style="margin-top:12px;font-size:13px;color:var(--dim)">hekken: ${esc(cfg.hek)}</div>` : "");
+  $("vorm-inhoud").classList.remove("leeg");
+
+  const mRegel = ((s.run && s.run.regel) || "").match(/stap\s+(\d+)\/(\d+)\s+(\d+)%/);
+  let links = [["/dagbericht", "dagbericht", "🔊"], ["/machines", "machines"], ["/gebeurtenissen", "gebeurtenissen"],
+               ["/tijdlijn", "tijdlijn — haar geschiedenis"], ["/opname", "oren — spreek iets in"], ["/geheugen", "geheugen — zoek erin"],
+               ["/vraag", "vraag haar iets"], ["/gesprek", "gesprek — praat met haar"], ["/onderweg", "onderweg — de rit inleveren"]]
+    .map(([u, l, st]) => `<a href="${u}"><span>${l}</span><span class="st">${st || ""}</span></a>`);
+  for (const f of (s.rapporten || [])) {
+    const naam = f.replace(".html", "");
+    let label = naam, status = "";
+    if (naam === "index") label = "rapportoverzicht";
+    else if (naam === "stemmen") label = "stemkeuze";
+    else if (naam === cfg.naam && mRegel) status = `lopend · ${mRegel[3]}%`;
+    else if (naam.startsWith("run")) status = "definitief";
+    links.push(`<a href="/rapport/${f}" target="_blank"><span>${esc(label)}</span><span class="st ${status.startsWith("lopend") ? "lopend" : ""}">${status}</span></a>`);
+  }
+  $("meer-inhoud").innerHTML = links.join("");
+}
+
+/* ---- het gesprek ---- */
+async function tekenGesprek() {
+  let z = null, log = [];
+  try { z = await (await fetch("/rapport/zelfrapport.json", {cache: "no-store"})).json(); } catch (e) {}
+  try { log = await (await fetch("/amber-zegt.json", {cache: "no-store"})).json(); } catch (e) {}
+  // Het venster laat haar elk kwartier dezelfde vraag stellen zolang die
+  // open staat; hier vouwt dat samen tot één bubbel met een teller.
+  let b = "", vorige = null;
+  for (const r of log) {
+    const zegt = r.zegt || "", vraagt = r.vraagt || "";
+    if (!zegt && !vraagt) continue;
+    if (vorige && vorige.zegt === zegt && vorige.vraagt === vraagt && !vorige.antwoord) {
+      vorige.n += 1; vorige.laatst = r.wanneer || vorige.laatst; vorige.stap = r.stap || vorige.stap;
+    } else {
+      vorige = {zegt, vraagt, n: 1, eerst: r.wanneer || "", laatst: r.wanneer || "", stap: r.stap || 0, antwoord: null};
+      b += "\u0000";                       // plek voor deze bubbel
+      window._bub = (window._bub || []); window._bub.push(vorige);
+    }
+    if (r.antwoord_cley) vorige.antwoord = {tekst: r.antwoord_cley, tijd: r.antwoord_tijd || ""};
+  }
+  const bubs = window._bub || []; window._bub = [];
+  b = bubs.map(v => `<div class="bubbel zij"><div class="wie">amber · stap ${nl(v.stap)}</div>${v.zegt ? esc(v.zegt) : ""}${v.zegt && v.vraagt ? "<br>" : ""}${v.vraagt ? `<b>${esc(v.vraagt)}</b>` : ""}<div class="t">${esc(v.laatst)}${v.n > 1 ? ` · ${v.n}× gevraagd sinds ${esc(v.eerst).slice(11)}` : ""}</div></div>`
+    + (v.antwoord ? `<div class="bubbel cley"><div class="wie">cley</div>${esc(v.antwoord.tekst)}<div class="t">${esc(v.antwoord.tijd)}</div></div>` : "")).join("");
+  $("bubbels").innerHTML = b || `<div class="leeg">nog niets gezegd</div>`;
+  const open = log.length && (log[log.length - 1].vraagt) && !log[log.length - 1].antwoord_cley;
+  $("gesprek-sub").textContent = open ? "er staat een vraag van haar open" : (log.length ? `${log.length} beurten` : "");
+  document.querySelectorAll("#antwoorden button").forEach(k => k.classList.toggle("stil", !open));
+  if (z) {
+    let h = "";
+    if (z.amber_zegt || z.amber_noot) h += `<div class="bubbel systeem"><div class="wie">zij, in het zelfrapport</div>${esc(z.amber_zegt || z.amber_noot)}</div>`;
+    if ((z.voorstellen || []).length) h += `<div class="bubbel systeem"><div class="wie">voorstellen</div><ul>${z.voorstellen.map(v => `<li>${esc(v)}</li>`).join("")}</ul></div>`;
+    if ((z.waarnemingen || []).length) h += `<div class="bubbel systeem"><div class="wie">waarnemingen</div><ul>${z.waarnemingen.map(v => `<li>${esc(v)}</li>`).join("")}</ul></div>`;
+    if (z.regel) h += `<div class="leeg" style="font-size:12.5px">${esc(z.regel)}</div>`;
+    $("systeem-sub").textContent = `stap ${nl(z.stap || 0)} · ${esc(z.gemaakt || "")}`;
+    $("systeem-inhoud").innerHTML = `<div class="bubbels">${h}</div>`; $("systeem-inhoud").classList.remove("leeg");
+  }
+  const bub = $("bubbels"); bub.scrollTop = bub.scrollHeight;
+}
+let antwoordSlot = 0;
+async function antwoordCley(a) {
+  a = (a || "").trim(); if (!a) return;
+  // Eén antwoord per vier seconden (24 aug 2026): een dubbele klik op
+  // "later" bezorgde die avond twee keer dezelfde les in haar bus.
+  if (Date.now() < antwoordSlot) { toast("even wachten — je antwoord is net verstuurd"); return; }
+  antwoordSlot = Date.now() + 4000;
+  const knoppen = document.querySelectorAll("#antwoorden button");
+  knoppen.forEach(k => k.disabled = true);
+  setTimeout(() => knoppen.forEach(k => k.disabled = false), 4000);
+  try {
+    const r = await (await fetch("/antwoord-cley?antwoord=" + encodeURIComponent(a), {cache: "no-store"})).json();
+    if (r.geantwoord) { $("antwoord-vrij").value = ""; toast(`bezorgd: "${a}"`, "goed"); tekenGesprek(); }
+    else toast("er staat geen vraag van haar open om te beantwoorden", "mis");
+  } catch (e) { toast("het venster kon het antwoord niet kwijt — probeer nog eens", "mis"); }
+}
+let spreekVanaf = 0;
+$("spreek").addEventListener("click", async (e) => {
+  const knop = e.currentTarget;
+  knop.textContent = "🔊 ze formuleert…"; knop.disabled = true;
+  spreekVanaf = Date.now() / 1000;
+  try { await fetch("/spreek"); } catch (err) {}
+  const wacht = setInterval(async () => {
+    try {
+      const m = await (await fetch("/rapport/stem-stand.json", {cache: "no-store"})).json();
+      if (m.tijd > spreekVanaf) {
+        clearInterval(wacht);
+        const a = $("stem-audio"); a.src = "/rapport/stem-stand.wav?" + m.tijd; a.play();
+        knop.textContent = "🔊 vertel de stand"; knop.disabled = false;
+      }
+    } catch (err) {}
+  }, 2000);
+  setTimeout(() => { clearInterval(wacht); knop.textContent = "🔊 vertel de stand"; knop.disabled = false; }, 90000);
+});
+
+/* ---- de kraan: stand.json elke 5 s ---- */
+async function haal() {
+  try {
+    const r = await fetch("/stand.json", {cache: "no-store"});
+    const s = await r.json();
+    // het weefsel: activatierijen (de golven) of alleen bedrading (de draden)
+    const rijenOk = s.lagen && s.lagen.length && !Array.isArray(s.lagen[0]);
+    const alleenBedrading = !rijenOk && s.bedrading && s.bedrading.length && s.bedrading[0] && s.bedrading[0].length;
+    if ((!stand || s.tijd !== stand.tijd) && (rijenOk || alleenBedrading)) {
+      const nieuweBedrading = JSON.stringify(s.checkpoint_stap) !== JSON.stringify(stand && stand.checkpoint_stap);
+      stand = s;
+      if (rijenOk) {
+        wachtrij = s.lagen.map(rij => [rij.in, ...rij.b, [rij.uit]]);
+        KOL = wachtrij[0].map(kl => kl.length);
+      } else {
+        wachtrij = []; rijNu = null; vonken = [];
+        KOL = [s.bedrading[0][0].length, ...s.bedrading.map(M => M.length), 1];
+      }
+      if (Array.isArray(s.laagnamen)) { laagnamen = {}; for (const x of s.laagnamen) if (x && x.laag) laagnamen[x.laag] = x.naam; }
+      bouwNamen();
+      gloed = KOL.map(n => new Array(n).fill(0));
+      kolMax = KOL.map(() => 0.0001);
+      for (const rij of wachtrij) rij.forEach((kol, i) => { for (const v of kol) kolMax[i] = Math.max(kolMax[i], v); });
+      if (s.bedrading && (nieuweBedrading || !weefsel.length)) { bedrading = s.bedrading; bedradingUit = s.bedrading_uit; bouwWeefsel(); }
+      antwoordDoel = s.antwoord || ""; antwoordNu = 0;
+      const a = $("antwoord"); a.textContent = ""; a.className = s.goed === true ? "goed" : (s.goed === false ? "fout" : "");
+      tekenNu(s);
+    }
+    if (typeof haalFijn === "function") haalFijn(s.tijd);
+    tekenCijfers(s);
+    const pil = $("pil"), d = (s.run && s.run.machine && s.run.machine.dienst) || "", w = s.wachter || {};
+    pil.className = "pil " + (d === "active" ? "aan" : "uit");
+    pil.textContent = d === "active" ? "ze leert" : (w.melding ? "let op" : "ze rust");
+    $("onderschrift").innerHTML = `${KOL.length - 2} lagen · <span class="plus">mint</span> plus, <span class="min">koraal</span> min · licht is activiteit · klik op een laag` +
+      (s.checkpoint_stap ? ` · <b>brein van stap ${nl(s.checkpoint_stap)}</b>` : "");
+    tekenProefwerken(s); tekenLevenslijn(s); tekenWereld(s); tekenKeuzes(s); tekenGeheugen(s); tekenMachines(s);
+  } catch (e) { console.error(e); }
+}
+haal(); setInterval(haal, 5000);
+tekenGesprek(); setInterval(tekenGesprek, 60000);
+
+maat();
+
+</script>
+</body>
+</html>

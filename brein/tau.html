@@ -1,0 +1,647 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Amber · Sterrenwacht</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap">
+<style>
+  /* 27 aug 21:58, Cley: alles wat blauw was is rood */
+  /* Cleys schets op papier, 27 aug 2026. Live sinds 18:37.
+     Ronde 2 (18:50): Amber en wereld hoger · lagen groter, alleen de draden waar iets gebeurt gaan aan,
+     groen = plus, rood = min · het balletje gaat dóór de draad en splitst bij antwoord · tekst krimpt mee ·
+     achtergrond zwart · Amber rood zoals Tau · bolletjes door de draden naar de vakken.
+     Ronde 3 (19:05): onthouden tikt live mee · vraag/antwoord/geheugen rood · sneller (canvas, geen glasfilters).
+     Ronde 4 (19:20): het brein precies zoals de Sterrenwacht van 25 aug (32 groepen per laag, de 10 sterkste
+     gewichten per groep, licht = boven haar gewone niveau, vonkjes, live per teken) — en de bolletjes rood.
+     Bronnen: /stand.json (elke 5 s) en /rapport/live.json (elke 2 s). */
+  :root {
+    --bg: #000000; --bg-2: #07070C; --glas: rgba(8,8,14,.86);
+    --rand: rgba(255,90,100,.20); --rand-2: rgba(120,160,255,.32);
+    --ink: #FFE9E5; --muted: #D9B3B5; --dim: #9A6F74;
+    --mint: #FF2E3A; --coral: #FF3FA0; --sky: #FF7A66; --lilac: #FF2E3A; --amber: #FFD23F;
+    --rood: #FF2E3A; --rood-2: #FF7A66; --rood-3: #FFB3A0; --groen: #7FE0C3; --min: #FF9A7A;
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    --tekst: "Atkinson Hyperlegible", system-ui, sans-serif;
+    --merk: "Syne", "Atkinson Hyperlegible", sans-serif;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--tekst); line-height: 1.45; -webkit-font-smoothing: antialiased; overflow: hidden;
+         display: grid; place-items: center; }
+  b { color: var(--ink); }
+  #toneel { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 30%, #0B0B14 0%, #040407 55%, #000 100%); }
+
+  #doek { position: relative; z-index: 1; width: min(100vw, 160vh); aspect-ratio: 16 / 10; container-type: inline-size; }
+  #doek > svg, #doek > canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  /* Wereld: klik → verslag van alle runs (Cley, 27 aug 22:30) */
+  #doek > #wereld { cursor: pointer; }
+  #verslag { position: absolute; left: 1.5%; top: 4%; width: 75%; height: 92%; z-index: 7; background: #0A0A10; border: 1px solid var(--rand); border-radius: .4cqi; padding: .9cqi 1.1cqi; display: none; overflow: auto; font-family: var(--mono); color: var(--ink); box-sizing: border-box; }
+  #verslag.open { display: block; }
+  #verslag .kop { font-size: .62cqi; letter-spacing: .18em; text-transform: uppercase; color: var(--rood); display: flex; justify-content: space-between; cursor: pointer; }
+  #verslag .kop small { color: var(--dim); text-transform: none; letter-spacing: .08em; }
+  #verslag .kolommen { display: grid; grid-template-columns: 1fr 1fr; column-gap: 1.6cqi; margin-top: .4cqi; }
+  #verslag h4 { font-size: .6cqi; letter-spacing: .16em; text-transform: uppercase; color: var(--rood); margin: .9cqi 0 .3cqi; font-weight: 600; }
+  #verslag table { width: 100%; border-collapse: collapse; font-size: .64cqi; }
+  #verslag td, #verslag th { text-align: left; padding: .1cqi .3cqi; border-bottom: 1px solid var(--rand); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 12cqi; }
+  #verslag th { color: var(--dim); font-weight: 500; }
+  #verslag td.n, #verslag th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  #verslag tr.nu td { color: var(--rood); }
+  #verslag .plus { color: var(--groen); } #verslag .min { color: var(--min); }
+  #verslag .balkje { display: inline-block; height: .32cqi; background: var(--rood); vertical-align: middle; border-radius: 1px; margin-right: .3cqi; }
+  #verslag svg { width: 100%; height: auto; display: block; }
+  #verslag .geb { font-size: .62cqi; line-height: 1.5; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #verslag .geb b { color: var(--ink); font-weight: 600; } #verslag .geb i { color: var(--dim); font-style: normal; }
+  #doek > #stilDoek, #doek > #lagenDoek { z-index: 1; inset: auto; left: 49.375%; top: 14%; width: 50.625%; height: 68%; }   /* alleen het breinvak (790,140)-(1600,820): kleine doeken, anders trekt Safari's GPU-proces het niet (27 aug) */ #doek > #s { z-index: 2; } #doek > #oogBuiten { z-index: 3; pointer-events: none; inset: auto; left: 34.375%; top: 6.8%; width: 11.25%; height: 18%; }   /* het oog: 7 ringlagen, elk met eigen draai (Cley, 27 aug 21:45) */
+  #doek > #tauDoek { z-index: 3; pointer-events: none; inset: auto; left: 26.875%; top: 0; width: 26.25%; height: 38%; }   /* alleen Amber's vak (430,0)-(850,380): een klein doek, anders trekt Safari het niet (27 aug) */
+
+  .vak { position: absolute; z-index: 4; background: var(--glas); border: 1px solid var(--rand); border-radius: .4cqi;
+         padding: .6cqi .75cqi; display: flex; flex-direction: column; gap: .36cqi; overflow: hidden; }
+  .vak .kop { font-family: var(--mono); font-size: .62cqi; letter-spacing: .18em; text-transform: uppercase; color: var(--mint); display: flex; justify-content: space-between; gap: .5cqi; }
+  .vak .kop small { color: var(--dim); letter-spacing: .08em; text-transform: none; font-size: .58cqi; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .vak .r { display: flex; justify-content: space-between; gap: .6cqi; font-family: var(--mono); font-size: .75cqi; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .vak .r b { font-weight: 700; }
+  .vak .balk { height: .19cqi; border-radius: .1cqi; background: rgba(140,170,220,.15); overflow: hidden; flex: none; }
+  .vak .balk i { display: block; height: 100%; background: var(--mint); transition: width .6s; }
+  .vak .balk.warm i { background: var(--amber); }
+  .vak .balk.vol i { background: var(--lilac); }
+  .stip-aan::before, .stip-uit::before, .stip-warm::before { content: ""; display: inline-block; width: .44cqi; height: .44cqi; border-radius: 50%; margin-right: .5cqi; }
+  .stip-aan::before { background: var(--mint); box-shadow: 0 0 .5cqi var(--mint); }
+  .stip-warm::before { background: var(--amber); box-shadow: 0 0 .5cqi var(--amber); }
+  .stip-uit::before { background: var(--dim); }
+
+  #wereld   { left: 1.5%;  top: 4%;    width: 26.5%; height: 54%; }   /* raster: linkerkolom 1,5–28 %, rijen 4–58 / 60–77 / 79–96 (Cley, 27 aug 22:15) */
+  #wereld .lijst { display: flex; flex-direction: column; gap: .3cqi; overflow: hidden; }
+  #runstat  { left: 1.5%;  top: 60%;   width: 12.75%; height: 17%; }
+  #gpustat  { left: 15.25%; top: 60%;  width: 12.75%; height: 17%; }
+  #machines { left: 1.5%;  top: 79%;   width: 26.5%; height: 17%; transition: top .25s, height .25s; }
+  #machines.open { top: 60%; height: 36%; z-index: 6; background: #0A0A10; }   /* klik op een machine: alle details (Cley, 27 aug 22:00) */
+  #machines .r.m { cursor: pointer; }
+  #machines .r.m:hover span { color: var(--rood); }
+  #m-detail .kop { margin-top: .5cqi; }
+  #m-detail .rijen { display: grid; grid-template-columns: 1fr 1.15fr; column-gap: 1.4cqi; row-gap: .12cqi; align-items: start; }
+  #m-detail .r { font-size: .68cqi; white-space: normal; align-items: baseline; }
+  #m-detail .r b { text-align: right; }
+  #echt     { left: 79%;   top: 79%;   width: 17%;   height: 17%; }
+  #gedachten{ left: 31%;   top: 79%;   width: 18%;   height: 17%; }   /* haar gedachten, recht onder haar punt (Cley, 27 aug 21:15) */
+  .gedachte { font-family: var(--mono); font-size: .72cqi; line-height: 1.3; color: var(--dim); }
+  .gedachte.nu { font-size: .8cqi; color: var(--ink); }
+  .knoppen { display: flex; gap: .4cqi; margin-top: .3cqi; }
+  .knoppen button { font-family: var(--mono); font-size: .62cqi; letter-spacing: .12em; text-transform: uppercase; background: transparent; color: var(--ink); border: 1px solid var(--rand); border-radius: .3cqi; padding: .18cqi .6cqi; cursor: pointer; }
+  .knoppen button:hover { border-color: var(--rood); color: var(--rood); }
+  .knoppen button:disabled { opacity: .4; cursor: default; }
+  #ged-vrij { font-family: var(--mono); font-size: .75cqi; background: transparent; color: var(--ink); border: 0; border-bottom: 1px solid var(--rand); outline: none; padding: .25cqi 0; width: 100%; margin-top: .3cqi; }
+  #ged-vrij::placeholder { color: var(--dim); }
+  #ged-voet { font-family: var(--mono); font-size: .62cqi; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #ged-vrij:focus { border-bottom-color: var(--rood); }
+  #echt .kop { color: var(--rood); }
+  #echt .w { font-family: var(--mono); font-size: .8cqi; font-weight: 500; color: var(--ink); line-height: 1.35; white-space: pre-wrap; overflow: hidden; transition: color .3s; }
+  #echt .w.goed { color: var(--groen); }
+  #echt .w.fout { color: var(--min); }
+  #echt .oordeel { font-family: var(--mono); font-size: .62cqi; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-top: auto; }
+  #echt .oordeel.goed { color: var(--groen); } #echt .oordeel.fout { color: var(--min); }
+
+  .naam { font-family: var(--mono); font-size: 12px; fill: var(--muted); text-anchor: middle; letter-spacing: .12em; text-transform: uppercase; }
+  .naam.klein { font-size: 9.5px; letter-spacing: .08em; text-transform: none; fill: var(--dim); }
+  .naam.rood { fill: var(--rood-3); }
+  .draad { fill: none; stroke: var(--sky); stroke-opacity: .28; stroke-width: 1.6; stroke-linecap: round; transition: stroke-opacity .3s, stroke .3s, stroke-width .3s; }
+  .draad.aan { stroke: var(--mint); stroke-opacity: 1; stroke-width: 2.6; }
+  .draad.zacht { stroke: var(--rood); stroke-opacity: .38; stroke-dasharray: 3 6; }
+  .draad.rood { stroke: var(--rood); stroke-opacity: .35; }
+  .draad.rood.aan { stroke: var(--rood-3); stroke-opacity: 1; }
+  .bol { fill: #0C0305; stroke: var(--rood); stroke-width: 2.2; transition: stroke .3s, fill .3s; }
+  .bol.aan { stroke: #FFE9E5; fill: #2A0A0E; }
+  .schijn { fill: var(--rood); opacity: .12; transition: opacity .3s; } .schijn.aan { opacity: .4; }
+  .kern { fill: var(--rood); transition: fill .3s; } .kern.aan { fill: #FFE9E5; }
+  .opgave { font-family: var(--mono); font-size: 11.5px; fill: var(--muted); text-anchor: middle; }
+  .opgave.k { fill: var(--dim); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; }
+  .loper { fill: #fff; } .loper.gloed { fill: var(--mint); opacity: .35; }
+  .loper.klein { fill: var(--rood); }
+  @keyframes draai { to { transform: rotate(360deg) } }
+  .boogje { animation: draai 10s linear infinite; }
+  @media (prefers-reduced-motion: reduce) { .boogje { animation: none } }
+  #status { position: fixed; right: 10px; bottom: 6px; z-index: 5; font-family: var(--mono); font-size: 10px; color: var(--dim); letter-spacing: .1em; }
+</style></head><body>
+<div id="toneel"></div>
+<div id="doek">
+  <canvas id="stilDoek"></canvas>
+  <canvas id="lagenDoek"></canvas>
+  <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid meet" id="s"></svg>
+  <canvas id="tauDoek"></canvas>
+  <canvas id="oogBuiten"></canvas>
+
+  <div class="vak" id="wereld">
+    <div class="kop"><span>Wereld</span><small id="wereld-sub">dag —</small></div>
+    <div class="lijst" id="wereld-lijst"></div>
+    <div class="r" style="margin-top:auto"><span>tijd</span><b id="klok">—</b></div>
+  </div>
+
+  <div class="vak" id="runstat">
+    <div class="kop"><span>Run status</span></div>
+    <div class="r"><span>run</span><b id="run-naam">—</b></div>
+    <div class="r"><span>stap</span><b id="run-stap">—</b></div>
+    <div class="r"><span>doel</span><b id="run-doel">—</b></div>
+    <div class="balk"><i id="run-balk" style="width:0%"></i></div>
+    <div class="r"><span>nog</span><b id="run-nog">—</b></div>
+  </div>
+
+  <div class="vak" id="gpustat">
+    <div class="kop"><span>GPU status</span><small>3070 Ti</small></div>
+    <div class="r"><span>vermogen</span><b id="gpu-watt">—</b></div><div class="balk"><i id="gpu-watt-balk" style="width:0%"></i></div>
+    <div class="r"><span>geheugen</span><b id="gpu-vram">—</b></div><div class="balk"><i id="gpu-vram-balk" style="width:0%"></i></div>
+    <div class="r"><span>warmte</span><b id="gpu-temp">—</b></div><div class="balk warm"><i id="gpu-temp-balk" style="width:0%"></i></div>
+    <div class="r"><span>cpu</span><b id="cpu-temp">—</b></div>
+  </div>
+
+  <div class="vak" id="machines">
+    <div class="kop"><span>Machines</span></div>
+    <div class="r m"><span id="m-z490" class="stip-uit">Z490</span><b id="m-z490-w">—</b></div>
+    <div class="r m"><span id="m-mac" class="stip-aan">MacBook · kijkt mee</span><b id="m-mac-w">nu</b></div>
+    <div class="r m"><span id="m-dl" class="stip-uit">DL380</span><b id="m-dl-w">—</b></div>
+    <div id="m-detail"></div>
+  </div>
+
+  <div class="vak" id="echt">
+    <div class="kop"><span>Antwoord</span><small id="echt-fam"></small></div>
+    <div class="w" id="echtw">—</div>
+    <div class="oordeel" id="echt-oordeel"></div>
+  </div>
+  <div id="verslag"></div>
+  <div class="vak" id="gedachten">
+    <div class="kop"><span>Gedachten</span><small id="ged-sub"></small></div>
+    <div class="lijst" id="ged-lijst"></div>
+    <div class="knoppen" id="ged-knoppen"><button data-a="ja">ja</button><button data-a="nee">nee</button><button data-a="later">later</button></div>
+    <input id="ged-vrij" type="text" placeholder="of typ je antwoord en druk op Enter" autocomplete="off">
+    <div class="oordeel" id="ged-voet">—</div>
+  </div>
+</div>
+<div id="status">—</div>
+
+<script>
+(() => {
+  const NS='http://www.w3.org/2000/svg', svg=document.getElementById('s'), $=id=>document.getElementById(id);
+  const el=(t,a,txt,parent)=>{ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); if(txt!=null) e.textContent=txt; (parent||svg).appendChild(e); return e };
+  const GROEN='127,224,195', ROODMIN='255,154,122', SKY='111,168,255', MINT='41,211,255';   // groen is plus, rood is min (25 aug)
+  const RD='#FF2E3A', RD2='#FF7A66', RD3='#FFB3A0', WIT='#FFE9E5';
+  const bewegen=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- plekken, in doekmaten (1600 × 1000) ----
+  const C     = {x:640, y:175}, PUNT={x:640, y:335};   // Amber links van het midden: het brein heeft breedte nodig (19:20)
+  const VRAAG = {x:865,y:95};
+  // het brein: precies het blok uit de Sterrenwacht (25 aug): IN + 20 lagen + UITVOER, links naar rechts, 32 groepen per laag
+  const REG = {x:830, y:190, w:720, h:565};   // 720: ruimte rechts voor de bocht naar ANTWOORD (27 aug 20:55)
+  const LTOP = {x:REG.x+REG.w*0.055, y:REG.y+REG.h/2}, LBOT = {x:REG.x+REG.w*0.945, y:REG.y+REG.h/2};   // het punt (links) en de uitvoer (rechts)
+  const LMID = REG.x+REG.w/2;
+  const ANTW  = {x:1170,y:815};
+  const ECHT  = {x:1264,y:875};
+  const GEH   = {x:1050,y:885};
+
+  const lijn=(a,b)=>`M${a.x},${a.y} L${b.x},${b.y}`;
+  const boog=(a,b,k)=>{ const mx=(a.x+b.x)/2, my=(a.y+b.y)/2, dx=b.x-a.x, dy=b.y-a.y, L=Math.hypot(dx,dy)||1; return `M${a.x},${a.y} Q${mx-dy/L*k},${my+dx/L*k} ${b.x},${b.y}` };
+
+  // ---- draden van Amber naar de vakken, met bolletjes erdoorheen ----
+  const naarVak=/* vakken links (Cley, 27 aug 20:20); recht omlaag = haar gedachten (21:15) */[ {x:448,y:330}, {x:126,y:600}, {x:346,y:600}, {x:236,y:790}, {x:640,y:790} ].map(p=>el('path',{class:'draad zacht',d:lijn(PUNT,p)}));
+  const vakLopers=[]; naarVak.forEach((p,i)=>{ for(let j=0;j<3;j++) vakLopers.push({p, L:p.getTotalLength(), f:(j/3+i*.13)%1, e:el('circle',{class:'loper klein',r:2.6})}) });
+
+  // ---- de kringloop ----
+  const D={};
+  D.av = el('path',{class:'draad rood',d:boog(PUNT,VRAAG,-40)});
+  D.vl = el('path',{class:'draad rood',d:`M${VRAAG.x},${VRAAG.y} C${VRAAG.x+250},${VRAAG.y+40} ${LTOP.x-150},${LTOP.y-170} ${LTOP.x},${LTOP.y}`});   // omgekeerde S, langs de vraagtekst heen (Cley, 27 aug 20:50)
+  D.door = el('path',{class:'draad',d:lijn(LTOP,LBOT),style:'stroke-opacity:0'});
+  D.la = el('path',{class:'draad rood',d:`M${LBOT.x},${LBOT.y} C${LBOT.x+65},${LBOT.y} ${LBOT.x+80},${LBOT.y+168} ${LBOT.x+50},${LBOT.y+273} C${LBOT.x+30},${LBOT.y+343} ${ANTW.x+160},${ANTW.y-15} ${ANTW.x},${ANTW.y}`});   // rechts omlaag, onder het brein langs (Cley, 27 aug 20:35)
+  D.ae = el('path',{class:'draad rood',d:boog(ANTW,ECHT,-10)});
+  D.ag = el('path',{class:'draad rood',d:boog(ANTW,GEH,-30)});
+  D.ga = el('path',{class:'draad rood',d:boog(GEH,PUNT,-70)});
+
+  const B={};
+  const bol=(p,naam,dx,dy)=>{ const s=el('circle',{class:'schijn',cx:p.x,cy:p.y,r:26}); const o=el('circle',{class:'bol',cx:p.x,cy:p.y,r:15}); const k=el('circle',{class:'kern',cx:p.x,cy:p.y,r:6}); /* kleiner (Cley, 27 aug 21:00) */ el('text',{class:'naam rood',x:p.x+dx,y:p.y+dy},naam); return {s,o,k} };
+  B.vraag = bol(VRAAG,'vraag',0,-42);
+  B.antw  = bol(ANTW,'antwoord',-72,5);
+  B.geh   = bol(GEH,'geheugen',0,52);
+  const vraagFam  = el('text',{class:'opgave k',x:VRAAG.x,y:VRAAG.y+50},'');
+  const vraagTekst= el('text',{class:'opgave',x:VRAAG.x,y:VRAAG.y+68},'');
+  const gehTekst  = el('text',{class:'naam klein',x:GEH.x,y:GEH.y+68},'');
+
+  const kort=(s,n)=>{ s=String(s||'').split('\n')[0].trim(); return s.length>n?s.slice(0,n-1)+'…':s };
+  // ---- het brein op een canvas: overgenomen uit de Sterrenwacht (25 aug 2026), in rood ----
+  const lc=$('lagenDoek'), lx=lc.getContext('2d'), tc=$('tauDoek'), tx=tc.getContext('2d');
+  let schaal=1, dpr=1;
+  let KOL=[32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,1];
+  let bedrading=null, bedradingUit=null, laagnamen={}, standTijd=0, checkpointStap=null;
+  let rijen=[], wachtrij=[], kolMax=KOL.map(()=>0.0001), speelStart=0, klaarSinds=0;
+  let LIVE=false, herhaal=false, herhaalJ=0, liveTijd=0, liveLaatst=0, liveDoorgang=-1, liveGeschreven=0, liveReeks=[], herhaalI=0, liveBezig=false, liveTekst='';
+  const TEKEN_S=0.7, VEEG=0.5, K_PER_GROEP=10, BOCHT=0.3, KS=0.10, KA=0.12, DR=0.5, PLAFOND=16;
+  // kleur: rood voor de knopen (Cley, 19:15), groen = plus en rood = min voor de gewichten (25 aug)
+  const TINT={draad:"255,120,120", licht:"255,190,180", knoop:"255,90,100", plus:"127,224,195", min:"255,154,122"};
+  const tekenKleur=t=>t>0?TINT.plus:t<0?TINT.min:TINT.licht;
+  const NIVO=["rgba(120,20,30,0.55)","rgba(200,40,50,0.85)","rgba(255,70,80,0.95)","rgba(255,130,120,1)","rgba(255,190,180,1)","rgba(255,255,255,1)"];
+  const nivo=v=>v<0.25?0:v<0.5?1:v<0.7?2:v<0.85?3:v<0.95?4:5;
+  const rnd=seed=>{ let t=(seed|0)+0x6D2B79F5; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296 };
+  const FS=10.5;                                                     // lettermaat in doekmaten
+  const G={}; const gloei=document.createElement('canvas'); const stil=$('stilDoek');   // eigen laag: Safari's GPU-process trok de kopie per frame niet (27 aug 19:45)
+  let glad=[], stroom=[], stroomIn=null, stroomUit=null, wMax=[], wMaxUit=0.0001, paren=[], vonken=[];
+  // het balletje uit de kringloop loopt dóór het brein: IN → per laag één draad → UITVOER (Cley, 27 aug 20:28)
+  const doorLoper={aan:false,f:0,route:null};
+  const kiesRoute=()=>{ const nK=G.nK, R=[]; if(!G.knoop||!glad.length) return null;
+    let b=0; for(let g=1;g<KOL[0];g++) if((glad[0][g]||0)>(glad[0][b]||0)) b=g; R.push(b);
+    for(let c=0;c+1<nK;c++){ const lijst=paren[c]||[], S=stroom[c]; let best=-1, bs=-1;
+      for(let i=0;i<lijst.length;i++){ if(lijst[i][0]!==R[c]) continue; const sc=(S?S[i]:0)+lijst[i][2]*0.01; if(sc>bs){ bs=sc; best=i } }
+      R.push(best>=0?lijst[best][1]:Math.min(R[c],KOL[c+1]-1)) }
+    return R };
+  let vuil=true, stilBron='';
+  let basis=[], devSchaal=[], geleerdTot=0, basisN=0, tmp=new Float32Array(1024), merk=new Uint8Array(1024);
+  let lichtIn=[], lichtUit=[], lichtTussen=[], aanIn=null, aanUit=null, aanTussen=[];
+
+  function bouwVorm(){
+    const anders=glad.length!==KOL.length||KOL.some((n,k)=>glad[k].length!==n);
+    if(anders){ glad=KOL.map(n=>new Float32Array(n)); stroom=[]; for(let c=0;c+2<KOL.length;c++) stroom.push(new Float32Array(KOL[c]*Math.min(K_PER_GROEP,KOL[c+1])*4));
+      stroomIn=new Float32Array(KOL[0]); stroomUit=new Float32Array(KOL[KOL.length-2]); aanTussen=[]; aanIn=null; aanUit=null; basis=[]; devSchaal=[]; basisN=0; geleerdTot=0 }
+    wMax=[]; for(let c=0;c+2<KOL.length;c++){ let m=0.0001; const M=bedrading&&bedrading[c]; if(M) for(const r of M) for(const v of r) m=Math.max(m,Math.abs(v)); wMax.push(m) }
+    wMaxUit=0.0001; if(bedradingUit) for(const v of bedradingUit) wMaxUit=Math.max(wMaxUit,Math.abs(v));
+    vuil=true;
+  }
+  function projecteer(){                                          // de maten van het beeld, in doekmaten
+    const nK=KOL.length-1, mid=REG.y+REG.h/2, rest=FS*3.2, dwars=REG.h-rest;
+    Object.assign(G,{nK,mid});
+    G.punt=[REG.x+REG.w*0.055,mid]; G.knoop=[]; G.label=[];
+    for(let c=0;c<nK;c++){ const n=KOL[c], u=REG.x+REG.w*(0.14+0.73*c/Math.max(1,nK-1)), h=dwars*0.92 /* alle lagen even hoog, tot het kader (Cley, 27 aug 21:00) */;
+      const kol=[]; for(let g=0;g<n;g++) kol.push([u, mid-h/2+(n>1?h*g/(n-1):h/2)]); G.knoop.push(kol); G.label.push([u, mid+h/2+FS*1.2]) }
+    G.uit=[REG.x+REG.w*0.945,mid];
+    // de gloed van een knoop in zes sterktes, één keer getekend (in beeldpunten)
+    const k=dpr*schaal, R=Math.max(3,FS*0.45)*k, S=Math.ceil(R*2); G.gloeiS=S; G.gloeiD=S/k;
+    gloei.width=S*6; gloei.height=S; const g2=gloei.getContext('2d'); g2.clearRect(0,0,gloei.width,gloei.height);
+    for(let n=0;n<6;n++){ const a=n/5, cx=n*S+S/2, cy=S/2; const hof=g2.createRadialGradient(cx,cy,0,cx,cy,R);
+      hof.addColorStop(0,`rgba(${TINT.licht},${(0.15+0.6*a).toFixed(2)})`); hof.addColorStop(0.3,`rgba(${TINT.knoop},${(0.05+0.35*a).toFixed(2)})`); hof.addColorStop(1,`rgba(${TINT.knoop},0)`);
+      g2.fillStyle=hof; g2.fillRect(n*S,0,S,S); g2.fillStyle=NIVO[n]; g2.beginPath(); g2.arc(cx,cy,k*(0.9+1.1*a),0,7); g2.fill() }
+    vuil=false; stilBron='';
+  }
+  function pad(q,a,b){ const d=(b[0]-a[0])*BOCHT; q.moveTo(a[0],a[1]); q.bezierCurveTo(a[0]+d,a[1],b[0]-d,b[1],b[0],b[1]) }
+  function opPad(a,b,u){ const w=1-u, d=(b[0]-a[0])*BOCHT, c1=[a[0]+d,a[1]], c2=[b[0]-d,b[1]];
+    return [w*w*w*a[0]+3*w*w*u*c1[0]+3*w*u*u*c2[0]+u*u*u*b[0], w*w*w*a[1]+3*w*w*u*c1[1]+3*w*u*u*c2[1]+u*u*u*b[1]] }
+  function eind(c,a,b){ const nK=KOL.length-1; if(c<0) return [G.punt,G.knoop[0][b]]; if(c>=nK-1) return [G.knoop[nK-1][a],G.uit]; return [G.knoop[c][a],G.knoop[c+1][b]] }
+  function bouwParen(){
+    paren=[];
+    for(let c=0;c+2<KOL.length;c++){ const M=bedrading&&bedrading[c], na=KOL[c], nb=KOL[c+1], m=wMax[c]||1, lijst=[];
+      for(let b=0;b<nb;b++){ const rij=M&&M[b]; if(!rij){ for(let a=0;a<na;a++) lijst.push([a,b,0.3,0]); continue }
+        const idx=[]; for(let a=0;a<na;a++) idx.push(a); idx.sort((x,y)=>Math.abs(rij[y]||0)-Math.abs(rij[x]||0));
+        for(let i=0;i<Math.min(K_PER_GROEP,na);i++) lijst.push([idx[i],b,Math.abs(rij[idx[i]]||0)/m,(rij[idx[i]]||0)>=0?1:-1]) }
+      paren.push(lijst) }
+  }
+  function bouwVezels(){                                          // de stille draden: elk gewicht, één keer, bleek
+    const nK=G.nK, BAK=6, q=stil.getContext('2d'); stil.width=lc.width; stil.height=lc.height;
+    q.setTransform(dpr*schaal,0,0,dpr*schaal,-BREINBOX.x*dpr*schaal,-BREINBOX.y*dpr*schaal); q.clearRect(BREINBOX.x,BREINBOX.y,BREINBOX.w,BREINBOX.h); q.lineCap='round';
+    const paden=[]; for(let i=0;i<BAK;i++) paden.push(new Path2D());
+    for(let g=0;g<KOL[0];g++) pad(paden[2],G.punt,G.knoop[0][g]);
+    bouwParen();
+    const padPlus=new Path2D(), padMin=new Path2D();
+    for(let c=0;c+1<nK;c++) for(const [a,b,w,t] of paren[c]) pad(t<0?padMin:padPlus,G.knoop[c][a],G.knoop[c+1][b]);
+    for(let a=0;a<KOL[nK-1];a++) pad((bedradingUit&&bedradingUit[a]<0)?padMin:padPlus,G.knoop[nK-1][a],G.uit);
+    q.lineWidth=0.5; q.strokeStyle=`rgba(${TINT.draad},0.05)`; paden.forEach(p=>q.stroke(p));
+    q.strokeStyle=`rgba(${TINT.plus},0.055)`; q.stroke(padPlus); q.strokeStyle=`rgba(${TINT.min},0.055)`; q.stroke(padMin);
+    stilBron=(checkpointStap||'')+'|'+lc.width+'x'+lc.height+'|'+KOL.join(',');
+  }
+  function markeer(n){ if(merk.length<n) merk=new Uint8Array(n); else merk.fill(0,0,n); return merk }
+  function tekenLicht(){                                          // alleen de draden waar nú iets doorheen loopt, glijdend aan en uit
+    if(!stroomIn||glad.length!==KOL.length) return;
+    const nK=G.nK, dik=0.85;
+    if(!aanIn||aanIn.length!==stroomIn.length) aanIn=new Float32Array(stroomIn.length);
+    if(!aanUit||aanUit.length!==stroomUit.length) aanUit=new Float32Array(stroomUit.length);
+    lx.lineCap='round';
+    const streep=(a,b,s,aan,t)=>{ const f=Math.max(0,Math.min(1,(s-DR)/(1-DR))), al=aan*(0.28+0.6*f); if(al<0.02) return;
+      lx.strokeStyle=`rgba(${tekenKleur(t)},${al.toFixed(3)})`; lx.lineWidth=dik*(0.45+0.7*f); lx.beginPath(); pad(lx,a,b); lx.stroke();
+      if(f>0.85){ lx.strokeStyle=`rgba(255,255,255,${(0.25*aan).toFixed(3)})`; lx.lineWidth=0.5; lx.stroke() } };
+    lichtIn=[]; lichtUit=[]; lichtTussen=[];
+    for(let g=0;g<KOL[0];g++){ const d=glad[0][g]||0; stroomIn[g]+=(d-stroomIn[g])*KS; aanIn[g]+=((stroomIn[g]>DR?1:0)-aanIn[g])*KA;
+      if(aanIn[g]>0.5) lichtIn.push(g); if(aanIn[g]>0.02) streep(G.punt,G.knoop[0][g],stroomIn[g],aanIn[g],0) }
+    for(let c=0;c+1<nK;c++){ const S=stroom[c], ga=glad[c], gb=glad[c+1], lijst=paren[c]; if(!S||!lijst) continue;
+      if(!aanTussen[c]||aanTussen[c].length!==S.length) aanTussen[c]=new Float32Array(S.length);
+      const A=aanTussen[c], n=lijst.length; if(tmp.length<n) tmp=new Float32Array(n); let top=0.000001;
+      for(let i=0;i<n;i++){ const p=lijst[i], f=(ga[p[0]]||0)*p[2]*(gb[p[1]]||0); tmp[i]=f; if(f>top) top=f }
+      const kand=[]; for(let i=0;i<n;i++){ S[i]+=(tmp[i]/top-S[i])*KS; if(S[i]>DR) kand.push(i) }
+      if(kand.length>PLAFOND) kand.sort((x,y)=>S[y]-S[x]).length=PLAFOND;
+      const doel=markeer(n); for(const i of kand) doel[i]=1; const aanLijst=[];
+      for(let i=0;i<n;i++){ A[i]+=(doel[i]-A[i])*KA; if(A[i]>0.5) aanLijst.push(i); if(A[i]>0.02){ const p=lijst[i]; streep(G.knoop[c][p[0]],G.knoop[c+1][p[1]],S[i],A[i],p[3]) } }
+      lichtTussen[c]=aanLijst }
+    { const na=KOL[nK-1], ga=glad[nK-1], zeker=glad[nK]?glad[nK][0]:0; let top=0.000001;
+      for(let a=0;a<na;a++){ const f=(ga[a]||0)*(bedradingUit?Math.abs(bedradingUit[a]||0)/wMaxUit:0.3)*Math.max(0.2,zeker); tmp[a]=f; if(f>top) top=f }
+      for(let a=0;a<na;a++){ stroomUit[a]+=(tmp[a]/top-stroomUit[a])*KS; aanUit[a]+=((stroomUit[a]>DR?1:0)-aanUit[a])*KA; if(aanUit[a]>0.5) lichtUit.push(a);
+        if(aanUit[a]>0.02) streep(G.knoop[nK-1][a],G.uit,stroomUit[a],aanUit[a],(bedradingUit&&bedradingUit[a]<0)?-1:1) } }
+  }
+  function vonk(t){                                               // vonkjes over een draad waar nu stroom staat
+    if(!bewegen||!G.knoop||!stroom.length) return; const nK=G.nK;
+    for(let v=0;v<3;v++){ const z=(t|0)*7+v*131, c=Math.floor(rnd(z)*(nK+1))-1; let keuze=null, beste=0, tk=0;
+      if(c<0){ if(lichtIn.length){ const g=lichtIn[Math.floor(rnd(z+3)*lichtIn.length)]; keuze=[0,g]; beste=stroomIn[g] } }
+      else if(c>=nK-1){ if(lichtUit.length){ const a=lichtUit[Math.floor(rnd(z+3)*lichtUit.length)]; keuze=[a,0]; beste=stroomUit[a]; tk=(bedradingUit&&bedradingUit[a]<0)?-1:1 } }
+      else { const kand=lichtTussen[c]; if(kand&&kand.length){ const i=kand[Math.floor(rnd(z+3)*kand.length)], [a,b,,tt]=paren[c][i]; keuze=[a,b]; beste=stroom[c][i]; tk=tt } }
+      if(keuze) vonken.push({c,a:keuze[0],b:keuze[1],tk,t0:t+v*70,duur:520+200*(1-Math.min(1,beste))}) }
+    if(vonken.length>90) vonken=vonken.slice(-90);
+  }
+  function leerBasis(rij){                                        // haar gewone niveau per groep (lopend gemiddelde)
+    const alfa=basisN<20?0.2:0.03;
+    for(let k=0;k<KOL.length;k++){ const v=rij[k]||[], nk=KOL[k]; if(!basis[k]||basis[k].length!==nk){ basis[k]=new Float32Array(nk); devSchaal[k]=0 }
+      const b=basis[k]; let m=0; for(let i=0;i<nk;i++){ const d=(v[i]||0)-b[i]; if(d>m) m=d } devSchaal[k]+=(m-devSchaal[k])*alfa; for(let i=0;i<nk;i++) b[i]+=((v[i]||0)-b[i])*alfa }
+    basisN++;
+  }
+  function nieuwVan(j,k,i){                                       // hoeveel een groep nú boven haar gewone niveau uitkomt, 0..1
+    const rij=rijen[j]; if(!rij) return 0; const x=(rij[k]||[])[i]||0;
+    if(KOL[k]===1) return Math.min(1,x/kolMax[k]);
+    const b=basis[k]?basis[k][i]:0, sch=0.8*(devSchaal[k]||0)+0.000001; return Math.min(1,Math.max(0,x-b)/sch);
+  }
+  function nieuweGedachte(t){ rijen=wachtrij.slice(); wachtrij=[]; speelStart=t; klaarSinds=0; kolMax=KOL.map((n,k)=>{ let m=0.0001; for(const r of rijen) for(const v of (r[k]||[])) m=Math.max(m,v); return m }) }
+  function tekst(s,x,y,kl,maat,uitl){ lx.fillStyle=kl; lx.font=`700 ${FS*(maat||0.62)}px "JetBrains Mono", ui-monospace, monospace`; lx.textAlign=uitl||'left'; lx.fillText(s,x,y) }
+  let laatsteVonk=0;
+  function tekenBrein(t){
+    if(glad.length!==KOL.length) bouwVorm();
+    if(vuil||!G.knoop) projecteer();
+    if(stilBron!==(checkpointStap||'')+'|'+lc.width+'x'+lc.height+'|'+KOL.join(',')) bouwVezels();
+    if(!rijen.length&&wachtrij.length) nieuweGedachte(t);
+    const n=rijen.length; let j=-1;
+    if(n){ if(LIVE) j=herhaal?Math.max(0,Math.min(n-1,herhaalJ)):n-1;
+      else { const u=(t-speelStart)/1000/TEKEN_S; j=Math.min(n-1,Math.floor(u)); if(j>=n-1&&!klaarSinds&&(u-(n-1))>1) klaarSinds=t } }
+    if(!LIVE&&n&&klaarSinds&&t-klaarSinds>7000){ if(wachtrij.length) nieuweGedachte(t); else { speelStart=t; klaarSinds=0 } }
+    if(rijen.length<geleerdTot) geleerdTot=0; while(geleerdTot<rijen.length) leerBasis(rijen[geleerdTot++]);
+    const rij=(j>=0&&rijen[j])?rijen[j]:null, nK=G.nK;
+    for(let k=0;k<KOL.length;k++){ const g=glad[k]; if(!g) continue; for(let i=0;i<g.length;i++){ const d=rij?nieuwVan(j,k,i):0; g[i]+=(d-g[i])*0.12 } }
+    if(t-laatsteVonk>120){ laatsteVonk=t; vonk(t) }
+    // tekenen
+    lx.setTransform(1,0,0,1,0,0); lx.clearRect(0,0,lc.width,lc.height); 
+    lx.setTransform(dpr*schaal,0,0,dpr*schaal,-BREINBOX.x*dpr*schaal,-BREINBOX.y*dpr*schaal);
+    tekenLicht();
+    const S=G.gloeiS, Sd=G.gloeiD;
+    for(let c=0;c<nK;c++){ const g=glad[c], kol=G.knoop[c]; for(let i=0;i<kol.length;i++){ const lvl=nivo(g?g[i]:0); lx.drawImage(gloei,lvl*S,0,S,S,kol[i][0]-Sd/2,kol[i][1]-Sd/2,Sd,Sd) } }
+    const zeker=glad[KOL.length-1]?glad[KOL.length-1][0]:0;
+    { const lvl=nivo(zeker), s2=Sd*1.6; lx.drawImage(gloei,lvl*S,0,S,S,G.uit[0]-s2/2,G.uit[1]-s2/2,s2,s2) }
+    { const s3=Sd*2.6; lx.globalAlpha=0.9; lx.drawImage(gloei,5*S,0,S,S,G.punt[0]-s3/2,G.punt[1]-s3/2,s3,s3); lx.globalAlpha=1; lx.fillStyle='#FFFFFF'; lx.beginPath(); lx.arc(G.punt[0],G.punt[1],2.4,0,7); lx.fill() }
+    const nu=performance.now(); vonken=vonken.filter(v=>nu-v.t0<v.duur);
+    for(const v of vonken){ const u=(nu-v.t0)/v.duur; if(u<0) continue; const [a,b]=eind(v.c,v.a,v.b), [x,y]=opPad(a,b,u), f=Math.sin(u*Math.PI);
+      lx.fillStyle=`rgba(${tekenKleur(v.tk)},${(0.9*f).toFixed(2)})`; lx.beginPath(); lx.arc(x,y,2.0,0,7); lx.fill();
+      lx.fillStyle=`rgba(255,255,255,${(0.8*f).toFixed(2)})`; lx.beginPath(); lx.arc(x,y,0.9,0,7); lx.fill() }
+    if(doorLoper.aan&&doorLoper.route&&G.knoop){ const R=doorLoper.route, nS=nK+1, u=Math.min(nS-1e-6,doorLoper.f*nS), s=Math.floor(u), tt=u-s;
+      const segEind=(s)=>{ if(s<=0) return [G.punt,G.knoop[0][R[0]]]; if(s>=nK) return [G.knoop[nK-1][R[nK-1]],G.uit]; return [G.knoop[s-1][R[s-1]],G.knoop[s][R[s]]] };
+      const [a,b]=segEind(s), [x,y]=opPad(a,b,tt); lx.lineCap='round';
+      for(let k=3;k>=1;k--){ if(s-k<0) continue; const [pa,pb]=segEind(s-k); lx.strokeStyle=`rgba(255,122,102,${(0.45/k).toFixed(2)})`; lx.lineWidth=1; lx.beginPath(); pad(lx,pa,pb); lx.stroke() }
+      lx.strokeStyle='rgba(255,122,102,0.9)'; lx.lineWidth=1.6; lx.beginPath(); pad(lx,a,b); lx.stroke();
+      const hof=lx.createRadialGradient(x,y,0,x,y,14); hof.addColorStop(0,'rgba(255,122,102,0.55)'); hof.addColorStop(1,'rgba(255,122,102,0)'); lx.fillStyle=hof; lx.beginPath(); lx.arc(x,y,14,0,7); lx.fill();
+      lx.fillStyle='#FFFFFF'; lx.beginPath(); lx.arc(x,y,4.2,0,7); lx.fill() }
+    lx.textBaseline='middle';
+    for(let c=0;c<nK;c++) tekst(c===0?'IN':'L'+c,G.label[c][0],G.label[c][1],`rgba(${TINT.draad},0.55)`,0.56,'center');
+    tekst('UITVOER',G.uit[0],G.uit[1]-FS*1.7,`rgba(${TINT.draad},0.85)`,0.6,'center'); tekst(`ZEKERHEID ${Math.round(100*zeker)}%`,G.uit[0],G.uit[1]+FS*1.7,`rgba(${TINT.draad},0.7)`,0.56,'center');
+    tekst(`${KOL.length-2} LAGEN × ${KOL[1]} GROEPEN · ELKE DRAAD EEN GEWICHT · GROEN = PLUS · ROOD = MIN · LICHT = WAT NU BOVEN HAAR GEWONE NIVEAU UITKOMT`,REG.x+REG.w/2,REG.y+REG.h+FS*1.4,`rgba(${TINT.draad},0.5)`,0.5,'center');
+    lx.textBaseline='alphabetic';
+  }
+  const TAUBOX={x:430,y:0,w:420,h:380}, BREINBOX={x:790,y:140,w:810,h:680};
+  const maat=()=>{ const r=lc.getBoundingClientRect(); if(!r.width) return; dpr=Math.min(2,devicePixelRatio||1); lc.width=Math.round(r.width*dpr); lc.height=Math.round(r.height*dpr); tc.width=Math.round(lc.width*TAUBOX.w/BREINBOX.w); tc.height=Math.round(lc.height*TAUBOX.h/BREINBOX.h); if(typeof ob!=='undefined'){ ob.width=Math.round(lc.width*OOGBOX.w/BREINBOX.w); ob.height=Math.round(lc.height*OOGBOX.h/BREINBOX.h) } schaal=r.width/BREINBOX.w; vuil=true; if(typeof tekenTau==='function'){ tekenTau(); tekenOog() } };
+  new ResizeObserver(maat).observe(lc);
+
+  // live.json: na elk teken een doorgang — precies zoals de Sterrenwacht, elke 0,1 s (25 aug, Cley)
+  async function haalLive(){
+    if(liveBezig||document.visibilityState!=='visible') return; liveBezig=true;
+    try{ const r=await fetch('/rapport/live.json?t='+Date.now(),{cache:'no-store'}); if(!r.ok) return; const l=await r.json();
+      if(!l||!l.rij||!Array.isArray(l.rij.b)) return;
+      if(Date.now()/1000-(l.geschreven||0)>180) return;
+      if(l.geschreven===liveGeschreven) return; liveGeschreven=l.geschreven;
+      if(l.tijd!==liveTijd){ liveTijd=l.tijd; LIVE=true; rijen=[]; wachtrij=[]; klaarSinds=0; kolMax=KOL.map(()=>0.0001); liveReeks=[]; herhaal=false;
+        const kol=[l.rij.in.length,...l.rij.b.map(x=>x.length),1]; if(kol.join(',')!==KOL.join(',')){ KOL=kol; bouwVorm() }
+        vraagTekst.textContent=kort(l.opgave,30); if(l.familie) vraagFam.textContent=l.familie; }
+      const rij=[l.rij.in,...l.rij.b,[l.rij.uit]];
+      while(rijen.length<l.doorgang) rijen.push(rijen.length?rijen[rijen.length-1]:rij);
+      if(rijen.length===l.doorgang) rijen.push(rij); else rijen[l.doorgang]=rij;
+      if(l.doorgang!==liveDoorgang){ liveDoorgang=l.doorgang; liveLaatst=Date.now(); herhaal=false; vonk(performance.now()); liveReeks.push({j:l.doorgang}); if(liveReeks.length>80) liveReeks.shift() }
+      rij.forEach((kol,k)=>{ for(const v of kol) if(v>kolMax[k]) kolMax[k]=v });
+      if((l.tekst||'')!==liveTekst){ liveTekst=l.tekst||''; if(standTijd!==liveTijd){ $('echtw').textContent=kort(liveTekst,140)||'…'; $('echtw').className='w'; $('echt-oordeel').textContent='ze denkt'; $('echt-oordeel').className='oordeel' } }
+    }catch(e){} finally{ liveBezig=false } }
+  setInterval(haalLive,100);
+  setInterval(()=>{ if(!LIVE||Date.now()-liveLaatst<800||liveReeks.length<2) return; herhaal=true; herhaalI=(herhaalI+1)%liveReeks.length; herhaalJ=liveReeks[herhaalI].j },100);
+
+  // ---- Amber: Tau uit de film, rood — één keer getekend op een eigen canvas; alleen het ademen beweegt ----
+  const OOG={x:C.x, y:C.y-17}, TOP=C.y-95, L=C.x-125, R=C.x+125;
+  const OOGBOX={x:OOG.x-90,y:OOG.y-90,w:180,h:180}, OS=0.84; /* oog iets kleiner, binnen de lijnen (Cley, 27 aug 21:40) */ const ob=$('oogBuiten'), obx=ob.getContext('2d');
+  let z=7; const toeval=()=>{ z=(z*16807)%2147483647; return (z-1)/2147483646 };
+  const tekenTau=()=>{
+    z=7; tx.setTransform(dpr*schaal,0,0,dpr*schaal,-TAUBOX.x*dpr*schaal,-TAUBOX.y*dpr*schaal); tx.clearRect(TAUBOX.x,TAUBOX.y,TAUBOX.w,TAUBOX.h);
+    const drie=(inzet)=>{ const half=(R-L)/2, s=1-inzet/78; tx.beginPath(); tx.moveTo(OOG.x-half*s,OOG.y-(OOG.y-TOP)*s); tx.lineTo(OOG.x+half*s,OOG.y-(OOG.y-TOP)*s); tx.lineTo(OOG.x,OOG.y+(PUNT.y-OOG.y)*s); tx.closePath() };
+    let gr=tx.createRadialGradient(OOG.x,OOG.y,10,OOG.x,OOG.y,160); gr.addColorStop(0,'rgba(255,46,58,.28)'); gr.addColorStop(.6,'rgba(255,46,58,.08)'); gr.addColorStop(1,'rgba(255,46,58,0)');
+    tx.fillStyle=gr; tx.beginPath(); tx.arc(OOG.x,OOG.y,160,0,7); tx.fill();
+    drie(0); tx.fillStyle='rgba(6,1,2,.92)'; tx.fill();
+    gr=tx.createRadialGradient(OOG.x,OOG.y,0,OOG.x,OOG.y,120); gr.addColorStop(0,'rgba(255,46,58,.45)'); gr.addColorStop(.55,'rgba(255,46,58,.12)'); gr.addColorStop(1,'rgba(255,46,58,0)');
+    tx.fillStyle=gr; tx.beginPath(); tx.arc(OOG.x,OOG.y,120,0,7); tx.fill();
+    tx.lineJoin='round'; tx.lineCap='round';
+    tx.shadowColor=RD; tx.shadowBlur=18*dpr*schaal; drie(0); tx.strokeStyle=RD; tx.lineWidth=4.5; tx.stroke(); tx.stroke(); tx.shadowBlur=0;
+    drie(0); tx.strokeStyle='rgba(255,233,229,.5)'; tx.lineWidth=1; tx.stroke();
+    drie(7); tx.strokeStyle='rgba(255,46,58,.55)'; tx.lineWidth=1; tx.stroke();
+    tx.setLineDash([6,4]); drie(12); tx.strokeStyle='rgba(255,122,102,.35)'; tx.lineWidth=.8; tx.stroke(); tx.setLineDash([]);
+    drie(17); tx.strokeStyle='rgba(255,122,102,.25)'; tx.lineWidth=.6; tx.stroke();
+    const zijde=(a,b,n)=>{ for(let i=1;i<n;i++){ const t=i/n, x=a.x+(b.x-a.x)*t, y=a.y+(b.y-a.y)*t, dx=b.x-a.x, dy=b.y-a.y, Ln=Math.hypot(dx,dy), nx=-dy/Ln, ny=dx/Ln, len=i%5===0?9:4;
+      tx.strokeStyle=i%5===0?'rgba(255,46,58,.9)':'rgba(255,46,58,.5)'; tx.lineWidth=i%5===0?1.2:.7; tx.beginPath(); tx.moveTo(x,y); tx.lineTo(x+nx*len,y+ny*len); tx.stroke() } };
+    zijde({x:L,y:TOP},{x:R,y:TOP},30); zijde({x:R,y:TOP},PUNT,30); zijde(PUNT,{x:L,y:TOP},30);
+    const merk=(x,y,s,op)=>{ tx.fillStyle=`rgba(255,46,58,${op||.85})`; tx.beginPath(); tx.moveTo(x-s,y); tx.lineTo(x+s,y); tx.lineTo(x,y+s*1.3); tx.closePath(); tx.fill() };
+    merk(L+34,TOP+22,8); merk(R-34,TOP+22,8); merk(PUNT.x,PUNT.y-52,6); merk(L+34,TOP+38,3,.45); merk(R-34,TOP+38,3,.45);
+    tx.strokeStyle='rgba(255,46,58,.6)'; tx.lineWidth=1; tx.beginPath(); tx.moveTo(PUNT.x,PUNT.y-40); tx.lineTo(PUNT.x,PUNT.y-12); tx.stroke();
+    // het oog (ringen, spaken, stipjes) staat op twee eigen draaiende doeken: tekenOog
+    for(let i=0;i<40;i++){ const a=toeval()*2*Math.PI, r=82+toeval()*40, x=OOG.x+r*Math.cos(a), y=OOG.y+r*Math.sin(a); const rr=.4+toeval()*.9, op=.2+toeval()*.5;
+      if(y>TOP+6 && Math.abs(x-OOG.x) < (PUNT.y-y)/(PUNT.y-TOP)*((R-L)/2)-8){ tx.fillStyle=RD; tx.globalAlpha=op; tx.beginPath(); tx.arc(x,y,rr,0,7); tx.fill() } }
+    tx.globalAlpha=1;
+    tx.font='800 22px Syne, "Atkinson Hyperlegible", sans-serif'; tx.textAlign='center'; tx.textBaseline='alphabetic'; /* woord 'Amber' weg (Cley, 27 aug 21:55) */
+  };
+  // het oog zoals in Tau: elke ringlaag draait apart, wisselt willekeurig van richting en tempo (Cley, 27 aug 21:45)
+  const OOGSTAAT=[]; let oogLagen=[], oogLaatst=0;
+  const tekenOog=()=>{
+    const W=ob.width, H=ob.height; if(!W) return; oogLagen=[];
+    const laag=(f)=>{ const c=document.createElement('canvas'); c.width=W; c.height=H; const q=c.getContext('2d');
+      q.setTransform(dpr*schaal,0,0,dpr*schaal,-OOGBOX.x*dpr*schaal,-OOGBOX.y*dpr*schaal); q.lineCap='round';
+      const ring=(r,w,op,dash,kleur,blur)=>{ q.setLineDash(dash||[]); q.strokeStyle=kleur||RD; q.globalAlpha=op; q.lineWidth=w; if(blur){ q.shadowColor=kleur||RD; q.shadowBlur=blur*dpr*schaal } q.beginPath(); q.arc(OOG.x,OOG.y,r*OS,0,7); q.stroke(); q.shadowBlur=0; q.globalAlpha=1; q.setLineDash([]) };
+      const spaken=(r1,r2,n,op,w)=>{ q.strokeStyle=`rgba(255,46,58,${op})`; q.lineWidth=w||.8; for(let i=0;i<n;i++){ const a=i/n*2*Math.PI; q.beginPath(); q.moveTo(OOG.x+r1*OS*Math.cos(a),OOG.y+r1*OS*Math.sin(a)); q.lineTo(OOG.x+r2*OS*Math.cos(a),OOG.y+r2*OS*Math.sin(a)); q.stroke() } };
+      const stip=(rMin,rMax)=>{ z=11; for(let i=0;i<110;i++){ const a=toeval()*2*Math.PI, r=22+toeval()*58, s=.5+toeval()*1.4, wit=toeval()<.35, op=.35+toeval()*.65; if(r<rMin||r>=rMax) continue; q.fillStyle=wit?WIT:RD; q.globalAlpha=op; q.beginPath(); q.arc(OOG.x+r*OS*Math.cos(a),OOG.y+r*OS*Math.sin(a),s,0,7); q.fill() } q.globalAlpha=1 };
+      f(q,ring,spaken,stip); oogLagen.push(c) };
+    laag((q,ring,spaken,stip)=>{ ring(78,.8,.55); ring(75.5,1.6,.8,[1,3.1]); spaken(72,78,72,.45); spaken(72,78,12,.9,1.4); stip(73,81) });
+    laag((q,ring,spaken,stip)=>{ ring(72,1,.5); ring(69,3.5,.55,[18,4,2,4,6,4]); stip(66,73) });
+    laag((q,ring,spaken,stip)=>{ ring(65,.8,.7,[.8,5.2],WIT); ring(61,6,.28,null,RD,8); ring(61,1,.9,[40,12,4,12]); stip(58,66) });
+    laag((q,ring,spaken,stip)=>{ ring(56.5,1.2,.6,[2,2.2]); ring(53,2.5,.75,[9,3,1,3]); ring(49,.7,.6,null,RD2); spaken(49,53,36,.5); stip(47,58) });
+    laag((q,ring,spaken,stip)=>{ ring(46,4,.5,[1,3.5]); ring(42,1,.85,[26,8,2,8]); ring(38.5,1.2,.55,[.6,2.4],WIT); spaken(38.5,42,24,.55); stip(37,47) });
+    laag((q,ring,spaken,stip)=>{ ring(35,5,.35,null,RD,8); ring(35,1.5,.95,[12,3,3,3]); ring(31,1,.7,[1,1.8]); spaken(24.5,31,16,.5); spaken(31,72,4,.35,1); stip(29,37) });
+    laag((q,ring,spaken,stip)=>{ ring(28,6,.95,null,RD,14); ring(24.5,1.2,.8,null,WIT); ring(23,.8,.6,[2,3]);
+      const gr=q.createRadialGradient(OOG.x,OOG.y,0,OOG.x,OOG.y,21*OS); gr.addColorStop(0,'#000'); gr.addColorStop(.7,'#0A0203'); gr.addColorStop(1,'rgba(255,46,58,.6)');
+      q.fillStyle=gr; q.beginPath(); q.arc(OOG.x,OOG.y,21*OS,0,7); q.fill(); ring(21,1.5,.9,null,RD3); stip(0,29) });
+    while(OOGSTAAT.length<oogLagen.length) OOGSTAAT.push({a:Math.random()*6.28,v:0,doel:0,tot:0});
+    oogBeeld(performance.now()) };
+  const oogBeeld=(now)=>{ if(!oogLagen.length||!ob.width) return; const dt=Math.min(.1,Math.max(0,(now-oogLaatst)/1000)); oogLaatst=now;
+    const ox=(OOG.x-OOGBOX.x)*dpr*schaal, oy=(OOG.y-OOGBOX.y)*dpr*schaal;
+    obx.setTransform(1,0,0,1,0,0); obx.clearRect(0,0,ob.width,ob.height);
+    oogLagen.forEach((c,i)=>{ const s=OOGSTAAT[i];
+      if(bewegen){ if(now>s.tot){ s.doel=Math.random()<.2?0:(Math.random()<.5?-1:1)*(0.15+Math.random()*0.75); s.tot=now+1500+Math.random()*4500 } s.v+=(s.doel-s.v)*Math.min(1,dt*3); s.a+=s.v*dt }
+      obx.setTransform(1,0,0,1,ox,oy); obx.rotate(s.a); obx.drawImage(c,-ox,-oy) }) };
+  tc.style.transformOrigin=`${(OOG.x-TAUBOX.x)/TAUBOX.w*100}% ${(OOG.y-TAUBOX.y)/TAUBOX.h*100}%`;
+  maat();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{ tekenTau(); tekenOog() });
+  setInterval(()=>{ tekenTau(); tekenOog() },3000);   // Safari laat een stilstaand doek soms vallen onder druk; goedkoop, klein doek (27 aug)
+  // de drie lichtboogjes in het oog draaien in de svg (drie elementen, goedkoop)
+  const boogje=(r,dash,dur,terug,kleur)=>el('circle',{class:'boogje',cx:OOG.x,cy:OOG.y,r,fill:'none',stroke:kleur,'stroke-width':2.2,'stroke-dasharray':dash,'stroke-linecap':'round',style:`transform-origin:${OOG.x}px ${OOG.y}px;animation-duration:${dur}s${terug?';animation-direction:reverse':''}`});
+  boogje(54.6,'22 321',14,false,WIT); boogje(38.6,'14 229',9,true,RD3); boogje(23.5,'8 140',6,false,WIT);
+
+  // ---- de gedachte: balletjes dóór de draden (Amber → vraag → door het brein → antwoord, dan gesplitst) ----
+  const aan=(e,ja)=>e.classList.toggle('aan',!!ja);
+  const aanBol=(b,ja)=>{ aan(b.s,ja); aan(b.o,ja); aan(b.k,ja) };
+  const spoor=(paden)=>{ const L=paden.map(p=>p.getTotalLength()); return {paden,L,tot:L.reduce((a,b)=>a+b,0)} };
+  const HOOFD=spoor([D.av,D.vl,D.door,D.la]), TAK1=spoor([D.ae]), TAK2=spoor([D.ag,D.ga]);
+  const puntOp=(s,f)=>{ let d=f*s.tot; for(let i=0;i<s.paden.length;i++){ if(d<=s.L[i]||i===s.paden.length-1) return s.paden[i].getPointAtLength(Math.min(d,s.L[i])); d-=s.L[i] } };
+  const mkLoper=(r)=>{ const g=el('circle',{class:'loper gloed',r:r*2.4}), e=el('circle',{class:'loper',r}); return {zet(p,z){ for(const c of [g,e]){ c.style.display=z?'':'none'; if(z){ c.setAttribute('cx',p.x); c.setAttribute('cy',p.y) } } }} };
+  const loper=mkLoper(5), loper1=mkLoper(4.5), loper2=mkLoper(4.5);
+  const SNEL=230, T_HOOFD=HOOFD.tot/SNEL, T_TAK=Math.max(TAK1.tot,TAK2.tot)/SNEL, DUUR=(T_HOOFD+T_TAK+.6)*1000;
+  let t0=performance.now(), vorigeToestand='', breinLaatst=0;
+  const tik=(now)=>{
+    let t=(now-t0)/1000; if(t*1000>=DUUR){ t0=now; t=0 }
+    const z={};
+    if(t<T_HOOFD){ const f=t/T_HOOFD; loper.zet(puntOp(HOOFD,f),true); loper1.zet(null,false); loper2.zet(null,false);
+      const d=f*HOOFD.tot, in0=HOOFD.L[0]+HOOFD.L[1], in1=in0+HOOFD.L[2];
+      if(d>=in0&&d<in1){ loper.zet(null,false); if(!doorLoper.aan) doorLoper.route=kiesRoute(); doorLoper.aan=!!doorLoper.route; doorLoper.f=(d-in0)/HOOFD.L[2] } else doorLoper.aan=false;
+      z.av=d<HOOFD.L[0]; z.vraag=d>HOOFD.L[0]-30&&d<HOOFD.L[0]+40; z.vl=d>=HOOFD.L[0]&&d<in0; z.la=d>=in1; z.antw=d>in1+HOOFD.L[3]-30;
+    } else { const f=Math.min(1,(t-T_HOOFD)/T_TAK); loper.zet(null,false); doorLoper.aan=false;
+      const f1=Math.min(1,f*T_TAK*SNEL/TAK1.tot), f2=Math.min(1,f*T_TAK*SNEL/TAK2.tot);
+      loper1.zet(puntOp(TAK1,f1),f1<1); loper2.zet(puntOp(TAK2,f2),f2<1);
+      z.antw=f<.15; z.ae=f1<1; const d2=f2*TAK2.tot; z.ag=d2<TAK2.L[0]; z.ga=d2>=TAK2.L[0]&&f2<1; z.geh=d2>TAK2.L[0]-30&&d2<TAK2.L[0]+40;
+    }
+    const toestand=JSON.stringify(z);
+    if(toestand!==vorigeToestand){ vorigeToestand=toestand;
+      aan(D.av,z.av); aan(D.vl,z.vl); aan(D.la,z.la); aan(D.ae,z.ae); aan(D.ag,z.ag); aan(D.ga,z.ga);
+      aanBol(B.vraag,z.vraag); aanBol(B.antw,z.antw); aanBol(B.geh,z.geh); }
+    const dt=1/60; vakLopers.forEach(v=>{ v.f=(v.f+dt*70/v.L)%1; const p=v.p.getPointAtLength(v.f*v.L); v.e.setAttribute('cx',p.x); v.e.setAttribute('cy',p.y) });
+    /* ademen uit (Cley, 27 aug 21:30) */
+    if(now-breinLaatst>=30){ breinLaatst=now; tekenBrein(now); oogBeeld(now) }   // 30 beelden/s: Safari's GPU-proces trekt 60 niet (27 aug)
+    requestAnimationFrame(tik) };
+  if(bewegen) requestAnimationFrame(tik); else tekenBrein(performance.now());
+
+  // ---- de echte cijfers ----
+  const nl=n=>Number(n).toLocaleString('nl-NL');
+  const WERELD_VOLGORDE=['rekenen','puzzel','code','geheugen','logica','volgorde','tekst','zeggen','taal','machine','tellen','antwoord','onbekend'];
+  let laatsteStand=0, onth={totaal:null, ref:0, per:0}, tempo={stap:0, ms:5000, op:0}, her=0;
+  const stapNu=()=>tempo.stap+(tempo.op?Math.max(0,(Date.now()-tempo.op)/tempo.ms):0);
+  const zetGeheugen=()=>{ const t=onth.totaal!=null?nl(Math.floor(onth.totaal+Math.max(0,stapNu()-onth.ref)*onth.per))+' onthouden':''; gehTekst.textContent=t+(her?' · '+her+' opgehaald':'') };
+  const zetStand=(d)=>{ standNu=d; if(typeof tekenMach==='function'&&machOpen) setTimeout(tekenMach,0);
+    laatsteStand=Date.now();
+    const run=d.run||{}, cfg=run.config||{}, live=run.live||{}, m=run.machine||{};
+    $('run-naam').textContent=(cfg.naam||'—').replace('run','');
+    const stap=live.stap||d.checkpoint_stap||0, doel=cfg.doel||0, start=cfg.start||0;
+    if(live.stap){ tempo={stap:live.stap, ms:live.ms||tempo.ms, op:Date.now()} }
+    $('run-stap').textContent=stap?nl(stap):'—'; $('run-doel').textContent=doel?nl(doel):'—';
+    $('run-balk').style.width=(doel&&stap)?Math.max(0,Math.min(100,(stap-start)/(doel-start)*100)).toFixed(1)+'%':'0%';
+    const nog=(run.regel||'').match(/nog\s+(\S+)/); $('run-nog').textContent=nog?nog[1]:'—';
+    const watt=parseFloat(m.watt), vram=parseFloat(m.vram), temp=parseFloat(m.temp), cpu=parseFloat(m.cpu_temp);
+    $('gpu-watt').textContent=isNaN(watt)?'—':Math.round(watt)+' W'; $('gpu-watt-balk').style.width=isNaN(watt)?'0%':Math.min(100,watt/290*100)+'%';
+    $('gpu-vram').textContent=isNaN(vram)?'—':(vram/1024).toFixed(1).replace('.',',')+' GB'; $('gpu-vram-balk').style.width=isNaN(vram)?'0%':Math.min(100,vram/8192*100)+'%';
+    $('gpu-temp').textContent=isNaN(temp)?'—':temp+' °C'; $('gpu-temp-balk').style.width=isNaN(temp)?'0%':Math.min(100,temp/90*100)+'%';
+    $('cpu-temp').textContent=isNaN(cpu)?'—':cpu+' °C';
+    const leert=m.dienst==='active';
+    $('m-z490').className=leert?'stip-aan':'stip-warm'; $('m-z490').textContent='Z490 · '+(leert?'leert':(m.dienst||'?'));
+    $('m-z490-w').textContent=live.ms?(live.ms/1000).toFixed(1).replace('.',',')+' s/stap':'—';
+    const thuis=(run.thuis||{}).aan; $('m-dl').className=thuis?'stip-aan':'stip-uit'; $('m-dl').textContent='DL380 · '+(thuis?'aan':'uit'); $('m-dl-w').textContent=thuis?'op':'—';
+    const rand=d.wereldrand||{}, w=wereldNu(run.wereld); const lijst=$('wereld-lijst'); lijst.innerHTML='';
+    const namen=WERELD_VOLGORDE.filter(k=>k in rand).concat(Object.keys(rand).filter(k=>!WERELD_VOLGORDE.includes(k)));
+    for(const k of namen){ const hek=rand[k], nu=(k in w)?w[k]:null; const r=document.createElement('div'); r.className='r';
+      r.innerHTML=`<span>${k}</span><b>${nu==null?'—':nu}<span style="color:var(--dim);font-weight:400"> /${hek}</span></b>`; lijst.appendChild(r);
+      const b=document.createElement('div'); b.className='balk'+(nu!=null&&nu>=hek?' vol':''); b.innerHTML=`<i style="width:${nu==null?0:Math.min(100,nu/hek*100)}%"></i>`; lijst.appendChild(b) }
+    $('wereld-sub').textContent='dag '+(d.dag||'—')+' · '+(d.geleefde_lessen||0)+' lessen';
+    // het brein: de bedrading (bij een nieuw checkpoint), de laagnamen, en haar laatste gedachte als er geen live is
+    const rijenOk=d.lagen&&d.lagen.length&&!Array.isArray(d.lagen[0]);
+    if(d.tijd!==standTijd){ standTijd=d.tijd;
+      if(d.bedrading&&(d.checkpoint_stap!==checkpointStap||!bedrading)){ bedrading=d.bedrading; bedradingUit=d.bedrading_uit; checkpointStap=d.checkpoint_stap; bouwVorm() }
+      if(Array.isArray(d.laagnamen)){ laagnamen={}; for(const x of d.laagnamen) if(x&&x.laag) laagnamen[x.laag]=x.naam }
+      if(!LIVE&&rijenOk){ wachtrij=d.lagen.map(rij=>[rij.in,...rij.b,[rij.uit]]); const kol=wachtrij[0].map(k=>k.length); if(kol.join(',')!==KOL.join(',')){ KOL=kol; bouwVorm() } }
+    }
+    if(!LIVE||standTijd===liveTijd||Date.now()-liveLaatst>5000){
+      vraagFam.textContent=d.familie||''; vraagTekst.textContent=kort(d.opgave,30);
+      $('echt-fam').textContent=(d.familie||'')+(d.diepte?' · diepte '+d.diepte:'');
+      const goed=d.goed===true, fout=d.goed===false;
+      $('echtw').textContent=kort(d.antwoord,140)||'—'; $('echtw').className='w '+(goed?'goed':fout?'fout':'');
+      $('echt-oordeel').textContent=goed?'goed':fout?'fout':''; $('echt-oordeel').className='oordeel '+(goed?'goed':fout?'fout':''); }
+    try{ const ov=(d.open_vragen||[]).slice().sort((a,b)=>(b.tijd||0)-(a.tijd||0)).slice(0,3), gl=$('ged-lijst'); gl.innerHTML='';
+      ov.forEach((v,i)=>{ const e=document.createElement('div'); e.className='gedachte'+(i?'':' nu'); e.textContent='\u201c'+v.vraagt+'\u201d'; gl.appendChild(e) });
+      $('ged-sub').textContent=(d.open_vragen||[]).length?(d.open_vragen.length+' open'):''; if(Date.now()>voetTot) $('ged-voet').textContent=ov.length?'ze vraagt \u00b7 geen antwoord = ze wacht, geen nee':'\u2014' }catch(e){}
+    her=(d.herinnert||[]).length;
+    if(d.onthouden_totaal!=null) onth={totaal:d.onthouden_totaal, ref:d.onthouden_ref_stap||stap, per:d.onthouden_per_stap||0}; else if(d.geheugen_grootte) onth={totaal:d.geheugen_grootte, ref:0, per:0};
+    zetGeheugen();
+  };
+  // Cley doet iets in het venster: de kijker mag wakker worden (overgenomen uit de Sterrenwacht; de kijker leest hieraan af of hij er is)
+  let ikKeek=0; const ikKijk=()=>{ if(document.visibilityState!=='visible'||Date.now()-ikKeek<20000) return; ikKeek=Date.now(); fetch('/ik-kijk',{cache:'no-store'}).catch(()=>{}) };
+  ['pointermove','pointerdown','keydown','touchstart','wheel'].forEach(ev=>addEventListener(ev,ikKijk,{passive:true}));
+  document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible'){ ikKeek=0; ikKijk() } });
+  let voetTot=0, standNu={}, WERELD_NU=null;   // haar echte wereld uit het logboek (/rapport/wereld.json, dienst amber-machines)
+  const wereldNu=(basis)=>{ const w=Object.assign({},basis||{}); const p=WERELD_NU&&WERELD_NU.diepste_per; if(p) for(const k in p) w[k]=Math.max(w[k]||0,p[k]); return w };
+  const haal=(pad,fn)=>fetch(pad+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(fn).catch(()=>{});
+  const stand=()=>haal('/stand.json',zetStand);
+  stand(); setInterval(stand,5000);
+  // ---- Machines: klik op een machine → alle details (Cley, 27 aug 22:00). Bronnen: /rapport/machines.json (Z490+DL380, dienst amber-machines) en /rapport/mac.json (cron op de MacBook) ----
+  const MACH={z490:null,dl380:null,mac:null,tijd:0}; let machOpen=new URLSearchParams(location.search).get('m')||null;
+  const haalMach=()=>{ haal('/rapport/wereld.json',d=>{ if(d&&d.diepste_per) WERELD_NU=d }); haal('/rapport/machines.json',d=>{ MACH.z490=d.z490; MACH.dl380=d.dl380; MACH.tijd=d.tijd; tekenMach() }); haal('/rapport/mac.json',d=>{ MACH.mac=d; tekenMach() }) };
+  const duur=s=>{ if(s==null) return '—'; s=Math.round(s); const d=Math.floor(s/86400), u=Math.floor(s%86400/3600), m=Math.floor(s%3600/60); return d?`${d} d ${u} u`:u?`${u} u ${m} m`:`${m} m` };
+  const gb=mb=>mb==null?'—':(mb/1024).toFixed(1).replace('.',',')+' GB';
+  const kl=s=>(s==null||s==='')?'—':String(s).replace('.',',');
+  const schijf=z=>(z.schijf||[]).length>2?`${z.schijf[1]} van ${z.schijf[0]} (${z.schijf[2]})`:'—';
+  const gemeten=t=>{ if(!t) return ''; const oud=Date.now()/1000-t>180; return (oud?'oud · ':'gemeten ')+new Date(t*1000).toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'}) };
+  const rij=(k,v)=>`<div class="r"><span>${k}</span><b>${v}</b></div>`;
+  const tekenMach=()=>{ const box=$('machines'), det=$('m-detail'); if(!machOpen){ box.classList.remove('open'); det.innerHTML=''; return } box.classList.add('open');
+    let kop='', r=[], t=MACH.tijd; const run=standNu.run||{}, w=standNu.wachter||{};
+    if(machOpen==='z490'){ const z=MACH.z490, mc=run.machine||{}; kop='Z490 · RTX 3070 Ti';
+      if(!z||!z.aan) r.push(rij('status','geen gegevens')); else { r.push(rij('aan sinds',duur(z.uptime_s)), rij('belasting',kl((z.load||[])[0])), rij('cpu',kl(z.cpu_temp)+' °C'), rij('ram',gb(z.ram_gebruikt_mb)+' / '+gb(z.ram_totaal_mb)), rij('schijf',schijf(z)));
+        (z.gpu||[]).forEach(g=>{ r.push(rij('gpu',g[1]+' °C · '+Math.round(parseFloat(g[2]))+' W'), rij('vram',kl((parseInt(g[3])/1024).toFixed(1))+' / '+kl((parseInt(g[4])/1024).toFixed(1))+' GB'), rij('gpu bezig',g[5]||'—'), rij('ventilator',(g[6]||'').includes('N/A')?'—':(g[6]||'—'))) });
+        r.push(rij('dienst',mc.dienst||w.dienst||'—'), rij('crashes vandaag',w.crashes_vandaag??'—'), rij('spiegel',mc.spiegel||'—')) } }
+    else if(machOpen==='dl380'){ const z=MACH.dl380, th=run.thuis||{}; kop='DL380 · 2× Tesla P100';
+      if(!z||!z.aan) r.push(rij('status',th.aan?'aan, nog geen meting':'uit')); else { r.push(rij('aan sinds',duur(z.uptime_s)), rij('belasting',kl((z.load||[])[0])), rij('cpu',kl(z.cpu_temp)+' °C'), rij('ram',gb(z.ram_gebruikt_mb)+' / '+gb(z.ram_totaal_mb)), rij('schijf',schijf(z)), rij('array',th.array||'—'));
+        (z.gpu||[]).forEach((g,i)=>{ const v=parseInt(g[3])/1024; r.push(rij('kaart '+(i+1),g[1]+' °C · '+Math.round(parseFloat(g[2]))+' W'+(v>=0.1?' · '+kl(v.toFixed(1))+' GB':''))) });
+        const ds=th.diensten||{}, aan=Object.keys(ds).filter(k=>ds[k]==='active'), uit=Object.keys(ds).filter(k=>ds[k]!=='active'); r.push(rij('diensten aan',aan.join(', ')||'—')); if(uit.length) r.push(rij('diensten uit',uit.join(', '))) } }
+    else { const z=MACH.mac; kop='MacBook · i7'; t=z&&z.tijd;
+      if(!z) r.push(rij('status','geen gegevens')); else { r.push(rij('aan sinds',duur(z.uptime_s)), rij('belasting',kl((z.load||[])[0])), rij('cpu bezig',kl(z.cpu_pct)+' %'), rij('ram',gb(z.ram_gebruikt_mb)+' / '+gb(z.ram_totaal_mb)), rij('accu',(z.accu_pct??'—')+' % · '+(z.netstroom?'netstroom':z.accu==='discharging'?'op accu':(z.accu||''))), rij('schijf',schijf(z)), rij('temperatuur','niet zonder beheerrechten')) } }
+    det.innerHTML=`<div class="kop"><span>${kop}</span><small>${gemeten(t)}</small></div><div class="rijen">${r.join('')}</div>` };
+  [['m-z490','z490'],['m-mac','mac'],['m-dl','dl380']].forEach(([id,naam])=>{ $(id).parentElement.addEventListener('click',()=>{ machOpen=machOpen===naam?null:naam; tekenMach() }) });
+  haalMach(); setInterval(haalMach,15000);
+  // ---- Wereld: klik → verslag van alle runs (Cley, 27 aug 22:30). Bron: /tijdlijn.json (maak-tijdlijn.py, elk kwartier) + stand.json ----
+  let TIJDLIJN=null, tijdlijnTijd=0, verslagOpen=new URLSearchParams(location.search).get('v')==='wereld';
+  const nlGetal=n=>(n==null?'—':Math.round(n).toLocaleString('nl-NL'));
+  const kortDatum=s=>{ if(!s) return ''; const [j,m,d]=String(s).split('-'); return `${+d} ${['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'][+m-1]||''}` };
+  const tekenVerslag=()=>{ const v=$('verslag'); if(!verslagOpen){ v.classList.remove('open'); return } v.classList.add('open'); const t=TIJDLIJN;
+    if(!t){ v.innerHTML='<div class="kop"><span>Verslag · alle runs</span><small>laden…</small></div>'; return }
+    const runs=(t.runs||[]).slice().sort((a,b)=>a.start-b.start), nu=runs[runs.length-1]||{}, vorige=runs.filter(r=>r.eind!=null).sort((a,b)=>a.start-b.start).pop();
+    const hek=standNu.wereldrand||{}, wNu=wereldNu((standNu.run||{}).wereld), fams=Object.keys(t.wereld||{});
+    const bijStap=(fam,stap)=>{ const w=t.wereld[fam]||{}; let x=null; Object.keys(w).map(Number).sort((a,b)=>a-b).forEach(s=>{ if(s<=stap) x=w[s] }); return x };
+    const nuVan=fam=>(typeof wNu[fam]==='number')?wNu[fam]:null;   // net als het vak Wereld: '—' zolang deze run de familie nog niet gemeten heeft
+    const famRijen=fams.map(f=>{ const was=vorige?bijStap(f,vorige.eind):null, is=nuVan(f), d=(was!=null&&is!=null)?is-was:null, hk=hek[f], br=(is!=null&&hk)?Math.min(100,is/hk*100):0;
+      return `<tr><td>${f}</td><td class="n">${was??'—'}</td><td class="n">${is??'—'}</td><td class="n ${d>0?'plus':d<0?'min':''}">${d==null?'—':(d>0?'+':'')+d}</td><td class="n">${hk?`<span class="balkje" style="width:${(br*0.05).toFixed(1)}cqi"></span>${is??0}/${hk}`:'—'}</td></tr>` }).join('');
+    const runRijen=runs.slice().reverse().map(r=>`<tr class="${r.eind==null?'nu':''}" title="${(r.noot||'').replace(/"/g,'&quot;')}"><td>${r.naam}</td><td>${kortDatum(r.datum)}</td><td class="n">${nlGetal(r.start)} → ${r.eind==null?'…':nlGetal(r.eind)}</td><td class="n">${r.venster}</td><td class="n">${r.lagen}</td><td class="n">${(r.families||[]).length}</td><td>${r.hek||''}</td></tr>`).join('');
+    const pts=Object.keys(t.punten||{}).map(Number).sort((a,b)=>a-b).map(s=>{ const vs=Object.values(t.punten[s]||{}).filter(x=>typeof x==='number'); return [s, vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null] }).filter(p=>p[1]!=null);
+    const maxS=Math.max(pts.length?pts[pts.length-1][0]:1, nu.doel||0, nu.eind||0, 1);
+    const X=s=>40+s/maxS*940, Y=x=>200-x/100*180;
+    const banden=runs.map((r,i)=>`<rect x="${X(r.start).toFixed(1)}" y="20" width="${Math.max(0,X(r.eind==null?maxS:r.eind)-X(r.start)).toFixed(1)}" height="180" fill="${i%2?'rgba(255,46,58,.07)':'rgba(255,46,58,.02)'}"/><text x="${(X(r.start)+3).toFixed(1)}" y="31" font-size="9" fill="#9A6F74">${r.naam}</text>`).join('');
+    const lijn=pts.length?`<polyline fill="none" stroke="#FF2E3A" stroke-width="1.4" points="${pts.map(p=>X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join(' ')}"/>`:'';
+    const assen=[0,25,50,75,100].map(x=>`<line x1="40" x2="980" y1="${Y(x)}" y2="${Y(x)}" stroke="rgba(255,90,100,.15)"/><text x="34" y="${Y(x)+3}" font-size="9" text-anchor="end" fill="#9A6F74">${x}%</text>`).join('');
+    const geb=(t.gebeurtenissen||[]).slice(-16).reverse().map(g=>`<div class="geb"><b>${nlGetal(g.stap)}</b> <i>${kortDatum(g.datum)} · ${g.soort||''}</i> ${g.tekst}</div>`).join('');
+    v.innerHTML=`<div class="kop"><span>Verslag · alle runs · ${runs.length} runs · ${nu.naam||''} loopt</span><small>tijdlijn ${t.gemaakt||''} · klik hier om te sluiten</small></div>
+      <div class="kolommen"><div>
+        <h4>Haar wereld · ${vorige?vorige.naam:'vorige run'} → nu</h4>
+        <table><tr><th>familie</th><th class="n">${vorige?vorige.naam:'was'}</th><th class="n">nu</th><th class="n">±</th><th class="n">hek</th></tr>${famRijen}</table>
+        <h4>Runs</h4>
+        <table><tr><th>run</th><th>datum</th><th class="n">stappen</th><th class="n">venster</th><th class="n">lagen</th><th class="n">fam.</th><th>hek</th></tr>${runRijen}</table>
+      </div><div>
+        <h4>Proefwerken · gemiddelde over ${(t.bladen||[]).length} bladen · per run</h4>
+        <svg viewBox="0 0 1000 215">${banden}${assen}${lijn}</svg>
+        <h4>Gebeurtenissen · laatste ${Math.min(16,(t.gebeurtenissen||[]).length)}</h4>${geb}
+      </div></div>` };
+  const haalTijdlijn=()=>{ if(TIJDLIJN&&Date.now()-tijdlijnTijd<300000) return tekenVerslag(); haal('/tijdlijn.json',d=>{ TIJDLIJN=d; tijdlijnTijd=Date.now(); tekenVerslag() }) };
+  $('wereld').addEventListener('click',()=>{ verslagOpen=!verslagOpen; tekenVerslag(); if(verslagOpen) haalTijdlijn() });
+  $('verslag').addEventListener('click',e=>{ if(e.target.closest('.kop')){ verslagOpen=false; tekenVerslag() } });
+  if(verslagOpen){ tekenVerslag(); haalTijdlijn() }
+
+
+  // Cley antwoordt terug (zoals in de Sterrenwacht): knoppen of vrije tekst → /antwoord-cley; één antwoord per 4 s
+  let antwoordSlot=0;
+  const antwoordCley=async(a)=>{ a=(a||'').trim(); if(!a) return; if(Date.now()<antwoordSlot){ $('ged-voet').textContent='even wachten \u2014 je antwoord is net verstuurd'; return } antwoordSlot=Date.now()+4000; voetTot=Date.now()+8000;
+    const kn=document.querySelectorAll('#ged-knoppen button'); kn.forEach(k=>k.disabled=true); setTimeout(()=>kn.forEach(k=>k.disabled=false),4000);
+    $('ged-voet').textContent='versturen\u2026';
+    try{ const r=await (await fetch('/antwoord-cley?antwoord='+encodeURIComponent(a),{cache:'no-store'})).json();
+      if(r.geantwoord){ $('ged-vrij').value=''; $('ged-voet').textContent='bezorgd: \u201c'+a+'\u201d'; setTimeout(stand,1500) } else $('ged-voet').textContent='er staat geen vraag van haar open' }
+    catch(e){ $('ged-voet').textContent='niet gelukt \u2014 probeer nog eens' } };
+  document.querySelectorAll('#ged-knoppen button').forEach(b=>b.addEventListener('click',()=>antwoordCley(b.dataset.a)));
+  $('ged-vrij').addEventListener('keydown',e=>{ if(e.key==='Enter') antwoordCley($('ged-vrij').value) });
+  setInterval(()=>{ const n=new Date(); $('klok').textContent=n.toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
+    if(tempo.op){ $('run-stap').textContent=nl(Math.floor(stapNu())) } zetGeheugen();
+    $('status').textContent=Date.now()-laatsteStand>20000?'geen verbinding met de Z490':(LIVE&&Date.now()-liveLaatst<5000?'live · ze denkt':'live · Z490'); },1000);
+})();
+</script></body></html>

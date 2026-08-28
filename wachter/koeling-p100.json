@@ -1,0 +1,37 @@
+{
+  "_uitleg": "Koeling van de P100 op de Z490. Dit bestand mag je live aanpassen; de regelaar leest het elke ronde opnieuw.",
+  "kanalen": [
+    7
+  ],
+  "_kanalen": "kanaal 7 van de nct6798 = header CHA_FAN4 = de blower van de P100 (gemeten 28 aug 2026, 18:38)",
+  "curve": [
+    [
+      40,
+      35
+    ],
+    [
+      55,
+      50
+    ],
+    [
+      65,
+      70
+    ],
+    [
+      72,
+      85
+    ],
+    [
+      78,
+      100
+    ]
+  ],
+  "_curve": "[graden, procent] — tussen de punten wordt rechtlijnig ingevuld; onder het eerste punt het eerste percentage, boven het laatste 100",
+  "vast": 40,
+  "_vast": "zet hier een getal (procent, 0-100) en de curve wordt genegeerd; null = curve volgen",
+  "vermogen_w": 250,
+  "_vermogen_w": "vermogensplafond van de kaart (nvidia-smi -pl), 125 t/m 250; null = niet aanraken",
+  "elke_s": 3,
+  "klok_mhz": null,
+  "_klok_mhz": "vaste klok in MHz (544-1328, nvidia-smi -lgc); null = vrij"
+}

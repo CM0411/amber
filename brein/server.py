@@ -177,13 +177,18 @@ def _ververs_run():
                 if rj.get("soort") == "stap" and rj.get("stap"):
                     stap_tijden.append((int(rj["stap"]), float(rj["tijd"])))
             if len(stap_tijden) >= 8:
-                stap_tijden.sort()
+                # op tijd, niet op stap (28 aug 2026): na een hervatting
+                # vanaf de momentopname staan de oudere, hógere stappen nog
+                # in de staart en die wonnen dan — het venster bleef tot
+                # 120 stappen lang op de stand van vóór de uitval staan.
+                stap_tijden.sort(key=lambda x: x[1])
                 duren = [b[1] - a[1] for a, b in
                          zip(stap_tijden[-33:], stap_tijden[-32:])
                          if b[0] == a[0] + 1 and 0 < b[1] - a[1] < 60]
                 if duren:
                     live = {"stap": stap_tijden[-1][0],
                             "ms": round(sum(duren) / len(duren) * 1000),
+                            "ms_laatste": round(duren[-1] * 1000),
                             "tijd": stap_tijden[-1][1]}
             # de runconfiguratie zoals het rapport hem ook leest
             try:

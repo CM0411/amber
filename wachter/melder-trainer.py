@@ -53,7 +53,8 @@ VAK_UITZONDERING = ("diepte",)   # de bevroren oude meetlat staat expres vlak (~
 FAM_SLOT_NA = 4000      # stappen zonder "wereld open" voor één familie onder haar hek
 # --- de VRAM-waker (17 aug 2026, Cleys opdracht): alleen melden ----------------
 VRAM_GRENS_MIB = 7000   # gebruikt geheugen op de kaart waarboven hij meldt …
-VRAM_GRENS_DEEL = 0.85  # … of dit deel van het totaal
+VRAM_GRENS_DEEL = 0.95  # … of dit deel van het totaal (25 aug: 0.85 -> 0.95, gereserveerd is geen gebruik)
+VRAM_PIEK_GRENS = 7000  # de piek van de run zelf (uit run.json) waarboven hij meldt (25 aug)
 VRAM_HERWAPEN = 6500    # onder deze stand herwapent de melding
 VRAM_LOG = "/home/arch/amber-werk/wachter/vram.log"
 VRAM_LOG_ELKE = 600     # seconden tussen twee regels in vram.log (de trend)
@@ -424,6 +425,13 @@ while True:
         # komt, met de trend van het laatste uur erbij; herwapent onder
         # VRAM_HERWAPEN. Nooit ingrijpen — Cley beslist.
         gebruikt, totaal = kaart_geheugen()
+        piek = None
+        try:
+            with open("/home/arch/rapport/run.json") as f:
+                m = re.search(r"piek (\d+)", json.load(f).get("proefwerk", ""))
+                piek = int(m.group(1)) if m else None
+        except Exception:
+            piek = None
         if gebruikt is not None:
             reeks = onthouden.setdefault("vram_reeks", [])
             if nu - onthouden.get("vram_gelogd", 0) >= VRAM_LOG_ELKE:
@@ -433,18 +441,19 @@ while True:
                 try:
                     with open(VRAM_LOG, "a") as f:
                         f.write(f"{time.strftime('%Y-%m-%d %H:%M')} stap {stap or 0} "
-                                f"gebruikt {gebruikt} MiB van {totaal}\n")
+                                f"gebruikt {gebruikt} MiB van {totaal}"
+                                f"{f' piek {piek}' if piek else ''}\n")
                 except Exception:
                     pass
             uur = [r for r in reeks if nu - r[0] <= 3600]
             trend = (f"{gebruikt - uur[0][2]:+d} MiB in het laatste uur"
                      if len(uur) >= 2 else "trend nog onbekend")
-            te_vol = gebruikt >= VRAM_GRENS_MIB or (totaal and gebruikt / totaal >= VRAM_GRENS_DEEL)
+            te_vol = (totaal and gebruikt / totaal >= VRAM_GRENS_DEEL) or (piek is not None and piek >= VRAM_PIEK_GRENS)
             if te_vol and not onthouden.get("vram_gemeld"):
                 stuur("Kaartgeheugen vol",
-                      f"trainer gebruikt {gebruikt} van {totaal} MiB "
-                      f"({100 * gebruikt // max(1, totaal)}%) bij stap {_n(stap or 0)}; "
-                      f"{trend} — jij beslist.", "high")
+                      f"kaart gereserveerd {gebruikt} van {totaal} MiB "
+                      f"({100 * gebruikt // max(1, totaal)}%), piek van de run {piek or '?'} MiB "
+                      f"bij stap {_n(stap or 0)}; {trend} — jij beslist.", "high")
                 onthouden["vram_gemeld"] = True
             elif gebruikt < VRAM_HERWAPEN:
                 onthouden["vram_gemeld"] = False

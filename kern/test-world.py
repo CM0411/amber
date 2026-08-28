@@ -1812,10 +1812,10 @@ for depth in range(1, 13):
         an_forms.add(re.sub(r"\b(" + "|".join(world.ZEG_ONDERWERPEN) + r")\b", "X", t.solution))
 check("antwoord: the independent judge reads Cley's last answer the same way (2400 tasks)",
       an_bad == 0, f"{an_bad} disagreements")
-check("antwoord: ja / nee / later / no answer / eerst X — and silence is a no",
+check("antwoord: ja / nee / later / no answer / eerst X — and silence means she waits",
       {"ik mag dieper in X", "ik mag niet dieper in X", "ik mag meer X oefenen",
        "ik mag niet meer X oefenen", "ik wacht", "ik moet eerst X oefenen"} <= an_forms
-      and any("zwijgen is nee" in world.make("antwoord", 5, n).working for n in range(60)),
+      and any("cley is bezig ; ik wacht" in world.make("antwoord", 5, n).working for n in range(60)),
       str(sorted(an_forms)))
 check("antwoord: no number in the solution and everything fits the room", an_unfit == 0
       and all(not re.search(r"\d", world.make("antwoord", d, 3).solution) for d in range(1, 13)))
