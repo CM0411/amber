@@ -37,6 +37,41 @@ def _ssh_dl380(opdracht, tijd=8):
 _run = {"regel": "", "proefwerk": "", "tijd": 0.0}
 _slot = threading.Lock()
 
+# --- haar herinneringen, één keer geladen (H-voorproefje versneld, 31 aug
+# 2026). Het zoeken las tot vanavond bij élke aanslag het hele bestand van
+# 169 MB opnieuw: 5,4 s per zoekvraag. Nu: een eigen draad laadt het bestand
+# als het verandert en bouwt een 3-gram-index (trigram -> nummers), en het
+# zoeken kijkt alleen nog naar kandidaten die grammen delen. Tot de eerste
+# lading klaar is valt /zoek terug op de oude, trage weg — traag maar nooit
+# stuk.
+_her = {"mtime": 0.0, "alles": [], "kaal": [], "index": None}
+_her_slot = threading.Lock()
+
+
+def _her_lader():
+    from array import array
+    while True:
+        try:
+            mt = os.path.getmtime(f"{MAP}/herinneringen.json")
+            if mt != _her["mtime"]:
+                with open(f"{MAP}/herinneringen.json") as f:
+                    alles = json.load(f)
+                kaal = [m["opgave"].replace(" ", "") for m in alles]
+                index = {}
+                for i, k in enumerate(kaal):
+                    for g in {k[j:j + 3] for j in range(len(k) - 2)}:
+                        index.setdefault(g, array("i")).append(i)
+                with _her_slot:
+                    _her.update(mtime=mt, alles=alles, kaal=kaal, index=index)
+                print(f"herinneringen geladen: {len(alles)} met "
+                      f"{len(index)} grammen", flush=True)
+        except Exception as e:
+            print("herinneringen laden mislukte:", e, flush=True)
+        time.sleep(600)
+
+
+threading.Thread(target=_her_lader, daemon=True).start()
+
 # --- haar eigen keuzes (F, 17 aug 2026, Cleys wens) ---------------------------
 # Waar gaat haar nieuwsgierigheid heen? Elke stap kiest zij zelf een
 # familie en een diepte; die keuze staat als stap-regel in het logboek
@@ -564,30 +599,56 @@ class Venster(BaseHTTPRequestHandler):
             # zij schrijft * — wie x typt bedoelt hetzelfde
             q = re.sub(r"(?<=[\d\s])[xX](?=[\d\s])", "*", q)
             uit = []
+            alles = []
             if len(q) >= 2:
                 def grams(t):
                     t = t.replace(" ", "")
                     return {t[i:i + 3] for i in range(len(t) - 2)}
                 doel = grams(q)
                 plat = q.replace(" ", "")
-                try:
-                    with open(f"{MAP}/herinneringen.json") as f:
-                        alles = json.load(f)
-                except Exception:
-                    alles = []
+                with _her_slot:
+                    alles, kaal, index = (_her["alles"], _her["kaal"],
+                                          _her["index"])
+                if index is None:
+                    # de lader is nog bezig: de oude, trage weg
+                    try:
+                        with open(f"{MAP}/herinneringen.json") as f:
+                            alles = json.load(f)
+                    except Exception:
+                        alles = []
+                    kaal = [m["opgave"].replace(" ", "") for m in alles]
                 scores = []
-                for m in alles:
-                    kaal = m["opgave"].replace(" ", "")
-                    # letterlijk raak telt het zwaarst — korte
-                    # zoekopdrachten hebben te weinig 3-grammen om op
-                    # gelijkenis te varen
-                    if plat and plat in kaal:
-                        scores.append((1.0, m))
-                        continue
-                    overlap = len(doel & grams(m["opgave"]))
-                    if overlap:
-                        scores.append(
-                            (overlap / len(doel | grams(m["opgave"])), m))
+                # letterlijk raak telt het zwaarst — korte zoekopdrachten
+                # hebben te weinig 3-grammen om op gelijkenis te varen
+                if plat:
+                    for i, k in enumerate(kaal):
+                        if plat in k:
+                            scores.append((1.0, alles[i]))
+                if len(scores) < 12 and doel:
+                    if index is not None:
+                        # kandidaten via de index: alleen wie grammen deelt.
+                        # De zeldzaamste grammen van de vraag wijzen het
+                        # scherpst — de alledaagse (duizenden treffers)
+                        # kosten alleen maar tijd.
+                        zeldzaam = sorted(doel,
+                                          key=lambda g: len(index.get(g, ())))
+                        tel = {}
+                        for g in zeldzaam[:12]:
+                            for i in index.get(g, ()):
+                                tel[i] = tel.get(i, 0) + 1
+                        kandidaten = sorted(tel, key=tel.get,
+                                            reverse=True)[:400]
+                    else:
+                        kandidaten = range(len(alles))
+                    raak = {id(m) for _, m in scores}
+                    for i in kandidaten:
+                        m = alles[i]
+                        if id(m) in raak:
+                            continue
+                        overlap = len(doel & grams(m["opgave"]))
+                        if overlap:
+                            scores.append(
+                                (overlap / len(doel | grams(m["opgave"])), m))
                 scores.sort(key=lambda x: -x[0])
                 uit = [{**m, "gelijkenis": round(sc, 2)}
                        for sc, m in scores[:12]]
@@ -597,6 +658,56 @@ class Venster(BaseHTTPRequestHandler):
                         "application/json")
         elif self.path.startswith("/geheugen"):
             with open(f"{MAP}/geheugen.html", "rb") as f:
+                self._stuur(f.read())
+        elif self.path.startswith("/voorstel-besluit"):
+            # Zelfverbetering met Cley aan het stuur (31 aug 2026): haar
+            # zelfrapport stelt voor, hij drukt ja of nee. Ja = op de
+            # kandidatenlijst voor de volgende knip; nee blijft nee en het
+            # voorstel komt niet terug (afgewezen is afgewezen).
+            from urllib.parse import urlparse, parse_qs
+            q = parse_qs(urlparse(self.path).query)
+            tekst = q.get("tekst", [""])[0].strip()[:300]
+            besluit = q.get("besluit", [""])[0]
+            ok = False
+            if tekst and besluit in ("ja", "nee"):
+                pad = f"{RAPPORT}/kandidaten.json"
+                try:
+                    with open(pad) as f:
+                        d = json.load(f)
+                except Exception:
+                    d = {"besluiten": []}
+                d["besluiten"] = [b for b in d["besluiten"]
+                                  if b.get("tekst") != tekst]
+                try:
+                    with open(f"{RAPPORT}/zelfrapport.json") as f:
+                        stap = json.load(f).get("stap")
+                except Exception:
+                    stap = None
+                d["besluiten"].append({
+                    "tekst": tekst, "besluit": besluit, "stap": stap,
+                    "wanneer": time.strftime("%Y-%m-%d %H:%M")})
+                with open(pad + ".deel", "w") as f:
+                    json.dump(d, f, ensure_ascii=False)
+                os.replace(pad + ".deel", pad)
+                ok = True
+            self._stuur(json.dumps({"besloten": ok}).encode(),
+                        "application/json")
+        elif self.path.startswith("/voorstellen.json"):
+            uit = {}
+            try:
+                with open(f"{RAPPORT}/zelfrapport.json") as f:
+                    uit["rapport"] = json.load(f)
+            except Exception:
+                uit["rapport"] = {}
+            try:
+                with open(f"{RAPPORT}/kandidaten.json") as f:
+                    uit["besluiten"] = json.load(f).get("besluiten", [])
+            except Exception:
+                uit["besluiten"] = []
+            self._stuur(json.dumps(uit, ensure_ascii=False).encode(),
+                        "application/json")
+        elif self.path.startswith("/voorstellen"):
+            with open(f"{MAP}/voorstellen.html", "rb") as f:
                 self._stuur(f.read())
         elif self.path.startswith("/dagbericht-nu"):
             # het dagbericht wordt op de DL380 gemaakt (de mond woont daar)

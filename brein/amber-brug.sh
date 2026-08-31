@@ -38,6 +38,14 @@ ronde() {
     # de vraag-wachtrij blijft sinds 16 aug 2026 op de Z490: de kijker die
     # de vragen beantwoordt woont daar nu zelf (amber-kijker op de Z490, CPU)
 
+    # … maar gesprek.py woont hiér en legt zijn denkvraag lokaal neer.
+    # Brengen dus (verplaatsen), en het antwoord terughalen (kopie — de
+    # verse staat altijd op de Z490). Dit gat viel bij de kijker-verhuizing
+    # en is dichtgereden op 31 aug 2026: het gesprek was sindsdien doof.
+    "${RS[@]}" --remove-source-files --exclude '*.deel' \
+        "$BREIN/vraag-wachtrij/" "$Z:amber-werk/brein/vraag-wachtrij/" 2>/dev/null
+    "${RS[@]}" "$Z:amber-werk/brein/vraag-antwoord.json" "$BREIN/" 2>/dev/null
+
     # spraakverzoeken: eerst naar een tussenmap, dan pas de zeg-wachtrij in —
     # de mond pakt elk bestand dat hij daar ziet, ook een half geschreven
     "${RS[@]}" --remove-source-files --exclude '*.deel' \

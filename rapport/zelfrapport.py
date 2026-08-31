@@ -218,6 +218,31 @@ try:
                     _f.write(_json.dumps(rec, ensure_ascii=False) + "\n")
             except Exception:
                 pass
+            # I-steen (31 aug 2026, Cleys woord): een níéuwe vraag van haar
+            # gaat meteen naar Cleys telefoon — een vraag die niemand hoort
+            # is geen vraag. Alleen bij verandering, en hooguit één melding
+            # per 90 minuten, zodat wisselen tussen twee vragen niet spamt.
+            try:
+                MELD = f"{RAPPORT}/vraag-gemeld.json"
+                st_ = lees(MELD, {})
+                if (amber_vraagt and not DROOG
+                        and amber_vraagt != st_.get("vraag")
+                        and time.time() - float(st_.get("tijd") or 0) >= 90 * 60):
+                    kanaal_ = open(KANAALBESTAND).read().strip()
+                    tekst_ = (f"{amber_vraagt}\n"
+                              "antwoorden kan in het venster (open vragen); "
+                              "zwijgen is wachten")
+                    req_ = urllib.request.Request(
+                        f"https://ntfy.sh/{kanaal_}", data=tekst_.encode(),
+                        headers={"Title": "Amber vraagt",
+                                 "Tags": "speech_balloon"})
+                    urllib.request.urlopen(req_, timeout=15)
+                    with open(MELD + ".deel", "w") as _f:
+                        json.dump({"vraag": amber_vraagt, "tijd": time.time(),
+                                   "stap": laatste}, _f, ensure_ascii=False)
+                    os.replace(MELD + ".deel", MELD)
+            except Exception as _e:
+                print("vraag-melding mislukte:", _e)
     else:
         amber_noot = "de familie 'zeggen' zit nog niet in haar wereld — vanaf de volgende knip vertelt zij het zelf"
 except Exception as e:

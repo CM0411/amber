@@ -1123,7 +1123,7 @@ function tekenLevenslijn(s) {
 
 function hekken(s) {
   // vangnet: het hek van run 7.4 (25 aug 2026); wat de run zelf zegt gaat voor
-  const grens = {rekenen: 60, puzzel: 20, code: 48, geheugen: 40, logica: 20, volgorde: 20, tekst: 20, zeggen: 24, taal: 16, machine: 20, tellen: 12, antwoord: 16, onbekend: 12};
+  const grens = {rekenen: 80, puzzel: 40, code: 80, geheugen: 60, logica: 48, volgorde: 40, tekst: 40, zeggen: 40, taal: 32, machine: 48, tellen: 30, antwoord: 40, onbekend: 32};
   const hekstr = (s.run && s.run.config && s.run.config.hek) || "";
   const uitRun = {};
   for (const m of hekstr.matchAll(/([a-z]+)\s+(\d+)/g)) uitRun[m[1]] = +m[2];
@@ -1271,7 +1271,7 @@ function tekenMachines(s) {
   const mRegel = ((s.run && s.run.regel) || "").match(/stap\s+(\d+)\/(\d+)\s+(\d+)%/);
   let links = [["/dagbericht", "dagbericht", "🔊"], ["/machines", "machines"], ["/gebeurtenissen", "gebeurtenissen"],
                ["/tijdlijn", "tijdlijn — haar geschiedenis"], ["/opname", "oren — spreek iets in"], ["/geheugen", "geheugen — zoek erin"],
-               ["/vraag", "vraag haar iets"], ["/gesprek", "gesprek — praat met haar"], ["/onderweg", "onderweg — de rit inleveren"]]
+               ["/vraag", "vraag haar iets"], ["/gesprek", "gesprek — praat met haar"], ["/voorstellen", "voorstellen — zij stelt voor"], ["/onderweg", "onderweg — de rit inleveren"]]
     .map(([u, l, st]) => `<a href="${u}"><span>${l}</span><span class="st">${st || ""}</span></a>`);
   for (const f of (s.rapporten || [])) {
     const naam = f.replace(".html", "");

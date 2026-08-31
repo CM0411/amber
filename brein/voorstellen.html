@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amber — voorstellen</title><style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background: #080b1e; color: #d8dde5; padding: 16px 16px 40px;
+         font-family: system-ui, -apple-system, sans-serif; max-width: 620px;
+         margin: 0 auto; padding-top: calc(16px + env(safe-area-inset-top)); }
+  nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  nav a { padding: 8px 13px; border-radius: 9px; font-size: 13px;
+          color: #8ea0c0; text-decoration: none; background: #0c1230;
+          border: 1px solid #1d2b4d; }
+  nav a.hier { color: #cfe2ff; border-color: #3d5285; }
+  h1 { font-size: 14px; letter-spacing: .28em; color: #5f6f92;
+       text-transform: uppercase; font-weight: 600; margin: 4px 0 12px; }
+  .kaart { background: #0c1230; border: 1px solid #1d2b4d;
+           border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+  .kop { font-size: 10.5px; letter-spacing: .18em; color: #51608a;
+         text-transform: uppercase; margin-bottom: 8px; }
+  .fijn { font-size: 12px; color: #51608a; }
+  .zij { font-size: 15px; color: #cfe2ff; line-height: 1.5; }
+  .voorstel { display: flex; gap: 10px; align-items: center;
+              padding: 10px 0; border-top: 1px solid #131b3e; }
+  .voorstel:first-of-type { border-top: 0; }
+  .voorstel .tekst { flex: 1; font-size: 14px; color: #d8dde5;
+                     line-height: 1.45; }
+  .knop { padding: 9px 16px; border-radius: 9px; font-size: 14px;
+          cursor: pointer; border: 1px solid #2c3a5e; background: #131b3e;
+          color: #cfe2ff; }
+  .knop.ja { border-color: #2a6b58; color: #7fe0c3; }
+  .knop.nee { border-color: #6b3a2a; color: #ffa385; }
+  .besluit { padding: 8px 0; border-top: 1px solid #131b3e;
+             font-size: 13.5px; line-height: 1.45; color: #8ea0c0; }
+  .besluit:first-of-type { border-top: 0; }
+  .besluit .w { color: #51608a; font-size: 11.5px; }
+  .ja-tekst { color: #7fe0c3; } .nee-tekst { color: #6a7694;
+              text-decoration: line-through; }
+</style></head><body>
+<nav><a href="/">venster</a><a href="/gesprek">gesprek</a>
+<a href="/geheugen">geheugen</a><a href="/vraag">vraag haar</a>
+<a class="hier" href="/voorstellen">voorstellen</a></nav>
+<h1>Zij stelt voor</h1>
+
+<div class="kaart"><div class="kop">Amber zegt</div>
+  <div class="zij" id="zij">…</div>
+  <div class="fijn" id="wanneer" style="margin-top:8px"></div></div>
+
+<div class="kaart"><div class="kop">Open voorstellen — jij beslist</div>
+  <div id="open"><p class="fijn">laden…</p></div></div>
+
+<div class="kaart"><div class="kop">Kandidaten voor de volgende knip (jouw ja)</div>
+  <div id="ja-lijst"><p class="fijn">nog geen</p></div></div>
+
+<div class="kaart"><div class="kop">Afgewezen — komt niet terug</div>
+  <div id="nee-lijst"><p class="fijn">nog geen</p></div></div>
+
+<p class="fijn">Het zelfrapport leest elk kwartier haar cijfers, keuzes en
+wereldstand en stelt alleen vóór — uitvoeren gebeurt nooit vanzelf. Jouw
+<b>ja</b> zet het op de kandidatenlijst voor de knip; <b>nee</b> is nee en
+blijft nee. Zwijgen is wachten.</p>
+
+<script>
+const esc = t => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+async function laad() {
+  const d = await (await fetch("/voorstellen.json", {cache: "no-store"})).json();
+  const r = d.rapport || {};
+  const besloten = new Map((d.besluiten || []).map(b => [b.tekst, b]));
+  let zin = r.amber_zegt ? `“${esc(r.amber_zegt)}”` : "(nog niets)";
+  if (r.amber_vraagt) zin += `<br>en ze vraagt: “${esc(r.amber_vraagt)}”`;
+  document.getElementById("zij").innerHTML = zin;
+  document.getElementById("wanneer").textContent =
+    r.gemaakt ? `zelfrapport van ${r.gemaakt} · stap ${(r.stap || 0).toLocaleString("nl")}` : "";
+  const open = (r.voorstellen || [])
+    .filter(v => !v.startsWith("niets bijzonders") && !besloten.has(v));
+  document.getElementById("open").innerHTML = open.map(v =>
+    `<div class="voorstel"><div class="tekst">${esc(v)}</div>
+     <button class="knop ja" onclick="besluit(this,'ja')">ja</button>
+     <button class="knop nee" onclick="besluit(this,'nee')">nee</button></div>`
+  ).join("") || '<p class="fijn">niets open — zo doorgaan</p>';
+  const toon = (soort, doel, klas) => {
+    const rij = (d.besluiten || []).filter(b => b.besluit === soort).reverse();
+    document.getElementById(doel).innerHTML = rij.map(b =>
+      `<div class="besluit"><span class="${klas}">${esc(b.tekst)}</span>
+       <span class="w"> · ${b.wanneer}${b.stap ? " · stap " + b.stap.toLocaleString("nl") : ""}</span></div>`
+    ).join("") || '<p class="fijn">nog geen</p>';
+  };
+  toon("ja", "ja-lijst", "ja-tekst");
+  toon("nee", "nee-lijst", "nee-tekst");
+}
+async function besluit(knop, wat) {
+  const tekst = knop.parentElement.querySelector(".tekst").textContent;
+  knop.parentElement.style.opacity = .4;
+  await fetch("/voorstel-besluit?besluit=" + wat + "&tekst=" +
+              encodeURIComponent(tekst), {cache: "no-store"});
+  laad();
+}
+laad();
+setInterval(laad, 60000);
+</script></body></html>

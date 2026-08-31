@@ -30,7 +30,7 @@ KANAAL = open("/home/arch/.amber-ntfy").read().strip()
 LOG = "/home/arch/leven.log"
 STAND = "/home/arch/amber-werk/wachter/melder-trainer-stand.json"
 
-STILSTAND_NA = 1500     # seconden zonder nieuwe stap voordat hij ingrijpt
+STILSTAND_NA = 2700     # seconden zonder nieuwe stap voordat hij ingrijpt
                         # (18 aug 2026: was 600 — te krap: een start met
                         # eenmalige lessen (26 rondes), 16 proefwerkbladen en
                         # 50 stappen van 7,8 s duurt ~13 min zonder nieuwe

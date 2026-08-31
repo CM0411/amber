@@ -718,7 +718,7 @@ check("outside depth 4-10 no teen multiplications with a tail appear",
 # before: this checksum was taken on 16 Aug 2026 before the form existed
 # (300 numbers per depth 1-12, minus the split numbers).
 _h = hashlib.sha256()
-kc_numbers = vgl_numbers = deel_numbers = 0
+kc_numbers = vgl_numbers = deel_numbers = dial_numbers = 0
 for depth in range(1, 13):
     for n in range(300):
         seed = world._seed_of("rekenen", depth, n)
@@ -735,6 +735,18 @@ for depth in range(1, 13):
         if world._division_draws(seed, depth):
             deel_numbers += 1
             continue
+        # and the dialect brick (run 8) one in five of what remains, except
+        # where the big multiplication or the wrapper drew — those keep
+        # their own splits, exactly as in make()
+        keer = (world.KEER_MIN <= depth <= world.KEER_MAX
+                and tasks.Picker(tasks._mix(seed ^ world.KEER_SEED)).integer(1, 5) == 1)
+        converse = (world.CONVERSE_MIN <= depth <= world.CONVERSE_MAX
+                    and tasks.Picker(tasks._mix(seed ^ world.CONVERSE_SEED)).integer(1, 5) == 1)
+        if (world.DIALECT_MIN <= depth <= world.DIALECT_MAX
+                and not keer and not converse
+                and tasks.Picker(tasks._mix(seed ^ world.DIALECT_SEED)).integer(1, 5) == 1):
+            dial_numbers += 1
+            continue
         t = world.make("rekenen", depth, n)
         p = t.problem if t else ""
         w = t.working if t else ""
@@ -748,9 +760,13 @@ for depth in range(1, 13):
 # and 4511e954860bd6b3 over that same complement while division still drew
 # one in six, taken on 20 Aug 2026 before division went to one in three:
 # deling had stalled at 15% because it hardly came up (run 7.3, Cleys woord)
+# and b7484d5c06a9ea82 over the complement of keerc, equation and division,
+# taken on 30 Aug 2026 before the dialect brick existed (run 8) — verified
+# then that old and new world hash identically over the new complement
 check("untouched arithmetic numbers depth 1-12 are bit for bit the old world",
-      _h.hexdigest()[:16] == "b7484d5c06a9ea82",
-      f"{_h.hexdigest()[:16]}, {kc_numbers} + {vgl_numbers} + {deel_numbers} split numbers")
+      _h.hexdigest()[:16] == "bcc29d57adc3d350",
+      f"{_h.hexdigest()[:16]}, {kc_numbers} + {vgl_numbers} + {deel_numbers}"
+      f" + {dial_numbers} split numbers")
 
 # --- the division brick (18 Aug 2026) ---------------------------------------
 # Bare divisions with an exact outcome, worked out through the table
@@ -828,14 +844,28 @@ check("wide 2i/i2 loops keep at most eleven rounds (unchanged shape)",
 # taken on 15 Aug 2026 before the stacked forms existed, over 300 numbers
 # per depth. Anyone who changes it changes the shape of what she mastered.
 _h = hashlib.sha256()
+cd_dial = 0
 for depth in range(1, 16):
     for n in range(300):
+        # the dialect brick (run 8) takes one in five where the long loop
+        # did not draw, exactly as in make(); the complement must stay bit
+        # for bit. e6b79a906f84757f was the sum over ALL numbers, taken on
+        # 15 Aug 2026 before the dialect brick existed; verified 30 Aug
+        # 2026 that old and new world hash identically over the complement.
+        seed = world._seed_of("code", depth, n)
+        lus = (world.LUS_MIN <= depth <= world.LUS_MAX
+               and tasks.Picker(tasks._mix(seed ^ world.LUS_SEED)).integer(1, 4) == 1)
+        if (world.DIALECT_MIN <= depth <= world.DIALECT_MAX and not lus
+                and tasks.Picker(tasks._mix(seed ^ world.DIALECT_SEED)).integer(1, 5) == 1):
+            cd_dial += 1
+            continue
         t = world.make("code", depth, n)
         _h.update((f"{depth}|{n}|{t.problem if t else ''}|"
                    f"{t.working if t else ''}|{t.solution if t else ''}\n")
                   .encode())
 check("code depth 1-15 is bit for bit the world of 15 Aug 2026",
-      _h.hexdigest()[:16] == "e6b79a906f84757f", _h.hexdigest()[:16])
+      _h.hexdigest()[:16] == "e5d0408003aee5c1",
+      f"{_h.hexdigest()[:16]}, {cd_dial} dialect numbers skipped")
 
 _STACK_MARKS = ("    if i > ", "for x in getallen", "    for j in ",
                 "def g(x)")
@@ -1940,7 +1970,9 @@ print("--- machine: the tenth family ---")
 
 
 def _run_machine(problem):
-    lines = problem.split("\n")
+    # run 8: the noise line is no part of the machine — the judge skips it,
+    # which is exactly what she must learn to do
+    lines = [l for l in problem.split("\n") if not l.startswith("tussendoor: ")]
     vals = {c: int(v) for c, v in re.findall(r"(\w) = (-?\d+)", lines[0])}
     steps = lines[1][len("stappen: "):].split(" ; ")
     rounds = 1
@@ -1972,7 +2004,7 @@ def _trace_holds(working):
     return True
 
 
-mc_seen = mc_bad = mc_unfit = mc_cond = 0
+mc_seen = mc_bad = mc_unfit = mc_cond = mc_ruis = 0
 for depth in range(1, 13):
     for n in range(200):
         t = world.make("machine", depth, n)
@@ -1987,9 +2019,17 @@ for depth in range(1, 13):
             mc_cond += 1
             if depth < 7:
                 mc_bad += 1
+        if "tussendoor: " in t.problem:
+            mc_ruis += 1
+            if depth < world.MACHINE_RUIS_MIN:
+                mc_bad += 1
+            if re.search(r"\b[xyz] =", t.problem.split("\n")[1]):
+                mc_bad += 1
 check("machine: the executed program lands on her answer and every trace step holds",
       mc_seen > 2000 and mc_bad == 0, f"{mc_seen} seen, {mc_bad} wrong")
 check("machine: conditional steps exist from depth 7 only", mc_cond > 100)
+check("machine: noise lines from MACHINE_RUIS_MIN only, never touching a register (run 8)",
+      mc_ruis > 100, f"{mc_ruis} with tussendoor")
 check("machine: everything fits the room", mc_unfit == 0)
 check("a machine task is the same task every time",
       world.make("machine", 9, 77) == world.make("machine", 9, 77))

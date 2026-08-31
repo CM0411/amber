@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+# Schakelt de kaarten tussen de stille werkstand en vol vermogen.
+#
+#   ~/gpu stil    696 MHz  — de werkstand. Verplicht als Cley weg is en 's nachts
+#   ~/gpu vol     vrij     — vol vermogen. Alleen bewust aanzetten, nooit vanzelf
+#   ~/gpu stand   laat zien waar de kaarten nu staan
+#
+# Sinds de kaartwissel (28 aug 2026) zitten hier twee soorten kaarten in:
+# de Tesla P100 kent de applicatieklok (-ac), de GeForce 3070 Ti niet —
+# die heeft de klokgrendel (-lgc) en een verlaagde vermogensgrens nodig.
+# Het script kijkt per kaart wat het is en gebruikt de knop die past.
+#
+# Let op: nvidia-smi weigert een ongeldige klokwaarde met een waarschuwing en
+# geeft tóch afsluitcode 0. Daarom wordt hieronder altijd teruggelezen wat er
+# werkelijk staat. Geldige waarden: nvidia-smi -q -d SUPPORTED_CLOCKS
+
+set -uo pipefail
+
+STIL=696          # moet exact in de lijst van de Tesla staan; de GeForce grendelt erop
+GEHEUGEN=715      # ligt vast op de Tesla
+GEFORCE_PL=130    # W — laag genoeg voor stil, ruim boven het minimum van 100
+
+# nvidia-smi vraagt root, maar alleen om iets te zétten. Uitlezen mag
+# iedereen, dus daarvoor niet om een wachtwoord vragen.
+if [[ ${1:-stand} != "stand" && $EUID -ne 0 ]]; then
+    exec sudo "$0" "$@"
+fi
+
+# Wacht tot de driver er is. Bij het opstarten kan deze unit vóór de kaarten komen.
+for _ in $(seq 30); do
+    nvidia-smi -L >/dev/null 2>&1 && break
+    sleep 1
+done
+if ! nvidia-smi -L >/dev/null 2>&1; then
+    echo "FOUT: de kaarten reageren niet" >&2
+    exit 1
+fi
+
+kaarten=$(nvidia-smi --query-gpu=index --format=csv,noheader | tr -d ' ')
+
+soort() {
+    # "geforce" of "tesla" — bepaalt welke klok-knop er bestaat
+    local naam
+    naam=$(nvidia-smi -i "$1" --query-gpu=name --format=csv,noheader)
+    [[ $naam == *GeForce* ]] && echo geforce || echo tesla
+}
+
+stand() {
+    printf '%-6s %-16s %-12s %-12s %-10s %s\n' kaart soort klok limiet verbruik temp
+    nvidia-smi --query-gpu=index,name,clocks.sm,power.limit,power.draw,temperature.gpu \
+        --format=csv,noheader,nounits |
+        while IFS=, read -r i n k l v t; do
+            printf '%-6s %-16s %-12s %-12s %-10s %s\n' \
+                "${i// /}" "$(echo "$n" | grep -oE 'P100|3070 Ti' || echo "$n")" \
+                "${k// /} MHz" "${l// /} W" "${v// /} W" "${t// /} °C"
+        done
+}
+
+case "${1:-stand}" in
+    stil)
+        mis=0
+        for i in $kaarten; do
+            nvidia-smi -i "$i" -pm 1 >/dev/null 2>&1
+            if [[ $(soort "$i") == geforce ]]; then
+                nvidia-smi -i "$i" -pl "$GEFORCE_PL" >/dev/null 2>&1
+                uit=$(nvidia-smi -i "$i" -lgc "210,$STIL" 2>&1)
+                # -lgc meldt succes in woorden; de afsluitcode zegt niets
+                if [[ $uit != *"set to"* && $uit != *"locked"* ]]; then
+                    echo "FOUT: kaart $i (GeForce) nam de grendel niet: $uit" >&2
+                    mis=1
+                fi
+            else
+                nvidia-smi -i "$i" -pl 250 >/dev/null 2>&1
+                nvidia-smi -i "$i" -ac "$GEHEUGEN,$STIL" >/dev/null 2>&1
+                nu=$(nvidia-smi -i "$i" --query-gpu=clocks.applications.graphics \
+                     --format=csv,noheader,nounits | tr -d ' ')
+                if [[ $nu != "$STIL" ]]; then
+                    echo "FOUT: kaart $i staat op $nu MHz en niet op $STIL MHz" >&2
+                    mis=1
+                fi
+            fi
+        done
+        (( mis )) && exit 1
+        echo "Stille werkstand: $STIL MHz op alle kaarten."
+        ;;
+
+    vol)
+        for i in $kaarten; do
+            nvidia-smi -i "$i" -pm 1 >/dev/null 2>&1
+            if [[ $(soort "$i") == geforce ]]; then
+                nvidia-smi -i "$i" -rgc >/dev/null 2>&1
+                nvidia-smi -i "$i" -pl 250 >/dev/null 2>&1
+            else
+                nvidia-smi -i "$i" -rac >/dev/null 2>&1
+                nvidia-smi -i "$i" -pl 250 >/dev/null 2>&1
+            fi
+        done
+        echo "VOL VERMOGEN. Dit is luid."
+        echo "Terug naar stil met: ~/gpu stil"
+        echo "Een herstart zet hem hoe dan ook terug op $STIL MHz."
+        ;;
+
+    stand)
+        stand
+        echo
+        afwijkend=0
+        for k in $kaarten; do
+            if [[ $(soort "$k") == geforce ]]; then
+                # bij de GeForce kijken we naar de vermogensgrens: de grendel
+                # zelf is niet uitleesbaar, de verlaagde grens wel
+                pl=$(nvidia-smi -i "$k" --query-gpu=power.limit \
+                     --format=csv,noheader,nounits | tr -d ' ')
+                [[ ${pl%%.*} -le $GEFORCE_PL ]] || afwijkend=1
+            else
+                nu=$(nvidia-smi -i "$k" --query-gpu=clocks.applications.graphics \
+                     --format=csv,noheader,nounits | tr -d ' ')
+                [[ $nu == "$STIL" ]] || afwijkend=1
+            fi
+        done
+        if (( afwijkend == 0 )); then
+            echo "Stille werkstand."
+        else
+            echo "NIET in de stille werkstand. Terugzetten met: ~/gpu stil"
+        fi
+        ;;
+
+    installeer)
+        unit=/home/arch/amber-werk/fase0/amber-gpu-stil.service
+        cp "$unit" /etc/systemd/system/ || exit 1
+        systemctl daemon-reload
+        # enable én start. Alleen starten is hier zinloos: de hele reden dat deze
+        # unit bestaat is dat de server 's nachts uit kan gaan en vanzelf opkomt.
+        systemctl enable --now amber-gpu-stil.service || exit 1
+        echo
+        systemctl status amber-gpu-stil.service --no-pager | head -6
+        echo
+        "$0" stand
+        ;;
+
+    *)
+        echo "Gebruik: ~/gpu {stil|vol|stand|installeer}" >&2
+        exit 2
+        ;;
+esac

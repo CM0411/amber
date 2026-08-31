@@ -70,7 +70,7 @@ MIN_DEPTH = 1
 # 85% of usable problems fit with their working). At 512 that gave 17
 # (measured 9 Aug 2026: 100% through 15, 93% at 17, 66% at 18). At 768,
 # measured 10-11 Aug 2026 for run 4: arithmetic fits 99% at depth 26.
-MAX_DEPTH = 60
+MAX_DEPTH = 80   # 7.6: code mag tot 80 (was 60)
 
 # Per family the fence can sit lower. Puzzle rows from depth 6 are woven so
 # deep that no method comes out that delivers the answer — 16% usable at 6,
@@ -93,7 +93,7 @@ MAX_DEPTH = 60
 # depth, the fixed tax of deep weaves; learning_tasks' search bound
 # handles that fine. NOTE: this fence belongs to window 1024 — run 5.
 # Run 4 (768) keeps its own copy of this file with fence 6.
-MAX_DEPTH_PER = {"puzzel": 24, "code": 52, "geheugen": 40, "logica": 24, "volgorde": 20, "tekst": 20, "zeggen": 24, "taal": 16, "machine": 24, "tellen": 12, "antwoord": 20, "onbekend": 16}
+MAX_DEPTH_PER = {"puzzel": 40, "code": 80, "geheugen": 60, "logica": 48, "volgorde": 40, "tekst": 40, "zeggen": 40, "taal": 32, "machine": 48, "tellen": 30, "antwoord": 40, "onbekend": 32, "rekenen": 80}   # run 8: rekenen 80 (was 60) — het venster2048-blad toetst rekenen 62–78 en dat zat achter het hek, vandaar zijn ~50 % (gemeten 30 aug 2026); 7.6: de wereld open (voorstel 28 aug 2026, Cleys woord); 7.5 was puzzel 24, code 52, geheugen 40, logica 24, volgorde 20, tekst 20, zeggen 24, taal 16, machine 24, tellen 12, antwoord 20, onbekend 16, rekenen 60
 
 
 def max_depth(family):
@@ -200,6 +200,37 @@ def _arithmetic(depth, t):
     steps = []
     value = _work_out(node, steps)
     return text, value, " ; ".join(steps)
+
+
+# --- the dialect brick (run 8) ------------------------------------------------
+# The frozen diepte sheet writes in the old dialect: brackets around every
+# operation, the outer one too — 1.00 bracket per operation there against
+# 0.20 in today's world (measured 30 Aug 2026, diepte stuck at ~31%). The
+# same wall as in _parens's story, the other way round: back then she had
+# never seen a sum WITHOUT brackets, now she rarely sees one WITH them all.
+# The world must speak both spellings. One in five numbers at depth
+# DIALECT_MIN–DIALECT_MAX, only where no other split drew; the rest stays
+# bit for bit. The working keeps today's style — the lesson is exactly that
+# the brackets change nothing about the value.
+
+DIALECT_SEED = 0x4469616C656374          # "Dialect"
+DIALECT_MIN, DIALECT_MAX = 2, 12
+
+
+def _render_full(node):
+    """The old dialect: every operation in parentheses, the outer one too."""
+    if node[0] == "blad":
+        return str(node[1])
+    _, op, left, right = node
+    return f"({_render_full(left)} {op} {_render_full(right)})"
+
+
+def _arithmetic_dialect(depth, t):
+    small = min(40, 9 * depth)
+    _, _, node = _arith_tree(depth, t, small)
+    steps = []
+    value = _work_out(node, steps)
+    return _render_full(node), value, " ; ".join(steps)
 
 
 # --- rijen (rows) -------------------------------------------------------------
@@ -886,6 +917,64 @@ def _code(depth, t):
     return "\n".join(lines), known[last], " ; ".join(steps)
 
 
+def _code_expression_full(depth, t, known):
+    """_code_expression in the old dialect (run 8): brackets everywhere.
+
+    Same shape, own rendering — a leaf may be a variable name, so the text
+    cannot be rebuilt from the value tree afterwards; it is built here.
+    """
+    if depth <= 1 or not known:
+        if known and t.choice((True, False)):
+            name = t.choice(sorted(known))
+            return name, known[name], ("blad", known[name])
+        n = t.integer(1, 40)
+        return str(n), n, ("blad", n)
+    op = t.choice(("+", "-", "*"))
+    if op == "*":
+        lt, lv, lnode = _code_expression_full(depth - 1, t, known)
+        right = t.integer(2, 9)
+        return f"({lt} * {right})", lv * right, ("op", "*", lnode, ("blad", right))
+    lt, lv, lnode = _code_expression_full(depth - 1, t, known)
+    rt, rv, rnode = _code_expression_full(depth - 1, t, known)
+    if lt == rt:
+        rv = t.integer(1, 40)
+        rt, rnode = str(rv), ("blad", rv)
+    value = lv + rv if op == "+" else lv - rv
+    return f"({lt} {op} {rt})", value, ("op", op, lnode, rnode)
+
+
+def _code_dialect(depth, t):
+    """The plain lines-program in the old dialect of the diepte sheet:
+    `b = (a - 33)` instead of `b = a - 33`. Working in today's style — the
+    brackets change nothing about the value, and that is the lesson."""
+    line_count = min(4, 1 + depth // 3)
+    expression_depth = min(4, max(1, depth - line_count + 1))
+    known = {}
+    lines = []
+    steps = []
+    for i in range(line_count):
+        name = _NAMES[i]
+        text, value, node = _code_expression_full(expression_depth, t, known)
+        lines.append(f"{name} = {text}")
+        known[name] = value
+        _work_out(node, steps)
+        steps.append(f"{name} = {value}")
+    last = _NAMES[line_count - 1]
+    if depth >= 4:
+        rounds = t.integer(2, 6)
+        step = t.integer(1, 20)
+        lines.append(f"for i in range({rounds}):")
+        lines.append(f"    {last} = {last} + {step}")
+        old = known[last]
+        extra = rounds * step
+        known[last] = old + extra
+        steps.append(f"{rounds} * {step} = {extra}")
+        steps.append(f"{old} + {extra} = {known[last]}")
+        steps.append(f"{last} = {known[last]}")
+    lines.append(f"print({last})")
+    return "\n".join(lines), known[last], " ; ".join(steps)
+
+
 # --- geheugen (memory) — 16 Aug 2026 ------------------------------------------
 # The fourth family, and the sharpest test of C: an answer that depends on
 # something earlier in the sequence. All within one task — a note to hold,
@@ -1519,7 +1608,7 @@ def _rule_draws(seed, depth):
 # grows with the depth (2–12 at depth 3, up to 2–99 at depth 12), so the
 # dividend stays inside what she multiplies elsewhere.
 DEEL_SEED = 0x4465656C                    # "Deel"
-DEEL_MIN, DEEL_MAX = 3, 12
+DEEL_MIN, DEEL_MAX = 3, 80   # run 8: volgt rekenen naar 80; 7.6: deling op alle dieptes van rekenen (was 3-12: op mediaan diepte 33 zag ze bijna geen deling meer; blad deling 53 %)
 
 
 def _division(depth, t):
@@ -2373,7 +2462,17 @@ def _language(depth, t):
 #   → ronde 1: x = 5 + 2 = 7 ; y = 2 * 2 = 4 ; x = 7 - 3 = 4 ; ronde 2: … ; x = 5
 #
 # From depth 7 a conditional step ("als x > y dan x = x - y") joins.
+#
+# Run 8: from MACHINE_RUIS_MIN one in three numbers gets a "tussendoor"
+# line of noise between the start and the steps — assignments to letters
+# that are no register, and bare sums, in the style of the memory brick.
+# Machine reached 100% while geheugen2 stalled at ~57%, and the difference
+# between the two is exactly this noise: keeping a state while irrelevant
+# lines pass by. The other two in three numbers stay bit for bit.
 MACHINE_NAMES = ("x", "y", "z")
+RUIS_SEED = 0x52756973                   # "Ruis"
+MACHINE_RUIS_MIN = 6
+MACHINE_RUIS_NAMES = "abcd"              # never x, y or z — those are the registers
 
 
 def _machine_shape(depth):
@@ -2442,6 +2541,28 @@ def _machine(depth, t):
                + f"\nwat is {asked}?")
     working = " ; ".join(trace) + f" ; {asked} = {values[asked]}"
     return problem, values[asked], working
+
+
+def _machine_ruis_regel(problem, depth, t):
+    """The same machine, with a "tussendoor" line woven in (run 8).
+
+    Only the problem text changes: answer and working stay those of the
+    bare machine. The noise never enters the working — that is the whole
+    lesson: what is no register does not count, just as the memory brick's
+    distractions never reach its working.
+    """
+    count = min(6, 2 + (depth - MACHINE_RUIS_MIN) // 4)
+    pieces = []
+    for _ in range(count):
+        if t.integer(1, 2) == 1:
+            c = MACHINE_RUIS_NAMES[t.integer(0, len(MACHINE_RUIS_NAMES) - 1)]
+            pieces.append(f"{c} = {t.integer(1, 99)}")
+        else:
+            a, b = t.integer(1, 50), t.integer(1, 50)
+            op = "+" if t.integer(1, 2) == 1 else "-"
+            pieces.append(f"{a} {op} {b} = {a + b if op == '+' else a - b}")
+    first, rest = problem.split("\n", 1)
+    return first + "\ntussendoor: " + " ; ".join(pieces) + "\n" + rest
 
 
 # --- tellen — the eleventh family (18 Aug 2026, from her weakness profile) ---
@@ -2796,6 +2917,16 @@ def make(family, depth, number):
         k = Picker(_mix(seed ^ STEEN_SEED))
         if depth >= STEEN_MIN and k.integer(1, 3) == 1:
             problem, solution, working = _memory_state(depth, k)
+    if family == "machine":
+        # the noise split (run 8): one in three numbers from
+        # MACHINE_RUIS_MIN gets a "tussendoor" line woven into the SAME
+        # machine — answer and working unchanged, see _machine_ruis_regel;
+        # the other two stay bit for bit
+        k = Picker(_mix(seed ^ RUIS_SEED))
+        if (depth >= MACHINE_RUIS_MIN and k.integer(1, 3) == 1
+                and problem is not None):
+            problem = _machine_ruis_regel(
+                problem, depth, Picker(_mix(seed ^ RUIS_SEED ^ 0x1)))
     if problem is None:
         # No working comes out — then there is nothing to learn, only to
         # guess. `learning_tasks` skips it.
@@ -2827,12 +2958,29 @@ def make(family, depth, number):
             problem, solution, working = _equation(depth, k)
         # the division brick (18 Aug 2026): one in six numbers at depth
         # DEEL_MIN–DEEL_MAX, only where none of the splits above drew
-        if _division_draws(seed, depth) and not (keerc or keer or converse or vgl):
+        deel = _division_draws(seed, depth) and not (keerc or keer or converse or vgl)
+        if deel:
             problem, solution, working = _division(depth, Picker(_mix(seed ^ DEEL_SEED ^ 0x1)))
+        # the dialect brick (run 8): one in five numbers at depth
+        # DIALECT_MIN–DIALECT_MAX, only where no other split drew — the old
+        # full-bracket spelling of the frozen diepte sheet, see _render_full
+        k = Picker(_mix(seed ^ DIALECT_SEED))
+        if (DIALECT_MIN <= depth <= DIALECT_MAX and k.integer(1, 5) == 1
+                and not (keerc or keer or converse or vgl or deel)):
+            problem, solution, working = _arithmetic_dialect(
+                depth, Picker(_mix(seed ^ DIALECT_SEED ^ 0x1)))
     if family == "code":
         k = Picker(_mix(seed ^ LUS_SEED))
-        if LUS_MIN <= depth <= LUS_MAX and k.integer(1, 4) == 1:
+        lus = LUS_MIN <= depth <= LUS_MAX and k.integer(1, 4) == 1
+        if lus:
             problem, solution, working = _long_loop(depth, k)
+        # the dialect brick (run 8), the code side: `b = (a - 33)` the way
+        # the frozen diepte sheet writes — one in five numbers where the
+        # long loop did not draw, the rest stays bit for bit
+        k = Picker(_mix(seed ^ DIALECT_SEED))
+        if DIALECT_MIN <= depth <= DIALECT_MAX and not lus and k.integer(1, 5) == 1:
+            problem, solution, working = _code_dialect(
+                depth, Picker(_mix(seed ^ DIALECT_SEED ^ 0x1)))
     return Task(family=family, grade=depth, number=number,
                 problem=problem, solution=str(solution), working=working)
 
