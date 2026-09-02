@@ -72,8 +72,12 @@ def _rotate(x, cos, sin):
     x is (batch, heads, length, head_size).
     """
     even, odd = x[..., 0::2], x[..., 1::2]
-    cos = cos.to(x.dtype)[None, None, :, :]
-    sin = sin.to(x.dtype)[None, None, :, :]
+    # cos and sin are (length, head_size/2); they broadcast over whatever
+    # leads -- (batch, heads) as before, or (2, batch, heads) when q and k
+    # are rotated together (1 sep 2026). Same elementwise arithmetic.
+    lead = (1,) * (x.dim() - 2)
+    cos = cos.to(x.dtype).reshape(*lead, *cos.shape)
+    sin = sin.to(x.dtype).reshape(*lead, *sin.shape)
     return torch.stack((even * cos - odd * sin,
                         even * sin + odd * cos), dim=-1).flatten(-2)
 
@@ -244,13 +248,15 @@ class Decoder:
         for i, block in enumerate(core.blocks):
             att = block.attention
             qkv = att.to_qkv(block.norm1(x))
-            q, k, v = qkv.chunk(3, dim=-1)
-            shape = (batch, 1, att.heads, att.head_size)
-            q = q.view(shape).transpose(1, 2)
-            k = k.view(shape).transpose(1, 2)
-            v = v.view(shape).transpose(1, 2)
-            q = _rotate(q, cos, sin)
-            k = _rotate(k, cos, sin)
+            # q and k rotated together, see Attention.forward (1 sep 2026)
+            qk = (qkv[..., :2 * att.inner]
+                  .view(batch, 1, 2, att.heads, att.head_size)
+                  .permute(2, 0, 3, 1, 4))
+            qk = _rotate(qk, cos, sin)
+            q, k = qk[0], qk[1]
+            v = (qkv[..., 2 * att.inner:]
+                 .view(batch, 1, att.heads, att.head_size)
+                 .transpose(1, 2))
             self.k[i].index_copy_(2, index, k.to(self.k[i].dtype))
             self.v[i].index_copy_(2, index, v.to(self.v[i].dtype))
             keys = self.k[i][:, :, :reach]
@@ -260,8 +266,13 @@ class Decoder:
             else:
                 scores = (q @ keys.transpose(-2, -1)) / math.sqrt(att.head_size)
             scores.masked_fill_(mask[:, None, None, :], float("-inf"))
-            empty = torch.isinf(scores).all(dim=-1, keepdim=True)
-            scores.masked_fill_(empty, 0.0)
+            # No 'empty row' guard here (1 sep 2026): the position being
+            # written is never masked -- mask_full is False beyond the
+            # question and col > pos is False at pos itself -- so every
+            # row sees at least its own key and no score row is all -inf.
+            # The ordinary path keeps its guard for left-padded rows in
+            # the prefill. Three kernels per layer per character gone,
+            # the numbers untouched (a fill with an all-False mask).
             weight = torch.softmax(scores, dim=-1)
             out = (weight @ values).transpose(1, 2).reshape(batch, 1, att.inner)
             x = x + block.alpha1 * att.out(out)
@@ -275,9 +286,20 @@ class Decoder:
             for _ in range(2):                # warm-up: the real step will overwrite this position anyway
                 self.step_eager()
         torch.cuda.current_stream().wait_stream(side)
+        # Captured by hand, not through torch.cuda.graph() (1 sep 2026, the
+        # P100 sprint): that helper first runs gc.collect() and
+        # empty_cache() "to free as much memory as it can" -- a full
+        # garbage-collection pass over her 390k-row memory, about a
+        # second, at every capture, and an exam captures some 236 times
+        # (232 of its 512 s). The capture itself is the same call on the
+        # same kind of side stream; the graph and its numbers are the same.
+        torch.cuda.synchronize()
         self.graph = torch.cuda.CUDAGraph()
-        with torch.cuda.graph(self.graph):
+        with torch.cuda.stream(side):
+            self.graph.capture_begin()
             self.out = self.step_eager()
+            self.graph.capture_end()
+        torch.cuda.current_stream().wait_stream(side)
 
     def step(self, following):
         """Write the character `following` (batch,) at the next position;
@@ -420,14 +442,22 @@ class Attention(nn.Module):
         """
         batch, length, width = x.shape
         qkv = self.to_qkv(x)
-        q, k, v = qkv.chunk(3, dim=-1)
-        shape = (batch, length, self.heads, self.head_size)
-        q = q.view(shape).transpose(1, 2)
-        k = k.view(shape).transpose(1, 2)
-        v = v.view(shape).transpose(1, 2)
-
-        q = _rotate(q, cos, sin)
-        k = _rotate(k, cos, sin)
+        # q and k rotated in one go (1 sep 2026, the P100 sprint): the
+        # rotation is eight small kernels, and it ran twice per layer. The
+        # q and k halves of qkv are viewed as (2, batch, heads, length,
+        # head_size) -- a view, no copy -- and rotated together; q and k
+        # come out as the two contiguous halves, the same layout the
+        # separate rotations produced. Element for element the same
+        # multiplications and additions, so bit for bit the same numbers
+        # (proven on the testbank, learning and answering).
+        qk = (qkv[..., :2 * self.inner]
+              .view(batch, length, 2, self.heads, self.head_size)
+              .permute(2, 0, 3, 1, 4))
+        qk = _rotate(qk, cos, sin)
+        q, k = qk[0], qk[1]
+        v = (qkv[..., 2 * self.inner:]
+             .view(batch, length, self.heads, self.head_size)
+             .transpose(1, 2))
 
         if cache is not None:
             k, v = cache.append(k, v)
@@ -495,6 +525,35 @@ class Block(nn.Module):
         x = x + self.alpha2 * self.feedforward(self.norm2(x))
         return x, new_cache
 
+    def forward_light(self, x, cos, sin, key_mask=None):
+        """The learning pass with only the attention under checkpoint
+        (1 sep 2026, the P100 sprint).
+
+        Checkpointing the whole block threw away everything and recomputed
+        the whole block in the backward pass -- attention *and* the
+        feedforward. But the memory hog is the attention alone: its scores
+        are rows x heads x length x length, the feedforward's scratch is
+        rows x length x 4 width, small next to it. So the feedforward now
+        keeps its intermediates like an ordinary layer and only the
+        attention is recomputed. Same arithmetic in the same order: the
+        recomputation was bit for bit the first pass, and what is kept now
+        *is* the first pass -- proven on the testbank against the old path
+        (losses and weight fingerprint equal). Costs the feedforward's
+        scratch of one group at a time (~1 GB at the largest group);
+        buys the recomputation of the feedforward, roughly half the extra
+        time checkpointing cost.
+        """
+        def attend(x_, cos_, sin_, key_mask_):
+            return self.attention(self.norm1(x_), cos_, sin_, None, key_mask_)[0]
+
+        # non-reentrant: keeps the RNG state, so the recomputation is
+        # exactly the first pass
+        out = torch.utils.checkpoint.checkpoint(
+            attend, x, cos, sin, key_mask, use_reentrant=False)
+        x = x + self.alpha1 * out
+        x = x + self.alpha2 * self.feedforward(self.norm2(x))
+        return x
+
 
 class Core(nn.Module):
     def __init__(self, layers=8, width=384, heads=6, window=512,
@@ -524,6 +583,19 @@ class Core(nn.Module):
         # on. Only acts while gradients are being tracked; answering (no
         # grad, with cache) is untouched.
         self.checkpointing = False
+        # Below this footprint (rows x length^2, the size of one layer's
+        # attention weights) a group keeps everything and recomputes
+        # nothing (1 sep 2026, see advance). 0 = always recompute the
+        # attention. Set by the Learner from AMBER_BEWAAR.
+        self.keep_below = 0
+        # And above this many tokens (rows x length) a group takes the old
+        # road -- the whole block recomputed -- whatever keep_below says:
+        # what is kept grows with the tokens (the feedforward's scratch is
+        # 4 x width per token, twenty layers deep), and a batch of 64 rows
+        # of ~400 characters would hold 11 GB. Measured 1 sep 2026 on the
+        # P100: 25k tokens 11.0 GB, 18k 8.2 GB, 10k 5.3 GB. Set by the
+        # Learner from AMBER_LICHT.
+        self.light_below = 0
 
         nn.init.normal_(self.embedding.weight, std=0.02)
         nn.init.normal_(self.unembedding.weight, std=0.02)
@@ -554,10 +626,19 @@ class Core(nn.Module):
         new = []
         recompute = (self.checkpointing and self.training
                      and torch.is_grad_enabled() and cache is None)
+        # A small group's attention weights fit easily; keeping them saves
+        # the recomputation, and the numbers are the same either way
+        # (test-checkpointing: recomputed equals kept, bit for bit).
+        tokens_ = batch * length
+        light = recompute and (not self.light_below or tokens_ <= self.light_below)
+        if light and self.keep_below and batch * length * length <= self.keep_below:
+            recompute = False
         for i, block in enumerate(self.blocks):
-            if recompute:
-                # non-reentrant: works with any output shape and keeps the
-                # RNG state, so the recomputation is exactly the first pass
+            if recompute and light:
+                # only the attention is recomputed -- see Block.forward_light
+                x, block_cache = block.forward_light(x, cos, sin, key_mask), None
+            elif recompute:
+                # the old road for the very large group: everything recomputed
                 x, block_cache = torch.utils.checkpoint.checkpoint(
                     block, x, cos, sin, None, key_mask, use_reentrant=False)
             else:

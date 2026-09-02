@@ -299,6 +299,12 @@ class Learner:
         # numbers bit for bit, less VRAM, ~30% more time on the learning
         # part. See Core.checkpointing and test-checkpointing.py.
         self.core.checkpointing = bool(checkpointing)
+        # The P100 sprint's knobs (1 sep 2026), proven bit for bit on the
+        # testbank at these defaults: groups up to 4500000 rows x length^2
+        # keep everything, up to 16000 tokens keep the feedforward, larger
+        # ones recompute the whole block as before.
+        self.core.keep_below = int(os.environ.get("AMBER_BEWAAR", "4500000"))
+        self.core.light_below = int(os.environ.get("AMBER_LICHT", "16000"))
 
         # Both cards. They cannot reach each other's memory (no NVLink on
         # the PCIe build), so the batch splits and the gradients meet over
@@ -328,7 +334,18 @@ class Learner:
 
         if (not parallel.active() and self.device == "cuda"
                 and torch.cuda.device_count() > 1):
-            self._compute_core = torch.nn.DataParallel(self.core)
+            # Since 1 sep 2026 (the second P100 in the Z490): learning
+            # stays on card 0 with the bare core -- DataParallel splits
+            # the batch and gathers, which changes the arithmetic and was
+            # measured at x1.35 for a whole extra card. Card 1 does all
+            # the answering instead (see _answer_cores): the probe, the
+            # exams, the KV buffers and the CUDA-graph pools leave card 0,
+            # which is what pushed it over 16 GB on 1 sep. Same kernels,
+            # same batch shapes, so the numbers are the old ones bit for
+            # bit. AMBER_TWEE_KAARTEN=dataparallel brings the old road
+            # back for a measurement.
+            if os.environ.get("AMBER_TWEE_KAARTEN") == "dataparallel":
+                self._compute_core = torch.nn.DataParallel(self.core)
 
             # Answering happens on the second card. Two reasons:
             #
@@ -543,12 +560,20 @@ class Learner:
         if self._weights_fresh:
             self._answer_core.load_state_dict(self.core.state_dict())
             self._weights_fresh = False
-        return [(self.core, self.device),
-                (self._answer_core, self._answer_device)]
+        # Card 1 alone, whole batches (1 sep 2026): splitting a batch over
+        # two cards halves the shapes the kernels see, and the exam code
+        # notes that other shapes can round differently on the edge. One
+        # card, the full batch, is exactly the single-card computation.
+        return [(self._answer_core, self._answer_device)]
 
     @torch.no_grad()
     def _answer_on(self, tasks_, core, device, at_most):
-        with torch.autocast("cuda", dtype=torch.bfloat16, enabled=self.bf16):
+        # Inside the card's own context (1 sep 2026): the Decoder captures
+        # its CUDA graph on the *current* device's stream, and without
+        # this that was card 0 while the buffers sat on card 1 -- the
+        # replays wrote nonsense and every probe on card 1 scored zero.
+        with torch.cuda.device(device), \
+                torch.autocast("cuda", dtype=torch.bfloat16, enabled=self.bf16):
             return self._answer_real(tasks_, core, device, at_most)
 
     @torch.no_grad()
@@ -1200,17 +1225,6 @@ class Learner:
             return
         if carried.get("geheugen"):
             self.memory.restore(carried["geheugen"])
-            # Lifelong tally (27 Aug 2026, Cley wil haar geheugen zien
-            # groeien): a snapshot from before this counter seeds it at the
-            # current fill in ReplayMemory — but she has taken in far more
-            # than she now holds, the working memory rolls. Seed it at the
-            # lived estimate instead: ~batch_size per learning step plus the
-            # probe every probe_every steps, over the run so far. Only when
-            # the snapshot did not carry the real count (then that stands).
-            if step is not None and "onthouden_totaal" not in carried["geheugen"]:
-                per_stap = self.batch_size * (1 + 1.0 / self.probe_every)
-                self.memory.onthouden_totaal = max(
-                    self.memory.onthouden_totaal, int(per_stap * int(step)))
         # Snapshots from before 13 Aug 2026 lack this key: then no lesson
         # has ever been taken in, and 0 is exactly right.
         self.lessons_upto = int(carried.get("les_tot") or 0)

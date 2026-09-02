@@ -103,13 +103,17 @@ check("answering gives the same text with the flag on",
 print()
 print("--- Memory ---")
 if DEVICE == "cuda":
-    def peak(flag):
+    def peak(flag, knobs=None):
         torch.cuda.empty_cache()
         torch.cuda.reset_peak_memory_stats()
         determinism.begin_step(99)
         core = network.Core(layers=8, width=384, heads=6, window=1024)
         L = learning.Learner(core=core, device=DEVICE, batch_size=16,
                              replay_share=0.0, bf16=False, checkpointing=flag)
+        if knobs is not None:
+            # the P100 sprint's knobs (1 sep 2026): 0/0 is the bare road,
+            # every block recomputed; the defaults keep what fits
+            L.core.keep_below, L.core.light_below = knobs
         # a full-window batch: the case where the scratch work dominates
         chunk = world.learning_tasks("rekenen", 30, 16, room=1024 - 112)
         determinism.begin_step(100)
@@ -120,10 +124,17 @@ if DEVICE == "cuda":
         torch.cuda.empty_cache()
         return used
     without = peak(False)
-    with_ = peak(True)
+    with_ = peak(True, knobs=(0, 0))
     check("the VRAM peak drops with checkpointing (8 layers, window 1024, "
-          "batch 16)", with_ < 0.75 * without,
+          "batch 16, bare road)", with_ < 0.75 * without,
           f"{without:.0f} MB → {with_:.0f} MB ({with_ / without:.0%})")
+    # With the sprint's defaults small groups keep their scratch on purpose
+    # (time for memory where memory is plenty); what must hold is that it
+    # never costs more than no checkpointing at all.
+    kept = peak(True)
+    check("with the default knobs the peak never exceeds the plain path",
+          kept <= 1.02 * without,
+          f"{without:.0f} MB → {kept:.0f} MB ({kept / without:.0%})")
 else:
     print("         (no GPU here — memory check skipped)")
 

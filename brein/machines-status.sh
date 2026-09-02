@@ -7,7 +7,7 @@ PEIL='echo up=$(cut -d" " -f1 /proc/uptime)
 echo load=$(cut -d" " -f1-3 /proc/loadavg)
 echo mt=$(awk "/MemTotal/{print \$2}" /proc/meminfo)
 echo ma=$(awk "/MemAvailable/{print \$2}" /proc/meminfo)
-echo temp=$(sensors 2>/dev/null | grep -m1 -E "Package id 0|temp1|Tctl" | grep -o "+[0-9.]*" | head -1)
+echo temp=$( (sensors 2>/dev/null | grep -m1 Tdie || sensors 2>/dev/null | grep -m1 -E "Package id 0|temp1") | grep -o "+[0-9.]*" | head -1)
 echo disk=$(df -h / | tail -1 | awk "{print \$2\" \"\$3\" \"\$5}")
 nvidia-smi --query-gpu=name,temperature.gpu,power.draw,memory.used,memory.total,utilization.gpu,fan.speed --format=csv,noheader 2>/dev/null | sed "s/^/gpu=/"'
 while true; do

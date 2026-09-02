@@ -392,7 +392,7 @@
   <div class="venster-kaart glas">
     <div class="venster-kop"><h2>De machines</h2><span class="sub" id="machines-sub"></span><button class="sluit" aria-label="sluiten">×</button></div>
     <div class="raster">
-      <div class="kaart k6" id="trainer"><div class="titel"><h2>Z490 — de trainer</h2><span class="sub" id="trainer-sub"></span></div><div id="trainer-inhoud" class="leeg"></div></div>
+      <div class="kaart k6" id="trainer"><div class="titel"><h2>X399 — de trainer</h2><span class="sub" id="trainer-sub"></span></div><div id="trainer-inhoud" class="leeg"></div></div>
       <div class="kaart k6" id="thuis"><div class="titel"><h2>DL380 — thuis</h2><span class="sub" id="thuis-sub"></span></div><div id="thuis-inhoud" class="leeg"></div></div>
       <div class="kaart k6" id="vorm"><div class="titel"><h2>Haar vorm</h2><span class="sub">deze run</span></div><div id="vorm-inhoud" class="leeg"></div></div>
       <div class="kaart k6" id="meer"><div class="titel"><h2>Meer</h2><span class="sub">pagina's en rapporten</span></div><div id="meer-inhoud" class="links"></div></div>
@@ -1225,17 +1225,26 @@ function meterHtml(naam, waarde, max, eenheid, klasse) {
   const p = Math.max(0, Math.min(100, 100 * waarde / max));
   return `<div class="meter"><span class="n">${naam}</span><span class="spoor"><i class="${klasse || ""}" style="width:${p.toFixed(1)}%"></i></span><span class="v">${nl(Math.round(waarde))}${eenheid}</span></div>`;
 }
+function kaartMeters(rm, kort) {
+  // alle kaarten (2 sep 2026): rm.kaarten is een lijst, anders de oude losse velden
+  const ks = (rm.kaarten && rm.kaarten.length) ? rm.kaarten : (rm.temp ? [{temp: rm.temp, watt: rm.watt, vram: rm.vram}] : []);
+  if (!ks.length) return `<div class="leeg">geen meting</div>`;
+  const twee = ks.length > 1;
+  let h = "";
+  ks.forEach((k, i) => {
+    const t = +k.temp;
+    h += meterHtml(twee ? `kaart ${i}` : "kaart", t, 90, "°C", t >= 80 ? "warm" : t <= 60 ? "goed" : "");
+    if (k.vram) h += meterHtml(twee ? `geheugen ${i}` : "geheugen", +k.vram / 1024, 16, " GB", +k.vram > 14000 ? "warm" : "");
+    if (k.watt) h += meterHtml(twee ? `vermogen ${i}` : "vermogen", +k.watt, 250, " W", "");
+  });
+  if (!kort && rm.cpu_temp) h += meterHtml("processor", +rm.cpu_temp, 100, "°C", +rm.cpu_temp >= 65 ? "warm" : "");
+  return h;
+}
 function tekenMachines(s) {
   const rm = (s.run && s.run.machine) || {}, cfg = (s.run && s.run.config) || {}, w = s.wachter || {};
   let h = "";
   if (w.melding) h += `<div class="melding">⚠ ${esc(w.melding)}</div>`;
-  if (rm.temp) {
-    const t = +rm.temp;
-    h += meterHtml("kaart", t, 90, "°C", t >= 80 ? "warm" : t <= 60 ? "goed" : "");
-    if (rm.watt) h += meterHtml("vermogen", +rm.watt, 320, " W", "");
-    if (rm.vram) h += meterHtml("geheugen", +rm.vram / 1024, 8, " GB", +rm.vram > 7000 ? "warm" : "");
-    if (rm.cpu_temp) h += meterHtml("processor", +rm.cpu_temp, 100, "°C", +rm.cpu_temp >= 85 ? "warm" : "");
-  } else h += `<div class="leeg">geen meting</div>`;
+  h += kaartMeters(rm, false);
   h += `<div class="diensten">` +
     `<span class="dienst ${rm.dienst === "active" ? "aan" : ""}">training ${rm.dienst === "active" ? "draait" : (rm.dienst || "?")}</span>` +
     (rm.spiegel ? `<span class="dienst aan">${esc(rm.spiegel)}</span>` : "") +
@@ -1447,12 +1456,7 @@ function tekenMachinesKort(s) {
   const rm = (s.run && s.run.machine) || {}, w = s.wachter || {}, th = (s.run && s.run.thuis) || null;
   let h = "";
   if (w.melding) h += `<div class="melding">⚠ ${esc(w.melding)}</div>`;
-  if (rm.temp) {
-    const t = +rm.temp;
-    h += meterHtml("kaart", t, 90, "°C", t >= 80 ? "warm" : t <= 60 ? "goed" : "");
-    if (rm.vram) h += meterHtml("geheugen", +rm.vram / 1024, 8, " GB", +rm.vram > 7000 ? "warm" : "");
-    if (rm.watt) h += meterHtml("vermogen", +rm.watt, 320, " W", "");
-  } else h += `<div class="leeg">geen meting</div>`;
+  h += kaartMeters(rm, true);
   h += `<div class="diensten"><span class="dienst ${rm.dienst === "active" ? "aan" : ""}">training ${rm.dienst === "active" ? "draait" : (rm.dienst || "?")}</span>` +
        (th ? `<span class="dienst ${th.aan ? "aan" : ""}">thuis ${th.aan ? "aan" : "uit"}</span>` : "") +
        (w.crashes_vandaag > 0 ? `<span class="dienst" style="color:var(--amber)">${w.crashes_vandaag}× herstart</span>` : "") + `</div>`;

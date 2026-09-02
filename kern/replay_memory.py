@@ -35,6 +35,8 @@ stored dicts keep their Dutch keys (code/familie/graad/goed) — they live in
 every checkpoint she has ever written.
 """
 
+from array import array as _array
+
 import tokens
 
 # Phase 1: wide open. The character set is the core's own, and the length
@@ -164,15 +166,21 @@ class ReplayMemory:
         self.bottleneck = bottleneck or Bottleneck()
         self._content = []
         self._tally = {}
+        # The cell of every row, mirrored in a C-speed array (31 Aug 2026).
+        # At 390,000 memories the full stock forgets on every remember, and
+        # finding "the oldest of the largest cell" scanned all rows in
+        # Python: 1.4 s of every step (measured on the DL380 test bench).
+        # array.index does the same first-match search in C. The mirror is
+        # derived state: never in the snapshot, rebuilt on restore.
+        self._cell_row = _array("i")
+        self._cell_no = {}
         self.refused = 0
-        # Lifelong tally (27 Aug 2026, Cley's wish to watch her memory grow):
-        # every experience that ever passes the doorway adds one, and it is
-        # never decreased when balanced forgetting drops one — the working
-        # memory rolls, but what she has *ever* learned only grows. Seeded
-        # at the current fill for a checkpoint from before this counter, so
-        # the number starts where the working memory sits (390.000) and
-        # climbs from there. Carried like everything else in her state.
-        self.onthouden_totaal = 0
+
+    def _cell_number(self, cell):
+        n = self._cell_no.get(cell)
+        if n is None:
+            n = self._cell_no[cell] = len(self._cell_no)
+        return n
 
     def remember(self, task, answer, correct):
         try:
@@ -182,8 +190,8 @@ class ReplayMemory:
             return False
         self._content.append(stored)
         cell = (stored["familie"], stored["graad"])
+        self._cell_row.append(self._cell_number(cell))
         self._tally[cell] = self._tally.get(cell, 0) + 1
-        self.onthouden_totaal += 1
         if len(self._content) > self.capacity:
             self._forget_one()
         return True
@@ -202,10 +210,11 @@ class ReplayMemory:
         same stream always gives the same memory.
         """
         largest = max(self._tally.items(), key=lambda kv: (kv[1], kv[0]))[0]
-        for i, stored in enumerate(self._content):
-            if (stored["familie"], stored["graad"]) == largest:
-                del self._content[i]
-                break
+        # Same first match as the old Python scan over _content — the
+        # mirror array holds exactly the cells, row for row (31 Aug 2026).
+        i = self._cell_row.index(self._cell_number(largest))
+        del self._content[i]
+        del self._cell_row[i]
         self._tally[largest] -= 1
         if not self._tally[largest]:
             del self._tally[largest]
@@ -257,7 +266,6 @@ class ReplayMemory:
         return {
             "ruimte": self.capacity,
             "geweigerd": self.refused,
-            "onthouden_totaal": self.onthouden_totaal,
             "inhoud": [dict(s) for s in self._content],
         }
 
@@ -275,17 +283,15 @@ class ReplayMemory:
         # a smaller one lets balanced forgetting trim on the next remember.
         self.capacity = max(self.capacity, len(carried["inhoud"]))
         self.refused = int(carried["geweigerd"])
-        # An older checkpoint has no lifelong tally yet: start it at what she
-        # currently holds, so the number never overclaims a history it did
-        # not record, and never dips below the working memory.
-        self.onthouden_totaal = int(carried.get("onthouden_totaal",
-                                                len(carried["inhoud"])))
         self._content = [dict(s) for s in carried["inhoud"]]
         # The tally is not in the checkpoint but follows from the content —
         # so a checkpoint from before balanced forgetting loads unchanged.
         self._tally = {}
+        self._cell_row = _array("i")
+        self._cell_no = {}
         for stored in self._content:
             cell = (stored["familie"], stored["graad"])
+            self._cell_row.append(self._cell_number(cell))
             self._tally[cell] = self._tally.get(cell, 0) + 1
         return len(self._content)
 
@@ -293,14 +299,12 @@ class ReplayMemory:
         """What is in it, and how full the doorway sits."""
         if not self._content:
             return {"aantal": 0, "geweigerd": self.refused,
-                    "onthouden_totaal": self.onthouden_totaal,
                     "bezetting_gemiddeld": None, "bezetting_hoogste": None}
         occ = [self.bottleneck.occupancy(s) for s in self._content]
         graded = [s["goed"] for s in self._content if s["goed"] is not None]
         return {
             "aantal": len(self._content),
             "geweigerd": self.refused,
-            "onthouden_totaal": self.onthouden_totaal,
             "bezetting_gemiddeld": sum(occ) / len(occ),
             "bezetting_hoogste": max(occ),
             "nagekeken": len(graded),

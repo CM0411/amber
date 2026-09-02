@@ -30,7 +30,7 @@
 </style></head><body>
 <nav><a href="/">venster</a><a href="/dagbericht">dagbericht</a><a href="/machines" class=hier>machines</a><a href="/gebeurtenissen">gebeurtenissen</a><a href="/opname">oren</a><a href="/geheugen">geheugen</a><a href="/vraag">vraag haar</a></nav>
 <h1>Machines</h1>
-<div class="kaart"><div class="kop" id="t-kop">trainer — Z490</div>
+<div class="kaart"><div class="kop" id="t-kop">trainer — X399</div>
   <div id="t-rijen" class="fijn">wachten…</div></div>
 <div class="kaart"><div class="kop">thuisbasis — DL380</div>
   <div id="h-rijen" class="fijn">wachten…</div></div>
@@ -51,10 +51,13 @@ async function haal() {
     if (lv.stap) t += rij("stap", lv.stap.toLocaleString("nl")
                           + (lv.ms ? ` · ${lv.ms} ms` : ""));
     if (rm.poging) t += rij("poging", rm.poging);
-    if (rm.temp) t += rij("videokaart", `${rm.temp} °C · ${rm.watt} W · ${rm.vram} MB`,
-                          +rm.temp >= 80 ? "slecht" : "");
+    const ks = (rm.kaarten && rm.kaarten.length) ? rm.kaarten
+             : (rm.temp ? [{temp: rm.temp, watt: rm.watt, vram: rm.vram}] : []);
+    ks.forEach((k, i) => t += rij(ks.length > 1 ? `P100 nummer ${i}` : "videokaart",
+                                  `${k.temp} °C · ${k.watt} W · ${k.vram} MB`,
+                                  +k.temp >= 80 ? "slecht" : ""));
     if (rm.cpu_temp) t += rij("processor", `${rm.cpu_temp} °C`,
-                              +rm.cpu_temp >= 85 ? "slecht" : "");
+                              +rm.cpu_temp >= 65 ? "slecht" : "");
     if (rm.spiegel) t += rij("NVMe-spiegel", rm.spiegel,
                              rm.spiegel.includes("synchroon") ? "goed" : "");
     document.getElementById("t-rijen").innerHTML = t || "geen gegevens";

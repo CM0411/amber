@@ -1,0 +1,185 @@
+<meta charset="utf-8">
+<!doctype html>
+<html lang="nl">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0d0906">
+<title>hartkamer · mobiel</title>
+<style>
+:root { --achter:#0d0906; --paneel:rgba(28,19,10,.78); --amber:#ffb454; --fel:#ffe0b0; --gloed:#ff9a2e;
+        --dof:#b08a58; --heel-dof:#6e5432; --alarm:#ff6a4d; --kop:"Avenir Next","Helvetica Neue",sans-serif; --mono:"SF Mono",Menlo,monospace; }
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0; background:var(--achter); color:var(--amber); font:17px/1.45 var(--kop); min-height:100%; }
+body { padding:env(safe-area-inset-top) 0 calc(72px + env(safe-area-inset-bottom)); }
+header { display:flex; justify-content:space-between; align-items:center; padding:14px 18px 6px; }
+header h1 { font-size:12px; letter-spacing:.42em; text-transform:uppercase; color:var(--dof); margin:0; font-weight:500; }
+header #klok { font-family:var(--mono); font-size:13px; color:var(--heel-dof); }
+.leds { display:flex; gap:12px; padding:0 18px 8px; font-size:10px; letter-spacing:.25em; text-transform:uppercase; color:var(--heel-dof); }
+.led { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; background:#3a2a16; vertical-align:middle; }
+.led.aan { background:var(--gloed); box-shadow:0 0 8px var(--gloed); } .led.rood { background:var(--alarm); box-shadow:0 0 8px var(--alarm); }
+.zicht { display:none; padding:0 14px; } .zicht.actief { display:block; }
+.kaart { background:var(--paneel); border:1px solid rgba(255,180,84,.16); border-radius:16px; padding:16px 18px; margin:0 0 12px; }
+.kaart h2 { font-size:10px; letter-spacing:.4em; text-transform:uppercase; color:var(--dof); margin:0 0 10px; font-weight:500; }
+.groot { font-size:44px; line-height:1; color:var(--fel); font-variant-numeric:tabular-nums; text-shadow:0 0 22px rgba(255,154,46,.35); }
+.groot small { font-size:14px; color:var(--dof); margin-left:8px; letter-spacing:.15em; text-transform:uppercase; }
+.rij { display:flex; justify-content:space-between; align-items:baseline; padding:7px 0; border-top:1px solid rgba(255,180,84,.08); font-size:15px; }
+.rij:first-of-type { border-top:0; } .rij span { color:var(--dof); letter-spacing:.06em; } .rij b { color:var(--fel); font-weight:500; font-variant-numeric:tabular-nums; }
+.balk { height:5px; background:rgba(255,180,84,.1); border-radius:3px; margin:4px 0 10px; overflow:hidden; }
+.balk i { display:block; height:100%; border-radius:3px; background:linear-gradient(90deg,#a85a06,var(--gloed),#ffe9c8); box-shadow:0 0 10px rgba(255,154,46,.5); transition:width .8s; }
+.balk.zwak i { background:linear-gradient(90deg,#a83e22,var(--alarm),#ffc9b0); }
+#hart { display:flex; flex-direction:column; align-items:center; padding:18px 0 10px; }
+#kern { width:110px; height:110px; border-radius:50%; background:radial-gradient(circle at 40% 35%,#ffe9c8,#ff9a2e 45%,#7a3d05 100%); box-shadow:0 0 40px rgba(255,154,46,.55); transform:scale(1); }
+#kern.klopt { animation:klop .55s ease-out; } @keyframes klop { 0%{transform:scale(1)} 30%{transform:scale(1.13)} 100%{transform:scale(1)} }
+#stap { margin-top:14px; font-size:30px; color:var(--fel); font-variant-numeric:tabular-nums; } #stap small { font-size:13px; color:var(--dof); margin-left:6px; }
+#pct { font-size:12px; letter-spacing:.3em; color:var(--dof); text-transform:uppercase; }
+.twee { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.zij { font-size:16px; line-height:1.5; color:var(--amber); } .zij b { color:var(--fel); font-weight:500; }
+.stip { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--gloed); margin-left:8px; animation:adem 1.6s ease-in-out infinite; } @keyframes adem { 50%{opacity:.25} }
+nav { position:fixed; left:0; right:0; bottom:0; display:flex; background:rgba(13,9,6,.94); border-top:1px solid rgba(255,180,84,.18); padding:8px 6px calc(8px + env(safe-area-inset-bottom)); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+nav button { flex:1; background:none; border:0; color:var(--heel-dof); font:11px var(--kop); letter-spacing:.2em; text-transform:uppercase; padding:10px 0; }
+nav button .ik { display:block; font-size:22px; margin-bottom:2px; } nav button.actief { color:var(--fel); }
+#beurten { max-height:55vh; overflow:auto; padding:4px 0; } .beurt { max-width:84%; margin:6px 0; padding:10px 14px; border-radius:14px; font-size:15px; line-height:1.45; }
+.beurt.cley { margin-left:auto; background:rgba(255,154,46,.14); border:1px solid rgba(255,180,84,.25); color:var(--fel); } .beurt.amber { background:rgba(24,18,10,.9); border:1px solid rgba(255,180,84,.12); font-family:var(--mono); }
+#g-balk { display:flex; gap:8px; margin-top:10px; } #g-in { flex:1; background:rgba(24,18,10,.8); color:var(--fel); border:1px solid rgba(255,180,84,.25); border-radius:12px; padding:13px 14px; font-size:16px; outline:none; }
+.knop { background:rgba(255,154,46,.16); color:var(--fel); border:1px solid rgba(255,180,84,.3); border-radius:12px; padding:0 16px; font-size:16px; }
+.week { display:grid; grid-template-columns:64px 1fr 56px; gap:10px; align-items:center; padding:5px 0; font-size:13px; color:var(--dof); }
+.week .u { text-align:right; color:var(--fel); font-variant-numeric:tabular-nums; } .week .balk { margin:0; height:10px; border-radius:5px; }
+.week.wij .balk i { background:linear-gradient(90deg,#3d2a12,#8a6a3a,#d9c4a0); box-shadow:none; }
+</style>
+</head>
+<body>
+<header><h1>hartkamer</h1><span id="klok">--:--:--</span></header>
+<div class="leds"><span><i class="led" id="led-trainer"></i>trainer</span><span><i class="led aan"></i>venster</span><span><i class="led" id="led-thuis"></i>dl380</span></div>
+
+<section class="zicht actief" id="z-hart">
+  <div id="hart"><div id="kern"></div><div id="stap">—<small>stap</small></div><div id="pct">—</div></div>
+  <div class="kaart"><h2>lichaam</h2>
+    <div class="rij"><span>pols</span><b id="pols">—</b></div>
+    <div class="rij"><span>nog te gaan</span><b id="nog">—</b></div>
+    <div class="rij"><span>klaar rond</span><b id="klaar">—</b></div>
+    <div class="rij"><span>onthouden</span><b id="onthouden">—</b></div>
+  </div>
+  <div class="twee">
+    <div class="kaart"><h2>kaart 0</h2><div class="groot" id="k0t">—<small>°C</small></div><div class="rij"><span>kracht</span><b id="k0w">—</b></div><div class="rij"><span>geheugen</span><b id="k0v">—</b></div></div>
+    <div class="kaart" id="kaart1"><h2>kaart 1</h2><div class="groot" id="k1t">—<small>°C</small></div><div class="rij"><span>kracht</span><b id="k1w">—</b></div><div class="rij"><span>geheugen</span><b id="k1v">—</b></div></div>
+  </div>
+  <div class="kaart"><h2>zij zegt</h2><div class="zij" id="zij">—</div></div>
+  <div class="kaart"><h2>proefwerk</h2><div id="proef"></div></div>
+</section>
+
+<section class="zicht" id="z-wereld">
+  <div class="kaart"><h2>haar wereld · hoe ver het hek open is</h2><div id="landen"></div></div>
+</section>
+
+<section class="zicht" id="z-gesprek">
+  <div class="kaart"><h2>het gesprek <span id="g-status" style="float:right;letter-spacing:.2em"></span></h2>
+    <div id="beurten"></div>
+    <div id="g-balk"><input id="g-in" placeholder="zeg iets tegen haar…"><button class="knop" id="g-stuur">➤</button><button class="knop" id="g-stem">🔊</button></div>
+  </div>
+</section>
+
+<section class="zicht" id="z-tijd">
+  <div class="kaart"><h2>onze tijd</h2><div class="groot" id="t-dagen">—<small>dagen</small></div><div class="rij"><span>sinds</span><b>do 6 aug 2026</b></div><div class="rij"><span>samen gebouwd</span><b id="t-uren">—</b></div></div>
+  <div class="kaart"><h2>haar tijd</h2><div class="groot" id="t-haar">—<small>uur geleerd</small></div><div class="rij"><span>haar dag</span><b id="t-dag">—</b></div><div class="rij"><span>lessen van cley</span><b id="t-les">—</b></div><div class="rij"><span>onthouden</span><b id="t-ont">—</b></div></div>
+  <div class="kaart"><h2>per week</h2><div id="weken"></div></div>
+</section>
+
+<nav>
+  <button data-z="hart" class="actief"><span class="ik">🫀</span>hart</button>
+  <button data-z="wereld"><span class="ik">🗺️</span>wereld</button>
+  <button data-z="gesprek"><span class="ik">💬</span>gesprek</button>
+  <button data-z="tijd"><span class="ik">⏳</span>tijd</button>
+</nav>
+
+<script>
+const $ = id => document.getElementById(id);
+const nl = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const komma = (n, d) => Number(n).toFixed(d).replace(".", ",");
+let msPerStap = 6000, ritme = null, doelOnt = 0, toonOnt = 0;
+function klop() { const k = $("kern"); k.classList.remove("klopt"); void k.offsetWidth; k.classList.add("klopt"); }
+function zetRitme(ms) { if (ritme && Math.abs(ms - msPerStap) < 300) return; msPerStap = ms; clearInterval(ritme); ritme = setInterval(klop, Math.max(1200, ms)); }
+const BLAD_FAM = { regel:"puzzel", regelcheck:"puzzel", rooster:"puzzel", diepte:"puzzel", diepte2:"puzzel", diepte3:"puzzel", stapel:"puzzel",
+  geheugen:"geheugen", geheugen2:"geheugen", venster2048:"geheugen", logica:"logica", volgorde:"volgorde", tekst:"tekst",
+  vergelijking:"rekenen", deling:"rekenen", gesprek:"rekenen", grondslag:"rekenen", ladder:"code", gemengd:"code",
+  zeggen:"zeggen", zeggen2:"zeggen", taal:"taal", machine:"machine", tellen:"tellen", antwoord:"antwoord", onbekend:"onbekend" };
+
+async function ververs() {
+  let s; try { s = await (await fetch("/stand.json", { cache: "no-store" })).json(); } catch (e) { return; }
+  const r = s.run || {}, lv = r.live || {}, m = r.machine || {}, thuis = r.thuis || {}, c = r.config || {};
+  $("led-trainer").className = "led " + (m.dienst === "active" ? "aan" : "rood");
+  $("led-thuis").className = "led " + (thuis.aan ? "aan" : "");
+  const st = (r.regel || "").match(/stap (\d+)\/(\d+)/);
+  if (st) { $("stap").innerHTML = nl(st[1]) + "<small>stap</small>"; $("pct").textContent = Math.round(100 * st[1] / st[2]) + " % · " + (c.naam || "") + " · " + (c.lagen || "—") + " lagen"; }
+  if (lv.ms) { $("pols").textContent = komma(lv.ms / 1000, 1) + " s / stap"; zetRitme(lv.ms); }
+  const nog = (r.regel || "").match(/nog (\d+)u(\d+)m/);
+  if (nog) { $("nog").textContent = nog[1] + " u " + nog[2] + " m";
+    const k = new Date(Date.now() + (+nog[1] * 60 + +nog[2]) * 60000);
+    $("klaar").textContent = ["zo","ma","di","wo","do","vr","za"][k.getDay()] + " " + String(k.getHours()).padStart(2,"0") + ":" + String(k.getMinutes()).padStart(2,"0"); }
+  else { $("nog").textContent = "—"; $("klaar").textContent = "—"; }
+  if (s.onthouden_totaal && st) { const ref = s.onthouden_ref_stap || +st[1]; doelOnt = s.onthouden_totaal + (s.onthouden_per_stap || 80) * Math.max(0, +st[1] - ref); }
+  // proefwerk: de zwakste zes bladen
+  const sc = r.scores || {}; const bladen = Object.entries(sc).filter(([b]) => !b.startsWith("week1")).sort((a, b) => a[1] - b[1]);
+  $("proef").innerHTML = bladen.slice(0, 6).map(([b, v]) => '<div class="rij"><span>' + b + "</span><b>" + v + " %</b></div><div class=\"balk" + (v < 60 ? " zwak" : "") + '"><i style="width:' + v + '%"></i></div>').join("") +
+    '<div class="rij"><span>gemiddeld</span><b>' + (bladen.length ? Math.round(bladen.reduce((a, [, v]) => a + v, 0) / bladen.length) : "—") + " %</b></div>";
+  // wereld
+  const w = s.wereldrand || {};
+  // het hek: als tekst ("rekenen 80, puzzel 40, …") in config.hek of run.wereld, of als getallen
+  let hek = {};
+  const hekBron = c.hek || (r.wereld && typeof r.wereld === "object" && r.wereld.hek) || "";
+  if (typeof hekBron === "string") for (const m of hekBron.matchAll(/(\w+) (\d+)/g)) hek[m[1]] = +m[2];
+  else if (hekBron && typeof hekBron === "object") for (const [k, v] of Object.entries(hekBron)) if (typeof v === "number") hek[k] = v;
+  const fams = Object.keys(w);
+  $("landen").innerHTML = fams.map(f => {
+    const grens = hek[f] || 0, rand = w[f] || 0;
+    const eigen = Object.entries(sc).filter(([b]) => BLAD_FAM[b] === f).map(([, v]) => v); const min = eigen.length ? Math.min(...eigen) : null;
+    return '<div class="rij"><span>' + f + (min !== null && min < 60 ? " · moeilijk" : "") + "</span><b>" + rand + (grens ? " van " + grens : "") + "</b></div>" +
+      '<div class="balk' + (min !== null && min < 60 ? " zwak" : "") + '"><i style="width:' + (grens ? Math.min(100, 100 * rand / grens) : 0) + '%"></i></div>';
+  }).join("");
+  // tijd
+  const T0 = new Date(2026, 7, 6); const dagen = Math.floor((Date.now() - T0) / 86400e3) + 1;
+  $("t-dagen").innerHTML = dagen + "<small>dagen</small>";
+  $("t-haar").innerHTML = nl(s.haar_uren || 0) + "<small>uur geleerd</small>";
+  $("t-dag").textContent = "dag " + (s.dag || "—"); $("t-les").textContent = s.geleefde_lessen || "—";
+  $("t-ont").textContent = nl((s.onthouden_totaal || 0) / 1e6) + " miljoen";
+  if (!urenGemeten) weken();
+}
+let urenGemeten = null;
+async function weken() {
+  try { urenGemeten = await (await fetch("/uren.json", { cache: "no-store" })).json(); } catch (e) { return; }
+  const g = urenGemeten; if (!g.weken) return;
+  $("t-uren").textContent = komma(g.totaal, 1) + " uur";
+  const max = Math.max(...g.weken.map(w => w.uren), 1);
+  $("weken").innerHTML = g.weken.map(w => '<div class="week wij"><span>wk ' + w.week + '</span><div class="balk"><i style="width:' + (100 * w.uren / max) + '%"></i></div><span class="u">' + komma(w.uren, 1) + "</span></div>").join("");
+}
+async function kaarten() {
+  let k = []; try { k = await (await fetch("/kaarten.json", { cache: "no-store" })).json(); } catch (e) { return; }
+  $("kaart1").style.display = k.length > 1 ? "" : "none";
+  k.slice(0, 2).forEach((c, i) => { $("k" + i + "t").innerHTML = c.temp + "<small>°C</small>"; $("k" + i + "w").textContent = Math.round(c.watt) + " W"; $("k" + i + "v").textContent = komma(c.vram / 1024, 1) + " GB"; });
+}
+async function stem() {
+  try { const z = await (await fetch("/amber-zegt.json", { cache: "no-store" })).json(); const l = z[z.length - 1]; if (!l) return;
+    $("zij").innerHTML = "<b>“" + (l.zegt || "…") + "”</b>" + (l.vraagt && !l.antwoord_cley ? "<br>en ze vraagt: <b>“" + l.vraagt + "”</b><span class=\"stip\"></span>" : ""); } catch (e) {}
+}
+let gesprekKlok = null;
+async function gesprek() {
+  try { const g = await (await fetch("/gesprek.json", { cache: "no-store" })).json(); $("g-status").textContent = g.status || "";
+    const b = $("beurten"); b.innerHTML = (g.beurten || []).slice(-20).map(x => '<div class="beurt ' + (x.wie === "cley" ? "cley" : "amber") + '">' + x.tekst + "</div>").join(""); b.scrollTop = b.scrollHeight; } catch (e) {}
+}
+async function stuur() { const q = $("g-in").value.trim(); if (!q) return; $("g-in").value = ""; fetch("/ik-kijk").catch(() => {}); await fetch("/gesprek-zeg?q=" + encodeURIComponent(q), { cache: "no-store" }); gesprek(); }
+$("g-stuur").onclick = stuur; $("g-in").addEventListener("keydown", e => { if (e.key === "Enter") stuur(); });
+$("g-stem").onclick = () => new Audio("/rapport/gesprek.wav?" + Date.now()).play();
+for (const b of document.querySelectorAll("nav button")) b.onclick = () => {
+  for (const x of document.querySelectorAll("nav button")) x.classList.toggle("actief", x === b);
+  for (const z of document.querySelectorAll(".zicht")) z.classList.toggle("actief", z.id === "z-" + b.dataset.z);
+  if (b.dataset.z === "gesprek") { gesprek(); if (!gesprekKlok) gesprekKlok = setInterval(() => { if ($("z-gesprek").classList.contains("actief")) gesprek(); }, 3000); }
+  try { localStorage.setItem("hk-mobiel-zicht", b.dataset.z); } catch (e) {}
+};
+try { const z = localStorage.getItem("hk-mobiel-zicht"); if (z) document.querySelector('nav button[data-z="' + z + '"]').click(); } catch (e) {}
+setInterval(() => { if (!doelOnt) return; doelOnt += (80 / (msPerStap / 1000)) / 5; toonOnt += (doelOnt - toonOnt) * .25; $("onthouden").textContent = nl(toonOnt); }, 200);
+setInterval(() => { const d = new Date(); $("klok").textContent = [d.getHours(), d.getMinutes(), d.getSeconds()].map(x => String(x).padStart(2, "0")).join(":"); }, 1000);
+ververs(); kaarten(); stem(); setInterval(ververs, 5000); setInterval(kaarten, 5000); setInterval(stem, 30000);
+</script>
+</body>
+</html>

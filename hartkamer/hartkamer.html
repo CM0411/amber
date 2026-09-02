@@ -1,0 +1,1047 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amber — de hartkamer</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="%23ff9a2e"/></svg>'>
+<style>
+  :root {
+    --zwart: #0a0705; --paneel: rgba(24, 18, 10, .55);
+    --amber: #ffb454; --gloed: #ff9a2e; --fel: #ffd9a0;
+    --dof: #8a7248; --heel-dof: #4a3b24; --lijn: rgba(255, 180, 84, .09);
+    --alarm: #ff6a4d; --goed: #ffd9a0;
+    --mono: "SF Mono", ui-monospace, Menlo, monospace;
+    --kop: "Futura", "Avenir Next", "Helvetica Neue", sans-serif;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { background: var(--zwart); color: var(--amber); overflow: hidden;
+         font-family: var(--mono); }
+
+  /* ============ de kamer zelf: diepte, gloed, stof ============ */
+  #kamer { position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 48% at 50% 44%, rgba(255,154,46,.10), transparent 70%),
+      radial-gradient(ellipse 120% 80% at 50% 120%, rgba(255,120,30,.05), transparent 60%),
+      var(--zwart); }
+  #raster { position: fixed; inset: 0; opacity: .5; background-image:
+      linear-gradient(var(--lijn) 1px, transparent 1px),
+      linear-gradient(90deg, var(--lijn) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 30%, transparent 75%);
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, black 30%, transparent 75%); }
+  .stofje { position: fixed; width: 3px; height: 3px; border-radius: 50%;
+            background: var(--gloed); opacity: 0; pointer-events: none;
+            animation: zweef var(--d) linear infinite; animation-delay: var(--v); }
+  @keyframes zweef { 0% { transform: translateY(12vh); opacity: 0; }
+                     12% { opacity: .35; } 82% { opacity: .28; }
+                     100% { transform: translateY(-88vh); opacity: 0; } }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none;
+                background: repeating-linear-gradient(0deg, transparent 0 3px,
+                            rgba(0,0,0,.14) 3px 4px); }
+
+  /* ============ opstart ============ */
+  #boot { position: fixed; inset: 0; z-index: 40; background: var(--zwart);
+          display: flex; align-items: center; justify-content: center;
+          transition: opacity .8s; }
+  #boot.weg { opacity: 0; pointer-events: none; }
+  #boot pre { font-size: 13px; color: var(--dof); line-height: 2.1;
+              letter-spacing: .18em; }
+  #boot .ok { color: var(--fel); }
+
+  /* ============ kop ============ */
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+           display: flex; justify-content: space-between; align-items: center;
+           padding: 20px 34px; }
+  #naam { font-family: var(--kop); font-weight: 500; letter-spacing: .52em;
+          font-size: 15px; color: var(--fel); text-transform: uppercase; }
+  #naam small { display: block; font-family: var(--mono); font-size: 9px;
+                letter-spacing: .38em; color: var(--heel-dof); margin-top: 5px; }
+  #status { display: flex; gap: 22px; font-size: 10px; letter-spacing: .26em;
+            text-transform: uppercase; color: var(--dof); align-items: center; }
+  .led { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+         margin-right: 7px; background: var(--heel-dof); vertical-align: 1px; }
+  .led.aan { background: var(--gloed); box-shadow: 0 0 8px var(--gloed);
+             animation: ademled 3s ease-in-out infinite; }
+  .led.uit { background: #3a2c1a; }
+  .led.rood { background: var(--alarm); box-shadow: 0 0 8px var(--alarm); }
+  @keyframes ademled { 50% { opacity: .55; } }
+  #klok { font-size: 13px; color: var(--amber); font-variant-numeric: tabular-nums;
+          letter-spacing: .14em; }
+
+  /* ============ het hart ============ */
+  #midden { position: fixed; inset: 0; display: flex; align-items: center;
+            justify-content: center; }
+  #hart { width: min(44vmin, 430px); height: min(44vmin, 430px); position: relative;
+          margin-top: -3vh; }
+  #hart svg { width: 100%; height: 100%; overflow: visible; }
+  .kern { filter: drop-shadow(0 0 22px var(--gloed)) drop-shadow(0 0 60px rgba(255,154,46,.4)); }
+  .maat-ring { fill: none; stroke: var(--dof); stroke-width: 1;
+               stroke-dasharray: 2 7; opacity: .5; }
+  .draai-ring { fill: none; stroke: var(--gloed); stroke-width: 1.1; opacity: .65;
+                stroke-dasharray: 40 240 12 200 6 320;
+                animation: draai 46s linear infinite; transform-origin: center; }
+  .draai-ring.terug { animation-direction: reverse; opacity: .3;
+                      stroke-dasharray: 90 500 30 180; animation-duration: 70s; }
+  @keyframes draai { to { transform: rotate(360deg); } }
+  .tik { stroke: var(--heel-dof); stroke-width: 1; }
+  .tik.groot { stroke: var(--dof); stroke-width: 1.4; }
+  @keyframes klop { 0% { transform: scale(1); } 12% { transform: scale(1.13); }
+                    30% { transform: scale(.985); } 100% { transform: scale(1); } }
+  .klopt { animation: klop .9s cubic-bezier(.2,.7,.3,1); transform-origin: center; }
+  .rimpel { fill: none; stroke: var(--gloed); stroke-width: 1.4; opacity: 0;
+            transform-origin: center; }
+  .rimpelt { animation: rimpel 2.8s ease-out; }
+  @keyframes rimpel { 0% { transform: scale(.4); opacity: .85; }
+                      100% { transform: scale(1.8); opacity: 0; } }
+  #hart-onder { position: absolute; top: 103%; width: 100%; text-align: center; }
+  #denkt-l { font-size: 9px; letter-spacing: .4em; color: var(--heel-dof);
+             text-transform: uppercase; }
+  #denkt { font-family: var(--kop); font-size: 21px; letter-spacing: .2em;
+           color: var(--fel); text-transform: uppercase; margin-top: 7px;
+           text-shadow: 0 0 18px rgba(255,154,46,.55); }
+
+  /* ============ panelen ============ */
+  .paneel { position: fixed; z-index: 5; width: 250px; padding: 22px 24px;
+            background: var(--paneel); border: 1px solid rgba(255,180,84,.14);
+            border-radius: 14px; backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 18px 50px rgba(0,0,0,.45);
+            opacity: 0; transform: translateY(14px);
+            animation: opkomst .9s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes opkomst { to { opacity: 1; transform: none; } }
+  .paneel h2 { font-family: var(--kop); font-size: 11px; letter-spacing: .42em;
+               color: var(--dof); text-transform: uppercase; font-weight: 500;
+               padding-bottom: 12px; margin-bottom: 16px;
+               border-bottom: 1px solid rgba(255,180,84,.12); }
+  #lichaam { left: 34px; top: 50%; transform: translateY(calc(-50% )); animation-delay: .15s; }
+  #geest   { right: 34px; top: 50%; animation-delay: .3s; }
+  #lichaam.paneel, #geest.paneel { transform: translateY(-50%) translateY(14px); }
+  @keyframes opkomst-mid { to { opacity: 1; transform: translateY(-50%); } }
+  #lichaam, #geest { animation-name: opkomst-mid; }
+  .vital { display: flex; justify-content: space-between; align-items: baseline;
+           padding: 8px 0; }
+  .vital .l { font-size: 10px; letter-spacing: .3em; color: var(--heel-dof);
+              text-transform: uppercase; }
+  .vital .w { font-size: 21px; color: var(--amber); font-variant-numeric: tabular-nums;
+              transition: color .4s, text-shadow .4s; }
+  .vital .w small { font-size: 11px; color: var(--dof); margin-left: 3px; }
+  .vital .w.vers { color: var(--fel); text-shadow: 0 0 14px rgba(255,154,46,.8); }
+  .kaart1 { display: none; }
+  body.twee-kaarten .kaart1 { display: flex; }
+  body.twee-kaarten .balk.kaart1 { display: block; }
+  .balk { height: 3px; background: rgba(255,180,84,.1); border-radius: 2px;
+          margin: 2px 0 10px; overflow: hidden; }
+  .balk i { display: block; height: 100%; background:
+            linear-gradient(90deg, #b35c00, var(--gloed));
+            box-shadow: 0 0 10px var(--gloed); border-radius: 2px;
+            transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
+
+  /* wereld-randen in het geest-paneel */
+  .fam { display: grid; grid-template-columns: 76px 1fr 42px; gap: 10px;
+         align-items: center; padding: 4px 0; font-size: 11px; }
+  .fam .n { color: var(--dof); letter-spacing: .12em; }
+  .fam .cijfer { text-align: right; color: var(--amber);
+                 font-variant-numeric: tabular-nums; }
+  .fam .balk { margin: 0; }
+
+  /* ============ cardiogram ============ */
+  #strook { position: fixed; left: 34px; right: 34px; bottom: 88px; height: 120px;
+            z-index: 4; opacity: 0; animation: opkomst 1s .5s forwards; }
+  #strook h2 { position: absolute; top: -24px; left: 0; font-family: var(--kop);
+               font-size: 10px; letter-spacing: .42em; color: var(--heel-dof);
+               text-transform: uppercase; font-weight: 500; }
+  #strook .nu { position: absolute; top: -24px; right: 0; font-size: 10px;
+                letter-spacing: .2em; color: var(--dof); }
+  #strook svg { width: 100%; height: 100%; }
+  #ekg { fill: none; stroke: var(--gloed); stroke-width: 1.8;
+         filter: drop-shadow(0 0 7px var(--gloed)); }
+  #ekg-vlak { opacity: .16; }
+  .raster-l { stroke: rgba(255,180,84,.08); stroke-width: 1; }
+  #zwaai { fill: url(#zwaai-g); opacity: .5; animation: zwaai 7s linear infinite; }
+  @keyframes zwaai { 0% { transform: translateX(-12%); } 100% { transform: translateX(112%); } }
+
+  /* ============ proefwerk-lint ============ */
+  #lint { position: fixed; left: 0; right: 0; bottom: 46px; z-index: 4;
+          display: flex; gap: 30px; justify-content: center; flex-wrap: nowrap;
+          overflow: hidden; font-size: 10px; letter-spacing: .18em;
+          text-transform: uppercase; color: var(--heel-dof);
+          opacity: 0; animation: opkomst 1s .65s forwards; }
+  #lint b { color: var(--amber); font-weight: 500; margin-left: 6px;
+            font-variant-numeric: tabular-nums; }
+  #lint .zwak b { color: var(--alarm); text-shadow: 0 0 10px rgba(255,106,77,.6); }
+
+  /* ============ haar stem ============ */
+  footer { position: fixed; left: 0; right: 0; bottom: 14px; z-index: 4;
+           text-align: center; font-size: 13px; color: var(--dof);
+           padding: 0 30px; opacity: 0; animation: opkomst 1s .8s forwards; }
+  footer b { color: var(--fel); font-weight: 400; }
+  #wacht-stip { display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+                background: var(--gloed); margin-left: 10px; vertical-align: 1px;
+                animation: ademled 1.6s ease-in-out infinite; }
+
+  /* ============ verbinding zoek ============ */
+  #zoek { position: fixed; inset: 0; z-index: 30; display: none;
+          align-items: center; justify-content: center; flex-direction: column;
+          gap: 18px; background: rgba(10,7,5,.7); backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px); }
+  #zoek.actief { display: flex; }
+  #zoek .l { font-size: 12px; letter-spacing: .4em; color: var(--alarm);
+             text-transform: uppercase; }
+
+  /* ============ het luik naar de andere kamers ============ */
+  #luik-knop { position: fixed; left: 30px; bottom: 16px; z-index: 20;
+               width: 40px; height: 40px; border-radius: 50%;
+               background: var(--paneel); border: 1px solid rgba(255,180,84,.25);
+               color: var(--amber); font-size: 16px; cursor: pointer;
+               backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+               transition: box-shadow .3s, transform .3s; }
+  #luik-knop:hover { box-shadow: 0 0 18px rgba(255,154,46,.5);
+                     transform: rotate(45deg); }
+  #luik { position: fixed; left: 30px; bottom: 66px; z-index: 20; width: 250px;
+          background: var(--paneel); border: 1px solid rgba(255,180,84,.2);
+          border-radius: 14px; padding: 16px 8px 10px;
+          backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+          box-shadow: 0 24px 60px rgba(0,0,0,.6);
+          opacity: 0; transform: translateY(10px); pointer-events: none;
+          transition: opacity .3s, transform .3s; }
+  #luik.open { opacity: 1; transform: none; pointer-events: auto; }
+  #luik h3 { font-family: var(--kop); font-size: 10px; letter-spacing: .42em;
+             color: var(--heel-dof); text-transform: uppercase; font-weight: 500;
+             padding: 0 14px 10px; }
+  #luik a { display: block; padding: 9px 14px; border-radius: 9px;
+            color: var(--amber); text-decoration: none; font-size: 12.5px;
+            letter-spacing: .08em; }
+  #luik a span { color: var(--heel-dof); font-size: 10px; }
+  #luik a:hover { background: rgba(255,154,46,.12); color: var(--fel); }
+
+  /* ============ zichten ============ */
+  .zicht { position: fixed; inset: 90px 34px 34px; z-index: 6; display: none;
+           overflow: auto; -webkit-overflow-scrolling: touch; }
+  body[data-view="machines"] #v-machines,
+  body[data-view="gesprek"] #v-gesprek,
+  body[data-view="geheugen"] #v-geheugen { display: block; }
+  body:not([data-view="hart"]) .alleen-hart { display: none !important; }
+  .zicht h1 { font-family: var(--kop); font-size: 13px; letter-spacing: .5em;
+              color: var(--dof); text-transform: uppercase; font-weight: 500;
+              margin-bottom: 22px; }
+  .kaart { background: var(--paneel); border: 1px solid rgba(255,180,84,.16);
+           border-radius: 16px; padding: 22px 26px; margin-bottom: 18px;
+           backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+           box-shadow: 0 18px 50px rgba(0,0,0,.45); }
+  .kaart h2 { font-family: var(--kop); font-size: 12px; letter-spacing: .4em;
+              color: var(--fel); text-transform: uppercase; font-weight: 500;
+              margin-bottom: 16px; }
+  .kaart h2 small { color: var(--heel-dof); font-family: var(--mono);
+                    font-size: 9px; letter-spacing: .3em; margin-left: 12px; }
+  #v-machines { max-width: 660px; margin: 0 auto; }
+  .m-rij { display: flex; justify-content: space-between; padding: 7px 0;
+           font-size: 13px; color: var(--dof); letter-spacing: .08em; }
+  .m-rij b { color: var(--amber); font-weight: 500;
+             font-variant-numeric: tabular-nums; }
+  .dienstjes { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px;
+               font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+               color: var(--dof); }
+  #v-gesprek { max-width: 620px; margin: 0 auto; display: none;
+               flex-direction: column; }
+  body[data-view="gesprek"] #v-gesprek { display: flex; }
+  #beurten { flex: 1; overflow: auto; padding: 6px 2px; }
+  .beurt { max-width: 78%; margin: 7px 0; padding: 11px 16px; border-radius: 14px;
+           font-size: 14px; line-height: 1.5; }
+  .beurt.cley { margin-left: auto; background: rgba(255,154,46,.14);
+                border: 1px solid rgba(255,180,84,.25); color: var(--fel);
+                border-bottom-right-radius: 4px; }
+  .beurt.amber { background: var(--paneel); border: 1px solid rgba(255,180,84,.12);
+                 color: var(--amber); border-bottom-left-radius: 4px;
+                 font-family: var(--mono); }
+  #g-status { font-size: 10px; letter-spacing: .3em; color: var(--heel-dof);
+              text-transform: uppercase; padding: 8px 4px; }
+  #g-balk { display: flex; gap: 10px; padding-top: 10px; }
+  #g-in { flex: 1; background: rgba(24,18,10,.7); color: var(--fel);
+          border: 1px solid rgba(255,180,84,.25); border-radius: 12px;
+          padding: 13px 16px; font-size: 15px; font-family: var(--mono);
+          outline: none; }
+  #g-in:focus { border-color: var(--gloed); box-shadow: 0 0 14px rgba(255,154,46,.3); }
+  .knopje { background: rgba(255,154,46,.16); color: var(--fel);
+            border: 1px solid rgba(255,180,84,.3); border-radius: 12px;
+            padding: 0 20px; font-size: 14px; cursor: pointer;
+            font-family: var(--kop); letter-spacing: .1em; }
+  .knopje:hover { background: rgba(255,154,46,.3); }
+  #v-geheugen { max-width: 620px; margin: 0 auto; }
+  #z-in { width: 100%; background: rgba(24,18,10,.7); color: var(--fel);
+          border: 1px solid rgba(255,180,84,.25); border-radius: 12px;
+          padding: 15px 18px; font-size: 16px; font-family: var(--mono);
+          outline: none; margin-bottom: 8px; }
+  #z-in:focus { border-color: var(--gloed); box-shadow: 0 0 14px rgba(255,154,46,.3); }
+  #z-stand { font-size: 10px; letter-spacing: .26em; color: var(--heel-dof);
+             text-transform: uppercase; margin: 6px 2px 14px; }
+  .her { font-size: 13px; }
+  .her .op { white-space: pre-wrap; word-break: break-word; color: var(--amber); }
+  .her .ant { color: var(--fel); margin-top: 8px; }
+  .her .kopje { font-size: 9px; letter-spacing: .3em; color: var(--heel-dof);
+                text-transform: uppercase; margin-bottom: 10px; }
+
+  .m-kop { font-size: 9px; letter-spacing: .4em; color: var(--heel-dof);
+           text-transform: uppercase; margin: 14px 0 6px;
+           border-top: 1px solid rgba(255,180,84,.1); padding-top: 12px; }
+  .vloot { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .vloot .kaart { margin: 0; padding: 16px 18px; }
+  .vloot h2 { font-size: 10px; margin-bottom: 10px; }
+  .vloot .m-rij { font-size: 11px; padding: 4px 0; }
+  @media (max-width: 700px) { .vloot { grid-template-columns: 1fr; } }
+
+  /* ============ de tijd ============ */
+  body[data-view="tijd"] #v-tijd { display: block; }
+  #v-tijd { max-width: 900px; margin: 0 auto; }
+  .tijd-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 720px) { .tijd-2 { grid-template-columns: 1fr; } }
+  .groot { font-family: var(--kop); font-size: 46px; color: var(--fel);
+           letter-spacing: .02em; line-height: 1; margin: 6px 0 2px;
+           font-variant-numeric: tabular-nums; text-shadow: 0 0 22px rgba(255,154,46,.35); }
+  .groot small { font-size: 15px; color: var(--dof); letter-spacing: .2em;
+                 margin-left: 10px; text-transform: uppercase; }
+  .onder { font-size: 12px; color: var(--dof); letter-spacing: .08em; margin-bottom: 14px; }
+  .tijdbalk { position: relative; height: 14px; border-radius: 7px; margin: 8px 0 18px;
+              background: rgba(255,180,84,.08); border: 1px solid rgba(255,180,84,.14); overflow: hidden; }
+  .tijdbalk i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 7px;
+                background: linear-gradient(90deg, #a85a06, var(--gloed), #ffe9c8);
+                box-shadow: 0 0 14px rgba(255,154,46,.5); transition: width 1.2s ease; }
+  .tijdbalk.wij i { background: linear-gradient(90deg, #3d2a12, #8a6a3a, #d9c4a0); box-shadow: none; }
+  .balk-kop { display: flex; justify-content: space-between; font-size: 10px;
+              letter-spacing: .3em; text-transform: uppercase; color: var(--heel-dof); }
+  .zin-groot { font-size: 15px; line-height: 1.7; color: var(--amber); }
+  .zin-groot b { color: var(--fel); font-weight: 500; }
+  .week { display: grid; grid-template-columns: 150px 1fr 70px; gap: 12px; align-items: center;
+          padding: 6px 0; font-size: 12px; color: var(--dof); letter-spacing: .06em; }
+  .week .n { color: var(--amber); }
+  .week .u { text-align: right; color: var(--fel); font-family: var(--kop); font-size: 15px;
+             font-variant-numeric: tabular-nums; }
+  .week .tijdbalk { margin: 0; height: 12px; }
+  .week.lopend .n::after { content: " · loopt"; color: var(--heel-dof); font-size: 10px; }
+  @media (max-width: 720px) { .week { grid-template-columns: 110px 1fr 60px; } }
+  /* ============ haar wereld ============ */
+  body[data-view="wereld"] #v-wereld { display: block; }
+  #v-wereld { max-width: 1040px; margin: 0 auto; }
+  #kaart-vlak { width: 100%; }
+  .land { cursor: pointer; }
+  .land .hek-ring { fill: none; stroke: var(--heel-dof); stroke-width: 1.4;
+                    stroke-dasharray: 3 5; }
+  .land .open-schijf { fill: url(#land-g); opacity: .92;
+                       filter: drop-shadow(0 0 10px rgba(255,154,46,.45)); }
+  .land.zwak .open-schijf { fill: url(#land-zwak-g);
+                            filter: drop-shadow(0 0 10px rgba(255,106,77,.5)); }
+  .land.nu .hek-ring { stroke: var(--fel); stroke-width: 2;
+                       animation: ademled 1.6s ease-in-out infinite; }
+  .land text { fill: var(--dof); font-family: var(--mono); font-size: 13px;
+               letter-spacing: .12em; text-anchor: middle; }
+  .land .pct { fill: var(--fel); font-size: 11px; }
+  .land:hover .hek-ring { stroke: var(--gloed); }
+  .ster { fill: var(--fel); animation: ademled 1.2s ease-in-out infinite; }
+  #w-legenda { display: flex; gap: 26px; justify-content: center;
+               font-size: 10px; letter-spacing: .24em; color: var(--heel-dof);
+               text-transform: uppercase; margin: 4px 0 14px; }
+  #w-legenda i { display: inline-block; width: 9px; height: 9px;
+                 border-radius: 50%; margin-right: 7px; vertical-align: -1px; }
+  #w-info { max-width: 560px; margin: 0 auto; }
+  #w-info .balk { margin: 4px 0 12px; height: 4px; }
+  #w-info .blad { display: grid; grid-template-columns: 110px 1fr 40px;
+                  gap: 12px; align-items: center; padding: 4px 0;
+                  font-size: 12px; }
+  #w-info .blad .n { color: var(--dof); letter-spacing: .1em; }
+  #w-info .blad .c { text-align: right; color: var(--amber);
+                     font-variant-numeric: tabular-nums; }
+  #w-info .zin { font-size: 14px; color: var(--fel); line-height: 1.6;
+                 margin-bottom: 14px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .draai-ring, #zwaai, .stofje { animation: none !important; }
+  }
+  @media (max-width: 900px) {
+    #hart { width: 52vmin; height: 52vmin; margin-top: -12vh; }
+    .paneel { position: fixed; width: calc(50% - 40px); padding: 14px 16px; }
+    #lichaam { left: 26px; top: auto; bottom: 220px; transform: none;
+               animation-name: opkomst; }
+    #geest { right: 26px; top: auto; bottom: 220px; transform: none;
+             animation-name: opkomst; }
+    .fam, #lint { display: none; }
+    #strook { bottom: 78px; height: 90px; left: 26px; right: 26px; }
+    .vital .w { font-size: 16px; }
+  }
+</style>
+
+<div id="kamer"></div>
+<div id="raster"></div>
+
+<div id="boot"><pre id="boot-t"></pre></div>
+
+<header>
+  <div id="naam">de hartkamer<small>venster van claude · poort 8030</small></div>
+  <div id="status">
+    <span><i class="led" id="led-trainer"></i>trainer</span>
+    <span><i class="led" id="led-melder"></i>melder</span>
+    <span><i class="led" id="led-thuis"></i>dl380</span>
+    <span id="klok">—</span>
+  </div>
+</header>
+
+<div id="midden" class="alleen-hart">
+  <div id="hart">
+    <svg viewBox="0 0 200 200">
+      <defs>
+        <radialGradient id="kern-g">
+          <stop offset="0%" stop-color="#ffe9c8"/>
+          <stop offset="45%" stop-color="#ffb454"/>
+          <stop offset="100%" stop-color="#c76a08"/>
+        </radialGradient>
+      </defs>
+      <g id="tikken"></g>
+      <circle class="draai-ring" cx="100" cy="100" r="88"/>
+      <circle class="draai-ring terug" cx="100" cy="100" r="80"/>
+      <circle class="maat-ring" cx="100" cy="100" r="66"/>
+      <circle class="rimpel" cx="100" cy="100" r="52" id="rimpel"/>
+      <circle class="kern" cx="100" cy="100" r="33" id="kern" fill="url(#kern-g)"/>
+    </svg>
+    <div id="hart-onder">
+      <div id="denkt-l">zij denkt aan</div>
+      <div id="denkt">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="paneel alleen-hart" id="lichaam">
+  <h2>lichaam</h2>
+  <div class="vital"><span class="l">pols</span>
+    <span class="w" id="pols">—</span></div>
+  <div class="vital"><span class="l" id="warmte-l">warmte kaart</span>
+    <span class="w" id="warmte">—</span></div>
+  <div class="balk"><i id="warmte-b" style="width:0"></i></div>
+  <div class="vital kaart1"><span class="l">warmte kaart 1</span>
+    <span class="w" id="warmte1">—</span></div>
+  <div class="balk kaart1"><i id="warmte1-b" style="width:0"></i></div>
+  <div class="vital"><span class="l" id="kracht-l">kracht</span>
+    <span class="w" id="kracht">—</span></div>
+  <div class="balk"><i id="kracht-b" style="width:0"></i></div>
+  <div class="vital kaart1"><span class="l">kracht kaart 1</span>
+    <span class="w" id="kracht1">—</span></div>
+  <div class="balk kaart1"><i id="kracht1-b" style="width:0"></i></div>
+  <div class="vital"><span class="l" id="vram-l">geheugen kaart</span>
+    <span class="w" id="vram">—</span></div>
+  <div class="balk"><i id="vram-b" style="width:0"></i></div>
+  <div class="vital kaart1"><span class="l">geheugen kaart 1</span>
+    <span class="w" id="vram1">—</span></div>
+  <div class="balk kaart1"><i id="vram1-b" style="width:0"></i></div>
+  <div class="vital"><span class="l">processor</span>
+    <span class="w" id="cpu">—</span></div>
+  <div class="vital"><span class="l">nog te gaan</span>
+    <span class="w" id="nog">—</span></div>
+  <div class="vital"><span class="l">klaar rond</span>
+    <span class="w" id="klaar-rond">—</span></div>
+</div>
+
+<div class="paneel alleen-hart" id="geest">
+  <h2>geest</h2>
+  <div class="vital"><span class="l">stap</span>
+    <span class="w" id="stap">—</span></div>
+  <div class="vital"><span class="l">deze run</span>
+    <span class="w" id="pct">—</span></div>
+  <div class="balk"><i id="pct-b" style="width:0"></i></div>
+  <div class="vital"><span class="l">onthouden</span>
+    <span class="w" id="onthouden">—</span></div>
+  <div style="margin-top:14px">
+    <h2 style="margin-bottom:10px">haar wereld</h2>
+    <div id="wereld"></div>
+  </div>
+</div>
+
+<div id="strook" class="alleen-hart">
+  <h2>leercurve — haar cardiogram</h2>
+  <span class="nu" id="curve-nu"></span>
+  <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="vlak-g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ff9a2e"/>
+        <stop offset="100%" stop-color="#ff9a2e" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="zwaai-g" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#ffd9a0" stop-opacity="0"/>
+        <stop offset="70%" stop-color="#ffd9a0" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#ffd9a0" stop-opacity=".25"/>
+      </linearGradient>
+    </defs>
+    <line class="raster-l" x1="0" y1="12" x2="1000" y2="12"/>
+    <line class="raster-l" x1="0" y1="60" x2="1000" y2="60"/>
+    <line class="raster-l" x1="0" y1="108" x2="1000" y2="108"/>
+    <path id="ekg-vlak" fill="url(#vlak-g)" d=""/>
+    <path id="ekg" d=""/>
+    <rect id="zwaai" x="0" y="0" width="140" height="120"/>
+  </svg>
+</div>
+
+<div id="lint" class="alleen-hart"></div>
+
+<footer id="zij" class="alleen-hart">…</footer>
+
+<button id="luik-knop" title="alle kamers">◈</button>
+<nav id="luik">
+  <h3>de kamers</h3>
+  <a href="#" data-view="hart">het hart</a>
+  <a href="#" data-view="machines">de machines</a>
+  <a href="#" data-view="wereld">haar wereld</a>
+  <a href="#" data-view="gesprek">het gesprek</a>
+  <a href="#" data-view="geheugen">het geheugen</a>
+  <a href="#" data-view="tijd">de tijd</a>
+</nav>
+
+<section class="zicht" id="v-machines">
+  <h1>de machines</h1>
+  <div class="kaart"><h2>x399 <small>de trainer · haar huis · altijd aan</small></h2>
+    <div id="m-z490"></div>
+    <div class="m-kop">binnenin</div>
+    <div class="m-rij"><span>bord</span><b>ASRock X399 Taichi</b></div>
+    <div class="m-rij"><span>processor</span><b>AMD Threadripper 1920X · 12 kernen / 24 draden · 3,5 GHz</b></div>
+    <div class="m-rij"><span>werkgeheugen</span><b>32 GB</b></div>
+    <div class="m-rij"><span>rekenkaart</span><b>2&times; NVIDIA Tesla P100 · 16 GB HBM2 (x16 + x8)</b></div>
+    <div class="m-rij"><span>schijven</span><b>Samsung 980 PRO 1 TB + 2&times; SPCC 480 GB in spiegel (nvme)</b></div>
+  </div>
+  <div class="kaart"><h2>dl380 gen9 <small>het thuis · stem, oren en oog · avonduren</small></h2>
+    <div id="m-dl380"></div>
+    <div class="m-kop">binnenin</div>
+    <div class="m-rij"><span>chassis</span><b>HPE ProLiant DL380 Gen9 · dubbele voeding</b></div>
+    <div class="m-rij"><span>processors</span><b>2&times; Xeon E5-2690 v4 · 28 kernen / 56 draden</b></div>
+    <div class="m-rij"><span>werkgeheugen</span><b>472 GB ECC</b></div>
+    <div class="m-rij"><span>rekenkaarten</span><b>RTX 3070 Ti 8 GB (de mond); de P100 s zitten nu allebei in de X399</b></div>
+    <div class="m-rij"><span>schijven</span><b>6 stuks: 2&times; SSD 480 GB + 4&times; SAS 280&ndash;840 GB</b></div>
+    <div class="m-rij"><span>grote brein</span><b>gpt-oss-20b · 12 GB · klaar op schijf</b></div>
+  </div>
+  <div class="vloot">
+    <div class="kaart"><h2>nas</h2>
+      <div class="m-rij"><span>chassis</span><b>DL380 Gen9</b></div>
+      <div class="m-rij"><span>taak</span><b>TrueNAS-opslag</b></div>
+      <div class="m-rij"><span>stand</span><b>slaapt</b></div></div>
+    <div class="kaart"><h2>dl360 gen9</h2>
+      <div class="m-rij"><span>taak</span><b>reserve</b></div>
+      <div class="m-rij"><span>stand</span><b>slaapt</b></div></div>
+    <div class="kaart"><h2>macbook pro</h2>
+      <div class="m-rij"><span>type</span><b>15&Prime; 2019 · i7 6-kern</b></div>
+      <div class="m-rij"><span>geheugen</span><b>32 GB</b></div>
+      <div class="m-rij"><span>taak</span><b>Cleys knooppunt + 4 TB AmberBackup</b></div></div>
+  </div>
+  <div class="kaart" style="margin-top:18px"><h2>de hartkamer <small>dit venster · poort 8030</small></h2>
+    <div class="m-rij"><span>gebouwd door</span><b>claude, voor cley</b></div>
+    <div class="m-rij"><span>leest</span><b>alleen — raakt niets aan</b></div></div>
+</section>
+
+<section class="zicht" id="v-wereld">
+  <h1>haar wereld</h1>
+  <div id="w-legenda">
+    <span><i style="background:var(--gloed)"></i>open en sterk</span>
+    <span><i style="background:var(--alarm)"></i>open maar moeilijk</span>
+    <span><i style="border:1px dashed var(--heel-dof);background:none"></i>nog dicht hek</span>
+    <span><i style="background:var(--fel)"></i>hier is ze nu</span>
+  </div>
+  <svg id="kaart-vlak" viewBox="0 0 1000 560">
+    <defs>
+      <radialGradient id="land-g">
+        <stop offset="0%" stop-color="#ffe9c8"/>
+        <stop offset="55%" stop-color="#ffb454"/>
+        <stop offset="100%" stop-color="#a85a06"/>
+      </radialGradient>
+      <radialGradient id="land-zwak-g">
+        <stop offset="0%" stop-color="#ffc9b0"/>
+        <stop offset="55%" stop-color="#ff8a63"/>
+        <stop offset="100%" stop-color="#a83e22"/>
+      </radialGradient>
+    </defs>
+    <g id="landen"></g>
+  </svg>
+  <div id="w-info"></div>
+</section>
+
+<section class="zicht" id="v-tijd">
+  <h1>de tijd</h1>
+  <div class="tijd-2">
+    <div class="kaart"><h2>onze tijd <small>cley + claude</small></h2>
+      <div class="groot" id="t-ons-dagen">—<small>dagen</small></div>
+      <div class="onder" id="t-start">sinds <b>donderdag 6 augustus 2026</b> — het eerste gesprek · <b>8 aug</b> de kern geboren</div>
+      <div id="t-ons"></div>
+    </div>
+    <div class="kaart"><h2>haar tijd <small>amber</small></h2>
+      <div class="groot" id="t-haar-uren">—<small>uur geleerd</small></div>
+      <div class="onder" id="t-haar-onder">—</div>
+      <div id="t-haar"></div>
+    </div>
+  </div>
+  <div class="kaart">
+    <h2>onze uren per week <small id="t-w-kop">gemeten uit de sessieverslagen</small></h2>
+    <div id="t-weken"></div>
+  </div>
+  <div class="kaart">
+    <h2>naast elkaar <small>zelfde schaal, in dagen</small></h2>
+    <div class="balk-kop"><span>onze kalender</span><span id="t-b1">—</span></div>
+    <div class="tijdbalk wij"><i id="t-balk-ons" style="width:100%"></i></div>
+    <div class="balk-kop"><span>haar leren, aan één stuk</span><span id="t-b2">—</span></div>
+    <div class="tijdbalk"><i id="t-balk-haar" style="width:0"></i></div>
+    <div class="zin-groot" id="t-zin">—</div>
+  </div>
+</section>
+
+<section class="zicht" id="v-gesprek">
+  <h1>het gesprek</h1>
+  <div id="beurten"></div>
+  <div id="g-status">—</div>
+  <div id="g-balk">
+    <input id="g-in" placeholder="zeg iets tegen haar… (bv. hoeveel is 13 * 7)">
+    <button class="knopje" id="g-stuur">stuur</button>
+    <button class="knopje" id="g-stem" title="haar laatste antwoord, hardop">&#128266;</button>
+  </div>
+</section>
+
+<section class="zicht" id="v-geheugen">
+  <h1>het geheugen</h1>
+  <input id="z-in" placeholder="zoek in haar herinneringen… (bv. 13 * 8, def f)">
+  <div id="z-stand"></div>
+  <div id="z-uit"></div>
+</section>
+
+<div id="zoek"><div class="l">verbinding zoek</div>
+  <div style="color:var(--heel-dof);font-size:11px;letter-spacing:.2em">
+    het hart klopt door — alleen dit venster ziet haar even niet</div></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const nl = n => Number(n).toLocaleString("nl");
+let vorigeStap = 0, doelOnthouden = 0, toonOnthouden = 0, msPerStap = 8000;
+
+/* ---- opstart ---- */
+const bootregels = [
+  ["hartkamer", ""], ["verbinding met het venster", "ok"],
+  ["hart gevonden", "ok"], ["zij klopt", "ok"]];
+let bi = 0;
+(function boot() {
+  if (bi < bootregels.length) {
+    const [t, s] = bootregels[bi++];
+    $("boot-t").innerHTML += t.padEnd(34, " ") +
+      (s ? '<span class="ok">[ ' + s + ' ]</span>' : "") + "\n";
+    setTimeout(boot, 340);
+  } else setTimeout(() => $("boot").classList.add("weg"), 500);
+})();
+
+/* ---- stofjes ---- */
+for (let i = 0; i < 14; i++) {
+  const d = document.createElement("i");
+  d.className = "stofje";
+  d.style.left = (4 + Math.random() * 92) + "vw";
+  d.style.top = (30 + Math.random() * 70) + "vh";
+  d.style.setProperty("--d", (16 + Math.random() * 22) + "s");
+  d.style.setProperty("--v", (-Math.random() * 30) + "s");
+  document.body.appendChild(d);
+}
+
+/* ---- tik-streepjes rond het hart ---- */
+(function tikken() {
+  const g = $("tikken");
+  let uit = "";
+  for (let i = 0; i < 60; i++) {
+    const a = i / 60 * Math.PI * 2, groot = i % 5 === 0;
+    const r1 = groot ? 92 : 94, r2 = 97;
+    uit += `<line class="tik${groot ? " groot" : ""}"
+      x1="${100 + r1 * Math.cos(a)}" y1="${100 + r1 * Math.sin(a)}"
+      x2="${100 + r2 * Math.cos(a)}" y2="${100 + r2 * Math.sin(a)}"/>`;
+  }
+  g.innerHTML = uit;
+})();
+
+/* ---- hartslag ---- */
+function klop() {
+  const kern = $("kern"), rimpel = $("rimpel");
+  kern.classList.remove("klopt"); rimpel.classList.remove("rimpelt");
+  void kern.getBoundingClientRect();
+  kern.classList.add("klopt"); rimpel.classList.add("rimpelt");
+}
+let ritme = setInterval(klop, msPerStap);
+function zetRitme(ms) {
+  if (Math.abs(ms - msPerStap) < 300) return;
+  msPerStap = ms; clearInterval(ritme);
+  ritme = setInterval(klop, Math.max(1200, ms));
+}
+
+/* ---- waarde bijwerken met een korte opgloei ---- */
+function zet(id, html) {
+  const el = $(id);
+  if (el.innerHTML === html) return;
+  el.innerHTML = html;
+  el.classList.add("vers");
+  setTimeout(() => el.classList.remove("vers"), 700);
+}
+
+/* ---- cardiogram ---- */
+function teken(curve) {
+  if (!curve || curve.length < 2) return;
+  const p = curve.slice(-90);
+  const xs = p.map((_, i) => i / (p.length - 1) * 1000);
+  const ys = p.map(q => 120 - (q[1] / 100) * 100 - 8);
+  let d = `M ${xs[0]} ${ys[0]}`;
+  for (let i = 1; i < p.length; i++) d += ` L ${xs[i]} ${ys[i]}`;
+  $("ekg").setAttribute("d", d);
+  $("ekg-vlak").setAttribute("d", d + " L 1000 120 L 0 120 Z");
+  $("curve-nu").textContent = "ladder " + p[p.length - 1][1] + "%";
+}
+
+/* ---- haar wereld: rand tegen hek ---- */
+function wereld(w, hekTekst) {
+  if (!w || !hekTekst) return;
+  const hek = {};
+  for (const m of hekTekst.matchAll(/(\w+) (\d+)/g)) hek[m[1]] = +m[2];
+  const rijen = Object.keys(hek)
+    .map(f => ({ f, rand: w[f] || 0, hek: hek[f] }))
+    .sort((a, b) => b.rand / b.hek - a.rand / a.hek).slice(0, 6);
+  $("wereld").innerHTML = rijen.map(r => `
+    <div class="fam"><span class="n">${r.f}</span>
+      <div class="balk"><i style="width:${100 * r.rand / r.hek}%"></i></div>
+      <span class="cijfer">${r.rand}/${r.hek}</span></div>`).join("");
+}
+
+/* ---- proefwerk-lint ---- */
+function lint(scores) {
+  if (!scores) return;
+  const vakken = Object.entries(scores)
+    .filter(([k]) => !k.startsWith("_") && !k.startsWith("week1"));
+  vakken.sort((a, b) => a[1] - b[1]);
+  const toon = [...vakken.slice(0, 4), ...vakken.slice(-4)];
+  $("lint").innerHTML = toon.map(([k, v]) =>
+    `<span class="${v < 60 ? "zwak" : ""}">${k}<b>${v}</b></span>`).join("");
+}
+
+/* ---- de levende gegevens ---- */
+async function ververs() {
+  let s;
+  try {
+    s = await (await fetch("/stand.json", { cache: "no-store" })).json();
+    try { tijd(s); } catch (e) {}
+    if (!urenGemeten) weken();
+    $("zoek").classList.remove("actief");
+  } catch (e) { $("zoek").classList.add("actief"); return; }
+  const r = s.run || {}, lv = r.live || {}, m = r.machine || {},
+        c = r.config || {}, thuis = r.thuis || {};
+
+  if (c.naam) $("naam").innerHTML = "de hartkamer<small>" + c.naam +
+    " · venster van claude · poort 8030</small>";
+  $("led-trainer").className = "led " + (m.dienst === "active" ? "aan" : "rood");
+  $("led-melder").className = "led aan";
+  $("led-thuis").className = "led " + (thuis.aan ? "aan" : "uit");
+
+  // de pols per stap, live uit het logboek (lv.ms verspringt met elke
+  // stap); de telregel van leven.log loopt per blok van 50 en is dus
+  // te traag voor een hartslag
+  const ms = lv.ms;
+  if (ms) { zet("pols", (ms / 1000).toFixed(1).replace(".", ",") +
+      "<small>s / stap</small>"); zetRitme(ms); }
+  const nogM = (r.regel || "").match(/nog (\d+)u(\d+)m/);
+  if (nogM) {
+    zet("nog", nogM[1] + "<small>u</small> " + nogM[2] + "<small>m</small>");
+    const klaar = new Date(Date.now() +
+      (+nogM[1] * 60 + +nogM[2]) * 60000);
+    const dag = ["zo", "ma", "di", "wo", "do", "vr", "za"][klaar.getDay()];
+    zet("klaar-rond", dag + " " +
+      String(klaar.getHours()).padStart(2, "0") + ":" +
+      String(klaar.getMinutes()).padStart(2, "0"));
+  }
+  kaarten();
+  if (m.temp && !tweeKaarten) { zet("warmte", m.temp + "<small>°C</small>");
+    $("warmte-b").style.width = Math.min(100, m.temp / 90 * 100) + "%"; }
+  if (m.watt && !tweeKaarten) { zet("kracht", Math.round(m.watt) + "<small>W</small>");
+    $("kracht-b").style.width = Math.min(100, m.watt / 250 * 100) + "%"; }
+  if (m.vram && !tweeKaarten) { zet("vram", (m.vram / 1024).toFixed(1).replace(".", ",") +
+      "<small>GB</small>");
+    $("vram-b").style.width = Math.min(100, m.vram / 16384 * 100) + "%"; }
+  if (m.cpu_temp) zet("cpu", Math.round(m.cpu_temp) + "<small>°C</small>");
+
+  if (lv.stap) {
+    zet("stap", nl(lv.stap));
+    if (c.doel) { const p = 100 * lv.stap / c.doel;
+      zet("pct", p.toFixed(1).replace(".", ",") + "<small>%</small>");
+      $("pct-b").style.width = p + "%"; }
+    doelOnthouden = lv.stap * 80;
+    if (!toonOnthouden) toonOnthouden = doelOnthouden;
+    if (lv.stap !== vorigeStap) { klop(); vorigeStap = lv.stap; }
+  }
+  const den = (r.regel || "").match(/([a-z0-9]+)\/(\d+)/);
+  if (den) $("denkt").textContent = den[1] + " · " + den[2];
+  teken(r.curve);
+  wereld(r.wereld, c.hek);
+  lint(r.scores);
+  machines(r);
+  wereldStand = { w: r.wereld || {}, scores: r.scores || {},
+    denkt: den ? den[1] : null, doorbraken: r.doorbraken || [],
+    keuzes: (s.keuzes && s.keuzes.laatste) ?
+      Object.fromEntries(Object.entries(s.keuzes.laatste).map(([f, n]) =>
+        [f, Math.round(100 * n / (s.keuzes.laatste_n || 1))])) : null,
+    hek: (() => { const u = {}; for (const m of (c.hek || "")
+      .matchAll(/(\w+) (\d+)/g)) u[m[1]] = +m[2]; return u; })() };
+  if (document.body.dataset.view === "wereld") kaartTeken();
+}
+
+/* ---- onthouden tikt live mee ---- */
+setInterval(() => {
+  if (!doelOnthouden) return;
+  doelOnthouden += 80 / (msPerStap / 1000) / 5;
+  toonOnthouden += (doelOnthouden - toonOnthouden) * .25;
+  $("onthouden").textContent = nl(Math.floor(toonOnthouden));
+}, 200);
+
+/* ---- haar stem ---- */
+async function stem() {
+  try {
+    const z = await (await fetch("/amber-zegt.json", { cache: "no-store" })).json();
+    const l = z[z.length - 1];
+    if (!l) return;
+    let uit = 'zij zegt &nbsp;·&nbsp; <b>“' + (l.zegt || "…") + '”</b>';
+    if (l.vraagt && !l.antwoord_cley)
+      uit += ' &nbsp;·&nbsp; en ze vraagt: <b>“' + l.vraagt +
+             '”</b><span id="wacht-stip" title="wacht op antwoord"></span>';
+    $("zij").innerHTML = uit;
+  } catch (e) {}
+}
+
+function tik() {
+  const d = new Date();
+  $("klok").textContent = [d.getHours(), d.getMinutes(), d.getSeconds()]
+    .map(x => String(x).padStart(2, "0")).join(":");
+}
+setInterval(tik, 1000); tik();
+setInterval(ververs, 5000); ververs();
+setInterval(stem, 30000); stem();
+
+/* ---- het luik en de zichten ---- */
+$("luik-knop").onclick = () => $("luik").classList.toggle("open");
+document.addEventListener("click", e => {
+  if (!e.target.closest("#luik") && !e.target.closest("#luik-knop"))
+    $("luik").classList.remove("open");
+});
+document.body.dataset.view = "hart";
+for (const a of document.querySelectorAll("#luik a")) {
+  a.onclick = e => { e.preventDefault();
+    document.body.dataset.view = a.dataset.view;
+    $("luik").classList.remove("open");
+    if (a.dataset.view === "gesprek") gesprek();
+    if (a.dataset.view === "wereld") kaartTeken();
+  };
+}
+
+/* ---- de machines, in eigen stijl ---- */
+function machines(r) {
+  const m = r.machine || {}, t = r.thuis || {}, c = r.config || {};
+  const led = a => '<i class="led ' + (a ? "aan" : "uit") + '"></i>';
+  $("m-z490").innerHTML =
+    '<div class="m-kop">nu, levend</div>' +
+    '<div class="m-rij"><span>trainer</span><b>' +
+      (m.dienst === "active" ? "draait" : "stil") + "</b></div>" +
+    '<div class="m-rij"><span>kaart</span><b>' + (m.temp || "—") + " °C · " +
+      Math.round(m.watt || 0) + " W · " +
+      ((m.vram || 0) / 1024).toFixed(1).replace(".", ",") + " GB</b></div>" +
+    '<div class="m-rij"><span>processor</span><b>' +
+      Math.round(m.cpu_temp || 0) + " °C</b></div>" +
+    '<div class="m-rij"><span>schijfspiegel</span><b>' +
+      (m.spiegel || "—") + "</b></div>" +
+    '<div class="m-rij"><span>brein</span><b>' + (c.lagen || "—") +
+      " lagen · venster " + (c.venster || "—") + "</b></div>";
+  const d = t.diensten || {};
+  $("m-dl380").innerHTML = t.aan
+    ? '<div class="m-rij"><span>stand</span><b>aan</b></div>' +
+      '<div class="m-rij"><span>kaarten</span><b>' +
+        (t.kaarten || []).join(" · ") + "</b></div>" +
+      '<div class="dienstjes">' + ["kijker", "brug", "gesprek", "oren",
+        "mond", "oog"].map(n => "<span>" + led(d[n] === "active") + n +
+        "</span>").join("") + "</div>"
+    : '<div class="m-rij"><span>stand</span><b>uit — komt vanavond weer</b></div>';
+}
+
+/* ---- beide kaarten, rechtstreeks (1 sep 2026: tweede P100) ---- */
+let tweeKaarten = false;
+async function kaarten() {
+  let k = [];
+  try { k = await (await fetch("/kaarten.json", { cache: "no-store" })).json(); } catch (e) { return; }
+  if (!k.length) return;
+  tweeKaarten = k.length > 1;
+  document.body.classList.toggle("twee-kaarten", tweeKaarten);
+  $("warmte-l").textContent = tweeKaarten ? "warmte kaart 0" : "warmte kaart";
+  $("kracht-l").textContent = tweeKaarten ? "kracht kaart 0" : "kracht";
+  $("vram-l").textContent = tweeKaarten ? "geheugen kaart 0" : "geheugen kaart";
+  k.forEach((c, i) => {
+    const s = i ? "1" : "";
+    if (i > 1) return;
+    zet("warmte" + s, c.temp + "<small>°C</small>");
+    $("warmte" + s + "-b").style.width = Math.min(100, c.temp / 90 * 100) + "%";
+    zet("kracht" + s, Math.round(c.watt) + "<small>W</small>");
+    $("kracht" + s + "-b").style.width = Math.min(100, c.watt / 250 * 100) + "%";
+    zet("vram" + s, (c.vram / 1024).toFixed(1).replace(".", ",") + "<small>GB</small>");
+    $("vram" + s + "-b").style.width = Math.min(100, c.vram / 16384 * 100) + "%";
+  });
+}
+
+/* ---- de tijd: ons naast haar ---- */
+let urenGemeten = null;
+async function weken() {
+  try { urenGemeten = await (await fetch("/uren.json", { cache: "no-store" })).json(); } catch (e) { return; }
+  const g = urenGemeten; if (!g.weken) return;
+  const max = Math.max(...g.weken.map(w => w.uren), 1);
+  $("t-weken").innerHTML = g.weken.map((w, i) =>
+    '<div class="week' + (i === g.weken.length - 1 ? " lopend" : "") + '"><span class="n">week ' + w.week +
+    ' <small style="color:var(--heel-dof)">' + w.van + " – " + w.tot + "</small></span>" +
+    '<div class="tijdbalk"><i style="width:' + (100 * w.uren / max) + '%"></i></div>' +
+    '<span class="u">' + komma(w.uren, 1) + "</span></div>").join("") +
+    '<div class="onder" style="margin-top:10px">samen <b>' + komma(g.totaal, 1) + ' uur</b> · gemeten ' + g.gemeten_op + "</div>";
+  $("t-w-kop").textContent = g.methode || "";
+}
+const T0 = new Date(2026, 7, 6);              // do 6 aug 2026, het eerste gesprek (8 aug de kern)
+const nlt = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const komma = (n, d) => Number(n).toFixed(d).replace(".", ",");
+function tijd(s) {
+  const dagen = Math.floor((Date.now() - T0) / 86400e3) + 1;
+  const haarUur = Number(s.haar_uren || 0), haarDag = haarUur / 24;
+  const c = s.config || {};
+  const stap = ((s.run || {}).regel || "").match(/stap (\d+)/);
+  const stapN = stap ? Number(stap[1]) : null;
+  $("t-ons-dagen").innerHTML = dagen + "<small>dagen</small>";
+  $("t-ons").innerHTML =
+    '<div class="m-rij"><span>samen gebouwd</span><b>' + komma((urenGemeten && urenGemeten.totaal) || s.uren || 0, 1) +
+      " uur <small style=\"color:var(--heel-dof)\">(gemeten)</small></b></div>" +
+    '<div class="m-rij"><span>ritme</span><b>overdag werk, \u2019s avonds bouwen</b></div>' +
+    '<div class="m-rij"><span>runs</span><b>3 \u2192 7.6.1 (10 runs)</b></div>' +
+    '<div class="m-rij"><span>lessen van cley</span><b>' + (s.geleefde_lessen || 0) + "</b></div>" +
+    '<div class="m-rij"><span>haar brein groeide</span><b>8 \u2192 ' + (c.lagen || "—") +
+      " lagen \u00b7 venster 512 \u2192 " + (c.venster || "—") + "</b></div>";
+  $("t-haar-uren").innerHTML = nlt(haarUur) + "<small>uur geleerd</small>";
+  $("t-haar-onder").innerHTML = "= <b>" + komma(haarDag, 1) +
+    " dagen</b> aan \u00e9\u00e9n stuk \u00b7 in haar eigen telling is het <b>dag " + (s.dag || "—") + "</b>";
+  $("t-haar").innerHTML =
+    '<div class="m-rij"><span>stappen</span><b>' + (stapN ? nlt(stapN) : "—") + "</b></div>" +
+    '<div class="m-rij"><span>onthouden</span><b>' + nlt((s.onthouden_totaal || 0) / 1e6) + " miljoen dingen</b></div>" +
+    '<div class="m-rij"><span>herinneringen</span><b>' + nlt(s.geheugen_grootte || 0) + "</b></div>" +
+    '<div class="m-rij"><span>leert per dag van ons</span><b>' + komma(haarUur / Math.max(1, dagen), 1) + " uur</b></div>";
+  $("t-b1").textContent = dagen + " dagen";
+  $("t-b2").textContent = komma(haarDag, 1) + " dagen";
+  $("t-balk-haar").style.width = Math.min(100, 100 * haarDag / Math.max(1, dagen)) + "%";
+  $("t-zin").innerHTML = "In <b>" + dagen + " dagen</b> van ons leerde zij <b>" +
+    nlt(haarUur) + " uur</b> \u2014 elke dag dat wij bouwden, oefende zij gemiddeld <b>" +
+    komma(haarUur / Math.max(1, dagen), 1) + " uur</b>. " +
+    (stapN ? "Dat zijn <b>" + nlt(stapN) + " stappen</b>, elk een som, een regel code of een puzzel." : "");
+}
+
+/* ---- het gesprek, in eigen stijl ---- */
+let gesprekKlok = null;
+async function gesprek() {
+  try {
+    const g = await (await fetch("/gesprek.json", { cache: "no-store" })).json();
+    $("g-status").textContent = "zij is " + (g.status || "rust");
+    const b = $("beurten");
+    b.innerHTML = (g.beurten || []).slice(-30).map(x =>
+      '<div class="beurt ' + (x.wie === "cley" ? "cley" : "amber") + '">' +
+      x.tekst + "</div>").join("");
+    b.scrollTop = b.scrollHeight;
+  } catch (e) {}
+  if (!gesprekKlok) gesprekKlok = setInterval(() => {
+    if (document.body.dataset.view === "gesprek") gesprek();
+  }, 3000);
+}
+async function stuur() {
+  const q = $("g-in").value.trim();
+  if (!q) return;
+  $("g-in").value = "";
+  fetch("/ik-kijk").catch(() => {});
+  await fetch("/gesprek-zeg?q=" + encodeURIComponent(q), { cache: "no-store" });
+  gesprek();
+}
+$("g-stuur").onclick = stuur;
+$("g-in").addEventListener("keydown", e => { if (e.key === "Enter") stuur(); });
+$("g-stem").onclick = () => new Audio("/rapport/gesprek.wav?" + Date.now()).play();
+
+/* ---- haar wereld: de kaart ---- */
+const BLAD_FAM = { regel: "puzzel", regelcheck: "puzzel", rooster: "puzzel",
+  diepte: "puzzel", diepte2: "puzzel", diepte3: "puzzel", stapel: "puzzel",
+  geheugen: "geheugen", geheugen2: "geheugen", venster2048: "geheugen",
+  logica: "logica", volgorde: "volgorde", tekst: "tekst",
+  vergelijking: "rekenen", deling: "rekenen", gesprek: "rekenen",
+  ladder: "code", zeggen: "zeggen", zeggen2: "zeggen", taal: "taal",
+  machine: "machine", tellen: "tellen", antwoord: "antwoord",
+  onbekend: "onbekend", grondslag: "rekenen", gemengd: "code" };
+let wereldStand = null;
+
+function famScore(fam, scores) {
+  const eigen = Object.entries(scores || {})
+    .filter(([b]) => BLAD_FAM[b] === fam).map(([, v]) => v);
+  return eigen.length ? Math.min(...eigen) : null;
+}
+
+function kaartTeken() {
+  if (!wereldStand) return;
+  const { w, hek, scores, denkt, doorbraken } = wereldStand;
+  const fams = Object.keys(hek);
+  const cx = 500, cy = 260, R = 205;
+  let uit = "";
+  fams.forEach((f, i) => {
+    const a = -Math.PI / 2 + i / fams.length * Math.PI * 2;
+    const x = cx + R * Math.cos(a), y = cy + (R - 40) * Math.sin(a);
+    const rand = w[f] || 0, grens = hek[f] || 1;
+    const rHek = 26 + grens / 80 * 22;
+    const rOpen = Math.max(4, rHek * Math.sqrt(Math.min(1, rand / grens)));
+    const sc = famScore(f, scores);
+    const zwak = sc !== null && sc < 60;
+    const nu = denkt === f;
+    const vers = (doorbraken || []).some(d => d.familie === f);
+    uit += '<g class="land' + (zwak ? " zwak" : "") + (nu ? " nu" : "") +
+      '" data-fam="' + f + '" transform="translate(' + x + " " + y + ')">' +
+      '<circle class="hek-ring" r="' + rHek + '"/>' +
+      '<circle class="open-schijf" r="' + rOpen + '"/>' +
+      (vers ? '<circle class="ster" r="3.5" cx="' + (rHek * .8) +
+              '" cy="-' + (rHek * .8) + '"/>' : "") +
+      '<text y="' + (rHek + 18) + '">' + f + "</text>" +
+      '<text class="pct" y="' + (rHek + 33) + '">' + rand + " van " +
+      grens + "</text></g>";
+  });
+  document.getElementById("landen").innerHTML = uit;
+  for (const g of document.querySelectorAll(".land"))
+    g.onclick = () => land(g.dataset.fam);
+}
+
+function land(f) {
+  const { w, hek, scores, keuzes } = wereldStand;
+  const rand = w[f] || 0, grens = hek[f] || 1;
+  const sc = famScore(f, scores);
+  const deel = keuzes && keuzes[f] ? keuzes[f] : 0;
+  const bladen = Object.entries(scores || {})
+    .filter(([b]) => BLAD_FAM[b] === f).sort((a, b) => a[1] - b[1]);
+  let zin = "Ze mag hier tot trede <b>" + rand + "</b> van de <b>" + grens +
+    "</b>.";
+  if (rand >= grens) zin = "Dit land is <b>helemaal open</b> — tot trede " +
+    grens + ".";
+  if (deel) zin += " Van haar keuzes gaat <b>" + deel +
+    "%</b> hierheen.";
+  if (sc !== null && sc < 60) zin += " Dit vindt ze nog <b>moeilijk</b>.";
+  document.getElementById("w-info").innerHTML =
+    '<div class="kaart"><h2>' + f + "</h2>" +
+    '<div class="zin">' + zin + "</div>" +
+    '<div class="balk"><i style="width:' + 100 * Math.min(1, rand / grens) +
+    '%"></i></div>' +
+    bladen.map(([b, v]) => '<div class="blad"><span class="n">' + b +
+      '</span><div class="balk" style="margin:0"><i style="width:' + v +
+      '%"></i></div><span class="c">' + v + "</span></div>").join("") +
+    "</div>";
+}
+
+/* ---- het geheugen, in eigen stijl ---- */
+let zoekWacht = null;
+$("z-in").oninput = e => {
+  clearTimeout(zoekWacht);
+  zoekWacht = setTimeout(async () => {
+    const q = e.target.value.trim();
+    if (q.length < 2) { $("z-uit").innerHTML = ""; $("z-stand").textContent = ""; return; }
+    const d = await (await fetch("/zoek?q=" + encodeURIComponent(q),
+                                 { cache: "no-store" })).json();
+    $("z-stand").textContent = d.gevonden.length + " treffers in " +
+      nl(d.totaal) + " herinneringen";
+    $("z-uit").innerHTML = d.gevonden.map(m =>
+      '<div class="kaart her"><div class="kopje">' + m.familie + " · graad " +
+      m.graad + '</div><div class="op">' + m.opgave +
+      '</div><div class="ant">&rarr; ' + m.oplossing + "</div></div>").join("");
+  }, 300);
+};
+</script>

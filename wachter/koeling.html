@@ -27,31 +27,61 @@ label.auto input{width:24px;height:24px}
 </style>
 </head>
 <body>
-<h1>Koeling van de P100</h1>
+<h1>Koeling van de twee P100's</h1>
 
 <div class="meter">
-  <div id="mT"><b>–</b><span>°C kaart</span></div>
-  <div><b id="mW">–</b><span>watt</span></div>
-  <div><b id="mMHz">–</b><span>MHz</span></div>
+  <div id="mT"><b>–</b><span>°C kaart 0</span></div>
+  <div><b id="mW">–</b><span>watt kaart 0</span></div>
+  <div><b id="mMHz">–</b><span>MHz kaart 0</span></div>
+</div>
+<div class="meter" id="meter1">
+  <div id="mT1"><b>–</b><span>°C kaart 1</span></div>
+  <div><b id="mW1">–</b><span>watt kaart 1</span></div>
+  <div><b id="mMHz1">–</b><span>MHz kaart 1</span></div>
+</div>
+<div class="meter" id="meterC">
+  <div id="mTC"><b>–</b><span>°C processor</span></div>
+  <div><b id="mRC">–</b><span>rpm cpu-fan</span></div>
+  <div><b id="mRF">–</b><span>rpm kaartfan</span></div>
 </div>
 
 <div class="blok">
-  <h2>Fans <output id="oF">–</output></h2>
+  <h2>Fans kaarten <output id="oF">–</output></h2>
   <input type="range" id="sF" min="0" max="100" step="5">
   <label class="auto"><input type="checkbox" id="aF"> automatisch — de curve volgt de kaart. Schuif je, dan gaat dit vanzelf uit.</label>
   <p class="uitleg">Nu op het bord: <span id="pwm">–</span></p>
 </div>
 
+<div class="blok" id="blokC">
+  <h2>CPU-fan <output id="oC">–</output></h2>
+  <input type="range" id="sC" min="30" max="100" step="5">
+  <label class="auto"><input type="checkbox" id="aC"> automatisch — het BIOS regelt de processorfan. Schuif je, dan gaat dit vanzelf uit.</label>
+  <p class="uitleg">Minimum <b>30</b>%. Wordt de processor heter dan <b>65</b> °C, dan gaat ze toch vol.</p>
+</div>
+
 <div class="blok">
-  <h2>Vermogen <output id="oW">–</output></h2>
+  <h2>Vermogen kaart 0 <output id="oW">–</output></h2>
   <input type="range" id="sW" min="125" max="250" step="5">
   <p class="uitleg">Plafond van de kaart. Lager = koeler en langzamer. Minimum <b>125</b>, maximum <b>250</b>.</p>
 </div>
 
 <div class="blok">
-  <h2>Klok <output id="oK">–</output></h2>
+  <h2>Klok kaart 0 <output id="oK">–</output></h2>
   <input type="range" id="sK" min="544" max="1328" step="50">
   <label class="auto"><input type="checkbox" id="aK"> vrij — de kaart kiest zelf. Schuif je, dan gaat dit vanzelf uit.</label>
+  <p class="uitleg">Vaste klok houdt het vermogen laag. Vrij = tot <b>1328</b> MHz.</p>
+</div>
+
+<div class="blok" id="blokW1">
+  <h2>Vermogen kaart 1 <output id="oW1">–</output></h2>
+  <input type="range" id="sW1" min="125" max="250" step="5">
+  <p class="uitleg">Plafond van kaart 1. Minimum <b>125</b>, maximum <b>250</b>.</p>
+</div>
+
+<div class="blok" id="blokK1">
+  <h2>Klok kaart 1 <output id="oK1">–</output></h2>
+  <input type="range" id="sK1" min="544" max="1328" step="50">
+  <label class="auto"><input type="checkbox" id="aK1"> vrij — kaart 1 kiest zelf.</label>
   <p class="uitleg">Vaste klok houdt het vermogen laag. Vrij = tot <b>1328</b> MHz.</p>
 </div>
 
@@ -65,23 +95,52 @@ function toon(s){
   $('mT').className = (s.temp ?? 0) >= 76 ? 'heet' : '';
   $('mW').textContent = s.watt != null ? Math.round(s.watt) : '–';
   $('mMHz').textContent = s.mhz ?? '–';
-  $('pwm').textContent = s.pwm ? s.pwm.map(p => Math.round(p*100/255) + '%').join(' · ') : '–';
+  $('pwm').textContent = s.pwm ? s.pwm.map((p, n) => Math.round(p*100/255) + '%' + (s.rpm && s.rpm[n] != null ? ' (' + s.rpm[n] + ' rpm)' : '')).join(' · ') : '–';
   const i = s.instelling || {};
+  const c = s.cpu || {};
+  const cpuAan = !!i.cpu_kanaal;
+  for (const id of ['meterC', 'blokC']) $(id).style.display = cpuAan ? '' : 'none';
+  if (cpuAan) {
+    $('mTC').querySelector('b').textContent = c.temp ?? '–';
+    $('mTC').className = (c.temp ?? 0) >= 65 ? 'heet' : '';
+    $('mRC').textContent = c.rpm ?? '–';
+    $('mRF').textContent = s.rpm && s.rpm.length ? Math.max(...s.rpm.map(r => r ?? 0)) : '–';
+  }
   if (!bezig){
     const auto = i.vast == null;
     $('aF').checked = auto;
     $('sF').value = auto ? (s.fans ?? 0) : i.vast;
     $('oF').textContent = $('sF').value + '%' + (auto ? ' (curve)' : '');
+    if (cpuAan) {
+      const bios = i.cpu_vast == null;
+      $('aC').checked = bios;
+      $('sC').value = bios ? Math.round((c.pwm ?? 0) * 100 / 255) : i.cpu_vast;
+      $('oC').textContent = $('sC').value + '%' + (bios ? ' (BIOS)' : '');
+    }
     $('sW').value = i.vermogen_w ?? 125; $('oW').textContent = $('sW').value + ' W';
     const vrij = i.klok_mhz == null;
     $('aK').checked = vrij;
     $('sK').value = vrij ? (s.mhz ?? 1328) : i.klok_mhz;
     $('oK').textContent = vrij ? 'vrij' : $('sK').value + ' MHz';
+    const k1 = (s.kaarten || [])[1];
+    const twee = !!k1;
+    for (const id of ['meter1', 'blokW1', 'blokK1']) $(id).style.display = twee ? '' : 'none';
+    if (twee) {
+      $('mT1').querySelector('b').textContent = k1.temp ?? '–';
+      $('mT1').className = (k1.temp ?? 0) >= 76 ? 'heet' : '';
+      $('mW1').textContent = k1.watt != null ? Math.round(k1.watt) : '–';
+      $('mMHz1').textContent = k1.mhz ?? '–';
+      $('sW1').value = i.vermogen_w_1 ?? 125; $('oW1').textContent = $('sW1').value + ' W';
+      const vrij1 = i.klok_mhz_1 == null;
+      $('aK1').checked = vrij1;
+      $('sK1').value = vrij1 ? (k1.mhz ?? 1328) : i.klok_mhz_1;
+      $('oK1').textContent = vrij1 ? 'vrij' : $('sK1').value + ' MHz';
+    }
   }
 }
 async function lees(){
   try { const r = await fetch('/stand'); laatst = await r.json(); toon(laatst); $('melding').className=''; }
-  catch(e){ $('melding').textContent = 'geen verbinding met de Z490'; $('melding').className='fout'; }
+  catch(e){ $('melding').textContent = 'geen verbinding met de X399'; $('melding').className='fout'; }
 }
 async function stuur(veld){
   try {
@@ -95,11 +154,19 @@ async function stuur(veld){
 $('sF').oninput = () => { bezig = true; $('oF').textContent = $('sF').value + '%'; };
 $('sF').onchange = () => { $('aF').checked = false; stuur({vast: Number($('sF').value)}); };
 $('aF').onchange = () => stuur($('aF').checked ? {vast: null} : {vast: Number($('sF').value)});
+$('sC').oninput = () => { bezig = true; $('oC').textContent = $('sC').value + '%'; };
+$('sC').onchange = () => { $('aC').checked = false; stuur({cpu_vast: Number($('sC').value)}); };
+$('aC').onchange = () => stuur($('aC').checked ? {cpu_vast: null} : {cpu_vast: Number($('sC').value)});
 $('sW').oninput = () => { bezig = true; $('oW').textContent = $('sW').value + ' W'; };
 $('sW').onchange = () => stuur({vermogen_w: Number($('sW').value)});
 $('sK').oninput = () => { bezig = true; $('oK').textContent = $('sK').value + ' MHz'; };
 $('sK').onchange = () => { $('aK').checked = false; stuur({klok_mhz: Number($('sK').value)}); };
 $('aK').onchange = () => stuur($('aK').checked ? {klok_mhz: null} : {klok_mhz: Number($('sK').value)});
+$('sW1').oninput = () => { bezig = true; $('oW1').textContent = $('sW1').value + ' W'; };
+$('sW1').onchange = () => stuur({vermogen_w_1: Number($('sW1').value)});
+$('sK1').oninput = () => { bezig = true; $('oK1').textContent = $('sK1').value + ' MHz'; };
+$('sK1').onchange = () => { $('aK1').checked = false; stuur({klok_mhz_1: Number($('sK1').value)}); };
+$('aK1').onchange = () => stuur($('aK1').checked ? {klok_mhz_1: null} : {klok_mhz_1: Number($('sK1').value)});
 lees(); setInterval(() => { if (!bezig) lees(); }, 2000);
 </script>
 </body>

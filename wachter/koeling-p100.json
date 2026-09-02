@@ -1,9 +1,9 @@
 {
   "_uitleg": "Koeling van de P100 op de Z490. Dit bestand mag je live aanpassen; de regelaar leest het elke ronde opnieuw.",
   "kanalen": [
-    7
+    5
   ],
-  "_kanalen": "kanaal 7 van de nct6798 = header CHA_FAN4 = de blower van de P100 (gemeten 28 aug 2026, 18:38)",
+  "_kanalen": "kanaal 5 van de nct6779 = de header met de ARCTIC S12038-8K voor de twee P100 s (gemeten 2 sep 2026 18:05: pwm 100 -> 4128 rpm, pwm 255 -> 8385 rpm)",
   "curve": [
     [
       40,
@@ -27,11 +27,18 @@
     ]
   ],
   "_curve": "[graden, procent] — tussen de punten wordt rechtlijnig ingevuld; onder het eerste punt het eerste percentage, boven het laatste 100",
-  "vast": 40,
+  "vast": 50,
   "_vast": "zet hier een getal (procent, 0-100) en de curve wordt genegeerd; null = curve volgen",
   "vermogen_w": 250,
   "_vermogen_w": "vermogensplafond van de kaart (nvidia-smi -pl), 125 t/m 250; null = niet aanraken",
   "elke_s": 3,
   "klok_mhz": null,
-  "_klok_mhz": "vaste klok in MHz (544-1328, nvidia-smi -lgc); null = vrij"
+  "_klok_mhz": "vaste klok in MHz (544-1328, nvidia-smi -lgc); null = vrij",
+  "vermogen_w_1": 250,
+  "klok_mhz_1": null,
+  "_kaart_1": "sinds 1 sep 2026 zit er een tweede P100 in: vermogen_w_1 en klok_mhz_1 zijn haar plafond en klok; de fans (kanalen) zijn voor beide kaarten samen",
+  "cpu_kanaal": 2,
+  "cpu_vast": 100,
+  "cpu_minimum": 30,
+  "_cpu": "kanaal 2 van de nct6779 = CPU_FAN van de X399 Taichi (gemeten 2 sep 2026 18:25: pwm 120 -> 978 rpm, pwm 255 -> 1936 rpm). cpu_vast = procent (30-100) of null = het BIOS regelt hem; boven 65 graden Tdie altijd vol"
 }

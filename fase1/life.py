@@ -197,6 +197,7 @@ say(f"  stap {0:>5} | " + "  ".join(
     f"{n} {v:>4.0%}" for n, v in sorted(measurements[0][1].items())))
 
 start_time = time.perf_counter()
+vorige_momentopname = None      # stap van de momentopname die het kind nog schrijft
 # Tempo en resttijd over de láátste 500 stappen, niet sinds de start. Op
 # 14 aug 2026 stond na 50 stappen "1614 ms/st, klaar 18:00"; de run deed
 # vanaf het begin 2216 en was pas 02:15 klaar — de eerste vijftig
@@ -296,12 +297,20 @@ for step in range(BEGIN, STEPS + 1):
                     f"processen lopen uiteen bij stap {step}: {seen} — "
                     f"momentopname niet geschreven")
         if CHIEF:
+            # written by a child next to her (1 sep 2026): the previous
+            # one is collected first, so the journal is only shortened
+            # after a snapshot that truly landed
             snapshot.write(
                 SNAPSHOT, step, learner.core, learner.optimizer,
                 determinism.state(),
-                extra=learner.carry())
-            log.clean_up(step)
+                extra=learner.carry(), in_child=not parallel.active())
+            if not parallel.active():
+                log.clean_up(vorige_momentopname) if vorige_momentopname else None
+                vorige_momentopname = step
+            else:
+                log.clean_up(step)
 
+snapshot.reap(block=True)      # the last snapshot must land before we go
 log.rest(stap=STEPS, reden="leven klaar")
 log.close()
 parallel.stop()

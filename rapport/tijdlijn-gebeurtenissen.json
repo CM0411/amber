@@ -143,6 +143,81 @@
     "logica"
    ],
    "noot": "12 → 14 lagen; VRAM-huishouding; eenmalig-zaadjes doorgeleerd (83% bij start)"
+  },
+  {
+   "naam": "run7.6.1",
+   "start": 510500,
+   "eind": 517000,
+   "datum": "2026-08-31",
+   "venster": 2048,
+   "lagen": 20,
+   "hek": "rekenen 80, puzzel 40, code 80, geheugen 60, logica 48, volgorde 40, tekst 40, zeggen 40, taal 32, machine 48, tellen 30, antwoord 40, onbekend 32",
+   "families": [
+    "antwoord",
+    "code",
+    "geheugen",
+    "logica",
+    "machine",
+    "onbekend",
+    "puzzel",
+    "rekenen",
+    "taal",
+    "tekst",
+    "tellen",
+    "volgorde",
+    "zeggen"
+   ],
+   "noot": "steen 1 van de P100-sprint: het gebalanceerd vergeten vindt zijn rij via een C-spiegel — zelfde keuzes bit-voor-bit, ±15% snellere stap op de testbank (Cleys woord, 31 aug 2026)"
+  },
+  {
+   "naam": "run7.6.2",
+   "start": 517000,
+   "eind": 517000,
+   "datum": "2026-09-01",
+   "venster": 2048,
+   "lagen": 20,
+   "hek": "rekenen 80, puzzel 40, code 80, geheugen 60, logica 48, volgorde 40, tekst 40, zeggen 40, taal 32, machine 48, tellen 30, antwoord 40, onbekend 32",
+   "families": [
+    "antwoord",
+    "code",
+    "geheugen",
+    "logica",
+    "machine",
+    "onbekend",
+    "puzzel",
+    "rekenen",
+    "taal",
+    "tekst",
+    "tellen",
+    "volgorde",
+    "zeggen"
+   ],
+   "noot": "sprint-avond 2 (1 sep 2026): zes stenen, alle bit-voor-bit bewezen — aandacht-alleen checkpoint, kleine groepjes bewaard, q en k in één draai, dode controle uit de schrijfstap, graaf-opname zonder gc.collect, momentopname in een kindproces; testbank 7,67 → 5,11 s per stap, pauze per 500 stappen 12 → 5 min; live: dezelfde 52 stappen bit-voor-bit gelijk, 8,4 → 6,3 s"
+  },
+  {
+   "naam": "run7.7",
+   "start": 517000,
+   "eind": null,
+   "datum": "2026-09-01",
+   "venster": 2048,
+   "lagen": 20,
+   "hek": "rekenen 80, puzzel 40, code 80, geheugen 60, logica 48, volgorde 40, tekst 40, zeggen 40, taal 32, machine 48, tellen 30, antwoord 40, onbekend 32",
+   "families": [
+    "antwoord",
+    "code",
+    "geheugen",
+    "logica",
+    "machine",
+    "onbekend",
+    "puzzel",
+    "rekenen",
+    "taal",
+    "tekst",
+    "tellen",
+    "volgorde",
+    "zeggen"
+   ],
+   "noot": "tweede P100 in de Z490 (1 sep 2026 's nachts, na de OOM van 7.6.2 bij 517.4xx): één proces per kaart, gradiënten opgeteld over de bus (kern/parallel.py) — zelfde stappen, andere optelvolgorde, dus een rungrens; de zes stenen van 7.6.2 blijven erin"
   }
  ],
  "gebeurtenissen": [
@@ -229,6 +304,24 @@
    "datum": "2026-08-31",
    "soort": "wereld",
    "tekst": "knip: de drie run 8-stenen erin (hek rekenen 80, machine-ruis, dialect-steen) — zwakke vakken diepte/geheugen2/venster2048 als doel"
+  },
+  {
+   "stap": 510500,
+   "datum": "2026-08-31",
+   "soort": "machine",
+   "tekst": "knip 7.6.1: onthouden-index erin — de rem die meegroeide met haar geheugen is weg"
+  },
+  {
+   "stap": 517000,
+   "datum": "2026-09-01",
+   "soort": "machine",
+   "tekst": "knip 7.6.2: zes snelheidsstenen erin — dezelfde sommen, een derde minder tijd per stap en een kortere pauze per 500 stappen"
+  },
+  {
+   "stap": 517000,
+   "datum": "2026-09-01",
+   "soort": "machine",
+   "tekst": "run7.7: twee P100's, één proces per kaart — 7.6.2 duurde 450 stappen en viel om op geheugen"
   }
  ]
 }

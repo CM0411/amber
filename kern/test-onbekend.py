@@ -69,7 +69,7 @@ check("telling", telling([True, False, None, None]) == (1, 1, 2))
 
 # --- de familie onbekend -------------------------------------------------
 check("onbekend in de wereld, achteraan", world.FAMILIES[-1] == "onbekend")
-check("hek van onbekend", world.max_depth("onbekend") == 16)   # 26 aug 2026: 12 -> 16 (run 7.5)
+check("hek van onbekend", world.max_depth("onbekend") == 32)   # 28 aug 2026: 16 -> 32 (run 7.6, de wereld open); 26 aug: 12 -> 16 (run 7.5)
 gezien = set()
 for depth in range(1, world.max_depth("onbekend") + 1):
     for n in range(0, 30):

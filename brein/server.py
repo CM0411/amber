@@ -146,6 +146,13 @@ def _keuzes_samenvatting():
             "per_diepte": per_diepte, "reeks": reeks[-80:]}
 
 
+class _ThuisSlaapt(Exception):
+    pass
+
+
+_tel_thuis = [0]
+
+
 def _ververs_run():
     while True:
         # alles over de run staat op deze machine — gewoon lezen dus
@@ -160,7 +167,7 @@ def _ververs_run():
              "| sed 's/=== //'; "
              "nvidia-smi --query-gpu=temperature.gpu,power.draw,memory.used "
              "--format=csv,noheader 2>/dev/null; "
-             "sensors 2>/dev/null | grep -m1 'Package id 0' "
+             "(sensors 2>/dev/null | grep -m1 Tdie || sensors 2>/dev/null | grep -m1 'Package id 0') "
              "| grep -oE '[0-9]+[.][0-9]' | head -1; "
              "grep -o 'resync = [0-9.]*%' /proc/mdstat 2>/dev/null "
              "|| echo spiegel-synchroon; "
@@ -180,9 +187,17 @@ def _ververs_run():
                     machine["poging"] = int(m_regel.split()[1])
                 elif "," in m_regel and ("W" in m_regel or "MiB" in m_regel):
                     delen = [d.strip() for d in m_regel.split(",")]
-                    machine["temp"] = delen[0]
-                    machine["watt"] = delen[1].replace(" W", "")
-                    machine["vram"] = delen[2].replace(" MiB", "")
+                    # elke kaart apart (2 sep 2026, twee P100 s op de X399);
+                    # de losse velden temp/watt/vram blijven de heetste kaart
+                    kaart = {"temp": delen[0], "watt": delen[1].replace(" W", ""),
+                             "vram": delen[2].replace(" MiB", "")}
+                    machine.setdefault("kaarten", []).append(kaart)
+                    try:
+                        heter = int(float(kaart["temp"])) > int(float(machine.get("temp", "-1")))
+                    except ValueError:
+                        heter = "temp" not in machine
+                    if heter:
+                        machine.update(kaart)
                 elif m_regel.replace(".", "").isdigit():
                     machine["cpu_temp"] = m_regel
                 elif "spiegel" in m_regel or "resync" in m_regel:
@@ -257,9 +272,21 @@ def _ververs_run():
                     if not curve or stap > curve[-1][0]:
                         curve.append([stap, pct])
             # het thuis-blok: de DL380, alleen 's avonds aan — één
-            # ssh-bevel, en blijft hij stil dan zegt de pagina dat eerlijk
+            # ssh-bevel, en blijft hij stil dan zegt de pagina dat eerlijk.
+            # Is hij uit, dan niet elke ronde ~20 s aan de dode deur kloppen
+            # (31 aug 2026: dat liet álle levende cijfers achterlopen) —
+            # één poging per minuut is genoeg om zijn ontwaken te zien.
             thuis = {}
+            if _run.get("thuis", {}).get("aan") is False and _tel_thuis[0] % 12:
+                _tel_thuis[0] += 1
+                thuis = _run["thuis"]
+                raise_niet = True
+            else:
+                _tel_thuis[0] += 1
+                raise_niet = False
             try:
+                if raise_niet:
+                    raise _ThuisSlaapt()
                 r2 = _ssh_dl380(
                     "nvidia-smi --query-gpu=temperature.gpu,power.draw "
                     "--format=csv,noheader 2>/dev/null; echo ===; "
@@ -288,8 +315,10 @@ def _ververs_run():
                         .splitlines()))
                 else:
                     thuis["aan"] = False
+            except _ThuisSlaapt:
+                pass
             except Exception:
-                thuis["aan"] = False
+                thuis = {"aan": False}
             with _slot:
                 _run["thuis"] = thuis
                 _run["regel"] = regels[0].strip() if regels else ""
